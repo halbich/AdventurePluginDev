@@ -1,0 +1,30 @@
+{
+	"FileVersion" : 1,
+	"Version" : 1,
+	"VersionName" : "0.1",
+	"FriendlyName" : "Adventure Plugin",
+	"Description" : "Plugin for creating adventures",
+	"Category" : "Examples",
+	"CreatedBy" : "TTTeam",
+	"CreatedByURL" : "http://ttteam.cz",
+	"DocsURL" : "",
+	"MarketplaceURL" : "",
+	"SupportURL" : "",
+	"EnabledByDefault" : true,
+	"CanContainContent" : true,
+	"IsBetaVersion" : true,
+	"Installed" : false,
+	"Modules" :
+	[
+		{
+			"Name" : "AdventurePluginEditor",
+			"Type" : "Developer",
+			"LoadingPhase" : "Default"
+		},
+		{
+			"Name" : "AdventurePluginRuntime",
+			"Type" : "Runtime",
+			"LoadingPhase" : "Default"
+		}
+	]
+}
