@@ -1,0 +1,13 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-TestEditorMode.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\UnrealEd\SharedPCH.UnrealEd.h.obj"
+"C:\Users\Halbich\Documents\GitHub\AdventurePluginDev\Plugins\TestEditorMode\Intermediate\Build\Win64\UE4Editor\Development\TestEditorMode\Module.TestEditorMode.cpp.obj"
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\TestEditorMode\PCLaunch.rc.res"
+"C:\Program Files\Epic Games\UE_4.18\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+/OUT:"C:\Users\Halbich\Documents\GitHub\AdventurePluginDev\Plugins\TestEditorMode\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-TestEditorMode.lib"
