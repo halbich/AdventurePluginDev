@@ -1,8 +1,0 @@
-{
-	"BuildId": "3709383",
-	"Modules": 
-	{
-		"AdventurePluginEditor": "UE4Editor-AdventurePluginEditor.dll",
-		"AdventurePluginRuntime": "UE4Editor-AdventurePluginRuntime.dll"
-	}
-}
