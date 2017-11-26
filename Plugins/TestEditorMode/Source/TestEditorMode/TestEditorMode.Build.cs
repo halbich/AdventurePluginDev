@@ -4,55 +4,67 @@ using UnrealBuildTool;
 
 public class TestEditorMode : ModuleRules
 {
-	public TestEditorMode(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
-		PublicIncludePaths.AddRange(
-			new string[] {
-				"TestEditorMode/Public"
+    public TestEditorMode(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PublicIncludePaths.AddRange(
+            new string[] {
+                "TestEditorMode/Public"
 				// ... add public include paths required here ...
 			}
-			);
-				
-		
-		PrivateIncludePaths.AddRange(
-			new string[] {
-				"TestEditorMode/Private",
+            );
+
+        PrivateIncludePaths.AddRange(
+            new string[] {
+                "TestEditorMode/Private",
 				// ... add other private include paths required here ...
 			}
-			);
-			
-		
-		PublicDependencyModuleNames.AddRange(
-			new string[]
-			{
-				"Core",
+            );
+
+        PublicDependencyModuleNames.AddRange(
+            new string[]
+            {
+                "Core",
 				// ... add other public dependencies that you statically link with here ...
 			}
-			);
-			
-		
-		PrivateDependencyModuleNames.AddRange(
-			new string[]
-			{
-				"CoreUObject",
-				"Engine",
-				"Slate",
-				"SlateCore",
-				"InputCore",
-				"UnrealEd",
-				"LevelEditor",
-				// ... add private dependencies that you statically link with here ...	
-			}
-			);
-		
-		
-		DynamicallyLoadedModuleNames.AddRange(
-			new string[]
-			{
+            );
+
+        PrivateDependencyModuleNames.AddRange(
+            new string[]
+            {
+                "CoreUObject",
+                "Engine",
+                "Slate",
+                "SlateCore",
+                "InputCore",
+                "UnrealEd",
+                "LevelEditor",
+                 // ... add private dependencies that you statically link with here ...
+                "Core",
+                "AssetTools",
+                "UnrealEd", // for FAssetEditorManager
+                "KismetWidgets",
+                "KismetCompiler",
+                "BlueprintGraph",
+                "GraphEditor",
+                "Kismet",  // for FWorkflowCentricApplication
+                "PropertyEditor",
+                "EditorStyle",
+                "Slate",
+                "SlateCore",
+                "Sequencer",
+                "DetailCustomizations",
+                "Settings",
+                "RenderCore",
+            }
+            );
+
+        DynamicallyLoadedModuleNames.AddRange(
+            new string[]
+            {
 				// ... add any modules that your module loads dynamically here ...
 			}
-			);
-	}
+            );
+    }
 }
