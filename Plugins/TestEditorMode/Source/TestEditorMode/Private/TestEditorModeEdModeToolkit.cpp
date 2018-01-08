@@ -18,6 +18,7 @@
 #include "KismetCompiler.h"
 #include "BlueprintNodeSpawner.h"
 #include "EditorCategoryUtils.h"
+#include "BlueprintEditor.h"
 
 #include "EditorModeManager.h"
 
@@ -103,6 +104,10 @@ void FTestEditorModeEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitTool
 
 					if (lsb)
 					{
+
+
+						
+
 						TArray<UEdGraph*> AllGraphs;
 						lsb->GetAllGraphs(AllGraphs);
 
