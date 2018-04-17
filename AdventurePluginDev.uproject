@@ -10,6 +10,12 @@
 			"LoadingPhase": "Default"
 		}
 	],
+	"Plugins": [
+		{
+			"Name": "AdventurePlugin",
+			"Enabled": true
+		}
+	],
 	"TargetPlatforms": [
 		"AllDesktop"
 	]

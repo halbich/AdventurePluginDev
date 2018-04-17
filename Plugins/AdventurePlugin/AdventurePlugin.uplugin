@@ -4,7 +4,7 @@
 	"VersionName" : "0.1",
 	"FriendlyName" : "Adventure Plugin",
 	"Description" : "Plugin for creating adventures",
-	"Category" : "Examples",
+	"Category" : "AdventurePlugin",
 	"CreatedBy" : "TTTeam",
 	"CreatedByURL" : "http://ttteam.cz",
 	"DocsURL" : "",

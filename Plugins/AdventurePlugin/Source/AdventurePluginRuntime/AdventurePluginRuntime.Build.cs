@@ -6,7 +6,9 @@ namespace UnrealBuildTool.Rules
 	{
 		public AdventurePluginRuntime(ReadOnlyTargetRules Target) : base(Target)
 		{
-			PublicIncludePaths.AddRange(
+            PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+            PublicIncludePaths.AddRange(
 				new string[] {
 					// ... add public include paths required here ...
 				}
@@ -22,7 +24,7 @@ namespace UnrealBuildTool.Rules
 			PublicDependencyModuleNames.AddRange(
 				new string[]
 				{
-					"Core",
+					"Core", "CoreUObject", "Engine", "InputCore"
 					// ... add other public dependencies that you statically link with here ...
 				}
 				);
