@@ -13,7 +13,7 @@
 	"EnabledByDefault" : true,
 	"CanContainContent" : true,
 	"IsBetaVersion" : true,
-	"Installed" : false,
+  "Installed": false,
 	"Modules" :
 	[
 		{
@@ -21,10 +21,14 @@
 			"Type" : "Developer",
 			"LoadingPhase" : "Default"
 		},
-		{
-			"Name" : "AdventurePluginRuntime",
-			"Type" : "Runtime",
-			"LoadingPhase" : "Default"
-		}
+    {
+      "Name": "AdventurePluginRuntime",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Win32"
+      ]
+    }
 	]
 }
