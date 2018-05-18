@@ -14,13 +14,17 @@
 	"CanContainContent" : true,
 	"IsBetaVersion" : true,
   "Installed": false,
-	"Modules" :
-	[
-		{
-			"Name" : "AdventurePluginEditor",
-			"Type" : "Developer",
-			"LoadingPhase" : "Default"
-		},
+  "Modules": [
+    {
+      "Name": "AdventurePluginEditorMode",
+      "Type": "Developer",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "AdventurePluginEditor",
+      "Type": "Developer",
+      "LoadingPhase": "Default"
+    },
     {
       "Name": "AdventurePluginRuntime",
       "Type": "Runtime",
@@ -30,5 +34,5 @@
         "Win32"
       ]
     }
-	]
+  ]
 }

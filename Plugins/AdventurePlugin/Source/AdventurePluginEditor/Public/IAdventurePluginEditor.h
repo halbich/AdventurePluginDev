@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
+#include "TokenizedMessage.h"
+#include "MessageLog.h"
 
 
 /**
@@ -15,6 +17,8 @@ class IAdventurePluginEditor : public IModuleInterface
 {
 
 public:
+
+	
 
 	/**
 	 * Singleton-like access to this module's interface.  This is just for convenience!
@@ -36,5 +40,9 @@ public:
 	{
 		return FModuleManager::Get().IsModuleLoaded( "AdventurePluginEditor" );
 	}
+
+	virtual void Log(EMessageSeverity::Type EngineMessageSeverity, const FText& Message) const = 0;
+
+	virtual void Log(const TSharedRef< class FTokenizedMessage >& Message) const = 0;
 };
 

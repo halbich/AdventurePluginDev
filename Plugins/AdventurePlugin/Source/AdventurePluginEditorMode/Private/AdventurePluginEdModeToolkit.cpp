@@ -1,7 +1,7 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
-#include "TestEditorModeEdModeToolkit.h"
-#include "TestEditorModeEdMode.h"
+#include "AdventurePluginEdModeToolkit.h"
+#include "AdventurePluginEdMode.h"
 #include "Engine/Selection.h"
 #include "Widgets/Input/SButton.h"
 #include "Widgets/Text/STextBlock.h"
@@ -20,15 +20,17 @@
 #include "EditorCategoryUtils.h"
 #include "BlueprintEditor.h"
 
+#include "IAdventurePluginEditor.h"
+
 #include "EditorModeManager.h"
 
-#define LOCTEXT_NAMESPACE "FTestEditorModeEdModeToolkit"
+#define LOCTEXT_NAMESPACE "FAdventurePluginEdModeToolkit"
 
-FTestEditorModeEdModeToolkit::FTestEditorModeEdModeToolkit()
+FAdventurePluginEdModeToolkit::FAdventurePluginEdModeToolkit()
 {
 }
 
-void FTestEditorModeEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolkitHost)
+void FAdventurePluginEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolkitHost)
 {
 	struct Locals
 	{
@@ -62,12 +64,12 @@ void FTestEditorModeEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitTool
 			return FReply::Handled();
 		}
 
-		static FReply OnTestButtonClick()
+		static FReply OnAdventurePluginButtonClick()
 		{
 			USelection* SelectedActors = GEditor->GetSelectedActors();
 
 			// Let editor know that we're about to do something that we want to undo/redo
-			GEditor->BeginTransaction(LOCTEXT("testActorsTransactionName", "Test Button"));
+			GEditor->BeginTransaction(LOCTEXT("AdventurePluginActorsTransactionName", "AdventurePlugin Button"));
 
 			// For each selected actor
 
@@ -106,7 +108,7 @@ void FTestEditorModeEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitTool
 					{
 
 
-						
+
 
 						TArray<UEdGraph*> AllGraphs;
 						lsb->GetAllGraphs(AllGraphs);
@@ -152,9 +154,11 @@ void FTestEditorModeEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitTool
 			return FReply::Handled();
 		}
 
-		static FReply OnTestButtonClick1()
+		static FReply OnAdventurePluginButtonClick1()
 		{
-			//IAdventurePluginEditor e = IAdventurePluginEditor::Get();
+			IAdventurePluginEditor& e = IAdventurePluginEditor::Get();
+
+			e.Log(EMessageSeverity::Type::Warning, FText::FromString(TEXT("Debug log. Remove me ASAP")));
 
 			return FReply::Handled();
 		}
@@ -166,11 +170,11 @@ void FTestEditorModeEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitTool
 				.OnClicked_Static(&Locals::OnButtonClick, InOffset);
 		}
 
-		static TSharedRef<SWidget> MakeTestButton(FText InLabel)
+		static TSharedRef<SWidget> MakeAdventurePluginButton(FText InLabel)
 		{
 			return SNew(SButton)
 				.Text(InLabel)
-				.OnClicked_Static(&Locals::OnTestButtonClick);
+				.OnClicked_Static(&Locals::OnAdventurePluginButtonClick1);
 		}
 	};
 
@@ -223,7 +227,7 @@ void FTestEditorModeEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitTool
 		.HAlign(HAlign_Center)
 		.AutoHeight()
 		[
-			Locals::MakeTestButton(LOCTEXT("TestButtonLabel", "Test"))
+			Locals::MakeAdventurePluginButton(LOCTEXT("AdventurePluginButtonLabel", "AdventurePlugin"))
 		]
 
 		];
@@ -231,19 +235,19 @@ void FTestEditorModeEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitTool
 	FModeToolkit::Init(InitToolkitHost);
 }
 
-FName FTestEditorModeEdModeToolkit::GetToolkitFName() const
+FName FAdventurePluginEdModeToolkit::GetToolkitFName() const
 {
-	return FName("TestEditorModeEdMode");
+	return FName("AdventurePluginEdMode");
 }
 
-FText FTestEditorModeEdModeToolkit::GetBaseToolkitName() const
+FText FAdventurePluginEdModeToolkit::GetBaseToolkitName() const
 {
-	return NSLOCTEXT("TestEditorModeEdModeToolkit", "DisplayName", "TestEditorModeEdMode Tool");
+	return NSLOCTEXT("AdventurePluginEdModeToolkit", "DisplayName", "AdventurePluginEdMode Tool");
 }
 
-class FEdMode* FTestEditorModeEdModeToolkit::GetEditorMode() const
+class FEdMode* FAdventurePluginEdModeToolkit::GetEditorMode() const
 {
-	return GLevelEditorModeTools().GetActiveMode(FTestEditorModeEdMode::EM_TestEditorModeEdModeId);
+	return GLevelEditorModeTools().GetActiveMode(FAdventurePluginEdMode::EM_AdventurePluginEdModeId);
 }
 
 #undef LOCTEXT_NAMESPACE
