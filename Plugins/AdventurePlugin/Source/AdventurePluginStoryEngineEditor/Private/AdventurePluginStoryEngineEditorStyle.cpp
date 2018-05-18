@@ -1,14 +1,14 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
-#include "TestEditorStandaloneStyle.h"
+#include "AdventurePluginStoryEngineEditorStyle.h"
 #include "Styling/SlateStyleRegistry.h"
 #include "Framework/Application/SlateApplication.h"
 #include "SlateGameResources.h"
 #include "IPluginManager.h"
 
-TSharedPtr< FSlateStyleSet > FTestEditorStandaloneStyle::StyleInstance = NULL;
+TSharedPtr< FSlateStyleSet > FAdventurePluginStoryEngineEditorStyle::StyleInstance = NULL;
 
-void FTestEditorStandaloneStyle::Initialize()
+void FAdventurePluginStoryEngineEditorStyle::Initialize()
 {
 	if (!StyleInstance.IsValid())
 	{
@@ -17,16 +17,16 @@ void FTestEditorStandaloneStyle::Initialize()
 	}
 }
 
-void FTestEditorStandaloneStyle::Shutdown()
+void FAdventurePluginStoryEngineEditorStyle::Shutdown()
 {
 	FSlateStyleRegistry::UnRegisterSlateStyle(*StyleInstance);
 	ensure(StyleInstance.IsUnique());
 	StyleInstance.Reset();
 }
 
-FName FTestEditorStandaloneStyle::GetStyleSetName()
+FName FAdventurePluginStoryEngineEditorStyle::GetStyleSetName()
 {
-	static FName StyleSetName(TEXT("TestEditorStandaloneStyle"));
+	static FName StyleSetName(TEXT("AdventurePluginStoryEngineEditorStyle"));
 	return StyleSetName;
 }
 
@@ -40,12 +40,12 @@ const FVector2D Icon16x16(16.0f, 16.0f);
 const FVector2D Icon20x20(20.0f, 20.0f);
 const FVector2D Icon40x40(40.0f, 40.0f);
 
-TSharedRef< FSlateStyleSet > FTestEditorStandaloneStyle::Create()
+TSharedRef< FSlateStyleSet > FAdventurePluginStoryEngineEditorStyle::Create()
 {
-	TSharedRef< FSlateStyleSet > Style = MakeShareable(new FSlateStyleSet("TestEditorStandaloneStyle"));
-	Style->SetContentRoot(IPluginManager::Get().FindPlugin("TestEditorStandalone")->GetBaseDir() / TEXT("Resources"));
+	TSharedRef< FSlateStyleSet > Style = MakeShareable(new FSlateStyleSet("AdventurePluginStoryEngineEditorStyle"));
+	Style->SetContentRoot(IPluginManager::Get().FindPlugin("AdventurePluginStoryEngineEditor")->GetBaseDir() / TEXT("Resources"));
 
-	Style->Set("TestEditorStandalone.OpenPluginWindow", new IMAGE_BRUSH(TEXT("ButtonIcon_40x"), Icon40x40));
+	Style->Set("AdventurePluginStoryEngineEditor.OpenPluginWindow", new IMAGE_BRUSH(TEXT("ButtonIcon_40x"), Icon40x40));
 
 	return Style;
 }
@@ -56,7 +56,7 @@ TSharedRef< FSlateStyleSet > FTestEditorStandaloneStyle::Create()
 #undef TTF_FONT
 #undef OTF_FONT
 
-void FTestEditorStandaloneStyle::ReloadTextures()
+void FAdventurePluginStoryEngineEditorStyle::ReloadTextures()
 {
 	if (FSlateApplication::IsInitialized())
 	{
@@ -64,7 +64,7 @@ void FTestEditorStandaloneStyle::ReloadTextures()
 	}
 }
 
-const ISlateStyle& FTestEditorStandaloneStyle::Get()
+const ISlateStyle& FAdventurePluginStoryEngineEditorStyle::Get()
 {
 	return *StyleInstance;
 }

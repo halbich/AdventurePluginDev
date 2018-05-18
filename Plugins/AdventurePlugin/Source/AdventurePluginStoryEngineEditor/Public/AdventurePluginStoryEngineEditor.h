@@ -8,7 +8,7 @@
 class FToolBarBuilder;
 class FMenuBuilder;
 
-class FTestEditorStandaloneModule : public IModuleInterface
+class FAdventurePluginStoryEngineEditorModule : public IModuleInterface
 {
 public:
 

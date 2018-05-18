@@ -4,14 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Framework/Commands/Commands.h"
-#include "TestEditorStandaloneStyle.h"
+#include "AdventurePluginStoryEngineEditorStyle.h"
 
-class FTestEditorStandaloneCommands : public TCommands<FTestEditorStandaloneCommands>
+class FAdventurePluginStoryEngineEditorCommands : public TCommands<FAdventurePluginStoryEngineEditorCommands>
 {
 public:
 
-	FTestEditorStandaloneCommands()
-		: TCommands<FTestEditorStandaloneCommands>(TEXT("TestEditorStandalone"), NSLOCTEXT("Contexts", "TestEditorStandalone", "TestEditorStandalone Plugin"), NAME_None, FTestEditorStandaloneStyle::GetStyleSetName())
+	FAdventurePluginStoryEngineEditorCommands()
+		: TCommands<FAdventurePluginStoryEngineEditorCommands>(TEXT("AdventurePluginStoryEngineEditor"), NSLOCTEXT("Contexts", "AdventurePluginStoryEngineEditor", "AdventurePluginStoryEngineEditor Plugin"), NAME_None, FAdventurePluginStoryEngineEditorStyle::GetStyleSetName())
 	{
 	}
 

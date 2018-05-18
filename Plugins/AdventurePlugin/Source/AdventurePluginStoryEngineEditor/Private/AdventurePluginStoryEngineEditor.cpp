@@ -1,72 +1,72 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
-#include "TestEditorStandalone.h"
-#include "TestEditorStandaloneStyle.h"
-#include "TestEditorStandaloneCommands.h"
+#include "AdventurePluginStoryEngineEditor.h"
+#include "AdventurePluginStoryEngineEditorStyle.h"
+#include "AdventurePluginStoryEngineEditorCommands.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
 #include "Framework/MultiBox/MultiBoxBuilder.h"
 
-static const FName TestEditorStandaloneTabName("TestEditorStandalone");
+static const FName AdventurePluginStoryEngineEditorTabName("AdventurePluginStoryEngineEditor");
 
-#define LOCTEXT_NAMESPACE "FTestEditorStandaloneModule"
+#define LOCTEXT_NAMESPACE "FAdventurePluginStoryEngineEditorModule"
 
-void FTestEditorStandaloneModule::StartupModule()
+void FAdventurePluginStoryEngineEditorModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 	
-	FTestEditorStandaloneStyle::Initialize();
-	FTestEditorStandaloneStyle::ReloadTextures();
+	FAdventurePluginStoryEngineEditorStyle::Initialize();
+	FAdventurePluginStoryEngineEditorStyle::ReloadTextures();
 
-	FTestEditorStandaloneCommands::Register();
+	FAdventurePluginStoryEngineEditorCommands::Register();
 	
 	PluginCommands = MakeShareable(new FUICommandList);
 
 	PluginCommands->MapAction(
-		FTestEditorStandaloneCommands::Get().OpenPluginWindow,
-		FExecuteAction::CreateRaw(this, &FTestEditorStandaloneModule::PluginButtonClicked),
+		FAdventurePluginStoryEngineEditorCommands::Get().OpenPluginWindow,
+		FExecuteAction::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::PluginButtonClicked),
 		FCanExecuteAction());
 		
 	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
 	
 	{
 		TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
-		MenuExtender->AddMenuExtension("WindowLayout", EExtensionHook::After, PluginCommands, FMenuExtensionDelegate::CreateRaw(this, &FTestEditorStandaloneModule::AddMenuExtension));
+		MenuExtender->AddMenuExtension("WindowLayout", EExtensionHook::After, PluginCommands, FMenuExtensionDelegate::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::AddMenuExtension));
 
 		LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
 	}
 	
 	{
 		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
-		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FTestEditorStandaloneModule::AddToolbarExtension));
+		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::AddToolbarExtension));
 		
 		LevelEditorModule.GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
 	}
 	
-	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(TestEditorStandaloneTabName, FOnSpawnTab::CreateRaw(this, &FTestEditorStandaloneModule::OnSpawnPluginTab))
-		.SetDisplayName(LOCTEXT("FTestEditorStandaloneTabTitle", "TestEditorStandalone"))
+	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginStoryEngineEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::OnSpawnPluginTab))
+		.SetDisplayName(LOCTEXT("FAdventurePluginStoryEngineEditorTabTitle", "AdventurePluginStoryEngineEditor"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
 }
 
-void FTestEditorStandaloneModule::ShutdownModule()
+void FAdventurePluginStoryEngineEditorModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
-	FTestEditorStandaloneStyle::Shutdown();
+	FAdventurePluginStoryEngineEditorStyle::Shutdown();
 
-	FTestEditorStandaloneCommands::Unregister();
+	FAdventurePluginStoryEngineEditorCommands::Unregister();
 
-	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(TestEditorStandaloneTabName);
+	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginStoryEngineEditorTabName);
 }
 
-TSharedRef<SDockTab> FTestEditorStandaloneModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
+TSharedRef<SDockTab> FAdventurePluginStoryEngineEditorModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {
 	FText WidgetText = FText::Format(
 		LOCTEXT("WindowWidgetText", "Add code to {0} in {1} to override this window's contents"),
-		FText::FromString(TEXT("FTestEditorStandaloneModule::OnSpawnPluginTab")),
-		FText::FromString(TEXT("TestEditorStandalone.cpp"))
+		FText::FromString(TEXT("FAdventurePluginStoryEngineEditorModule::OnSpawnPluginTab")),
+		FText::FromString(TEXT("AdventurePluginStoryEngineEditor.cpp"))
 		);
 
 	return SNew(SDockTab)
@@ -83,21 +83,21 @@ TSharedRef<SDockTab> FTestEditorStandaloneModule::OnSpawnPluginTab(const FSpawnT
 		];
 }
 
-void FTestEditorStandaloneModule::PluginButtonClicked()
+void FAdventurePluginStoryEngineEditorModule::PluginButtonClicked()
 {
-	FGlobalTabmanager::Get()->InvokeTab(TestEditorStandaloneTabName);
+	FGlobalTabmanager::Get()->InvokeTab(AdventurePluginStoryEngineEditorTabName);
 }
 
-void FTestEditorStandaloneModule::AddMenuExtension(FMenuBuilder& Builder)
+void FAdventurePluginStoryEngineEditorModule::AddMenuExtension(FMenuBuilder& Builder)
 {
-	Builder.AddMenuEntry(FTestEditorStandaloneCommands::Get().OpenPluginWindow);
+	Builder.AddMenuEntry(FAdventurePluginStoryEngineEditorCommands::Get().OpenPluginWindow);
 }
 
-void FTestEditorStandaloneModule::AddToolbarExtension(FToolBarBuilder& Builder)
+void FAdventurePluginStoryEngineEditorModule::AddToolbarExtension(FToolBarBuilder& Builder)
 {
-	Builder.AddToolBarButton(FTestEditorStandaloneCommands::Get().OpenPluginWindow);
+	Builder.AddToolBarButton(FAdventurePluginStoryEngineEditorCommands::Get().OpenPluginWindow);
 }
 
 #undef LOCTEXT_NAMESPACE
 	
-IMPLEMENT_MODULE(FTestEditorStandaloneModule, TestEditorStandalone)
+IMPLEMENT_MODULE(FAdventurePluginStoryEngineEditorModule, AdventurePluginStoryEngineEditor)
