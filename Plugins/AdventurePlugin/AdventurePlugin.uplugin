@@ -17,7 +17,7 @@
   "Modules": [
     {
       "Name": "AdventurePluginEditorMode",
-      "Type": "Developer",
+      "Type": "Editor",
       "LoadingPhase": "Default"
     },
     {
@@ -33,6 +33,21 @@
         "Win64",
         "Win32"
       ]
+    },
+    {
+      "Name": "AdventurePluginInventoryEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "AdventurePluginStoryEngineEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "AdventurePluginDialogEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
     }
   ]
 }

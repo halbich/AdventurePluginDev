@@ -43,7 +43,7 @@ const FVector2D Icon40x40(40.0f, 40.0f);
 TSharedRef< FSlateStyleSet > FAdventurePluginStoryEngineEditorStyle::Create()
 {
 	TSharedRef< FSlateStyleSet > Style = MakeShareable(new FSlateStyleSet("AdventurePluginStoryEngineEditorStyle"));
-	Style->SetContentRoot(IPluginManager::Get().FindPlugin("AdventurePluginStoryEngineEditor")->GetBaseDir() / TEXT("Resources"));
+	Style->SetContentRoot(IPluginManager::Get().FindPlugin("AdventurePlugin")->GetBaseDir() / TEXT("Resources"));
 
 	Style->Set("AdventurePluginStoryEngineEditor.OpenPluginWindow", new IMAGE_BRUSH(TEXT("ButtonIcon_40x"), Icon40x40));
 
