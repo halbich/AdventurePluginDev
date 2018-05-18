@@ -174,6 +174,7 @@ void FAdventurePluginDialogEditorModule::AddMenuExtension(FMenuBuilder& Builder)
 void FAdventurePluginDialogEditorModule::AddToolbarExtension(FToolBarBuilder& Builder)
 {
 	Builder.AddToolBarButton(FAdventurePluginDialogEditorCommands::Get().OpenPluginWindow);
+	
 }
 
 #undef LOCTEXT_NAMESPACE
