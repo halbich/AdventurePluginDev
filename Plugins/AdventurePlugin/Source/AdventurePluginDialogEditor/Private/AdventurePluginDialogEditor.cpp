@@ -14,8 +14,11 @@
 #include "Kismet2/BlueprintEditorUtils.h"
 #include "Materials/Material.h"
 #include "EdGraph/EdGraphSchema.h"
+//#include "Toolkits/SStandaloneAssetEditorToolkitHost.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
+const FName FAdventurePluginDialogEditorModule::GraphCanvasTabId(TEXT("DialogEditor_GraphCanvas"));
+const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginDialogEditorModule"
 
@@ -50,6 +53,11 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 		
 		LevelEditorModule.GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
 	}
+
+	//FGlobalTabmanager::Get()->RegisterTabSpawner(GraphCanvasTabId, FOnSpawnTab::CreateSP(this, &FAdventurePluginDialogEditorModule::SpawnTab_GraphCanvas))
+		//.SetDisplayName(LOCTEXT("AdventurePlugin_DialogEditorName", "Dialog Editor"));
+		//.SetGroup(WorkspaceMenuCategoryRef)
+		//.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "GraphEditor.EventGraph_16x"));
 	
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginDialogEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginDialogEditorModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("AdventurePlugin_DialogEditorName", "Dialog Editor"))
@@ -75,6 +83,26 @@ void FAdventurePluginDialogEditorModule::CreateInternalWidgets()
 	GraphEditor->SetViewLocation(FVector2D::ZeroVector, 1);
 }
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
+
+FName FAdventurePluginDialogEditorModule::GetToolkitFName() const
+{ 
+	return FName("DialogEditor");
+}
+
+FText FAdventurePluginDialogEditorModule::GetBaseToolkitName() const
+{
+	return LOCTEXT("AppLabel", "Dialog Editor");
+}
+
+FString FAdventurePluginDialogEditorModule::GetWorldCentricTabPrefix() const
+{
+	return LOCTEXT("WorldCentricTabPrefix", "Dialog ").ToString();
+}
+
+FLinearColor FAdventurePluginDialogEditorModule::GetWorldCentricTabColorScale() const
+{
+	return FLinearColor(0.3f, 0.2f, 0.5f, 0.5f);
+}
 
 void FAdventurePluginDialogEditorModule::DummyAction() { }
 
@@ -136,13 +164,86 @@ TSharedRef<SGraphEditor> FAdventurePluginDialogEditorModule::CreateGraphEditorWi
 		.ShowGraphStateOverlay(false);
 }
 
+void FAdventurePluginDialogEditorModule::RegisterTabSpawners(const TSharedRef<class FTabManager>& InTabManager)
+{
+	WorkspaceMenuCategory = InTabManager->AddLocalWorkspaceMenuCategory(LOCTEXT("WorkspaceMenu_DialogEditor", "Dialog Editor"));
+	auto WorkspaceMenuCategoryRef = WorkspaceMenuCategory.ToSharedRef();
+
+	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
+
+	InTabManager->RegisterTabSpawner(GraphCanvasTabId, FOnSpawnTab::CreateSP(this, &FAdventurePluginDialogEditorModule::SpawnTab_GraphCanvas))
+		.SetDisplayName(LOCTEXT("GraphCanvasTab", "Graph"))
+		.SetGroup(WorkspaceMenuCategoryRef);
+		//.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "GraphEditor.EventGraph_16x"));
+
+	//OnRegisterTabSpawners().Broadcast(InTabManager);
+}
+
+
+void FAdventurePluginDialogEditorModule::UnregisterTabSpawners(const TSharedRef<class FTabManager>& InTabManager)
+{
+	FAssetEditorToolkit::UnregisterTabSpawners(InTabManager);
+
+	InTabManager->UnregisterTabSpawner(GraphCanvasTabId);
+
+	//OnUnregisterTabSpawners().Broadcast(InTabManager);
+}
+
+TSharedRef<SDockTab> FAdventurePluginDialogEditorModule::SpawnTab_GraphCanvas(const FSpawnTabArgs& SpawnTabArgs)
+{
+	TSharedRef<SDockTab> SpawnedTab = SNew(SDockTab)
+		.Label(LOCTEXT("GraphCanvasTitle", "Graph"));
+
+	if (GraphEditor.IsValid())
+	{
+		SpawnedTab->SetContent(GraphEditor.ToSharedRef());
+	}
+
+	return SpawnedTab;
+}
+
 TSharedRef<SDockTab> FAdventurePluginDialogEditorModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {
-	//TSharedRef<SDockTab> dt = SNew(SDockTab).TabRole(ETabRole::NomadTab);
-	//dt->SetContent(GraphEditor.ToSharedRef());
-	//return dt;
-
 	CreateInternalWidgets();
+	
+	/*
+	const TSharedRef<FTabManager::FLayout> StandaloneDefaultLayout = FTabManager::NewLayout("Standalone_DialogEditor_Layout_v10")
+		->AddArea
+		(
+			FTabManager::NewPrimaryArea()->SetOrientation(Orient_Vertical)
+			->Split
+			(
+				FTabManager::NewStack()
+				->SetSizeCoefficient(0.1f)
+				->SetHideTabWell(true)
+				->AddTab(GetToolbarTabId(), ETabState::OpenedTab)
+			)
+			->Split
+			(
+				FTabManager::NewStack()
+				->SetSizeCoefficient(0.9f)
+				->SetHideTabWell(true)
+				->AddTab(GraphCanvasTabId, ETabState::OpenedTab)
+			)
+		);
+
+	// Add the preview material to the objects being edited, so that we can find this editor from the temporary material graph
+	EToolkitMode::Type Mode = EToolkitMode::Standalone;
+	TSharedPtr<IToolkitHost> InitToolkitHost = TSharedPtr<IToolkitHost>();
+	TArray<UObject*> ObjectsToEdit;
+	//ObjectsToEdit.Add(ObjectToEdit);
+	FAssetEditorToolkit::InitAssetEditor(Mode, InitToolkitHost, DialogEditorAppIdentifier, StandaloneDefaultLayout, true, true, ObjectsToEdit, false);
+
+	TSharedPtr<SDockTab> NewTab = SNew(SDockTab).TabRole(ETabRole::NomadTab);
+	const TSharedRef<FTabManager> NewTabManager = FGlobalTabmanager::Get()->NewTabManager(NewTab.ToSharedRef());
+	TSharedPtr<SStandaloneAssetEditorToolkitHost> NewStandaloneHost;
+	NewTab->SetContent
+	(
+		SAssignNew(NewStandaloneHost, SStandaloneAssetEditorToolkitHost, NewTabManager, DialogEditorAppIdentifier)
+		.OnRequestClose(this, &FAssetEditorToolkit::OnRequestClose)
+	);
+	return NewTab.ToSharedRef();
+	*/
 	
 	return SNew(SDockTab)
 		.TabRole(ETabRole::NomadTab)

@@ -41,6 +41,7 @@ public class AdventurePluginDialogEditor : ModuleRules
 				"UnrealEd",
 				"LevelEditor",
 				"CoreUObject",
+                "EditorStyle",
 				"Engine",
 				"Slate",
 				"SlateCore",
