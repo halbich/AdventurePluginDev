@@ -1,10 +1,18 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
+#include "IAdventurePluginEditor.h"
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
+
+#include "SlateApplication.h"
+
+#include "Framework/MultiBox/MultiBoxBuilder.h"
+#include "Framework/SlateDelegates.h"
 #include "MessageLogModule.h"
 #include "MessageLogInitializationOptions.h"
-#include "IAdventurePluginEditor.h"
+#include "LevelEditor.h"
+#include "AdventurePluginEditorToolBar.h"
+#include "AdventurePluginEditorStyle.h"
 
 
 #define LOCTEXT_NAMESPACE "AdventurePluginEditor"
@@ -18,6 +26,19 @@ class FAdventurePluginEditor : public IAdventurePluginEditor
 	virtual void Log(EMessageSeverity::Type EngineMessageSeverity, const FText& Message) const;
 
 	virtual void Log(const TSharedRef< class FTokenizedMessage >& Message) const;
+
+	/** Gets the extensibility managers for outside entities to extend this editor's menus and toolbars */
+	virtual TSharedPtr<FExtensibilityManager> GetToolBarExtensibilityManager() override { return ToolBarExtensibilityManager; }
+
+	virtual TArray<FAdventurePluginEditorMenuExtender>& GetAllAdventurePluginEditorToolbarViewMenuExtenders() { return AdventurePluginEditorToolbarViewMenuExtenders; }
+
+private:
+	TSharedPtr<class FExtensibilityManager> ToolBarExtensibilityManager;
+	TSharedPtr<class FUICommandList> PluginCommands;
+
+	TArray<FAdventurePluginEditorMenuExtender> AdventurePluginEditorToolbarViewMenuExtenders;
+
+	void AddToolbarExtension(FToolBarBuilder& Builder);
 };
 
 IMPLEMENT_MODULE( FAdventurePluginEditor, AdventurePluginEditor )
@@ -35,8 +56,32 @@ void FAdventurePluginEditor::StartupModule()
 		MessageLogModule.RegisterLogListing("AdventurePluginLog", LOCTEXT("AdventurePluginLog", "Adventure Plugin Log"), InitOptions);
 	}
 
+	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
+	
+	PluginCommands = MakeShareable(new FUICommandList);
+
+	{
+		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
+		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FAdventurePluginEditor::AddToolbarExtension));
+
+		LevelEditorModule.GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
+	}
+
 }
 
+
+void FAdventurePluginEditor::AddToolbarExtension(FToolBarBuilder& Builder)
+{
+	Builder.AddComboButton(
+		FUIAction(),
+		FOnGetContent::CreateStatic(&FAdventurePluginEditorToolBar::GeneratePluginMenu, PluginCommands.ToSharedRef()),
+		LOCTEXT("AdventurePluginEditorMenuCombo", "Adventure Editor"),
+		LOCTEXT("AdventurePluginEditorMenuCombo_ToolTip", "Adventure Editor menu combo button"),
+		FSlateIcon(FAdventurePluginEditorStyle::GetStyleSetName(), "AdventurePlugin.MenuButton"),
+		false,
+		"LevelToolbarAdventurePluginEditorMenuCombo"
+	);
+}
 
 void FAdventurePluginEditor::ShutdownModule()
 {

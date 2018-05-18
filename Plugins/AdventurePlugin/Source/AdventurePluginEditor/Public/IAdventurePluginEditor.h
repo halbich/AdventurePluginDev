@@ -6,14 +6,16 @@
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
 #include "TokenizedMessage.h"
+#include "Toolkits/AssetEditorToolkit.h"
 #include "MessageLog.h"
+
 
 
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules 
  * within this plugin.
  */
-class IAdventurePluginEditor : public IModuleInterface
+class IAdventurePluginEditor : public IModuleInterface, public IHasToolBarExtensibility
 {
 
 public:
@@ -44,5 +46,11 @@ public:
 	virtual void Log(EMessageSeverity::Type EngineMessageSeverity, const FText& Message) const = 0;
 
 	virtual void Log(const TSharedRef< class FTokenizedMessage >& Message) const = 0;
+
+	/** Delegates to be called to extend the level viewport menus */
+	DECLARE_DELEGATE_RetVal_OneParam(TSharedRef<FExtender>, FAdventurePluginEditorMenuExtender, const TSharedRef<FUICommandList>);
+
+
+	virtual TArray<FAdventurePluginEditorMenuExtender>& GetAllAdventurePluginEditorToolbarViewMenuExtenders() = 0;
 };
 
