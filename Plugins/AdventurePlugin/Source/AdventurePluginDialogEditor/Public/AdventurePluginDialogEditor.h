@@ -4,11 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
+#include "Misc/NotifyHook.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
+class SGraphEditor;
 
-class FAdventurePluginDialogEditorModule : public IModuleInterface
+class FAdventurePluginDialogEditorModule : public IModuleInterface, public FNotifyHook
 {
 public:
 
@@ -23,9 +25,16 @@ private:
 
 	void AddToolbarExtension(FToolBarBuilder& Builder);
 	void AddMenuExtension(FMenuBuilder& Builder);
+	void CreateInternalWidgets();
 
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
 
+	void DummyAction();
+	bool CanDummyAction() const;
+	TSharedRef<SGraphEditor> CreateGraphEditorWidget();
+
 private:
 	TSharedPtr<class FUICommandList> PluginCommands;
+	TSharedPtr<class SGraphEditor> GraphEditor;
+	TSharedPtr<FUICommandList> GraphEditorCommands;
 };

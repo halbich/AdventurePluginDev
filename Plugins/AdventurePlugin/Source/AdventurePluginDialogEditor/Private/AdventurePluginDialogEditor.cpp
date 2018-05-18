@@ -8,6 +8,12 @@
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
 #include "Framework/MultiBox/MultiBoxBuilder.h"
+#include "SlateOptMacros.h"
+#include "GraphEditor.h"
+#include "Framework/Commands/GenericCommands.h"
+#include "Kismet2/BlueprintEditorUtils.h"
+#include "Materials/Material.h"
+#include "EdGraph/EdGraphSchema.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
 
@@ -46,7 +52,7 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	}
 	
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginDialogEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginDialogEditorModule::OnSpawnPluginTab))
-		.SetDisplayName(LOCTEXT("FAdventurePluginDialogEditorTabTitle", "AdventurePluginDialogEditor"))
+		.SetDisplayName(LOCTEXT("AdventurePlugin_DialogEditorName", "Dialog Editor"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
 }
 
@@ -61,26 +67,98 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginDialogEditorTabName);
 }
 
+BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
+void FAdventurePluginDialogEditorModule::CreateInternalWidgets()
+{
+	GraphEditor = CreateGraphEditorWidget();
+	// Manually set zoom level to avoid deferred zooming
+	GraphEditor->SetViewLocation(FVector2D::ZeroVector, 1);
+}
+END_SLATE_FUNCTION_BUILD_OPTIMIZATION
+
+void FAdventurePluginDialogEditorModule::DummyAction() { }
+
+bool FAdventurePluginDialogEditorModule::CanDummyAction() const { return true; }
+
+TSharedRef<SGraphEditor> FAdventurePluginDialogEditorModule::CreateGraphEditorWidget()
+{
+	GraphEditorCommands = MakeShareable(new FUICommandList);
+	{
+		// Editing commands
+		GraphEditorCommands->MapAction(FGenericCommands::Get().SelectAll,
+				FExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::DummyAction),
+				FCanExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::CanDummyAction)
+				 );
+
+		GraphEditorCommands->MapAction(FGenericCommands::Get().Delete,
+				FExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::DummyAction),
+				FCanExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::CanDummyAction)
+				 );
+
+		GraphEditorCommands->MapAction(FGenericCommands::Get().Copy,
+				FExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::DummyAction),
+				FCanExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::CanDummyAction)
+				 );
+
+		GraphEditorCommands->MapAction(FGenericCommands::Get().Paste,
+				FExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::DummyAction),
+				FCanExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::CanDummyAction)
+				 );
+
+		GraphEditorCommands->MapAction(FGenericCommands::Get().Cut,
+				FExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::DummyAction),
+				FCanExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::CanDummyAction)
+				 );
+		
+		GraphEditorCommands->MapAction(FGenericCommands::Get().Duplicate,
+				FExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::DummyAction),
+				FCanExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::CanDummyAction)
+				 );
+	}
+
+	FGraphAppearanceInfo AppearanceInfo;
+	AppearanceInfo.CornerText = LOCTEXT("AdventurePlugin_DialogEditor", "DIALOG EDITOR");
+	SGraphEditor::FGraphEditorEvents InEvents;
+	UMaterial * Obj = NewObject<UMaterial>(); // TODO totally must be changed from UMaterial!
+	UEdGraph * Graph = CastChecked<UEdGraph>(FBlueprintEditorUtils::CreateNewGraph(Obj, NAME_None, UEdGraph::StaticClass(), UEdGraphSchema::StaticClass()));
+	
+	// Create the title bar widget
+	//TSharedPtr<SWidget> TitleBarWidget = SNew(SMaterialEditorTitleBar)
+	//	.TitleText(this, &FMaterialEditor::GetOriginalObjectName);
+		
+	return SNew(SGraphEditor)
+		.AdditionalCommands(GraphEditorCommands)
+		.IsEditable(true)
+		.TitleBar(TSharedPtr<SWidget>())
+		.Appearance(AppearanceInfo)
+		.GraphToEdit(Graph)
+		.GraphEvents(InEvents)
+		.ShowGraphStateOverlay(false);
+}
+
 TSharedRef<SDockTab> FAdventurePluginDialogEditorModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {
-	FText WidgetText = FText::Format(
-		LOCTEXT("WindowWidgetText", "Add code to {0} in {1} to override this window's contents"),
-		FText::FromString(TEXT("FAdventurePluginDialogEditorModule::OnSpawnPluginTab")),
-		FText::FromString(TEXT("AdventurePluginDialogEditor.cpp"))
-		);
+	//TSharedRef<SDockTab> dt = SNew(SDockTab).TabRole(ETabRole::NomadTab);
+	//dt->SetContent(GraphEditor.ToSharedRef());
+	//return dt;
 
+	CreateInternalWidgets();
+	
 	return SNew(SDockTab)
 		.TabRole(ETabRole::NomadTab)
 		[
-			// Put your tab content here!
-			SNew(SBox)
-			.HAlign(HAlign_Center)
-			.VAlign(VAlign_Center)
-			[
-				SNew(STextBlock)
-				.Text(WidgetText)
-			]
+			GraphEditor.ToSharedRef()
+			//Put your tab content here!
+			//SNew(SBox)
+			//.HAlign(HAlign_Center)
+			//.VAlign(VAlign_Center)
+			//[
+			//	//GraphEditor.ToSharedRef()
+			//	SNew(STextBlock)
+			//	.Text(WidgetText)
+			//]
 		];
+	
 }
 
 void FAdventurePluginDialogEditorModule::PluginButtonClicked()
