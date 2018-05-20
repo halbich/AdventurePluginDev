@@ -7,6 +7,7 @@
 #include "Misc/NotifyHook.h"
 #include "Toolkits/AssetEditorToolkit.h"
 #include "Math/Color.h"
+#include "AdventurePluginEditor.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -23,6 +24,9 @@ public:
 	/** This function will be bound to Command (by default it will bring up plugin window) */
 	void PluginButtonClicked();
 
+	FAdventurePluginEditor::FAdventurePluginEditorMenuExtender EditorMenuExtender;
+	FDelegateHandle EditorMenuExtenderHandle;
+
 	/** IToolkit interface */
 	virtual FName GetToolkitFName() const override;
 	virtual FText GetBaseToolkitName() const override;
@@ -34,7 +38,6 @@ public:
 	
 private:
 
-	void AddToolbarExtension(FToolBarBuilder& Builder);
 	void AddMenuExtension(FMenuBuilder& Builder);
 	void CreateInternalWidgets();
 
@@ -44,6 +47,21 @@ private:
 	void DummyAction();
 	bool CanDummyAction() const;
 	TSharedRef<SGraphEditor> CreateGraphEditorWidget();
+
+protected:
+
+	TSharedRef<FExtender> OnExtendLevelEditorViewMenu(const TSharedRef<FUICommandList> CommandList)
+	{
+		TSharedRef<FExtender> Extender(new FExtender());
+
+		Extender->AddMenuExtension(
+			"AdventurePluginEditorTabs",
+			EExtensionHook::After,
+			PluginCommands,
+			FMenuExtensionDelegate::CreateRaw(this, &FAdventurePluginDialogEditorModule::AddMenuExtension));
+
+		return Extender;
+	}
 
 private:
 	TSharedPtr<class FUICommandList> PluginCommands;

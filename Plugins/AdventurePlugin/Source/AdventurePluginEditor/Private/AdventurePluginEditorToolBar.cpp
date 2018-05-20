@@ -2,16 +2,20 @@
 #include "AdventurePluginEditorToolBar.h"
 #include "Modules/ModuleManager.h"
 #include "Framework/MultiBox/MultiBoxBuilder.h"
-#include "IAdventurePluginEditor.h"
+#include "AdventurePluginEditor.h"
 #include "AdventurePluginEditorStyle.h"
 
 TSharedRef< SWidget > FAdventurePluginEditorToolBar::GeneratePluginMenu(TSharedRef<FUICommandList> InCommandList)
 {
 #define LOCTEXT_NAMESPACE "AdventurePluginEditorToolBarViewMenu"
 
+
+
 	// Get all menu extenders for this context menu from the level editor module
-	IAdventurePluginEditor& LevelEditorModule = FModuleManager::GetModuleChecked<IAdventurePluginEditor>(TEXT("AdventurePluginEditor"));
-	TArray<IAdventurePluginEditor::FAdventurePluginEditorMenuExtender> MenuExtenderDelegates = LevelEditorModule.GetAllAdventurePluginEditorToolbarViewMenuExtenders();
+	FAdventurePluginEditor& LevelEditorModule = FAdventurePluginEditor::Get();
+
+
+	TArray<FAdventurePluginEditor::FAdventurePluginEditorMenuExtender> MenuExtenderDelegates = LevelEditorModule.GetAllAdventurePluginEditorToolbarExtenders();
 
 	TArray<TSharedPtr<FExtender>> Extenders;
 	for (int32 i = 0; i < MenuExtenderDelegates.Num(); ++i)
@@ -21,6 +25,10 @@ TSharedRef< SWidget > FAdventurePluginEditorToolBar::GeneratePluginMenu(TSharedR
 			Extenders.Add(MenuExtenderDelegates[i].Execute(InCommandList));
 		}
 	}
+
+	auto extenders = LevelEditorModule.GetToolBarExtensibilityManager()->GetAllExtenders();
+	Extenders.Add(extenders);
+
 	TSharedPtr<FExtender> MenuExtender = FExtender::Combine(Extenders);
 
 	const bool bShouldCloseWindowAfterMenuSelection = true;
@@ -34,7 +42,12 @@ TSharedRef< SWidget > FAdventurePluginEditorToolBar::GeneratePluginMenu(TSharedR
 		}
 	};
 
-	MenuBuilder.BeginSection("ProjectSettingsSection", LOCTEXT("ProjectSettings", "Game Specific Settings"));
+	MenuBuilder.BeginSection("AdventurePluginEditorTabs", LOCTEXT("Adventure Plugin", "Adventure Plugin Tabs"));
+	
+	MenuBuilder.AddMenuSeparator();
+	MenuBuilder.EndSection();
+
+	MenuBuilder.BeginSection("OtherSection", LOCTEXT("other", "other"));
 	{
 
 		//MenuBuilder.AddMenuEntry(FLevelEditorCommands::Get().WorldProperties);
@@ -48,7 +61,7 @@ TSharedRef< SWidget > FAdventurePluginEditorToolBar::GeneratePluginMenu(TSharedR
 
 		/*if (IModularFeatures::Get().IsModularFeatureAvailable(EditorFeatures::PluginsEditor))
 		{
-			FGlobalTabmanager::Get()->PopulateTabSpawnerMenu(MenuBuilder, "PluginsEditor");
+		FGlobalTabmanager::Get()->PopulateTabSpawnerMenu(MenuBuilder, "PluginsEditor");
 		}*/
 	}
 	MenuBuilder.EndSection();

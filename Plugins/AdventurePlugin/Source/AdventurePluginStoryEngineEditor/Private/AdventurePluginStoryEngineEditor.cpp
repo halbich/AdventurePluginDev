@@ -29,22 +29,18 @@ void FAdventurePluginStoryEngineEditorModule::StartupModule()
 		FExecuteAction::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::PluginButtonClicked),
 		FCanExecuteAction());
 		
-	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
-	
+	// Add to our toolbar menu
+	if (FAdventurePluginEditor::IsAvailable())
 	{
-		TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
-		MenuExtender->AddMenuExtension("WindowLayout", EExtensionHook::After, PluginCommands, FMenuExtensionDelegate::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::AddMenuExtension));
+		EditorMenuExtender = FAdventurePluginEditor::FAdventurePluginEditorMenuExtender::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::OnExtendLevelEditorViewMenu);
 
-		LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
+		FAdventurePluginEditor& ape = FAdventurePluginEditor::Get();
+		auto& MenuExtenders = ape.GetAllAdventurePluginEditorToolbarExtenders();
+		MenuExtenders.Add(EditorMenuExtender);
+		EditorMenuExtenderHandle = MenuExtenders.Last().GetHandle();
 	}
 	
-	{
-		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
-		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::AddToolbarExtension));
-		
-		LevelEditorModule.GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
-	}
-	
+
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginStoryEngineEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginStoryEngineEditorModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("FAdventurePluginStoryEngineEditorTabTitle", "AdventurePluginStoryEngineEditor"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
@@ -59,6 +55,15 @@ void FAdventurePluginStoryEngineEditorModule::ShutdownModule()
 	FAdventurePluginStoryEngineEditorCommands::Unregister();
 
 	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginStoryEngineEditorTabName);
+
+	if (UObjectInitialized() && !IsRunningCommandlet())
+	{
+		// Unregister the level editor extensions
+		{
+			FAdventurePluginEditor& LevelEditor = FModuleManager::GetModuleChecked<FAdventurePluginEditor>(TEXT("AdventurePluginEditor"));
+			LevelEditor.GetAllAdventurePluginEditorToolbarExtenders().RemoveAll([=](const FAdventurePluginEditor::FAdventurePluginEditorMenuExtender& Extender) { return Extender.GetHandle() == EditorMenuExtenderHandle; });
+		}
+	}
 }
 
 TSharedRef<SDockTab> FAdventurePluginStoryEngineEditorModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
@@ -91,11 +96,6 @@ void FAdventurePluginStoryEngineEditorModule::PluginButtonClicked()
 void FAdventurePluginStoryEngineEditorModule::AddMenuExtension(FMenuBuilder& Builder)
 {
 	Builder.AddMenuEntry(FAdventurePluginStoryEngineEditorCommands::Get().OpenPluginWindow);
-}
-
-void FAdventurePluginStoryEngineEditorModule::AddToolbarExtension(FToolBarBuilder& Builder)
-{
-	Builder.AddToolBarButton(FAdventurePluginStoryEngineEditorCommands::Get().OpenPluginWindow);
 }
 
 #undef LOCTEXT_NAMESPACE

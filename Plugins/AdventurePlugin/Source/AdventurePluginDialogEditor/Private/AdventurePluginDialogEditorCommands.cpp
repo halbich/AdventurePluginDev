@@ -6,7 +6,7 @@
 
 void FAdventurePluginDialogEditorCommands::RegisterCommands()
 {
-	UI_COMMAND(OpenPluginWindow, "AdventurePluginDialogEditor", "Bring up AdventurePluginDialogEditor window", EUserInterfaceActionType::Button, FInputGesture());
+	UI_COMMAND(OpenPluginWindow, "Dialog Editor", "Bring up AdventurePluginDialogEditor window", EUserInterfaceActionType::Button, FInputGesture());
 }
 
 #undef LOCTEXT_NAMESPACE

@@ -6,7 +6,7 @@
 
 void FAdventurePluginInventoryEditorCommands::RegisterCommands()
 {
-	UI_COMMAND(OpenPluginWindow, "AdventurePluginInventoryEditor", "Bring up AdventurePluginInventoryEditor window", EUserInterfaceActionType::Button, FInputGesture());
+	UI_COMMAND(OpenPluginWindow, "Inventory Editor", "Bring up AdventurePluginInventoryEditor window", EUserInterfaceActionType::Button, FInputGesture());
 }
 
 #undef LOCTEXT_NAMESPACE

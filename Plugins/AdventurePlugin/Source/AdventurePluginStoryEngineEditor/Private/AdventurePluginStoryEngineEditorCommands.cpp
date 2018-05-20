@@ -6,7 +6,7 @@
 
 void FAdventurePluginStoryEngineEditorCommands::RegisterCommands()
 {
-	UI_COMMAND(OpenPluginWindow, "AdventurePluginStoryEngineEditor", "Bring up AdventurePluginStoryEngineEditor window", EUserInterfaceActionType::Button, FInputGesture());
+	UI_COMMAND(OpenPluginWindow, "Story Engine", "Bring up AdventurePluginStoryEngineEditor window", EUserInterfaceActionType::Button, FInputGesture());
 }
 
 #undef LOCTEXT_NAMESPACE

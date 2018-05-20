@@ -9,6 +9,7 @@
 #include "Widgets/Text/STextBlock.h"
 #include "Framework/MultiBox/MultiBoxBuilder.h"
 
+
 static const FName AdventurePluginInventoryEditorTabName("AdventurePluginInventoryEditor");
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginInventoryEditorModule"
@@ -16,35 +17,31 @@ static const FName AdventurePluginInventoryEditorTabName("AdventurePluginInvento
 void FAdventurePluginInventoryEditorModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
-	
+
 	FAdventurePluginInventoryEditorStyle::Initialize();
 	FAdventurePluginInventoryEditorStyle::ReloadTextures();
 
 	FAdventurePluginInventoryEditorCommands::Register();
-	
+
 	PluginCommands = MakeShareable(new FUICommandList);
 
 	PluginCommands->MapAction(
 		FAdventurePluginInventoryEditorCommands::Get().OpenPluginWindow,
 		FExecuteAction::CreateRaw(this, &FAdventurePluginInventoryEditorModule::PluginButtonClicked),
 		FCanExecuteAction());
-		
-	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
-	
-	{
-		TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
-		MenuExtender->AddMenuExtension("WindowLayout", EExtensionHook::After, PluginCommands, FMenuExtensionDelegate::CreateRaw(this, &FAdventurePluginInventoryEditorModule::AddMenuExtension));
 
-		LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
-	}
-	
+
+	// Add to our toolbar menu
+	if (FAdventurePluginEditor::IsAvailable())
 	{
-		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
-		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FAdventurePluginInventoryEditorModule::AddToolbarExtension));
+		EditorMenuExtender = FAdventurePluginEditor::FAdventurePluginEditorMenuExtender::CreateRaw(this, &FAdventurePluginInventoryEditorModule::OnExtendLevelEditorViewMenu);
 		
-		LevelEditorModule.GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
+		FAdventurePluginEditor& ape = FAdventurePluginEditor::Get();
+		auto& MenuExtenders = ape.GetAllAdventurePluginEditorToolbarExtenders();
+		MenuExtenders.Add(EditorMenuExtender);
+		EditorMenuExtenderHandle = MenuExtenders.Last().GetHandle();
 	}
-	
+
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginInventoryEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginInventoryEditorModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("FAdventurePluginInventoryEditorTabTitle", "AdventurePluginInventoryEditor"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
@@ -59,7 +56,18 @@ void FAdventurePluginInventoryEditorModule::ShutdownModule()
 	FAdventurePluginInventoryEditorCommands::Unregister();
 
 	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginInventoryEditorTabName);
+
+	if (UObjectInitialized() && !IsRunningCommandlet())
+	{
+		// Unregister the level editor extensions
+		{
+			FAdventurePluginEditor& LevelEditor = FModuleManager::GetModuleChecked<FAdventurePluginEditor>(TEXT("AdventurePluginEditor"));
+			LevelEditor.GetAllAdventurePluginEditorToolbarExtenders().RemoveAll([=](const FAdventurePluginEditor::FAdventurePluginEditorMenuExtender& Extender) { return Extender.GetHandle() == EditorMenuExtenderHandle; });
+		}
+	}
 }
+
+
 
 TSharedRef<SDockTab> FAdventurePluginInventoryEditorModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {
@@ -67,7 +75,7 @@ TSharedRef<SDockTab> FAdventurePluginInventoryEditorModule::OnSpawnPluginTab(con
 		LOCTEXT("WindowWidgetText", "Add code to {0} in {1} to override this window's contents"),
 		FText::FromString(TEXT("FAdventurePluginInventoryEditorModule::OnSpawnPluginTab")),
 		FText::FromString(TEXT("AdventurePluginInventoryEditor.cpp"))
-		);
+	);
 
 	return SNew(SDockTab)
 		.TabRole(ETabRole::NomadTab)
@@ -75,11 +83,11 @@ TSharedRef<SDockTab> FAdventurePluginInventoryEditorModule::OnSpawnPluginTab(con
 			// Put your tab content here!
 			SNew(SBox)
 			.HAlign(HAlign_Center)
-			.VAlign(VAlign_Center)
-			[
-				SNew(STextBlock)
-				.Text(WidgetText)
-			]
+		.VAlign(VAlign_Center)
+		[
+			SNew(STextBlock)
+			.Text(WidgetText)
+		]
 		];
 }
 
@@ -93,11 +101,7 @@ void FAdventurePluginInventoryEditorModule::AddMenuExtension(FMenuBuilder& Build
 	Builder.AddMenuEntry(FAdventurePluginInventoryEditorCommands::Get().OpenPluginWindow);
 }
 
-void FAdventurePluginInventoryEditorModule::AddToolbarExtension(FToolBarBuilder& Builder)
-{
-	Builder.AddToolBarButton(FAdventurePluginInventoryEditorCommands::Get().OpenPluginWindow);
-}
 
 #undef LOCTEXT_NAMESPACE
-	
+
 IMPLEMENT_MODULE(FAdventurePluginInventoryEditorModule, AdventurePluginInventoryEditor)

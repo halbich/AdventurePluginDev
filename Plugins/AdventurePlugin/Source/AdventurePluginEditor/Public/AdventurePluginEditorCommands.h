@@ -11,7 +11,12 @@ class FAdventurePluginEditorCommands : public TCommands<FAdventurePluginEditorCo
 public:
 
 	FAdventurePluginEditorCommands()
-		: TCommands<FAdventurePluginEditorCommands>(TEXT("AdventurePluginEditor"), NSLOCTEXT("Contexts", "AdventurePluginEditor", "AdventurePluginEditor Plugin"), NAME_None, FAdventurePluginEditorStyle::GetStyleSetName())
+		: TCommands<FAdventurePluginEditorCommands>
+		(
+			TEXT("AdventurePluginEditor"), 
+			NSLOCTEXT("Contexts", "AdventurePluginEditor", "AdventurePluginEditor Plugin"),
+			NAME_None, 
+			FAdventurePluginEditorStyle::GetStyleSetName())
 	{
 	}
 

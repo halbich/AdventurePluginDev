@@ -1,6 +1,6 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
-#include "IAdventurePluginEditor.h"
+#include "AdventurePluginEditor.h"
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
@@ -11,38 +11,17 @@
 #include "MessageLogModule.h"
 #include "MessageLogInitializationOptions.h"
 #include "LevelEditor.h"
+
 #include "AdventurePluginEditorToolBar.h"
 #include "AdventurePluginEditorStyle.h"
-
+#include "AdventurePluginEditorCommands.h"
 
 #define LOCTEXT_NAMESPACE "AdventurePluginEditor"
 
-class FAdventurePluginEditor : public IAdventurePluginEditor
-{
-	/** IModuleInterface implementation */
-	virtual void StartupModule() override;
-	virtual void ShutdownModule() override;
+IMPLEMENT_MODULE(FAdventurePluginEditor, AdventurePluginEditor)
 
-	virtual void Log(EMessageSeverity::Type EngineMessageSeverity, const FText& Message) const;
 
-	virtual void Log(const TSharedRef< class FTokenizedMessage >& Message) const;
-
-	/** Gets the extensibility managers for outside entities to extend this editor's menus and toolbars */
-	virtual TSharedPtr<FExtensibilityManager> GetToolBarExtensibilityManager() override { return ToolBarExtensibilityManager; }
-
-	virtual TArray<FAdventurePluginEditorMenuExtender>& GetAllAdventurePluginEditorToolbarViewMenuExtenders() { return AdventurePluginEditorToolbarViewMenuExtenders; }
-
-private:
-	TSharedPtr<class FExtensibilityManager> ToolBarExtensibilityManager;
-	TSharedPtr<class FUICommandList> PluginCommands;
-
-	TArray<FAdventurePluginEditorMenuExtender> AdventurePluginEditorToolbarViewMenuExtenders;
-
-	void AddToolbarExtension(FToolBarBuilder& Builder);
-};
-
-IMPLEMENT_MODULE( FAdventurePluginEditor, AdventurePluginEditor )
-
+const FName APLogName("AdventurePluginLog");
 
 
 void FAdventurePluginEditor::StartupModule()
@@ -53,22 +32,22 @@ void FAdventurePluginEditor::StartupModule()
 	{
 		FMessageLogInitializationOptions InitOptions;
 		InitOptions.bShowFilters = true;
-		MessageLogModule.RegisterLogListing("AdventurePluginLog", LOCTEXT("AdventurePluginLog", "Adventure Plugin Log"), InitOptions);
+		MessageLogModule.RegisterLogListing(APLogName, LOCTEXT("AdventurePluginLog", "Adventure Plugin Log"), InitOptions);
 	}
 
-	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
-	
-	PluginCommands = MakeShareable(new FUICommandList);
+	// Note this must come before any tab spawning because that can create the SLevelEditor and attempt to map commands
+	FAdventurePluginEditorCommands::Register();
 
+	PluginCommands = MakeShareable(new FUICommandList);
+	ToolBarExtensibilityManager = MakeShareable(new FExtensibilityManager);
+
+	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
 	{
 		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
 		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FAdventurePluginEditor::AddToolbarExtension));
-
 		LevelEditorModule.GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
 	}
-
 }
-
 
 void FAdventurePluginEditor::AddToolbarExtension(FToolBarBuilder& Builder)
 {
@@ -87,8 +66,18 @@ void FAdventurePluginEditor::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
-}
 
+
+	if (FModuleManager::Get().IsModuleLoaded("MessageLog"))
+	{
+		FMessageLogModule& MessageLogModule = FModuleManager::GetModuleChecked<FMessageLogModule>("MessageLog");
+		MessageLogModule.UnregisterLogListing(APLogName);
+	}
+
+	ToolBarExtensibilityManager.Reset();
+
+	FAdventurePluginEditorCommands::Unregister();
+}
 
 void FAdventurePluginEditor::Log(const TSharedRef< class FTokenizedMessage >& Message) const
 {
@@ -103,7 +92,6 @@ void FAdventurePluginEditor::Log(const TSharedRef< class FTokenizedMessage >& Me
 		}
 	}
 }
-
 
 void FAdventurePluginEditor::Log(EMessageSeverity::Type EngineMessageSeverity, const FText& Message) const
 {
@@ -128,6 +116,5 @@ void FAdventurePluginEditor::Log(EMessageSeverity::Type EngineMessageSeverity, c
 		}
 	}
 }
-
 
 #undef LOCTEXT_NAMESPACE
