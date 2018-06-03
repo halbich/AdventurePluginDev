@@ -20,7 +20,7 @@
 #include "EditorCategoryUtils.h"
 #include "BlueprintEditor.h"
 
-#include "IAdventurePluginEditor.h"
+#include "AdventurePluginEditor.h"
 
 #include "EditorModeManager.h"
 
@@ -156,7 +156,7 @@ void FAdventurePluginEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToo
 
 		static FReply OnAdventurePluginButtonClick1()
 		{
-			IAdventurePluginEditor& e = IAdventurePluginEditor::Get();
+			FAdventurePluginEditor& e = FAdventurePluginEditor::Get();
 
 			e.Log(EMessageSeverity::Type::Warning, FText::FromString(TEXT("Debug log. Remove me ASAP")));
 
