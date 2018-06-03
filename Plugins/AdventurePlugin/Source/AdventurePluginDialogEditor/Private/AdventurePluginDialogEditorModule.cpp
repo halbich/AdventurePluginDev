@@ -17,7 +17,7 @@
 //#include "Toolkits/SStandaloneAssetEditorToolkitHost.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
-const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
+//const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginDialogEditorModule"
 
@@ -90,11 +90,14 @@ void FAdventurePluginDialogEditorModule::AddMenuExtension(FMenuBuilder& Builder)
 
 TSharedRef<SDockTab> FAdventurePluginDialogEditorModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
 {
-	DialogEditor = MakeShareable(new FAdventurePluginDialogEditor);
+	if (!DialogEditor.IsValid())
+	{
+		DialogEditor = CreateDialogEditor(EToolkitMode::Standalone, TSharedPtr<IToolkitHost>(), NewObject<UObject>()); // Only temporary
+	}
 	return DialogEditor->GetPluginTab(SpawnTabArgs);
 }
 
-TSharedRef<FAdventurePluginDialogEditor> FAdventurePluginDialogEditorModule::CreateDialogEditor(const EToolkitMode::Type Mode, const TSharedPtr< IToolkitHost >& InitToolkitHost, UObject* Object)
+TSharedRef<FAdventurePluginDialogEditor> FAdventurePluginDialogEditorModule::CreateDialogEditor(const EToolkitMode::Type Mode, const TSharedPtr<IToolkitHost>& InitToolkitHost, UObject* Object)
 {
 	TSharedRef<FAdventurePluginDialogEditor> NewDialogEditor(new FAdventurePluginDialogEditor());
 	//NewDialogEditor->InitEditorForMaterial(Object);

@@ -15,7 +15,6 @@
 #include "Materials/Material.h"
 #include "EdGraph/EdGraphSchema.h"
 
-static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
 const FName FAdventurePluginDialogEditor::GraphCanvasTabId(TEXT("DialogEditor_GraphCanvas"));
 const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
 
