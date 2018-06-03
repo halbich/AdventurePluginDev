@@ -16,7 +16,7 @@
 #include "EdGraph/EdGraphSchema.h"
 
 const FName FAdventurePluginDialogEditor::GraphCanvasTabId(TEXT("DialogEditor_GraphCanvas"));
-//const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));u
+const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginDialogEditor"
 
@@ -42,7 +42,7 @@ void FAdventurePluginDialogEditor::InitDialogEditor(const EToolkitMode::Type Mod
 			)
 		);
 
-	//FAssetEditorToolkit::InitAssetEditor(Mode, InitToolkitHost, DialogEditorAppIdentifier, StandaloneDefaultLayout, true, true, ObjectToEdit, false);
+	FAssetEditorToolkit::InitAssetEditor(Mode, InitToolkitHost, DialogEditorAppIdentifier, StandaloneDefaultLayout, true, true, ObjectToEdit, false);
 }
 
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
