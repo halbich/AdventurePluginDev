@@ -16,7 +16,7 @@
 #include "EdGraph/EdGraphSchema.h"
 //#include "Toolkits/SStandaloneAssetEditorToolkitHost.h"
 
-static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
+//static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
 const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginDialogEditorModule"
@@ -53,9 +53,9 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	//.SetGroup(WorkspaceMenuCategoryRef)
 	//.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "GraphEditor.EventGraph_16x"));
 
-	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginDialogEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginDialogEditorModule::OnSpawnPluginTab))
+	/*FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginDialogEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginDialogEditorModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("AdventurePlugin_DialogEditorName", "Dialog Editor"))
-		.SetMenuType(ETabSpawnerMenuType::Hidden);
+		.SetMenuType(ETabSpawnerMenuType::Hidden);*/
 }
 
 void FAdventurePluginDialogEditorModule::ShutdownModule()
@@ -66,7 +66,7 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 
 	FAdventurePluginDialogEditorCommands::Unregister();
 
-	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginDialogEditorTabName);
+	//FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginDialogEditorTabName);
 
 	if (UObjectInitialized() && !IsRunningCommandlet())
 	{
@@ -80,7 +80,7 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 
 void FAdventurePluginDialogEditorModule::PluginButtonClicked()
 {
-	FGlobalTabmanager::Get()->InvokeTab(AdventurePluginDialogEditorTabName);
+	//FGlobalTabmanager::Get()->InvokeTab(AdventurePluginDialogEditorTabName);
 }
 
 void FAdventurePluginDialogEditorModule::AddMenuExtension(FMenuBuilder& Builder)
