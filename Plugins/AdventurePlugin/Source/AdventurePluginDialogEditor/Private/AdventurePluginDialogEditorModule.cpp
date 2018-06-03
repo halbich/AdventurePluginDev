@@ -14,7 +14,6 @@
 #include "Kismet2/BlueprintEditorUtils.h"
 #include "Materials/Material.h"
 #include "EdGraph/EdGraphSchema.h"
-//#include "Toolkits/SStandaloneAssetEditorToolkitHost.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
 //const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));

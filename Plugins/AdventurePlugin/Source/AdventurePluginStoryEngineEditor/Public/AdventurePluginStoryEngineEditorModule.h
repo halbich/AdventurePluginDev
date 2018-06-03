@@ -4,15 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
-#include "AdventurePluginEditor.h"
-
+//#include "AdventurePluginEditor.h"
+//
 //class FToolBarBuilder;
 //class FMenuBuilder;
-//
-//class FAdventurePluginStoryEngineEditorModule : public IModuleInterface
-//{
-//public:
-//
+
+
+extern const FName AdventurePluginStoryEngineEditorAppIdentifier;
+
+class IAdventurePluginStoryEngineEditorModule : public IModuleInterface
+{
+public:
+
 //	/** IModuleInterface implementation */
 //	virtual void StartupModule() override;
 //	virtual void ShutdownModule() override;
@@ -46,4 +49,4 @@
 //
 //private:
 //	TSharedPtr<class FUICommandList> PluginCommands;
-//};
+};
