@@ -4,6 +4,9 @@
 #include "Settings_GenericGraphEditor.h"
 #include "GenericGraph.h"
 
+#include "NotifyHook.h"
+#include "GraphEditor.h"
+
 class FGGAssetEditorToolbar;
 
 class FAssetEditor_GenericGraph : public FAssetEditorToolkit, public FNotifyHook, public FGCObject

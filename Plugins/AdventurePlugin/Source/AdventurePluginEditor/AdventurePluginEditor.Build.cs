@@ -28,7 +28,8 @@ namespace UnrealBuildTool.Rules
                 {
                     "Core",
 					// ... add other public dependencies that you statically link with here ...
-				}
+                    "GenericGraphEditor",
+                }
                 );
 
             PrivateDependencyModuleNames.AddRange(
@@ -44,6 +45,7 @@ namespace UnrealBuildTool.Rules
                     "Engine",
                     "Slate",
                     "SlateCore",
+                    "AdventurePluginRuntime"
                 }
                 );
 

@@ -9,6 +9,7 @@
 #include "Math/Color.h"
 #include "AdventurePluginEditor.h"
 #include "AdventurePluginDialogEditor.h"
+#include "IAssetTools.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -34,6 +35,7 @@ private:
 
 	void AddMenuExtension(FMenuBuilder& Builder);
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
+	void RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action);
 
 protected:
 
@@ -53,6 +55,7 @@ protected:
 private:
 	TSharedPtr<class FUICommandList> PluginCommands;
 	TSharedPtr<FAdventurePluginDialogEditor> DialogEditor;
+	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
 
 	/**	The tab ids for the dialog editor */
 	static const FName GraphCanvasTabId;

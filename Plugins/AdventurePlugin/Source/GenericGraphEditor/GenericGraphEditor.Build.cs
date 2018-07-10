@@ -9,6 +9,7 @@ public class GenericGraphEditor : ModuleRules
         PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...
+                "GenericGraphEditor/Public"
 			}
 			);
 

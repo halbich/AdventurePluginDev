@@ -10,23 +10,26 @@ namespace UnrealBuildTool.Rules
 
             PublicIncludePaths.AddRange(
 				new string[] {
+                    "AdventurePluginRuntime/Public"
 					// ... add public include paths required here ...
-				}
+                }
 				);
 
 			PrivateIncludePaths.AddRange(
 				new string[] {
 					//"Developer/AdventurePluginRuntime/Private",
 					// ... add other private include paths required here ...
-				}
+                    "AdventurePluginRuntime/Private"
+                }
 				);
 
 			PublicDependencyModuleNames.AddRange(
 				new string[]
 				{
-					"Core", "CoreUObject", "Engine", "InputCore"
+					"Core", "CoreUObject", "Engine", "InputCore",
 					// ... add other public dependencies that you statically link with here ...
-				}
+                    "GenericGraphRuntime",
+                }
 				);
 
 			PrivateDependencyModuleNames.AddRange(

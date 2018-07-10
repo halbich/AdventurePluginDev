@@ -7,6 +7,7 @@
 #include "Modules/ModuleManager.h"
 #include "TokenizedMessage.h"
 #include "Toolkits/AssetEditorToolkit.h"
+#include "AssetTypeCategories.h"
 #include "MessageLog.h"
 
 /**
@@ -45,6 +46,10 @@ public:
 		return FModuleManager::Get().IsModuleLoaded("AdventurePluginEditor");
 	}
 
+	inline EAssetTypeCategories::Type DefaultAssetCategory() const
+	{
+		return AdventurePluginAssetCategory;
+	}
 
 	/** Delegates to be called to extend the level viewport menus */
 	DECLARE_DELEGATE_RetVal_OneParam(TSharedRef<FExtender>, FAdventurePluginEditorMenuExtender, const TSharedRef<FUICommandList>);
@@ -59,6 +64,7 @@ private:
 	TSharedPtr<class FUICommandList> PluginCommands;
 
 	TArray<FAdventurePluginEditorMenuExtender> AdventurePluginEditorToolbarExtenders;
+	EAssetTypeCategories::Type AdventurePluginAssetCategory;
 
 	void AddToolbarExtension(FToolBarBuilder& Builder);
 };

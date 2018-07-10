@@ -14,6 +14,9 @@
 #include "Kismet2/BlueprintEditorUtils.h"
 #include "Materials/Material.h"
 #include "EdGraph/EdGraphSchema.h"
+#include "AssetToolsModule.h"
+#include "IAssetTypeActions.h"
+#include "AssetTypeActions_DialogGraph.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
 //const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
@@ -55,6 +58,10 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginDialogEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginDialogEditorModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("AdventurePlugin_DialogEditorName", "Dialog Editor"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
+
+	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+	FAdventurePluginEditor& AdventurePluginEditor = FAdventurePluginEditor::Get();
+	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_DialogGraph(AdventurePluginEditor.DefaultAssetCategory())));
 }
 
 void FAdventurePluginDialogEditorModule::ShutdownModule()
@@ -66,6 +73,16 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 	FAdventurePluginDialogEditorCommands::Unregister();
 
 	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginDialogEditorTabName);
+
+	// Unregister all the asset types that we registered
+	if (FModuleManager::Get().IsModuleLoaded("AssetTools"))
+	{
+		IAssetTools& AssetTools = FModuleManager::GetModuleChecked<FAssetToolsModule>("AssetTools").Get();
+		for (int32 Index = 0; Index < CreatedAssetTypeActions.Num(); ++Index)
+		{
+			AssetTools.UnregisterAssetTypeActions(CreatedAssetTypeActions[Index].ToSharedRef());
+		}
+	}
 
 	if (UObjectInitialized() && !IsRunningCommandlet())
 	{
@@ -103,6 +120,12 @@ TSharedRef<FAdventurePluginDialogEditor> FAdventurePluginDialogEditorModule::Cre
 	//OnMaterialEditorOpened().Broadcast(NewDialogEditor);
 	NewDialogEditor->InitDialogEditor(Mode, InitToolkitHost, Object);
 	return NewDialogEditor;
+}
+
+void FAdventurePluginDialogEditorModule::RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action)
+{
+	AssetTools.RegisterAssetTypeActions(Action);
+	CreatedAssetTypeActions.Add(Action);
 }
 
 #undef LOCTEXT_NAMESPACE

@@ -11,6 +11,7 @@
 #include "MessageLogModule.h"
 #include "MessageLogInitializationOptions.h"
 #include "LevelEditor.h"
+#include "AssetToolsModule.h"
 
 #include "AdventurePluginEditorToolBar.h"
 #include "AdventurePluginEditorStyle.h"
@@ -47,6 +48,9 @@ void FAdventurePluginEditor::StartupModule()
 		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FAdventurePluginEditor::AddToolbarExtension));
 		LevelEditorModule.GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
 	}
+
+	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+	AdventurePluginAssetCategory = AssetTools.RegisterAdvancedAssetCategory(FName(TEXT("AdventurePlugin")), LOCTEXT("AdventurePluginAssetCategory", "Adventure Plugin"));
 }
 
 void FAdventurePluginEditor::AddToolbarExtension(FToolBarBuilder& Builder)
