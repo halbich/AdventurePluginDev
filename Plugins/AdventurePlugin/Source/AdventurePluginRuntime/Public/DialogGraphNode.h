@@ -4,7 +4,7 @@
 #include "GenericGraphRuntime/Public/GenericGraphNode.h"
 #include "DialogGraphNode.generated.h"
 
-UCLASS(Blueprintable)
+UCLASS(Abstract, Blueprintable, HideCategories=(GenericGraphNode,GenericGraphNode_Editor))
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode : public UGenericGraphNode
 {
 	GENERATED_BODY()

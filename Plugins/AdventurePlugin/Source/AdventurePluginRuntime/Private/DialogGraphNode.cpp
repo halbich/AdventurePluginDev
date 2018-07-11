@@ -8,7 +8,8 @@ UDialogGraphNode::UDialogGraphNode()
 
 #if WITH_EDITORONLY_DATA
 	CompatibleGraphType = UDialogGraph::StaticClass();
-	BackgroundColor = FLinearColor::Red;
+	DialogText = LOCTEXT("DefaultDialog", "<Insert something clever>");
+	//BackgroundColor = FLinearColor::Red;
 #endif
 
 }
