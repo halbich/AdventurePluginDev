@@ -20,7 +20,7 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return DialogText;
+		return FText::Format(NSLOCTEXT("DialogGraphNode_NPC", "NPCSay", "NPC: \"{0}\""), DialogText);
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
