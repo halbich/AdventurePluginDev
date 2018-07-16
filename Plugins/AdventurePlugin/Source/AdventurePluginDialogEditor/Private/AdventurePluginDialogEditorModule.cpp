@@ -17,6 +17,9 @@
 #include "AssetToolsModule.h"
 #include "IAssetTypeActions.h"
 #include "AssetTypeActions_DialogGraph.h"
+#include "ClassIconFinder.h"
+#include "SlateStyleRegistry.h"
+#include "Styling/SlateStyle.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
 //const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
@@ -62,6 +65,17 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 	FAdventurePluginEditor& AdventurePluginEditor = FAdventurePluginEditor::Get();
 	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_DialogGraph(AdventurePluginEditor.DefaultAssetCategory())));
+
+	/* Adding custom asset icon */
+	StyleSet = MakeShareable(new FSlateStyleSet("DialogStyle"));
+	StyleSet->SetContentRoot(FPaths::EngineContentDir() / TEXT("Editor/Slate"));
+	StyleSet->SetCoreContentRoot(FPaths::EngineContentDir() / TEXT("Slate"));
+	StyleSet->Set("ClassIcon.DialogGraph", new FSlateImageBrush(StyleSet->RootToContentDir(TEXT("Icons/AssetIcons/BehaviorTree_16x.png")), FVector2D(16.0f, 16.0f)));
+	StyleSet->Set("ClassThumbnail.DialogGraph", new FSlateImageBrush(StyleSet->RootToContentDir(TEXT("Icons/AssetIcons/BehaviorTree_64x.png")), FVector2D(64.0f, 64.0f)));
+	//StyleSet->Set("ClassIcon.MyComponent", new FSlateImageBrush("path/to/MyComponent16.png", FVector2D(16.0f, 16.0f)));
+	FSlateStyleRegistry::RegisterSlateStyle(*StyleSet.Get());
+	//FClassIconFinder::RegisterIconSource(&StyleSet.Get());
+	/**/
 }
 
 void FAdventurePluginDialogEditorModule::ShutdownModule()
@@ -92,6 +106,13 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 			LevelEditor.GetAllAdventurePluginEditorToolbarExtenders().RemoveAll([=](const FAdventurePluginEditor::FAdventurePluginEditorMenuExtender& Extender) { return Extender.GetHandle() == EditorMenuExtenderHandle; });
 		}
 	}
+
+	/* Removing custom asset icon */
+	//FClassIconFinder::UnregisterIconSource(&StyleSet.Get());
+	FSlateStyleRegistry::UnRegisterSlateStyle(*StyleSet.Get());
+	ensure(StyleSet.IsUnique());
+	StyleSet.Reset();
+	/**/
 }
 
 void FAdventurePluginDialogEditorModule::PluginButtonClicked()

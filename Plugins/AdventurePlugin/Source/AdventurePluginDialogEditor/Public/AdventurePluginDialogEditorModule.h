@@ -10,6 +10,7 @@
 #include "AdventurePluginEditor.h"
 #include "AdventurePluginDialogEditor.h"
 #include "IAssetTools.h"
+#include "Styling/SlateStyle.h"
 
 class FToolBarBuilder;
 class FMenuBuilder;
@@ -53,6 +54,7 @@ protected:
 	}
 
 private:
+	TSharedPtr<FSlateStyleSet> StyleSet;
 	TSharedPtr<class FUICommandList> PluginCommands;
 	TSharedPtr<FAdventurePluginDialogEditor> DialogEditor;
 	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
