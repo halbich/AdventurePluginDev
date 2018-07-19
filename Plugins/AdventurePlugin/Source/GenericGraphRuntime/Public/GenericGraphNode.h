@@ -65,5 +65,7 @@ public:
 	virtual void SetNodeTitle(const FText& NewTitle);
 
 	virtual bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage);
+
+	virtual bool CanDelete() const;
 #endif
 };

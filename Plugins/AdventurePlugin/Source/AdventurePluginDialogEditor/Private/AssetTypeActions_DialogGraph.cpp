@@ -1,4 +1,5 @@
 #include "AssetTypeActions_DialogGraph.h"
+#include "AssetEditor_DialogGraph.h"
 #include "DialogGraph.h"
 
 #define LOCTEXT_NAMESPACE "AssetTypeActions_DialogGraph"
@@ -21,6 +22,19 @@ FColor FAssetTypeActions_DialogGraph::GetTypeColor() const
 UClass* FAssetTypeActions_DialogGraph::GetSupportedClass() const
 {
 	return UDialogGraph::StaticClass();
+}
+
+void FAssetTypeActions_DialogGraph::OpenAssetEditor(const TArray<UObject*>& InObjects, TSharedPtr<class IToolkitHost> EditWithinLevelEditor)
+{
+	const EToolkitMode::Type Mode = EditWithinLevelEditor.IsValid() ? EToolkitMode::WorldCentric : EToolkitMode::Standalone;	
+	for (auto ObjIt = InObjects.CreateConstIterator(); ObjIt; ++ObjIt)
+	{
+		if (UDialogGraph* Graph = Cast<UDialogGraph>(*ObjIt))
+		{
+			TSharedRef<FAssetEditor_DialogGraph> NewGraphEditor(new FAssetEditor_DialogGraph());
+			NewGraphEditor->InitGenericGraphAssetEditor(Mode, EditWithinLevelEditor, Graph);
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////

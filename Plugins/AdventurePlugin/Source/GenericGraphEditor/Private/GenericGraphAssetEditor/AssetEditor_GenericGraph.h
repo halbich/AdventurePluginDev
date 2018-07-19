@@ -6,10 +6,11 @@
 
 #include "NotifyHook.h"
 #include "GraphEditor.h"
+#include "AssetEditorToolkit.h"
 
 class FGGAssetEditorToolbar;
 
-class FAssetEditor_GenericGraph : public FAssetEditorToolkit, public FNotifyHook, public FGCObject
+class GENERICGRAPHEDITOR_API FAssetEditor_GenericGraph : public FAssetEditorToolkit, public FNotifyHook, public FGCObject
 {
 public:
 	FAssetEditor_GenericGraph();
@@ -118,6 +119,10 @@ private:
 
 	/** The command list for this editor */
 	TSharedPtr<FUICommandList> GraphEditorCommands;
+
+protected:
+	virtual FGraphAppearanceInfo GetViewportWidgetAppearanceInfo() const;
+	virtual UClass* GetGraphSchemaClass() const;
 };
 
 

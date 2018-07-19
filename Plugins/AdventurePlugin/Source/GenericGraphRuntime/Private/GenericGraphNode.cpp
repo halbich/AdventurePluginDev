@@ -49,6 +49,11 @@ bool UGenericGraphNode::CanCreateConnection(UGenericGraphNode* Other, FText& Err
 	return true;
 }
 
+bool UGenericGraphNode::CanDelete() const
+{
+	return true;
+}
+
 #endif
 
 bool UGenericGraphNode::IsLeafNode() const

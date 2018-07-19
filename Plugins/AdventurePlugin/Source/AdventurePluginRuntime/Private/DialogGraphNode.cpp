@@ -26,6 +26,11 @@ FText UDialogGraphNode::GetDescription_Implementation() const
 
 #if WITH_EDITOR
 
+void UDialogGraphNode::SetNodeTitle(const FText & NewTitle)
+{
+	//DialogText = NewTitle;
+}
+
 bool UDialogGraphNode::CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
 {
 	return true;

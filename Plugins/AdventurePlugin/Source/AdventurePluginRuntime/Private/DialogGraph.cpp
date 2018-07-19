@@ -8,6 +8,7 @@ UDialogGraph::UDialogGraph()
 	:  UGenericGraph()
 {
 	NodeType = UDialogGraphNode::StaticClass();
+	bEdgeEnabled = false;
 }
 
 UDialogGraph::~UDialogGraph()

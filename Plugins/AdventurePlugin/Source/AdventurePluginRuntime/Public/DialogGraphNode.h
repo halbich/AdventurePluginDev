@@ -24,6 +24,10 @@ public:
 #endif
 
 #if WITH_EDITOR
-	virtual bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage);
+
+	virtual void SetNodeTitle(const FText& NewTitle) override;
+
+	virtual bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage) override;
+
 #endif
 };

@@ -4,6 +4,7 @@
 #include "GenericGraph.h"
 #include "GenericGraphNode.h"
 #include "GenericGraphEdge.h"
+#include "EdGraph/EdGraphSchema.h"
 #include "AssetGraphSchema_GenericGraph.generated.h"
 
 class UEdNode_GenericGraphNode;
@@ -12,7 +13,7 @@ class UAutoLayoutStrategy;
 
 /** Action to add a node to the graph */
 USTRUCT()
-struct FAssetSchemaAction_GenericGraph_NewNode : public FEdGraphSchemaAction
+struct GENERICGRAPHEDITOR_API FAssetSchemaAction_GenericGraph_NewNode : public FEdGraphSchemaAction
 {
 	GENERATED_USTRUCT_BODY();
 
@@ -45,8 +46,8 @@ public:
 	UEdNode_GenericGraphEdge* NodeTemplate;
 };
 
-UCLASS(MinimalAPI)
-class UAssetGraphSchema_GenericGraph : public UEdGraphSchema
+UCLASS()
+class GENERICGRAPHEDITOR_API UAssetGraphSchema_GenericGraph : public UEdGraphSchema
 {
 	GENERATED_BODY()
 

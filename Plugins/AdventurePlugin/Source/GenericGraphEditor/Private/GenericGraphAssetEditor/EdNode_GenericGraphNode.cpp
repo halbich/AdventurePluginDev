@@ -81,4 +81,9 @@ void UEdNode_GenericGraphNode::PostEditUndo()
 	UEdGraphNode::PostEditUndo();
 }
 
+bool UEdNode_GenericGraphNode::CanUserDeleteNode() const
+{
+	return !IsValid(GenericGraphNode) || GenericGraphNode->CanDelete();
+}
+
 #undef LOCTEXT_NAMESPACE

@@ -18,6 +18,8 @@
 #include "EdNode_GenericGraphEdge.h"
 #include "AutoLayout/TreeLayoutStrategy.h"
 #include "AutoLayout/ForceDirectedLayoutStrategy.h"
+#include "Widgets/Docking/SDockTab.h"
+#include "ScopedTransaction.h"
 
 #define LOCTEXT_NAMESPACE "AssetEditor_GenericGraph"
 
@@ -272,8 +274,7 @@ void FAssetEditor_GenericGraph::CreateInternalWidgets()
 
 TSharedRef<SGraphEditor> FAssetEditor_GenericGraph::CreateViewportWidget()
 {
-	FGraphAppearanceInfo AppearanceInfo;
-	AppearanceInfo.CornerText = LOCTEXT("AppearanceCornerText_GenericGraph", "Generic Graph");
+	FGraphAppearanceInfo AppearanceInfo = GetViewportWidgetAppearanceInfo();
 
 	CreateCommandList();
 
@@ -308,7 +309,7 @@ void FAssetEditor_GenericGraph::CreateEdGraph()
 {
 	if (EditingGraph->EdGraph == nullptr)
 	{
-		EditingGraph->EdGraph = CastChecked<UEdGraph_GenericGraph>(FBlueprintEditorUtils::CreateNewGraph(EditingGraph, NAME_None, UEdGraph_GenericGraph::StaticClass(), UAssetGraphSchema_GenericGraph::StaticClass()));
+		EditingGraph->EdGraph = CastChecked<UEdGraph_GenericGraph>(FBlueprintEditorUtils::CreateNewGraph(EditingGraph, NAME_None, UEdGraph_GenericGraph::StaticClass(), GetGraphSchemaClass()));
 		EditingGraph->EdGraph->bAllowDeletion = false;
 
 		// Give the schema a chance to fill out any required nodes (like the results node)
@@ -793,6 +794,17 @@ void FAssetEditor_GenericGraph::RegisterToolbarTab(const TSharedRef<class FTabMa
 	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
 }
 
+FGraphAppearanceInfo FAssetEditor_GenericGraph::GetViewportWidgetAppearanceInfo() const
+{
+	FGraphAppearanceInfo AppearanceInfo;
+	AppearanceInfo.CornerText = LOCTEXT("AppearanceCornerText_GenericGraph", "Generic Graph");
+	return AppearanceInfo;
+}
+
+UClass* FAssetEditor_GenericGraph::GetGraphSchemaClass() const
+{
+	return UAssetGraphSchema_GenericGraph::StaticClass();
+}
 
 #undef LOCTEXT_NAMESPACE
 
