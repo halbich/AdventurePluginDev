@@ -86,4 +86,9 @@ bool UEdNode_GenericGraphNode::CanUserDeleteNode() const
 	return !IsValid(GenericGraphNode) || GenericGraphNode->CanDelete();
 }
 
+bool UEdNode_GenericGraphNode::CanDuplicateNode() const
+{
+	return !IsValid(GenericGraphNode) || GenericGraphNode->CanDuplicate();
+}
+
 #undef LOCTEXT_NAMESPACE

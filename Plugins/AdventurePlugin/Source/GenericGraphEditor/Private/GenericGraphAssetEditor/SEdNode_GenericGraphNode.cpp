@@ -231,6 +231,18 @@ void SEdNode_GenericGraphNode::UpdateGraphNode()
 void SEdNode_GenericGraphNode::CreatePinWidgets()
 {
 	UEdNode_GenericGraphNode* StateNode = CastChecked<UEdNode_GenericGraphNode>(GraphNode);
+	UGenericGraphNode* GenericNode = StateNode->GenericGraphNode;
+	int MissingPinCount = GenericNode->GetOutputPinsCount() - StateNode->Pins.Num() + 1;
+	if (MissingPinCount > 0)
+	{
+		for (int i = 0; i < MissingPinCount; ++i) StateNode->CreatePin(EGPD_Output, "MultipleNodes", FName(), TEXT("Out"));
+	}
+	else if (MissingPinCount < 0)
+	{
+		MissingPinCount = -MissingPinCount;
+		int Index = StateNode->Pins.Num() - 1 - MissingPinCount;
+		for (int i = 0; i < MissingPinCount; ++i) StateNode->RemovePinAt(Index, EGPD_Output);
+	}
 
 	for (int32 PinIdx = 0; PinIdx < StateNode->Pins.Num(); PinIdx++)
 	{

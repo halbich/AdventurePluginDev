@@ -54,6 +54,16 @@ bool UGenericGraphNode::CanDelete() const
 	return true;
 }
 
+bool UGenericGraphNode::CanDuplicate() const
+{
+	return true;
+}
+
+uint32 UGenericGraphNode::GetOutputPinsCount() const
+{
+	return 1;
+}
+
 #endif
 
 bool UGenericGraphNode::IsLeafNode() const

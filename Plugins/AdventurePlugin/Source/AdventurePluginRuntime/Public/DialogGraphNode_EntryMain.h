@@ -45,5 +45,10 @@ public:
 		return false;
 	}
 
+	virtual inline bool CanDuplicate() const override
+	{
+		return false;
+	}
+
 #endif
 };

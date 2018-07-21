@@ -2,6 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "SGraphNode.h"
+#include "Widgets/SBoxPanel.h"
+#include "Widgets/Layout/SBox.h"
+#include "ScopedTransaction.h"
 
 class UEdNode_GenericGraphNode;
 

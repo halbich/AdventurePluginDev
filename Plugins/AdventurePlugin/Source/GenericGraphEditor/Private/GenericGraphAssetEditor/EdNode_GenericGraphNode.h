@@ -38,6 +38,7 @@ public:
 #if WITH_EDITOR
 	virtual void PostEditUndo() override;
 	virtual bool CanUserDeleteNode() const override;
+	virtual bool CanDuplicateNode() const override;
 #endif
 
 };

@@ -67,5 +67,9 @@ public:
 	virtual bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage);
 
 	virtual bool CanDelete() const;
+
+	virtual bool CanDuplicate() const;
+
+	virtual uint32 GetOutputPinsCount() const;
 #endif
 };
