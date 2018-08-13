@@ -11,6 +11,8 @@
 #include "Config/AdventurePluginConfig.h"
 
 
+#define print(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, text)
+
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules 
  * within this plugin.

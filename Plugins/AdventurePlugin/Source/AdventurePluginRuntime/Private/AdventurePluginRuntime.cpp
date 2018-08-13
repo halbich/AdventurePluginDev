@@ -6,6 +6,8 @@
 
 #define LOCTEXT_NAMESPACE "CustomSettings"
 
+#pragma optimize("",off)
+
 class FAdventurePluginRuntime : public IAdventurePluginRuntime
 {
 	/** IModuleInterface implementation */
@@ -61,6 +63,9 @@ class FAdventurePluginRuntime : public IAdventurePluginRuntime
 		}
 	}
 };
+
+
+#pragma optimize("",on)
 
 #undef LOCTEXT_NAMESPACE
 

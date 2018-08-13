@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "DialoguePresenter/DialoguePresenterWidget.h"
 #include "AdventurePluginConfig.generated.h"
 
 /**
@@ -33,6 +34,9 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginConfig : public UObject
 	/** We can even use asset references */ 
 	UPROPERTY(config, EditAnywhere, Category = Materials, meta = (AllowedClasses = "MaterialInterface"))
 	FStringAssetReference StringMaterialAssetReference;
+
+	UPROPERTY(config, EditAnywhere, Category = Widgets)
+	TSoftClassPtr<UDialoguePresenterWidget> DialoguePresenterWidgetObjectPath;
 	
 	
 };
