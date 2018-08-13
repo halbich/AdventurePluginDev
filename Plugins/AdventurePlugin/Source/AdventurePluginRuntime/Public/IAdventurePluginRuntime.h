@@ -5,6 +5,10 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
+#include "ISettingsModule.h"
+#include "ISettingsSection.h"
+#include "ISettingsContainer.h"
+#include "Config/AdventurePluginConfig.h"
 
 
 /**
