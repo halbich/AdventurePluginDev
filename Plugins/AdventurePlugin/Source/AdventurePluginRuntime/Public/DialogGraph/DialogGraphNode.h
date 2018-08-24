@@ -4,7 +4,7 @@
 #include "GenericGraphRuntime/Public/GenericGraphNode.h"
 #include "DialogGraphNode.generated.h"
 
-UCLASS(Abstract, Blueprintable, HideCategories=(GenericGraphNode,GenericGraphNode_Editor))
+UCLASS(Abstract, Blueprintable, HideCategories = (GenericGraphNode, GenericGraphNode_Editor))
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode : public UGenericGraphNode
 {
 	GENERATED_BODY()
@@ -15,12 +15,12 @@ public:
 
 	virtual FText GetDescription_Implementation() const;
 
+	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
+		FText DialogText;
+
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
-	FText DialogText;
-
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
-	int NumberOfSomething;
+		int NumberOfSomething;
 #endif
 
 #if WITH_EDITOR
