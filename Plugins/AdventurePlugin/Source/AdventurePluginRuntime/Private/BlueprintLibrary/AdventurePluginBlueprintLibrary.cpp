@@ -24,6 +24,17 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, U
 					if (dn)
 					{
 						print(dn->DialogText.ToString());
+
+						for (auto children : dn->ChildrenNodes)
+						{
+							auto childrenDN = Cast<UDialogGraphNode>(children);
+							if (childrenDN)
+							{
+								print(TEXT("Found children!"));
+								print(childrenDN->DialogText.ToString());
+							}
+						}
+
 					}
 					else
 						printR(TEXT("Node is not type of DialogGraphNOde"));
