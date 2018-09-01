@@ -26,11 +26,6 @@
       "LoadingPhase": "Default"
     },
     {
-      "Name": "AdventurePluginEditorMode",
-      "Type": "Editor",
-      "LoadingPhase": "Default"
-    },
-    {
       "Name": "AdventurePluginEditor",
       "Type": "Developer",
       "LoadingPhase": "Default"

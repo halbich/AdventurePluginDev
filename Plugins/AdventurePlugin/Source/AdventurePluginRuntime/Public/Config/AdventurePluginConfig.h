@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "DialoguePresenter/DialoguePresenterWidget.h"
+#include "Dialogue/Presenter/DialoguePresenterWidget.h"
 #include "AdventurePluginConfig.generated.h"
 
 /**

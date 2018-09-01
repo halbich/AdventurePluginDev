@@ -4,4 +4,7 @@
 
 
 
+void UAdventurePluginGameInstance::ShowDialog(UDialogGraph* graph)
+{
 
+}

@@ -4,8 +4,9 @@
 
 #include "Engine.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "GameStateMonitor/AdventurePluginGameInstance.h"
-#include "DialogGraph/DialogGraph.h"
+#include "GameInstance/AdventurePluginGameInstance.h"
+#include "Dialogue/Graph/DialogGraph.h"
+#include "Dialogue/Graph/DialogGraphNode.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
 
 

@@ -3,14 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/GameInstance.h"
-#include "AdventurePluginGameInstance.generated.h"
+#include "DialogueController.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameInstance : public UGameInstance
+class ADVENTUREPLUGINRUNTIME_API UDialogueController : public UObject
 {
 	GENERATED_BODY()
 	
