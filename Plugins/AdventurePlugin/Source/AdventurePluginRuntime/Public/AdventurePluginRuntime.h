@@ -6,16 +6,14 @@
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
 
-
 #define print(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, text)
 
 /**
- * The public interface to this module.  In most cases, this interface is only public to sibling modules 
+ * The public interface to this module.  In most cases, this interface is only public to sibling modules
  * within this plugin.
  */
 class IAdventurePluginRuntime : public IModuleInterface
 {
-
 public:
 
 	/**
@@ -26,7 +24,7 @@ public:
 	 */
 	static inline IAdventurePluginRuntime& Get()
 	{
-		return FModuleManager::LoadModuleChecked< IAdventurePluginRuntime >( "AdventurePluginRuntime" );
+		return FModuleManager::LoadModuleChecked< IAdventurePluginRuntime >("AdventurePluginRuntime");
 	}
 
 	/**
@@ -36,7 +34,6 @@ public:
 	 */
 	static inline bool IsAvailable()
 	{
-		return FModuleManager::Get().IsModuleLoaded( "AdventurePluginRuntime" );
+		return FModuleManager::Get().IsModuleLoaded("AdventurePluginRuntime");
 	}
 };
-

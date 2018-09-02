@@ -2,7 +2,6 @@
 
 #include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
 
-
 #pragma optimize("", off)
 void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, UDialogGraph* graph)
 {
@@ -19,9 +18,7 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, U
 	if (!instance)
 		return;
 
-
 	instance->ShowDialog(graph);
-
 
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Has proper Instance."));
 
@@ -41,14 +38,10 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, U
 					print(childrenDN->DialogText.ToString());
 				}
 			}
-
 		}
 		else
 			printR(TEXT("Node is not type of DialogGraphNOde"));
 	}
-
 }
 
-
 #pragma optimize("", on)
-

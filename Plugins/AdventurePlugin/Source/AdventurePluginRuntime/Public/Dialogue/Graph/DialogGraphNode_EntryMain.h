@@ -22,7 +22,7 @@ public:
 	virtual ~UDialogGraphNode_EntryMain()
 	{
 	}
-	
+
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const

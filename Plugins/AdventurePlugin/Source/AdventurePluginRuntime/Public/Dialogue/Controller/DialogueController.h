@@ -6,6 +6,7 @@
 #include "Graph/DialogGraph.h"
 #include "Presenter/DialoguePresenterWidget.h"
 #include "Config/AdventurePluginConfig.h"
+#include "Kismet/GameplayStatics.h"
 #include "DialogueController.generated.h"
 
 /**
@@ -21,6 +22,8 @@ public:
 	// TODO get rid of gameINstance
 	void ShowDialog(UDialogGraph* graph, UGameInstance* instance);
 
+	void HideDialog();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Dialogue")
 		TSubclassOf<UDialoguePresenterWidget> DefaultPresenter;
 
@@ -28,8 +31,12 @@ private:
 	UPROPERTY(Transient)
 		UDialoguePresenterWidget* presenterInstance;
 
-#pragma optimize("", off)
-	/*FORCEINLINE*/ void setDefaulPresenterInstance(UGameInstance* gameInstance)
+	UPROPERTY(Transient)
+		UGameInstance* cachedGameInstance;
+
+
+
+	FORCEINLINE void setDefaulPresenterInstance(UGameInstance* gameInstance)
 	{
 		auto settings = GetMutableDefault<UAdventurePluginConfig>();
 
@@ -47,11 +54,5 @@ private:
 			if (inst)
 				presenterInstance = CreateWidget<UDialoguePresenterWidget>(gameInstance, inst);
 		}
-
-
-		//presenterInstance = Cast< UDialogueController>(inst);
-
 	}
-#pragma optimize("", on)
-
 };

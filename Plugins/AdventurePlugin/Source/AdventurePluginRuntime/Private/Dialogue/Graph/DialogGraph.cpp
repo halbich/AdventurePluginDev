@@ -5,7 +5,7 @@
 #define LOCTEXT_NAMESPACE "DialogGraph"
 
 UDialogGraph::UDialogGraph()
-	:  UGenericGraph()
+	: UGenericGraph()
 {
 	NodeType = UDialogGraphNode::StaticClass();
 	bEdgeEnabled = false;
@@ -13,7 +13,6 @@ UDialogGraph::UDialogGraph()
 
 UDialogGraph::~UDialogGraph()
 {
-
 }
 
 #undef LOCTEXT_NAMESPACE

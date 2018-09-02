@@ -21,7 +21,6 @@ public:
 
 	void ShowDialog(UDialogGraph* graph, UDialogueController* overrideController = nullptr);
 
-
 private:
 
 	UPROPERTY(Transient)
@@ -30,29 +29,27 @@ private:
 	UPROPERTY(Transient)
 		UDialogueController* currentDialogueInstance;
 
-#pragma optimize("", off)
-	/*FORCEINLINE*/ UDialogueController* getDefaultDialogueInstance()
+	FORCEINLINE UDialogueController* getDefaultDialogueInstance()
 	{
-		if (!defaultDialogueInstance)
-		{
-			auto settings = GetMutableDefault<UAdventurePluginConfig>();
+		if (defaultDialogueInstance && defaultDialogueInstance->IsValidLowLevel())
+			return defaultDialogueInstance;
 
-			if (settings->DefaultDialogueController.IsValid()) {
-				// we have C++ class
-				auto inst = settings->DefaultDialogueController.Get();
-				if (inst)
-					defaultDialogueInstance = inst->GetDefaultObject<UDialogueController>();
-			}
-			else
-			{
-				// we have Blueprint class
-				auto inst = settings->DefaultDialogueController.LoadSynchronous();
-				if (inst)
-					defaultDialogueInstance = inst->GetDefaultObject<UDialogueController>();
-			}
+		auto settings = GetMutableDefault<UAdventurePluginConfig>();
+
+		if (settings->DefaultDialogueController.IsValid()) {
+			// we have C++ class
+			auto inst = settings->DefaultDialogueController.Get();
+			if (inst)
+				defaultDialogueInstance = inst->GetDefaultObject<UDialogueController>();
+		}
+		else
+		{
+			// we have Blueprint class
+			auto inst = settings->DefaultDialogueController.LoadSynchronous();
+			if (inst)
+				defaultDialogueInstance = inst->GetDefaultObject<UDialogueController>();
 		}
 
 		return defaultDialogueInstance;
 	}
-#pragma optimize("", on)
 };

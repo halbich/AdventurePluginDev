@@ -26,7 +26,7 @@ public:
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
-	uint32 ChoiceCount;
+		uint32 ChoiceCount;
 #endif
 
 #if WITH_EDITOR

@@ -42,6 +42,4 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginConfig : public UObject
 
 	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Controller")
 		TSoftClassPtr<UDialogueController> DefaultDialogueController;
-
-
 };

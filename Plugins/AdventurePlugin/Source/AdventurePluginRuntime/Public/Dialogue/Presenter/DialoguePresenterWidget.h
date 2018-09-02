@@ -21,8 +21,4 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
 		void ShowDialogueSelection(UDialogGraphNode* node);
-
-
-
-
 };

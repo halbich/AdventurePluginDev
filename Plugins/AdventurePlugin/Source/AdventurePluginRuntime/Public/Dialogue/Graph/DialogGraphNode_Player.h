@@ -15,7 +15,7 @@ public:
 	{
 		return DialogText;
 	}
-	
+
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const

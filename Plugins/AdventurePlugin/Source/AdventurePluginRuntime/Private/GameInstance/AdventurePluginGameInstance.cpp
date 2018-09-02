@@ -2,12 +2,9 @@
 
 #include "AdventurePluginGameInstance.h"
 
-
-
 #pragma optimize("", off)
 void UAdventurePluginGameInstance::ShowDialog(UDialogGraph* graph, UDialogueController* overrideController)
 {
-
 	if (currentDialogueInstance)
 	{
 		// TODO report error, should be cleared
@@ -27,8 +24,6 @@ void UAdventurePluginGameInstance::ShowDialog(UDialogGraph* graph, UDialogueCont
 	}
 
 	currentDialogueInstance->ShowDialog(graph, this);
-
 }
-
 
 #pragma optimize("", on)
