@@ -43,7 +43,7 @@ private:
 		else
 		{
 			// we have Blueprint class
-			auto inst = settings->DefaultDialogueController.LoadSynchronous();
+			auto inst = settings->DefaultDialoguePresenterWidget.LoadSynchronous();
 			if (inst)
 				presenterInstance = CreateWidget<UDialoguePresenterWidget>(gameInstance, inst);
 		}
