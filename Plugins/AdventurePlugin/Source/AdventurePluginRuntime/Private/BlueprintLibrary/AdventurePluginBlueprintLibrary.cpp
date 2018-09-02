@@ -1,50 +1,26 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
-#include "DialogGraph/DialogGraphNode.h"
-
 
 #pragma optimize("", off)
 void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, UDialogGraph* graph)
 {
-	if (WorldContextObject->GetWorld() != nullptr)
-	{
-		auto instance = WorldContextObject->GetWorld()->GetGameInstance();
-		if (instance != nullptr)
-		{
-			auto gameInstance = Cast<UAdventurePluginGameInstance>(instance);
+	// TODO error messages
 
-			if (gameInstance != nullptr)
-			{
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Has proper Instance."));
+	if (!WorldContextObject)
+		return;
 
-				for (auto i : graph->AllNodes)
-				{
-					auto dn = Cast<UDialogGraphNode>(i);
-					if (dn)
-					{
-						print(dn->DialogText.ToString());
+	auto world = WorldContextObject->GetWorld();
+	if (!world)
+		return;
 
-						for (auto children : dn->ChildrenNodes)
-						{
-							auto childrenDN = Cast<UDialogGraphNode>(children);
-							if (childrenDN)
-							{
-								print(TEXT("Found children!"));
-								print(childrenDN->DialogText.ToString());
-							}
-						}
+	auto instance = Cast<UAdventurePluginGameInstance>(world->GetGameInstance());
+	if (!instance)
+		return;
 
-					}
-					else
-						printR(TEXT("Node is not type of DialogGraphNOde"));
-				}
-			}
+	instance->ShowDialog(graph);
 
-		}
-	}
+	
 }
 
-
 #pragma optimize("", on)
-

@@ -5,10 +5,17 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
+#include "Developer/Settings/Public/ISettingsModule.h"
+#include "Developer/Settings/Public/ISettingsSection.h"
+#include "Developer/Settings/Public/ISettingsContainer.h"
 #include "TokenizedMessage.h"
 #include "Toolkits/AssetEditorToolkit.h"
 #include "AssetTypeCategories.h"
 #include "MessageLog.h"
+#include "AdventurePluginRuntime/Public/Config/AdventurePluginConfig.h"
+
+
+#define LOCTEXT_NAMESPACE "CustomSettings"
 
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules
@@ -60,6 +67,15 @@ public:
 	virtual TArray<FAdventurePluginEditorMenuExtender>& GetAllAdventurePluginEditorToolbarExtenders() { return AdventurePluginEditorToolbarExtenders; }
 
 private:
+
+	bool HandleSettingsSaved();
+	void RegisterSettings();
+	void UnregisterSettings();
+
+
+
+
+
 	TSharedPtr<class FExtensibilityManager> ToolBarExtensibilityManager;
 	TSharedPtr<class FUICommandList> PluginCommands;
 
@@ -68,3 +84,5 @@ private:
 
 	void AddToolbarExtension(FToolBarBuilder& Builder);
 };
+
+#undef LOCTEXT_NAMESPACE

@@ -4,10 +4,10 @@
 
 #include "Engine.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "GameStateMonitor/AdventurePluginGameInstance.h"
-#include "DialogGraph/DialogGraph.h"
+#include "GameInstance/AdventurePluginGameInstance.h"
+#include "Dialogue/Graph/DialogGraph.h"
+#include "Dialogue/Graph/DialogGraphNode.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
-
 
 #define print(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1,5, FColor::White,text)
 #define printR(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1,5, FColor::Red,text)
@@ -22,5 +22,4 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginBlueprintLibrary : public UBlue
 public:
 	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary", meta = (WorldContext = "WorldContextObject"))
 		static void ShowDialog(UObject* WorldContextObject, UDialogGraph* graph);
-
 };
