@@ -4,39 +4,44 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "Dialogue/Presenter/DialoguePresenterWidget.h"
 #include "AdventurePluginConfig.generated.h"
 
+class UDialoguePresenterWidget;
+class UDialogueController;
+
 /**
- * 
+ *
  */
 UCLASS(config = AdventurePlugin, defaultconfig)
 class ADVENTUREPLUGINRUNTIME_API UAdventurePluginConfig : public UObject
 {
 	GENERATED_UCLASS_BODY()
 
-	/** Sample bool property */ 
-	UPROPERTY(EditAnywhere, config, Category = Custom) 
-	bool bSampleBool;
+		/** Sample bool property */
+		UPROPERTY(EditAnywhere, config, Category = Custom)
+		bool bSampleBool;
 
-	/** Sample float property that requires a restart */ 
+	/** Sample float property that requires a restart */
 	UPROPERTY(EditAnywhere, config, Category = Custom, meta = (ConfigRestartRequired = true))
-	float SampleFloatRequireRestart;
+		float SampleFloatRequireRestart;
 
-	/** Sample string list */ 
+	/** Sample string list */
 	UPROPERTY(config, EditAnywhere, Category = Custom)
-	TArray<FString> SampleStringList;
+		TArray<FString> SampleStringList;
 
-	/** Or add min, max or clamp values to the settings */ 
+	/** Or add min, max or clamp values to the settings */
 	UPROPERTY(config, EditAnywhere, Category = Custom, meta = (UIMin = 1, ClampMin = 1))
-	int32 ClampedIntSetting;
+		int32 ClampedIntSetting;
 
-	/** We can even use asset references */ 
+	/** We can even use asset references */
 	UPROPERTY(config, EditAnywhere, Category = Materials, meta = (AllowedClasses = "MaterialInterface"))
-	FStringAssetReference StringMaterialAssetReference;
+		FStringAssetReference StringMaterialAssetReference;
 
-	UPROPERTY(config, EditAnywhere, Category = Widgets)
-	TSoftClassPtr<UDialoguePresenterWidget> DialoguePresenterWidgetObjectPath;
-	
-	
+	UPROPERTY(config, EditAnywhere, Category = Dialogue)
+		TSoftClassPtr<UDialoguePresenterWidget> DefaultDialoguePresenterWidget;
+
+	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Controller")
+		TSoftClassPtr<UDialogueController> DefaultDialogueController;
+
+
 };

@@ -19,6 +19,10 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, U
 	if (!instance)
 		return;
 
+
+	instance->ShowDialog(graph);
+
+
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Has proper Instance."));
 
 	for (auto i : graph->AllNodes)
