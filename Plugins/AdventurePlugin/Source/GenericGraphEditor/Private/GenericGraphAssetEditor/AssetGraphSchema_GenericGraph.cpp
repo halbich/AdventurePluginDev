@@ -7,6 +7,10 @@
 #include "Framework/Commands/GenericCommands.h"
 #include "AutoLayout/ForceDirectedLayoutStrategy.h"
 #include "AutoLayout/TreeLayoutStrategy.h"
+#include "ScopedTransaction.h"
+#include "MultiBoxBuilder.h"
+#include "UObjectIterator.h"
+#include "GenericGraphNode.h"
 
 #define LOCTEXT_NAMESPACE "AssetSchema_GenericGraph"
 
@@ -227,6 +231,10 @@ void UAssetGraphSchema_GenericGraph::GetGraphContextActions(FGraphContextMenuBui
 				continue;
 
 			if (!Graph->GetClass()->IsChildOf(NodeType.GetDefaultObject()->CompatibleGraphType))
+				continue;
+
+
+			if (!NodeType.GetDefaultObject()->CanAdd())
 				continue;
 
 			Desc = NodeType.GetDefaultObject()->ContextMenuName;

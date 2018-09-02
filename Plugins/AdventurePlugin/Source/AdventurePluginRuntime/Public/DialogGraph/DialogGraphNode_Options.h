@@ -17,6 +17,7 @@ public:
 #if WITH_EDITORONLY_DATA
 		ChoiceCount = 1;
 #endif
+		ContextMenuName = FText::FromString("Options");
 	}
 
 	virtual inline FText GetDescription_Implementation() const

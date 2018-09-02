@@ -1,12 +1,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericGraphRuntime/Public/GenericGraphNode.h"
 #include "DialogGraph.h"
+#include "DialogGraphNode.h"
 #include "DialogGraphNode_EntryMain.generated.h"
 
-UCLASS(Blueprintable, HideCategories = (GenericGraphNode, GenericGraphNode_Editor))
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_EntryMain : public UGenericGraphNode
+UCLASS(Blueprintable)
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_EntryMain : public UDialogGraphNode
 {
 	GENERATED_BODY()
 
@@ -14,9 +14,7 @@ public:
 
 	UDialogGraphNode_EntryMain()
 	{
-#if WITH_EDITORONLY_DATA
-		CompatibleGraphType = UDialogGraph::StaticClass();
-#endif
+		ContextMenuName = FText::FromString("Main Entry Point");
 	}
 
 	virtual ~UDialogGraphNode_EntryMain()
@@ -38,6 +36,11 @@ public:
 	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
 	{
 		return true;
+	}
+
+	virtual inline bool CanAdd() const override
+	{
+		return false;
 	}
 
 	virtual inline bool CanDelete() const override

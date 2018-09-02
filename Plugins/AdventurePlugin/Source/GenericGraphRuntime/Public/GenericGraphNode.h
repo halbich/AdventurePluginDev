@@ -66,6 +66,8 @@ public:
 
 	virtual bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage);
 
+	virtual bool CanAdd() const;
+
 	virtual bool CanDelete() const;
 
 	virtual bool CanDuplicate() const;

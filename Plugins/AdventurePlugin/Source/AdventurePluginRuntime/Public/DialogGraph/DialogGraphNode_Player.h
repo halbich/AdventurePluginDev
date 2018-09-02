@@ -11,6 +11,11 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Player : public UDialogGraphNo
 
 public:
 
+	UDialogGraphNode_Player()
+	{
+		ContextMenuName = FText::FromString("Player Line");
+	}
+
 	virtual inline FText GetDescription_Implementation() const
 	{
 		return DialogText;

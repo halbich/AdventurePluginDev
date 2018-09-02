@@ -11,6 +11,11 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_NPC : public UDialogGraphNode
 
 public:
 
+	UDialogGraphNode_NPC()
+	{
+		ContextMenuName = FText::FromString("NPC Line");
+	}
+
 	virtual inline FText GetDescription_Implementation() const
 	{
 		return DialogText;
