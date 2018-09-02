@@ -67,4 +67,10 @@ public:
 	*/
 
 #endif
+
+
+	virtual void Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
+	{
+
+	};
 };

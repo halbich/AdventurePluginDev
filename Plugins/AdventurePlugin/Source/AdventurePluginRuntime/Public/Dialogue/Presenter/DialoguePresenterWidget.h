@@ -11,14 +11,12 @@
  *
  */
 UCLASS()
-class ADVENTUREPLUGINRUNTIME_API UDialoguePresenterWidget : public UUserWidget
+class ADVENTUREPLUGINRUNTIME_API UDialoguePresenterWidget : public UUserWidget, public IDialoguePresenterInterface
 {
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintImplementableEvent, Category = "Dialogue")
-		void ShowDialogueLine(UDialogGraphNode* node);
+	void ShowDialogueLine(UDialogGraphNode* node);
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
-		void ShowDialogueSelection(UDialogGraphNode* node);
+	void ShowDialogueSelection(UDialogGraphNode* node);
 };

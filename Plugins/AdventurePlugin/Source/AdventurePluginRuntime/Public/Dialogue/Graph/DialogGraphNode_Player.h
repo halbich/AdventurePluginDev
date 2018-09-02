@@ -39,4 +39,11 @@ public:
 	}
 
 #endif
+
+
+	virtual void Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
+	{
+		widget->Execute_ShowDialogueLine(widget->_getUObject(), this);
+
+	};
 };

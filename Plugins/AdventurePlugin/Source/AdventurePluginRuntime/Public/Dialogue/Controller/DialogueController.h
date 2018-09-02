@@ -55,4 +55,6 @@ private:
 				presenterInstance = CreateWidget<UDialoguePresenterWidget>(gameInstance, inst);
 		}
 	}
+
+	void beginExecute(UDialogGraphNode* node);
 };

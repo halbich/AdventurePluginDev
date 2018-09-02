@@ -20,28 +20,7 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, U
 
 	instance->ShowDialog(graph);
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Has proper Instance."));
-
-	for (auto i : graph->AllNodes)
-	{
-		auto dn = Cast<UDialogGraphNode>(i);
-		if (dn)
-		{
-			print(dn->DialogText.ToString());
-
-			for (auto children : dn->ChildrenNodes)
-			{
-				auto childrenDN = Cast<UDialogGraphNode>(children);
-				if (childrenDN)
-				{
-					print(TEXT("Found children!"));
-					print(childrenDN->DialogText.ToString());
-				}
-			}
-		}
-		else
-			printR(TEXT("Node is not type of DialogGraphNOde"));
-	}
+	
 }
 
 #pragma optimize("", on)
