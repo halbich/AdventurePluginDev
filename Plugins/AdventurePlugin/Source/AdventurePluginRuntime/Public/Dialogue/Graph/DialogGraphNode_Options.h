@@ -70,8 +70,8 @@ public:
 #endif
 
 
-	virtual void Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
+	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
 	{
-
+		return false;
 	};
 };

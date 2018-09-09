@@ -7,6 +7,7 @@
 #include "DialoguePresenterInterface.generated.h"
 
 class UDialogGraphNode;
+class UDialogueController;
 
 /**
  *
@@ -25,8 +26,8 @@ class IDialoguePresenterInterface
 
 public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Dialogue")
-		void ShowDialogueLine(UDialogGraphNode* node);
+		void ShowDialogueLine(UDialogGraphNode* node, UDialogueController* controller);
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
-		void ShowDialogueSelection(UDialogGraphNode* node);
+		void ShowDialogueSelection(UDialogGraphNode* node, UDialogueController* controller);
 };

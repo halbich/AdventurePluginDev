@@ -36,7 +36,15 @@ public:
 
 #endif
 
-	virtual void Execute(UDialogueController* controller, IDialoguePresenterInterface* widget)
+	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget)
 	{
+		return true;
 	};
+
+	virtual UDialogGraphNode* GetNextNode()
+	{
+		return ChildrenNodes.Num() > 0 ? Cast<UDialogGraphNode>(ChildrenNodes[0]) : nullptr;
+	};
+
+	
 };
