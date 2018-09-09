@@ -3,10 +3,12 @@
 #include "CoreMinimal.h"
 #include "DialogGraph.h"
 #include "DialogGraphNode.h"
+#include "DialogGraphNode_Player.h"
+#include "NodeInterfaces/DialogueNodeShowOptionsCallbackInterface.h"
 #include "DialogGraphNode_Options.generated.h"
 
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Options : public UDialogGraphNode
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Options : public UDialogGraphNode, public IDialogueNodeShowOptionsCallbackInterface
 {
 	GENERATED_BODY()
 
@@ -69,9 +71,52 @@ public:
 
 #endif
 
-
 	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
 	{
+		selectedOptionIndex = -1;
+		// Go through all child nodes, if visiting something other than Player Line, go to their children, find all Player Lines and show them to the player.
+		auto optionsToPresent = TArray<UDialogGraphNode*>();
+		optionsToPresent.Reserve(ChildrenNodes.Num());
+		for (auto* childNode : ChildrenNodes) {
+			while (childNode != nullptr) {
+				auto* dialogOption = Cast<UDialogGraphNode_Player>(childNode);
+				if (dialogOption != nullptr) {
+					// Found a player line to present
+					optionsToPresent.Add(dialogOption);
+					break;
+				}
+				// Player line not found, go to child node.
+				auto* childNodeCasted = Cast<UDialogGraphNode>(childNode);
+				if (childNodeCasted == nullptr)
+				{
+					// Invalid node found or end of tree. Stop this search.
+					break;
+				}
+				childNode = childNodeCasted->GetNextNode();
+			}
+		}
+		if (optionsToPresent.Num() != 0) {
+			widget->Execute_ShowDialogueSelection(widget->_getUObject(), optionsToPresent, controller);
+		}
+		else {
+			// TODO: Show the fallback for no results. 
+		}
 		return false;
-	};
+	}
+
+	virtual bool DialogueOptionSelected_Implementation(int32 selectedNodeIndex, UDialogueController* controller) override {
+		this->selectedOptionIndex = selectedNodeIndex;
+		return true;
+	}
+
+	virtual UDialogGraphNode* GetNextNode() override
+	{
+		// TODO: Warning when calling with invalid index.
+		return (selectedOptionIndex >= 0 && selectedOptionIndex < ChildrenNodes.Num()) ? Cast<UDialogGraphNode>(ChildrenNodes[selectedOptionIndex]) : nullptr;
+	}
+
+	
+protected:
+	UPROPERTY(Transient)
+	int32 selectedOptionIndex;
 };

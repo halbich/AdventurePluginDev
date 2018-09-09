@@ -2,6 +2,7 @@
 
 #include "DialogueController.h"
 #include "NodeInterfaces/DialogueNodeShowLineCallbackInterface.h"
+#include "NodeInterfaces/DialogueNodeShowOptionsCallbackInterface.h"
 
 #pragma optimize("", off)
 
@@ -118,9 +119,15 @@ void UDialogueController::ShowDialogLineCallback(UObject* WorldContextObject)
 	}
 }
 
-void UDialogueController::ShowDialogLineSelectionCallback(UObject* WorldContextObject, UDialogGraphNode* selectedOption)
+void UDialogueController::ShowDialogLineSelectionCallback(UObject* WorldContextObject, int32 selectedOptionIndex)
 {
+	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogueNodeShowOptionsCallbackInterface::StaticClass())) {
 
+		if (IDialogueNodeShowOptionsCallbackInterface::Execute_DialogueOptionSelected(currentNode, selectedOptionIndex, this)) {
+			// The node responds to the callback and wishes to continue dialogue execution.
+			beginExecute(currentNode->GetNextNode());
+		}
+	}
 }
 
 #pragma optimize("", on)

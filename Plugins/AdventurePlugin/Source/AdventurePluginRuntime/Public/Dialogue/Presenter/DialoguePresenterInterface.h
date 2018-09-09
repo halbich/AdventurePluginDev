@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "UniquePtr.h"
 #include "DialoguePresenterInterface.generated.h"
 
 class UDialogGraphNode;
@@ -25,9 +26,9 @@ class IDialoguePresenterInterface
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintImplementableEvent, Category = "Dialogue")
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
 		void ShowDialogueLine(UDialogGraphNode* node, UDialogueController* controller);
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
-		void ShowDialogueSelection(UDialogGraphNode* node, UDialogueController* controller);
+		void ShowDialogueSelection(UPARAM(ref) TArray<UDialogGraphNode*>& options, UDialogueController* controller);
 };

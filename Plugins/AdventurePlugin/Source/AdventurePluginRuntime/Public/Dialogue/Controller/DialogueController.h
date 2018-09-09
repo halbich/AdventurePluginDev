@@ -31,7 +31,7 @@ public:
 		void ShowDialogLineCallback(UObject* WorldContextObject);
 
 	UFUNCTION(BlueprintCallable, Category = "Dialogue", meta = (WorldContext = "WorldContextObject"))
-		void ShowDialogLineSelectionCallback(UObject* WorldContextObject, UDialogGraphNode* selectedOption);
+		void ShowDialogLineSelectionCallback(UObject* WorldContextObject, int32 selectedOptionIndex);
 
 private:
 	UPROPERTY(Transient)
