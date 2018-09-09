@@ -5,6 +5,7 @@
 #include "GenericGraphNode.h"
 #include "GenericGraphEdge.h"
 #include "EdGraph/EdGraphSchema.h"
+#include "EdNode_GenericGraphNode.h"
 #include "AssetGraphSchema_GenericGraph.generated.h"
 
 class UEdNode_GenericGraphNode;
@@ -86,5 +87,8 @@ public:
 
 private:
 	static int32 CurrentCacheRefreshID;
+
+protected:
+	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType() const;
 };
 

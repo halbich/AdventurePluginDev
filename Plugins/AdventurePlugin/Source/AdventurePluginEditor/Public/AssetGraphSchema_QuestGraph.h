@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GenericGraphEditor/Private/GenericGraphEditorPCH.h"
 #include "GenericGraphEditor/Private/GenericGraphAssetEditor/AssetGraphSchema_GenericGraph.h"
+#include "EdQuestNode.h"
 #include "AssetGraphSchema_QuestGraph.generated.h"
 
 UCLASS()
@@ -12,4 +13,5 @@ class ADVENTUREPLUGINEDITOR_API UAssetGraphSchema_QuestGraph : public UAssetGrap
 public:
 	virtual const FPinConnectionResponse CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const override;
 	virtual void CreateDefaultNodesForGraph(UEdGraph& Graph) const override;
+	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType() const override;
 };

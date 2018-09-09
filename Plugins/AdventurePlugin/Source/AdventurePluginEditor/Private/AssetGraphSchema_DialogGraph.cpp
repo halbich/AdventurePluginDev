@@ -14,7 +14,7 @@ void UAssetGraphSchema_DialogGraph::CreateDefaultNodesForGraph(UEdGraph& EdGraph
 {
 	FAssetSchemaAction_GenericGraph_NewNode Action;
 	UGenericGraph* EditingGraph = CastChecked<UGenericGraph>(EdGraph.GetOuter());
-	Action.NodeTemplate = NewObject<UEdNode_GenericGraphNode>(&EdGraph);
+	Action.NodeTemplate = NewObject<UEdNode_GenericGraphNode>(&EdGraph, GetEditorNodeType());
 	Action.NodeTemplate->GenericGraphNode = NewObject<UGenericGraphNode>(Action.NodeTemplate, UDialogGraphNode_EntryMain::StaticClass());
 	Action.NodeTemplate->GenericGraphNode->Graph = EditingGraph;
 	Action.PerformAction(EditingGraph->EdGraph, nullptr, FVector2D(0, 0), false);

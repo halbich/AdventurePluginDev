@@ -42,12 +42,13 @@ namespace UnrealBuildTool.Rules
                     "Projects",
                     "InputCore",
                     "UnrealEd",
+                    "GraphEditor",
+                    "EditorStyle",
                     "LevelEditor",
                     "CoreUObject",
                     "Engine",
                     "Slate",
-                    "SlateCore",
-                    "AdventurePluginRuntime"
+                    "SlateCore"
                 }
                 );
 

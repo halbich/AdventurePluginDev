@@ -14,8 +14,13 @@ void UAssetGraphSchema_QuestGraph::CreateDefaultNodesForGraph(UEdGraph& EdGraph)
 {
 	FAssetSchemaAction_GenericGraph_NewNode Action;
 	UGenericGraph* EditingGraph = CastChecked<UGenericGraph>(EdGraph.GetOuter());
-	Action.NodeTemplate = NewObject<UEdNode_GenericGraphNode>(&EdGraph);
+	Action.NodeTemplate = NewObject<UEdNode_GenericGraphNode>(&EdGraph, GetEditorNodeType());
 	Action.NodeTemplate->GenericGraphNode = NewObject<UGenericGraphNode>(Action.NodeTemplate, UQuestGraphNode_End::StaticClass());
 	Action.NodeTemplate->GenericGraphNode->Graph = EditingGraph;
 	Action.PerformAction(EditingGraph->EdGraph, nullptr, FVector2D(0, 0), false);
+}
+
+TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_QuestGraph::GetEditorNodeType() const
+{
+	return UEdQuestNode::StaticClass();
 }
