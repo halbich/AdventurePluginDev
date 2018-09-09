@@ -13,9 +13,10 @@ const FPinConnectionResponse UAssetGraphSchema_DialogGraph::CanCreateConnection(
 void UAssetGraphSchema_DialogGraph::CreateDefaultNodesForGraph(UEdGraph& EdGraph) const
 {
 	FAssetSchemaAction_GenericGraph_NewNode Action;
-	UGenericGraph* EditingGraph = CastChecked<UGenericGraph>(EdGraph.GetOuter());
+	UDialogGraph* EditingGraph = CastChecked<UDialogGraph>(EdGraph.GetOuter());
 	Action.NodeTemplate = NewObject<UEdNode_GenericGraphNode>(&EdGraph);
 	Action.NodeTemplate->GenericGraphNode = NewObject<UGenericGraphNode>(Action.NodeTemplate, UDialogGraphNode_EntryMain::StaticClass());
 	Action.NodeTemplate->GenericGraphNode->Graph = EditingGraph;
+	EditingGraph->MainEntryPoint = Action.NodeTemplate->GenericGraphNode;
 	Action.PerformAction(EditingGraph->EdGraph, nullptr, FVector2D(0, 0), false);
 }

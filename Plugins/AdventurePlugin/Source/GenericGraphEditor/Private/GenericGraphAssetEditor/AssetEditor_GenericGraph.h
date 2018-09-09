@@ -65,7 +65,6 @@ private:
 
 	FGraphPanelSelectionSet GetSelectedNodes() const;
 
-	void RebuildGenericGraph();
 
 	// Delegates for graph editor commands
 	void SelectAllNodes();
@@ -105,7 +104,6 @@ private:
 private:
 	UGenericGraphEditorSettings* GenricGraphEditorSettings;
 
-	UGenericGraph* EditingGraph;
 
 	//Toolbar
 	TSharedPtr<class FAssetEditorToolbar_GenericGraph> ToolbarBuilder;
@@ -123,6 +121,8 @@ private:
 protected:
 	virtual FGraphAppearanceInfo GetViewportWidgetAppearanceInfo() const;
 	virtual UClass* GetGraphSchemaClass() const;
+	virtual void RebuildGenericGraph();
+	UGenericGraph* EditingGraph;
 };
 
 

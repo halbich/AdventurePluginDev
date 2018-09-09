@@ -12,4 +12,10 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraph : public UGenericGraph
 public:
 	UDialogGraph();
 	virtual ~UDialogGraph();
+
+	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+		UGenericGraphNode* MainEntryPoint;
+
+	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+		TMap<FName, UGenericGraphNode*> SecondaryEntryPoints;
 };
