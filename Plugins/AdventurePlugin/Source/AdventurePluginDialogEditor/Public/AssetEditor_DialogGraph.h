@@ -10,4 +10,5 @@ class FAssetEditor_DialogGraph : public FAssetEditor_GenericGraph
 protected:
 	virtual FGraphAppearanceInfo GetViewportWidgetAppearanceInfo() const override;
 	virtual UClass* GetGraphSchemaClass() const override;
+	virtual void RebuildGenericGraph() override;
 };

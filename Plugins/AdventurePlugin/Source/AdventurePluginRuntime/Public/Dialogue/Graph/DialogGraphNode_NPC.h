@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
+#include "NodeInterfaces/DialogueNodeShowLineCallbackInterface.h"
 #include "DialogGraphNode_NPC.generated.h"
 
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_NPC : public UDialogGraphNode
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_NPC : public UDialogGraphNode, public IDialogueNodeShowLineCallbackInterface
 {
 	GENERATED_BODY()
 
@@ -45,8 +46,13 @@ public:
 
 #endif
 
-	virtual void Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
+	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
 	{
-		widget->Execute_ShowDialogueLine(widget->_getUObject(),this);
+		widget->Execute_ShowDialogueLine(widget->_getUObject(),this, controller);
+		return false;
 	};
+
+	virtual bool ShowDialogueLineCallback_Implementation(UDialogueController* controller) override {
+		return true;
+	}
 };

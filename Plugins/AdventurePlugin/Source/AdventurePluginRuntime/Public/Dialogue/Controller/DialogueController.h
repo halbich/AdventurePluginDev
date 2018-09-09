@@ -27,12 +27,21 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Dialogue")
 		TSubclassOf<UDialoguePresenterWidget> DefaultPresenter;
 
+	UFUNCTION(BlueprintCallable, Category = "Dialogue", meta = (WorldContext = "WorldContextObject"))
+		void ShowDialogLineCallback(UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintCallable, Category = "Dialogue", meta = (WorldContext = "WorldContextObject"))
+		void ShowDialogLineSelectionCallback(UObject* WorldContextObject, int32 selectedOptionIndex);
+
 private:
 	UPROPERTY(Transient)
 		UDialoguePresenterWidget* presenterInstance;
 
 	UPROPERTY(Transient)
 		UGameInstance* cachedGameInstance;
+
+	UPROPERTY(Transient)
+		UDialogGraphNode* currentNode;
 
 
 

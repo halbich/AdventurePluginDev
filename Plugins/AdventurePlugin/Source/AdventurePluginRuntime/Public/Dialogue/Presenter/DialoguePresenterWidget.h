@@ -16,7 +16,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialoguePresenterWidget : public UUserWidget, 
 	GENERATED_BODY()
 
 public:
-	void ShowDialogueLine(UDialogGraphNode* node);
+	void ShowDialogueLine(UDialogGraphNode* node, UDialogueController* controller);
 
-	void ShowDialogueSelection(UDialogGraphNode* node);
+	void ShowDialogueSelection(TArray<UDialogGraphNode*>& options, UDialogueController* controller);
 };
