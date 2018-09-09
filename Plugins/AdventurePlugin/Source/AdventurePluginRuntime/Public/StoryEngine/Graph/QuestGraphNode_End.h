@@ -21,21 +21,21 @@ public:
 	{
 	}
 
+	virtual bool IsSatisfied() override
+	{
+		return true; // TODO
+	}
+
 #if WITH_EDITOR
 
-	virtual inline FText GetNodeTitle() const
+	virtual inline FText GetNodeTitle() const override
 	{
 		return NSLOCTEXT("QuestGraphNode_End", "Title", "END");
 	}
 
-	virtual inline FLinearColor GetBackgroundColor() const
+	virtual inline FLinearColor GetBackgroundColor() const override
 	{
 		return FLinearColor::White;
-	}
-
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		return true;
 	}
 
 	virtual inline bool CanAdd() const override

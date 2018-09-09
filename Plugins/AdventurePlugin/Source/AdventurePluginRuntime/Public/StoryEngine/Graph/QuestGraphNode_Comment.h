@@ -21,24 +21,14 @@ public:
 
 #if WITH_EDITOR
 
-	virtual inline FText GetNodeTitle() const
+	virtual inline FText GetNodeTitle() const override
 	{
 		return Text;
 	}
 
-	virtual void SetNodeTitle(const FText & NewTitle)
-	{
-
-	}
-
-	virtual inline FLinearColor GetBackgroundColor() const
+	virtual inline FLinearColor GetBackgroundColor() const override
 	{
 		return FLinearColor(1, 0, 1);
-	}
-
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		return true;
 	}
 
 #endif

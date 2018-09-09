@@ -14,11 +14,9 @@ public:
 	UQuestGraphNode();
 	virtual ~UQuestGraphNode();
 
-	virtual FText GetDescription_Implementation() const;
+	virtual bool IsSatisfied() { return true; };
 
 #if WITH_EDITOR
-
-	virtual void SetNodeTitle(const FText& NewTitle) override;
 
 	virtual bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage) override;
 

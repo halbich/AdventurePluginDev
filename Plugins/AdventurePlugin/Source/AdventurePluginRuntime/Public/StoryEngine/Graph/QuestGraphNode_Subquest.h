@@ -24,22 +24,12 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return IsValid(Subquest) ? FText::FromString(Subquest->Name) : NSLOCTEXT("QuestGraphNode_Subquest", "EmptySubquest", "<empty>");
-	}
-
-	virtual void SetNodeTitle(const FText & NewTitle)
-	{
-		//FlagName = FName(*NewTitle.ToString());
+		return IsValid(Subquest) ? FText::FromString(Subquest->Name) : NSLOCTEXT("QuestGraphNode_Subquest", "EmptySubquest", "<EMPTY>");
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
 	{
 		return FLinearColor(0, 1, 1);
-	}
-
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		return true;
 	}
 
 #endif
