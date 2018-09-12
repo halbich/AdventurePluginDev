@@ -12,4 +12,8 @@ class ADVENTUREPLUGINRUNTIME_API UQuestGraph : public UGenericGraph
 public:
 	UQuestGraph();
 	virtual ~UQuestGraph();
+
+	void SetFlag(FName FlagName);
+
+	bool GetFlag(FName FlagName);
 };

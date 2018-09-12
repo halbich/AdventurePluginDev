@@ -20,14 +20,6 @@ public:
 
 	virtual FText GetDescription_Implementation() const;
 
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
-		FText DialogText;
-
-#if WITH_EDITORONLY_DATA
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
-		int NumberOfSomething;
-#endif
-
 #if WITH_EDITOR
 
 	virtual void SetNodeTitle(const FText& NewTitle) override;

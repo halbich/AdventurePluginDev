@@ -15,12 +15,11 @@ public:
 	UDialogGraphNode_Player()
 	{
 		ContextMenuName = FText::FromString("Player Line");
+		DialogText = NSLOCTEXT("DialogGraphNode_Player", "DefaultDialog", "<Insert something clever>");
 	}
 
-	virtual inline FText GetDescription_Implementation() const
-	{
-		return DialogText;
-	}
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	FText DialogText;
 
 #if WITH_EDITOR
 
