@@ -1,6 +1,6 @@
-#include "EdQuestNode.h"
+#include "StoryEngine/EdQuestNode.h"
 #include "Slate.h"
-#include "SEdQuestNode.h"
+#include "StoryEngine/SEdQuestNode.h"
 
 TSharedPtr<class SGraphNode> UEdQuestNode::CreateVisualWidget()
 {

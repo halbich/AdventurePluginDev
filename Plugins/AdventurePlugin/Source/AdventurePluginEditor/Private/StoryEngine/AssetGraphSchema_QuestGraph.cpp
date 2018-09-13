@@ -1,4 +1,4 @@
-#include "AssetGraphSchema_QuestGraph.h"
+#include "StoryEngine/AssetGraphSchema_QuestGraph.h"
 #include "QuestGraphNode_End.h"
 #include "GenericGraphEditor/Private/GenericGraphAssetEditor/EdNode_GenericGraphNode.h"
 #include "EdGraph/EdGraph.h"

@@ -1,9 +1,9 @@
-#include "SEdQuestNode.h"
+#include "StoryEngine/SEdQuestNode.h"
 #include "SCommentBubble.h"
 #include "SlateOptMacros.h"
 #include "GraphEditorSettings.h"
 #include "SGraphPin.h"
-#include "SInlineEditableTextBlock.h"
+#include "SWrapTitleBox.h"
 
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SEdQuestNode::UpdateGraphNode()
@@ -44,7 +44,7 @@ void SEdQuestNode::UpdateGraphNode()
 					.AutoWidth()
 					[
 						SNew(SBox)
-						.MinDesiredWidth(NodePadding.Left)
+						.MinDesiredWidth(20.0f)
 						[
 							SAssignNew(LeftNodeBox, SVerticalBox)
 						]
@@ -91,12 +91,13 @@ void SEdQuestNode::UpdateGraphNode()
 											SNew(SHorizontalBox)
 											+ SHorizontalBox::Slot()
 											.Padding(FMargin(4.0f, 0.0f, 4.0f, 0.0f))
+											.MaxWidth(250.0f)
 											[
 												SNew(SVerticalBox)
 												+ SVerticalBox::Slot()
 												.AutoHeight()
 												[
-													SAssignNew(InlineEditableText, SInlineEditableTextBlock)
+													SAssignNew(InlineEditableText, SWrapTitleBox)
 													.Style(FEditorStyle::Get(), "Graph.StateNode.NodeTitleInlineEditableText")
 													.Text(NodeTitle.Get(), &SNodeTitle::GetHeadTitle)
 													.OnVerifyTextChanged(this, &SEdQuestNode::OnVerifyNameTextChanged)
@@ -122,7 +123,7 @@ void SEdQuestNode::UpdateGraphNode()
 					.AutoWidth()
 					[
 						SNew(SBox)
-						.MinDesiredWidth(NodePadding.Right)
+						.MinDesiredWidth(20.0f)
 						[
 							SAssignNew(RightNodeBox, SVerticalBox)
 							+ SVerticalBox::Slot()

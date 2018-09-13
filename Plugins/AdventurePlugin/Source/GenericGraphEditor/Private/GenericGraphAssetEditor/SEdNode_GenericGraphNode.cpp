@@ -68,7 +68,7 @@ void SEdNode_GenericGraphNode::Construct(const FArguments& InArgs, UEdNode_Gener
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SEdNode_GenericGraphNode::UpdateGraphNode()
 {
-	const FMargin NodePadding = FMargin(2.0f);
+	const FMargin NodePadding = FMargin(2.0f, 20.0f);
 
 	InputPins.Empty();
 	OutputPins.Empty();
@@ -232,6 +232,7 @@ void SEdNode_GenericGraphNode::CreatePinWidgets()
 {
 	UEdNode_GenericGraphNode* StateNode = CastChecked<UEdNode_GenericGraphNode>(GraphNode);
 	UGenericGraphNode* GenericNode = StateNode->GenericGraphNode;
+
 	int MissingPinCount = GenericNode->GetOutputPinsCount() - StateNode->Pins.Num() + 1;
 	if (MissingPinCount > 0)
 	{
@@ -243,6 +244,9 @@ void SEdNode_GenericGraphNode::CreatePinWidgets()
 		int Index = StateNode->Pins.Num() - 1 - MissingPinCount;
 		for (int i = 0; i < MissingPinCount; ++i) StateNode->RemovePinAt(Index, EGPD_Output);
 	}
+
+	UEdGraphPin* InputPin = StateNode->GetPinAt(0);
+	if (InputPin->Direction == EGPD_Input) InputPin->SafeSetHidden(!GenericNode->HasInputPin());
 
 	for (int32 PinIdx = 0; PinIdx < StateNode->Pins.Num(); PinIdx++)
 	{

@@ -53,5 +53,10 @@ public:
 		return false;
 	}
 
+	virtual inline bool HasInputPin() const override
+	{
+		return false;
+	}
+
 #endif
 };

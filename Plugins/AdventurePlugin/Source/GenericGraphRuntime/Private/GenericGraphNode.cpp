@@ -64,6 +64,11 @@ bool UGenericGraphNode::CanDuplicate() const
 	return true;
 }
 
+bool UGenericGraphNode::HasInputPin() const
+{
+	return true;
+}
+
 uint32 UGenericGraphNode::GetOutputPinsCount() const
 {
 	return 1;

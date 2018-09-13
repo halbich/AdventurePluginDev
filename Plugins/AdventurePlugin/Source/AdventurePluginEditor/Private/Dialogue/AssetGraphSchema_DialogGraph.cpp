@@ -1,4 +1,4 @@
-#include "AssetGraphSchema_DialogGraph.h"
+#include "Dialogue/AssetGraphSchema_DialogGraph.h"
 #include "DialogGraphNode_EntryMain.h"
 #include "GenericGraphEditor/Private/GenericGraphAssetEditor/EdNode_GenericGraphNode.h"
 #include "EdGraph/EdGraph.h"
@@ -19,4 +19,9 @@ void UAssetGraphSchema_DialogGraph::CreateDefaultNodesForGraph(UEdGraph& EdGraph
 	Action.NodeTemplate->GenericGraphNode->Graph = EditingGraph;
 	EditingGraph->MainEntryPoint = Action.NodeTemplate->GenericGraphNode;
 	Action.PerformAction(EditingGraph->EdGraph, nullptr, FVector2D(0, 0), false);
+}
+
+TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_DialogGraph::GetEditorNodeType() const
+{
+	return UEdDialogNode::StaticClass();
 }
