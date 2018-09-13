@@ -44,5 +44,10 @@ public:
 		return FLinearColor::Yellow;
 	}
 
+	virtual inline bool CanRename() const override
+	{
+		return true;
+	}
+
 #endif
 };

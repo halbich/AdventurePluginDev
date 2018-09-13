@@ -26,6 +26,8 @@ public:
 
 	virtual bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage) override;
 
+	virtual bool CanRename() const override;
+
 #endif
 
 	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget)

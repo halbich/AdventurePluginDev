@@ -72,6 +72,8 @@ public:
 
 	virtual bool CanDuplicate() const;
 
+	virtual bool CanRename() const;
+
 	virtual bool HasInputPin() const;
 
 	virtual uint32 GetOutputPinsCount() const;

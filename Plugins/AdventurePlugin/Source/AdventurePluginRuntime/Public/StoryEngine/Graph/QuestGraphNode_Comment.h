@@ -26,9 +26,19 @@ public:
 		return Text;
 	}
 
+	virtual void SetNodeTitle(const FText& NewTitle) override
+	{
+		Text = NewTitle;
+	}
+
 	virtual inline FLinearColor GetBackgroundColor() const override
 	{
 		return FLinearColor(1, 0, 1);
+	}
+
+	virtual inline bool CanRename() const override
+	{
+		return true;
 	}
 
 #endif

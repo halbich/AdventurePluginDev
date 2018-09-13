@@ -41,5 +41,10 @@ public:
 		return FLinearColor::Blue;
 	}
 
+	virtual inline bool CanRename() const override
+	{
+		return true;
+	}
+
 #endif
 };

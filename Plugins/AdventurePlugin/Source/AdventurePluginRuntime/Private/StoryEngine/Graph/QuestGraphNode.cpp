@@ -23,6 +23,11 @@ bool UQuestGraphNode::CanCreateConnection(UGenericGraphNode* Other, FText& Error
 	return true;
 }
 
+bool UQuestGraphNode::CanRename() const
+{
+	return false;
+}
+
 #endif
 
 #undef LOCTEXT_NAMESPACE

@@ -32,6 +32,11 @@ bool UDialogGraphNode::CanCreateConnection(UGenericGraphNode* Other, FText& Erro
 	return true;
 }
 
+bool UDialogGraphNode::CanRename() const
+{
+	return false;
+}
+
 #endif
 
 #undef LOCTEXT_NAMESPACE

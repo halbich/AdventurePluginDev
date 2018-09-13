@@ -64,6 +64,11 @@ bool UGenericGraphNode::CanDuplicate() const
 	return true;
 }
 
+bool UGenericGraphNode::CanRename() const
+{
+	return true;
+}
+
 bool UGenericGraphNode::HasInputPin() const
 {
 	return true;
