@@ -74,14 +74,20 @@ public:
 	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
 	{
 		selectedOptionIndex = -1;
+		optionToBinMapping.Reset();
 		// Go through all child nodes, if visiting something other than Player Line, go to their children, find all Player Lines and show them to the player.
 		auto optionsToPresent = TArray<UDialogGraphNode*>();
-		optionsToPresent.Reserve(ChildrenNodes.Num());
-		for (auto* childNode : ChildrenNodes) {
-			while (childNode != nullptr) {
+		optionsToPresent.Reserve(ChoiceCount);
+		for (int binIndex = 0; binIndex < (int)ChoiceCount; ++binIndex)
+		{
+			auto* childNode = GetFirstChildInBin(binIndex);
+			while (childNode != nullptr)
+			{
 				auto* dialogOption = Cast<UDialogGraphNode_Player>(childNode);
-				if (dialogOption != nullptr) {
+				if (dialogOption != nullptr)
+				{
 					// Found a player line to present
+					optionToBinMapping.Add(optionsToPresent.Num(), binIndex);
 					optionsToPresent.Add(dialogOption);
 					break;
 				}
@@ -95,28 +101,36 @@ public:
 				childNode = childNodeCasted->GetNextNode();
 			}
 		}
-		if (optionsToPresent.Num() != 0) {
+		if (optionsToPresent.Num() != 0)
+		{
 			widget->Execute_ShowDialogueSelection(widget->_getUObject(), optionsToPresent, controller);
 		}
-		else {
+		else
+		{
 			// TODO: Show the fallback for no results. 
 		}
 		return false;
 	}
 
-	virtual bool DialogueOptionSelected_Implementation(int32 selectedNodeIndex, UDialogueController* controller) override {
-		this->selectedOptionIndex = selectedNodeIndex;
+	virtual bool DialogueOptionSelected_Implementation(int32 selectedNodeIndex, UDialogueController* controller) override
+	{
+		this->selectedOptionIndex = optionToBinMapping[selectedNodeIndex];
 		return true;
 	}
 
 	virtual UDialogGraphNode* GetNextNode() override
 	{
 		// TODO: Warning when calling with invalid index.
-		return (selectedOptionIndex >= 0 && selectedOptionIndex < ChildrenNodes.Num()) ? Cast<UDialogGraphNode>(ChildrenNodes[selectedOptionIndex]) : nullptr;
+		check(selectedOptionIndex >= 0 && selectedOptionIndex < (int)ChoiceCount);
+		return Cast<UDialogGraphNode>(GetFirstChildInBin(selectedOptionIndex));
+		// return (selectedOptionIndex >= 0 && selectedOptionIndex < ChildrenNodes.Num()) ? Cast<UDialogGraphNode>(ChildrenNodes[selectedOptionIndex]) : nullptr;
 	}
 
 	
 protected:
 	UPROPERTY(Transient)
 	int32 selectedOptionIndex;
+
+	UPROPERTY(Transient)
+	TMap<int32, int32> optionToBinMapping;
 };

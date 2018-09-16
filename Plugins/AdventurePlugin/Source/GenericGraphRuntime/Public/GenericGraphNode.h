@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "SubclassOf.h"
 #include "TextProperty.h"
+#include "Map.h"
 #include "GenericGraphNode.generated.h"
 
 class UGenericGraph;
@@ -27,6 +28,9 @@ public:
 	TArray<UGenericGraphNode*> ChildrenNodes;
 
 	UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
+	TArray<int> ChildrenNodesBins;
+
+	UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
 	TMap<UGenericGraphNode*, UGenericGraphEdge*> Edges;
 
 	UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
@@ -41,6 +45,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MissionNode")
 	FText GetDescription() const;
 	virtual FText GetDescription_Implementation() const;
+
+	UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
+	UGenericGraphNode* GetFirstChildInBin(int bin) const;
 
 	//////////////////////////////////////////////////////////////////////////
 #if WITH_EDITORONLY_DATA

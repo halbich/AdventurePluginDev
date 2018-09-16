@@ -27,6 +27,16 @@ FText UGenericGraphNode::GetDescription_Implementation() const
 	return LOCTEXT("NodeDesc", "Generic Graph Node");
 }
 
+UGenericGraphNode* UGenericGraphNode::GetFirstChildInBin(int bin) const
+{
+	int bins = ChildrenNodesBins.Num();
+	check(bins == GetOutputPinsCount());
+	check(bins > bin);
+	int32 child = ChildrenNodesBins[bin];
+	if (bin + 1 < bins && ChildrenNodesBins[bin + 1] == child) return nullptr;
+	return ChildrenNodes.Num() > child ? ChildrenNodes[child] : nullptr;
+}
+
 #if WITH_EDITOR
 
 FLinearColor UGenericGraphNode::GetBackgroundColor() const

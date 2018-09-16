@@ -51,7 +51,7 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode() override
 	{
-		int32 index = IsValid(Quest) && Quest->GetFlag(FlagName) ? 0 : 1;
-		return ChildrenNodes.Num() > index ? Cast<UDialogGraphNode>(ChildrenNodes[index]) : nullptr;
+		int32 bin = IsValid(Quest) && Quest->GetFlag(FlagName) ? 0 : 1;
+		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
 	}
 };

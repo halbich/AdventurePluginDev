@@ -3,6 +3,7 @@
 #include "GenericGraph.h"
 #include "EdNode_GenericGraphNode.h"
 #include "EdNode_GenericGraphEdge.h"
+#include "EdGraph/EdGraphPin.h"
 
 UEdGraph_GenericGraph::UEdGraph_GenericGraph()
 {
@@ -41,6 +42,8 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 
 				if (Pin->Direction != EEdGraphPinDirection::EGPD_Output)
 					continue;
+
+				GenericGraphNode->ChildrenNodesBins.Add(GenericGraphNode->ChildrenNodes.Num());
 
 				for (int LinkToIdx = 0; LinkToIdx < Pin->LinkedTo.Num(); ++LinkToIdx)
 				{
@@ -149,6 +152,7 @@ void UEdGraph_GenericGraph::Clear()
 			UGenericGraphNode* GenericGraphNode = EdNode->GenericGraphNode;
 			GenericGraphNode->ParentNodes.Reset();
 			GenericGraphNode->ChildrenNodes.Reset();
+			GenericGraphNode->ChildrenNodesBins.Reset();
 			GenericGraphNode->Edges.Reset();
 		}
 	}

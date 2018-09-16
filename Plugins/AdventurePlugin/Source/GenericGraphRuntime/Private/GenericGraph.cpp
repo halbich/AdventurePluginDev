@@ -124,6 +124,7 @@ void UGenericGraph::ClearGraph()
 
 		Node->ParentNodes.Empty();
 		Node->ChildrenNodes.Empty();
+		Node->ChildrenNodesBins.Empty();
 		Node->Edges.Empty();
 	}
 
