@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
+#include "InventoryItem.h"
 #include "QuestGraphNode_Inventory.generated.h"
 
 UCLASS(Blueprintable)
@@ -19,7 +20,7 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
-	FName ItemName;
+	UInventoryItem* Item;
 
 	virtual bool IsSatisfied() override
 	{
@@ -30,22 +31,12 @@ public:
 
 	virtual inline FText GetNodeTitle() const override
 	{
-		return FText::FromName(ItemName);
-	}
-
-	virtual void SetNodeTitle(const FText & NewTitle) override
-	{
-		ItemName = FName(*NewTitle.ToString());
+		return IsValid(Item) ? FText::FromString(Item->Name) : NSLOCTEXT("QuestGraphNode_Inventory", "EmptyItem", "<EMPTY>");
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const override
 	{
 		return FLinearColor::Blue;
-	}
-
-	virtual inline bool CanRename() const override
-	{
-		return true;
 	}
 
 #endif

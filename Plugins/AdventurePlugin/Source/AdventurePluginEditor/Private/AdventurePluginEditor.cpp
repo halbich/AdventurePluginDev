@@ -17,7 +17,8 @@
 #include "AdventurePluginEditorStyle.h"
 #include "AdventurePluginEditorCommands.h"
 #include "AssetTypeActions_AdventureCharacter.h"
-#include "AdventureCharacterThumbnailRenderer.h"
+#include "AssetTypeActions_InventoryItem.h"
+#include "IconThumbnailRenderer.h"
 
 #define LOCTEXT_NAMESPACE "AdventurePluginEditor"
 
@@ -54,10 +55,14 @@ void FAdventurePluginEditor::StartupModule()
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 	AdventurePluginAssetCategory = AssetTools.RegisterAdvancedAssetCategory(FName(TEXT("AdventurePlugin")), LOCTEXT("AdventurePluginAssetCategory", "Adventure Plugin"));
 
+	/* TODO all of this probably should be unregistered on shutdown */
 	TSharedRef<IAssetTypeActions> ATA_Character = MakeShareable(new FAssetTypeActions_AdventureCharacter(AdventurePluginAssetCategory));
-	AssetTools.RegisterAssetTypeActions(ATA_Character); // TODO probably should unregister on shutdown
-
-	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacter::StaticClass(), UAdventureCharacterThumbnailRenderer::StaticClass()); // TODO probably should unregister on shutdown
+	AssetTools.RegisterAssetTypeActions(ATA_Character);
+	TSharedRef<IAssetTypeActions> ATA_Item = MakeShareable(new FAssetTypeActions_InventoryItem(AdventurePluginAssetCategory));
+	AssetTools.RegisterAssetTypeActions(ATA_Item);
+	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacter::StaticClass(), UIconThumbnailRenderer::StaticClass());
+	UThumbnailManager::Get().RegisterCustomRenderer(UInventoryItem::StaticClass(), UIconThumbnailRenderer::StaticClass());
+	/**/
 
 	RegisterSettings();
 }

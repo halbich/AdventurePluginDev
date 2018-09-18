@@ -4,10 +4,10 @@
 #include "Classes/Engine/DataAsset.h"
 #include "Classes/Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
-#include "AdventureCharacter.generated.h"
+#include "InventoryItem.generated.h"
 
 UCLASS(BlueprintType)
-class ADVENTUREPLUGINRUNTIME_API UAdventureCharacter : public UDataAsset, public IIconThumbnailInterface
+class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UDataAsset, public IIconThumbnailInterface
 {
 	//GENERATED_USTRUCT_BODY()
 	GENERATED_BODY()
