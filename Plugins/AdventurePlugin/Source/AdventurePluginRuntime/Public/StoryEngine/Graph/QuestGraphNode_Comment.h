@@ -13,7 +13,9 @@ public:
 
 	UQuestGraphNode_Comment()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Comment", "ContextMenuName", "Comment");
+#endif
 	}
 
 	UPROPERTY(EditAnywhere, Category = "QuestGraphNode_Editor")

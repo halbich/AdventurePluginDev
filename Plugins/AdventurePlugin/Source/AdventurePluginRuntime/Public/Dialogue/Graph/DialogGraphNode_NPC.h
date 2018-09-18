@@ -14,7 +14,9 @@ public:
 
 	UDialogGraphNode_NPC()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("NPC Line");
+#endif
 		DialogText = NSLOCTEXT("DialogGraphNode_NPC", "DefaultDialog", "<Insert something clever>");
 	}
 

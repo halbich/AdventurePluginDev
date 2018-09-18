@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraphRuntime/Public/GenericGraph.h"
+#include "AdventureCharacter.h"
 #include "DialogGraph.generated.h"
 
 UCLASS(Blueprintable)
@@ -18,4 +19,10 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
 		TMap<FName, UGenericGraphNode*> SecondaryEntryPoints;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AdventurePlugin")
+		UAdventureCharacter* PlayerCharacter;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AdventurePlugin")
+		UAdventureCharacter* NPCCharacter;
 };

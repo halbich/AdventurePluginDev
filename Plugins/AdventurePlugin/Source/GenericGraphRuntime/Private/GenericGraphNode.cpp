@@ -37,6 +37,11 @@ UGenericGraphNode* UGenericGraphNode::GetFirstChildInBin(int bin) const
 	return ChildrenNodes.Num() > child ? ChildrenNodes[child] : nullptr;
 }
 
+uint32 UGenericGraphNode::GetOutputPinsCount() const
+{
+	return 1;
+}
+
 #if WITH_EDITOR
 
 FLinearColor UGenericGraphNode::GetBackgroundColor() const
@@ -82,11 +87,6 @@ bool UGenericGraphNode::CanRename() const
 bool UGenericGraphNode::HasInputPin() const
 {
 	return true;
-}
-
-uint32 UGenericGraphNode::GetOutputPinsCount() const
-{
-	return 1;
 }
 
 #endif

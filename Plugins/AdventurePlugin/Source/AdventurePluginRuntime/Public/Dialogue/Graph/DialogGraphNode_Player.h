@@ -14,7 +14,9 @@ public:
 
 	UDialogGraphNode_Player()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Player Line");
+#endif
 		DialogText = NSLOCTEXT("DialogGraphNode_Player", "DefaultDialog", "<Insert something clever>");
 	}
 

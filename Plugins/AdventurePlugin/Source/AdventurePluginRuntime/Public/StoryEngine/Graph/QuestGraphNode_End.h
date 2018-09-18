@@ -14,7 +14,9 @@ public:
 
 	UQuestGraphNode_End()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_End", "ContextMenuName", "End Point");
+#endif
 	}
 
 	virtual ~UQuestGraphNode_End()

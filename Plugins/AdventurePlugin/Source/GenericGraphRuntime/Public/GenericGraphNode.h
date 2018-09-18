@@ -49,6 +49,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
 	UGenericGraphNode* GetFirstChildInBin(int bin) const;
 
+	virtual uint32 GetOutputPinsCount() const;
+
 	//////////////////////////////////////////////////////////////////////////
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditDefaultsOnly, Category = "GenericGraphNode_Editor")
@@ -82,7 +84,5 @@ public:
 	virtual bool CanRename() const;
 
 	virtual bool HasInputPin() const;
-
-	virtual uint32 GetOutputPinsCount() const;
 #endif
 };

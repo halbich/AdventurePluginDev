@@ -14,7 +14,9 @@ public:
 
 	UQuestGraphNode_Subquest()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Subquest", "ContextMenuName", "Subquest");
+#endif
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")

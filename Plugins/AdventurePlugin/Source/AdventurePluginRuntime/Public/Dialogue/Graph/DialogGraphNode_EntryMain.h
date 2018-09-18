@@ -14,7 +14,9 @@ public:
 
 	UDialogGraphNode_EntryMain()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Main Entry Point");
+#endif
 	}
 
 	virtual ~UDialogGraphNode_EntryMain()

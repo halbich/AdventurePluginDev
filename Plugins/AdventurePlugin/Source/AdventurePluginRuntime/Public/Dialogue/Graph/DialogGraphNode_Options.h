@@ -17,9 +17,9 @@ public:
 	UDialogGraphNode_Options()
 	{
 #if WITH_EDITORONLY_DATA
-		ChoiceCount = 1;
-#endif
 		ContextMenuName = FText::FromString("Options");
+#endif
+		ChoiceCount = 1;
 	}
 
 	virtual inline FText GetDescription_Implementation() const
@@ -27,10 +27,8 @@ public:
 		return NSLOCTEXT("DialogGraphNode_Options", "OptionsName", "Dialog Options");
 	}
 
-#if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
-		uint32 ChoiceCount;
-#endif
+	uint32 ChoiceCount;
 
 #if WITH_EDITOR
 

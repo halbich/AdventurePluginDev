@@ -13,7 +13,9 @@ public:
 
 	UQuestGraphNode_Inventory()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Inventory", "ContextMenuName", "Is in inventory");
+#endif
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")

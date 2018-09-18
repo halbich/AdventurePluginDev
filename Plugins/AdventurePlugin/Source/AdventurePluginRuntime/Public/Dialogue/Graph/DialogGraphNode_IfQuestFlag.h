@@ -14,7 +14,9 @@ public:
 
 	UDialogGraphNode_IfQuestFlag()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Branch on Quest Flag");
+#endif
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")

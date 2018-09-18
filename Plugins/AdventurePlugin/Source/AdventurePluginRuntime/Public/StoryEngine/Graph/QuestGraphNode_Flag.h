@@ -13,7 +13,9 @@ public:
 
 	UQuestGraphNode_Flag()
 	{
+#if WITH_EDITORONLY_DATA
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Flag", "ContextMenuName", "Simple flag");
+#endif
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
