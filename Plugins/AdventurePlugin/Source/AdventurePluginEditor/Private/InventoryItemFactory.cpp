@@ -1,5 +1,5 @@
 #include "InventoryItemFactory.h"
-#include "InventoryItem.h"
+#include "Inventory/InventoryItem.h"
 
 UInventoryItemFactory::UInventoryItemFactory(/*const class FObjectInitializer &OBJ*/)// : Super(OBJ)
 {

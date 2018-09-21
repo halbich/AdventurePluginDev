@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
-#include "InventoryItem.h"
+#include "Inventory/InventoryItem.h"
 #include "QuestGraphNode_Inventory.generated.h"
 
 UCLASS(Blueprintable)

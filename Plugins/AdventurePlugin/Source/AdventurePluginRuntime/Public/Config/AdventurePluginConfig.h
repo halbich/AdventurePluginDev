@@ -8,6 +8,8 @@
 
 class UDialoguePresenterWidget;
 class UDialogueController;
+class UInventoryPresenterWidget;
+class UInventoryManager;
 
 /**
  *
@@ -16,6 +18,8 @@ UCLASS(config = AdventurePlugin, defaultconfig)
 class ADVENTUREPLUGINRUNTIME_API UAdventurePluginConfig : public UObject
 {
 	GENERATED_UCLASS_BODY()
+
+public:
 
 		/** Sample bool property */
 		UPROPERTY(EditAnywhere, config, Category = Custom)
@@ -42,4 +46,10 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginConfig : public UObject
 
 	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Controller")
 		TSoftClassPtr<UDialogueController> DefaultDialogueController;
+
+	UPROPERTY(config, EditAnywhere, Category = Inventory)
+		TSoftClassPtr<UInventoryPresenterWidget> DefaultInventoryPresenterWidget;
+
+	UPROPERTY(config, EditAnywhere, Category = Inventory)
+		TSoftClassPtr<UInventoryManager> DefaultInventoryManager;
 };

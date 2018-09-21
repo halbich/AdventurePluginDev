@@ -19,7 +19,12 @@ UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UAdventurePluginBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
+
 public:
+
 	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary", meta = (WorldContext = "WorldContextObject"))
 		static void ShowDialog(UObject* WorldContextObject, UDialogGraph* graph);
+
+	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary", meta = (WorldContext = "WorldContextObject"))
+		static void ShowInventory(UObject* WorldContextObject, bool bShow);
 };

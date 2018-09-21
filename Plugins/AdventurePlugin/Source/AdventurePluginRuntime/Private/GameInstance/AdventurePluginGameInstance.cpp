@@ -3,6 +3,7 @@
 #include "AdventurePluginGameInstance.h"
 
 #pragma optimize("", off)
+
 void UAdventurePluginGameInstance::ShowDialog(UDialogGraph* graph, UDialogueController* overrideController)
 {
 	if (currentDialogueInstance)
@@ -24,6 +25,19 @@ void UAdventurePluginGameInstance::ShowDialog(UDialogGraph* graph, UDialogueCont
 	}
 
 	currentDialogueInstance->ShowDialog(graph, this);
+}
+
+void UAdventurePluginGameInstance::ShowInventory(bool bShow)
+{
+	ensureInventoryManagerInstance();
+	if (bShow) inventoryManagerInstance->ShowInventory();
+	else inventoryManagerInstance->HideInventory();
+}
+
+UInventoryManager* UAdventurePluginGameInstance::GetInventoryManager()
+{
+	ensureInventoryManagerInstance();
+	return inventoryManagerInstance;
 }
 
 #pragma optimize("", on)
