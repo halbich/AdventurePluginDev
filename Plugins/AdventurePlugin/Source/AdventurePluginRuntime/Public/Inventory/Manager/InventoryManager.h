@@ -29,7 +29,7 @@ public:
 	void HideInventory();
 
 	UFUNCTION(BlueprintCallable, Category="Inventory")
-	UInventory* GetInventory(FName name);
+	UInventory* GetInventory();
 
 	void SetGameInstance(UGameInstance* instance);
 

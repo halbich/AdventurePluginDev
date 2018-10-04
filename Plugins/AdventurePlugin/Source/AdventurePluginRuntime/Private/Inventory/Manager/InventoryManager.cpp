@@ -28,9 +28,8 @@ void UInventoryManager::ShowInventory(UInventory* inventory)
 	presenterInstance->AddToViewport(0);
 }
 
-UInventory* UInventoryManager::GetInventory(FName name)
+UInventory* UInventoryManager::GetInventory()
 {
-	// TODO possible to add more named inventories
 	return defaultInventory;
 }
 
