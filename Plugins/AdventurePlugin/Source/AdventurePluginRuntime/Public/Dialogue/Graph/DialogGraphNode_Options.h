@@ -30,6 +30,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
 	uint32 ChoiceCount;
 
+	virtual inline uint32 GetOutputPinsCount() const override
+	{
+		return ChoiceCount;
+	}
+
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
@@ -45,11 +50,6 @@ public:
 	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
 	{
 		return true;
-	}
-
-	virtual inline uint32 GetOutputPinsCount() const override
-	{
-		return ChoiceCount;
 	}
 
 	/*

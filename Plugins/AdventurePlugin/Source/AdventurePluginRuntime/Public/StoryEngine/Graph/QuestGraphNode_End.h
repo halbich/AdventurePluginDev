@@ -28,6 +28,11 @@ public:
 		return true; // TODO
 	}
 
+	virtual inline uint32 GetOutputPinsCount() const override
+	{
+		return 0;
+	}
+
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const override
@@ -53,11 +58,6 @@ public:
 	virtual inline bool CanDuplicate() const override
 	{
 		return false;
-	}
-
-	virtual inline uint32 GetOutputPinsCount() const override
-	{
-		return 0;
 	}
 
 #endif
