@@ -37,10 +37,11 @@ void UDialogueController::ShowDialog(UDialogGraph* graph, UGameInstance* instanc
 		// TODo get player index
 		auto controller = UGameplayStatics::GetPlayerController(world, 0);
 
-		// todo øídit nìjakým nastavením z defaultù, každá hra to mùže mít jinak
+		/* todo øídit nìjakým nastavením z defaultù, každá hra to mùže mít jinak *
 		controller->SetInputMode(Mode);
 		controller->SetIgnoreMoveInput(true);
 		controller->bShowMouseCursor = true;
+		/**/
 
 		auto pawn = UGameplayStatics::GetPlayerPawn(world, 0);
 		pawn->DisableInput(controller);
@@ -81,11 +82,12 @@ void UDialogueController::HideDialog()
 		auto world = cachedGameInstance->GetWorld();
 		auto controller = UGameplayStatics::GetPlayerController(world, 0);
 
-		// todo øídit nìjakým nastavením z defaultù, každá hra to mùže mít jinak
+		/* todo øídit nìjakým nastavením z defaultù, každá hra to mùže mít jinak *
 		FInputModeGameOnly Mode;
 		controller->SetInputMode(Mode);
 		controller->SetIgnoreMoveInput(false);
 		controller->bShowMouseCursor = false;
+		/**/
 
 		auto pawn = UGameplayStatics::GetPlayerPawn(world, 0);
 		pawn->EnableInput(controller);

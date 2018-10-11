@@ -17,11 +17,12 @@ void UInventoryManager::ShowInventory(UInventory* inventory)
 	auto world = cachedGameInstance->GetWorld();
 	auto controller = UGameplayStatics::GetPlayerController(world, 0);
 	
-	// TODO
+	/* TODO *
 	FInputModeGameAndUI Mode;
 	Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockAlways);
 	controller->SetInputMode(Mode);
 	controller->bShowMouseCursor = true;
+	/**/
 
 	auto inv = (inventory && inventory->IsValidLowLevel()) ? inventory : defaultInventory;
 	presenterInstance->Execute_ShowInventory(presenterInstance->_getUObject(), inv, this);
@@ -43,10 +44,11 @@ void UInventoryManager::HideInventory()
 	auto world = cachedGameInstance->GetWorld();
 	auto controller = UGameplayStatics::GetPlayerController(world, 0);
 
-	// TODO
+	/* TODO *
 	FInputModeGameOnly Mode;
 	controller->SetInputMode(Mode);
 	controller->bShowMouseCursor = false;
+	/**/
 }
 
 #pragma optimize("", on)

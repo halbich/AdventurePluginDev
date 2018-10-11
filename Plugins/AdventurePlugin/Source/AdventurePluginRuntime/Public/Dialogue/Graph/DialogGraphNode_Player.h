@@ -23,6 +23,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
 	FText DialogText;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	USoundBase* DialogSound;
+
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const

@@ -15,10 +15,19 @@ class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UDataAsset, public IIco
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Name;
+	FText Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FText Description;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UTexture2D* Icon;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	USoundBase* Comment;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FText CommentText;
 
 	virtual UTexture2D* GetIcon() const override
 	{

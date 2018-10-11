@@ -31,7 +31,7 @@ public:
 
 	virtual inline FText GetNodeTitle() const override
 	{
-		return IsValid(Item) ? FText::FromString(Item->Name) : NSLOCTEXT("QuestGraphNode_Inventory", "EmptyItem", "<EMPTY>");
+		return IsValid(Item) ? Item->Name : NSLOCTEXT("QuestGraphNode_Inventory", "EmptyItem", "<EMPTY>");
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const override
