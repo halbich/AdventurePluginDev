@@ -8,7 +8,7 @@
 #include "Inventory/Inventory.h"
 #include "InventoryPresenterInterface.generated.h"
 
-class UInventoryManager;
+class UInventoryController;
 
 /**
  *
@@ -27,8 +27,8 @@ class ADVENTUREPLUGINRUNTIME_API IInventoryPresenterInterface
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Inventory")
-		void ShowInventory(UInventory* inventory, UInventoryManager* manager);
+		void ShowInventory(UInventory* inventory, UInventoryController* manager);
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Inventory")
-		void HideInventory(UInventoryManager* manager);
+		void HideInventory(UInventoryController* manager);
 };

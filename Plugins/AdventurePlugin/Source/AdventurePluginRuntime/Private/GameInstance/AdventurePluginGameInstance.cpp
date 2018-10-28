@@ -4,6 +4,18 @@
 
 #pragma optimize("", off)
 
+
+void UAdventurePluginGameInstance::Init()
+{
+	Super::Init();
+}
+
+void UAdventurePluginGameInstance::Shutdown()
+{
+	Super::Shutdown();
+}
+
+
 void UAdventurePluginGameInstance::ShowDialog(UDialogGraph* graph, UDialogueController* overrideController)
 {
 	if (currentDialogueInstance)
@@ -34,7 +46,7 @@ void UAdventurePluginGameInstance::ShowInventory(bool bShow)
 	else inventoryManagerInstance->HideInventory();
 }
 
-UInventoryManager* UAdventurePluginGameInstance::GetInventoryManager()
+UInventoryController* UAdventurePluginGameInstance::GetInventoryManager()
 {
 	ensureInventoryManagerInstance();
 	return inventoryManagerInstance;

@@ -7,19 +7,19 @@
 #include "Inventory/Presenter/InventoryPresenterWidget.h"
 #include "Config/AdventurePluginConfig.h"
 #include "Kismet/GameplayStatics.h"
-#include "InventoryManager.generated.h"
+#include "InventoryController.generated.h"
 
 /**
  *
  */
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UInventoryManager : public UObject
+class ADVENTUREPLUGINRUNTIME_API UInventoryController : public UObject
 {
 	GENERATED_BODY()
 
 public:
 
-	UInventoryManager()
+	UInventoryController()
 	{
 		defaultInventory = NewObject<UInventory>();
 	}

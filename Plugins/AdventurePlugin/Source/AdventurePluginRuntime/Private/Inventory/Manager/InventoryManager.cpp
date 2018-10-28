@@ -1,16 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Inventory/Manager/InventoryManager.h"
+#include "Inventory/Manager/InventoryController.h"
 
 #pragma optimize("", off)
 
-void UInventoryManager::SetGameInstance(UGameInstance* instance)
+void UInventoryController::SetGameInstance(UGameInstance* instance)
 {
 	if (!instance || !instance->IsValidLowLevel()) return;
 	cachedGameInstance = instance;
 }
 
-void UInventoryManager::ShowInventory(UInventory* inventory)
+void UInventoryController::ShowInventory(UInventory* inventory)
 {
 	ensurePresenterInstance();
 
@@ -29,12 +29,12 @@ void UInventoryManager::ShowInventory(UInventory* inventory)
 	presenterInstance->AddToViewport(0);
 }
 
-UInventory* UInventoryManager::GetInventory()
+UInventory* UInventoryController::GetInventory()
 {
 	return defaultInventory;
 }
 
-void UInventoryManager::HideInventory()
+void UInventoryController::HideInventory()
 {
 	ensurePresenterInstance();
 

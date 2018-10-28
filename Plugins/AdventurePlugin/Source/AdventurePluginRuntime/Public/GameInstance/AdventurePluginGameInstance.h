@@ -6,7 +6,7 @@
 #include "Engine/GameInstance.h"
 #include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Controller/DialogueController.h"
-#include "Inventory/Manager/InventoryManager.h"
+#include "Inventory/Manager/InventoryController.h"
 #include "Config/AdventurePluginConfig.h"
 #include "AdventurePluginGameInstance.generated.h"
 
@@ -25,9 +25,17 @@ public:
 	void ShowInventory(bool bShow);
 
 	UFUNCTION(BlueprintCallable, Category="Inventory")
-	UInventoryManager* GetInventoryManager();
+	UInventoryController* GetInventoryManager();
+
+	virtual void Init() override;
+
+	virtual void Shutdown() override;
 
 private:
+
+
+
+
 
 	UPROPERTY(Transient)
 		UDialogueController* defaultDialogueInstance;
@@ -36,7 +44,7 @@ private:
 		UDialogueController* currentDialogueInstance;
 
 	UPROPERTY(Transient)
-		UInventoryManager* inventoryManagerInstance;
+		UInventoryController* inventoryManagerInstance;
 
 	FORCEINLINE UDialogueController* getDefaultDialogueInstance()
 	{
@@ -71,7 +79,7 @@ private:
 			: settings->DefaultInventoryManager.LoadSynchronous();	// we have Blueprint class
 		if (inst)
 		{
-			inventoryManagerInstance = inst->GetDefaultObject<UInventoryManager>();
+			inventoryManagerInstance = inst->GetDefaultObject<UInventoryController>();
 			inventoryManagerInstance->SetGameInstance(this);
 		}
 		// TODO else report biiig error
