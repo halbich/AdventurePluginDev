@@ -8,6 +8,10 @@
 void UAdventurePluginGameInstance::Init()
 {
 	Super::Init();
+
+	auto settings = GetMutableDefault<UAdventurePluginConfig>();
+
+
 }
 
 void UAdventurePluginGameInstance::Shutdown()

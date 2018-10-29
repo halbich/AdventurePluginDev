@@ -34,9 +34,6 @@ public:
 private:
 
 
-
-
-
 	UPROPERTY(Transient)
 		UDialogueController* defaultDialogueInstance;
 
@@ -45,6 +42,7 @@ private:
 
 	UPROPERTY(Transient)
 		UInventoryController* inventoryManagerInstance;
+
 
 	FORCEINLINE UDialogueController* getDefaultDialogueInstance()
 	{
