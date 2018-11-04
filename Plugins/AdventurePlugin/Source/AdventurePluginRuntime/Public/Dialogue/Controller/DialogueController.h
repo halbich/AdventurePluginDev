@@ -8,10 +8,9 @@
 #include "Presenter/DialoguePresenterInterface.h"
 #include "Common/AdventurePluginConfig.h"
 #include "Kismet/GameplayStatics.h"
-//#include "AdventurePluginGameContext.h"
+#include "AdventurePluginGameContext.h"
 #include "DialogueController.generated.h"
 
-class UAdventurePluginGameContext;
 
 /**
  *
@@ -44,4 +43,9 @@ private:
 		UDialogGraphNode* currentNode;
 
 	void beginExecute(UDialogGraphNode* node);
+
+	FORCEINLINE IDialoguePresenterInterface* presenter()
+	{
+		return Cast<IDialoguePresenterInterface>(currentContext->DialoguePresenter.GetObject());
+	}
 };

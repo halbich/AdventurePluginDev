@@ -10,8 +10,7 @@ void UAPDevGameInstance::Init()
 {
 	Super::Init();
 
-	CurrentGameContext = NewObject<UAdventurePluginGameContext>();
-	CurrentGameContext->InitFromConfig(this);
+	initCurrentGameContext();
 
 #if WITH_EDITOR
 	FMessageLogModule& MessageLogModule = FModuleManager::LoadModuleChecked<FMessageLogModule>("MessageLog");
@@ -21,6 +20,41 @@ void UAPDevGameInstance::Init()
 	}
 #endif
 }
+
+void UAPDevGameInstance::initCurrentGameContext()
+{
+	CurrentGameContext = NewObject<UAdventurePluginGameContext>();
+
+	auto settings = GetMutableDefault<UAdventurePluginConfig>();
+
+	auto icInst = (settings->DefaultInventoryController.IsValid())
+		? settings->DefaultInventoryController.Get()				// we have C++ class
+		: settings->DefaultInventoryController.LoadSynchronous();	// we have Blueprint class
+	if (icInst)
+		CurrentGameContext->InventoryController = icInst->GetDefaultObject<UInventoryController>();
+
+	auto ipInst = (settings->DefaultInventoryPresenterWidget.IsValid())
+		? settings->DefaultInventoryPresenterWidget.Get()				// we have C++ class
+		: settings->DefaultInventoryPresenterWidget.LoadSynchronous();	// we have Blueprint class
+	if (ipInst)
+		CurrentGameContext->InventoryPresenter = CreateWidget<UInventoryPresenterWidget>(this, ipInst);
+
+
+
+	auto dcInst = (settings->DefaultDialogueController.IsValid())
+		? settings->DefaultDialogueController.Get()				// we have C++ class
+		: settings->DefaultDialogueController.LoadSynchronous();	// we have Blueprint class
+	if (dcInst)
+		CurrentGameContext->DialogueController = dcInst->GetDefaultObject<UDialogueController>();
+
+	auto dpInst = (settings->DefaultDialoguePresenterWidget.IsValid())
+		? settings->DefaultDialoguePresenterWidget.Get()				// we have C++ class
+		: settings->DefaultDialoguePresenterWidget.LoadSynchronous();	// we have Blueprint class
+	if (dpInst)
+		CurrentGameContext->DialoguePresenter = CreateWidget<UDialoguePresenterWidget>(this, dpInst);
+
+}
+
 
 void UAPDevGameInstance::Shutdown()
 {
@@ -33,3 +67,17 @@ void UAPDevGameInstance::Shutdown()
 }
 
 
+
+
+#pragma optimize("", off)
+void UAPDevGameInstance::TestContext()
+{
+
+	if (CurrentGameContext)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AAA"));
+	}
+
+}
+
+#pragma optimize("", on)

@@ -4,14 +4,29 @@ using UnrealBuildTool;
 
 public class AdventurePluginDev : ModuleRules
 {
-	public AdventurePluginDev(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+    public AdventurePluginDev(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
+        PublicDependencyModuleNames.AddRange(new string[] {
+            // default items
+            "Core",
+            "CoreUObject",
+            "Engine",
+            "InputCore",
+            "HeadMountedDisplay",
 
-        PrivateDependencyModuleNames.AddRange(new string[] { "AdventurePluginRuntime", "MessageLog" });
-        PrivateIncludePathModuleNames.AddRange(new string[] { "AdventurePluginRuntime" });
+            "UMG"   // for spawning widgets
+        });
+
+        PrivateDependencyModuleNames.AddRange(new string[] {
+            "AdventurePluginRuntime",   // our plugin
+            "MessageLog"                // clearing the Log window
+        });
+
+        PrivateIncludePathModuleNames.AddRange(new string[] {
+            "AdventurePluginRuntime"    // our plugin
+        });
 
 
         //PublicDependencyModuleNames.AddRange(new string[] { "AdventurePlugin" });

@@ -6,11 +6,13 @@
 #include "UObject/NoExportTypes.h"
 #include "Inventory/Controller/InventoryController.h"
 #include "Inventory/Presenter/InventoryPresenterInterface.h"
-#include "Dialogue/Controller/DialogueController.h"
-#include "Dialogue/Presenter/DialoguePresenterInterface.h"
+//#include "Dialogue/Controller/DialogueController.h"
+//#include "Dialogue/Presenter/DialoguePresenterInterface.h"
 #include "AdventurePluginConfig.h"
 #include "AdventurePluginGameContext.generated.h"
 
+class UDialogueController;
+class IDialoguePresenterInterface;
 
 /**
  * 
@@ -36,7 +38,4 @@ public:
 	UPROPERTY(Transient)
 		TScriptInterface< IDialoguePresenterInterface> DialoguePresenter;
 	
-
-	UFUNCTION(Category = "AdventurePlugin")
-		void InitFromConfig(UGameInstance* owningGame);
 };

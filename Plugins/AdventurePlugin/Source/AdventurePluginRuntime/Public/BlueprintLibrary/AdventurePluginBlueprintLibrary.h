@@ -5,6 +5,7 @@
 #include "Engine.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Common/AdventurePluginGameContext.h"
+#include "DialogueController.h"
 #include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Graph/DialogGraphNode.h"
 #include "AdventurePluginRuntime.h"

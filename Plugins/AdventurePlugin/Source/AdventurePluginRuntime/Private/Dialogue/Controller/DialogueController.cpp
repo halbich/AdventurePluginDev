@@ -9,7 +9,7 @@
 void UDialogueController::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph)
 {
 	currentContext = gameContext;
-	//currentPresenter = gameContext->DialoguePresenter;
+	currentPresenter = currentContext->DialoguePresenter;
 
 	// TODO drive by events
 	//if (cachedGameInstance && cachedGameInstance->IsValidLowLevel())
@@ -53,16 +53,22 @@ void UDialogueController::ShowDialog(UAdventurePluginGameContext* gameContext, U
 
 	beginExecute(ourRoot);
 
-	/*if (currentPresenter)
-		currentPresenter->ShowPresenter();*/
+	if (presenter())
+	{
+		auto obj = currentContext->DialoguePresenter.GetObject();
+		IDialoguePresenterInterface::Execute_SetPresenterVisibility(obj, true);
+	}
 
-		//presenterInstance->AddToViewport(0);
+	//presenterInstance->AddToViewport(0);
 }
 
 void UDialogueController::HideDialog()
 {
-	//if (presenterInstance && presenterInstance->IsValidLowLevel())
-	//	presenterInstance->RemoveFromViewport();
+	if (presenter())
+	{
+		auto obj = currentContext->DialoguePresenter.GetObject();
+		IDialoguePresenterInterface::Execute_SetPresenterVisibility(obj, false);
+	}
 
 	//if (cachedGameInstance && cachedGameInstance->IsValidLowLevel())
 	//{
@@ -84,7 +90,8 @@ void UDialogueController::HideDialog()
 void UDialogueController::beginExecute(UDialogGraphNode* node)
 {
 	currentNode = node;
-	while (currentNode && currentNode->IsValidLowLevel() && currentNode->Execute(this, NULL)) {
+
+	while (currentNode && currentNode->IsValidLowLevel() && currentNode->Execute(this, presenter())) {
 		currentNode = currentNode->GetNextNode();
 	}
 	if (currentNode && currentNode->IsValidLowLevel()) {

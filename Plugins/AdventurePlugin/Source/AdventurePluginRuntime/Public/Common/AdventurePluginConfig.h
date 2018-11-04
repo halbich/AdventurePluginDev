@@ -51,5 +51,5 @@ public:
 		TSoftClassPtr<UInventoryPresenterWidget> DefaultInventoryPresenterWidget;
 
 	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Default Controller")
-		TSoftClassPtr<UInventoryController> DefaultInventoryManager;
+		TSoftClassPtr<UInventoryController> DefaultInventoryController;
 };

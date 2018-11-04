@@ -27,6 +27,9 @@ class IDialoguePresenterInterface
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
+		void SetPresenterVisibility(bool visible);
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
 		void ShowDialogueLine(UDialogGraphNode* node, UDialogueController* controller);
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
