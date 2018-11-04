@@ -19,7 +19,9 @@ public:
 		UPROPERTY(Transient)
 		UAdventurePluginGameContext* CurrentGameContext;
 
+		virtual void Init() override;
 
+		virtual void Shutdown() override;
 
 
 };

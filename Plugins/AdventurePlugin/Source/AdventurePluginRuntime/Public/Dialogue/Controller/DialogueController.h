@@ -3,11 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Graph/DialogGraph.h"
-#include "Presenter/DialoguePresenterWidget.h"
+#include "DialogGraph.h"
+#include "DialogGraphNode.h"
+#include "Presenter/DialoguePresenterInterface.h"
 #include "Common/AdventurePluginConfig.h"
 #include "Kismet/GameplayStatics.h"
+//#include "AdventurePluginGameContext.h"
 #include "DialogueController.generated.h"
+
+class UAdventurePluginGameContext;
 
 /**
  *
@@ -19,13 +23,9 @@ class ADVENTUREPLUGINRUNTIME_API UDialogueController : public UObject
 
 public:
 
-	// TODO get rid of gameINstance
-	void ShowDialog(UDialogGraph* graph, UGameInstance* instance);
+	void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph);
 
 	void HideDialog();
-
-	UPROPERTY(EditDefaultsOnly, Category = "Dialogue")
-		TSubclassOf<UDialoguePresenterWidget> DefaultPresenter;
 
 	UFUNCTION(BlueprintCallable, Category = "Dialogue", meta = (WorldContext = "WorldContextObject"))
 		void ShowDialogLineCallback(UObject* WorldContextObject);
@@ -35,35 +35,13 @@ public:
 
 private:
 	UPROPERTY(Transient)
-		UDialoguePresenterWidget* presenterInstance;
+		TScriptInterface<IDialoguePresenterInterface> currentPresenter;
 
 	UPROPERTY(Transient)
-		UGameInstance* cachedGameInstance;
+		UAdventurePluginGameContext* currentContext;
 
 	UPROPERTY(Transient)
 		UDialogGraphNode* currentNode;
-
-
-
-	FORCEINLINE void setDefaulPresenterInstance(UGameInstance* gameInstance)
-	{
-		auto settings = GetMutableDefault<UAdventurePluginConfig>();
-
-		if (settings->DefaultDialoguePresenterWidget.IsValid())
-		{
-			// we have C++ class
-			auto inst = settings->DefaultDialoguePresenterWidget.Get();
-			if (inst)
-				presenterInstance = CreateWidget<UDialoguePresenterWidget>(gameInstance, inst);
-		}
-		else
-		{
-			// we have Blueprint class
-			auto inst = settings->DefaultDialoguePresenterWidget.LoadSynchronous();
-			if (inst)
-				presenterInstance = CreateWidget<UDialoguePresenterWidget>(gameInstance, inst);
-		}
-	}
 
 	void beginExecute(UDialogGraphNode* node);
 };

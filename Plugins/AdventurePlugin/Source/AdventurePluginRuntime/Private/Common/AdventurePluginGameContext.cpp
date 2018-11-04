@@ -2,7 +2,7 @@
 
 #include "AdventurePluginGameContext.h"
 
-
+#pragma optimize("", off)
 
 void UAdventurePluginGameContext::InitFromConfig(UGameInstance* owningGame)
 {
@@ -28,10 +28,13 @@ void UAdventurePluginGameContext::InitFromConfig(UGameInstance* owningGame)
 	if (dcInst)
 		DialogueController = dcInst->GetDefaultObject<UDialogueController>();
 
-	auto dpInst = (settings->DefaultDialoguePresenterWidget.IsValid())
-		? settings->DefaultDialoguePresenterWidget.Get()				// we have C++ class
-		: settings->DefaultDialoguePresenterWidget.LoadSynchronous();	// we have Blueprint class
-	if (dcInst)
-		DialoguePresenter = CreateWidget<UDialoguePresenterWidget>(owningGame, ipInst);
+	//auto dpInst = (settings->DefaultDialoguePresenterWidget.IsValid())
+	//	? settings->DefaultDialoguePresenterWidget.Get()				// we have C++ class
+	//	: settings->DefaultDialoguePresenterWidget.LoadSynchronous();	// we have Blueprint class
+	//if (dcInst)
+	//	DialoguePresenter = CreateWidget<UDialoguePresenterWidget>(owningGame, ipInst);
 
 }
+
+
+#pragma optimize("", on)

@@ -5,22 +5,27 @@
 #pragma optimize("", off)
 void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph)
 {
-	// TODO error messages
-
-	/*if (!WorldContextObject)
+	if (!gameContext || !gameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP","GameContextNull","Show dialog::gameContext is NULL"));
 		return;
+	}
 
-	auto world = WorldContextObject->GetWorld();
-	if (!world)
+	if (!graph || !graph->IsValidLowLevel())
+	{
+		LOG_Warning(NSLOCTEXT("AP", "DialogGraphNull", "Show dialog::graph is NULL"));
 		return;
+	}
 
-	auto instance = Cast<UAdventurePluginGameInstance>(world->GetGameInstance());
-	if (!instance)
+	auto dc = gameContext->DialogueController;
+	if (!dc || !dc->IsValidLowLevel())
+	{
+		LOG_Warning(NSLOCTEXT("AP", "DialogControllerNull", "Show dialog::gameContext->DialogueController is NULL"));
 		return;
+	}
 
-	instance->ShowDialog(graph);*/
+	dc->ShowDialog(gameContext, graph);
 
-	
 }
 
 void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow)

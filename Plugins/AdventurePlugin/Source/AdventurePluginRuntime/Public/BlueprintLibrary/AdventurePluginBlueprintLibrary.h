@@ -7,10 +7,9 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Graph/DialogGraphNode.h"
+#include "AdventurePluginRuntime.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
 
-#define print(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1,5, FColor::White,text)
-#define printR(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1,5, FColor::Red,text)
 
 /**
  *

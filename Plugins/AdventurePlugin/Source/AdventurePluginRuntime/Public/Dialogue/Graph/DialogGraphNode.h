@@ -6,7 +6,6 @@
 #include "DialogGraphNode.generated.h"
 
 class UDialogueController;
-class UDialoguePresenterWidget;
 
 
 UCLASS(Abstract, Blueprintable, HideCategories = (GenericGraphNode, GenericGraphNode_Editor))

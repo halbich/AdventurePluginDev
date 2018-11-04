@@ -10,7 +10,7 @@ public class AdventurePluginDev : ModuleRules
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
 
-        PrivateDependencyModuleNames.AddRange(new string[] { "AdventurePluginRuntime" });
+        PrivateDependencyModuleNames.AddRange(new string[] { "AdventurePluginRuntime", "MessageLog" });
         PrivateIncludePathModuleNames.AddRange(new string[] { "AdventurePluginRuntime" });
 
 

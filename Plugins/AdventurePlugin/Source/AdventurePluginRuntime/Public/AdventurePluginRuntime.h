@@ -6,7 +6,7 @@
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
 
-#define print(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, text)
+
 
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules
@@ -37,3 +37,14 @@ public:
 		return FModuleManager::Get().IsModuleLoaded("AdventurePluginRuntime");
 	}
 };
+
+#define LOG_Warning(Message) \
+	if (GEngine) GEngine->AddOnScreenDebugMessage(-1,5, FColor::Yellow, *Message.ToString()); \
+	FMessageLog("AdventurePluginLog").Warning(Message);
+
+#define LOG_Error(Message) \
+	if (GEngine) GEngine->AddOnScreenDebugMessage(-1,5, FColor::Red, *Message.ToString()); \
+	FMessageLog("AdventurePluginLog").Error(Message);
+
+
+#define print(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 1.5, FColor::White, text)
