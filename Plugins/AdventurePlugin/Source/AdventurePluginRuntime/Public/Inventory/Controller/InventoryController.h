@@ -5,7 +5,7 @@
 #include "Core.h"
 #include "Engine.h"
 #include "Inventory/Presenter/InventoryPresenterWidget.h"
-#include "Config/AdventurePluginConfig.h"
+#include "Common/AdventurePluginConfig.h"
 #include "Kismet/GameplayStatics.h"
 #include "InventoryController.generated.h"
 

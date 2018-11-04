@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Inventory/Manager/InventoryController.h"
+#include "InventoryController.h"
 
 #pragma optimize("", off)
 

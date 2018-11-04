@@ -4,7 +4,7 @@
 
 #include "Engine.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "GameInstance/AdventurePluginGameInstance.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Graph/DialogGraphNode.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
@@ -22,9 +22,9 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginBlueprintLibrary : public UBlue
 
 public:
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary", meta = (WorldContext = "WorldContextObject"))
-		static void ShowDialog(UObject* WorldContextObject, UDialogGraph* graph);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
+		static void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary", meta = (WorldContext = "WorldContextObject"))
-		static void ShowInventory(UObject* WorldContextObject, bool bShow);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
+		static void ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow);
 };

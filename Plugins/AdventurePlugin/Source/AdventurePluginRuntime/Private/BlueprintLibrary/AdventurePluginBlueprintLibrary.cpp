@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
+#include "AdventurePluginBlueprintLibrary.h"
 
 #pragma optimize("", off)
-void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, UDialogGraph* graph)
+void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph)
 {
 	// TODO error messages
 
-	if (!WorldContextObject)
+	/*if (!WorldContextObject)
 		return;
 
 	auto world = WorldContextObject->GetWorld();
@@ -18,16 +18,16 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UObject* WorldContextObject, U
 	if (!instance)
 		return;
 
-	instance->ShowDialog(graph);
+	instance->ShowDialog(graph);*/
 
 	
 }
 
-void UAdventurePluginBlueprintLibrary::ShowInventory(UObject* WorldContextObject, bool bShow)
+void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow)
 {
 	// TODO error messages
 
-	if (!WorldContextObject) return;
+	/*if (!WorldContextObject) return;
 
 	auto world = WorldContextObject->GetWorld();
 	if (!world) return;
@@ -35,7 +35,7 @@ void UAdventurePluginBlueprintLibrary::ShowInventory(UObject* WorldContextObject
 	auto instance = Cast<UAdventurePluginGameInstance>(world->GetGameInstance());
 	if (!instance) return;
 
-	instance->ShowInventory(bShow);
+	instance->ShowInventory(bShow);*/
 }
 
 #pragma optimize("", on)

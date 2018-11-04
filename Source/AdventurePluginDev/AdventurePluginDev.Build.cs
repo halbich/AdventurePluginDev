@@ -9,5 +9,13 @@ public class AdventurePluginDev : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
-	}
+
+        PrivateDependencyModuleNames.AddRange(new string[] { "AdventurePluginRuntime" });
+        PrivateIncludePathModuleNames.AddRange(new string[] { "AdventurePluginRuntime" });
+
+
+        //PublicDependencyModuleNames.AddRange(new string[] { "AdventurePlugin" });
+        //PrivateIncludePathModuleNames.AddRange(new string[] { "ProceduralMeshComponent/Runtime", "ProceduralMeshComponent/Public", "ProceduralMeshComponent/Classes", "ProceduralMeshComponent/Private" });
+        //PublicIncludePaths.AddRange(new string[] { "ProceduralMeshComponent/Runtime", "ProceduralMeshComponent/Public", "ProceduralMeshComponent/Classes", "ProceduralMeshComponent/Private" });
+    }
 }

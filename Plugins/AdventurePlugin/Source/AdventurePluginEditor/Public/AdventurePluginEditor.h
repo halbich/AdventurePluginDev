@@ -12,7 +12,7 @@
 #include "Toolkits/AssetEditorToolkit.h"
 #include "AssetTypeCategories.h"
 #include "MessageLog.h"
-#include "AdventurePluginRuntime/Public/Config/AdventurePluginConfig.h"
+#include "AdventurePluginRuntime/Public/Common/AdventurePluginConfig.h"
 
 
 #define LOCTEXT_NAMESPACE "CustomSettings"

@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Graph/DialogGraph.h"
 #include "Presenter/DialoguePresenterWidget.h"
-#include "Config/AdventurePluginConfig.h"
+#include "Common/AdventurePluginConfig.h"
 #include "Kismet/GameplayStatics.h"
 #include "DialogueController.generated.h"
 
