@@ -5,6 +5,8 @@
 #include "AdventureCharacter.h"
 #include "DialogGraph.generated.h"
 
+class UDialogGraphNode;
+
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraph : public UGenericGraph
 {
@@ -15,10 +17,13 @@ public:
 	virtual ~UDialogGraph();
 
 	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
-		UGenericGraphNode* MainEntryPoint;
+		UDialogGraphNode* MainEntryPoint;
 
 	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
-		TMap<FName, UGenericGraphNode*> SecondaryEntryPoints;
+		TMap<FName, UDialogGraphNode*> SecondaryEntryPoints;
+
+	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+		TMap<FName, UDialogGraphNode*> IdToNodeMap;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AdventurePlugin")
 		UAdventureCharacter* PlayerCharacter;

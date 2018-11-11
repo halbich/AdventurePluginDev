@@ -3,6 +3,7 @@
 #include "GenericGraphEditor/Private/GenericGraphAssetEditor/EdNode_GenericGraphNode.h"
 #include "EdGraph/EdGraph.h"
 
+
 const FPinConnectionResponse UAssetGraphSchema_DialogGraph::CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const
 {
 	FPinConnectionResponse res = Super::CanCreateConnection(A, B);
@@ -17,7 +18,7 @@ void UAssetGraphSchema_DialogGraph::CreateDefaultNodesForGraph(UEdGraph& EdGraph
 	Action.NodeTemplate = NewObject<UEdNode_GenericGraphNode>(&EdGraph, GetEditorNodeType());
 	Action.NodeTemplate->GenericGraphNode = NewObject<UGenericGraphNode>(Action.NodeTemplate, UDialogGraphNode_EntryMain::StaticClass());
 	Action.NodeTemplate->GenericGraphNode->Graph = EditingGraph;
-	EditingGraph->MainEntryPoint = Action.NodeTemplate->GenericGraphNode;
+	EditingGraph->MainEntryPoint = Cast<UDialogGraphNode>(Action.NodeTemplate->GenericGraphNode);
 	Action.PerformAction(EditingGraph->EdGraph, nullptr, FVector2D(0, 0), false);
 }
 

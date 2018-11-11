@@ -22,11 +22,29 @@ void FAssetEditor_DialogGraph::RebuildGenericGraph() {
 	{
 		return;
 	}
+	editingDialogGraph->IdToNodeMap.Empty();
 	for (auto* node : editingDialogGraph->RootNodes) {
 		auto* entryPointNode = Cast<UDialogGraphNode_EntryMain>(node);
 		if (entryPointNode) {
 			editingDialogGraph->MainEntryPoint = entryPointNode;
 		}
+		auto* rootDialogGraphNode = Cast<UDialogGraphNode>(node);
+		FillIdToNodeMap(rootDialogGraphNode, editingDialogGraph);
+	}
+}
+
+void FAssetEditor_DialogGraph::FillIdToNodeMap(UDialogGraphNode* RootNode, UDialogGraph* Graph)
+{
+	if (RootNode == NULL || !RootNode->IsValidLowLevel()) 
+	{
+		return;
+	}
+	if (!RootNode->Id.IsNone()) 
+	{
+		Graph->IdToNodeMap.Add(RootNode->Id, RootNode);
+	}
+	for (auto* child : RootNode->ChildrenNodes) {
+		FillIdToNodeMap(Cast<UDialogGraphNode>(child), Graph);
 	}
 }
 

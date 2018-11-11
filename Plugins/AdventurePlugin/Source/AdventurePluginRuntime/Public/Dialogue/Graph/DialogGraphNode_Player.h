@@ -40,11 +40,11 @@ public:
 
 	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
 	{
-		if (Other->IsA(UDialogGraphNode_Player::StaticClass()))
+		/*if (Other->IsA(UDialogGraphNode_Player::StaticClass()))
 		{
 			ErrorMessage = FText::FromString("Don't do that!!!");
 			return false;
-		}
+		}*/
 		return true;
 	}
 

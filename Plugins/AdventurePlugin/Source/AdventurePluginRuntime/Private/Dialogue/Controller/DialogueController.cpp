@@ -11,38 +11,9 @@ void UDialogueController::ShowDialog(UAdventurePluginGameContext* gameContext, U
 	currentContext = gameContext;
 	currentPresenter = currentContext->DialoguePresenter;
 
-	// TODO drive by events
-	//if (cachedGameInstance && cachedGameInstance->IsValidLowLevel())
-	//{
-	//	auto world = cachedGameInstance->GetWorld();
+	UGenericGraphNode* currentRoot = graph->MainEntryPoint;
 
-	//	FInputModeUIOnly Mode;
-	//	Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockAlways);
-
-	//	// TODo get player index
-	//	auto controller = UGameplayStatics::GetPlayerController(world, 0);
-
-	//	/* todo øídit nìjakým nastavením z defaultù, každá hra to mùže mít jinak *
-	//	controller->SetInputMode(Mode);
-	//	controller->SetIgnoreMoveInput(true);
-	//	controller->bShowMouseCursor = true;
-	//	/**/
-
-	//	auto pawn = UGameplayStatics::GetPlayerPawn(world, 0);
-	//	pawn->DisableInput(controller);
-	//}
-
-	UGenericGraphNode* currentRoot = NULL;
-	for (auto root : graph->RootNodes)
-	{
-		// TODO find actual starting point
-		if (true)
-		{
-			currentRoot = root;
-		}
-	}
-
-	if (currentRoot == NULL)
+	if (currentRoot == NULL || currentRoot->ChildrenNodes.Num() == 0)
 	{
 		// TODO report error
 		return;
@@ -58,8 +29,6 @@ void UDialogueController::ShowDialog(UAdventurePluginGameContext* gameContext, U
 		auto obj = currentContext->DialoguePresenter.GetObject();
 		IDialoguePresenterInterface::Execute_SetPresenterVisibility(obj, true);
 	}
-
-	//presenterInstance->AddToViewport(0);
 }
 
 void UDialogueController::HideDialog()
@@ -69,22 +38,6 @@ void UDialogueController::HideDialog()
 		auto obj = currentContext->DialoguePresenter.GetObject();
 		IDialoguePresenterInterface::Execute_SetPresenterVisibility(obj, false);
 	}
-
-	//if (cachedGameInstance && cachedGameInstance->IsValidLowLevel())
-	//{
-	//	auto world = cachedGameInstance->GetWorld();
-	//	auto controller = UGameplayStatics::GetPlayerController(world, 0);
-
-	//	/* todo øídit nìjakým nastavením z defaultù, každá hra to mùže mít jinak *
-	//	FInputModeGameOnly Mode;
-	//	controller->SetInputMode(Mode);
-	//	controller->SetIgnoreMoveInput(false);
-	//	controller->bShowMouseCursor = false;
-	//	/**/
-
-	//	auto pawn = UGameplayStatics::GetPlayerPawn(world, 0);
-	//	pawn->EnableInput(controller);
-	//}
 }
 
 void UDialogueController::beginExecute(UDialogGraphNode* node)

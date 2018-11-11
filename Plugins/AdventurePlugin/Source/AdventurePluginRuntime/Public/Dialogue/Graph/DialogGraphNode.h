@@ -19,6 +19,9 @@ public:
 
 	virtual FText GetDescription_Implementation() const;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+		FName Id;
+
 #if WITH_EDITOR
 
 	virtual void SetNodeTitle(const FText& NewTitle) override;
