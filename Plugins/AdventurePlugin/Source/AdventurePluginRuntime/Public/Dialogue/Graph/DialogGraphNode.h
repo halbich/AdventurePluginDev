@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GenericGraphRuntime/Public/GenericGraphNode.h"
 #include "Presenter/DialoguePresenterInterface.h"
+#include "Structs/DialogPlayerOptionData.h"
 #include "DialogGraphNode.generated.h"
 
 class UDialogueController;
@@ -42,5 +43,9 @@ public:
 		return ChildrenNodes.Num() > 0 ? Cast<UDialogGraphNode>(ChildrenNodes[0]) : nullptr;
 	}
 
+	virtual bool IsDialogOption() const
+	{
+		return false;
+	}
 	
 };

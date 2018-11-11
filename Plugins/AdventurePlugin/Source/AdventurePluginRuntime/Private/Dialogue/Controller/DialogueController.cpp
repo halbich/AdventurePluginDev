@@ -8,21 +8,21 @@
 
 void UDialogueController::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph)
 {
+	ShowDialog(gameContext, graph, graph->MainEntryPoint);
+}
+
+void UDialogueController::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph, UDialogGraphNode* startNode)
+{
 	currentContext = gameContext;
 	currentPresenter = currentContext->DialoguePresenter;
 
-	UGenericGraphNode* currentRoot = graph->MainEntryPoint;
-
-	if (currentRoot == NULL || currentRoot->ChildrenNodes.Num() == 0)
+	if (startNode == NULL || startNode->ChildrenNodes.Num() == 0)
 	{
 		// TODO report error
 		return;
 	}
 
-	auto rootChildren = currentRoot->ChildrenNodes[0];
-	auto ourRoot = Cast<UDialogGraphNode>(rootChildren);
-
-	beginExecute(ourRoot);
+	beginExecute(startNode);
 
 	if (presenter())
 	{

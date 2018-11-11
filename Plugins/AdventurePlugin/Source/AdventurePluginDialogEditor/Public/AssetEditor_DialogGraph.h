@@ -15,5 +15,5 @@ protected:
 	virtual UClass* GetGraphSchemaClass() const override;
 	virtual void RebuildGenericGraph() override;
 private:
-	void FillIdToNodeMap(UDialogGraphNode* RootNode, UDialogGraph* Graph);
+	void FillIdToNodeMap(UDialogGraph* Graph);
 };

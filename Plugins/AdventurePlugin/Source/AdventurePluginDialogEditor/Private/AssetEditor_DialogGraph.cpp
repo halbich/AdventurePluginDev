@@ -1,6 +1,7 @@
 #include "AssetEditor_DialogGraph.h"
 #include "AssetGraphSchema_DialogGraph.h"
 #include "DialogGraphNode_EntryMain.h"
+#include "DialogGraphNode_EntrySecondary.h"
 
 #define LOCTEXT_NAMESPACE "AssetEditor_DialogGraph"
 
@@ -24,27 +25,35 @@ void FAssetEditor_DialogGraph::RebuildGenericGraph() {
 	}
 	editingDialogGraph->IdToNodeMap.Empty();
 	for (auto* node : editingDialogGraph->RootNodes) {
-		auto* entryPointNode = Cast<UDialogGraphNode_EntryMain>(node);
-		if (entryPointNode) {
-			editingDialogGraph->MainEntryPoint = entryPointNode;
+		auto* mainEntryPoint = Cast<UDialogGraphNode_EntryMain>(node);
+		if (mainEntryPoint != nullptr && mainEntryPoint->IsValidLowLevel()) {
+			editingDialogGraph->MainEntryPoint = mainEntryPoint;
+			continue;
 		}
-		auto* rootDialogGraphNode = Cast<UDialogGraphNode>(node);
-		FillIdToNodeMap(rootDialogGraphNode, editingDialogGraph);
+		auto* secondaryEntryPoint = Cast<UDialogGraphNode_EntrySecondary>(node);
+		if (secondaryEntryPoint != nullptr && secondaryEntryPoint->IsValidLowLevel() && !secondaryEntryPoint->Id.IsNone())
+		{
+			editingDialogGraph->SecondaryEntryPoints.Add(secondaryEntryPoint->Id, secondaryEntryPoint);
+			continue;
+		}
+		// TODO: Unknown root node. Should we throw something? Or assume it's an extension and everything's alright?
 	}
+	FillIdToNodeMap(editingDialogGraph);
 }
 
-void FAssetEditor_DialogGraph::FillIdToNodeMap(UDialogGraphNode* RootNode, UDialogGraph* Graph)
+void FAssetEditor_DialogGraph::FillIdToNodeMap(UDialogGraph* Graph)
 {
-	if (RootNode == NULL || !RootNode->IsValidLowLevel()) 
+	for (auto* node : Graph->AllNodes)
 	{
-		return;
-	}
-	if (!RootNode->Id.IsNone()) 
-	{
-		Graph->IdToNodeMap.Add(RootNode->Id, RootNode);
-	}
-	for (auto* child : RootNode->ChildrenNodes) {
-		FillIdToNodeMap(Cast<UDialogGraphNode>(child), Graph);
+		auto* dialogNode = Cast<UDialogGraphNode>(node);
+		if (dialogNode == NULL || !dialogNode->IsValidLowLevel())
+		{
+			continue;
+		}
+		if (!dialogNode->Id.IsNone())
+		{
+			Graph->IdToNodeMap.Add(dialogNode->Id, dialogNode);
+		}
 	}
 }
 

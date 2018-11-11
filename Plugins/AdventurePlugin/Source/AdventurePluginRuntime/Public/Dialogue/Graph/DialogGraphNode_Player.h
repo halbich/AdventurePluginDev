@@ -55,7 +55,12 @@ public:
 	{
 		widget->Execute_ShowDialogueLine(widget->_getUObject(), this, controller);
 		return false;
-	};
+	}
+
+	virtual bool IsDialogOption() const override
+	{
+		return true;
+	}
 
 	virtual bool ShowDialogueLineCallback_Implementation(UDialogueController* controller) override {
 		return true;

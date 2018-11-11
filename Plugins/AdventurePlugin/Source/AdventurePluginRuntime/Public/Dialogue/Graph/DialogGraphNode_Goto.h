@@ -21,6 +21,10 @@ public:
 #endif
 	}
 
+	virtual ~UDialogGraphNode_Goto()
+	{
+	}
+
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
 		FName TargetNodeId;
 

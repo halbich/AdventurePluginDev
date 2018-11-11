@@ -23,9 +23,9 @@ public:
 	{
 	}
 
-	virtual bool IsSatisfied() override
+	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
-		return true; // TODO
+		return ParentNodesSatisfied(GameContext);
 	}
 
 	virtual inline uint32 GetOutputPinsCount() const override

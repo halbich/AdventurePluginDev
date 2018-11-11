@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "QuestGraph.h"
 #include "QuestGraphNode.h"
+#include "AdventurePluginRuntime.h"
 #include "QuestGraphNode_Subquest.generated.h"
 
 UCLASS(Blueprintable)
@@ -21,6 +22,16 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
 	UQuestGraph* Subquest;
+
+	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
+	{
+		if (Subquest == NULL || !Subquest->IsValidLowLevel())
+		{
+			LOG_Warning(NSLOCTEXT("AP", "Invalid Subquest", "Quest graph node: Subquest: Nil or invalid Subquest passed"));
+			return false;
+		}
+		return Subquest->EndNode->IsSatisfied(GameContext);
+	}
 
 #if WITH_EDITOR
 

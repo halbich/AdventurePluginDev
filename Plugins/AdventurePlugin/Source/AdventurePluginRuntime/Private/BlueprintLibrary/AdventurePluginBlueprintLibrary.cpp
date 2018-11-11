@@ -3,11 +3,11 @@
 #include "AdventurePluginBlueprintLibrary.h"
 
 #pragma optimize("", off)
-void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph)
-{
+UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
+void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePluginGameContext* gameContext, UDialogGraph* graph, UDialogGraphNode* startNode) {
 	if (!gameContext || !gameContext->IsValidLowLevel())
 	{
-		LOG_Error(NSLOCTEXT("AP","GameContextNull","Show dialog::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "Show dialog::gameContext is NULL"));
 		return;
 	}
 
@@ -23,9 +23,14 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* g
 		LOG_Warning(NSLOCTEXT("AP", "DialogControllerNull", "Show dialog::gameContext->DialogueController is NULL"));
 		return;
 	}
-
-	dc->ShowDialog(gameContext, graph);
-
+	if (startNode == nullptr) {
+		startNode = graph->MainEntryPoint;
+	}
+	dc->ShowDialog(gameContext, graph, startNode);
+}
+void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph)
+{
+	ShowDialogFromEntryPoint(gameContext, graph, nullptr);
 }
 
 void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow)

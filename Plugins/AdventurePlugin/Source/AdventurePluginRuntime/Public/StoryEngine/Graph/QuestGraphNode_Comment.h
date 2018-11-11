@@ -33,6 +33,10 @@ public:
 		Text = NewTitle;
 	}
 
+	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) {
+		return ParentNodesSatisfied(GameContext);
+	}
+
 	virtual inline FLinearColor GetBackgroundColor() const override
 	{
 		return FLinearColor(1, 0, 1);

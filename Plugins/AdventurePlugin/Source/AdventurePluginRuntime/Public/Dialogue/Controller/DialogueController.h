@@ -24,6 +24,8 @@ public:
 
 	void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph);
 
+	void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph, UDialogGraphNode* startNode);
+
 	void HideDialog();
 
 	UFUNCTION(BlueprintCallable, Category = "Dialogue", meta = (WorldContext = "WorldContextObject"))

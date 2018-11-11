@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
 #include "Inventory/InventoryItem.h"
+#include "AdventurePluginGameContext.h"
+#include "AdventurePluginRuntime.h"
 #include "QuestGraphNode_Inventory.generated.h"
 
 UCLASS(Blueprintable)
@@ -22,9 +24,20 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
 	UInventoryItem* Item;
 
-	virtual bool IsSatisfied() override
+	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
-		return true; // TODO
+		if (GameContext == NULL || !GameContext->IsValidLowLevel() ||
+			GameContext->InventoryController == NULL || !GameContext->InventoryController->IsValidLowLevel()) 
+		{
+			LOG_Error(NSLOCTEXT("AP", "Invalid Inventory Game context", "Quest graph node: Inventory: Invalid context passed"));
+			return false;
+		}
+		if (Item == NULL || !Item->IsValidLowLevel())
+		{
+			LOG_Warning(NSLOCTEXT("AP", "Invalid Item", "Quest graph node: Inventory: Nil or invalid item passed"));
+		}
+		auto* inventoryController = GameContext->InventoryController;
+		return inventoryController->GetInventory()->HasItem(Item);
 	}
 
 #if WITH_EDITOR

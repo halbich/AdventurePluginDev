@@ -16,6 +16,21 @@ UQuestGraphNode::~UQuestGraphNode()
 {
 }
 
+
+bool UQuestGraphNode::ParentNodesSatisfied(UAdventurePluginGameContext* GameContext) {
+	for (auto* parentNodeUncasted : ParentNodes) {
+		auto* parentNode = Cast<UQuestGraphNode>(parentNodeUncasted);
+		if (parentNode == NULL || !parentNode->IsValidLowLevel())
+		{
+			continue;
+		}
+		if (!parentNode->IsSatisfied(GameContext)) {
+			return false;
+		}
+	}
+	return true;
+}
+
 #if WITH_EDITOR
 
 bool UQuestGraphNode::CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)

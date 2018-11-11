@@ -24,7 +24,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "QuestGraphNode_Editor")
 	bool FlagValue;
 
-	virtual bool IsSatisfied() override
+	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
 		return FlagValue;
 	}

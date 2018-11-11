@@ -13,9 +13,11 @@ const FPinConnectionResponse UAssetGraphSchema_QuestGraph::CanCreateConnection(c
 void UAssetGraphSchema_QuestGraph::CreateDefaultNodesForGraph(UEdGraph& EdGraph) const
 {
 	FAssetSchemaAction_GenericGraph_NewNode Action;
-	UGenericGraph* EditingGraph = CastChecked<UGenericGraph>(EdGraph.GetOuter());
+	UQuestGraph* EditingGraph = CastChecked<UQuestGraph>(EdGraph.GetOuter());
 	Action.NodeTemplate = NewObject<UEdNode_GenericGraphNode>(&EdGraph, GetEditorNodeType());
 	Action.NodeTemplate->GenericGraphNode = NewObject<UGenericGraphNode>(Action.NodeTemplate, UQuestGraphNode_End::StaticClass());
+
+	EditingGraph->EndNode = Cast<UQuestGraphNode>(Action.NodeTemplate->GenericGraphNode);
 	Action.NodeTemplate->GenericGraphNode->Graph = EditingGraph;
 	Action.PerformAction(EditingGraph->EdGraph, nullptr, FVector2D(0, 0), false);
 }

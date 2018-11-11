@@ -23,8 +23,13 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginBlueprintLibrary : public UBlue
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
+		static void ShowDialogFromEntryPoint(UAdventurePluginGameContext* gameContext, UDialogGraph* graph, UDialogGraphNode* startNode);
+
+	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
 		static void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
 		static void ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow);
+
+private:
 };

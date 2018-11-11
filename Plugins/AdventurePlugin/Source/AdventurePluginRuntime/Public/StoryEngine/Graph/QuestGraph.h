@@ -4,6 +4,8 @@
 #include "GenericGraphRuntime/Public/GenericGraph.h"
 #include "QuestGraph.generated.h"
 
+class UQuestGraphNode;
+
 USTRUCT()
 struct ADVENTUREPLUGINRUNTIME_API FBoolVariable
 {
@@ -54,6 +56,8 @@ class ADVENTUREPLUGINRUNTIME_API UQuestGraph : public UGenericGraph
 public:
 	UQuestGraph();
 	virtual ~UQuestGraph();
+	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+		UQuestGraphNode* EndNode;
 
 	bool GetFlag(FName FlagName);
 	void SetFlag(FName FlagName);

@@ -27,7 +27,7 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return NSLOCTEXT("DialogGraphNode_EntryMain", "EntryPoint", "Entry point");
+		return NSLOCTEXT("DialogGraphNode_EntryMain", "EntryPoint", "Main entry point");
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
