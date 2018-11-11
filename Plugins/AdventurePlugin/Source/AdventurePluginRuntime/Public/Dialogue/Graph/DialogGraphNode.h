@@ -38,7 +38,7 @@ public:
 		return true;
 	}
 
-	virtual UDialogGraphNode* GetNextNode()
+	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller)
 	{
 		return ChildrenNodes.Num() > 0 ? Cast<UDialogGraphNode>(ChildrenNodes[0]) : nullptr;
 	}

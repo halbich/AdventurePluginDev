@@ -37,12 +37,12 @@ public:
 	UPROPERTY(BlueprintReadOnly, Transient)
 		UDialogGraph* CurrentGraph;
 
+	UPROPERTY(Transient)
+		UAdventurePluginGameContext* currentContext;
+
 private:
 	UPROPERTY(Transient)
 		TScriptInterface<IDialoguePresenterInterface> currentPresenter;
-
-	UPROPERTY(Transient)
-		UAdventurePluginGameContext* currentContext;
 
 	UPROPERTY(Transient)
 		UDialogGraphNode* currentNode;

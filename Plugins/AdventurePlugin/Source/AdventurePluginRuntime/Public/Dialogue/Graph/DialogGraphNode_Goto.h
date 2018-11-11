@@ -62,24 +62,24 @@ public:
 		return 0;
 	}
 
-	virtual UDialogGraphNode* GetNextNode() override
+#endif
+
+	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller) override
 	{
 		auto* dialogueGraph = Cast<UDialogGraph>(Graph);
-		if (dialogueGraph == NULL || !dialogueGraph->IsValidLowLevel()) 
+		if (dialogueGraph == nullptr || !dialogueGraph->IsValidLowLevel())
 		{
 			LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "GotoNode: Parent graph is not a dialog graph"));
-			return NULL;
+			return nullptr;
 		}
 		auto* targetNode = dialogueGraph->IdToNodeMap.Find(TargetNodeId);
-		if (targetNode == NULL || *targetNode == NULL || !(*targetNode)->IsValidLowLevel())
+		if (targetNode == nullptr || *targetNode == nullptr || !(*targetNode)->IsValidLowLevel())
 		{
 			LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "GotoNode: Invalid target Id"));
-			return NULL;
+			return nullptr;
 		}
 		return *targetNode;
 	}
-
-#endif
 };
 
 #pragma optimize("", on)

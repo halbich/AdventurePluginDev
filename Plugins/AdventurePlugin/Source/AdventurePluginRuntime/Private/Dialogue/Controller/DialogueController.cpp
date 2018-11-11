@@ -46,7 +46,7 @@ void UDialogueController::beginExecute(UDialogGraphNode* node)
 	currentNode = node;
 
 	while (currentNode && currentNode->IsValidLowLevel() && currentNode->Execute(this, presenter())) {
-		currentNode = currentNode->GetNextNode();
+		currentNode = currentNode->GetNextNode(this);
 	}
 	if (currentNode && currentNode->IsValidLowLevel()) {
 		// Dialog not over yet, waiting for further input.
@@ -61,7 +61,7 @@ void UDialogueController::ShowDialogLineCallback(UObject* WorldContextObject)
 	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogueNodeShowLineCallbackInterface::StaticClass())) {
 		if (IDialogueNodeShowLineCallbackInterface::Execute_ShowDialogueLineCallback(currentNode, this)) {
 			// The node responds to the callback and wishes to continue dialogue execution.
-			beginExecute(currentNode->GetNextNode());
+			beginExecute(currentNode->GetNextNode(this));
 		}
 	}
 }
@@ -71,7 +71,7 @@ void UDialogueController::ShowDialogLineSelectionCallback(UObject* WorldContextO
 	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogueNodeShowOptionsCallbackInterface::StaticClass())) {
 		if (IDialogueNodeShowOptionsCallbackInterface::Execute_DialogueOptionSelected(currentNode, selectedOptionIndex, this)) {
 			// The node responds to the callback and wishes to continue dialogue execution.
-			beginExecute(currentNode->GetNextNode());
+			beginExecute(currentNode->GetNextNode(this));
 		}
 	}
 }

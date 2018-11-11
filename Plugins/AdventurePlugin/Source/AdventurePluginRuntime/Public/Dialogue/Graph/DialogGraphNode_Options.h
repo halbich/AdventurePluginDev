@@ -95,7 +95,7 @@ public:
 					break;
 				}
 				// Player line not found, go to child node.
-				childNode = nodeCasted->GetNextNode();
+				childNode = nodeCasted->GetNextNode(controller);
 			}
 		}
 		if (optionsToPresent.Num() != 0)
@@ -115,7 +115,7 @@ public:
 		return true;
 	}
 
-	virtual UDialogGraphNode* GetNextNode() override
+	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller) override
 	{
 		// TODO: Warning when calling with invalid index.
 		check(selectedOptionIndex >= 0 && selectedOptionIndex < (int)ChoiceCount);
