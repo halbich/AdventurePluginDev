@@ -34,6 +34,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Dialogue", meta = (WorldContext = "WorldContextObject"))
 		void ShowDialogLineSelectionCallback(UObject* WorldContextObject, int32 selectedOptionIndex);
 
+	UPROPERTY(BlueprintReadOnly, Transient)
+		UDialogGraph* CurrentGraph;
+
 private:
 	UPROPERTY(Transient)
 		TScriptInterface<IDialoguePresenterInterface> currentPresenter;

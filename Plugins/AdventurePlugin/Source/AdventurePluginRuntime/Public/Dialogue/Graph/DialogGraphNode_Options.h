@@ -74,29 +74,28 @@ public:
 		selectedOptionIndex = -1;
 		optionToBinMapping.Reset();
 		// Go through all child nodes, if visiting something other than Player Line, go to their children, find all Player Lines and show them to the player.
-		auto optionsToPresent = TArray<UDialogGraphNode*>();
+		auto optionsToPresent = TArray<FDialogLineData>();
 		optionsToPresent.Reserve(ChoiceCount);
 		for (int binIndex = 0; binIndex < (int)ChoiceCount; ++binIndex)
 		{
 			auto* childNode = GetFirstChildInBin(binIndex);
 			while (childNode != nullptr)
 			{
-				auto* dialogOption = Cast<UDialogGraphNode_Player>(childNode);
-				if (dialogOption != nullptr)
-				{
-					// Found a player line to present
-					optionToBinMapping.Add(optionsToPresent.Num(), binIndex);
-					optionsToPresent.Add(dialogOption);
-					break;
-				}
-				// Player line not found, go to child node.
-				auto* childNodeCasted = Cast<UDialogGraphNode>(childNode);
-				if (childNodeCasted == nullptr)
+				auto* nodeCasted = Cast<UDialogGraphNode>(childNode);
+				if (nodeCasted == nullptr)
 				{
 					// Invalid node found or end of tree. Stop this search.
 					break;
 				}
-				childNode = childNodeCasted->GetNextNode();
+				if (nodeCasted->IsDialogOption())
+				{
+					// Found a player line to present
+					optionToBinMapping.Add(optionsToPresent.Num(), binIndex);
+					optionsToPresent.Add(nodeCasted->GetDialogLine());
+					break;
+				}
+				// Player line not found, go to child node.
+				childNode = nodeCasted->GetNextNode();
 			}
 		}
 		if (optionsToPresent.Num() != 0)

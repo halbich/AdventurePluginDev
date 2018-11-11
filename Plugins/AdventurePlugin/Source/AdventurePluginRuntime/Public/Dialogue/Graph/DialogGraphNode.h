@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "GenericGraphRuntime/Public/GenericGraphNode.h"
 #include "Presenter/DialoguePresenterInterface.h"
-#include "Structs/DialogPlayerOptionData.h"
+#include "Structs/DialogLineData.h"
 #include "DialogGraphNode.generated.h"
 
 class UDialogueController;
@@ -47,5 +47,11 @@ public:
 	{
 		return false;
 	}
+
+	virtual FDialogLineData GetDialogLine() const
+	{
+		return FDialogLineData();
+	}
+
 	
 };

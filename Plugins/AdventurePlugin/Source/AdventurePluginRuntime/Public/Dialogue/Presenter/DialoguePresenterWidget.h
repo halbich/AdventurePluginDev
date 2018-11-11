@@ -18,7 +18,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialoguePresenterWidget : public UUserWidget, 
 public:
 	void SetPresenterVisibility(bool visible);
 
-	void ShowDialogueLine(UDialogGraphNode* node, UDialogueController* controller);
+	void ShowDialogueLine(FDialogLineData lineData, UDialogueController* controller);
 
-	void ShowDialogueSelection(TArray<UDialogGraphNode*>& options, UDialogueController* controller);
+	void ShowDialogueSelection(TArray<FDialogLineData>& options, UDialogueController* controller);
 };

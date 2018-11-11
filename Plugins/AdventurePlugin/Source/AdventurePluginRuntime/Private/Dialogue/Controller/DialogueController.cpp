@@ -15,6 +15,7 @@ void UDialogueController::ShowDialog(UAdventurePluginGameContext* gameContext, U
 {
 	currentContext = gameContext;
 	currentPresenter = currentContext->DialoguePresenter;
+	CurrentGraph = graph;
 
 	if (startNode == NULL || startNode->ChildrenNodes.Num() == 0)
 	{

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "UniquePtr.h"
+#include "Structs/DialogLineData.h"
 #include "DialoguePresenterInterface.generated.h"
 
 class UDialogGraphNode;
@@ -30,8 +31,8 @@ public:
 		void SetPresenterVisibility(bool visible);
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
-		void ShowDialogueLine(UDialogGraphNode* node, UDialogueController* controller);
+		void ShowDialogueLine(FDialogLineData lineData, UDialogueController* controller);
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
-		void ShowDialogueSelection(UPARAM(ref) TArray<UDialogGraphNode*>& options, UDialogueController* controller);
+		void ShowDialogueSelection(UPARAM(ref) TArray<FDialogLineData>& options, UDialogueController* controller);
 };

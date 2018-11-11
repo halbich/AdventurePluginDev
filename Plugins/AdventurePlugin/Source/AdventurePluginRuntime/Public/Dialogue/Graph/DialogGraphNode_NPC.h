@@ -38,25 +38,29 @@ public:
 		return FLinearColor::Red;
 	}
 
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		/*if (Other->IsA(UDialogGraphNode_NPC::StaticClass()))
-		{
-			ErrorMessage = FText::FromString("Don't do that!!!");
-			return false;
-		}*/
-		return true;
-	}
-
 #endif
 
 	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
 	{
-		widget->Execute_ShowDialogueLine(widget->_getUObject(),this, controller);
+		widget->Execute_ShowDialogueLine(widget->_getUObject(),GetDialogLine(), controller);
 		return false;
 	};
 
 	virtual bool ShowDialogueLineCallback_Implementation(UDialogueController* controller) override {
 		return true;
+	}
+
+	virtual FDialogLineData GetDialogLine() const override
+	{
+		auto toReturn = FDialogLineData();
+		toReturn.DialogSound = DialogSound;
+		toReturn.LineText = DialogText;
+		toReturn.OptionText = DialogText;
+		//TODO: Use correct variables here
+		toReturn.Skippable = true;
+		toReturn.TextDuration = 10;
+		toReturn.UserData = nullptr;
+		toReturn.IsPlayerCharacterLine = false;
+		return toReturn;
 	}
 };
