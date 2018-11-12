@@ -9,6 +9,7 @@
 #include "DialoguePresenterWidget.h"
 #include "InventoryController.h"
 #include "InventoryPresenterWidget.h"
+#include "AdventurePluginSaveGame.h"
 #include "APDevGameInstance.generated.h"
 
 /**

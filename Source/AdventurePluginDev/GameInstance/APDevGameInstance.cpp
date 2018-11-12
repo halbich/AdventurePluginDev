@@ -18,6 +18,10 @@ void UAPDevGameInstance::Init()
 		// Clear errors from log
 		MessageLogModule.GetLogListing(AP_Log)->ClearMessages();
 	}
+
+	FString t("DebugSave");
+	CurrentGameContext->SaveGame = UAdventurePluginSaveGame::CreateSave(t, 0);
+
 #endif
 }
 

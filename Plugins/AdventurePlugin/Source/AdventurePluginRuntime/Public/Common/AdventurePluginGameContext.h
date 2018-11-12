@@ -12,6 +12,8 @@ class IInventoryPresenterInterface;
 class UDialogueController;
 class IDialoguePresenterInterface;
 
+class UAdventurePluginSaveGame;
+
 /**
  *
  */
@@ -34,4 +36,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, Transient)
 		TScriptInterface< IDialoguePresenterInterface> DialoguePresenter;
 
+	UPROPERTY(BlueprintReadOnly, Transient)
+		UAdventurePluginSaveGame* SaveGame;
 };

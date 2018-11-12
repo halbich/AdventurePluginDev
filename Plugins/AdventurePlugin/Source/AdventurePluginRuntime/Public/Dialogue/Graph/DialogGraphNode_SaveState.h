@@ -1,8 +1,9 @@
 #pragma once
 
-#include "CoreMinimal.h"
+#include "AdventurePluginRuntime.h"
 #include "DialogGraphNode.h"
 #include "Controller/DialogueController.h"
+#include "AdventurePluginSaveGame.h"
 #include "DialogGraphNode_SaveState.generated.h"
 
 UCLASS(Blueprintable)
@@ -35,7 +36,20 @@ public:
 
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
-		// TODO: Figure out saves
-		return true;
+		if (!context || !context->IsValidLowLevel())
+		{
+			LOG_Error(NSLOCTEXT("AP", "ContextNull", "NodeSaveState::gameContext is NULL"));
+			return false;
+		}
+
+
+		auto save = context->SaveGame;
+		if (!save || !save->IsValidLowLevel())
+		{
+			LOG_Error(NSLOCTEXT("AP", "SaveNull", "NodeSaveState::gameContext->SaveGame is NULL"));
+			return false;
+		}
+
+		return save->Save();
 	}
 };
