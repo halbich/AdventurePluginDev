@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "AdventurePluginRuntime.h"
+#include "Common/AdventurePluginGameContext.h"
+#include "Common/AdventurePluginConfig.h"
 #include "DialogGraph.h"
 #include "DialogGraphNode.h"
 #include "Presenter/DialoguePresenterInterface.h"
-#include "Common/AdventurePluginConfig.h"
 #include "Kismet/GameplayStatics.h"
-#include "AdventurePluginGameContext.h"
 #include "DialogueController.generated.h"
 
 
@@ -41,8 +41,6 @@ public:
 		UAdventurePluginGameContext* currentContext;
 
 private:
-	UPROPERTY(Transient)
-		TScriptInterface<IDialoguePresenterInterface> currentPresenter;
 
 	UPROPERTY(Transient)
 		UDialogGraphNode* currentNode;
@@ -51,6 +49,6 @@ private:
 
 	FORCEINLINE IDialoguePresenterInterface* presenter()
 	{
-		return Cast<IDialoguePresenterInterface>(currentContext->DialoguePresenter.GetObject());
+		return currentContext ? Cast<IDialoguePresenterInterface>(currentContext->DialoguePresenter.GetObject()) : NULL;
 	}
 };

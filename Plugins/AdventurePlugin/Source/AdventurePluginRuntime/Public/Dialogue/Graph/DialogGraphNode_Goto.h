@@ -64,7 +64,7 @@ public:
 
 #endif
 
-	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		auto* dialogueGraph = Cast<UDialogGraph>(Graph);
 		if (dialogueGraph == nullptr || !dialogueGraph->IsValidLowLevel())

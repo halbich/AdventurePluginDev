@@ -1,10 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AdventurePluginGameContext.h"
 #include "QuestGraphNode.h"
 #include "Inventory/InventoryItem.h"
-#include "AdventurePluginGameContext.h"
 #include "AdventurePluginRuntime.h"
+#include "InventoryController.h"
 #include "QuestGraphNode_Inventory.generated.h"
 
 UCLASS(Blueprintable)

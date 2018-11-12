@@ -3,8 +3,7 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "Inventory/InventoryItem.h"
-#include "AdventurePluginGameContext.h"
-#include "Controller/DialogueController.h"
+#include "InventoryController.h"
 #include "DialogGraphNode_IfInInventory.generated.h"
 
 UCLASS(Blueprintable)
@@ -49,9 +48,9 @@ public:
 		return 2;
 	}
 
-	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		bool hasItem = controller->currentContext->InventoryController->GetInventory()->HasItem(Item);
+		bool hasItem = context->InventoryController->GetInventory()->HasItem(Item);
 		int32 bin = hasItem ? 0 : 1;
 		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
 	}

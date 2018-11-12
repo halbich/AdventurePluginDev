@@ -37,7 +37,7 @@ public:
 #endif
 
 
-	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
+	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
 		return true;
 	}

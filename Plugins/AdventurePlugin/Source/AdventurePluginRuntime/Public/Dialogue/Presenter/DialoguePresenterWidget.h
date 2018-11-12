@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Graph/DialogGraphNode.h"
+#include "DialoguePresenterInterface.h"
 #include "DialoguePresenterWidget.generated.h"
 
 /**

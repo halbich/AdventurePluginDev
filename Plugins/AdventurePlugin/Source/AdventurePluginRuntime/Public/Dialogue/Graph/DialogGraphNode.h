@@ -2,11 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraphRuntime/Public/GenericGraphNode.h"
-#include "Presenter/DialoguePresenterInterface.h"
 #include "Structs/DialogLineData.h"
 #include "DialogGraphNode.generated.h"
 
 class UDialogueController;
+class UAdventurePluginGameContext;
 
 
 UCLASS(Abstract, Blueprintable, HideCategories = (GenericGraphNode, GenericGraphNode_Editor))
@@ -33,12 +33,12 @@ public:
 
 #endif
 
-	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget)
+	virtual bool Execute(UAdventurePluginGameContext* context)
 	{
 		return true;
 	}
 
-	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller)
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context)
 	{
 		return ChildrenNodes.Num() > 0 ? Cast<UDialogGraphNode>(ChildrenNodes[0]) : nullptr;
 	}

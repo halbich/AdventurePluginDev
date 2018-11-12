@@ -55,7 +55,7 @@ public:
 		return 3;
 	}
 
-	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		int32 bin = 0;
 		if (IsValid(Quest))

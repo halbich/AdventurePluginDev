@@ -50,7 +50,7 @@ public:
 
 #endif
 
-	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
+	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
 		// TODO
 		if (!IsValid(Quest)) return true;

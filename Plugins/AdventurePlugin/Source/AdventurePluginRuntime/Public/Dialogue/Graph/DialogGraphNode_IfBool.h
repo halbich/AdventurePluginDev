@@ -51,7 +51,7 @@ public:
 		return 2;
 	}
 
-	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		int32 bin = IsValid(Quest) && Quest->GetBool(BoolName) ? 0 : 1;
 		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));

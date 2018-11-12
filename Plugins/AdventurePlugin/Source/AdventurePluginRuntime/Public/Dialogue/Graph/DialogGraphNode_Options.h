@@ -1,9 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "DialogGraph.h"
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_Player.h"
+#include "Presenter/DialoguePresenterInterface.h"
 #include "NodeInterfaces/DialogueNodeShowOptionsCallbackInterface.h"
 #include "DialogGraphNode_Options.generated.h"
 
@@ -69,7 +71,7 @@ public:
 
 #endif
 
-	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
+	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
 		selectedOptionIndex = -1;
 		optionToBinMapping.Reset();
@@ -95,12 +97,13 @@ public:
 					break;
 				}
 				// Player line not found, go to child node.
-				childNode = nodeCasted->GetNextNode(controller);
+				childNode = nodeCasted->GetNextNode(context);
 			}
 		}
 		if (optionsToPresent.Num() != 0)
 		{
-			widget->Execute_ShowDialogueSelection(widget->_getUObject(), optionsToPresent, controller);
+			auto widget = Cast<IDialoguePresenterInterface>(context->DialoguePresenter.GetObject());
+			IDialoguePresenterInterface::Execute_ShowDialogueSelection(widget->_getUObject(), optionsToPresent, context->DialogueController);
 		}
 		else
 		{
@@ -115,7 +118,7 @@ public:
 		return true;
 	}
 
-	virtual UDialogGraphNode* GetNextNode(UDialogueController* controller) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		// TODO: Warning when calling with invalid index.
 		check(selectedOptionIndex >= 0 && selectedOptionIndex < (int)ChoiceCount);

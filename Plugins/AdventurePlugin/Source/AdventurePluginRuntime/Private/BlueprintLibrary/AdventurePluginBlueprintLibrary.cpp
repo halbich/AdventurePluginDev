@@ -35,17 +35,23 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* g
 
 void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow)
 {
-	// TODO error messages
+	if (!gameContext || !gameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "ShowInventory dialog::gameContext is NULL"));
+		return;
+	}
 
-	/*if (!WorldContextObject) return;
+	auto ic = gameContext->InventoryController;
+	if (!ic || !ic->IsValidLowLevel())
+	{
+		LOG_Warning(NSLOCTEXT("AP", "InventoryControllerNull", "ShowInventory::gameContext->InventoryController is NULL"));
+		return;
+	}
 
-	auto world = WorldContextObject->GetWorld();
-	if (!world) return;
-
-	auto instance = Cast<UAdventurePluginGameInstance>(world->GetGameInstance());
-	if (!instance) return;
-
-	instance->ShowInventory(bShow);*/
+	if (bShow)
+		ic->ShowInventory(gameContext);
+	else
+		ic->HideInventory();
 }
 
 #pragma optimize("", on)

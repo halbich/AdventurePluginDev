@@ -4,7 +4,8 @@
 
 #include "Core.h"
 #include "Engine.h"
-#include "Inventory/Presenter/InventoryPresenterWidget.h"
+#include "Common/AdventurePluginGameContext.h"
+#include "Presenter/InventoryPresenterInterface.h"
 #include "Common/AdventurePluginConfig.h"
 #include "Kismet/GameplayStatics.h"
 #include "InventoryController.generated.h"
@@ -24,17 +25,13 @@ public:
 		defaultInventory = NewObject<UInventory>();
 	}
 
-	void ShowInventory(UInventory* inventory = nullptr);
+	void ShowInventory(UAdventurePluginGameContext* gameContext, UInventory* inventory = nullptr);
 
 	void HideInventory();
 
 	UFUNCTION(BlueprintCallable, Category="Inventory")
 	UInventory* GetInventory();
 
-	void SetGameInstance(UGameInstance* instance);
-
-	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
-	TSubclassOf<UInventoryPresenterWidget> DefaultPresenter;
 
 private:
 
@@ -42,23 +39,13 @@ private:
 	UInventory* defaultInventory;
 
 	UPROPERTY(Transient)
-	UInventoryPresenterWidget* presenterInstance;
+		UAdventurePluginGameContext* currentContext;
 
 	UPROPERTY(Transient)
-	UGameInstance* cachedGameInstance;
+		TScriptInterface<IInventoryPresenterInterface> currentPresenter;
 
-	FORCEINLINE void ensurePresenterInstance()
+	FORCEINLINE IInventoryPresenterInterface* presenter()
 	{
-		check(cachedGameInstance && cachedGameInstance->IsValidLowLevel());
-		if (presenterInstance && presenterInstance->IsValidLowLevel()) return;
-		auto cdo = DefaultPresenter.Get();
-		if (cdo) presenterInstance = CreateWidget<UInventoryPresenterWidget>(cachedGameInstance, cdo);
-		if (presenterInstance && presenterInstance->IsValidLowLevel()) return;
-		auto settings = GetMutableDefault<UAdventurePluginConfig>();
-		auto inst = (settings->DefaultInventoryPresenterWidget.IsValid())
-			? settings->DefaultInventoryPresenterWidget.Get()				// we have C++ class
-			: settings->DefaultInventoryPresenterWidget.LoadSynchronous();	// we have Blueprint class
-		if (inst) presenterInstance = CreateWidget<UInventoryPresenterWidget>(cachedGameInstance, inst);
-		// TODO else report biiig error
+		return currentContext ? Cast<IInventoryPresenterInterface>(currentContext->InventoryPresenter.GetObject()) : NULL;
 	}
 };

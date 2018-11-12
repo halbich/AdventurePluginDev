@@ -8,6 +8,7 @@
 #include "DialogueController.h"
 #include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Graph/DialogGraphNode.h"
+#include "InventoryController.h"
 #include "AdventurePluginRuntime.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
 

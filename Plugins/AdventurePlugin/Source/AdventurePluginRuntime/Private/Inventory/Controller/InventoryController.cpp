@@ -4,29 +4,16 @@
 
 #pragma optimize("", off)
 
-void UInventoryController::SetGameInstance(UGameInstance* instance)
+
+
+void UInventoryController::ShowInventory(UAdventurePluginGameContext* gameContext, UInventory* inventory)
 {
-	if (!instance || !instance->IsValidLowLevel()) return;
-	cachedGameInstance = instance;
-}
-
-void UInventoryController::ShowInventory(UInventory* inventory)
-{
-	ensurePresenterInstance();
-
-	auto world = cachedGameInstance->GetWorld();
-	auto controller = UGameplayStatics::GetPlayerController(world, 0);
-	
-	/* TODO *
-	FInputModeGameAndUI Mode;
-	Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockAlways);
-	controller->SetInputMode(Mode);
-	controller->bShowMouseCursor = true;
-	/**/
-
+	currentContext = gameContext;
 	auto inv = (inventory && inventory->IsValidLowLevel()) ? inventory : defaultInventory;
-	presenterInstance->Execute_ShowInventory(presenterInstance->_getUObject(), inv, this);
-	presenterInstance->AddToViewport(0);
+
+	auto presenterInstance = presenter();
+	if (presenterInstance)
+		IInventoryPresenterInterface::Execute_ShowInventory(presenterInstance->_getUObject(), inv, currentContext->InventoryController);
 }
 
 UInventory* UInventoryController::GetInventory()
@@ -36,19 +23,11 @@ UInventory* UInventoryController::GetInventory()
 
 void UInventoryController::HideInventory()
 {
-	ensurePresenterInstance();
+	auto presenterInstance = presenter();
+	if (presenterInstance)
+		IInventoryPresenterInterface::Execute_HideInventory(presenterInstance->_getUObject(), currentContext->InventoryController);
 
-	presenterInstance->Execute_HideInventory(presenterInstance->_getUObject(), this);
-	presenterInstance->RemoveFromViewport();
-
-	auto world = cachedGameInstance->GetWorld();
-	auto controller = UGameplayStatics::GetPlayerController(world, 0);
-
-	/* TODO *
-	FInputModeGameOnly Mode;
-	controller->SetInputMode(Mode);
-	controller->bShowMouseCursor = false;
-	/**/
+	currentContext = NULL;
 }
 
 #pragma optimize("", on)

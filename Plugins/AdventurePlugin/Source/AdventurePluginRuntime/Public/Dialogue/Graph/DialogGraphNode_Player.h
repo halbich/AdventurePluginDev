@@ -1,7 +1,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "DialogGraphNode.h"
+#include "Presenter/DialoguePresenterInterface.h"
 #include "NodeInterfaces/DialogueNodeShowLineCallbackInterface.h"
 #include "DialogGraphNode_Player.generated.h"
 
@@ -41,9 +43,10 @@ public:
 #endif
 
 
-	virtual bool Execute(UDialogueController* controller, IDialoguePresenterInterface* widget) override
+	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
-		widget->Execute_ShowDialogueLine(widget->_getUObject(), GetDialogLine(), controller);
+		auto widget = Cast<IDialoguePresenterInterface>(context->DialoguePresenter.GetObject());
+		IDialoguePresenterInterface::Execute_ShowDialogueLine(widget->_getUObject(), GetDialogLine(), context->DialogueController);
 		return false;
 	}
 
