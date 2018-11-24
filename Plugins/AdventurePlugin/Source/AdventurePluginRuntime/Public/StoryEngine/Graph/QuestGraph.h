@@ -5,6 +5,7 @@
 #include "QuestGraph.generated.h"
 
 class UQuestGraphNode;
+class UAdventurePluginGameContext;
 
 USTRUCT()
 struct ADVENTUREPLUGINRUNTIME_API FBoolVariable
@@ -60,9 +61,9 @@ public:
 		UQuestGraphNode* EndNode;
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
-		bool GetFlag(FName FlagName);
+		bool GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
-		void SetFlag(FName FlagName);
+		void SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
 		bool GetBool(FName VarName, bool bDefaultValue = false);
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
@@ -87,4 +88,6 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "AdventurePlugin")
 		TMap<FName, FStringVariable> StringVariables;
+protected:
+	FText GetGraphNameText();
 };

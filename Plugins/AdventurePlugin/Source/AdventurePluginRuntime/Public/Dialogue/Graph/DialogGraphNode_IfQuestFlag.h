@@ -53,7 +53,7 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		int32 bin = IsValid(Quest) && Quest->GetFlag(FlagName) ? 0 : 1;
+		int32 bin = IsValid(Quest) && Quest->GetFlag(context, FlagName) ? 0 : 1;
 		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
 	}
 };

@@ -50,7 +50,7 @@ public:
 	{
 		// TODO
 		if (!IsValid(Quest)) return true;
-		Quest->SetFlag(FlagName);
+		Quest->SetFlag(context, FlagName);
 
 
 		return true;
