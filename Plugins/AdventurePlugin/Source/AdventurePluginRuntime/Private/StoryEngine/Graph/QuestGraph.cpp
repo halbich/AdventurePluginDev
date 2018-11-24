@@ -2,6 +2,7 @@
 #include "QuestGraphNode.h"
 #include "QuestGraphNode_Flag.h"
 #include "Engine/Engine.h"
+#include "AdventurePluginRuntime.h"
 
 #define LOCTEXT_NAMESPACE "QuestGraph"
 
@@ -82,6 +83,24 @@ bool UQuestGraph::SetString(FName VarName, FString Value)
 	if (!var) return false;
 	var->Value = Value;
 	return true;
+}
+
+TArray<UQuestGraphNode*> UQuestGraph::GetSatisfiableNodes(UAdventurePluginGameContext* GameContext)
+{
+	auto toReturn = TArray<UQuestGraphNode*>();
+	for (auto* childNode : AllNodes)
+	{
+		auto* childQuestNode = Cast<UQuestGraphNode>(childNode);
+		if (childQuestNode == nullptr || !childQuestNode->IsValidLowLevel()) 
+		{
+			LOG_Warning(NSLOCTEXT("AP", "Invalid quest node", "Quest graph node: Nil node or node that is not a QuestGraphNode found in a quest graph"));
+			continue;
+		}
+		if (!childQuestNode->IsSatisfied(GameContext) && childQuestNode->ParentNodesSatisfied(GameContext)) {
+			toReturn.Add(childQuestNode);
+		}
+	}
+	return toReturn;
 }
 
 
