@@ -7,6 +7,9 @@
 #include "InventoryPresenterInterface.h"
 #include "InventoryPresenterWidget.generated.h"
 
+
+DECLARE_DYNAMIC_DELEGATE(FUniversalConsoleEvent);
+
 /**
  *
  */
@@ -16,6 +19,10 @@ class ADVENTUREPLUGINRUNTIME_API UInventoryPresenterWidget : public UUserWidget,
 	GENERATED_BODY()
 
 public:
+
+	UPROPERTY(BlueprintReadWrite, Category = output)
+		TArray<FUniversalConsoleEvent> actions;
+
 	void ShowInventory(UInventory* inventory, UInventoryController* manager);
 
 	void HideInventory(UInventoryController* controller);

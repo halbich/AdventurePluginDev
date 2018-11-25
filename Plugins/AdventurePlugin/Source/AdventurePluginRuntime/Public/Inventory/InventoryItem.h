@@ -4,10 +4,11 @@
 #include "Classes/Engine/DataAsset.h"
 #include "Classes/Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
+#include "Delegate.h"
 #include "InventoryItem.generated.h"
 
-UCLASS(BlueprintType)
-class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UDataAsset, public IIconThumbnailInterface
+UCLASS(BlueprintType, Blueprintable)
+class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UObject, public IIconThumbnailInterface
 {
 	//GENERATED_USTRUCT_BODY()
 	GENERATED_BODY()
