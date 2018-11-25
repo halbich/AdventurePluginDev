@@ -22,4 +22,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	bool RemoveItem(UInventoryItem* item);
+
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+		bool RemoveItemWithClass(UClass* item);
 };

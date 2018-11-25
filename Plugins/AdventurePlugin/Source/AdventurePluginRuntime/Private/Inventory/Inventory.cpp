@@ -18,3 +18,16 @@ bool UInventory::RemoveItem(UInventoryItem* item)
 	Items.Remove(item);
 	return true;
 }
+
+
+bool UInventory::RemoveItemWithClass(UClass* item)
+{
+	for (auto* itemInstance : Items) 
+	{
+		if (itemInstance && itemInstance->IsA(item))
+		{
+			return RemoveItem(itemInstance);
+		}
+	}
+	return false;
+}
