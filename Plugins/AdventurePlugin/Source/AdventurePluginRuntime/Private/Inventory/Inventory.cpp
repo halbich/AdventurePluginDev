@@ -9,6 +9,7 @@ bool UInventory::AddItem(UInventoryItem* item)
 {
 	if (Items.Contains(item)) return false;
 	Items.Add(item);
+	InventoryChanged.Broadcast(item);
 	return true;
 }
 
@@ -16,6 +17,7 @@ bool UInventory::RemoveItem(UInventoryItem* item)
 {
 	if (!Items.Contains(item)) return false;
 	Items.Remove(item);
+	InventoryChanged.Broadcast(item);
 	return true;
 }
 

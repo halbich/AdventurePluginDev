@@ -4,6 +4,8 @@
 #include "Inventory/InventoryItem.h"
 #include "Inventory.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FInventoryChangedEvent, UInventoryItem*, ChangedItem);
+
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UInventory : public UObject
 {
@@ -13,6 +15,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Inventory")
 	TArray<UInventoryItem*> Items;
+
+	UPROPERTY(BlueprintAssignable, Category = "Inventory")
+		FInventoryChangedEvent InventoryChanged;
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	bool HasItem(UInventoryItem* item);
@@ -25,4 +30,5 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 		bool RemoveItemWithClass(UClass* item);
+
 };
