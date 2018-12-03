@@ -11,6 +11,7 @@ class IInventoryPresenterInterface;
 
 class UDialogueController;
 class IDialoguePresenterInterface;
+class UItemManager;
 
 /**
  *
@@ -33,5 +34,8 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Transient)
 		TScriptInterface< IDialoguePresenterInterface> DialoguePresenter;
+
+	UPROPERTY(BlueprintReadOnly, Transient)
+		UItemManager* ItemManager;
 
 };

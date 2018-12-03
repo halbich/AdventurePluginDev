@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AdventurePluginBlueprintLibrary.h"
+#include "ItemManager.h"
+#include "AdventurePluginGameContext.h"
 
 #pragma optimize("", off)
 UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
@@ -52,6 +54,23 @@ void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext
 		ic->ShowInventory(gameContext);
 	else
 		ic->HideInventory();
+}
+
+
+UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* gameContext, TSubclassOf<UInventoryItem> Item)
+{
+	if (!gameContext || !gameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "GetItem::gameContext is NULL"));
+		return nullptr;
+	}
+	auto* itemManager = gameContext->ItemManager;
+	if (!itemManager || !itemManager->IsValidLowLevel())
+	{
+		LOG_Warning(NSLOCTEXT("AP", "ItemManagerNull", "GetItem::gameContext->ItemManager is NULL"));
+		return nullptr;
+	}
+	return itemManager->GetItem(Item);
 }
 
 #pragma optimize("", on)

@@ -32,5 +32,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
 		static void ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow);
 
+	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
+		static UInventoryItem* GetItem(UAdventurePluginGameContext* gameContext, TSubclassOf<UInventoryItem> Item);
+
 private:
 };
