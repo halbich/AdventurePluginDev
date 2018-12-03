@@ -2,7 +2,6 @@
 
 #include "Core.h"
 #include "TextProperty.h" 
-#include "Classes/Engine/DataAsset.h"
 #include "Classes/Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
 #include "Delegate.h"
