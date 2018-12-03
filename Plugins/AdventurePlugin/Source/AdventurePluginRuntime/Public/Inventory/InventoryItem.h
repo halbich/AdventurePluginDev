@@ -8,12 +8,17 @@
 #include "ItemCombination.h"
 #include "InventoryItem.generated.h"
 
-UCLASS(BlueprintType, Blueprintable)
+UCLASS(Abstract, BlueprintType, Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UObject, public IIconThumbnailInterface
 {
 	GENERATED_BODY()
 
 public:
+
+	void Init()
+	{
+		RefreshCombinations();
+	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		FText Name;
@@ -54,7 +59,7 @@ public:
 	}
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
-		bool TryCombineWith(UClass* TargetItem, UAdventurePluginGameContext* Context);
+		bool TryCombineWith(UInventoryItem* TargetItem, UAdventurePluginGameContext* Context);
 
 
 protected:
@@ -67,5 +72,5 @@ private:
 	UPROPERTY(Transient)
 		TMap<UClass*, UItemCombination*> Combinations;
 
-	bool TryCombineWithInternal(UClass* TargetItem, UAdventurePluginGameContext* Context);
+	bool TryCombineWithInternal(UInventoryItem* TargetItem, UAdventurePluginGameContext* Context);
 };

@@ -9,7 +9,10 @@ bool UInventory::AddItem(UInventoryItem* item)
 {
 	if (Items.Contains(item)) return false;
 	Items.Add(item);
-	InventoryChanged.Broadcast(item);
+	if (!isUpdating)
+	{
+		InventoryChanged.Broadcast(item);
+	}
 	return true;
 }
 
@@ -17,19 +20,24 @@ bool UInventory::RemoveItem(UInventoryItem* item)
 {
 	if (!Items.Contains(item)) return false;
 	Items.Remove(item);
-	InventoryChanged.Broadcast(item);
+	if (!isUpdating)
+	{
+		InventoryChanged.Broadcast(item);
+	}
 	return true;
 }
 
-
-bool UInventory::RemoveItemWithClass(UClass* item)
+void UInventory::BeginUpdate()
 {
-	for (auto* itemInstance : Items) 
+	isUpdating = true;
+}
+
+void UInventory::EndUpdate()
+{
+	if (isUpdating)
 	{
-		if (itemInstance && itemInstance->IsA(item))
-		{
-			return RemoveItem(itemInstance);
-		}
+		// TODO: Store changed items and broadcast also the list of modified items.
+		InventoryChanged.Broadcast(nullptr);
 	}
-	return false;
+	isUpdating = false;
 }

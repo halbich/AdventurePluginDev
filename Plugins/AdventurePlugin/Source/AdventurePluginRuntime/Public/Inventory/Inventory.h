@@ -27,8 +27,13 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	bool RemoveItem(UInventoryItem* item);
-
+	// Call if adding or removing multiple items in a row and you want to fire only one update event for all of those updates.
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
-		bool RemoveItemWithClass(UClass* item);
-
+	void BeginUpdate();
+	// Call if adding or removing multiple items in a row and you want to fire only one update event for all of those updates.
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	void EndUpdate();
+private:
+	UPROPERTY(Transient)
+	bool isUpdating;
 };

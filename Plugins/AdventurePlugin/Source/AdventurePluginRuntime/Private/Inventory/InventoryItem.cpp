@@ -1,4 +1,6 @@
 #include "InventoryItem.h"
+#include "AdventurePluginGameContext.h"
+#include "ItemManager.h"
 #include "AdventurePluginRuntime.h"
 
 #pragma optimize("", off)
@@ -33,30 +35,29 @@ void UInventoryItem::AddCombination(UClass* InventoryItem, FText CombinationName
 	Combinations.Add(InventoryItem, combination);
 }
 
-bool UInventoryItem::TryCombineWith(UClass* TargetItem, UAdventurePluginGameContext* Context)
+bool UInventoryItem::TryCombineWith(UInventoryItem* TargetItem, UAdventurePluginGameContext* Context)
 {
+	if (TargetItem == nullptr || !TargetItem->IsValidLowLevel())
+	{
+		LOG_Warning(NSLOCTEXT("AP", "NullCombinationItem", "One of the items being combined is null."));
+		return false;
+	}
 	// Try to find a combination on this item
 	if (TryCombineWithInternal(TargetItem, Context))
 	{
 		return true;
 	} 
-	//HACK: Access global version of this class
-	auto* targetItem = NewObject<UInventoryItem>(this, TargetItem);
 	// Try to find a combination on the target item.
-	return targetItem->TryCombineWithInternal(this->GetClass(), Context);
+	return TargetItem->TryCombineWithInternal(this, Context);
 }
-bool UInventoryItem::TryCombineWithInternal(UClass* TargetItem, UAdventurePluginGameContext* Context)
+bool UInventoryItem::TryCombineWithInternal(UInventoryItem* TargetItem, UAdventurePluginGameContext* Context)
 {
-	// HACK: Refresh should be done on init
-	RefreshCombinations();
-	auto* combination = Combinations.Find(TargetItem);
+	auto* combination = Combinations.Find(TargetItem->GetClass());
 	if (combination == nullptr || *combination == nullptr)
 	{
 		return false;
 	}
-	// HACK: We should access some global instance of this class
-	auto* targetItem = NewObject<UInventoryItem>(this, TargetItem);
-	(*combination)->CombinationEvent.Execute(targetItem, Context);
+	(*combination)->CombinationEvent.Execute(TargetItem, Context);
 	return true;
 }
 #pragma optimize("", on)
