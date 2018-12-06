@@ -63,11 +63,14 @@ public:
 
 
 protected:
+
 	UPROPERTY(Transient)
 		bool IsInitializingCombinations;
+
 	/*Show warning if not currently in the process of initializing combinations.*/
 	void CheckIsInitializingCombinations();
 private:
+
 	/*Map of all combinations, key is InventoryItem object type, value is the combination that should be done.*/
 	UPROPERTY(Transient)
 		TMap<UClass*, UItemCombination*> Combinations;

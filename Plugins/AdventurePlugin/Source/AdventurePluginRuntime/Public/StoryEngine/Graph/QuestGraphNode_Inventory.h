@@ -4,6 +4,7 @@
 #include "AdventurePluginGameContext.h"
 #include "QuestGraphNode.h"
 #include "Inventory/InventoryItem.h"
+#include "Inventory/InventoryItemBlueprint.h"
 #include "AdventurePluginRuntime.h"
 #include "InventoryController.h"
 #include "ItemManager.h"
@@ -24,7 +25,10 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
-	TSubclassOf<UInventoryItem>  Item;
+	TSubclassOf<UInventoryItem> Item;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
+	UInventoryItemBlueprint* ItemPointer;
 
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
