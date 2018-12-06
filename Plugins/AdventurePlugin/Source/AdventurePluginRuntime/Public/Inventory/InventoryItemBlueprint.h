@@ -6,8 +6,11 @@
 #include "IconThumbnailInterface.h"
 #include "Engine/Blueprint.h"
 #include "InventoryItem.h"
+#include "AdventurePluginGameContext.h"
+#include "ItemManager.h"
 #include "InventoryItemBlueprint.generated.h"
 
+#pragma optimize("", off)
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UInventoryItemBlueprint : public UBlueprint, public IIconThumbnailInterface
 {
@@ -15,11 +18,9 @@ class ADVENTUREPLUGINRUNTIME_API UInventoryItemBlueprint : public UBlueprint, pu
 
 public:
 
-	virtual UTexture2D* GetIcon() const override
-	{
-		// TODO For MattK
-		// Je nutno vrátit "UTexture2D* Icon", která je na UInventoryItem, který je Parent classa tohohle blueprintu
-		
-		return nullptr;
-	}
+	virtual UTexture2D* GetIcon() const override;
+
+	UFUNCTION(BlueprintCallable)
+	UInventoryItem* GetItemInstance(UAdventurePluginGameContext* GameContext);
 };
+#pragma optimize("", on)
