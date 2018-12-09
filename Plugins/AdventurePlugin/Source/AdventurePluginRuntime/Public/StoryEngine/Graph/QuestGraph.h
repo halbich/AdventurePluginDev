@@ -7,6 +7,9 @@
 class UQuestGraphNode;
 class UAdventurePluginGameContext;
 
+class FQuestEvent;
+DECLARE_DYNAMIC_DELEGATE(FQuestEvent);
+
 USTRUCT()
 struct ADVENTUREPLUGINRUNTIME_API FBoolVariable
 {
@@ -88,6 +91,10 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "AdventurePlugin")
 		TMap<FName, FStringVariable> StringVariables;
+
+	UPROPERTY(EditAnywhere, Category = "AdventurePlugin")
+		TMap<FName, FQuestEvent> QuestEvents;
+
 protected:
 	FText GetGraphNameText();
 };
