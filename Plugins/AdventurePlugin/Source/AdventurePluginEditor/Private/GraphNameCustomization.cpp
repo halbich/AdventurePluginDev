@@ -83,6 +83,7 @@ void FGraphNameCustomization::ReloadComboBox()
 
 void FGraphNameCustomization::ReloadComboBox(FName Name)
 {
+	Options.Empty();
 	ReloadOptions();
 	
 	FComboItemType Selected;

@@ -6,7 +6,7 @@
 #include "Widgets/Input/SComboBox.h"
 
 // https://answers.unrealengine.com/questions/384327/slate-scombobox-example.html
-class FGraphNameCustomization : public IPropertyTypeCustomization
+class ADVENTUREPLUGINEDITOR_API FGraphNameCustomization : public IPropertyTypeCustomization
 {
 public:
 
