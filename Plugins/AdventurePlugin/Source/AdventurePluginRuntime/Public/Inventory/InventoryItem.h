@@ -6,7 +6,10 @@
 #include "IconThumbnailInterface.h"
 #include "Delegate.h"
 #include "ItemCombination.h"
+#include "ItemCombinationInterface.h"
 #include "InventoryItem.generated.h"
+
+class UInventoryItemBlueprint;
 
 UCLASS(Abstract, BlueprintType, Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UObject, public IIconThumbnailInterface
@@ -35,11 +38,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		FText CommentText;
 
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
-		void AddCombinationObject(UClass* InventoryItem, UItemCombination* ToAdd);
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(VisibleAnywhere)
+		TMap<UBlueprint*, TScriptInterface<IItemCombinationInterface>> AllCombinations;
+
+	UPROPERTY()
+		UInventoryItemBlueprint* ParentBlueprint;
+#endif
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
-		void AddCombination(UClass* InventoryItem, FText CombinationName, FCombinationEvent CombinationEvent);
+		void AddCombinationObject(TSubclassOf<UInventoryItem> InventoryItem, UItemCombination* ToAdd);
+
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+		void AddCombination(TSubclassOf<UInventoryItem> InventoryItem, FText CombinationName, FCombinationEvent CombinationEvent);
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Inventory")
 		void InitCombinations();
@@ -52,7 +63,7 @@ public:
 	void RefreshCombinations();
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
-		UItemCombination* GetCombinationWithItem(UClass* TargetItem)
+		TScriptInterface<IItemCombinationInterface> GetCombinationWithItem(TSubclassOf<UInventoryItem> TargetItem)
 	{
 		auto* toReturn = Combinations.Find(TargetItem);
 		return toReturn ? *toReturn : nullptr;
@@ -73,7 +84,7 @@ private:
 
 	/*Map of all combinations, key is InventoryItem object type, value is the combination that should be done.*/
 	UPROPERTY(Transient)
-		TMap<UClass*, UItemCombination*> Combinations;
+		TMap<TSubclassOf<UInventoryItem>, TScriptInterface<IItemCombinationInterface>> Combinations;
 
 	bool TryCombineWithInternal(UInventoryItem* TargetItem, UAdventurePluginGameContext* Context);
 };

@@ -42,7 +42,7 @@
     {
       "Name": "AdventurePluginInventoryEditor",
       "Type": "Editor",
-      "LoadingPhase": "Default"
+      "LoadingPhase": "PostEngineInit"
     },
     {
       "Name": "AdventurePluginStoryEngineEditor",
