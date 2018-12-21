@@ -22,7 +22,7 @@ UDialogGraphNode_Event* UDialogGraph::GetEventNode(FName EventName)
 	for (auto* node : AllNodes)
 	{
 		UDialogGraphNode_Event* eventNode = Cast<UDialogGraphNode_Event>(node);
-		if (eventNode != NULL && eventNode->IsValidLowLevel() && eventNode->EventName == EventName)
+		if (eventNode != NULL && eventNode->IsValidLowLevel() && eventNode->Event.EventName == EventName)
 		{
 			return eventNode;
 		}

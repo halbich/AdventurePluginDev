@@ -15,7 +15,11 @@
 #include "PropertyEditorDelegates.h"
 #include "AdventurePluginEditor.h"
 #include "AssetTypeActions_QuestGraph.h"
-#include "QuestGraphFlagCustomization.h"
+#include "Customizations/QuestGraphFlagCustomization.h"
+#include "Customizations/QuestGraphBoolCustomization.h"
+#include "Customizations/QuestGraphStringCustomization.h"
+#include "Customizations/QuestGraphIntegerCustomization.h"
+#include "Customizations/QuestGraphEventCustomization.h"
 #include "SlateStyleRegistry.h"
 #include "Styling/SlateStyle.h"
 
@@ -49,6 +53,10 @@ void FAdventurePluginStoryEngineEditorModule::StartupModule()
 	/* Registering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
 	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphFlag", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphFlagCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphBool", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphBoolCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphInteger", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphIntegerCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphString", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphStringCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphEvent", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphEventCustomization::MakeInstance));
 	/**/
 }
 
@@ -62,6 +70,10 @@ void FAdventurePluginStoryEngineEditorModule::ShutdownModule()
 	/* Unregistering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
 	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphFlag");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphBool");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphInteger");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphString");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphEvent");
 	/**/
 
 	// Unregister all the asset types that we registered

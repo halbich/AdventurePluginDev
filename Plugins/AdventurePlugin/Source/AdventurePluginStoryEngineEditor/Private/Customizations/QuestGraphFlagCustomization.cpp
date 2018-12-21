@@ -1,4 +1,4 @@
-#include "QuestGraphFlagCustomization.h"
+#include "Customizations/QuestGraphFlagCustomization.h"
 #include "StoryEngine/Structs/QuestGraphFlag.h"
 #include "StoryEngine/Graph/QuestGraph.h"
 #include "StoryEngine/Graph/QuestGraphNode_Flag.h"

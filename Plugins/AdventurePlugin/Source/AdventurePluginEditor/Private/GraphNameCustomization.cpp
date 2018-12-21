@@ -119,12 +119,12 @@ void FGraphNameCustomization::CustomizeChildren(TSharedRef<class IPropertyHandle
 	FName Name;
 	NameHandle->GetValue(Name);
 
-	FDetailWidgetRow& ComboBoxRow = StructBuilder.AddCustomRow(LOCTEXT("ItemName", "Item name"));
+	FDetailWidgetRow& ComboBoxRow = StructBuilder.AddCustomRow(LOCTEXT("Name", "Name"));
 
 	ComboBoxRow.NameContent()
 		[
 			SNew(STextBlock)
-			.Text(LOCTEXT("ItemName", "Item name"))
+			.Text(LOCTEXT("Name", "Name"))
 		];
 
 	ComboBoxRow.ValueContent()

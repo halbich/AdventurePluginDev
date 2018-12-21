@@ -4,6 +4,7 @@
 #include "DialogGraphNode.h"
 #include "StoryEngine/Graph/QuestGraph.h"
 #include "AdventurePluginRuntime.h"
+#include "StoryEngine/Structs/QuestGraphEvent.h"
 #include "DialogGraphNode_Event.generated.h"
 
 UCLASS(Blueprintable)
@@ -24,17 +25,14 @@ public:
 	{
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-		UQuestGraph* Quest;
-
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
-		FName EventName;
+		FQuestGraphEvent Event;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_Event", "Event title", "Fire event: {0}"), FText::FromName(EventName));
+		return FText::Format(NSLOCTEXT("DialogGraphNode_Event", "Event title", "Fire event: {0}"), FText::FromName(Event.EventName));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
@@ -56,13 +54,13 @@ public:
 
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
-		if (!IsValid(Quest))
+		if (!IsValid(Event.Quest))
 		{
 			LOG_Warning(NSLOCTEXT("DialogGraphNode_Event", "QuestGraphNull", "Execute::Quest graph is NULL"));
 			return true;
 		}
 
-		auto&& questEvent = Quest->QuestEvents.Find(EventName);
+		auto&& questEvent = Event.Quest->QuestEvents.Find(Event.EventName);
 		if (!questEvent)
 		{
 			LOG_Warning(NSLOCTEXT("DialogGraphNode_Event", "NameNotFound", "Execute::Event name not found in quest"));
