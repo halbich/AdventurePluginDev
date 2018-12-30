@@ -24,6 +24,5 @@ public:
 
 	virtual bool CanRename() const override;
 #endif
-protected:
 	bool ParentNodesSatisfied(UAdventurePluginGameContext* GameContext);
 };

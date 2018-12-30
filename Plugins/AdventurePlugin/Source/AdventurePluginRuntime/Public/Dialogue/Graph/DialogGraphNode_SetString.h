@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "StoryEngine/Graph/QuestGraph.h"
+#include "StoryEngine/Structs/QuestGraphString.h"
 #include "DialogGraphNode_SetString.generated.h"
 
 UCLASS(Blueprintable)
@@ -20,10 +21,7 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-	UQuestGraph* Quest;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-	FName StringName;
+	FQuestGraphString String;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
 	FString Constant;
@@ -33,8 +31,8 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_SetString", "NodeTitle", "Set \"{0}\" in \"{1}\" to \"{2}\""), 
-			FText::FromName(StringName), 
-			FText::FromString(IsValid(Quest) ? Quest->Name : "<EMPTY>"),
+			FText::FromName(String.StringName), 
+			FText::FromString(IsValid(String.Quest) ? String.Quest->Name : "<EMPTY>"),
 			FText::FromString(Constant));
 	}
 
@@ -53,8 +51,8 @@ public:
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
 		// TODO
-		if (!IsValid(Quest)) return true;
-		Quest->SetString(StringName, Constant);
+		if (!IsValid(String.Quest)) return true;
+		String.Quest->SetString(String.StringName, Constant);
 		return true;
 	};
 };

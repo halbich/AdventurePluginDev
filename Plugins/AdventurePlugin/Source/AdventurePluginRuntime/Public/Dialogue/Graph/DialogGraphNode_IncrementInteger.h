@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "StoryEngine/Graph/QuestGraph.h"
+#include "StoryEngine/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IncrementInteger.generated.h"
 
 UCLASS(Blueprintable)
@@ -20,18 +21,15 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-	UQuestGraph* Quest;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-	FName IntegerName;
+	FQuestGraphInteger Integer;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_IncrementInteger", "NodeTitle", "Increment \"{0}\" in \"{1}\""), 
-			FText::FromName(IntegerName), 
-			FText::FromString(IsValid(Quest) ? Quest->Name : "<EMPTY>"));
+			FText::FromName(Integer.IntegerName), 
+			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : "<EMPTY>"));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
@@ -49,9 +47,9 @@ public:
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
 		// TODO
-		if (!IsValid(Quest)) return true;
-		int32 value = Quest->GetInteger(IntegerName);
-		Quest->SetInteger(IntegerName, value + 1);
+		if (!IsValid(Integer.Quest)) return true;
+		int32 value = Integer.Quest->GetInteger(Integer.IntegerName);
+		Integer.Quest->SetInteger(Integer.IntegerName, value + 1);
 		return true;
 	};
 };

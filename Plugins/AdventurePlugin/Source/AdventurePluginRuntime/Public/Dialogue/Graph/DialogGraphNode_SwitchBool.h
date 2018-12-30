@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "StoryEngine/Graph/QuestGraph.h"
+#include "StoryEngine/Structs/QuestGraphBool.h"
 #include "DialogGraphNode_SwitchBool.generated.h"
 
 UCLASS(Blueprintable)
@@ -20,18 +21,15 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-	UQuestGraph* Quest;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-	FName BoolName;
+	FQuestGraphBool Bool;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_SwitchBool", "NodeTitle", "Switch \"{0}\" in \"{1}\""), 
-			FText::FromName(BoolName), 
-			FText::FromString(IsValid(Quest) ? Quest->Name : "<EMPTY>"));
+			FText::FromName(Bool.BoolName), 
+			FText::FromString(IsValid(Bool.Quest) ? Bool.Quest->Name : "<EMPTY>"));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
@@ -49,9 +47,9 @@ public:
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
 		// TODO
-		if (!IsValid(Quest)) return true;
-		bool value = Quest->GetBool(BoolName);
-		Quest->SetBool(BoolName, !value);
+		if (!IsValid(Bool.Quest)) return true;
+		bool value = Bool.Quest->GetBool(Bool.BoolName);
+		Bool.Quest->SetBool(Bool.BoolName, !value);
 		return true;
 	};
 };

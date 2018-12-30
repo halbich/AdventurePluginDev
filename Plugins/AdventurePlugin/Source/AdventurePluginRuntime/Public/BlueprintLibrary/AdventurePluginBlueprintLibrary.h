@@ -6,6 +6,7 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "DialogueController.h"
+#include "StoryEngine/Graph/QuestGraph.h"
 #include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Graph/DialogGraphNode.h"
 #include "InventoryController.h"
@@ -30,6 +31,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
 		static void ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow);
+
+	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
+		static UInventoryItem* GetItem(UAdventurePluginGameContext* gameContext, TSubclassOf<UInventoryItem> Item);
+
+	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
+		static bool BindQuestEvent(UAdventurePluginGameContext* gameContext, UQuestGraph* graph, FName eventName, FQuestEvent questEvent);
 
 private:
 };

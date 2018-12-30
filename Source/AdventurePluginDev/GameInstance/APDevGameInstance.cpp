@@ -57,6 +57,12 @@ void UAPDevGameInstance::initCurrentGameContext()
 	if (dpInst)
 		CurrentGameContext->DialoguePresenter = CreateWidget<UDialoguePresenterWidget>(this, dpInst);
 
+	auto imInstance = (settings->DefaultItemManager.IsValid())
+		? settings->DefaultItemManager.Get()				// we have C++ class
+		: settings->DefaultItemManager.LoadSynchronous();	// we have Blueprint class
+	if (imInstance)
+		CurrentGameContext->ItemManager = imInstance->GetDefaultObject<UItemManager>();
+
 }
 
 

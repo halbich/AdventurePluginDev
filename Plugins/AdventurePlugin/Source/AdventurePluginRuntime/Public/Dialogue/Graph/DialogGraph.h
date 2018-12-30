@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GenericGraphRuntime/Public/GenericGraph.h"
 #include "AdventureCharacter.h"
+#include "DialogGraphNode_Event.h"
 #include "DialogGraph.generated.h"
 
 class UDialogGraphNode;
@@ -30,4 +31,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AdventurePlugin")
 		UAdventureCharacter* NPCCharacter;
+
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+		UDialogGraphNode_Event* GetEventNode(FName EventName);
 };

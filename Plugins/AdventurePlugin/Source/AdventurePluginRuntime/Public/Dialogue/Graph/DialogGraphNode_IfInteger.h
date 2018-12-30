@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "StoryEngine/Graph/QuestGraph.h"
+#include "StoryEngine/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IfInteger.generated.h"
 
 UCLASS(Blueprintable)
@@ -20,10 +21,7 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-	UQuestGraph* Quest;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
-	FName IntegerName;
+	FQuestGraphInteger Integer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
 	int32 Constant;
@@ -33,8 +31,8 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_IfInteger", "NodeTitle", "Compare \"{0}\" in \"{1}\" with \"{2}\""), 
-			FText::FromName(IntegerName), 
-			FText::FromString(IsValid(Quest) ? Quest->Name : "<EMPTY>"),
+			FText::FromName(Integer.IntegerName), 
+			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : "<EMPTY>"),
 			Constant);
 	}
 
@@ -58,9 +56,9 @@ public:
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		int32 bin = 0;
-		if (IsValid(Quest))
+		if (IsValid(Integer.Quest))
 		{
-			int32 val = Quest->GetInteger(IntegerName);
+			int32 val = Integer.Quest->GetInteger(Integer.IntegerName);
 			if (val == Constant) bin = 1;
 			else if (val > Constant) bin = 2;
 		}

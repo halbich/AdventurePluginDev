@@ -7,6 +7,8 @@
 #include "InventoryPresenterInterface.h"
 #include "InventoryPresenterWidget.generated.h"
 
+
+
 /**
  *
  */
@@ -16,6 +18,7 @@ class ADVENTUREPLUGINRUNTIME_API UInventoryPresenterWidget : public UUserWidget,
 	GENERATED_BODY()
 
 public:
+
 	void ShowInventory(UInventory* inventory, UInventoryController* manager);
 
 	void HideInventory(UInventoryController* controller);

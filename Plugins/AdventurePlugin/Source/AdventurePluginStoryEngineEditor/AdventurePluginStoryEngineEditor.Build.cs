@@ -46,6 +46,7 @@ public class AdventurePluginStoryEngineEditor : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+                "EditorStyle",
 				// ... add private dependencies that you statically link with here ...	
                 "AdventurePluginEditor"
             }

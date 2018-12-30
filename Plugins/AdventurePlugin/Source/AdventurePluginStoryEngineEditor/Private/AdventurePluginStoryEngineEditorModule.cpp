@@ -11,8 +11,15 @@
 #include "ContentBrowserModule.h"
 #include "ContentBrowserDelegates.h"
 #include "AssetToolsModule.h"
+#include "PropertyEditorModule.h"
+#include "PropertyEditorDelegates.h"
 #include "AdventurePluginEditor.h"
 #include "AssetTypeActions_QuestGraph.h"
+#include "Customizations/QuestGraphFlagCustomization.h"
+#include "Customizations/QuestGraphBoolCustomization.h"
+#include "Customizations/QuestGraphStringCustomization.h"
+#include "Customizations/QuestGraphIntegerCustomization.h"
+#include "Customizations/QuestGraphEventCustomization.h"
 #include "SlateStyleRegistry.h"
 #include "Styling/SlateStyle.h"
 
@@ -42,6 +49,15 @@ void FAdventurePluginStoryEngineEditorModule::StartupModule()
 	FSlateStyleRegistry::RegisterSlateStyle(*StyleSet.Get());
 	//FClassIconFinder::RegisterIconSource(&StyleSet.Get());
 	/**/
+
+	/* Registering custom property layouts */
+	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphFlag", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphFlagCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphBool", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphBoolCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphInteger", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphIntegerCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphString", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphStringCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout("QuestGraphEvent", FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphEventCustomization::MakeInstance));
+	/**/
 }
 
 void FAdventurePluginStoryEngineEditorModule::ShutdownModule()
@@ -50,6 +66,15 @@ void FAdventurePluginStoryEngineEditorModule::ShutdownModule()
 	// we call this function before unloading the module.
 	FAdventurePluginStoryEngineEditorStyle::Shutdown();
 	FAdventurePluginStoryEngineEditorCommands::Unregister();
+
+	/* Unregistering custom property layouts */
+	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphFlag");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphBool");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphInteger");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphString");
+	PropertyModule.UnregisterCustomPropertyTypeLayout("QuestGraphEvent");
+	/**/
 
 	// Unregister all the asset types that we registered
 	if (FModuleManager::Get().IsModuleLoaded("AssetTools"))

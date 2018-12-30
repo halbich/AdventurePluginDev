@@ -13,6 +13,7 @@
 /**
  *
  */
+
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UInventoryController : public UObject
 {

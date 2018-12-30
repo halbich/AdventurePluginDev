@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AdventurePluginBlueprintLibrary.h"
+#include "ItemManager.h"
+#include "AdventurePluginGameContext.h"
 
 #pragma optimize("", off)
 UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
@@ -52,6 +54,48 @@ void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext
 		ic->ShowInventory(gameContext);
 	else
 		ic->HideInventory();
+}
+
+
+UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* gameContext, TSubclassOf<UInventoryItem> Item)
+{
+	if (!gameContext || !gameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "GetItem::gameContext is NULL"));
+		return nullptr;
+	}
+	auto* itemManager = gameContext->ItemManager;
+	if (!itemManager || !itemManager->IsValidLowLevel())
+	{
+		LOG_Warning(NSLOCTEXT("AP", "ItemManagerNull", "GetItem::gameContext->ItemManager is NULL"));
+		return nullptr;
+	}
+	return itemManager->GetItem(Item);
+}
+
+bool UAdventurePluginBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContext* gameContext, UQuestGraph* graph, FName eventName, FQuestEvent questEvent)
+{
+	if (!gameContext || !gameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "GetItem::gameContext is NULL"));
+		return false;
+	}	
+
+	if (!graph || !graph->IsValidLowLevel())
+	{
+		LOG_Warning(NSLOCTEXT("AP", "QuestGraphNull", "Bind event::graph is NULL"));
+		return false;
+	}
+
+	auto&& map = graph->QuestEvents;
+	if (!map.Contains(eventName))
+	{
+		LOG_Warning(NSLOCTEXT("AP", "EventNameUndefined", "Bind event::event name is not defined in quest"));
+		return false;
+	}
+
+	map.Add(eventName, questEvent);
+	return true;
 }
 
 #pragma optimize("", on)
