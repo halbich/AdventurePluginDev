@@ -28,7 +28,7 @@ namespace UnrealBuildTool.Rules
 				{
 					"Core", "CoreUObject", "Engine", "InputCore",
 					// ... add other public dependencies that you statically link with here ...
-                    "GenericGraphRuntime",
+                    //"GenericGraphRuntime",
                     "UMG"
                 }
 				);
@@ -37,7 +37,9 @@ namespace UnrealBuildTool.Rules
 				new string[]
 				{
 					// ... add private dependencies that you statically link with here ...
-                    //"Slate", "SlateCore"
+                    "Slate",
+                    "SlateCore",
+                    "GameplayTags"
                 }
 				);
 

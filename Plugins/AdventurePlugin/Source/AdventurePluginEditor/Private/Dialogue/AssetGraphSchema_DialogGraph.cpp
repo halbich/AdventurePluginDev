@@ -1,6 +1,6 @@
 #include "Dialogue/AssetGraphSchema_DialogGraph.h"
 #include "DialogGraphNode_EntryMain.h"
-#include "GenericGraphEditor/Private/GenericGraphAssetEditor/EdNode_GenericGraphNode.h"
+#include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "EdGraph/EdGraph.h"
 
 

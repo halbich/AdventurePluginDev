@@ -2,7 +2,7 @@
 #include "Widgets/Text/STextBlock.h"
 #include "IDetailChildrenBuilder.h"
 #include "DetailWidgetRow.h"
-#include "GenericGraphRuntime/Public/GenericGraph.h"
+#include "GenericGraph/GenericGraph.h"
 
 #define LOCTEXT_NAMESPACE "GraphNameCustomization"
 

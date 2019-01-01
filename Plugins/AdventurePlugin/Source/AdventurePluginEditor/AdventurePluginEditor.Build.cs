@@ -28,8 +28,8 @@ namespace UnrealBuildTool.Rules
                 {
                     "Core",
 					// ... add other public dependencies that you statically link with here ...
-                    "GenericGraphRuntime",
-                    "GenericGraphEditor",
+                    //"GenericGraphRuntime",
+                    //"GenericGraphEditor",
                     "AdventurePluginRuntime"
                 }
                 );
@@ -48,7 +48,12 @@ namespace UnrealBuildTool.Rules
                     "CoreUObject",
                     "Engine",
                     "Slate",
-                    "SlateCore"
+                    "SlateCore",
+                    "AssetTools",
+                    "PropertyEditor",
+                    "Kismet",
+                    "KismetWidgets",
+                    "ApplicationCore",
                 }
                 );
 

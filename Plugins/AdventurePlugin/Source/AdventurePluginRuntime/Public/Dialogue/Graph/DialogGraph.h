@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericGraphRuntime/Public/GenericGraph.h"
+#include "GenericGraph/GenericGraph.h"
 #include "AdventureCharacter.h"
 #include "DialogGraphNode_Event.h"
 #include "DialogGraph.generated.h"

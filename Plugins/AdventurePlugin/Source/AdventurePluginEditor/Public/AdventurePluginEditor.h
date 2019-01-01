@@ -11,11 +11,28 @@
 #include "TokenizedMessage.h"
 #include "Toolkits/AssetEditorToolkit.h"
 #include "AssetTypeCategories.h"
+#include "IAssetTools.h"
+#include "IAssetTypeActions.h"
 #include "MessageLog.h"
+#include "EdGraphUtilities.h"
+#include "GenericGraph/EdNode_GenericGraphNode.h"
+#include "GenericGraph/SEdNode_GenericGraphNode.h"
 #include "AdventurePluginRuntime/Public/Common/AdventurePluginConfig.h"
 
 
 #define LOCTEXT_NAMESPACE "CustomSettings"
+
+class FGraphPanelNodeFactory_GenericGraph : public FGraphPanelNodeFactory
+{
+	virtual TSharedPtr<class SGraphNode> CreateNode(UEdGraphNode* Node) const override
+	{
+		if (UEdNode_GenericGraphNode* EdNode_GraphNode = Cast<UEdNode_GenericGraphNode>(Node))
+		{
+			return SNew(SEdNode_GenericGraphNode, EdNode_GraphNode);
+		}
+		return nullptr;
+	}
+};
 
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules
@@ -72,9 +89,10 @@ private:
 	void RegisterSettings();
 	void UnregisterSettings();
 
+	void RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action);
+	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
 
-
-
+	TSharedPtr<FGraphPanelNodeFactory> GraphPanelNodeFactory_GenericGraph;
 
 	TSharedPtr<class FExtensibilityManager> ToolBarExtensibilityManager;
 	TSharedPtr<class FUICommandList> PluginCommands;

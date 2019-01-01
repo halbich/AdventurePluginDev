@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericGraphEditor/Private/GenericGraphFactory.h"
+#include "GenericGraph/GenericGraphFactory.h"
 #include "QuestGraphFactory.generated.h"
 
 UCLASS()
