@@ -4,6 +4,7 @@
 #include "GraphEditorSettings.h"
 #include "SGraphPin.h"
 #include "SWrapTitleBox.h"
+#include "STextBlock.h"
 
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SEdDialogNode::UpdateGraphNode()
@@ -167,42 +168,6 @@ void SEdDialogNode::UpdateGraphNode()
 	ErrorReporting = ErrorText;
 	ErrorReporting->SetError(ErrorMsg);
 	CreatePinWidgets();
-}
-
-void SEdDialogNode::AddPin(const TSharedRef<SGraphPin>& PinToAdd)
-{
-	PinToAdd->SetOwner(SharedThis(this));
-
-	const UEdGraphPin* PinObj = PinToAdd->GetPinObj();
-	const bool bAdvancedParameter = PinObj && PinObj->bAdvancedView;
-	if (bAdvancedParameter)
-	{
-		PinToAdd->SetVisibility(TAttribute<EVisibility>(PinToAdd, &SGraphPin::IsPinVisibleAsAdvanced));
-	}
-
-	if (PinToAdd->GetDirection() == EEdGraphPinDirection::EGPD_Input)
-	{
-		LeftNodeBox->AddSlot()
-			.HAlign(HAlign_Fill)
-			.VAlign(VAlign_Fill)
-			.FillHeight(1.0f)
-			.Padding(20.0f, 0.0f)
-			[
-				PinToAdd
-			];
-		InputPins.Add(PinToAdd);
-	}
-	else // Direction == EEdGraphPinDirection::EGPD_Output
-	{
-		OutputPinBox->AddSlot()
-			.HAlign(HAlign_Fill)
-			.VAlign(VAlign_Fill)
-			.FillWidth(1.0f)
-			[
-				PinToAdd
-			];
-		OutputPins.Add(PinToAdd);
-	}
 }
 
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION

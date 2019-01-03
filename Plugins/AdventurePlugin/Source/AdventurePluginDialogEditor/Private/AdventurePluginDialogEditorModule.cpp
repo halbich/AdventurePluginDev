@@ -20,6 +20,10 @@
 #include "ClassIconFinder.h"
 #include "SlateStyleRegistry.h"
 #include "Styling/SlateStyle.h"
+#include "PropertyEditorModule.h"
+#include "PropertyEditorDelegates.h"
+#include "Dialogue/Graph/DialogGraphNode_Goto.h"
+#include "Customizations/GotoCustomization.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
 //const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
@@ -76,6 +80,11 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	FSlateStyleRegistry::RegisterSlateStyle(*StyleSet.Get());
 	//FClassIconFinder::RegisterIconSource(&StyleSet.Get());
 	/**/
+
+	/* Registering custom property layouts */
+	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_Goto::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FGotoCustomization::MakeInstance));
+	/**/
 }
 
 void FAdventurePluginDialogEditorModule::ShutdownModule()
@@ -83,8 +92,12 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
 	FAdventurePluginDialogEditorStyle::Shutdown();
-
 	FAdventurePluginDialogEditorCommands::Unregister();
+
+	/* Unregistering custom property layouts */
+	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_Goto::StaticClass()->GetFName());
+	/**/
 
 	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginDialogEditorTabName);
 

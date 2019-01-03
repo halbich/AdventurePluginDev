@@ -61,11 +61,7 @@ void FAdventurePluginEditor::StartupModule()
 	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacter::StaticClass(), UIconThumbnailRenderer::StaticClass());
 	UThumbnailManager::Get().RegisterCustomRenderer(UInventoryItem::StaticClass(), UIconThumbnailRenderer::StaticClass());
 
-	/* Generic Graph */
 	FGenericGraphEditorStyle::Initialize();
-	GraphPanelNodeFactory_GenericGraph = MakeShareable(new FGraphPanelNodeFactory_GenericGraph());
-	FEdGraphUtilities::RegisterVisualNodeFactory(GraphPanelNodeFactory_GenericGraph);
-	/**/
 
 	RegisterSettings();
 }
@@ -106,14 +102,7 @@ void FAdventurePluginEditor::ShutdownModule()
 		}
 	}
 
-	/* Generic Graph */
-	if (GraphPanelNodeFactory_GenericGraph.IsValid())
-	{
-		FEdGraphUtilities::UnregisterVisualNodeFactory(GraphPanelNodeFactory_GenericGraph);
-		GraphPanelNodeFactory_GenericGraph.Reset();
-	}
 	FGenericGraphEditorStyle::Shutdown();
-	/**/
 
 	if (FModuleManager::Get().IsModuleLoaded("MessageLog"))
 	{

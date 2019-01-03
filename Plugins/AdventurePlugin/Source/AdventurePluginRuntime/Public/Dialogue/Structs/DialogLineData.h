@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Sound/SoundBase.h"
 #include "DialogLineData.generated.h"
 
 USTRUCT(BlueprintType)

@@ -22,18 +22,6 @@
 
 #define LOCTEXT_NAMESPACE "CustomSettings"
 
-class FGraphPanelNodeFactory_GenericGraph : public FGraphPanelNodeFactory
-{
-	virtual TSharedPtr<class SGraphNode> CreateNode(UEdGraphNode* Node) const override
-	{
-		if (UEdNode_GenericGraphNode* EdNode_GraphNode = Cast<UEdNode_GenericGraphNode>(Node))
-		{
-			return SNew(SEdNode_GenericGraphNode, EdNode_GraphNode);
-		}
-		return nullptr;
-	}
-};
-
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules
  * within this plugin.
@@ -91,8 +79,6 @@ private:
 
 	void RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action);
 	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
-
-	TSharedPtr<FGraphPanelNodeFactory> GraphPanelNodeFactory_GenericGraph;
 
 	TSharedPtr<class FExtensibilityManager> ToolBarExtensibilityManager;
 	TSharedPtr<class FUICommandList> PluginCommands;

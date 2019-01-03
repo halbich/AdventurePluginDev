@@ -1,7 +1,9 @@
 #include "GenericGraph/EdNode_GenericGraphNode.h"
+#include "GenericGraph/SEdNode_GenericGraphNode.h"
 #include "GenericGraph/EdGraph_GenericGraph.h"
 #include "Kismet2/Kismet2NameValidators.h"
 #include "Kismet2/BlueprintEditorUtils.h"
+#include "Slate.h"
 
 #define LOCTEXT_NAMESPACE "EdNode_GenericGraph"
 
@@ -76,6 +78,8 @@ UEdGraphPin* UEdNode_GenericGraphNode::GetOutputPin() const
 	return Pins[1];
 }
 
+#if WITH_EDITOR
+
 void UEdNode_GenericGraphNode::PostEditUndo()
 {
 	UEdGraphNode::PostEditUndo();
@@ -90,5 +94,7 @@ bool UEdNode_GenericGraphNode::CanDuplicateNode() const
 {
 	return !IsValid(GenericGraphNode) || GenericGraphNode->CanDuplicate();
 }
+
+#endif
 
 #undef LOCTEXT_NAMESPACE

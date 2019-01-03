@@ -151,6 +151,7 @@ void SEdNode_GenericGraphNode::UpdateGraphNode()
 											SNew(SHorizontalBox)
 											+ SHorizontalBox::Slot()
 											.Padding(FMargin(4.0f, 0.0f, 4.0f, 0.0f))
+											.MaxWidth(250.0f)
 											[
 												SNew(SVerticalBox)
 												+ SVerticalBox::Slot()
@@ -268,7 +269,7 @@ void SEdNode_GenericGraphNode::AddPin(const TSharedRef<SGraphPin>& PinToAdd)
 	const bool bAdvancedParameter = PinObj && PinObj->bAdvancedView;
 	if (bAdvancedParameter)
 	{
-		PinToAdd->SetVisibility( TAttribute<EVisibility>(PinToAdd, &SGraphPin::IsPinVisibleAsAdvanced) );
+		PinToAdd->SetVisibility(TAttribute<EVisibility>(PinToAdd, &SGraphPin::IsPinVisibleAsAdvanced));
 	}
 
 	if (PinToAdd->GetDirection() == EEdGraphPinDirection::EGPD_Input)
@@ -277,7 +278,7 @@ void SEdNode_GenericGraphNode::AddPin(const TSharedRef<SGraphPin>& PinToAdd)
 			.HAlign(HAlign_Fill)
 			.VAlign(VAlign_Fill)
 			.FillHeight(1.0f)
-			.Padding(20.0f,0.0f)
+			.Padding(20.0f, 0.0f)
 			[
 				PinToAdd
 			];
