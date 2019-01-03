@@ -8,19 +8,19 @@
 void UCombinableObject::InitCombinations_Implementation() {
 
 }
-void UCombinableObject::CheckIsInitializingCombinations()
+void UCombinableObject::CheckIsRefreshingCombinations()
 {
-	if (!IsInitializingCombinations)
+	if (!IsRefreshingCombinations)
 	{
-		LOG_Warning(NSLOCTEXT("AP", "Combinations not initializing", "Combinations should not be added to an item outside of InitCombinations method"));
+		LOG_Warning(NSLOCTEXT("AP", "Combinations not refreshing", "Combinations should not be added to an item outside of InitCombinations method and InitCombinations method should not be called outside RefreshCombinations method"));
 	}
 }
 void UCombinableObject::RefreshCombinations()
 {
-	IsInitializingCombinations = true;
+	IsRefreshingCombinations = true;
 	Combinations.Empty();
 	InitCombinations();
-	IsInitializingCombinations = false;
+	IsRefreshingCombinations = false;
 #if WITH_EDITORONLY_DATA
 	LocalCombinations.Empty();
 	for (auto entry : Combinations)
@@ -34,6 +34,7 @@ void UCombinableObject::RefreshCombinations()
 		auto name = currentCombination->Execute_GetName(currentCombination.GetObject());
 		auto toAdd = FLocalCombinationInfo();
 		toAdd.Name = name;
+		// Split combination targets into blueprints and classes so we can navigate to the place where the navigations are defined from editor.
 		for (auto* targetClass : allCombinationTargets)
 		{
 			auto* targetBlueprint = targetClass->ClassGeneratedBy ? Cast<UBlueprint>(targetClass->ClassGeneratedBy) : nullptr;
@@ -54,6 +55,7 @@ void UCombinableObject::RefreshCombinations()
 
 void UCombinableObject::AddCombinationObject(TScriptInterface<IItemCombinationInterface> ToAdd)
 {
+	CheckIsRefreshingCombinations();
 	Combinations.Add(ToAdd);
 }
 
@@ -65,14 +67,14 @@ bool UCombinableObject::TryCombineWith(UCombinableObject* TargetCombinableObject
 		return false;
 	}
 	// Try to find a combination on this item
-	if (TryCombineWithInternal(TargetCombinableObject, Context))
+	if (TryCombineWithLocalOnly(TargetCombinableObject, Context))
 	{
 		return true;
 	}
 	// Try to find a combination on the target item.
-	return TargetCombinableObject->TryCombineWithInternal(this, Context);
+	return TargetCombinableObject->TryCombineWithLocalOnly(this, Context);
 }
-bool UCombinableObject::TryCombineWithInternal(UCombinableObject* TargetCombinableObject, UAdventurePluginGameContext* Context)
+bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* TargetCombinableObject, UAdventurePluginGameContext* Context)
 {
 	for (auto combination : Combinations)
 	{

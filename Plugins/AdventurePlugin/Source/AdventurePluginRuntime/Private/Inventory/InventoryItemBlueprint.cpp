@@ -27,14 +27,4 @@ UInventoryItem * UInventoryItemBlueprint::GetItemInstance(UAdventurePluginGameCo
 	TSubclassOf<UInventoryItem> itemClass = (TSubclassOf<UInventoryItem>)(this->GeneratedClass);
 	return GameContext->ItemManager->GetItem(itemClass);
 }
-void UInventoryItemBlueprint::Compiled(UBlueprint* CompiledBlueprint)
-{
-	auto* item = Cast<UInventoryItem>(GeneratedClass->ClassDefaultObject);
-	if (item == nullptr || !item->IsValidLowLevel())
-	{
-		return;
-	}
-	item->ParentBlueprint = this;
-	item->RefreshCombinations();
-}
 #pragma optimize("", on)

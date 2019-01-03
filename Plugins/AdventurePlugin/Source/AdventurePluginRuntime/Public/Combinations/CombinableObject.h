@@ -7,7 +7,7 @@
 
 class IItemCombinationInterface;
 class UAdventurePluginGameContext;
-
+/*Represents an object that can be combined with other some other object. E.g. inventory items and characters*/
 UCLASS(Abstract, BlueprintType, Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UCombinableObject : public UObject
 {
@@ -15,43 +15,51 @@ class ADVENTUREPLUGINRUNTIME_API UCombinableObject : public UObject
 
 public:
 
+	/*Call this method to initialize combinations. Must be called before being used.*/
 	void Init()
 	{
 		RefreshCombinations();
 	}
 
 #if WITH_EDITORONLY_DATA
+	/*This array has informations about all combinations registered on this object. Use only in editor time.*/
 	UPROPERTY(VisibleAnywhere)
 		TArray<FLocalCombinationInfo> LocalCombinations;
 
-	UPROPERTY()
-		UBlueprint* ParentBlueprint;
+	/*This array has informations about all combinations with this item registered on other blueprint objects.*/
+	UPROPERTY(VisibleAnywhere)
+		TMap<UBlueprint*, FText> ExternalBlueprintCombinations;
+	//TODO: How to fill these? Right now they are always empty
+	/*This array has informations about all combinations registered on other non-native objects. Currently not working and always empty.*/
+	UPROPERTY(VisibleAnywhere)
+		TMap<UClass*, FText> ExternalClassCombinations;
 #endif
-
+	/*Registers a new combination on this object. Should be called only in the InitCombinations method, without the plugin might not show the combinations in editor correctly.*/
 	UFUNCTION(BlueprintCallable, Category = "Combinations")
 		void AddCombinationObject(TScriptInterface<IItemCombinationInterface> ToAdd);
 
+	/*Override this method to register combinations. All combinations should be registered in this method. Do not call this method directly*/
 	UFUNCTION(BlueprintNativeEvent, Category = "Combinations")
 		void InitCombinations();
 
+	/*This method clears the combinations array and then initializes them again.*/
 	void RefreshCombinations();
-
+	/*Try to find a combination between this and target item and execute it. Returns true if a combination is found, otherwise false.*/
 	UFUNCTION(BlueprintCallable, Category = "Combinations")
 		bool TryCombineWith(UCombinableObject* TargetItem, UAdventurePluginGameContext* Context);
 
 
 protected:
-
+	/*If true, RefreshCombinations method is currently being executed and combinations an be added without warnings.*/
 	UPROPERTY(Transient)
-		bool IsInitializingCombinations;
+		bool IsRefreshingCombinations;
 
-	/*Show warning if not currently in the process of initializing combinations.*/
-	void CheckIsInitializingCombinations();
-private:
+	/*Show warning if not currently in the process of refreshing combinations.*/
+	void CheckIsRefreshingCombinations();
 
-	/*Map of all combinations, key is InventoryItem object type, value is the combination that should be done.*/
+	/*List of all combinations defined on this object.*/
 	UPROPERTY(Transient)
 		TArray<TScriptInterface<IItemCombinationInterface>> Combinations;
-
-	bool TryCombineWithInternal(UCombinableObject* TargetItem, UAdventurePluginGameContext* Context);
+	/*Helper for TryCombineWith. Tries to combine with target object, but only using combinations defined on this object.*/
+	bool TryCombineWithLocalOnly(UCombinableObject* TargetItem, UAdventurePluginGameContext* Context);
 };
