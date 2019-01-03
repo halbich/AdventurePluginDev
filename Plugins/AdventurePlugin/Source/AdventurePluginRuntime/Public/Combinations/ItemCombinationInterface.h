@@ -3,10 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Interface.h"
 #include "ItemCombinationInterface.generated.h"
 
 class UAdventurePluginGameContext;
-class UInventoryItem;
 
 /**
 *
@@ -31,5 +31,8 @@ public:
 		TArray<UClass*> GetCombinationTargetClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Inventory")
-		void Execute(UInventoryItem* TargetItem, UAdventurePluginGameContext* GameContext);
+		bool CanCombineWith(UObject* CombinationTarget);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Inventory")
+		void Execute(UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
 };

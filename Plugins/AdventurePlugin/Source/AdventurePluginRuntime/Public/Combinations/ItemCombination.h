@@ -2,13 +2,13 @@
 
 #include "Core.h"
 #include "Delegate.h"
+#include "CombinableObject.h"
 #include "ItemCombinationInterface.h"
 #include "ItemCombination.generated.h"
 
-class UInventoryItem;
 class UAdventurePluginGameContext;
 
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FCombinationEvent, UInventoryItem*, OtherItem, UAdventurePluginGameContext*, Context);
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FCombinationEvent, UObject*, CombinationTarget, UAdventurePluginGameContext*, Context);
 
 UCLASS(BlueprintType, Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UItemCombination : public UObject, public IItemCombinationInterface
@@ -24,7 +24,7 @@ public:
 		FCombinationEvent CombinationEvent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		UClass* TargetClass;
+		TSubclassOf<UCombinableObject> TargetClass;
 
 	virtual FText GetName_Implementation() override
 	{
@@ -38,8 +38,13 @@ public:
 		return toReturn;
 	}
 
-	virtual void Execute_Implementation(UInventoryItem* TargetItem, UAdventurePluginGameContext* GameContext) override
+	virtual void Execute_Implementation(UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override
 	{
-		CombinationEvent.Execute(TargetItem, GameContext);
+		CombinationEvent.Execute(CombinationTarget, GameContext);
+	}
+
+	virtual	bool CanCombineWith_Implementation(UObject* CombinationTarget)
+	{
+		return CombinationTarget && CombinationTarget->IsValidLowLevel() ? CombinationTarget->GetClass()->IsChildOf(TargetClass) : false;
 	}
 };
