@@ -1,6 +1,6 @@
 #pragma once
 #include "CombinableObject.h"
-#include "ItemCombinationInterface.h"
+#include "CombinationInterface.h"
 #include "AdventurePluginGameContext.h"
 #include "AdventurePluginRuntime.h"
 
@@ -31,7 +31,7 @@ void UCombinableObject::RefreshCombinations()
 			continue;
 		}
 		auto allCombinationTargets = currentCombination->Execute_GetCombinationTargetClasses(currentCombination.GetObject());
-		auto name = currentCombination->Execute_GetName(currentCombination.GetObject());
+		auto name = currentCombination->Execute_GetDebugName(currentCombination.GetObject());
 		auto toAdd = FLocalCombinationInfo();
 		toAdd.Name = name;
 		// Split combination targets into blueprints and classes so we can navigate to the place where the navigations are defined from editor.
@@ -53,28 +53,28 @@ void UCombinableObject::RefreshCombinations()
 #endif
 }
 
-void UCombinableObject::AddCombinationObject(TScriptInterface<IItemCombinationInterface> ToAdd)
+void UCombinableObject::AddCombinationObject(TScriptInterface<ICombinationInterface> ToAdd)
 {
 	CheckIsRefreshingCombinations();
 	Combinations.Add(ToAdd);
 }
 
-bool UCombinableObject::TryCombineWith(UCombinableObject* TargetCombinableObject, UAdventurePluginGameContext* Context)
+bool UCombinableObject::TryCombineWith(UCombinableObject* TargetObject, UAdventurePluginGameContext* Context)
 {
-	if (TargetCombinableObject == nullptr || !TargetCombinableObject->IsValidLowLevel())
+	if (TargetObject == nullptr || !TargetObject->IsValidLowLevel())
 	{
 		LOG_Warning(NSLOCTEXT("AP", "NullCombinationItem", "One of the items being combined is null."));
 		return false;
 	}
 	// Try to find a combination on this item
-	if (TryCombineWithLocalOnly(TargetCombinableObject, Context))
+	if (TryCombineWithLocalOnly(TargetObject, Context))
 	{
 		return true;
 	}
 	// Try to find a combination on the target item.
-	return TargetCombinableObject->TryCombineWithLocalOnly(this, Context);
+	return TargetObject->TryCombineWithLocalOnly(this, Context);
 }
-bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* TargetCombinableObject, UAdventurePluginGameContext* Context)
+bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* TargetObject, UAdventurePluginGameContext* Context)
 {
 	for (auto combination : Combinations)
 	{
@@ -83,11 +83,11 @@ bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* TargetCombina
 			continue;
 		}
 		auto* combinationObject = combination.GetObject();
-		if (!combination->Execute_CanCombineWith(combinationObject, TargetCombinableObject))
+		if (!combination->Execute_CanCombineWith(combinationObject, TargetObject))
 		{
 			continue;
 		}
-		combination->Execute_Execute(combinationObject, TargetCombinableObject, Context);
+		combination->Execute_Execute(combinationObject, TargetObject, Context);
 		return true;
 	}
 	return false;

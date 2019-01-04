@@ -5,8 +5,8 @@
 #include "Classes/Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
 #include "Delegate.h"
-#include "ItemCombination.h"
-#include "ItemCombinationInterface.h"
+#include "SimpleCombination.h"
+#include "CombinationInterface.h"
 #include "CombinableObject.h"
 #include "InventoryItem.generated.h"
 

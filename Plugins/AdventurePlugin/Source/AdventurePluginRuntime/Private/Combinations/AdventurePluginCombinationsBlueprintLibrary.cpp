@@ -3,8 +3,8 @@
 #include "AdventurePluginCombinationsBlueprintLibrary.h"
 
 #pragma optimize("", off)
-UItemCombination* UAdventurePluginCombinationsBlueprintLibrary::CreateSimpleCombination(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FCombinationEvent CombinationEvent) {
-	auto* combination = NewObject<UItemCombination>();
+USimpleCombination* UAdventurePluginCombinationsBlueprintLibrary::CreateSimpleCombination(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FCombinationEvent CombinationEvent) {
+	auto* combination = NewObject<USimpleCombination>();
 	combination->Name = CombinationName;
 	combination->CombinationEvent = CombinationEvent;
 	combination->TargetClass = TargetObject;
