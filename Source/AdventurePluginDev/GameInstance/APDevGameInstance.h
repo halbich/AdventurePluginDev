@@ -10,6 +10,7 @@
 #include "InventoryController.h"
 #include "InventoryPresenterWidget.h"
 #include "ItemManager.h"
+#include "AdventureCharacterManager.h"
 #include "APDevGameInstance.generated.h"
 
 /**

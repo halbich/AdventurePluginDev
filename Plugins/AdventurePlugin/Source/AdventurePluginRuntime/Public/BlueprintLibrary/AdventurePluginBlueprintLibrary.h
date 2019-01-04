@@ -11,6 +11,7 @@
 #include "Dialogue/Graph/DialogGraphNode.h"
 #include "InventoryController.h"
 #include "AdventurePluginRuntime.h"
+#include "AdventureCharacter.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
 
 
@@ -33,8 +34,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
 		static void ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin")
 		static UInventoryItem* GetItem(UAdventurePluginGameContext* gameContext, TSubclassOf<UInventoryItem> Item);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin")
+		static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* gameContext, TSubclassOf<UAdventureCharacter> Character);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
 		static bool BindQuestEvent(UAdventurePluginGameContext* gameContext, UQuestGraph* graph, FName eventName, FQuestEvent questEvent);

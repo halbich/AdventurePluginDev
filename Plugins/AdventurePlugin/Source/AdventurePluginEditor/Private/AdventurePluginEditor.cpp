@@ -19,6 +19,7 @@
 #include "AssetTypeActions_AdventureCharacter.h"
 #include "AssetTypeActions_InventoryItem.h"
 #include "InventoryItemBlueprint.h"
+#include "AdventureCharacterBlueprint.h"
 #include "IconThumbnailRenderer.h"
 
 #define LOCTEXT_NAMESPACE "AdventurePluginEditor"
@@ -61,7 +62,7 @@ void FAdventurePluginEditor::StartupModule()
 	AssetTools.RegisterAssetTypeActions(ATA_Character);
 	TSharedRef<IAssetTypeActions> ATA_Item = MakeShareable(new FAssetTypeActions_InventoryItem(AdventurePluginAssetCategory));
 	AssetTools.RegisterAssetTypeActions(ATA_Item);
-	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacter::StaticClass(), UIconThumbnailRenderer::StaticClass());
+	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacterBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
 	UThumbnailManager::Get().RegisterCustomRenderer(UInventoryItemBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
 	/**/
 

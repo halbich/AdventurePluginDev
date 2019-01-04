@@ -5,29 +5,23 @@
 #include "Core.h"
 #include "Engine.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "Presenter/InventoryPresenterInterface.h"
-#include "Common/AdventurePluginConfig.h"
-#include "Kismet/GameplayStatics.h"
+#include "Combinations/CombinableObjectManager.h"
+#include "InventoryItem.h"
 #include "ItemManager.generated.h"
 
 /**
 *
 */
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UItemManager : public UObject
+class ADVENTUREPLUGINRUNTIME_API UItemManager : public UCombinableObjectManager
 {
 	GENERATED_BODY()
 
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
-		UInventoryItem* GetItem(TSubclassOf<UInventoryItem> Item);
-
-
-private:
-
-	void RegisterItem(TSubclassOf<UInventoryItem> ItemClass);
-
-	UPROPERTY(Transient)
-		TMap<TSubclassOf<UInventoryItem>, UInventoryItem*> Items;
+		UInventoryItem* GetItem(TSubclassOf<UInventoryItem> Item)
+	{
+		return Cast<UInventoryItem>(GetObject(Item));
+	}
 };

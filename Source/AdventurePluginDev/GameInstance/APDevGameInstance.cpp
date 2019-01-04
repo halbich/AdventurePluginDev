@@ -59,6 +59,12 @@ void UAPDevGameInstance::initCurrentGameContext()
 	if (imInstance)
 		CurrentGameContext->ItemManager = imInstance->GetDefaultObject<UItemManager>();
 
+	auto acmInstance = (settings->DefaultAdventureCharacterManager.IsValid())
+		? settings->DefaultAdventureCharacterManager.Get()				// we have C++ class
+		: settings->DefaultAdventureCharacterManager.LoadSynchronous();	// we have Blueprint class
+	if (acmInstance)
+		CurrentGameContext->AdventureCharacterManager = acmInstance->GetDefaultObject<UAdventureCharacterManager>();
+
 }
 
 
