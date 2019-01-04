@@ -20,11 +20,6 @@ class ADVENTUREPLUGINRUNTIME_API UItemManager : public UObject
 
 public:
 
-	UItemManager()
-	{
-		RegisterAllItems();
-	}
-
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 		UInventoryItem* GetItem(TSubclassOf<UInventoryItem> Item);
 
@@ -32,7 +27,6 @@ public:
 private:
 
 	void RegisterItem(TSubclassOf<UInventoryItem> ItemClass);
-	void RegisterAllItems();
 
 	UPROPERTY(Transient)
 		TMap<TSubclassOf<UInventoryItem>, UInventoryItem*> Items;

@@ -24,7 +24,7 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
-	TSubclassOf<UInventoryItem>  Item;
+	TSubclassOf<UInventoryItem> Item;
 
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{

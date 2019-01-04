@@ -3,12 +3,13 @@
 #include "AdventurePluginInventoryEditor.h"
 #include "AdventurePluginInventoryEditorStyle.h"
 #include "AdventurePluginInventoryEditorCommands.h"
+#include "InventoryItemBlueprint.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
+#include "BlueprintEditor.h" 
 #include "Framework/MultiBox/MultiBoxBuilder.h"
-
 
 static const FName AdventurePluginInventoryEditorTabName("AdventurePluginInventoryEditor");
 
@@ -40,7 +41,14 @@ void FAdventurePluginInventoryEditorModule::StartupModule()
 		auto& MenuExtenders = ape.GetAllAdventurePluginEditorToolbarExtenders();
 		MenuExtenders.Add(EditorMenuExtender);
 		EditorMenuExtenderHandle = MenuExtenders.Last().GetHandle();
+
+		// Add combination button to blueprints
+		FBlueprintEditorModule& BPEditorModule = FModuleManager::LoadModuleChecked<FBlueprintEditorModule>("Kismet");
+
+		BPEditorModule.OnGatherBlueprintMenuExtensions().AddStatic(&FAdventurePluginInventoryEditorModule::OnBlueprintGatherExtensions);
 	}
+
+	
 
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginInventoryEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginInventoryEditorModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("FAdventurePluginInventoryEditorTabTitle", "AdventurePluginInventoryEditor"))
@@ -65,6 +73,52 @@ void FAdventurePluginInventoryEditorModule::ShutdownModule()
 			LevelEditor.GetAllAdventurePluginEditorToolbarExtenders().RemoveAll([=](const FAdventurePluginEditor::FAdventurePluginEditorMenuExtender& Extender) { return Extender.GetHandle() == EditorMenuExtenderHandle; });
 		}
 	}
+}
+
+void FAdventurePluginInventoryEditorModule::OnBlueprintGatherExtensions(TSharedPtr<FExtender> Extender, UBlueprint* Blueprint)
+{
+	// Make sure this is inventoryItem blueprint
+	if (Blueprint == nullptr || !Blueprint->GetClass()->IsChildOf<UInventoryItemBlueprint>())
+	{
+		return;
+	}
+	const FAdventurePluginInventoryEditorCommands& Commands = FAdventurePluginInventoryEditorCommands::Get();
+
+	// This specific editor needs its own Command List with delegates that include the blueprint pointer
+	TSharedPtr<FUICommandList> CommandList = MakeShareable(new FUICommandList);
+	CommandList->MapAction(
+		Commands.OpenPluginWindow,
+		FExecuteAction::CreateStatic(
+			&FAdventurePluginInventoryEditorModule::OnShowCombinationsList,
+			Blueprint));
+
+	Extender->AddToolBarExtension(
+		"Asset",
+		EExtensionHook::After,
+		CommandList,
+		FToolBarExtensionDelegate::CreateStatic(&FAdventurePluginInventoryEditorModule::ExtendItemBlueprintToolBar));
+}
+
+void FAdventurePluginInventoryEditorModule::ExtendItemBlueprintToolBar(class FToolBarBuilder& Builder)
+{
+	FSlateIcon IconBrush = FSlateIcon(
+		FAdventurePluginInventoryEditorStyle::GetStyleSetName(),
+		"AdventurePluginInventoryEditor.Combinations",
+		"AdventurePluginInventoryEditor.Combinations.Small");
+
+	const FAdventurePluginInventoryEditorCommands& Commands = FAdventurePluginInventoryEditorCommands::Get();
+	Builder.AddToolBarButton(
+		Commands.OpenPluginWindow,
+		NAME_None,
+		TAttribute<FText>(),
+		TAttribute<FText>(),
+		IconBrush,
+		NAME_None);
+}
+
+void FAdventurePluginInventoryEditorModule::OnShowCombinationsList(UBlueprint* Blueprint)
+{
+
 }
 
 

@@ -31,31 +31,4 @@ void UItemManager::RegisterItem(TSubclassOf<UInventoryItem> ItemClass)
 	check(newItem != nullptr && "It should always be possible to instantiate an inventory item");
 	Items.Add(ItemClass, newItem);
 }
-void UItemManager::RegisterAllItems()
-{
-	for (TObjectIterator<UClass> It; It; ++It)
-	{
-		if (It->IsChildOf(UInventoryItem::StaticClass()) && !It->HasAnyClassFlags(CLASS_Abstract))
-		{
-			// HACK: Some wierd classes with SKEL prefix and REINST are also being returned
-			// Dunno why, but they cannot be instantiated and google sugggests just checking their names
-			// But we should probably find some better way around it.
-			FString ClassName = *It->GetName();
-			if (ClassName.StartsWith("SKEL_"))
-			{
-				continue;
-			}
-			if (ClassName.StartsWith("REINST_"))
-			{
-				continue;
-			}
-			TSubclassOf<UInventoryItem> castedItemClass = *It;
-			if (Items.Find(castedItemClass) != nullptr)
-			{
-				continue;
-			}
-			RegisterItem(castedItemClass);
-		}
-	}
-}
 #pragma optimize("", on)
