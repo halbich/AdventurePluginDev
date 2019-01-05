@@ -1,8 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericGraphEditor/Private/GenericGraphEditorPCH.h"
-#include "GenericGraphEditor/Private/GenericGraphAssetEditor/AssetGraphSchema_GenericGraph.h"
+#include "GenericGraph/AssetGraphSchema_GenericGraph.h"
 #include "EdDialogNode.h"
 #include "AssetGraphSchema_DialogGraph.generated.h"
 

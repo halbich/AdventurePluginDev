@@ -11,7 +11,12 @@
 #include "TokenizedMessage.h"
 #include "Toolkits/AssetEditorToolkit.h"
 #include "AssetTypeCategories.h"
+#include "IAssetTools.h"
+#include "IAssetTypeActions.h"
 #include "MessageLog.h"
+#include "EdGraphUtilities.h"
+#include "GenericGraph/EdNode_GenericGraphNode.h"
+#include "GenericGraph/SEdNode_GenericGraphNode.h"
 #include "AdventurePluginRuntime/Public/Common/AdventurePluginConfig.h"
 
 
@@ -72,9 +77,8 @@ private:
 	void RegisterSettings();
 	void UnregisterSettings();
 
-
-
-
+	void RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action);
+	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
 
 	TSharedPtr<class FExtensibilityManager> ToolBarExtensibilityManager;
 	TSharedPtr<class FUICommandList> PluginCommands;

@@ -16,16 +16,6 @@
   "Installed": false,
   "Modules": [
     {
-      "Name": "GenericGraphRuntime",
-      "Type": "Runtime",
-      "LoadingPhase": "PreDefault"
-    },
-    {
-      "Name": "GenericGraphEditor",
-      "Type": "Editor",
-      "LoadingPhase": "Default"
-    },
-    {
       "Name": "AdventurePluginEditor",
       "Type": "Developer",
       "LoadingPhase": "Default"

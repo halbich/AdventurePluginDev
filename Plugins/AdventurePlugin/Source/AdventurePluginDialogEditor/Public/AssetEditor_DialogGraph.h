@@ -2,8 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GraphEditor.h"
-//#include "GenericGraphEditor/Private/AssetTypeActions_GenericGraph.h"
-#include "GenericGraphEditor/Private/GenericGraphAssetEditor/AssetEditor_GenericGraph.h"
+#include "GenericGraph/AssetEditor_GenericGraph.h"
 
 class UDialogGraphNode;
 class UDialogGraph;
