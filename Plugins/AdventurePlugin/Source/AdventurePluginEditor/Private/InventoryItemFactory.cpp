@@ -1,6 +1,7 @@
 #include "InventoryItemFactory.h"
 #include "Kismet2/KismetEditorUtilities.h"
 #include "Inventory/InventoryItem.h"
+#include "Inventory/InventoryItemBlueprint.h"
 
 UInventoryItemFactory::UInventoryItemFactory(/*const class FObjectInitializer &OBJ*/)// : Super(OBJ)
 {
@@ -12,7 +13,6 @@ UInventoryItemFactory::UInventoryItemFactory(/*const class FObjectInitializer &O
 UObject* UInventoryItemFactory::FactoryCreateNew(UClass* Class, UObject* InParent, FName Name, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn, FName CallingContext)
 {
 
-	// Make sure we are trying to factory a Anim Blueprint, then create and init one
 	check(Class->IsChildOf(UInventoryItem::StaticClass()));
 
 	if (!FKismetEditorUtilities::CanCreateBlueprintOfClass(UInventoryItem::StaticClass()))
@@ -23,11 +23,8 @@ UObject* UInventoryItemFactory::FactoryCreateNew(UClass* Class, UObject* InParen
 	}
 	else
 	{
-		return FKismetEditorUtilities::CreateBlueprint(UInventoryItem::StaticClass(), InParent, Name, EBlueprintType::BPTYPE_Normal, UBlueprint::StaticClass(), UBlueprintGeneratedClass::StaticClass(), CallingContext);
+		return FKismetEditorUtilities::CreateBlueprint(UInventoryItem::StaticClass(), InParent, Name, EBlueprintType::BPTYPE_Normal, UInventoryItemBlueprint::StaticClass(), UBlueprintGeneratedClass::StaticClass(), CallingContext);
 	}
-
-	//check(Class->IsChildOf(UInventoryItem::StaticClass()));
-	//return NewObject<UInventoryItem>(InParent, Class, Name, Flags | RF_Transactional, Context);
 }
 
 UObject* UInventoryItemFactory::FactoryCreateNew(UClass* Class, UObject* InParent, FName Name, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn)

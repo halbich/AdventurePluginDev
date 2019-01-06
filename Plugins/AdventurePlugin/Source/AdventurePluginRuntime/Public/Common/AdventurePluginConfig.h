@@ -11,6 +11,7 @@ class UDialogueController;
 class UInventoryPresenterWidget;
 class UInventoryController;
 class UItemManager;
+class UAdventureCharacterManager;
 
 /**
  *
@@ -56,4 +57,7 @@ public:
 
 	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Default Item Manager")
 		TSoftClassPtr<UItemManager> DefaultItemManager;
+
+	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Adventure Character Manager")
+		TSoftClassPtr<UAdventureCharacterManager> DefaultAdventureCharacterManager;
 };

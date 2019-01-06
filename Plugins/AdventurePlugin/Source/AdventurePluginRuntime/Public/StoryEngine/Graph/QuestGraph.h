@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericGraphRuntime/Public/GenericGraph.h"
+#include "GenericGraph/GenericGraph.h"
 #include "QuestGraph.generated.h"
 
 class UQuestGraphNode;

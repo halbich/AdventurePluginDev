@@ -12,6 +12,7 @@ class IInventoryPresenterInterface;
 class UDialogueController;
 class IDialoguePresenterInterface;
 class UItemManager;
+class UAdventureCharacterManager;
 
 class UAdventurePluginSaveGame;
 
@@ -42,5 +43,8 @@ public:
 
 		UPROPERTY(BlueprintReadOnly, Transient)
 		UItemManager* ItemManager;
+
+	UPROPERTY(BlueprintReadOnly, Transient)
+		UAdventureCharacterManager* AdventureCharacterManager;
 
 };

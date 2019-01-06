@@ -44,6 +44,7 @@ public class AdventurePluginInventoryEditor : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"Slate",
+                "Kismet",
 				"SlateCore",
 				// ... add private dependencies that you statically link with here ...	
                 "AdventurePluginEditor",

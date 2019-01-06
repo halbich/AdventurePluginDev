@@ -2,6 +2,7 @@
 
 #include "AdventurePluginBlueprintLibrary.h"
 #include "ItemManager.h"
+#include "AdventureCharacterManager.h"
 #include "AdventurePluginGameContext.h"
 
 #pragma optimize("", off)
@@ -71,6 +72,22 @@ UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameCo
 		return nullptr;
 	}
 	return itemManager->GetItem(Item);
+}
+
+UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAdventurePluginGameContext* gameContext, TSubclassOf<UAdventureCharacter> Character)
+{
+	if (!gameContext || !gameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GetAdventureCharacterGameContextNull", "GetAdventureCharacter::gameContext is NULL"));
+		return nullptr;
+	}
+	auto* characterManager = gameContext->AdventureCharacterManager;
+	if (!characterManager || !characterManager->IsValidLowLevel())
+	{
+		LOG_Warning(NSLOCTEXT("AP", "AdventureCharacterManagerNull", "GetAdventureCharacter::gameContext->AdventureCharacterManager is NULL"));
+		return nullptr;
+	}
+	return characterManager->GetCharacter(Character);
 }
 
 bool UAdventurePluginBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContext* gameContext, UQuestGraph* graph, FName eventName, FQuestEvent questEvent)

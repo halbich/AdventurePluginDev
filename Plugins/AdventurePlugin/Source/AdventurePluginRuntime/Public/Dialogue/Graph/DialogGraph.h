@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericGraphRuntime/Public/GenericGraph.h"
+#include "GenericGraph/GenericGraph.h"
 #include "AdventureCharacter.h"
 #include "DialogGraphNode_Event.h"
 #include "DialogGraph.generated.h"
@@ -27,10 +27,10 @@ public:
 		TMap<FName, UDialogGraphNode*> IdToNodeMap;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AdventurePlugin")
-		UAdventureCharacter* PlayerCharacter;
+		TSubclassOf<UAdventureCharacter> PlayerCharacter;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AdventurePlugin")
-		UAdventureCharacter* NPCCharacter;
+		TSubclassOf<UAdventureCharacter> NPCCharacter;
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
 		UDialogGraphNode_Event* GetEventNode(FName EventName);

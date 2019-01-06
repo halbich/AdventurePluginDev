@@ -29,6 +29,12 @@ private:
 
 	TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
 
+	static void OnBlueprintGatherExtensions(TSharedPtr<FExtender> Extender, UBlueprint* Blueprint);
+
+	static void ExtendItemBlueprintToolBar(class FToolBarBuilder& Builder);
+
+	static void OnShowCombinationsList(UBlueprint* Blueprint);
+
 protected:
 
 	TSharedRef<FExtender> OnExtendLevelEditorViewMenu(const TSharedRef<FUICommandList> CommandList)

@@ -12,13 +12,15 @@
 #include "MessageLogInitializationOptions.h"
 #include "LevelEditor.h"
 #include "AssetToolsModule.h"
-
 #include "AdventurePluginEditorToolBar.h"
 #include "AdventurePluginEditorStyle.h"
 #include "AdventurePluginEditorCommands.h"
 #include "AssetTypeActions_AdventureCharacter.h"
 #include "AssetTypeActions_InventoryItem.h"
+#include "InventoryItemBlueprint.h"
+#include "AdventureCharacterBlueprint.h"
 #include "IconThumbnailRenderer.h"
+#include "GenericGraph/GenericGraphEditorStyle.h"
 
 #define LOCTEXT_NAMESPACE "AdventurePluginEditor"
 
@@ -55,14 +57,13 @@ void FAdventurePluginEditor::StartupModule()
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 	AdventurePluginAssetCategory = AssetTools.RegisterAdvancedAssetCategory(FName(TEXT("AdventurePlugin")), LOCTEXT("AdventurePluginAssetCategory", "Adventure Plugin"));
 
-	/* TODO all of this probably should be unregistered on shutdown */
-	TSharedRef<IAssetTypeActions> ATA_Character = MakeShareable(new FAssetTypeActions_AdventureCharacter(AdventurePluginAssetCategory));
-	AssetTools.RegisterAssetTypeActions(ATA_Character);
-	TSharedRef<IAssetTypeActions> ATA_Item = MakeShareable(new FAssetTypeActions_InventoryItem(AdventurePluginAssetCategory));
-	AssetTools.RegisterAssetTypeActions(ATA_Item);
-	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacter::StaticClass(), UIconThumbnailRenderer::StaticClass());
-	UThumbnailManager::Get().RegisterCustomRenderer(UInventoryItem::StaticClass(), UIconThumbnailRenderer::StaticClass());
-	/**/
+	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_AdventureCharacter(AdventurePluginAssetCategory)));
+	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_InventoryItem(AdventurePluginAssetCategory)));
+
+	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacterBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
+	UThumbnailManager::Get().RegisterCustomRenderer(UInventoryItemBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
+
+	FGenericGraphEditorStyle::Initialize();
 
 	RegisterSettings();
 }
@@ -86,9 +87,24 @@ void FAdventurePluginEditor::ShutdownModule()
 	// we call this function before unloading the module.
 
 
-	if (UObjectInitialized()) {
+	if (UObjectInitialized())
+	{
 		UnregisterSettings();
+
+		UThumbnailManager::Get().UnregisterCustomRenderer(UAdventureCharacterBlueprint::StaticClass());
+		UThumbnailManager::Get().UnregisterCustomRenderer(UInventoryItemBlueprint::StaticClass());
 	}
+
+	if (FModuleManager::Get().IsModuleLoaded("AssetTools"))
+	{
+		IAssetTools& AssetTools = FModuleManager::GetModuleChecked<FAssetToolsModule>("AssetTools").Get();
+		for (int32 Index = 0; Index < CreatedAssetTypeActions.Num(); ++Index)
+		{
+			AssetTools.UnregisterAssetTypeActions(CreatedAssetTypeActions[Index].ToSharedRef());
+		}
+	}
+
+	FGenericGraphEditorStyle::Shutdown();
 
 	if (FModuleManager::Get().IsModuleLoaded("MessageLog"))
 	{
@@ -154,7 +170,8 @@ bool FAdventurePluginEditor::HandleSettingsSaved() {
 	return true;
 }
 
-void FAdventurePluginEditor::RegisterSettings() {
+void FAdventurePluginEditor::RegisterSettings()
+{
 	// Registering some settings is just a matter of exposing the default UObject of
 	// your desired class, feel free to add here all those settings you want to expose
 	// to your LDs or artists.
@@ -176,13 +193,20 @@ void FAdventurePluginEditor::RegisterSettings() {
 	}
 }
 
-void FAdventurePluginEditor::UnregisterSettings() {
+void FAdventurePluginEditor::UnregisterSettings()
+{
 	// Ensure to unregister all of your registered settings here, hot-reload would
 	// otherwise yield unexpected results.
 
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings")) {
 		SettingsModule->UnregisterSettings("Project", "APSettings", "AdventurePlugin");
 	}
+}
+
+void FAdventurePluginEditor::RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action)
+{
+	AssetTools.RegisterAssetTypeActions(Action);
+	CreatedAssetTypeActions.Add(Action);
 }
 
 

@@ -11,7 +11,6 @@ UQuestGraph::UQuestGraph()
 	: UGenericGraph()
 {
 	NodeType = UQuestGraphNode::StaticClass();
-	bEdgeEnabled = false;
 }
 
 UQuestGraph::~UQuestGraph()

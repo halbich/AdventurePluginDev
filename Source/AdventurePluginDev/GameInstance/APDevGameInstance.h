@@ -11,6 +11,7 @@
 #include "InventoryPresenterWidget.h"
 #include "AdventurePluginSaveGame.h"
 #include "ItemManager.h"
+#include "AdventureCharacterManager.h"
 #include "APDevGameInstance.generated.h"
 
 /**

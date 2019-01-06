@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericGraphEditor/Private/AssetTypeActions_GenericGraph.h"
+#include "GenericGraph/AssetTypeActions_GenericGraph.h"
 
 class FAssetTypeActions_DialogGraph : public FAssetTypeActions_GenericGraph
 {

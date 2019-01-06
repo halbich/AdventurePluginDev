@@ -26,9 +26,8 @@ namespace UnrealBuildTool.Rules
 			PublicDependencyModuleNames.AddRange(
 				new string[]
 				{
-					"Core", "CoreUObject", "Engine", "InputCore",
+					"Core", "CoreUObject", "Engine", "InputCore", "AssetRegistry",
 					// ... add other public dependencies that you statically link with here ...
-                    "GenericGraphRuntime",
                     "UMG"
                 }
 				);
@@ -37,7 +36,9 @@ namespace UnrealBuildTool.Rules
 				new string[]
 				{
 					// ... add private dependencies that you statically link with here ...
-                    //"Slate", "SlateCore"
+                    "Slate",
+                    "SlateCore",
+                    "GameplayTags"
                 }
 				);
 
