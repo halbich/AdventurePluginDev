@@ -9,13 +9,17 @@
 #include "Math/Color.h"
 #include "AdventurePluginEditor.h"
 
+class FAdventurePluginDialogDebugger;
 class FToolBarBuilder;
 class FMenuBuilder;
 class SGraphEditor;
+class UDialogGraph;
 
 class FAdventurePluginDialogEditor : public FAssetEditorToolkit, public FNotifyHook
 {
 public:
+
+	~FAdventurePluginDialogEditor();
 
 	/** IToolkit interface */
 	virtual FName GetToolkitFName() const override;
@@ -28,6 +32,8 @@ public:
 
 	void InitDialogEditor(const EToolkitMode::Type Mode, const TSharedPtr<class IToolkitHost>& InitToolkitHost, UObject* ObjectToEdit);
 	TSharedRef<class SDockTab> GetPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
+
+	void DebuggerUpdateGraph();
 	
 private:
 
@@ -39,6 +45,9 @@ private:
 	void DummyAction();
 	bool CanDummyAction() const;
 
+	/* The Dialog Graph being edited */
+	UDialogGraph* DialogGraph;
+
 private:
 	TSharedPtr<class FUICommandList> PluginCommands;
 	TSharedPtr<class SGraphEditor> GraphEditor;
@@ -46,4 +55,6 @@ private:
 
 	/**	The tab ids for the dialog editor */
 	static const FName GraphCanvasTabId;
+
+	TSharedPtr<class FAdventurePluginDialogDebugger> Debugger;
 };
