@@ -22,6 +22,8 @@
 #include "IconThumbnailRenderer.h"
 #include "GenericGraph/GenericGraphEditorStyle.h"
 
+#include "PropertyEditorModule.h"
+
 #define LOCTEXT_NAMESPACE "AdventurePluginEditor"
 
 IMPLEMENT_MODULE(FAdventurePluginEditor, AdventurePluginEditor)
@@ -62,6 +64,12 @@ void FAdventurePluginEditor::StartupModule()
 
 	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacterBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
 	UThumbnailManager::Get().RegisterCustomRenderer(UInventoryItemBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
+
+	/* Registering custom property layouts */
+	/*FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.RegisterCustomClassLayout(FAPSaveGameCustomization::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FAPSaveGameCustomization::MakeInstance));
+	*/
+	/**/
 
 	FGenericGraphEditorStyle::Initialize();
 

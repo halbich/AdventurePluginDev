@@ -18,6 +18,8 @@
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "GenericGraph/SEdNode_GenericGraphNode.h"
 #include "AdventurePluginRuntime/Public/Common/AdventurePluginConfig.h"
+#include "Customizations/APSaveGameCustomization.h"
+
 
 
 #define LOCTEXT_NAMESPACE "CustomSettings"

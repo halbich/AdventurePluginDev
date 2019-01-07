@@ -49,6 +49,7 @@ public class AdventurePluginDialogEditor : ModuleRules
 				// ... add private dependencies that you statically link with here ...	
                 "AdventurePluginEditor",
                 "AdventurePluginRuntime",
+                 "ApplicationCore",
             }
 			);
 		
