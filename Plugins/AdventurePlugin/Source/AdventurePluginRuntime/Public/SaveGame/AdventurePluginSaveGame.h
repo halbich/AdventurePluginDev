@@ -10,7 +10,7 @@
 /**
  *
  */
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, DefaultToInstanced, EditInlineNew)
 class ADVENTUREPLUGINRUNTIME_API UAdventurePluginSaveGame : public USaveGame
 {
 	GENERATED_BODY()

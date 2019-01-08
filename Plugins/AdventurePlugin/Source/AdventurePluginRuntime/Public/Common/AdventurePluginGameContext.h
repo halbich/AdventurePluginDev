@@ -19,7 +19,7 @@ class UAdventurePluginSaveGame;
 /**
  *
  */
-UCLASS()
+UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameContext : public UObject
 {
 	GENERATED_BODY()
@@ -38,7 +38,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Transient)
 		TScriptInterface< IDialoguePresenterInterface> DialoguePresenter;
 
-	UPROPERTY(BlueprintReadOnly, Transient)
+	UPROPERTY(BlueprintReadWrite, Transient, Category="Adventure Plugin | Game Context")
 		UAdventurePluginSaveGame* SaveGame;
 
 		UPROPERTY(BlueprintReadOnly, Transient)

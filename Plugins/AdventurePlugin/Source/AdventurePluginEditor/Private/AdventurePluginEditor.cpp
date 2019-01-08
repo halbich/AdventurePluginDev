@@ -21,6 +21,7 @@
 #include "AdventureCharacterBlueprint.h"
 #include "IconThumbnailRenderer.h"
 #include "GenericGraph/GenericGraphEditorStyle.h"
+#include "SaveGame/AdventurePluginSaveGame.h"
 
 #include "PropertyEditorModule.h"
 
@@ -66,9 +67,8 @@ void FAdventurePluginEditor::StartupModule()
 	UThumbnailManager::Get().RegisterCustomRenderer(UInventoryItemBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
 
 	/* Registering custom property layouts */
-	/*FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
-	PropertyModule.RegisterCustomClassLayout(FAPSaveGameCustomization::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FAPSaveGameCustomization::MakeInstance));
-	*/
+	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.RegisterCustomClassLayout(USaveGame::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FAPSaveGameCustomization::MakeInstance));
 	/**/
 
 	FGenericGraphEditorStyle::Initialize();

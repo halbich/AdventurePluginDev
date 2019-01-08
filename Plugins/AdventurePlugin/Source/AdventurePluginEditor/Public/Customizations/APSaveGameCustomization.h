@@ -21,7 +21,7 @@ protected:
 
 	virtual FText GetCurrentItemLabel() const;
 
-	//TSharedRef<SWidget> MakeWidgetForName(FComboItemType InOption);
+	TSharedRef<SWidget> MakeWidgetForName(FComboItemType InOption);
 
 	virtual void OnSelectionChanged(FComboItemType NewValue, ESelectInfo::Type);
 

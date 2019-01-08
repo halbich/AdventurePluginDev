@@ -8,8 +8,8 @@
 #include "APSaveGameDebuggerComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class ADVENTUREPLUGINRUNTIME_API UAPSaveGameDebuggerComponent : public USceneComponent
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
+class ADVENTUREPLUGINEDITOR_API  UAPSaveGameDebuggerComponent : public USceneComponent
 {
 	GENERATED_BODY()
 
@@ -17,7 +17,7 @@ public:
 	// Sets default values for this component's properties
 	UAPSaveGameDebuggerComponent();
 
-	UPROPERTY(EditAnywhere, Instanced, Category = "Save Game")
+	UPROPERTY(BlueprintReadOnly, Instanced, EditDefaultsOnly, Category = "Save Game")
 		UAdventurePluginSaveGame* DebugSaveGame;
 
 protected:
@@ -28,6 +28,11 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+
+	virtual bool IsEditorOnly() const override
+	{
+		return true;
+	}
 		
 	
 };
