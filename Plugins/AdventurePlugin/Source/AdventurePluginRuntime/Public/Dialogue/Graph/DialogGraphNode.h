@@ -23,6 +23,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
 		FName Id;
 
+#if WITH_EDITORONLY_DATA
+
+	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
+		FText Note;
+
+#endif
+
 #if WITH_EDITOR
 
 	virtual void SetNodeTitle(const FText& NewTitle) override;

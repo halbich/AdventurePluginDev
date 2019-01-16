@@ -12,5 +12,5 @@ class ADVENTUREPLUGINEDITOR_API UAssetGraphSchema_QuestGraph : public UAssetGrap
 public:
 	virtual const FPinConnectionResponse CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const override;
 	virtual void CreateDefaultNodesForGraph(UEdGraph& Graph) const override;
-	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType() const override;
+	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const override;
 };

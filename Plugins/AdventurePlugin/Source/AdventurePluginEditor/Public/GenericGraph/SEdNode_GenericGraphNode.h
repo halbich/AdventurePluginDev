@@ -14,7 +14,7 @@ public:
 	SLATE_BEGIN_ARGS(SEdNode_GenericGraphNode) {}
 	SLATE_END_ARGS()
 
-	void Construct(const FArguments& InArgs, UEdNode_GenericGraphNode* InNode);
+	virtual void Construct(const FArguments& InArgs, UEdNode_GenericGraphNode* InNode);
 
 	virtual void UpdateGraphNode() override;
 	virtual void CreatePinWidgets() override;
@@ -33,4 +33,13 @@ public:
 protected:
 	TSharedPtr<SBorder> NodeBody;
 	TSharedPtr<SHorizontalBox> OutputPinBox;
+
+	virtual TSharedPtr<SBoxPanel> GetMainBox();
+	virtual TSharedPtr<SBorder> GetNodeBody();
+
+	virtual FMargin GetInputPinMargin() const { return FMargin(20.0f, 0.0f); }
+	virtual FText GetUpperText() const { return FText(); }
+	virtual EVisibility GetUpperTextVisibility() const { return EVisibility::Collapsed; }
+	virtual FText GetLowerText() const { return FText(); }
+	virtual EVisibility GetLowerTextVisibility() const { return EVisibility::Collapsed; }
 };

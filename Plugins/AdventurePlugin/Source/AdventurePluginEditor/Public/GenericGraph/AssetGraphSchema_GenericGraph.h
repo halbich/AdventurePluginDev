@@ -69,6 +69,6 @@ private:
 	static int32 CurrentCacheRefreshID;
 
 protected:
-	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType() const;
+	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const;
 };
 
