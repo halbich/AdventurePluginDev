@@ -28,9 +28,9 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IfQuestFlag", "NodeTitle", "If \"{0}\" in \"{1}\""), 
-			FText::FromName(Flag.FlagName), 
-			FText::FromString(IsValid(Flag.Quest) ? Flag.Quest->Name : "<EMPTY>"));
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IfQuestFlag", "NodeTitle", "IF {0}->{1}"), 
+			FText::FromString(IsValid(Flag.Quest) ? Flag.Quest->Name : "<EMPTY>"),
+			FText::FromName(Flag.FlagName));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const

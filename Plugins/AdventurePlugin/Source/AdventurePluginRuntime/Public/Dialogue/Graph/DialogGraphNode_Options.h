@@ -20,13 +20,9 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Options");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 		ChoiceCount = 1;
-	}
-
-	virtual inline FText GetDescription_Implementation() const
-	{
-		return NSLOCTEXT("DialogGraphNode_Options", "OptionsName", "Dialog Options");
 	}
 
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
@@ -48,7 +44,7 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return NSLOCTEXT("DialogGraphNode_Options", "OptionsName", "Dialog Options");
+		return NSLOCTEXT("DialogGraphNode_Options", "OptionsName", "OPTIONS");
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const

@@ -57,6 +57,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "GenericGraphNode_Editor")
 	FText ContextMenuName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "GenericGraphNode_Editor")
+	FText ContextMenuCategory;
 #endif
 
 #if WITH_EDITOR

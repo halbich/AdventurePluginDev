@@ -18,6 +18,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Goto");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}
 
@@ -34,11 +35,11 @@ public:
 	{
 		if (TargetNodeId.IsNone()) 
 		{
-			return NSLOCTEXT("DialogGraphNode_Goto", "Goto no target title", "Goto: No target set");
+			return NSLOCTEXT("DialogGraphNode_Goto", "Goto no target title", "GOTO: No target set");
 		}
 		else 
 		{
-			return FText::Format(NSLOCTEXT("DialogGraphNode_Goto", "Goto title", "Goto: {0}"), FText::FromName(TargetNodeId));
+			return FText::Format(NSLOCTEXT("DialogGraphNode_Goto", "Goto title", "GOTO: {0}"), FText::FromName(TargetNodeId));
 		}
 	}
 

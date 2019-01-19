@@ -17,6 +17,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Increment integer variable");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
 
@@ -27,9 +28,9 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IncrementInteger", "NodeTitle", "Increment \"{0}\" in \"{1}\""), 
-			FText::FromName(Integer.IntegerName), 
-			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : "<EMPTY>"));
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IncrementInteger", "NodeTitle", "INCREMENT {0}->{1}"), 
+			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : "<EMPTY>"),
+			FText::FromName(Integer.IntegerName));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const

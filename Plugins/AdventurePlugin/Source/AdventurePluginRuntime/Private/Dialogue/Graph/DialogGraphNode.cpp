@@ -7,6 +7,7 @@ UDialogGraphNode::UDialogGraphNode()
 {
 #if WITH_EDITORONLY_DATA
 	CompatibleGraphType = UDialogGraph::StaticClass();
+	ContextMenuCategory = NSLOCTEXT("NodeCategories", "DialogNodeCategory", "Dialog nodes");
 	//BackgroundColor = FLinearColor::Red;
 #endif
 }

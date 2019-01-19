@@ -15,6 +15,13 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_TrueFalse : public UDialogGrap
 
 public:
 
+	UDialogGraphNode_TrueFalse()
+	{
+#if WITH_EDITORONLY_DATA
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
+#endif
+	}
+
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildTrue;
 

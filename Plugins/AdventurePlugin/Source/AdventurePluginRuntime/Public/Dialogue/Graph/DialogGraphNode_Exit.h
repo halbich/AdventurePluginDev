@@ -16,6 +16,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Exit");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}
 
@@ -27,7 +28,7 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::FromString("Exit");
+		return FText::FromString("EXIT");
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const

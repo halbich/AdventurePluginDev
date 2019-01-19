@@ -7,7 +7,7 @@ UGenericGraphNode::UGenericGraphNode()
 {
 #if WITH_EDITORONLY_DATA
 	CompatibleGraphType = UGenericGraph::StaticClass();
-
+	ContextMenuCategory = NSLOCTEXT("NodeCategories", "GenericNodeCategory", "Generic nodes");
 	BackgroundColor = FLinearColor::Black;
 #endif
 }

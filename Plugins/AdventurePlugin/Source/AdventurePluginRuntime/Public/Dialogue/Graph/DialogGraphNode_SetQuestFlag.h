@@ -17,6 +17,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Set Quest Flag");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
 
@@ -27,9 +28,9 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_SetQuestFlag", "NodeTitle", "Set \"{0}\" in \"{1}\""), 
-			FText::FromName(Flag.FlagName), 
-			FText::FromString(IsValid(Flag.Quest) ? Flag.Quest->Name : "<EMPTY>"));
+		return FText::Format(NSLOCTEXT("DialogGraphNode_SetQuestFlag", "NodeTitle", "SET {0}->{1}"), 
+			FText::FromString(IsValid(Flag.Quest) ? Flag.Quest->Name : "<EMPTY>"),
+			FText::FromName(Flag.FlagName));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const

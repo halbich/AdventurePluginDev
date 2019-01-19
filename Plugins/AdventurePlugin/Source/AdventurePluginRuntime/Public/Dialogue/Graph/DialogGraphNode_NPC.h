@@ -18,6 +18,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("NPC Line");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "LineCategory", "Lines");
 #endif
 		DialogText = NSLOCTEXT("DialogGraphNode_NPC", "DefaultDialog", "<Insert something clever>");
 	}
@@ -32,12 +33,22 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_NPC", "NPCSay", "NPC: \"{0}\""), DialogText);
+		return DialogText;
+	}
+
+	virtual void SetNodeTitle(const FText& NewTitle) override
+	{
+		DialogText = NewTitle;
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
 	{
 		return FLinearColor::Red;
+	}
+
+	virtual bool CanRename() const override
+	{
+		return true;
 	}
 
 #endif

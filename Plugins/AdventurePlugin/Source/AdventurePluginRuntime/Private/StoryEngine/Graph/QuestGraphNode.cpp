@@ -8,6 +8,7 @@ UQuestGraphNode::UQuestGraphNode()
 #if WITH_EDITORONLY_DATA
 
 	CompatibleGraphType = UQuestGraph::StaticClass();
+	ContextMenuCategory = NSLOCTEXT("NodeCategories", "QuestNodeCategory", "Quest Nodes");
 
 #endif
 }
