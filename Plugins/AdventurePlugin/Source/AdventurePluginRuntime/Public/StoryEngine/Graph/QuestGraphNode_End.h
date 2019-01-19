@@ -28,11 +28,6 @@ public:
 		return ParentNodesSatisfied(GameContext);
 	}
 
-	virtual inline uint32 GetOutputPinsCount() const override
-	{
-		return 0;
-	}
-
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const override

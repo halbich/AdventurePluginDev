@@ -3,7 +3,6 @@
 #include "CoreMinimal.h"
 #include "Slate.h"
 #include "Dialogue/EdDialogNode.h"
-#include "Dialogue/SEdDialogNode_TrueFalse.h"
 #include "EdDialogNode_TrueFalse.generated.h"
 
 UCLASS()
@@ -16,8 +15,10 @@ public:
 	UEdDialogNode_TrueFalse() { }
 	virtual ~UEdDialogNode_TrueFalse() { }
 
-	virtual TSharedPtr<class SGraphNode> CreateVisualWidget() override
+	virtual void AllocateDefaultPins() override
 	{
-		return SNew(SEdDialogNode_TrueFalse, this);
+		CreatePin(EGPD_Input, "MultipleNodes", FName(), FName());
+		CreatePin(EGPD_Output, "MultipleNodes", FName(), FName("True"));
+		CreatePin(EGPD_Output, "MultipleNodes", FName(), FName("False"));
 	}
 };

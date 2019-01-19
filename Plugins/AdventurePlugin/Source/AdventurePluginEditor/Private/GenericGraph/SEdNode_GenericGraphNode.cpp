@@ -227,22 +227,6 @@ TSharedPtr<SBorder> SEdNode_GenericGraphNode::GetNodeBody()
 void SEdNode_GenericGraphNode::CreatePinWidgets()
 {
 	UEdNode_GenericGraphNode* StateNode = CastChecked<UEdNode_GenericGraphNode>(GraphNode);
-	UGenericGraphNode* GenericNode = StateNode->GenericGraphNode;
-
-	int MissingPinCount = GenericNode->GetOutputPinsCount() - StateNode->Pins.Num() + 1;
-	if (MissingPinCount > 0)
-	{
-		for (int i = 0; i < MissingPinCount; ++i) StateNode->CreatePin(EGPD_Output, "MultipleNodes", FName(), FName());
-	}
-	else if (MissingPinCount < 0)
-	{
-		MissingPinCount = -MissingPinCount;
-		int Index = StateNode->Pins.Num() - 1 - MissingPinCount;
-		for (int i = 0; i < MissingPinCount; ++i) StateNode->RemovePinAt(Index, EGPD_Output);
-	}
-
-	UEdGraphPin* InputPin = StateNode->GetPinAt(0);
-	if (InputPin->Direction == EGPD_Input) InputPin->SafeSetHidden(!GenericNode->HasInputPin());
 
 	for (int32 PinIdx = 0; PinIdx < StateNode->Pins.Num(); PinIdx++)
 	{
@@ -250,7 +234,6 @@ void SEdNode_GenericGraphNode::CreatePinWidgets()
 		if (!MyPin->bHidden)
 		{
 			TSharedPtr<SGraphPin> NewPin = SNew(SGenericGraphPin, MyPin);
-
 			AddPin(NewPin.ToSharedRef());
 		}
 	}

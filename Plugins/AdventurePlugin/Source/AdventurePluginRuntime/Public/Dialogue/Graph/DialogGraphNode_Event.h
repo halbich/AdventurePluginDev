@@ -45,11 +45,6 @@ public:
 		return true;
 	}
 
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 0;
-	}
-
 #endif
 
 	virtual bool Execute(UAdventurePluginGameContext* context) override

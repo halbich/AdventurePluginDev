@@ -54,15 +54,42 @@ TSharedPtr<SBorder> SEdDialogNode_Options::GetNodeBody()
 
 void SEdDialogNode_Options::CreatePinWidgets()
 {
-	SEdDialogNode::CreatePinWidgets();
-
 	UEdNode_GenericGraphNode* StateNode = CastChecked<UEdNode_GenericGraphNode>(GraphNode);
+	UDialogGraphNode_Options* OptionsNode = CastChecked<UDialogGraphNode_Options>(DialogGraphNode);
 
-	for (int i = 1; i < StateNode->Pins.Num(); ++i)
+	int ChoiceCount = OptionsNode->ChoiceCount;
+	for (int i = StateNode->Pins.Num() - 1; i <= ChoiceCount; ++i)
 	{
-		UEdGraphPin* Pin = StateNode->Pins[i];
-		check(Pin->Direction == EEdGraphPinDirection::EGPD_Output);
-		Pin->PinFriendlyName = FText::AsNumber(i);
+		StateNode->CreatePin(EGPD_Output, "MultipleNodes", FName(), FName(*FString::FromInt(i)));
+	}
+	for (int i = StateNode->Pins.Num() - 2; i > ChoiceCount; --i)
+	{
+		StateNode->RemovePinAt(i, EGPD_Output);
+	}
+
+	// INPUT PIN
+	TSharedPtr<SGraphPin> NewPin = SNew(SGenericGraphPin, StateNode->Pins[0]);
+	AddPin(NewPin.ToSharedRef());
+
+	// FALLBACK PIN
+	NewPin = SNew(SGenericGraphPin, StateNode->Pins[1]);
+	const TSharedRef<SGraphPin>& PinToAdd = NewPin.ToSharedRef();
+	PinToAdd->SetOwner(SharedThis(this));
+	const UEdGraphPin* PinObj = PinToAdd->GetPinObj();
+	const bool bAdvancedParameter = PinObj && PinObj->bAdvancedView;
+	if (bAdvancedParameter) PinToAdd->SetVisibility(TAttribute<EVisibility>(PinToAdd, &SGraphPin::IsPinVisibleAsAdvanced));
+	AddToVerticalBox(LeftNodeBox, PinToAdd);
+	OutputPins.Add(PinToAdd);
+
+	// REST OF PINS
+	for (int32 PinIdx = 2; PinIdx < StateNode->Pins.Num(); PinIdx++)
+	{
+		UEdGraphPin* MyPin = StateNode->Pins[PinIdx];
+		if (!MyPin->bHidden)
+		{
+			NewPin = SNew(SGenericGraphPin, MyPin);
+			AddPin(NewPin.ToSharedRef());
+		}
 	}
 }
 

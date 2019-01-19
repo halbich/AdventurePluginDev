@@ -44,11 +44,6 @@ public:
 
 #endif
 
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 2;
-	}
-
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		int32 bin = IsValid(Flag.Quest) && Flag.Quest->GetFlag(context, Flag.FlagName) ? 0 : 1;

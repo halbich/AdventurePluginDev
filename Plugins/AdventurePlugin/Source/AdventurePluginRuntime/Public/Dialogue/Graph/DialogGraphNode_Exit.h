@@ -35,10 +35,5 @@ public:
 		return FLinearColor::White;
 	}
 
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 0;
-	}
-
 #endif
 };

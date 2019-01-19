@@ -57,11 +57,6 @@ public:
 		return true;
 	}
 
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 0;
-	}
-
 #endif
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override

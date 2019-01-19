@@ -5,8 +5,14 @@
 #include "Dialogue/Graph/DialogGraphNode_IfInteger.h"
 #include "Dialogue/Graph/DialogGraphNode_IfQuestFlag.h"
 #include "Dialogue/Graph/DialogGraphNode_IfInInventory.h"
+#include "Dialogue/Graph/DialogGraphNode_EntryMain.h"
+#include "Dialogue/Graph/DialogGraphNode_EntrySecondary.h"
+#include "Dialogue/Graph/DialogGraphNode_Exit.h"
+#include "Dialogue/Graph/DialogGraphNode_Goto.h"
 #include "EdDialogNode_Options.h"
 #include "EdDialogNode_TrueFalse.h"
+#include "EdDialogNode_NoInput.h"
+#include "EdDialogNode_NoOutput.h"
 #include "EdDialogNode_LessEqualMore.h"
 #include "DialogGraphNode_EntryMain.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
@@ -20,6 +26,10 @@ UAssetGraphSchema_DialogGraph::UAssetGraphSchema_DialogGraph()
 	EditorNodeMap.Add(UDialogGraphNode_IfInInventory::StaticClass(),	UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfInteger::StaticClass(),		UEdDialogNode_LessEqualMore::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_Options::StaticClass(),			UEdDialogNode_Options::StaticClass());
+	EditorNodeMap.Add(UDialogGraphNode_EntryMain::StaticClass(),		UEdDialogNode_NoInput::StaticClass());
+	EditorNodeMap.Add(UDialogGraphNode_EntrySecondary::StaticClass(),	UEdDialogNode_NoInput::StaticClass());
+	EditorNodeMap.Add(UDialogGraphNode_Exit::StaticClass(),				UEdDialogNode_NoOutput::StaticClass());
+	EditorNodeMap.Add(UDialogGraphNode_Goto::StaticClass(),				UEdDialogNode_NoOutput::StaticClass());
 }
 
 const FPinConnectionResponse UAssetGraphSchema_DialogGraph::CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const

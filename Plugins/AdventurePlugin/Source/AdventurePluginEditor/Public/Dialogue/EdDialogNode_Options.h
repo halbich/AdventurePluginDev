@@ -16,6 +16,13 @@ public:
 	UEdDialogNode_Options() { }
 	virtual ~UEdDialogNode_Options() { }
 
+	virtual void AllocateDefaultPins() override
+	{
+		CreatePin(EGPD_Input, "MultipleNodes", FName(), FName());
+		CreatePin(EGPD_Output, "MultipleNodes", FName(), FName("FB"));
+		CreatePin(EGPD_Output, "MultipleNodes", FName(), FName("1"));
+	}
+
 	virtual TSharedPtr<class SGraphNode> CreateVisualWidget() override
 	{
 		return SNew(SEdDialogNode_Options, this);

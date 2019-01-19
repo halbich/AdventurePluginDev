@@ -48,11 +48,6 @@ public:
 
 #endif
 
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 2;
-	}
-
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		int32 bin = IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(String.StringName)) == 0 ? 0 : 1;
