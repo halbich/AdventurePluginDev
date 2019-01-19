@@ -39,7 +39,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 
 				if (Pin->Direction != EEdGraphPinDirection::EGPD_Output) continue;
 
-				GenericGraphNode->ChildrenNodesBins.Add(GenericGraphNode->ChildrenNodes.Num());
+				//GenericGraphNode->ChildrenNodesBins.Add(GenericGraphNode->ChildrenNodes.Num());
 
 				for (int LinkToIdx = 0; LinkToIdx < Pin->LinkedTo.Num(); ++LinkToIdx)
 				{
@@ -53,6 +53,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 					{
 						GenericGraphNode->ChildrenNodes.Add(ChildNode);
 						ChildNode->ParentNodes.Add(GenericGraphNode);
+						EdNode->AddSpecialChild(Pin, ChildNode);
 					}
 					else
 					{
@@ -69,8 +70,6 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 		if (Node->ParentNodes.Num() == 0)
 		{
 			Graph->RootNodes.Add(Node);
-
-			//SortNodes(Node);
 		}
 
 		Node->Graph = Graph;
@@ -118,47 +117,11 @@ void UEdGraph_GenericGraph::Clear()
 			UGenericGraphNode* GenericGraphNode = EdNode->GenericGraphNode;
 			GenericGraphNode->ParentNodes.Reset();
 			GenericGraphNode->ChildrenNodes.Reset();
-			GenericGraphNode->ChildrenNodesBins.Reset();
+			//GenericGraphNode->ChildrenNodesBins.Reset();
+			GenericGraphNode->ResetSpecialChildren();
 		}
 	}
 }
-
-/*
-void UEdGraph_GenericGraph::SortNodes(UGenericGraphNode* RootNode)
-{
-	int Level = 0;
-	TArray<UGenericGraphNode*> CurrLevelNodes = { RootNode };
-	TArray<UGenericGraphNode*> NextLevelNodes;
-
-	while (CurrLevelNodes.Num() != 0)
-	{
-		int32 LevelWidth = 0;
-		for (int i = 0; i < CurrLevelNodes.Num(); ++i)
-		{
-			UGenericGraphNode* Node = CurrLevelNodes[i];
-
-			auto Comp = [&](const UGenericGraphNode& L, const UGenericGraphNode& R)
-			{
-				UEdNode_GenericGraphNode* EdNode_LNode = NodeMap[&L];
-				UEdNode_GenericGraphNode* EdNode_RNode = NodeMap[&R];
-				return EdNode_LNode->NodePosX < EdNode_RNode->NodePosX;
-			};
-
-			Node->ChildrenNodes.Sort(Comp);
-			Node->ParentNodes.Sort(Comp);
-
-			for (int j = 0; j < Node->ChildrenNodes.Num(); ++j)
-			{
-				NextLevelNodes.Add(Node->ChildrenNodes[j]);
-			}
-		}
-
-		CurrLevelNodes = NextLevelNodes;
-		NextLevelNodes.Reset();
-		++Level;
-	}
-}
-*/
 
 void UEdGraph_GenericGraph::PostEditUndo()
 {

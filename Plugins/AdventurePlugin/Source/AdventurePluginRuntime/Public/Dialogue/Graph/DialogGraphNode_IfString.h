@@ -2,12 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
+#include "DialogGraphNode_TrueFalse.h"
 #include "StoryEngine/Graph/QuestGraph.h"
 #include "StoryEngine/Structs/QuestGraphString.h"
 #include "DialogGraphNode_IfString.generated.h"
 
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfString : public UDialogGraphNode
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfString : public UDialogGraphNode_TrueFalse
 {
 	GENERATED_BODY()
 
@@ -50,7 +51,8 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		int32 bin = IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(String.StringName)) == 0 ? 0 : 1;
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
+		return IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(String.StringName)) == 0
+			? ChildTrue
+			: ChildFalse;
 	}
 };

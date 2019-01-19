@@ -32,6 +32,18 @@ public:
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
 	uint32 ChoiceCount;
 
+	UPROPERTY(BlueprintReadOnly)
+	UDialogGraphNode* ChildFallback;
+
+	UPROPERTY(BlueprintReadOnly)
+	TMap<int, UDialogGraphNode*> ChildOptions;
+
+	virtual void ResetSpecialChildren() override
+	{
+		ChildFallback = nullptr;
+		ChildOptions.Reset();
+	}
+
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
@@ -68,14 +80,15 @@ public:
 
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
-		selectedBinIndex = -1;
-		optionToBinMapping.Reset();
+		selectedOptionIndex = -1;
+		optionMapping.Reset();
 		// Go through all child nodes, if visiting something other than Player Line, go to their children, find all Player Lines and show them to the player.
 		auto optionsToPresent = TArray<FDialogLineData>();
 		optionsToPresent.Reserve(ChoiceCount);
-		for (int binIndex = 1; binIndex <= (int)ChoiceCount; ++binIndex) // bin zero is fallback
+		check(ChildOptions.Num() == ChoiceCount);
+		for (int i = 0; i < (int)ChoiceCount; ++i)
 		{
-			auto* childNode = GetFirstChildInBin(binIndex);
+			auto* childNode = ChildOptions[i];
 			while (childNode != nullptr)
 			{
 				auto* nodeCasted = Cast<UDialogGraphNode>(childNode);
@@ -87,7 +100,7 @@ public:
 				if (nodeCasted->IsDialogOption())
 				{
 					// Found a player line to present
-					optionToBinMapping.Add(optionsToPresent.Num(), binIndex);
+					optionMapping.Add(optionsToPresent.Num(), i);
 					optionsToPresent.Add(nodeCasted->GetDialogLine());
 					break;
 				}
@@ -110,28 +123,24 @@ public:
 
 	virtual bool DialogueOptionSelected_Implementation(int32 selectedNodeIndex, UDialogueController* controller) override
 	{
-		this->selectedBinIndex = optionToBinMapping[selectedNodeIndex];
+		this->selectedOptionIndex = optionMapping[selectedNodeIndex];
 		return true;
 	}
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		// TODO: Warning when calling with invalid index.
-		if (selectedBinIndex < 0)
-		{
-			// fallback
-			return Cast<UDialogGraphNode>(GetFirstChildInBin(0));
-		}
-		check(selectedBinIndex > 0 && selectedBinIndex <= (int)ChoiceCount);
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(selectedBinIndex));
+		if (selectedOptionIndex < 0) return ChildFallback;
+		check(selectedOptionIndex < (int)ChoiceCount);
+		return ChildOptions[selectedOptionIndex];
 		// return (selectedOptionIndex >= 0 && selectedOptionIndex < ChildrenNodes.Num()) ? Cast<UDialogGraphNode>(ChildrenNodes[selectedOptionIndex]) : nullptr;
 	}
 
 	
 protected:
 	UPROPERTY(Transient)
-	int32 selectedBinIndex;
+	int32 selectedOptionIndex;
 
 	UPROPERTY(Transient)
-	TMap<int32, int32> optionToBinMapping;
+	TMap<int32, int32> optionMapping;
 };

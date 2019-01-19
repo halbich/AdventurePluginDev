@@ -26,6 +26,22 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
 	int32 Constant;
 
+	UPROPERTY(BlueprintReadOnly)
+	UDialogGraphNode* ChildLess;
+
+	UPROPERTY(BlueprintReadOnly)
+	UDialogGraphNode* ChildEqual;
+
+	UPROPERTY(BlueprintReadOnly)
+	UDialogGraphNode* ChildMore;
+
+	virtual void ResetSpecialChildren() override
+	{
+		ChildLess = nullptr;
+		ChildEqual = nullptr;
+		ChildMore = nullptr;
+	}
+
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
@@ -50,13 +66,13 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		int32 bin = 0;
 		if (IsValid(Integer.Quest))
 		{
 			int32 val = Integer.Quest->GetInteger(Integer.IntegerName);
-			if (val == Constant) bin = 1;
-			else if (val > Constant) bin = 2;
+			if (val < Constant) return ChildLess;
+			else if (val == Constant) return ChildEqual;
+			else return ChildMore;
 		}
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
+		return nullptr;
 	}
 };

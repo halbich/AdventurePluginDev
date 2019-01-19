@@ -2,12 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
+#include "DialogGraphNode_TrueFalse.h"
 #include "StoryEngine/Graph/QuestGraph.h"
 #include "StoryEngine/Structs/QuestGraphBool.h"
 #include "DialogGraphNode_IfBool.generated.h"
 
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfBool : public UDialogGraphNode
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfBool : public UDialogGraphNode_TrueFalse
 {
 	GENERATED_BODY()
 
@@ -46,7 +47,8 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		int32 bin = IsValid(Bool.Quest) && Bool.Quest->GetBool(Bool.BoolName) ? 0 : 1;
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
+		return IsValid(Bool.Quest) && Bool.Quest->GetBool(Bool.BoolName)
+			? ChildTrue
+			: ChildFalse;
 	}
 };

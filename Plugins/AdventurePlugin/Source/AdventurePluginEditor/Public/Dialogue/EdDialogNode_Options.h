@@ -4,7 +4,10 @@
 #include "Slate.h"
 #include "Dialogue/EdDialogNode.h"
 #include "Dialogue/SEdDialogNode_Options.h"
+#include "Dialogue/Graph/DialogGraphNode_Options.h"
 #include "EdDialogNode_Options.generated.h"
+
+const FName PinNameFallback("FB");
 
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdDialogNode_Options : public UEdDialogNode
@@ -19,8 +22,25 @@ public:
 	virtual void AllocateDefaultPins() override
 	{
 		CreatePin(EGPD_Input, "MultipleNodes", FName(), FName());
-		CreatePin(EGPD_Output, "MultipleNodes", FName(), FName("FB"));
+		CreatePin(EGPD_Output, "MultipleNodes", FName(), PinNameFallback);
 		CreatePin(EGPD_Output, "MultipleNodes", FName(), FName("1"));
+	}
+
+	virtual void AddSpecialChild(const UEdGraphPin* Pin, UGenericGraphNode* Child) override
+	{
+		auto OptionsNode = CastChecked<UDialogGraphNode_Options>(GenericGraphNode);
+		auto DialogChild = CastChecked<UDialogGraphNode>(Child);
+		if (Pin->PinName == PinNameFallback) OptionsNode->ChildFallback = DialogChild;
+		else
+		{
+			FString NumString = Pin->PinName.GetPlainNameString();
+			if (NumString.IsNumeric())
+			{
+				int number = FCString::Atoi(*NumString);
+				check(number > 0 && number <= (int)OptionsNode->ChoiceCount);
+				OptionsNode->ChildOptions.Add(number - 1, DialogChild);
+			}
+		}
 	}
 
 	virtual TSharedPtr<class SGraphNode> CreateVisualWidget() override
