@@ -18,7 +18,8 @@ UGenericGraph::~UGenericGraph()
 
 }
 
-void UGenericGraph::Print(bool ToConsole /*= true*/, bool ToScreen /*= true*/)
+/*
+void UGenericGraph::Print(bool ToConsole = true, bool ToScreen = true)
 {
 	int Level = 0;
 	TArray<UGenericGraphNode*> CurrLevelNodes = RootNodes;
@@ -110,6 +111,7 @@ void UGenericGraph::GetNodesByLevel(int Level, TArray<UGenericGraphNode*>& Nodes
 		++CurrLEvel;
 	}
 }
+*/
 
 void UGenericGraph::ClearGraph()
 {

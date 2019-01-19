@@ -15,8 +15,7 @@ protected:
 
 	UQuestGraphNode* QuestGraphNode;
 
-	virtual TSharedPtr<SBoxPanel> GetMainBox() override;
-	virtual FMargin GetInputPinMargin() const override;
+	virtual bool IsGraphHorizontal() const override { return true; }
 	virtual FText GetUpperText() const override;
 	virtual EVisibility GetUpperTextVisibility() const override;
 };

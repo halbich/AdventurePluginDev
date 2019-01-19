@@ -30,5 +30,5 @@ public:
 protected:
 	void Clear();
 
-	void SortNodes(UGenericGraphNode* RootNode);
+	//void SortNodes(UGenericGraphNode* RootNode);
 };

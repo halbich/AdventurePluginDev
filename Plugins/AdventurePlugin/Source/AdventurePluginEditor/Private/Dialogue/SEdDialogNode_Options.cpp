@@ -9,26 +9,10 @@
 
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
-TSharedPtr<SBoxPanel> SEdDialogNode_Options::GetMainBox()
+TSharedPtr<SBorder> SEdDialogNode_Options::GetNodeBody()
 {
-	const FMargin NodePadding = FMargin(2.0f, 20.0f);
-
-	return SNew(SVerticalBox)
-
-	// INPUT PIN AREA
-	+ SVerticalBox::Slot()
-	.AutoHeight()
-	[
-		SNew(SBox)
-		.MinDesiredHeight(NodePadding.Top)
-		[
-			SAssignNew(LeftNodeBox, SVerticalBox)
-		]
-	]
-
-	// STATE NAME AREA
-	+ SVerticalBox::Slot()
-	.Padding(FMargin(NodePadding.Left, 0.0f, NodePadding.Right, 0.0f))
+	return SAssignNew(NodeBody, SBorder)
+	.Padding(0)
 	[
 		SNew(SHorizontalBox)
 		+ SHorizontalBox::Slot()
@@ -37,7 +21,7 @@ TSharedPtr<SBoxPanel> SEdDialogNode_Options::GetMainBox()
 			+ SVerticalBox::Slot()
 			.FillHeight(1.0)
 			[
-				GetNodeBody().ToSharedRef()
+				SEdDialogNode::GetNodeBody().ToSharedRef()
 			]
 		]
 		+ SHorizontalBox::Slot()
@@ -63,25 +47,6 @@ TSharedPtr<SBoxPanel> SEdDialogNode_Options::GetMainBox()
 				.VAlign(EVerticalAlignment::VAlign_Center)
 				.Text(LOCTEXT("MinusButton", "-"))
 				.OnClicked(this, &SEdDialogNode_Options::DecrementOptionsCount)
-			]
-		]
-	]
-
-	// OUTPUT PIN AREA
-	+ SVerticalBox::Slot()
-	.AutoHeight()
-	[
-		SNew(SBox)
-		.MinDesiredHeight(NodePadding.Bottom)
-		[
-			SAssignNew(RightNodeBox, SVerticalBox)
-			+ SVerticalBox::Slot()
-			.HAlign(HAlign_Fill)
-			.VAlign(VAlign_Fill)
-			.Padding(20.0f, 0.0f)
-			.FillHeight(1.0f)
-			[
-				SAssignNew(OutputPinBox, SHorizontalBox)
 			]
 		]
 	];

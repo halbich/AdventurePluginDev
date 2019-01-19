@@ -12,59 +12,6 @@
 
 #define LOCTEXT_NAMESPACE "EdNode_GenericGraph"
 
-//////////////////////////////////////////////////////////////////////////
-class SGenericGraphPin : public SGraphPin
-{
-public:
-	SLATE_BEGIN_ARGS(SGenericGraphPin) {}
-	SLATE_END_ARGS()
-
-	void Construct(const FArguments& InArgs, UEdGraphPin* InPin)
-	{
-		this->SetCursor(EMouseCursor::Default);
-
-		bShowLabel = true;
-
-		GraphPinObj = InPin;
-		check(GraphPinObj != nullptr);
-
-		const UEdGraphSchema* Schema = GraphPinObj->GetSchema();
-		check(Schema);
-
-		SBorder::Construct(SBorder::FArguments()
-			.BorderImage(this, &SGenericGraphPin::GetPinBorder)
-			.BorderBackgroundColor(this, &SGenericGraphPin::GetPinColor)
-			.OnMouseButtonDown(this, &SGenericGraphPin::OnPinMouseDown)
-			.Cursor(this, &SGenericGraphPin::GetPinCursor)
-			.HAlign(EHorizontalAlignment::HAlign_Center)
-			.VAlign(EVerticalAlignment::VAlign_Center)
-			.Padding(FMargin(10, 0))
-			.Content()
-			[
-				GetLabelWidget(FName())
-			]
-		);
-	}
-
-protected:
-	virtual FSlateColor GetPinColor() const override
-	{
-		return GenericGraphColors::Pin::Default;
-	}
-
-	virtual TSharedRef<SWidget>	GetDefaultValueWidget() override
-	{
-		return SNew(STextBlock);
-	}
-
-	const FSlateBrush* GetPinBorder() const
-	{
-		return FEditorStyle::GetBrush(TEXT("Graph.StateNode.Body"));
-	}
-};
-
-
-//////////////////////////////////////////////////////////////////////////
 void SEdNode_GenericGraphNode::Construct(const FArguments& InArgs, UEdNode_GenericGraphNode* InNode)
 {
 	GraphNode = InNode;
@@ -81,7 +28,8 @@ void SEdNode_GenericGraphNode::UpdateGraphNode()
 	// Reset variables that are going to be exposed, in case we are refreshing an already setup node.
 	RightNodeBox.Reset();
 	LeftNodeBox.Reset();
-	OutputPinBox.Reset();
+	TopNodeBox.Reset();
+	BottomNodeBox.Reset();
 
 	this->ContentScale.Bind(this, &SGraphNode::GetContentScale);
 	this->GetOrAddSlot(ENodeZone::Center)
@@ -135,49 +83,67 @@ void SEdNode_GenericGraphNode::UpdateGraphNode()
 
 TSharedPtr<SBoxPanel> SEdNode_GenericGraphNode::GetMainBox()
 {
-	const FMargin NodePadding = FMargin(2.0f, 20.0f);
+	bool horizontal = IsGraphHorizontal();
+	float pinWidth = horizontal ? 20 : 5;
+	float pinHeight = horizontal ? 15 : 20;
+	float paddingVertical = 5;
+	float paddingHorizontal = 10;
 
-	return SNew(SVerticalBox)
+	return SNew(SHorizontalBox)
 
-	// INPUT PIN AREA
-	+ SVerticalBox::Slot()
-	.AutoHeight()
+	+ SHorizontalBox::Slot()
+	.AutoWidth()
 	[
 		SNew(SBox)
-		.MinDesiredHeight(NodePadding.Top)
+		.MinDesiredWidth(pinWidth)
+		.Padding(FMargin(0, paddingVertical))
 		[
 			SAssignNew(LeftNodeBox, SVerticalBox)
 		]
 	]
 
-	// STATE NAME AREA
-	+ SVerticalBox::Slot()
-	.Padding(FMargin(NodePadding.Left, 0.0f, NodePadding.Right, 0.0f))
+	+ SHorizontalBox::Slot()
+	.AutoWidth()
 	[
 		SNew(SVerticalBox)
+
 		+ SVerticalBox::Slot()
 		.AutoHeight()
 		[
+			SNew(SBox)
+			.MinDesiredHeight(pinHeight)
+			.Padding(FMargin(paddingHorizontal, 0))
+			[
+				SAssignNew(TopNodeBox, SHorizontalBox)
+			]
+		]
+
+		+ SVerticalBox::Slot()
+		.FillHeight(1.0f)
+		[
 			GetNodeBody().ToSharedRef()
+		]
+
+		+ SVerticalBox::Slot()
+		.AutoHeight()
+		[
+			SNew(SBox)
+			.MinDesiredHeight(pinHeight)
+			.Padding(FMargin(paddingHorizontal, 0))
+			[
+				SAssignNew(BottomNodeBox, SHorizontalBox)
+			]
 		]
 	]
 
-	// OUTPUT PIN AREA
-	+ SVerticalBox::Slot()
-	.AutoHeight()
+	+ SHorizontalBox::Slot()
+	.AutoWidth()
 	[
 		SNew(SBox)
-		.MinDesiredHeight(NodePadding.Bottom)
+		.MinDesiredWidth(pinWidth)
+		.Padding(FMargin(0, paddingVertical))
 		[
 			SAssignNew(RightNodeBox, SVerticalBox)
-			+ SVerticalBox::Slot()
-			.HAlign(HAlign_Fill)
-			.VAlign(VAlign_Fill)
-			.Padding(20.0f, 0.0f)
-			.FillHeight(1.0f)
-			[
-				SAssignNew(OutputPinBox, SHorizontalBox)
-			]
 		]
 	];
 }
@@ -303,27 +269,38 @@ void SEdNode_GenericGraphNode::AddPin(const TSharedRef<SGraphPin>& PinToAdd)
 
 	if (PinToAdd->GetDirection() == EEdGraphPinDirection::EGPD_Input)
 	{
-		LeftNodeBox->AddSlot()
-			.HAlign(HAlign_Fill)
-			.VAlign(VAlign_Fill)
-			.FillHeight(1.0f)
-			.Padding(GetInputPinMargin())
-			[
-				PinToAdd
-			];
+		if (IsGraphHorizontal()) AddToVerticalBox(LeftNodeBox, PinToAdd);
+		else AddToHorizontalBox(TopNodeBox, PinToAdd);
 		InputPins.Add(PinToAdd);
 	}
 	else // Direction == EEdGraphPinDirection::EGPD_Output
 	{
-		OutputPinBox->AddSlot()
-			.HAlign(HAlign_Fill)
-			.VAlign(VAlign_Fill)
-			.FillWidth(1.0f)
-			[
-				PinToAdd
-			];
+		if (IsGraphHorizontal()) AddToVerticalBox(RightNodeBox, PinToAdd);
+		else AddToHorizontalBox(BottomNodeBox, PinToAdd);
 		OutputPins.Add(PinToAdd);
 	}
+}
+
+void SEdNode_GenericGraphNode::AddToHorizontalBox(TSharedPtr<SHorizontalBox> Box, const TSharedRef<SGraphPin>& PinToAdd)
+{
+	Box->AddSlot()
+		.HAlign(HAlign_Fill)
+		.VAlign(VAlign_Fill)
+		.FillWidth(1.0f)
+		[
+			PinToAdd
+		];
+}
+
+void SEdNode_GenericGraphNode::AddToVerticalBox(TSharedPtr<SVerticalBox> Box, const TSharedRef<SGraphPin>& PinToAdd)
+{
+	Box->AddSlot()
+		.HAlign(HAlign_Fill)
+		.VAlign(VAlign_Fill)
+		.FillHeight(1.0f)
+		[
+			PinToAdd
+		];
 }
 
 bool SEdNode_GenericGraphNode::IsNameReadOnly() const

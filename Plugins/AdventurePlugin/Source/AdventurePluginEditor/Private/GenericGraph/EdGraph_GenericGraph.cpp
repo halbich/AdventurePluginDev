@@ -25,8 +25,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 	{
 		if (UEdNode_GenericGraphNode* EdNode = Cast<UEdNode_GenericGraphNode>(Nodes[i]))
 		{
-			if (EdNode->GenericGraphNode == nullptr)
-				continue;
+			if (EdNode->GenericGraphNode == nullptr) continue;
 
 			UGenericGraphNode* GenericGraphNode = EdNode->GenericGraphNode;
 
@@ -38,8 +37,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 			{
 				UEdGraphPin* Pin = EdNode->Pins[PinIdx];
 
-				if (Pin->Direction != EEdGraphPinDirection::EGPD_Output)
-					continue;
+				if (Pin->Direction != EEdGraphPinDirection::EGPD_Output) continue;
 
 				GenericGraphNode->ChildrenNodesBins.Add(GenericGraphNode->ChildrenNodes.Num());
 
@@ -54,7 +52,6 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 					if (ChildNode != nullptr)
 					{
 						GenericGraphNode->ChildrenNodes.Add(ChildNode);
-
 						ChildNode->ParentNodes.Add(GenericGraphNode);
 					}
 					else
@@ -73,7 +70,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 		{
 			Graph->RootNodes.Add(Node);
 
-			SortNodes(Node);
+			//SortNodes(Node);
 		}
 
 		Node->Graph = Graph;
@@ -126,6 +123,7 @@ void UEdGraph_GenericGraph::Clear()
 	}
 }
 
+/*
 void UEdGraph_GenericGraph::SortNodes(UGenericGraphNode* RootNode)
 {
 	int Level = 0;
@@ -160,6 +158,7 @@ void UEdGraph_GenericGraph::SortNodes(UGenericGraphNode* RootNode)
 		++Level;
 	}
 }
+*/
 
 void UEdGraph_GenericGraph::PostEditUndo()
 {

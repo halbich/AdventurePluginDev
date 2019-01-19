@@ -31,6 +31,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "GenericGraph")
 	TArray<UGenericGraphNode*> AllNodes;
 
+	/*
 	UFUNCTION(BlueprintCallable, Category = "GenericGraph")
 	void Print(bool ToConsole = true, bool ToScreen = true);
 
@@ -39,6 +40,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "GenericGraph")
 	void GetNodesByLevel(int Level, TArray<UGenericGraphNode*>& Nodes);
+	*/
 
 	void ClearGraph();
 
