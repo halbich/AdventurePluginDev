@@ -7,7 +7,7 @@ UGenericGraphNode::UGenericGraphNode()
 {
 #if WITH_EDITORONLY_DATA
 	CompatibleGraphType = UGenericGraph::StaticClass();
-
+	ContextMenuCategory = NSLOCTEXT("NodeCategories", "GenericNodeCategory", "Generic nodes");
 	BackgroundColor = FLinearColor::Black;
 #endif
 }
@@ -22,20 +22,17 @@ FText UGenericGraphNode::GetDescription_Implementation() const
 	return LOCTEXT("NodeDesc", "Generic Graph Node");
 }
 
+/*
 UGenericGraphNode* UGenericGraphNode::GetFirstChildInBin(int bin) const
 {
 	int bins = ChildrenNodesBins.Num();
-	check(bins == GetOutputPinsCount());
+	//check(bins == GetOutputPinsCount());
 	check(bins > bin);
 	int32 child = ChildrenNodesBins[bin];
 	if (bin + 1 < bins && ChildrenNodesBins[bin + 1] == child) return nullptr;
 	return ChildrenNodes.Num() > child ? ChildrenNodes[child] : nullptr;
 }
-
-uint32 UGenericGraphNode::GetOutputPinsCount() const
-{
-	return 1;
-}
+*/
 
 #if WITH_EDITOR
 
@@ -75,11 +72,6 @@ bool UGenericGraphNode::CanDuplicate() const
 }
 
 bool UGenericGraphNode::CanRename() const
-{
-	return true;
-}
-
-bool UGenericGraphNode::HasInputPin() const
 {
 	return true;
 }

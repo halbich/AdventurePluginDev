@@ -18,6 +18,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Event");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}
 
@@ -32,7 +33,7 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_Event", "Event title", "Fire event: {0}"), FText::FromName(Event.EventName));
+		return FText::Format(NSLOCTEXT("DialogGraphNode_Event", "Event title", "FIRE EVENT: {0}"), FText::FromName(Event.EventName));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
@@ -43,11 +44,6 @@ public:
 	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
 	{
 		return true;
-	}
-
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 0;
 	}
 
 #endif

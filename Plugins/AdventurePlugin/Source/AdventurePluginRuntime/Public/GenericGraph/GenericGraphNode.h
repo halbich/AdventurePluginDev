@@ -26,8 +26,8 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
 	TArray<UGenericGraphNode*> ChildrenNodes;
 
-	UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
-	TArray<int> ChildrenNodesBins;
+	//UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
+	//TArray<int> ChildrenNodesBins;
 
 	UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
 	bool IsLeafNode() const;
@@ -39,10 +39,10 @@ public:
 	FText GetDescription() const;
 	virtual FText GetDescription_Implementation() const;
 
-	UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
-	UGenericGraphNode* GetFirstChildInBin(int bin) const;
+	//UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
+	//UGenericGraphNode* GetFirstChildInBin(int bin) const;
 
-	virtual uint32 GetOutputPinsCount() const;
+	virtual void ResetSpecialChildren() { }
 
 	//////////////////////////////////////////////////////////////////////////
 #if WITH_EDITORONLY_DATA
@@ -57,6 +57,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "GenericGraphNode_Editor")
 	FText ContextMenuName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "GenericGraphNode_Editor")
+	FText ContextMenuCategory;
 #endif
 
 #if WITH_EDITOR
@@ -75,7 +78,5 @@ public:
 	virtual bool CanDuplicate() const;
 
 	virtual bool CanRename() const;
-
-	virtual bool HasInputPin() const;
 #endif
 };

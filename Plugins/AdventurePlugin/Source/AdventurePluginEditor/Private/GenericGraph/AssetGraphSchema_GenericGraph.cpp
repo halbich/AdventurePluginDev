@@ -161,7 +161,9 @@ void UAssetGraphSchema_GenericGraph::GetGraphContextActions(FGraphContextMenuBui
 
 	TSet<TSubclassOf<UGenericGraphNode> > Visited;
 
-	FText Desc = Graph->NodeType.GetDefaultObject()->ContextMenuName;
+	UGenericGraphNode* CDO = Graph->NodeType.GetDefaultObject();
+	FText Desc = CDO->ContextMenuName;
+	FText Category = CDO->ContextMenuCategory;
 
 	if (Desc.IsEmpty())
 	{
@@ -172,8 +174,8 @@ void UAssetGraphSchema_GenericGraph::GetGraphContextActions(FGraphContextMenuBui
 
 	if (!Graph->NodeType->HasAnyClassFlags(CLASS_Abstract))
 	{
-		TSharedPtr<FAssetSchemaAction_GenericGraph_NewNode> NewNodeAction(new FAssetSchemaAction_GenericGraph_NewNode(LOCTEXT("GenericGraphNodeAction", "Generic Graph Node"), Desc, AddToolTip, 0));
-		NewNodeAction->NodeTemplate = NewObject<UEdNode_GenericGraphNode>(ContextMenuBuilder.OwnerOfTemporaries, GetEditorNodeType());
+		TSharedPtr<FAssetSchemaAction_GenericGraph_NewNode> NewNodeAction(new FAssetSchemaAction_GenericGraph_NewNode(Category, Desc, AddToolTip, 0));
+		NewNodeAction->NodeTemplate = NewObject<UEdNode_GenericGraphNode>(ContextMenuBuilder.OwnerOfTemporaries, GetEditorNodeType(Graph->NodeType));
 		NewNodeAction->NodeTemplate->GenericGraphNode = NewObject<UGenericGraphNode>(NewNodeAction->NodeTemplate, Graph->NodeType);
 		NewNodeAction->NodeTemplate->GenericGraphNode->Graph = Graph;
 		ContextMenuBuilder.AddAction(NewNodeAction);
@@ -190,14 +192,17 @@ void UAssetGraphSchema_GenericGraph::GetGraphContextActions(FGraphContextMenuBui
 			if (It->GetName().StartsWith("REINST") || It->GetName().StartsWith("SKEL"))
 				continue;
 
-			if (!Graph->GetClass()->IsChildOf(NodeType.GetDefaultObject()->CompatibleGraphType))
+			CDO = NodeType.GetDefaultObject();
+
+			if (!Graph->GetClass()->IsChildOf(CDO->CompatibleGraphType))
 				continue;
 
 
-			if (!NodeType.GetDefaultObject()->CanAdd())
+			if (!CDO->CanAdd())
 				continue;
 
-			Desc = NodeType.GetDefaultObject()->ContextMenuName;
+			Desc = CDO->ContextMenuName;
+			Category = CDO->ContextMenuCategory;
 
 			if (Desc.IsEmpty())
 			{
@@ -206,8 +211,8 @@ void UAssetGraphSchema_GenericGraph::GetGraphContextActions(FGraphContextMenuBui
 				Desc = FText::FromString(Title);
 			}
 
-			TSharedPtr<FAssetSchemaAction_GenericGraph_NewNode> Action(new FAssetSchemaAction_GenericGraph_NewNode(LOCTEXT("GenericGraphNodeAction", "Generic Graph Node"), Desc, AddToolTip, 0));
-			Action->NodeTemplate = NewObject<UEdNode_GenericGraphNode>(ContextMenuBuilder.OwnerOfTemporaries, GetEditorNodeType());
+			TSharedPtr<FAssetSchemaAction_GenericGraph_NewNode> Action(new FAssetSchemaAction_GenericGraph_NewNode(Category, Desc, AddToolTip, 0));
+			Action->NodeTemplate = NewObject<UEdNode_GenericGraphNode>(ContextMenuBuilder.OwnerOfTemporaries, GetEditorNodeType(NodeType));
 			Action->NodeTemplate->GenericGraphNode = NewObject<UGenericGraphNode>(Action->NodeTemplate, NodeType);
 			Action->NodeTemplate->GenericGraphNode->Graph = Graph;
 			ContextMenuBuilder.AddAction(Action);
@@ -412,7 +417,7 @@ void UAssetGraphSchema_GenericGraph::ForceVisualizationCacheClear() const
 	++CurrentCacheRefreshID;
 }
 
-TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_GenericGraph::GetEditorNodeType() const
+TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_GenericGraph::GetEditorNodeType(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const
 {
 	return UEdNode_GenericGraphNode::StaticClass();
 }

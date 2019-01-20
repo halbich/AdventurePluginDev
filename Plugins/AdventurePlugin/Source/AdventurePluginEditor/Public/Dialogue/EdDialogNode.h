@@ -1,7 +1,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Slate.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
+#include "Dialogue/SEdDialogNode.h"
 #include "EdDialogNode.generated.h"
 
 UCLASS()
@@ -14,5 +16,8 @@ public:
 	UEdDialogNode() { }
 	virtual ~UEdDialogNode() { }
 
-	virtual TSharedPtr<class SGraphNode> CreateVisualWidget() override;
+	virtual TSharedPtr<class SGraphNode> CreateVisualWidget() override
+	{
+		return SNew(SEdDialogNode, this);
+	}
 };

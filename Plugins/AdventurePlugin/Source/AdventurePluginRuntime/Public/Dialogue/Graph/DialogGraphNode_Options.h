@@ -20,28 +20,31 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Options");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 		ChoiceCount = 1;
-	}
-
-	virtual inline FText GetDescription_Implementation() const
-	{
-		return NSLOCTEXT("DialogGraphNode_Options", "OptionsName", "Dialog Options");
 	}
 
 	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
 	uint32 ChoiceCount;
 
-	virtual inline uint32 GetOutputPinsCount() const override
+	UPROPERTY(BlueprintReadOnly)
+	UDialogGraphNode* ChildFallback;
+
+	UPROPERTY(BlueprintReadOnly)
+	TMap<int, UDialogGraphNode*> ChildOptions;
+
+	virtual void ResetSpecialChildren() override
 	{
-		return ChoiceCount;
+		ChildFallback = nullptr;
+		ChildOptions.Reset();
 	}
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return NSLOCTEXT("DialogGraphNode_Options", "OptionsName", "Dialog Options");
+		return NSLOCTEXT("DialogGraphNode_Options", "OptionsName", "OPTIONS");
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
@@ -74,13 +77,14 @@ public:
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
 		selectedOptionIndex = -1;
-		optionToBinMapping.Reset();
+		optionMapping.Reset();
 		// Go through all child nodes, if visiting something other than Player Line, go to their children, find all Player Lines and show them to the player.
 		auto optionsToPresent = TArray<FDialogLineData>();
 		optionsToPresent.Reserve(ChoiceCount);
-		for (int binIndex = 0; binIndex < (int)ChoiceCount; ++binIndex)
+		check(ChildOptions.Num() == ChoiceCount);
+		for (int i = 0; i < (int)ChoiceCount; ++i)
 		{
-			auto* childNode = GetFirstChildInBin(binIndex);
+			auto* childNode = ChildOptions[i];
 			while (childNode != nullptr)
 			{
 				auto* nodeCasted = Cast<UDialogGraphNode>(childNode);
@@ -92,7 +96,7 @@ public:
 				if (nodeCasted->IsDialogOption())
 				{
 					// Found a player line to present
-					optionToBinMapping.Add(optionsToPresent.Num(), binIndex);
+					optionMapping.Add(optionsToPresent.Num(), i);
 					optionsToPresent.Add(nodeCasted->GetDialogLine());
 					break;
 				}
@@ -107,22 +111,24 @@ public:
 		}
 		else
 		{
-			// TODO: Show the fallback for no results. 
+			// TODO: Show the fallback for no results.
+			return true;
 		}
 		return false;
 	}
 
 	virtual bool DialogueOptionSelected_Implementation(int32 selectedNodeIndex, UDialogueController* controller) override
 	{
-		this->selectedOptionIndex = optionToBinMapping[selectedNodeIndex];
+		this->selectedOptionIndex = optionMapping[selectedNodeIndex];
 		return true;
 	}
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
 		// TODO: Warning when calling with invalid index.
-		check(selectedOptionIndex >= 0 && selectedOptionIndex < (int)ChoiceCount);
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(selectedOptionIndex));
+		if (selectedOptionIndex < 0) return ChildFallback;
+		check(selectedOptionIndex < (int)ChoiceCount);
+		return ChildOptions[selectedOptionIndex];
 		// return (selectedOptionIndex >= 0 && selectedOptionIndex < ChildrenNodes.Num()) ? Cast<UDialogGraphNode>(ChildrenNodes[selectedOptionIndex]) : nullptr;
 	}
 
@@ -132,5 +138,5 @@ protected:
 	int32 selectedOptionIndex;
 
 	UPROPERTY(Transient)
-	TMap<int32, int32> optionToBinMapping;
+	TMap<int32, int32> optionMapping;
 };
