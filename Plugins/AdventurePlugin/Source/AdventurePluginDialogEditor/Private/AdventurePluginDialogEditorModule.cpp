@@ -23,7 +23,9 @@
 #include "PropertyEditorModule.h"
 #include "PropertyEditorDelegates.h"
 #include "Dialogue/Graph/DialogGraphNode_Goto.h"
+#include "Dialogue/Structs/DialogGraphEntryPoint.h"
 #include "Customizations/GotoCustomization.h"
+#include "Customizations/DialogGraphEntryPointCustomization.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
 //const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
@@ -84,6 +86,7 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	/* Registering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
 	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_Goto::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FGotoCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout(FDialogGraphEntryPoint::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FDialogGraphEntryPointCustomization::MakeInstance));
 	/**/
 }
 
@@ -97,6 +100,7 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 	/* Unregistering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
 	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_Goto::StaticClass()->GetFName());
+	PropertyModule.UnregisterCustomPropertyTypeLayout(FDialogGraphEntryPoint::StaticStruct()->GetFName());
 	/**/
 
 	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginDialogEditorTabName);

@@ -14,6 +14,9 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraph : public UGenericGraph
 	GENERATED_BODY()
 
 public:
+
+	static const FName MainEntryName;
+
 	UDialogGraph();
 	virtual ~UDialogGraph();
 
