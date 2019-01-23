@@ -22,9 +22,13 @@
 #include "Styling/SlateStyle.h"
 #include "PropertyEditorModule.h"
 #include "PropertyEditorDelegates.h"
+#include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Graph/DialogGraphNode_Goto.h"
+#include "Dialogue/Graph/DialogGraphNode_IfInInventory.h"
 #include "Dialogue/Structs/DialogGraphEntryPoint.h"
 #include "Customizations/GotoCustomization.h"
+#include "Customizations/DialogGraphCustomization.h"
+#include "Customizations/DialogInventoryItemCustomization.h"
 #include "Customizations/DialogGraphEntryPointCustomization.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
@@ -85,7 +89,9 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 
 	/* Registering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.RegisterCustomClassLayout(UDialogGraph::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FDialogGraphCustomization::MakeInstance));
 	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_Goto::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FGotoCustomization::MakeInstance));
+	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_IfInInventory::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FDialogInventoryItemCustomization::MakeInstance));
 	PropertyModule.RegisterCustomPropertyTypeLayout(FDialogGraphEntryPoint::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FDialogGraphEntryPointCustomization::MakeInstance));
 	/**/
 }
@@ -99,7 +105,9 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 
 	/* Unregistering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.UnregisterCustomClassLayout(UDialogGraph::StaticClass()->GetFName());
 	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_Goto::StaticClass()->GetFName());
+	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_IfInInventory::StaticClass()->GetFName());
 	PropertyModule.UnregisterCustomPropertyTypeLayout(FDialogGraphEntryPoint::StaticStruct()->GetFName());
 	/**/
 

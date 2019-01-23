@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GenericGraph/GenericGraph.h"
 #include "AdventureCharacter.h"
+#include "AdventureCharacterBlueprint.h"
 #include "DialogGraphNode_Event.h"
 #include "DialogGraph.generated.h"
 
@@ -29,11 +30,21 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
 		TMap<FName, UDialogGraphNode*> IdToNodeMap;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AdventurePlugin")
+	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
 		TSubclassOf<UAdventureCharacter> PlayerCharacter;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AdventurePlugin")
+	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
 		TSubclassOf<UAdventureCharacter> NPCCharacter;
+
+#if WITH_EDITORONLY_DATA
+
+	UPROPERTY(EditAnywhere, Category = "AdventurePlugin", Meta = (DisplayName = "Player Character"))
+		UAdventureCharacterBlueprint* PickerPlayerCharacter;
+
+	UPROPERTY(EditAnywhere, Category = "AdventurePlugin", Meta = (DisplayName = "NPC Character"))
+		UAdventureCharacterBlueprint* PickerNPCCharacter;
+
+#endif
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
 		UDialogGraphNode_Event* GetEventNode(FName EventName);

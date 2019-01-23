@@ -20,11 +20,13 @@
 #include "StoryEngine/Structs/QuestGraphString.h"
 #include "StoryEngine/Structs/QuestGraphInteger.h"
 #include "StoryEngine/Structs/QuestGraphEvent.h"
+#include "StoryEngine/Graph/QuestGraphNode_Inventory.h"
 #include "Customizations/QuestGraphFlagCustomization.h"
 #include "Customizations/QuestGraphBoolCustomization.h"
 #include "Customizations/QuestGraphStringCustomization.h"
 #include "Customizations/QuestGraphIntegerCustomization.h"
 #include "Customizations/QuestGraphEventCustomization.h"
+#include "Customizations/QuestInventoryItemCustomization.h"
 #include "SlateStyleRegistry.h"
 #include "Styling/SlateStyle.h"
 
@@ -57,6 +59,7 @@ void FAdventurePluginStoryEngineEditorModule::StartupModule()
 
 	/* Registering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.RegisterCustomClassLayout(UQuestGraphNode_Inventory::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FQuestInventoryItemCustomization::MakeInstance));
 	PropertyModule.RegisterCustomPropertyTypeLayout(FQuestGraphFlag::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphFlagCustomization::MakeInstance));
 	PropertyModule.RegisterCustomPropertyTypeLayout(FQuestGraphBool::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphBoolCustomization::MakeInstance));
 	PropertyModule.RegisterCustomPropertyTypeLayout(FQuestGraphInteger::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FQuestGraphIntegerCustomization::MakeInstance));
@@ -74,6 +77,7 @@ void FAdventurePluginStoryEngineEditorModule::ShutdownModule()
 
 	/* Unregistering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.UnregisterCustomClassLayout(UQuestGraphNode_Inventory::StaticClass()->GetFName());
 	PropertyModule.UnregisterCustomPropertyTypeLayout(FQuestGraphFlag::StaticStruct()->GetFName());
 	PropertyModule.UnregisterCustomPropertyTypeLayout(FQuestGraphBool::StaticStruct()->GetFName());
 	PropertyModule.UnregisterCustomPropertyTypeLayout(FQuestGraphInteger::StaticStruct()->GetFName());
