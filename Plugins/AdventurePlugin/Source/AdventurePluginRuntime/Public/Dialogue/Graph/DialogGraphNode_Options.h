@@ -25,7 +25,7 @@ public:
 		ChoiceCount = 1;
 	}
 
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
+	UPROPERTY(VisibleAnywhere, Category = "OptionsNode")
 	uint32 ChoiceCount;
 
 	UPROPERTY(BlueprintReadOnly)

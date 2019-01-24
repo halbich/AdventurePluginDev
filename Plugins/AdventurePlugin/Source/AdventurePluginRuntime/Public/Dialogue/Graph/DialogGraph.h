@@ -21,31 +21,31 @@ public:
 	UDialogGraph();
 	virtual ~UDialogGraph();
 
-	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 		UDialogGraphNode* MainEntryPoint;
 
-	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 		TMap<FName, UDialogGraphNode*> SecondaryEntryPoints;
 
-	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 		TMap<FName, UDialogGraphNode*> IdToNodeMap;
 
-	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 		TSubclassOf<UAdventureCharacter> PlayerCharacter;
 
-	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 		TSubclassOf<UAdventureCharacter> NPCCharacter;
 
 #if WITH_EDITORONLY_DATA
 
-	UPROPERTY(EditAnywhere, Category = "AdventurePlugin", Meta = (DisplayName = "Player Character"))
+	UPROPERTY(EditAnywhere, Category = "DialogGraph", Meta = (DisplayName = "Player Character"))
 		UAdventureCharacterBlueprint* PickerPlayerCharacter;
 
-	UPROPERTY(EditAnywhere, Category = "AdventurePlugin", Meta = (DisplayName = "NPC Character"))
+	UPROPERTY(EditAnywhere, Category = "DialogGraph", Meta = (DisplayName = "NPC Character"))
 		UAdventureCharacterBlueprint* PickerNPCCharacter;
 
 #endif
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
 		UDialogGraphNode_Event* GetEventNode(FName EventName);
 };

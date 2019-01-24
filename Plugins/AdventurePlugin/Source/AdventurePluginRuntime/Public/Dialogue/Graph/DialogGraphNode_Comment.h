@@ -19,7 +19,7 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, Category = "CommentNode")
 	FText Text;
 
 #if WITH_EDITOR

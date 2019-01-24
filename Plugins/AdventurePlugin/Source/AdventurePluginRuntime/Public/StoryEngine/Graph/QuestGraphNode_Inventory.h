@@ -24,12 +24,12 @@ public:
 #endif
 	}
 
-	UPROPERTY(BlueprintReadOnly, Category = "QuestGraphNode_Editor")
+	UPROPERTY(BlueprintReadOnly, Category = "InventoryItemNode")
 	TSubclassOf<UInventoryItem> Item;
 
 #if WITH_EDITORONLY_DATA
 
-	UPROPERTY(EditAnywhere, Category = "QuestGraphNode_Editor", Meta = (DisplayName = "Item"))
+	UPROPERTY(EditAnywhere, Category = "InventoryItemNode", Meta = (DisplayName = "Item"))
 	UInventoryItemBlueprint* PickerItem;
 
 #endif

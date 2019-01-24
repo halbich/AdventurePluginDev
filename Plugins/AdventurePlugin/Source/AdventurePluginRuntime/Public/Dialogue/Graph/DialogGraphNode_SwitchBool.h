@@ -21,7 +21,7 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SwitchBoolNode")
 	FQuestGraphBool Bool;
 
 #if WITH_EDITOR

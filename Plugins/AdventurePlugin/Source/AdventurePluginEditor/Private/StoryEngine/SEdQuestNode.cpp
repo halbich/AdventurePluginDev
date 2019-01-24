@@ -1,7 +1,6 @@
 #include "StoryEngine/SEdQuestNode.h"
 #include "SCommentBubble.h"
 #include "SlateOptMacros.h"
-#include "GraphEditorSettings.h"
 #include "SGraphPin.h"
 #include "SWrapTitleBox.h"
 

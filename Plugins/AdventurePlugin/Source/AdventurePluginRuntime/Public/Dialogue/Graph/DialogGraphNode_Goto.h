@@ -26,7 +26,7 @@ public:
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, Category = "GotoNode")
 		FName TargetNodeId;
 
 #if WITH_EDITOR

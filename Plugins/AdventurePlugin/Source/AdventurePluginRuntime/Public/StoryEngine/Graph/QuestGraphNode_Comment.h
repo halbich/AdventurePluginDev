@@ -18,7 +18,7 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, Category = "QuestGraphNode_Editor")
+	UPROPERTY(EditAnywhere, Category = "CommentNode")
 	FText Text;
 
 #if WITH_EDITOR

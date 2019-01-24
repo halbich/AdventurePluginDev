@@ -20,12 +20,12 @@ public:
 
 	virtual FText GetDescription_Implementation() const;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogNode")
 		FName Id;
 
 #if WITH_EDITORONLY_DATA
 
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, Category = "DialogNode")
 		FText Note;
 
 #endif
