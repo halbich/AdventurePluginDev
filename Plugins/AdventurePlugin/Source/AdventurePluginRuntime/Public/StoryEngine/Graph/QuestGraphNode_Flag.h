@@ -18,10 +18,10 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FlagNode")
 	FName FlagName;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "QuestGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FlagNode")
 	bool FlagValue;
 
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override

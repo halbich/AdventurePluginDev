@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GenericGraph/Settings_GenericGraphEditor.h"
 #include "GenericGraph/GenericGraph.h"
 
 #include "NotifyHook.h"
@@ -44,12 +43,9 @@ public:
 	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;
 	// End of FSerializableObject interface
 
-	UGenericGraphEditorSettings* GetSettings() const;
-
 private:
 	TSharedRef<SDockTab> SpawnTab_Viewport(const FSpawnTabArgs& Args);
 	TSharedRef<SDockTab> SpawnTab_Details(const FSpawnTabArgs& Args);
-	TSharedRef<SDockTab> SpawnTab_EditorSettings(const FSpawnTabArgs& Args);
 
 	void CreateInternalWidgets();
 	TSharedRef<SGraphEditor> CreateViewportWidget();
@@ -99,8 +95,6 @@ private:
 	void OnPackageSaved(const FString& PackageFileName, UObject* Outer);
 
 private:
-	UGenericGraphEditorSettings* GenricGraphEditorSettings;
-
 
 	//Toolbar
 	TSharedPtr<class FAssetEditorToolbar_GenericGraph> ToolbarBuilder;
@@ -110,7 +104,6 @@ private:
 
 	TSharedPtr<SGraphEditor> ViewportWidget;
 	TSharedPtr<class IDetailsView> PropertyWidget;
-	TSharedPtr<class IDetailsView> EditorSettingsWidget;
 
 	/** The command list for this editor */
 	TSharedPtr<FUICommandList> GraphEditorCommands;

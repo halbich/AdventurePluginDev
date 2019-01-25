@@ -23,10 +23,10 @@ public:
 		DialogText = NSLOCTEXT("DialogGraphNode_Player", "DefaultDialog", "<Insert something clever>");
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerLineNode")
 	FText DialogText;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerLineNode")
 	USoundBase* DialogSound;
 
 #if WITH_EDITOR

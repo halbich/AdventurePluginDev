@@ -21,7 +21,7 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "IncrementIntegerNode")
 	FQuestGraphInteger Integer;
 
 #if WITH_EDITOR

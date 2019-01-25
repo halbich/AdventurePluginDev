@@ -4,6 +4,7 @@
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_TrueFalse.h"
 #include "Inventory/InventoryItem.h"
+#include "Inventory/InventoryItemBlueprint.h"
 #include "InventoryController.h"
 #include "ItemManager.h"
 #include "AdventurePluginRuntime.h"
@@ -23,8 +24,15 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(BlueprintReadOnly, Category = "BranchOnItemNode")
 		TSubclassOf<UInventoryItem> Item;
+
+#if WITH_EDITORONLY_DATA
+
+	UPROPERTY(EditAnywhere, Category = "BranchOnItemNode", Meta = (DisplayName = "Item"))
+		UInventoryItemBlueprint* PickerItem;
+
+#endif
 
 #if WITH_EDITOR
 

@@ -20,7 +20,7 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SubquestNode")
 	UQuestGraph* Subquest;
 
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override

@@ -26,7 +26,7 @@ public:
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, Category = "EventNode")
 		FQuestGraphEvent Event;
 
 #if WITH_EDITOR

@@ -20,7 +20,7 @@ public:
 
 #if WITH_EDITORONLY_DATA
 
-	UPROPERTY(EditAnywhere, Category = "QuestGraphNode_Editor")
+	UPROPERTY(EditAnywhere, Category = "QuestNode")
 	FText Location;
 
 #endif

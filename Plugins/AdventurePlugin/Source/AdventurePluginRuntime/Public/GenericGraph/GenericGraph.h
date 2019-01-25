@@ -19,7 +19,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "GenericGraph")
 	FString Name;
 
-	UPROPERTY(EditDefaultsOnly, Category = "GenericGraph")
+	UPROPERTY()
 	TSubclassOf<UGenericGraphNode> NodeType;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "GenericGraph")
@@ -48,7 +48,7 @@ public:
 	UPROPERTY()
 	class UEdGraph* EdGraph;
 
-	UPROPERTY(EditDefaultsOnly, Category = "GenericGraph_Editor")
+	UPROPERTY()
 	bool bCanRenameNode;
 #endif
 };

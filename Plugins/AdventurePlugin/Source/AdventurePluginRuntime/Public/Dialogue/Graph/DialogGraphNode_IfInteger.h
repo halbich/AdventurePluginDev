@@ -21,10 +21,10 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
 	FQuestGraphInteger Integer;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
 	int32 Constant;
 
 	UPROPERTY(BlueprintReadOnly)

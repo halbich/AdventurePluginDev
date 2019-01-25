@@ -21,7 +21,7 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetFlagNode")
 	FQuestGraphFlag Flag;
 
 #if WITH_EDITOR
