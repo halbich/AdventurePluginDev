@@ -37,7 +37,7 @@ public:
 
 	/* Return the talking animation state that should be used if no other animation state is specified. Should also be returned in GetTalkingStates method.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		FText GetDefaultTalkingAnimationState();
+		FName GetDefaultTalkingAnimationState();
 
 	/*Tells the actor represented by this object to change its animation state to some specific state. Returns false if the change cannot be made, for example because animation state does not exist.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")

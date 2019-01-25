@@ -37,4 +37,5 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
 		UDialogGraphNode_Event* GetEventNode(FName EventName);
+
 };

@@ -5,6 +5,7 @@
 #include "DialogGraphNode.h"
 #include "Presenter/DialoguePresenterInterface.h"
 #include "NodeInterfaces/DialogueNodeShowLineCallbackInterface.h"
+#include "DialogGraph.h"
 #include "DialogGraphNode_NPC.generated.h"
 
 UCLASS(Blueprintable)

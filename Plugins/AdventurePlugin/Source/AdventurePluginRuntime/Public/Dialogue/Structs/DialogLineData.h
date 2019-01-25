@@ -27,6 +27,9 @@ public:
 	/** Specifies the sound that should be played when this option is displayed. */
 	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
 		USoundBase* DialogSound;
+	/** The text that should be displayed for this line. */
+	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
+		FName AnimationName;
 	/** Game specific additional information, like text color etc. */
 	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
 		UObject* UserData;

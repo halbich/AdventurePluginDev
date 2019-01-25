@@ -10,9 +10,9 @@ TArray<FName> IAnimatableObjectInterface::GetTalkingStates_Implementation()
 	return TArray<FName>();
 }
 
-FText IAnimatableObjectInterface::GetDefaultTalkingAnimationState_Implementation()
+FName IAnimatableObjectInterface::GetDefaultTalkingAnimationState_Implementation()
 {
-	return FText();
+	return FName();
 }
 
 bool IAnimatableObjectInterface::SetAnimationState_Implementation(FName Animation)
