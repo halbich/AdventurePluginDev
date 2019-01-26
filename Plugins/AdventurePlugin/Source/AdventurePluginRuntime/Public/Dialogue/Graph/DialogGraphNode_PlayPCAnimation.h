@@ -7,6 +7,7 @@
 #include "AdventureCharacterManager.h"
 #include "Presenter/DialoguePresenterInterface.h"
 #include "NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"
+#include "AnimatableObjectInterface.h"
 #include "DialogGraphNode_PlayPCAnimation.generated.h"
 
 UCLASS(Blueprintable)
@@ -50,24 +51,40 @@ public:
 		return FLinearColor::Gray;
 	}
 
+	virtual TScriptInterface<IAnimatableObjectInterface> GetEditorTimeAnimatableObject()
+	{
+		auto* dialogGraph = GetDialogGraph();
+		if (dialogGraph == nullptr || dialogGraph->PlayerCharacter == nullptr)
+		{
+			// TODO: Log error.
+			return nullptr;
+		}
+		return dialogGraph->PlayerCharacter.GetDefaultObject();
+	}
+
 #endif
 
-
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual TScriptInterface<IAnimatableObjectInterface> GetAnimatedObject(UAdventurePluginGameContext* context)
 	{
 		if (context == nullptr || !context->IsValidLowLevel() ||
 			context->AdventureCharacterManager == nullptr || !context->AdventureCharacterManager->IsValidLowLevel())
 		{
 			// TODO: Log warning/error.
-			return true;
+			return nullptr;
 		}
 		auto* dialogGraph = GetDialogGraph();
 		if (dialogGraph == nullptr)
 		{
 			// TODO: Log error.
-			return true;
+			return nullptr;
 		}
 		auto* playerCharacterInstance = context->AdventureCharacterManager->GetCharacter(dialogGraph->PlayerCharacter);
+		return playerCharacterInstance;
+	}
+
+	virtual bool Execute(UAdventurePluginGameContext* context) override
+	{
+		TScriptInterface<IAnimatableObjectInterface> playerCharacterInstance = GetAnimatedObject(context);
 		if (playerCharacterInstance == nullptr)
 		{
 			// TODO: Log Warning.
