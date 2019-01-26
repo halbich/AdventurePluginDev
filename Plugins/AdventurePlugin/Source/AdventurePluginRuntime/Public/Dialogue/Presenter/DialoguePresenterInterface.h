@@ -10,6 +10,7 @@
 
 class UDialogGraphNode;
 class UDialogueController;
+class IAnimatableObjectInterface;
 
 /**
  *
@@ -35,4 +36,13 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
 		void ShowDialogueSelection(UPARAM(ref) TArray<FDialogLineData>& options, UDialogueController* controller);
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
+		void PlayAnimationOnce(const TScriptInterface<IAnimatableObjectInterface>& Target, FName AnimationName, UDialogueController* Controller);
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
+		void SetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& Target, FName AnimationName);
+
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialogue")
+		void ResetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& Target);
 };

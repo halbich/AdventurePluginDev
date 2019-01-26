@@ -62,10 +62,9 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		auto* dialogueGraph = Cast<UDialogGraph>(Graph);
-		if (dialogueGraph == nullptr || !dialogueGraph->IsValidLowLevel())
+		auto* dialogueGraph = GetDialogGraph();
+		if (dialogueGraph == nullptr)
 		{
-			LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "GotoNode: Parent graph is not a dialog graph"));
 			return nullptr;
 		}
 		auto* targetNode = dialogueGraph->IdToNodeMap.Find(TargetNodeId);

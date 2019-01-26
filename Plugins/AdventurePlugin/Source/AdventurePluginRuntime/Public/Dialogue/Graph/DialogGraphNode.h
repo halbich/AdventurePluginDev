@@ -3,10 +3,12 @@
 #include "CoreMinimal.h"
 #include "GenericGraph/GenericGraphNode.h"
 #include "Structs/DialogLineData.h"
+#include "AdventurePluginRuntime.h"
 #include "DialogGraphNode.generated.h"
 
 class UDialogueController;
 class UAdventurePluginGameContext;
+class UDialogGraph;
 
 
 UCLASS(Abstract, Blueprintable, HideCategories = (GenericGraphNode, GenericGraphNode_Editor))
@@ -60,5 +62,6 @@ public:
 		return FDialogLineData();
 	}
 
-	
+protected:
+	UDialogGraph * GetDialogGraph();
 };

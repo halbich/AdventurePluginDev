@@ -22,4 +22,10 @@ public:
 	void ShowDialogueLine(FDialogLineData lineData, UDialogueController* controller);
 
 	void ShowDialogueSelection(TArray<FDialogLineData>& options, UDialogueController* controller);
+
+	void PlayAnimationOnce(const TScriptInterface<IAnimatableObjectInterface>& Target, FName AnimationName, UDialogueController* Controller);
+
+	void SetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& Target, FName AnimationName);
+	
+	void ResetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& Target);
 };
