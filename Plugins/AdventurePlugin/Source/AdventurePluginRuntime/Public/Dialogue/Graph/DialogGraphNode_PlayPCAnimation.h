@@ -53,16 +53,27 @@ public:
 
 	virtual TScriptInterface<IAnimatableObjectInterface> GetEditorTimeAnimatableObject()
 	{
+		auto animatableObjectClass = GetAnimatedObjectClass();
+		if (animatableObjectClass == nullptr)
+		{
+			// TODO: Log error.
+			return nullptr;
+		}
+		return animatableObjectClass->ClassDefaultObject;
+	}
+
+#endif
+
+	virtual UClass* GetAnimatedObjectClass()
+	{
 		auto* dialogGraph = GetDialogGraph();
 		if (dialogGraph == nullptr || dialogGraph->PlayerCharacter == nullptr)
 		{
 			// TODO: Log error.
 			return nullptr;
 		}
-		return dialogGraph->PlayerCharacter.GetDefaultObject();
+		return dialogGraph->PlayerCharacter;
 	}
-
-#endif
 
 	virtual TScriptInterface<IAnimatableObjectInterface> GetAnimatedObject(UAdventurePluginGameContext* context)
 	{
@@ -72,13 +83,13 @@ public:
 			// TODO: Log warning/error.
 			return nullptr;
 		}
-		auto* dialogGraph = GetDialogGraph();
-		if (dialogGraph == nullptr)
+		TSubclassOf<UAdventureCharacter> characterClass = GetAnimatedObjectClass();
+		if (characterClass == nullptr)
 		{
 			// TODO: Log error.
 			return nullptr;
 		}
-		auto* playerCharacterInstance = context->AdventureCharacterManager->GetCharacter(dialogGraph->PlayerCharacter);
+		auto* playerCharacterInstance = context->AdventureCharacterManager->GetCharacter(characterClass);
 		return playerCharacterInstance;
 	}
 
