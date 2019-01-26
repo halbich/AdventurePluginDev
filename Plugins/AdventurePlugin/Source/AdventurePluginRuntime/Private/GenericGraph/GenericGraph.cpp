@@ -118,7 +118,10 @@ void UGenericGraph::ClearGraph()
 	for (int i = 0; i < AllNodes.Num(); ++i)
 	{
 		UGenericGraphNode* Node = AllNodes[i];
-
+		if (Node == nullptr || !Node->IsValidLowLevel())
+		{
+			continue;
+		}
 		Node->ParentNodes.Empty();
 		Node->ChildrenNodes.Empty();
 		//Node->ChildrenNodesBins.Empty();

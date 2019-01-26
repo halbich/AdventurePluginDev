@@ -1,5 +1,5 @@
 #include "Customizations/AnimationCustomization.h"
-#include "Dialogue/Graph/DialogGraphNode_PlayPCAnimation.h"
+#include "Dialogue/Graph/DialogGraphNode_PlayAnimationBase.h"
 #include "DetailCategoryBuilder.h"
 #include "DetailWidgetRow.h"
 
@@ -13,7 +13,7 @@ TSharedRef<IDetailCustomization> FAnimationCustomization::MakeInstance()
 
 void FAnimationCustomization::CustomizeDetails(IDetailLayoutBuilder& DetailLayout)
 {
-	IdHandle = DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_PlayPCAnimation, AnimationName));
+	IdHandle = DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_PlayAnimationBase, AnimationName));
 	DetailLayout.HideProperty(IdHandle);
 	FName Id;
 	IdHandle->GetValue(Id);
@@ -45,7 +45,7 @@ void FAnimationCustomization::CustomizeDetails(IDetailLayoutBuilder& DetailLayou
 
 	if (Objects.Num() > 0)
 	{
-		UDialogGraphNode_PlayPCAnimation* AnimationNode = Cast<UDialogGraphNode_PlayPCAnimation>(Objects[0]);
+		UDialogGraphNode_PlayAnimationBase* AnimationNode = Cast<UDialogGraphNode_PlayAnimationBase>(Objects[0]);
 		auto animatedCharacter = AnimationNode && AnimationNode->IsValidLowLevel() ? AnimationNode->GetEditorTimeAnimatableObject() : nullptr;
 		if (animatedCharacter != nullptr)
 		{
