@@ -17,22 +17,39 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Branch on integer variable");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
 	FQuestGraphInteger Integer;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
 	int32 Constant;
+
+	UPROPERTY(BlueprintReadOnly)
+	UDialogGraphNode* ChildLess;
+
+	UPROPERTY(BlueprintReadOnly)
+	UDialogGraphNode* ChildEqual;
+
+	UPROPERTY(BlueprintReadOnly)
+	UDialogGraphNode* ChildMore;
+
+	virtual void ResetSpecialChildren() override
+	{
+		ChildLess = nullptr;
+		ChildEqual = nullptr;
+		ChildMore = nullptr;
+	}
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IfInteger", "NodeTitle", "Compare \"{0}\" in \"{1}\" with \"{2}\""), 
-			FText::FromName(Integer.IntegerName), 
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IfInteger", "NodeTitle", "COMPARE {0}->{1} WITH {2}"), 
 			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : "<EMPTY>"),
+			FText::FromName(Integer.IntegerName), 
 			Constant);
 	}
 
@@ -48,20 +65,15 @@ public:
 
 #endif
 
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 3;
-	}
-
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		int32 bin = 0;
 		if (IsValid(Integer.Quest))
 		{
 			int32 val = Integer.Quest->GetInteger(Integer.IntegerName);
-			if (val == Constant) bin = 1;
-			else if (val > Constant) bin = 2;
+			if (val < Constant) return ChildLess;
+			else if (val == Constant) return ChildEqual;
+			else return ChildMore;
 		}
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
+		return nullptr;
 	}
 };

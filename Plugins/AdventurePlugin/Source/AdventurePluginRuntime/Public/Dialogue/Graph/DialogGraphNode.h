@@ -3,10 +3,12 @@
 #include "CoreMinimal.h"
 #include "GenericGraph/GenericGraphNode.h"
 #include "Structs/DialogLineData.h"
+#include "AdventurePluginRuntime.h"
 #include "DialogGraphNode.generated.h"
 
 class UDialogueController;
 class UAdventurePluginGameContext;
+class UDialogGraph;
 
 
 UCLASS(Abstract, Blueprintable, HideCategories = (GenericGraphNode, GenericGraphNode_Editor))
@@ -20,8 +22,15 @@ public:
 
 	virtual FText GetDescription_Implementation() const;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogNode")
 		FName Id;
+
+#if WITH_EDITORONLY_DATA
+
+	UPROPERTY(EditAnywhere, Category = "DialogNode")
+		FText Note;
+
+#endif
 
 #if WITH_EDITOR
 
@@ -53,5 +62,6 @@ public:
 		return FDialogLineData();
 	}
 
-	
+protected:
+	UDialogGraph * GetDialogGraph();
 };

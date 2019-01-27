@@ -8,6 +8,7 @@
 #include "SimpleCombination.h"
 #include "CombinationInterface.h"
 #include "CombinableObject.h"
+#include "Dialogue/Structs/DialogGraphEntryPoint.h"
 #include "InventoryItem.generated.h"
 
 class UInventoryItemBlueprint;
@@ -29,10 +30,7 @@ public:
 		UTexture2D* Icon;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		USoundBase* Comment;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		FText CommentText;
+		FDialogGraphEntryPoint Dialog;
 
 	virtual UTexture2D* GetIcon() const override
 	{

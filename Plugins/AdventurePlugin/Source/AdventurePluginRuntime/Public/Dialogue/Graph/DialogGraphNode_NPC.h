@@ -5,6 +5,7 @@
 #include "DialogGraphNode.h"
 #include "Presenter/DialoguePresenterInterface.h"
 #include "NodeInterfaces/DialogueNodeShowLineCallbackInterface.h"
+#include "DialogGraph.h"
 #include "DialogGraphNode_NPC.generated.h"
 
 UCLASS(Blueprintable)
@@ -18,26 +19,37 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("NPC Line");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "LineCategory", "Lines");
 #endif
 		DialogText = NSLOCTEXT("DialogGraphNode_NPC", "DefaultDialog", "<Insert something clever>");
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "NPC_LineNode")
 	FText DialogText;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "NPC_LineNode")
 	USoundBase* DialogSound;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_NPC", "NPCSay", "NPC: \"{0}\""), DialogText);
+		return DialogText;
+	}
+
+	virtual void SetNodeTitle(const FText& NewTitle) override
+	{
+		DialogText = NewTitle;
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
 	{
 		return FLinearColor::Red;
+	}
+
+	virtual bool CanRename() const override
+	{
+		return true;
 	}
 
 #endif

@@ -25,22 +25,18 @@ struct FGenericGraphAssetEditorTabs
 	// Tab identifiers
 	static const FName GenericGraphPropertyID;
 	static const FName ViewportID;
-	static const FName GenericGraphEditorSettingsID;
 };
 
 //////////////////////////////////////////////////////////////////////////
 
 const FName FGenericGraphAssetEditorTabs::GenericGraphPropertyID(TEXT("GenericGraphProperty"));
 const FName FGenericGraphAssetEditorTabs::ViewportID(TEXT("Viewport"));
-const FName FGenericGraphAssetEditorTabs::GenericGraphEditorSettingsID(TEXT("GenericGraphEditorSettings"));
 
 //////////////////////////////////////////////////////////////////////////
 
 FAssetEditor_GenericGraph::FAssetEditor_GenericGraph()
 {
 	EditingGraph = nullptr;
-
-	GenricGraphEditorSettings = NewObject<UGenericGraphEditorSettings>(UGenericGraphEditorSettings::StaticClass());
 
 	OnPackageSavedDelegateHandle = UPackage::PackageSavedEvent.AddRaw(this, &FAssetEditor_GenericGraph::OnPackageSaved);
 }
@@ -94,19 +90,8 @@ void FAssetEditor_GenericGraph::InitGenericGraphAssetEditor(const EToolkitMode::
 				)
 				->Split
 				(
-					FTabManager::NewSplitter()->SetOrientation(Orient_Vertical)
-					->Split
-					(
-						FTabManager::NewStack()
-						->SetSizeCoefficient(0.7f)
-						->AddTab(FGenericGraphAssetEditorTabs::GenericGraphPropertyID, ETabState::OpenedTab)->SetHideTabWell(true)
-					)
-					->Split
-					(
-						FTabManager::NewStack()
-						->SetSizeCoefficient(0.3f)
-						->AddTab(FGenericGraphAssetEditorTabs::GenericGraphEditorSettingsID, ETabState::OpenedTab)
-					)
+					FTabManager::NewStack()
+					->AddTab(FGenericGraphAssetEditorTabs::GenericGraphPropertyID, ETabState::OpenedTab)->SetHideTabWell(true)
 				)
 			)
 		);
@@ -134,11 +119,6 @@ void FAssetEditor_GenericGraph::RegisterTabSpawners(const TSharedRef<FTabManager
 		.SetDisplayName(LOCTEXT("DetailsTab", "Property"))
 		.SetGroup(WorkspaceMenuCategoryRef)
 		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Details"));
-
-	InTabManager->RegisterTabSpawner(FGenericGraphAssetEditorTabs::GenericGraphEditorSettingsID, FOnSpawnTab::CreateSP(this, &FAssetEditor_GenericGraph::SpawnTab_EditorSettings))
-		.SetDisplayName(LOCTEXT("EditorSettingsTab", "Generic Graph Editor Setttings"))
-		.SetGroup(WorkspaceMenuCategoryRef)
-		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Details"));
 }
 
 void FAssetEditor_GenericGraph::UnregisterTabSpawners(const TSharedRef<FTabManager>& InTabManager)
@@ -147,7 +127,6 @@ void FAssetEditor_GenericGraph::UnregisterTabSpawners(const TSharedRef<FTabManag
 
 	InTabManager->UnregisterTabSpawner(FGenericGraphAssetEditorTabs::ViewportID);
 	InTabManager->UnregisterTabSpawner(FGenericGraphAssetEditorTabs::GenericGraphPropertyID);
-	InTabManager->UnregisterTabSpawner(FGenericGraphAssetEditorTabs::GenericGraphEditorSettingsID);
 }
 
 FName FAssetEditor_GenericGraph::GetToolkitFName() const
@@ -206,11 +185,6 @@ void FAssetEditor_GenericGraph::AddReferencedObjects(FReferenceCollector& Collec
 	Collector.AddReferencedObject(EditingGraph->EdGraph);
 }
 
-UGenericGraphEditorSettings* FAssetEditor_GenericGraph::GetSettings() const
-{
-	return GenricGraphEditorSettings;
-}
-
 TSharedRef<SDockTab> FAssetEditor_GenericGraph::SpawnTab_Viewport(const FSpawnTabArgs& Args)
 {
 	check(Args.GetTabId() == FGenericGraphAssetEditorTabs::ViewportID);
@@ -238,18 +212,6 @@ TSharedRef<SDockTab> FAssetEditor_GenericGraph::SpawnTab_Details(const FSpawnTab
 		];
 }
 
-TSharedRef<SDockTab> FAssetEditor_GenericGraph::SpawnTab_EditorSettings(const FSpawnTabArgs& Args)
-{
-	check(Args.GetTabId() == FGenericGraphAssetEditorTabs::GenericGraphEditorSettingsID);
-
-	return SNew(SDockTab)
-		.Icon(FEditorStyle::GetBrush("LevelEditor.Tabs.Details"))
-		.Label(LOCTEXT("EditorSettings_Title", "Generic Graph Editor Setttings"))
-		[
-			EditorSettingsWidget.ToSharedRef()
-		];
-}
-
 void FAssetEditor_GenericGraph::CreateInternalWidgets()
 {
 	ViewportWidget = CreateViewportWidget();
@@ -262,9 +224,6 @@ void FAssetEditor_GenericGraph::CreateInternalWidgets()
 	PropertyWidget = PropertyModule.CreateDetailView(Args);
 	PropertyWidget->SetObject(EditingGraph);
 	PropertyWidget->OnFinishedChangingProperties().AddSP(this, &FAssetEditor_GenericGraph::OnFinishedChangingProperties);
-
-	EditorSettingsWidget = PropertyModule.CreateDetailView(Args);
-	EditorSettingsWidget->SetObject(GenricGraphEditorSettings);
 }
 
 TSharedRef<SGraphEditor> FAssetEditor_GenericGraph::CreateViewportWidget()

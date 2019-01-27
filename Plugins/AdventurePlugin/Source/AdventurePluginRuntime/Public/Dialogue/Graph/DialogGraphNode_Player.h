@@ -18,26 +18,37 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Player Line");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "LineCategory", "Lines");
 #endif
 		DialogText = NSLOCTEXT("DialogGraphNode_Player", "DefaultDialog", "<Insert something clever>");
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerLineNode")
 	FText DialogText;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerLineNode")
 	USoundBase* DialogSound;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_Player", "PlayerSay", "Player: \"{0}\""), DialogText);
+		return DialogText;
+	}
+
+	virtual void SetNodeTitle(const FText& NewTitle) override
+	{
+		DialogText = NewTitle;
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
 	{
 		return FLinearColor::Green;
+	}
+
+	virtual bool CanRename() const override
+	{
+		return true;
 	}
 
 #endif

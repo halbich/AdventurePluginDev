@@ -17,22 +17,23 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Set string variable");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetStringNode")
 	FQuestGraphString String;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetStringNode")
 	FString Constant;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_SetString", "NodeTitle", "Set \"{0}\" in \"{1}\" to \"{2}\""), 
-			FText::FromName(String.StringName), 
+		return FText::Format(NSLOCTEXT("DialogGraphNode_SetString", "NodeTitle", "SET {0}->{1} TO {2}"),
 			FText::FromString(IsValid(String.Quest) ? String.Quest->Name : "<EMPTY>"),
+			FText::FromName(String.StringName), 
 			FText::FromString(Constant));
 	}
 

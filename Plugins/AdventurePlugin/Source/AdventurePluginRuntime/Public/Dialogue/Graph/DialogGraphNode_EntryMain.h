@@ -16,6 +16,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Main Entry Point");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}
 
@@ -27,7 +28,7 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return NSLOCTEXT("DialogGraphNode_EntryMain", "EntryPoint", "Main entry point");
+		return NSLOCTEXT("DialogGraphNode_EntryMain", "EntryPoint", "MAIN ENTRY POINT");
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
@@ -51,11 +52,6 @@ public:
 	}
 
 	virtual inline bool CanDuplicate() const override
-	{
-		return false;
-	}
-
-	virtual inline bool HasInputPin() const override
 	{
 		return false;
 	}

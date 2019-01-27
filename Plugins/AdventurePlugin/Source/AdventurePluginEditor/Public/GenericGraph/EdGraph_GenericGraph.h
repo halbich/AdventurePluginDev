@@ -28,7 +28,6 @@ public:
 	TMap<UGenericGraphNode*, UEdNode_GenericGraphNode*> NodeMap;
 
 protected:
-	void Clear();
 
-	void SortNodes(UGenericGraphNode* RootNode);
+	void Clear();
 };

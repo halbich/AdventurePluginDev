@@ -2,12 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
+#include "DialogGraphNode_TrueFalse.h"
 #include "StoryEngine/Graph/QuestGraph.h"
 #include "StoryEngine/Structs/QuestGraphString.h"
 #include "DialogGraphNode_IfString.generated.h"
 
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfString : public UDialogGraphNode
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfString : public UDialogGraphNode_TrueFalse
 {
 	GENERATED_BODY()
 
@@ -20,19 +21,19 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnStringNode")
 	FQuestGraphString String;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnStringNode")
 	FString Constant;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IfString", "NodeTitle", "If \"{0}\" in \"{1}\" is \"{2}\""), 
-			FText::FromName(String.StringName), 
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IfString", "NodeTitle", "IF {0}->{1} IS {2}"), 
 			FText::FromString(IsValid(String.Quest) ? String.Quest->Name : "<EMPTY>"),
+			FText::FromName(String.StringName), 
 			FText::FromString(Constant));
 	}
 
@@ -48,14 +49,10 @@ public:
 
 #endif
 
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 2;
-	}
-
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		int32 bin = IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(String.StringName)) == 0 ? 0 : 1;
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
+		return IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(String.StringName)) == 0
+			? ChildTrue
+			: ChildFalse;
 	}
 };

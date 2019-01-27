@@ -9,6 +9,7 @@
 #include "StoryEngine/Graph/QuestGraph.h"
 #include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Graph/DialogGraphNode.h"
+#include "Dialogue/Structs/DialogGraphEntryPoint.h"
 #include "InventoryController.h"
 #include "AdventurePluginRuntime.h"
 #include "AdventureCharacter.h"
@@ -26,7 +27,7 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginBlueprintLibrary : public UBlue
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
-		static void ShowDialogFromEntryPoint(UAdventurePluginGameContext* gameContext, UDialogGraph* graph, UDialogGraphNode* startNode);
+		static void ShowDialogFromEntryPoint(UAdventurePluginGameContext* gameContext, FDialogGraphEntryPoint entryPoint);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
 		static void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph);

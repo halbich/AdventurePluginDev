@@ -25,6 +25,7 @@ public:
 
 	SEdNode_GenericGraphNode* SEdNode;
 
+	virtual void AddSpecialChild(const UEdGraphPin* Pin, UGenericGraphNode* Child) { }
 	virtual void AllocateDefaultPins() override;
 	virtual FText GetNodeTitle(ENodeTitleType::Type TitleType) const override;
 	virtual void PrepareForCopying() override;

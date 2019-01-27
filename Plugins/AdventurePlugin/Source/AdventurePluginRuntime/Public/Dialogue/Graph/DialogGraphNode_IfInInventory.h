@@ -2,14 +2,16 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
+#include "DialogGraphNode_TrueFalse.h"
 #include "Inventory/InventoryItem.h"
+#include "Inventory/InventoryItemBlueprint.h"
 #include "InventoryController.h"
 #include "ItemManager.h"
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode_IfInInventory.generated.h"
 
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfInInventory : public UDialogGraphNode
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfInInventory : public UDialogGraphNode_TrueFalse
 {
 	GENERATED_BODY()
 
@@ -22,14 +24,21 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(BlueprintReadOnly, Category = "BranchOnItemNode")
 		TSubclassOf<UInventoryItem> Item;
+
+#if WITH_EDITORONLY_DATA
+
+	UPROPERTY(EditAnywhere, Category = "BranchOnItemNode", Meta = (DisplayName = "Item"))
+		UInventoryItemBlueprint* PickerItem;
+
+#endif
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IfInInventory", "NodeTitle", "If \"{0}\" is in inventory"),
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IfInInventory", "NodeTitle", "IF {0} IN INVENTORY"),
 			Item != nullptr && Item->IsValidLowLevel() ? Item.GetDefaultObject()->Name : FText::FromString("<EMPTY>"));
 	}
 
@@ -44,11 +53,6 @@ public:
 	}
 
 #endif
-
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 2;
-	}
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
@@ -71,7 +75,6 @@ public:
 			return nullptr;
 		}
 		bool hasItem = context->InventoryController->GetInventory()->HasItem(itemInstance);
-		int32 bin = hasItem ? 0 : 1;
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
+		return hasItem ? ChildTrue : ChildFalse;
 	}
 };

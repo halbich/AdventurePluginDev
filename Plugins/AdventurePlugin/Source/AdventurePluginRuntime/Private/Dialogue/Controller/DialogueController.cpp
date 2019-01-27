@@ -3,6 +3,7 @@
 #include "DialogueController.h"
 #include "NodeInterfaces/DialogueNodeShowLineCallbackInterface.h"
 #include "NodeInterfaces/DialogueNodeShowOptionsCallbackInterface.h"
+#include "NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"
 
 #pragma optimize("", off)
 
@@ -53,7 +54,7 @@ void UDialogueController::beginExecute(UDialogGraphNode* node)
 	HideDialog();
 }
 
-void UDialogueController::ShowDialogLineCallback(UObject* WorldContextObject)
+void UDialogueController::ShowDialogLineCallback()
 {
 	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogueNodeShowLineCallbackInterface::StaticClass())) {
 		if (IDialogueNodeShowLineCallbackInterface::Execute_ShowDialogueLineCallback(currentNode, this)) {
@@ -63,10 +64,21 @@ void UDialogueController::ShowDialogLineCallback(UObject* WorldContextObject)
 	}
 }
 
-void UDialogueController::ShowDialogLineSelectionCallback(UObject* WorldContextObject, int32 selectedOptionIndex)
+void UDialogueController::ShowDialogLineSelectionCallback(int32 selectedOptionIndex)
 {
 	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogueNodeShowOptionsCallbackInterface::StaticClass())) {
 		if (IDialogueNodeShowOptionsCallbackInterface::Execute_DialogueOptionSelected(currentNode, selectedOptionIndex, this)) {
+			// The node responds to the callback and wishes to continue dialogue execution.
+			beginExecute(currentNode->GetNextNode(currentContext));
+		}
+	}
+}
+
+UFUNCTION(BlueprintCallable, Category = "Dialogue")
+void UDialogueController::PlayAnimationCallback(FName AnimationName, bool Success)
+{
+	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogNodePlayAnimationCallbackInterface::StaticClass())) {
+		if (IDialogNodePlayAnimationCallbackInterface::Execute_PlayAnimationCallback(currentNode, AnimationName, Success)) {
 			// The node responds to the callback and wishes to continue dialogue execution.
 			beginExecute(currentNode->GetNextNode(currentContext));
 		}

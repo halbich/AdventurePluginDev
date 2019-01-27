@@ -16,6 +16,7 @@ void UCombinableObjectBlueprint::Compiled(UBlueprint* CompiledBlueprint)
 }
 void UCombinableObjectBlueprint::UpdateExternalCombinations(UCombinableObject* RepresentedObject)
 {
+#if WITH_EDITOR
 	// Retrieve all assets of type CombinableObjectBlueprint.
 	RepresentedObject->ExternalBlueprintCombinations.Empty();
 	FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
@@ -34,10 +35,12 @@ void UCombinableObjectBlueprint::UpdateExternalCombinations(UCombinableObject* R
 		RegisterExternalCombinations(RepresentedObject, targetObject);
 		RegisterExternalCombinations(targetObject, RepresentedObject);
 	}
+#endif
 }
 
 void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject* SourceObject, UCombinableObject* TargetObject)
 {
+#if WITH_EDITOR
 	auto* targetBlueprint = TargetObject ? Cast<UBlueprint>(TargetObject->GetClass()->ClassGeneratedBy) : nullptr;
 	auto* sourceBlueprint = SourceObject ? Cast<UBlueprint>(SourceObject->GetClass()->ClassGeneratedBy) : nullptr;
 	if (targetBlueprint == nullptr || sourceBlueprint == nullptr)
@@ -60,10 +63,12 @@ void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject*
 			TargetObject->ExternalBlueprintCombinations.Add(sourceBlueprint, combination.Name);
 		}
 	}
+#endif
 }
 
 UCombinableObject* UCombinableObjectBlueprint::GetCombinableObjectFromAsset(FAssetData& AssetData)
 {
+#if WITH_EDITOR
 	auto* assetObject = AssetData.GetAsset();
 	auto* assetCasted = Cast<UCombinableObjectBlueprint>(assetObject);
 	if (assetCasted == nullptr || !assetCasted->IsValidLowLevel())
@@ -81,4 +86,6 @@ UCombinableObject* UCombinableObjectBlueprint::GetCombinableObjectFromAsset(FAss
 		return nullptr;
 	}
 	return targetCombinableObject;
+#endif
+	return nullptr;
 }

@@ -28,11 +28,14 @@ public:
 
 	void HideDialog();
 
-	UFUNCTION(BlueprintCallable, Category = "Dialogue", meta = (WorldContext = "WorldContextObject"))
-		void ShowDialogLineCallback(UObject* WorldContextObject);
+	UFUNCTION(BlueprintCallable, Category = "Dialogue")
+		void ShowDialogLineCallback();
 
-	UFUNCTION(BlueprintCallable, Category = "Dialogue", meta = (WorldContext = "WorldContextObject"))
-		void ShowDialogLineSelectionCallback(UObject* WorldContextObject, int32 selectedOptionIndex);
+	UFUNCTION(BlueprintCallable, Category = "Dialogue")
+		void ShowDialogLineSelectionCallback(int32 selectedOptionIndex);
+
+	UFUNCTION(BlueprintCallable, Category = "Dialogue")
+		void PlayAnimationCallback(FName AnimationName, bool Success);
 
 	UPROPERTY(BlueprintReadOnly, Transient)
 		UDialogGraph* CurrentGraph;

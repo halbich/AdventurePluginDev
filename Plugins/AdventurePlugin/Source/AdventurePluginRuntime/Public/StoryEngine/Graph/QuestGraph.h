@@ -60,39 +60,39 @@ class ADVENTUREPLUGINRUNTIME_API UQuestGraph : public UGenericGraph
 public:
 	UQuestGraph();
 	virtual ~UQuestGraph();
-	UPROPERTY(BlueprintReadOnly, Category = "AdventurePlugin")
+	UPROPERTY(BlueprintReadOnly, Category = "QuestGraph")
 		UQuestGraphNode* EndNode;
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		bool GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		void SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		bool GetBool(FName VarName, bool bDefaultValue = false);
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		bool SetBool(FName VarName, bool bValue);
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		int32 GetInteger(FName VarName, int32 DefaultValue = 0);
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		bool SetInteger(FName VarName, int32 Value);
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		FString GetString(FName VarName, FString DefaultValue = "");
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		bool SetString(FName VarName, FString Value);
 	/* Returns the list of all nodes that can be set to true, i.e. they are not true and all of their predecessors are true.*/
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		TArray<UQuestGraphNode*> GetSatisfiableNodes(UAdventurePluginGameContext* GameContext);
 
-	UPROPERTY(EditAnywhere, Category = "AdventurePlugin")
+	UPROPERTY(EditAnywhere, Category = "QuestGraph")
 		TMap<FName, FBoolVariable> BoolVariables;
 
-	UPROPERTY(EditAnywhere, Category = "AdventurePlugin")
+	UPROPERTY(EditAnywhere, Category = "QuestGraph")
 		TMap<FName, FIntegerVariable> IntegerVariables;
 
-	UPROPERTY(EditAnywhere, Category = "AdventurePlugin")
+	UPROPERTY(EditAnywhere, Category = "QuestGraph")
 		TMap<FName, FStringVariable> StringVariables;
 
-	UPROPERTY(EditAnywhere, Category = "AdventurePlugin")
+	UPROPERTY(EditAnywhere, Category = "QuestGraph")
 		TMap<FName, FQuestEvent> QuestEvents;
 
 protected:

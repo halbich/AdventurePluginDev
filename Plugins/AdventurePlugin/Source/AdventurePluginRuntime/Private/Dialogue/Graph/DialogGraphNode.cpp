@@ -7,6 +7,7 @@ UDialogGraphNode::UDialogGraphNode()
 {
 #if WITH_EDITORONLY_DATA
 	CompatibleGraphType = UDialogGraph::StaticClass();
+	ContextMenuCategory = NSLOCTEXT("NodeCategories", "DialogNodeCategory", "Dialog nodes");
 	//BackgroundColor = FLinearColor::Red;
 #endif
 }
@@ -38,5 +39,16 @@ bool UDialogGraphNode::CanRename() const
 }
 
 #endif
+
+UDialogGraph * UDialogGraphNode::GetDialogGraph()
+{
+	auto* dialogGraph = Cast<UDialogGraph>(Graph);
+	if (dialogGraph == nullptr || !dialogGraph->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "DialogGraphNode: Parent graph is not a dialog graph"));
+		return nullptr;
+	}
+	return dialogGraph;
+}
 
 #undef LOCTEXT_NAMESPACE

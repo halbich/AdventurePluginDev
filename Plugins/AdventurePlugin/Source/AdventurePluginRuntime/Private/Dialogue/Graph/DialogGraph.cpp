@@ -6,6 +6,8 @@
 
 #define LOCTEXT_NAMESPACE "DialogGraph"
 
+const FName UDialogGraph::MainEntryName = FName("MAIN");
+
 UDialogGraph::UDialogGraph()
 	: UGenericGraph()
 {

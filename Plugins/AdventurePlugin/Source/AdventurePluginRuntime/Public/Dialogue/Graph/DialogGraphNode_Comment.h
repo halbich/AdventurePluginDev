@@ -15,10 +15,11 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Comment");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, Category = "CommentNode")
 	FText Text;
 
 #if WITH_EDITOR
@@ -39,6 +40,11 @@ public:
 	}
 
 	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
+	{
+		return true;
+	}
+
+	virtual bool CanRename() const override
 	{
 		return true;
 	}

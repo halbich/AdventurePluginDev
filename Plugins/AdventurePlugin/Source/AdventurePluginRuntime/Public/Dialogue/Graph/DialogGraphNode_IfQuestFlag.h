@@ -2,12 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
+#include "DialogGraphNode_TrueFalse.h"
 #include "StoryEngine/Graph/QuestGraph.h"
 #include "StoryEngine/Structs/QuestGraphFlag.h"
 #include "DialogGraphNode_IfQuestFlag.generated.h"
 
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfQuestFlag : public UDialogGraphNode
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfQuestFlag : public UDialogGraphNode_TrueFalse
 {
 	GENERATED_BODY()
 
@@ -20,16 +21,16 @@ public:
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphNode_Editor")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnFlagNode")
 		FQuestGraphFlag Flag;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IfQuestFlag", "NodeTitle", "If \"{0}\" in \"{1}\""), 
-			FText::FromName(Flag.FlagName), 
-			FText::FromString(IsValid(Flag.Quest) ? Flag.Quest->Name : "<EMPTY>"));
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IfQuestFlag", "NodeTitle", "IF {0}->{1}"), 
+			FText::FromString(IsValid(Flag.Quest) ? Flag.Quest->Name : "<EMPTY>"),
+			FText::FromName(Flag.FlagName));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
@@ -44,14 +45,10 @@ public:
 
 #endif
 
-	virtual uint32 GetOutputPinsCount() const override
-	{
-		return 2;
-	}
-
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		int32 bin = IsValid(Flag.Quest) && Flag.Quest->GetFlag(context, Flag.FlagName) ? 0 : 1;
-		return Cast<UDialogGraphNode>(GetFirstChildInBin(bin));
+		return IsValid(Flag.Quest) && Flag.Quest->GetFlag(context, Flag.FlagName)
+			? ChildTrue
+			: ChildFalse;
 	}
 };

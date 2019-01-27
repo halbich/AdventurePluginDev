@@ -16,6 +16,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuName = FText::FromString("Secondary Entry Point");
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}
 
@@ -29,11 +30,11 @@ public:
 	{
 		if (Id.IsNone())
 		{
-			return NSLOCTEXT("DialogGraphNode_EntrySecondary", "Secondary entry point no id title", "Entry point: No Id set");
+			return NSLOCTEXT("DialogGraphNode_EntrySecondary", "Secondary entry point no id title", "ENTRY POINT: No Id set");
 		}
 		else
 		{
-			return FText::Format(NSLOCTEXT("DialogGraphNode_EntrySecondary", "Secondary entry point title", "Entry point: {0}"), FText::FromName(Id));
+			return FText::Format(NSLOCTEXT("DialogGraphNode_EntrySecondary", "Secondary entry point title", "ENTRY POINT: {0}"), FText::FromName(Id));
 		}
 	}
 
@@ -45,11 +46,6 @@ public:
 	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
 	{
 		return true;
-	}
-
-	virtual inline bool HasInputPin() const override
-	{
-		return false;
 	}
 
 #endif
