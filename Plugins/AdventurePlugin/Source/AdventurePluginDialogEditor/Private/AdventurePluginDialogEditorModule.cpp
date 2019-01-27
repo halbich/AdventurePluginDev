@@ -25,7 +25,6 @@
 #include "Dialogue/Graph/DialogGraph.h"
 #include "Dialogue/Graph/DialogGraphNode_Goto.h"
 #include "Dialogue/Graph/DialogGraphNode_IfInInventory.h"
-#include "Dialogue/Graph/DialogGraphNode_PlayPCAnimation.h"
 #include "Dialogue/Graph/DialogGraphNode_PlayAnimationBase.h"
 #include "Dialogue/Structs/DialogGraphEntryPoint.h"
 #include "Customizations/GotoCustomization.h"
