@@ -110,6 +110,7 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
 	PropertyModule.UnregisterCustomClassLayout(UDialogGraph::StaticClass()->GetFName());
 	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_Goto::StaticClass()->GetFName());
+	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_PlayAnimationBase::StaticClass()->GetFName());
 	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_IfInInventory::StaticClass()->GetFName());
 	PropertyModule.UnregisterCustomPropertyTypeLayout(FDialogGraphEntryPoint::StaticStruct()->GetFName());
 	/**/
