@@ -16,6 +16,8 @@
 #include "EdDialogNode_LessEqualMore.h"
 #include "DialogGraphNode_EntryMain.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
+#include "AssetRegistryModule.h"
+#include "AdventureCharacterBlueprint.h"
 #include "EdGraph/EdGraph.h"
 
 UAssetGraphSchema_DialogGraph::UAssetGraphSchema_DialogGraph()
@@ -48,6 +50,17 @@ void UAssetGraphSchema_DialogGraph::CreateDefaultNodesForGraph(UEdGraph& EdGraph
 	Action.NodeTemplate->GenericGraphNode->Graph = EditingGraph;
 	EditingGraph->MainEntryPoint = Cast<UDialogGraphNode>(Action.NodeTemplate->GenericGraphNode);
 	Action.PerformAction(EditingGraph->EdGraph, nullptr, FVector2D(0, 0), false);
+	//TODO: Maybe put this somewhere else? Not sure where though.
+	// If there is only one player character class, use that.
+	if (EditingGraph->PlayerCharacter == nullptr)
+	{
+		auto* onlyPlayerCharacter = GetOnlyPlayerCharacter();
+		if (onlyPlayerCharacter != nullptr)
+		{
+			EditingGraph->PickerPlayerCharacter = Cast<UAdventureCharacterBlueprint>(onlyPlayerCharacter->GetClass()->ClassGeneratedBy);
+			EditingGraph->PlayerCharacter = onlyPlayerCharacter->GetClass();
+		}
+	}
 }
 
 TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_DialogGraph::GetEditorNodeType(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const
@@ -61,4 +74,54 @@ TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_DialogGraph::GetEditorNo
 		}
 	}
 	return UEdDialogNode::StaticClass();
+}
+UAdventureCharacter* UAssetGraphSchema_DialogGraph::GetOnlyPlayerCharacter() const
+{
+	FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+	TArray<FAssetData> AssetData;
+	const UClass* blueprintClass = UAdventureCharacterBlueprint::StaticClass();
+	AssetRegistryModule.Get().GetAssetsByClass(blueprintClass->GetFName(), AssetData, true);
+	// Go through all assets, retrieve CDO's of classes they represent and see if they are a player character.
+	UAdventureCharacter* onlyPlayerCharacter = nullptr;
+	for (auto asset : AssetData)
+	{
+		auto* targetObject = GetCharacterFromAsset(asset);
+		if (targetObject == nullptr || !targetObject->bIsPlayerCharacter)
+		{
+			// Not a player character
+			continue;
+		}
+		if (onlyPlayerCharacter != nullptr)
+		{
+			// Found a second player character, so we should not set anything
+			return nullptr;
+		}
+		// Candidate for the only player character.
+		onlyPlayerCharacter = targetObject;
+	}
+	return onlyPlayerCharacter;
+}
+
+UAdventureCharacter* UAssetGraphSchema_DialogGraph::GetCharacterFromAsset(FAssetData& AssetData) const
+{
+#if WITH_EDITOR
+	auto* assetObject = AssetData.GetAsset();
+	auto* assetCasted = Cast<UAdventureCharacterBlueprint>(assetObject);
+	if (assetCasted == nullptr || !assetCasted->IsValidLowLevel())
+	{
+		return nullptr;
+	}
+	auto* assetCDO = assetCasted->GeneratedClass ? assetCasted->GeneratedClass->ClassDefaultObject : nullptr;
+	if (assetCDO == nullptr || !assetCDO->IsValidLowLevel())
+	{
+		return nullptr;
+	}
+	auto* targetCombinableObject = Cast<UAdventureCharacter>(assetCDO);
+	if (targetCombinableObject == nullptr)
+	{
+		return nullptr;
+	}
+	return targetCombinableObject;
+#endif
+	return nullptr;
 }

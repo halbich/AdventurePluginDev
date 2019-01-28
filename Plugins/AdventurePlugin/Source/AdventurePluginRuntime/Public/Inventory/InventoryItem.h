@@ -9,6 +9,7 @@
 #include "CombinationInterface.h"
 #include "CombinableObject.h"
 #include "Dialogue/Structs/DialogGraphEntryPoint.h"
+#include "InventoryItemState.h"
 #include "InventoryItem.generated.h"
 
 class UInventoryItemBlueprint;
@@ -20,20 +21,33 @@ class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UCombinableObject, publ
 
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 		FText Name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 		FText Description;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 		UTexture2D* Icon;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 		FDialogGraphEntryPoint Dialog;
+	//TODO: Create nice picker for Tags that loads options from settings.
+	/* Tags assigned to this item, e.g. weapon, critical, red herring etc. No inherent function unless designers make it so*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+		TSet<FName> Tags;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		EInventoryItemState ItemState;
 
 	virtual UTexture2D* GetIcon() const override
 	{
 		return Icon;
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+		virtual bool WasPickedUp()
+	{
+		return ItemState != EInventoryItemState::ItemState_NotSpawned && ItemState != EInventoryItemState::ItemState_Spawned;
 	}
 };

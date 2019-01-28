@@ -20,19 +20,9 @@ public:
 
 	virtual TScriptInterface<IAnimatableObjectInterface> GetAnimatedObject(UAdventurePluginGameContext* context) override
 	{
-		if (context == nullptr || !context->IsValidLowLevel() ||
-			context->AdventureCharacterManager == nullptr || !context->AdventureCharacterManager->IsValidLowLevel())
-		{
-			// TODO: Log warning/error.
-			return nullptr;
-		}
+		auto* graph = GetDialogGraph();
 		TSubclassOf<UAdventureCharacter> characterClass = GetAnimatedObjectClass();
-		if (characterClass == nullptr)
-		{
-			// TODO: Log error.
-			return nullptr;
-		}
-		auto* characterInstance = context->AdventureCharacterManager->GetCharacter(characterClass);
+		auto* characterInstance = graph && graph->IsValidLowLevel() ? graph->GetSpeakerInstance(context, characterClass) : nullptr;
 		return characterInstance;
 	}
 };

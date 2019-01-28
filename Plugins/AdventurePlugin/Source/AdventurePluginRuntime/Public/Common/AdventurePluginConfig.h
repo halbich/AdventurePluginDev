@@ -60,4 +60,7 @@ public:
 
 	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Adventure Character Manager")
 		TSoftClassPtr<UAdventureCharacterManager> DefaultAdventureCharacterManager;
+
+	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Supported item tags")
+		TSet<FName> SupportedItemTags;
 };

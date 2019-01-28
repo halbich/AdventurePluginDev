@@ -9,6 +9,7 @@ bool UInventory::AddItem(UInventoryItem* item)
 {
 	if (Items.Contains(item)) return false;
 	Items.Add(item);
+	item->ItemState = EInventoryItemState::ItemState_InInventory;
 	if (!isUpdating)
 	{
 		InventoryChanged.Broadcast(item);
@@ -20,6 +21,7 @@ bool UInventory::RemoveItem(UInventoryItem* item)
 {
 	if (!Items.Contains(item)) return false;
 	Items.Remove(item);
+	item->ItemState = EInventoryItemState::ItemState_Used;
 	if (!isUpdating)
 	{
 		InventoryChanged.Broadcast(item);

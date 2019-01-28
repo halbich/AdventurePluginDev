@@ -207,7 +207,7 @@ void FAdventurePluginEditor::UnregisterSettings()
 	// otherwise yield unexpected results.
 
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings")) {
-		SettingsModule->UnregisterSettings("Project", "APSettings", "AdventurePlugin");
+		SettingsModule->UnregisterSettings("Project", "Plugins", "AdventurePlugin");
 	}
 }
 

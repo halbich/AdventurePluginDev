@@ -40,7 +40,7 @@ bool UDialogGraphNode::CanRename() const
 
 #endif
 
-UDialogGraph * UDialogGraphNode::GetDialogGraph()
+UDialogGraph * UDialogGraphNode::GetDialogGraph() const
 {
 	auto* dialogGraph = Cast<UDialogGraph>(Graph);
 	if (dialogGraph == nullptr || !dialogGraph->IsValidLowLevel())

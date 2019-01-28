@@ -2,6 +2,8 @@
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_EntryMain.h"
 #include "DialogGraphNode_Event.h"
+#include "AdventurePluginGameContext.h"
+#include "AdventureCharacterManager.h"
 #include "Engine/Engine.h"
 
 #define LOCTEXT_NAMESPACE "DialogGraph"
@@ -29,6 +31,33 @@ UDialogGraphNode_Event* UDialogGraph::GetEventNode(FName EventName)
 		}
 	}
 	return NULL;
+}
+
+UAdventureCharacter* UDialogGraph::GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* Context)
+{
+	return GetSpeakerInstance(Context, PlayerCharacter);
+}
+
+UAdventureCharacter* UDialogGraph::GetDialogNPCCharacterInstance(UAdventurePluginGameContext* Context)
+{
+	return GetSpeakerInstance(Context, NPCCharacter);
+}
+
+UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameContext* Context, TSubclassOf<UAdventureCharacter> Speaker)
+{
+	if (Context == nullptr || !Context->IsValidLowLevel() ||
+		Context->AdventureCharacterManager == nullptr || !Context->AdventureCharacterManager->IsValidLowLevel())
+	{
+		// TODO: Log warning/error.
+		return nullptr;
+	}
+	if (Speaker == nullptr)
+	{
+		// TODO: Log error.
+		return nullptr;
+	}
+	auto* characterInstance = Context->AdventureCharacterManager->GetCharacter(Speaker);
+	return characterInstance;
 }
 
 #undef LOCTEXT_NAMESPACE

@@ -24,6 +24,9 @@ public:
 		FString Name;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		bool bIsPlayerCharacter;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		UTexture2D* Icon;
 	// MARK: Animations
 	

@@ -24,4 +24,5 @@ public:
 	{
 		return Cast<UInventoryItem>(GetObject(Item));
 	}
+	/*TODO: When Saving game works, this class should be responsible for serializing and deserializing the states of all items.*/
 };

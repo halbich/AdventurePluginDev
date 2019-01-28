@@ -20,7 +20,7 @@ public:
 	UQuestGraphNode_Inventory()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = NSLOCTEXT("QuestGraphNode_Inventory", "ContextMenuName", "Is in inventory");
+		ContextMenuName = NSLOCTEXT("QuestGraphNode_Inventory", "ContextMenuName", "Picked up inventory item");
 #endif
 	}
 
@@ -37,7 +37,6 @@ public:
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
 		if (GameContext == NULL || !GameContext->IsValidLowLevel() ||
-			GameContext->InventoryController == NULL || !GameContext->InventoryController->IsValidLowLevel() ||
 			GameContext->ItemManager == NULL || !GameContext->ItemManager->IsValidLowLevel())
 		{
 			LOG_Error(NSLOCTEXT("AP", "Invalid Inventory Game context", "Quest graph node: Inventory: Invalid context passed"));
@@ -54,8 +53,7 @@ public:
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Item Instance", "Quest graph node: Item could not be instantiated"));
 			return false;
 		}
-		auto* inventoryController = GameContext->InventoryController;
-		return inventoryController->GetInventory()->HasItem(itemInstance);
+		return itemInstance->WasPickedUp();
 	}
 
 #if WITH_EDITOR
