@@ -8,6 +8,7 @@
 #include "DialogGraph.generated.h"
 
 class UDialogGraphNode;
+class UAdventurePluginGameContext;
 
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraph : public UGenericGraph
@@ -49,4 +50,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
 		UDialogGraphNode_Event* GetEventNode(FName EventName);
 
+	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
+		UAdventureCharacter* GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* Context);
+
+	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
+		UAdventureCharacter* GetDialogNPCCharacterInstance(UAdventurePluginGameContext* Context);
+
+	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
+	UAdventureCharacter * GetSpeakerInstance(UAdventurePluginGameContext* Context, TSubclassOf<UAdventureCharacter> Speaker);
 };

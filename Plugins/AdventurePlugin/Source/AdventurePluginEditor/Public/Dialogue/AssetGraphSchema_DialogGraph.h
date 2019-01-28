@@ -6,6 +6,8 @@
 #include "EdDialogNode.h"
 #include "AssetGraphSchema_DialogGraph.generated.h"
 
+class UAdventureCharacter;
+
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UAssetGraphSchema_DialogGraph : public UAssetGraphSchema_GenericGraph
 {
@@ -22,4 +24,6 @@ protected:
 
 	UPROPERTY()
 	TMap<TSubclassOf<UDialogGraphNode>, TSubclassOf<UEdDialogNode>> EditorNodeMap;
+	UAdventureCharacter* GetCharacterFromAsset(FAssetData& AssetData) const;
+	UAdventureCharacter* GetOnlyPlayerCharacter() const;
 };

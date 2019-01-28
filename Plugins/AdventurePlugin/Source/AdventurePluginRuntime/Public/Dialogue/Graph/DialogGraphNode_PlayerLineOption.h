@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "NodeInterfaces/DialogueNodeShowLineCallbackInterface.h"
+#include "DialogGraph.h"
 #include "DialogGraphNode_PlayerLineOption.generated.h"
 
 UCLASS(Blueprintable)
@@ -59,11 +60,12 @@ public:
 		return true;
 	}
 
-	virtual FDialogLineData GetDialogLine() const override
+	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* Context) const override
 	{
 		auto toReturn = FDialogLineData();
 		toReturn.OptionText = OptionText;
-		toReturn.IsPlayerCharacterLine = true;
+		auto* graph = GetDialogGraph();
+		toReturn.SpeakerCharacter = graph->GetDialogPlayerCharacterInstance(Context);
 		return toReturn;
 	}
 };

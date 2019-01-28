@@ -57,11 +57,11 @@ public:
 		return false;
 	}
 
-	virtual FDialogLineData GetDialogLine() const
+	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* Context) const
 	{
 		return FDialogLineData();
 	}
 
 protected:
-	UDialogGraph * GetDialogGraph();
+	UDialogGraph * GetDialogGraph() const;
 };

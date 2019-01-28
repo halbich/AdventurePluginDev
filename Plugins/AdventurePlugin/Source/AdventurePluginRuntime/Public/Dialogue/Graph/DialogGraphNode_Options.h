@@ -97,7 +97,7 @@ public:
 				{
 					// Found a player line to present
 					optionMapping.Add(optionsToPresent.Num(), i);
-					optionsToPresent.Add(nodeCasted->GetDialogLine());
+					optionsToPresent.Add(nodeCasted->GetDialogLine(context));
 					break;
 				}
 				// Player line not found, go to child node.
@@ -111,7 +111,8 @@ public:
 		}
 		else
 		{
-			// TODO: Show the fallback for no results.
+			// This is fallback - execution of this node will end and the Controller will call GetNextNode, which will, thanks to selectedOptionIndex being -1, return ChildFallback.
+			// If ChildFallback is nullptr, execution of graph will end.
 			return true;
 		}
 		return false;

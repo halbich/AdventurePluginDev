@@ -4,6 +4,8 @@
 #include "Sound/SoundBase.h"
 #include "DialogLineData.generated.h"
 
+class UAdventureCharacter;
+
 USTRUCT(BlueprintType)
 struct FDialogLineData
 {
@@ -21,9 +23,9 @@ public:
 	/** Specifies whether the user should be able to skip this particular line of dialogue or not.. */
 	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
 		bool Skippable;
-	/** If true, player is saying this line */
+	/** The character saying this line.*/
 	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
-		bool IsPlayerCharacterLine;
+		UAdventureCharacter* SpeakerCharacter;
 	/** Specifies the sound that should be played when this option is displayed. */
 	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
 		USoundBase* DialogSound;
