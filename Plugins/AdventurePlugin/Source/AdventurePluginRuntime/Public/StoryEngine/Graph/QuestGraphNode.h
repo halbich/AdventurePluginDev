@@ -19,7 +19,7 @@ public:
 	virtual bool IsSatisfied(UAdventurePluginGameContext* gameContext) { return true; };
 
 #if WITH_EDITORONLY_DATA
-
+	/*TODO: Bind to some nice picker of available locations.*/
 	UPROPERTY(EditAnywhere, Category = "QuestNode")
 	FText Location;
 
