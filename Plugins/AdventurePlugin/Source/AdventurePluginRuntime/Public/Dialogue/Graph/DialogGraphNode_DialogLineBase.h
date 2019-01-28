@@ -47,7 +47,7 @@ public:
 		return true;
 	}
 
-	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* Context) const
+	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
 		//Override this method.
 		check(false && "Get speaker function must be overriden");
@@ -55,6 +55,13 @@ public:
 	}
 
 #endif
+
+	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* Context) const
+	{
+		//Override this method.
+		check(false && "Get speaker function must be overriden");
+		return nullptr;
+	}
 
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
