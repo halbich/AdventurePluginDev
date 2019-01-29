@@ -69,17 +69,17 @@ public:
 		void SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
 	
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		bool GetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bDefaultValue = false);
+		bool GetBool(UAdventurePluginGameContext* GameContext, FName VarName);
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		bool SetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bValue);
 	
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		int32 GetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 DefaultValue = 0);
+		int32 GetInteger(UAdventurePluginGameContext* GameContext, FName VarName);
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		bool SetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 Value);
 	
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		FString GetString(UAdventurePluginGameContext* GameContext, FName VarName, FString DefaultValue = "");
+		FString GetString(UAdventurePluginGameContext* GameContext, FName VarName);
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		bool SetString(UAdventurePluginGameContext* GameContext, FName VarName, FString Value);
 	

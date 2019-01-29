@@ -55,8 +55,9 @@ FText UQuestGraph::GetGraphNameText()
 	return FText::FromString(Name);
 }
 
-bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bDefaultValue)
+bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName VarName)
 {
+	bool bDefaultValue(false);
 	if (!GameContext || !GameContext->IsValidLowLevel())
 	{
 		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetBool::gameContext is NULL"));
@@ -70,13 +71,14 @@ bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName VarNam
 		return bDefaultValue;
 	}
 
-	if (!BoolVariables.Find(VarName))
+	FBoolVariable* var = BoolVariables.Find(VarName);
+	if (!var)
 	{
 		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetBool - Variable was not found in dictionary"));
 		return bDefaultValue;
 	}
 
-	return save->GetBoolOrDefault(VarName, bDefaultValue);
+	return save->GetBoolOrDefault(VarName, var->DefaultValue);
 }
 
 bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bValue)
@@ -103,8 +105,9 @@ bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName VarNam
 	return true;
 }
 
-int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 DefaultValue)
+int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName VarName)
 {
+	int32 DefaultValue(0);
 	if (!GameContext || !GameContext->IsValidLowLevel())
 	{
 		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetInteger::gameContext is NULL"));
@@ -117,13 +120,14 @@ int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName Va
 		return DefaultValue;
 	}
 
-	if (!IntegerVariables.Find(VarName))
+	FIntegerVariable* var = IntegerVariables.Find(VarName);
+	if (!var)
 	{
 		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetInteger - Variable was not found in dictionary"));
 		return DefaultValue;
 	}
 
-	return save->GetIntOrDefault(VarName, DefaultValue);
+	return save->GetIntOrDefault(VarName, var->DefaultValue);
 }
 
 bool UQuestGraph::SetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 Value)
@@ -150,8 +154,10 @@ bool UQuestGraph::SetInteger(UAdventurePluginGameContext* GameContext, FName Var
 	return true;
 }
 
-FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName VarName, FString DefaultValue)
+FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName VarName)
 {
+	FString DefaultValue;
+
 	if (!GameContext || !GameContext->IsValidLowLevel())
 	{
 		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetString::gameContext is NULL"));
@@ -164,13 +170,14 @@ FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName V
 		return DefaultValue;
 	}
 
-	if (!StringVariables.Find(VarName))
+	FStringVariable* var = StringVariables.Find(VarName);
+	if (!var)
 	{
 		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetString - Variable was not found in dictionary"));
 		return DefaultValue;
 	}
 
-	return save->GetStringOrDefault(VarName, DefaultValue);
+	return save->GetStringOrDefault(VarName, var->DefaultValue);
 }
 
 bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName VarName, FString Value)
