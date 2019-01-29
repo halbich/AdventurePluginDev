@@ -67,18 +67,22 @@ public:
 		bool GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		void SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
+	
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		bool GetBool(FName VarName, bool bDefaultValue = false);
+		bool GetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bDefaultValue = false);
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		bool SetBool(FName VarName, bool bValue);
+		bool SetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bValue);
+	
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		int32 GetInteger(FName VarName, int32 DefaultValue = 0);
+		int32 GetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 DefaultValue = 0);
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		bool SetInteger(FName VarName, int32 Value);
+		bool SetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 Value);
+	
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		FString GetString(FName VarName, FString DefaultValue = "");
+		FString GetString(UAdventurePluginGameContext* GameContext, FName VarName, FString DefaultValue = "");
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
-		bool SetString(FName VarName, FString Value);
+		bool SetString(UAdventurePluginGameContext* GameContext, FName VarName, FString Value);
+	
 	/* Returns the list of all nodes that can be set to true, i.e. they are not true and all of their predecessors are true.*/
 	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
 		TArray<UQuestGraphNode*> GetSatisfiableNodes(UAdventurePluginGameContext* GameContext);

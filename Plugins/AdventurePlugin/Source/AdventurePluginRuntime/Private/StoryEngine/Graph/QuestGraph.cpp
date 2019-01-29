@@ -54,13 +54,13 @@ FText UQuestGraph::GetGraphNameText()
 	return FText::FromString(Name);
 }
 
-bool UQuestGraph::GetBool(FName VarName, bool bDefaultValue)
+bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bDefaultValue)
 {
 	auto* var = BoolVariables.Find(VarName);
 	return var ? var->Value : bDefaultValue;
 }
 
-bool UQuestGraph::SetBool(FName VarName, bool bValue)
+bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bValue)
 {
 	auto* var = BoolVariables.Find(VarName);
 	if (!var) return false;
@@ -68,13 +68,13 @@ bool UQuestGraph::SetBool(FName VarName, bool bValue)
 	return true;
 }
 
-int32 UQuestGraph::GetInteger(FName VarName, int32 DefaultValue)
+int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 DefaultValue)
 {
 	auto* var = IntegerVariables.Find(VarName);
 	return var ? var->Value : DefaultValue;
 }
 
-bool UQuestGraph::SetInteger(FName VarName, int32 Value)
+bool UQuestGraph::SetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 Value)
 {
 	auto* var = IntegerVariables.Find(VarName);
 	if (!var) return false;
@@ -82,13 +82,13 @@ bool UQuestGraph::SetInteger(FName VarName, int32 Value)
 	return true;
 }
 
-FString UQuestGraph::GetString(FName VarName, FString DefaultValue)
+FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName VarName, FString DefaultValue)
 {
 	auto* var = StringVariables.Find(VarName);
 	return var ? var->Value : DefaultValue;
 }
 
-bool UQuestGraph::SetString(FName VarName, FString Value)
+bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName VarName, FString Value)
 {
 	auto* var = StringVariables.Find(VarName);
 	if (!var) return false;

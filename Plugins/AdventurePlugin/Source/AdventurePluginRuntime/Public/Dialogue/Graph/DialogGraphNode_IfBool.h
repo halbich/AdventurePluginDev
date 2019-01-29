@@ -22,13 +22,13 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnBoolNode")
-	FQuestGraphBool Bool;
+		FQuestGraphBool Bool;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IfBool", "NodeTitle", "IF {0}->{1}"), 
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IfBool", "NodeTitle", "IF {0}->{1}"),
 			FText::FromString(IsValid(Bool.Quest) ? Bool.Quest->Name : "<EMPTY>"),
 			FText::FromName(Bool.BoolName));
 	}
@@ -47,7 +47,7 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		return IsValid(Bool.Quest) && Bool.Quest->GetBool(Bool.BoolName)
+		return IsValid(Bool.Quest) && Bool.Quest->GetBool(context, Bool.BoolName)
 			? ChildTrue
 			: ChildFalse;
 	}

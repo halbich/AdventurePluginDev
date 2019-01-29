@@ -51,7 +51,7 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
 	{
-		return IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(String.StringName)) == 0
+		return IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(context, String.StringName)) == 0
 			? ChildTrue
 			: ChildFalse;
 	}

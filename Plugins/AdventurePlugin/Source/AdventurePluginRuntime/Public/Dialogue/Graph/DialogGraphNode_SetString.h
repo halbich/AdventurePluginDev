@@ -53,7 +53,7 @@ public:
 	{
 		// TODO
 		if (!IsValid(String.Quest)) return true;
-		String.Quest->SetString(String.StringName, Constant);
+		String.Quest->SetString(context, String.StringName, Constant);
 		return true;
 	};
 };

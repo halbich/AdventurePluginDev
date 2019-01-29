@@ -69,7 +69,7 @@ public:
 	{
 		if (IsValid(Integer.Quest))
 		{
-			int32 val = Integer.Quest->GetInteger(Integer.IntegerName);
+			int32 val = Integer.Quest->GetInteger(context, Integer.IntegerName);
 			if (val < Constant) return ChildLess;
 			else if (val == Constant) return ChildEqual;
 			else return ChildMore;

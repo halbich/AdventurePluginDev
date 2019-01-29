@@ -22,13 +22,13 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "IncrementIntegerNode")
-	FQuestGraphInteger Integer;
+		FQuestGraphInteger Integer;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IncrementInteger", "NodeTitle", "INCREMENT {0}->{1}"), 
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IncrementInteger", "NodeTitle", "INCREMENT {0}->{1}"),
 			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : "<EMPTY>"),
 			FText::FromName(Integer.IntegerName));
 	}
@@ -49,8 +49,8 @@ public:
 	{
 		// TODO
 		if (!IsValid(Integer.Quest)) return true;
-		int32 value = Integer.Quest->GetInteger(Integer.IntegerName);
-		Integer.Quest->SetInteger(Integer.IntegerName, value + 1);
+		int32 value = Integer.Quest->GetInteger(context, Integer.IntegerName);
+		Integer.Quest->SetInteger(context, Integer.IntegerName, value + 1);
 		return true;
 	};
 };

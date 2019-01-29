@@ -22,13 +22,13 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SwitchBoolNode")
-	FQuestGraphBool Bool;
+		FQuestGraphBool Bool;
 
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_SwitchBool", "NodeTitle", "SWITCH {0}->{1}"), 
+		return FText::Format(NSLOCTEXT("DialogGraphNode_SwitchBool", "NodeTitle", "SWITCH {0}->{1}"),
 			FText::FromString(IsValid(Bool.Quest) ? Bool.Quest->Name : "<EMPTY>"),
 			FText::FromName(Bool.BoolName));
 	}
@@ -49,8 +49,8 @@ public:
 	{
 		// TODO
 		if (!IsValid(Bool.Quest)) return true;
-		bool value = Bool.Quest->GetBool(Bool.BoolName);
-		Bool.Quest->SetBool(Bool.BoolName, !value);
+		bool value = Bool.Quest->GetBool(context, Bool.BoolName);
+		Bool.Quest->SetBool(context, Bool.BoolName, !value);
 		return true;
 	};
 };

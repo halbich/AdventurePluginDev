@@ -18,13 +18,13 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginSaveGame : public USaveGame
 		UAdventurePluginSaveGame();
 
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category= "StoredValues")
 		TMap<FName, bool> storageBoolean;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
 		TMap<FName, int> storageInt;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
 		TMap<FName, FString> storageString;
 
 public:
