@@ -14,19 +14,19 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_DialogLineBase : public UDialo
 	GENERATED_BODY()
 
 public:
-
+	/*The text that should be shown to the player.*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 		FText DialogText;
-
+	/*The sound to be played for this dialog line. The line should disappear automatically after the sound finishes. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 		USoundBase* DialogSound;
-
+	/*If true, the user can skip this dialog line.*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
-		bool bSkippable;
-
+		bool bSkippable = true;
+	/* If set and dialog sound is nullptr, the text should stay on this screen for this amount of time.*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 		float TextDuration;
-
+	/*The animation that should be played while this dialog line is being shown.*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 		FName AnimationName;
 
@@ -46,8 +46,8 @@ public:
 	{
 		return true;
 	}
-
-	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* Context) const
+	/*Returns the CDO of the speaker that does not depend on a game context. Use only in editor. Must be overriden.*/
+	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
 		//Override this method.
 		check(false && "Get speaker function must be overriden");
@@ -55,7 +55,14 @@ public:
 	}
 
 #endif
-
+	/* Returns the speaker associated with this dialogue line. Must be overriden.*/
+	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* Context) const
+	{
+		//Override this method.
+		check(false && "Get speaker function must be overriden");
+		return nullptr;
+	}
+	/*Displays the dialog line.*/
 	virtual bool Execute(UAdventurePluginGameContext* context) override
 	{
 		auto widget = Cast<IDialoguePresenterInterface>(context->DialoguePresenter.GetObject());
@@ -66,7 +73,7 @@ public:
 	virtual bool ShowDialogueLineCallback_Implementation(UDialogueController* controller) override {
 		return true;
 	}
-
+	/*Creates a dialog line data representing this line.*/
 	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* Context) const override
 	{
 		auto toReturn = FDialogLineData();

@@ -18,12 +18,12 @@ void FAnimationCustomization::CustomizeDetails(IDetailLayoutBuilder& DetailLayou
 	FName Id;
 	IdHandle->GetValue(Id);
 
-	FDetailWidgetRow& ComboBoxRow = DetailLayout.AddCustomRowToCategory(IdHandle, LOCTEXT("TargetNodeId", "Target Node Id"));
+	FDetailWidgetRow& ComboBoxRow = DetailLayout.AddCustomRowToCategory(IdHandle, LOCTEXT("AnimationName", "Animation"));
 
 	ComboBoxRow.NameContent()
 		[
 			SNew(STextBlock)
-			.Text(LOCTEXT("TargetNodeId", "Target Node Id"))
+			.Text(LOCTEXT("AnimationName", "Animation"))
 		];
 
 	TSharedPtr<SComboBox<FComboItemType>> ComboBox;
@@ -46,12 +46,12 @@ void FAnimationCustomization::CustomizeDetails(IDetailLayoutBuilder& DetailLayou
 	if (Objects.Num() > 0)
 	{
 		UDialogGraphNode_PlayAnimationBase* AnimationNode = Cast<UDialogGraphNode_PlayAnimationBase>(Objects[0]);
-		auto animatedCharacter = AnimationNode && AnimationNode->IsValidLowLevel() ? AnimationNode->GetEditorTimeAnimatableObject() : nullptr;
-		if (animatedCharacter != nullptr)
+		auto animatedObject = AnimationNode && AnimationNode->IsValidLowLevel() ? AnimationNode->GetEditorTimeAnimatableObject() : nullptr;
+		if (animatedObject != nullptr)
 		{
 			TSet<FComboItemType> Ids;
 			FComboItemType SelectedId;
-			auto allAnimationStates = animatedCharacter->Execute_GetAllAnimationStates(animatedCharacter.GetObject());
+			auto allAnimationStates = animatedObject->Execute_GetAllAnimationStates(animatedObject.GetObject());
 			for (auto animationState : allAnimationStates)
 			{
 				FComboItemType NewItem = MakeShareable(new FName(animationState));

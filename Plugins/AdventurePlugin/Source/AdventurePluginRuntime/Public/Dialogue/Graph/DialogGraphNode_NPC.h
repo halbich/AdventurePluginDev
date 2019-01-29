@@ -32,6 +32,12 @@ public:
 		return FLinearColor::Red;
 	}
 
+	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
+	{
+		auto* graph = GetDialogGraph();
+		return graph && graph->IsValidLowLevel() ? graph->NPCCharacter.GetDefaultObject() : nullptr;
+	}
+
 #endif
 
 	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* Context) const override
