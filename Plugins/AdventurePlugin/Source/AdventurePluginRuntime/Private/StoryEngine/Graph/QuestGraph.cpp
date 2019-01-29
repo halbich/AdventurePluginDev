@@ -3,6 +3,7 @@
 #include "QuestGraphNode_Flag.h"
 #include "Engine/Engine.h"
 #include "AdventurePluginRuntime.h"
+#include "SaveGame/AdventurePluginSaveGame.h"
 #include "AdventurePluginGameContext.h"
 
 #define LOCTEXT_NAMESPACE "QuestGraph"
@@ -56,43 +57,143 @@ FText UQuestGraph::GetGraphNameText()
 
 bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bDefaultValue)
 {
-	auto* var = BoolVariables.Find(VarName);
-	return var ? var->Value : bDefaultValue;
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetBool::gameContext is NULL"));
+		return bDefaultValue;
+	}
+
+	auto save = GameContext->SaveGame;
+	if (!save || !save->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetBool::gameContext::SaveGame is NULL"));
+		return bDefaultValue;
+	}
+
+	if (!BoolVariables.Find(VarName))
+	{
+		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetBool - Variable was not found in dictionary"));
+		return bDefaultValue;
+	}
+
+	return save->GetBoolOrDefault(VarName, bDefaultValue);
 }
 
 bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bValue)
 {
-	auto* var = BoolVariables.Find(VarName);
-	if (!var) return false;
-	var->Value = bValue;
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::SetBool::gameContext is NULL"));
+		return false;
+	}
+	auto save = GameContext->SaveGame;
+	if (!save || !save->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::SetBool::gameContext::SaveGame is NULL"));
+		return false;
+	}
+
+	if (!BoolVariables.Find(VarName))
+	{
+		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::SetBool - Variable was not found in dictionary"));
+		return false;
+	}
+
+	save->SetBool(VarName, bValue);
 	return true;
 }
 
 int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 DefaultValue)
 {
-	auto* var = IntegerVariables.Find(VarName);
-	return var ? var->Value : DefaultValue;
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetInteger::gameContext is NULL"));
+		return DefaultValue;
+	}
+	auto save = GameContext->SaveGame;
+	if (!save || !save->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetInteger::gameContext::SaveGame is NULL"));
+		return DefaultValue;
+	}
+
+	if (!IntegerVariables.Find(VarName))
+	{
+		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetInteger - Variable was not found in dictionary"));
+		return DefaultValue;
+	}
+
+	return save->GetIntOrDefault(VarName, DefaultValue);
 }
 
 bool UQuestGraph::SetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 Value)
 {
-	auto* var = IntegerVariables.Find(VarName);
-	if (!var) return false;
-	var->Value = Value;
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::SetInteger::gameContext is NULL"));
+		return false;
+	}
+	auto save = GameContext->SaveGame;
+	if (!save || !save->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::SetInteger::gameContext::SaveGame is NULL"));
+		return false;
+	}
+
+	if (!IntegerVariables.Find(VarName))
+	{
+		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::SetInteger - Variable was not found in dictionary"));
+		return false;
+	}
+
+	save->SetInt(VarName, Value);
 	return true;
 }
 
 FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName VarName, FString DefaultValue)
 {
-	auto* var = StringVariables.Find(VarName);
-	return var ? var->Value : DefaultValue;
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetString::gameContext is NULL"));
+		return DefaultValue;
+	}
+	auto save = GameContext->SaveGame;
+	if (!save || !save->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetString::gameContext::SaveGame is NULL"));
+		return DefaultValue;
+	}
+
+	if (!StringVariables.Find(VarName))
+	{
+		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetString - Variable was not found in dictionary"));
+		return DefaultValue;
+	}
+
+	return save->GetStringOrDefault(VarName, DefaultValue);
 }
 
 bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName VarName, FString Value)
 {
-	auto* var = StringVariables.Find(VarName);
-	if (!var) return false;
-	var->Value = Value;
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::SetString::gameContext is NULL"));
+		return false;
+	}
+	auto save = GameContext->SaveGame;
+	if (!save || !save->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::SetString::gameContext::SaveGame is NULL"));
+		return false;
+	}
+
+	if (!StringVariables.Find(VarName))
+	{
+		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::SetString - Variable was not found in dictionary"));
+		return false;
+	}
+
+	save->SetString(VarName, Value);
 	return true;
 }
 
@@ -102,7 +203,7 @@ TArray<UQuestGraphNode*> UQuestGraph::GetSatisfiableNodes(UAdventurePluginGameCo
 	for (auto* childNode : AllNodes)
 	{
 		auto* childQuestNode = Cast<UQuestGraphNode>(childNode);
-		if (childQuestNode == nullptr || !childQuestNode->IsValidLowLevel()) 
+		if (childQuestNode == nullptr || !childQuestNode->IsValidLowLevel())
 		{
 			LOG_Error(FText::Format(NSLOCTEXT("AP", "Nil or invalid quest node", "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph"), GetGraphNameText()));
 			continue;
@@ -113,6 +214,5 @@ TArray<UQuestGraphNode*> UQuestGraph::GetSatisfiableNodes(UAdventurePluginGameCo
 	}
 	return toReturn;
 }
-
 
 #undef LOCTEXT_NAMESPACE

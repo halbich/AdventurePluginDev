@@ -2,6 +2,8 @@
 
 #include "AdventurePluginSaveGame.h"
 
+#pragma optimize("", off)
+
 UAdventurePluginSaveGame::UAdventurePluginSaveGame()
 {
 	SaveSlotName = TEXT("DefaultSaveSlot");
@@ -20,9 +22,17 @@ bool UAdventurePluginSaveGame::GetBool(FName name)
 	return *res;
 }
 
-bool UAdventurePluginSaveGame::GetBoolOrDefault(FName name)
+bool UAdventurePluginSaveGame::GetBoolOrDefault(FName name, bool defaultValue)
 {
-	return storageBoolean.FindOrAdd(name);
+	bool* var = storageBoolean.Find(name);
+	if (!var)
+	{
+		storageBoolean.Add(name, defaultValue);
+		return defaultValue;
+	}
+	else
+		return *var;
+
 }
 
 void UAdventurePluginSaveGame::SetBool(FName name, bool value)
@@ -43,9 +53,16 @@ int UAdventurePluginSaveGame::GetInt(FName name)
 	return *res;
 }
 
-int UAdventurePluginSaveGame::GetIntOrDefault(FName name)
+int UAdventurePluginSaveGame::GetIntOrDefault(FName name, int defaultValue)
 {
-	return storageInt.FindOrAdd(name);
+	int* var = storageInt.Find(name);
+	if (!var)
+	{
+		storageInt.Add(name, defaultValue);
+		return defaultValue;
+	}
+	else
+		return *var;
 }
 
 void UAdventurePluginSaveGame::SetInt(FName name, int value)
@@ -66,9 +83,16 @@ FString UAdventurePluginSaveGame::GetString(FName name)
 	return *res;
 }
 
-FString UAdventurePluginSaveGame::GetStringOrDefault(FName name)
+FString UAdventurePluginSaveGame::GetStringOrDefault(FName name, FString defaultValue)
 {
-	return storageString.FindOrAdd(name);
+	FString* var = storageString.Find(name);
+	if (!var)
+	{
+		storageString.Add(name, defaultValue);
+		return defaultValue;
+	}
+	else
+		return *var;
 }
 
 void UAdventurePluginSaveGame::SetString(FName name, FString value)
@@ -91,3 +115,5 @@ bool UAdventurePluginSaveGame::Save()
 {
 	return UGameplayStatics::SaveGameToSlot(this, this->SaveSlotName, this->SaveUserIndex);
 }
+
+#pragma optimize("", on)

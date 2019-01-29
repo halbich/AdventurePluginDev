@@ -20,8 +20,8 @@ public:
 	UPROPERTY(EditAnywhere)
 		bool DefaultValue;
 
-	UPROPERTY(EditAnywhere)
-		bool Value;
+	/*UPROPERTY(EditAnywhere)
+		bool Value;*/
 };
 
 USTRUCT()
@@ -34,8 +34,8 @@ public:
 	UPROPERTY(EditAnywhere)
 		int32 DefaultValue;
 
-	UPROPERTY(EditAnywhere)
-		int32 Value;
+	/*UPROPERTY(EditAnywhere)
+		int32 Value;*/
 };
 
 USTRUCT()
@@ -48,8 +48,8 @@ public:
 	UPROPERTY(EditAnywhere)
 		FString DefaultValue;
 
-	UPROPERTY(EditAnywhere)
-		FString Value;
+	/*UPROPERTY(EditAnywhere)
+		FString Value;*/
 };
 
 UCLASS(Blueprintable)

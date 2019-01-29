@@ -40,7 +40,7 @@ public:
 		bool GetBool(FName name);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		bool GetBoolOrDefault(FName name);
+		bool GetBoolOrDefault(FName name, bool defaultValue);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
 		void SetBool(FName name, bool value);
@@ -50,7 +50,7 @@ public:
 		int GetInt(FName name);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		int GetIntOrDefault(FName name);
+		int GetIntOrDefault(FName name, int defaultValue);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
 		void SetInt(FName name, int value);
@@ -60,7 +60,7 @@ public:
 		FString GetString(FName name);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		FString GetStringOrDefault(FName name);
+		FString GetStringOrDefault(FName name, FString defaultValue);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
 		void SetString(FName name, FString value);
