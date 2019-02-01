@@ -1,8 +1,6 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "AdventurePluginDialogEditor.h"
-#include "AdventurePluginDialogEditorStyle.h"
-#include "AdventurePluginDialogEditorCommands.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
@@ -162,9 +160,7 @@ void FAdventurePluginDialogEditor::RegisterTabSpawners(const TSharedRef<class FT
 	InTabManager->RegisterTabSpawner(GraphCanvasTabId, FOnSpawnTab::CreateSP(this, &FAdventurePluginDialogEditor::SpawnTab_GraphCanvas))
 		.SetDisplayName(LOCTEXT("GraphCanvasTab", "Graph"))
 		.SetGroup(WorkspaceMenuCategoryRef);
-	//.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "GraphEditor.EventGraph_16x"));
 
-//OnRegisterTabSpawners().Broadcast(InTabManager);
 }
 
 
@@ -174,7 +170,6 @@ void FAdventurePluginDialogEditor::UnregisterTabSpawners(const TSharedRef<class 
 
 	InTabManager->UnregisterTabSpawner(GraphCanvasTabId);
 
-	//OnUnregisterTabSpawners().Broadcast(InTabManager);
 }
 
 TSharedRef<SDockTab> FAdventurePluginDialogEditor::SpawnTab_GraphCanvas(const FSpawnTabArgs& SpawnTabArgs)

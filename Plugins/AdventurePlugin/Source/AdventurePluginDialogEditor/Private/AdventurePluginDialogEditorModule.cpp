@@ -1,8 +1,6 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "AdventurePluginDialogEditorModule.h"
-#include "AdventurePluginDialogEditorStyle.h"
-#include "AdventurePluginDialogEditorCommands.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
@@ -44,37 +42,6 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 
-	FAdventurePluginDialogEditorStyle::Initialize();
-	FAdventurePluginDialogEditorStyle::ReloadTextures();
-
-	FAdventurePluginDialogEditorCommands::Register();
-
-	PluginCommands = MakeShareable(new FUICommandList);
-
-	PluginCommands->MapAction(
-		FAdventurePluginDialogEditorCommands::Get().OpenPluginWindow,
-		FExecuteAction::CreateRaw(this, &FAdventurePluginDialogEditorModule::PluginButtonClicked),
-		FCanExecuteAction());
-
-	// Add to our toolbar menu
-	if (FAdventurePluginEditor::IsAvailable())
-	{
-		EditorMenuExtender = FAdventurePluginEditor::FAdventurePluginEditorMenuExtender::CreateRaw(this, &FAdventurePluginDialogEditorModule::OnExtendLevelEditorViewMenu);
-
-		FAdventurePluginEditor& ape = FAdventurePluginEditor::Get();
-		auto& MenuExtenders = ape.GetAllAdventurePluginEditorToolbarExtenders();
-		MenuExtenders.Add(EditorMenuExtender);
-		EditorMenuExtenderHandle = MenuExtenders.Last().GetHandle();
-	}
-
-	//FGlobalTabmanager::Get()->RegisterTabSpawner(GraphCanvasTabId, FOnSpawnTab::CreateSP(this, &FAdventurePluginDialogEditorModule::SpawnTab_GraphCanvas))
-	//.SetDisplayName(LOCTEXT("AdventurePlugin_DialogEditorName", "Dialog Editor"));
-	//.SetGroup(WorkspaceMenuCategoryRef)
-	//.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "GraphEditor.EventGraph_16x"));
-
-	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(AdventurePluginDialogEditorTabName, FOnSpawnTab::CreateRaw(this, &FAdventurePluginDialogEditorModule::OnSpawnPluginTab))
-		.SetDisplayName(LOCTEXT("AdventurePlugin_DialogEditorName", "Dialog Editor"))
-		.SetMenuType(ETabSpawnerMenuType::Hidden);
 
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 	FAdventurePluginEditor& AdventurePluginEditor = FAdventurePluginEditor::Get();
@@ -86,10 +53,7 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	StyleSet->SetCoreContentRoot(FPaths::EngineContentDir() / TEXT("Slate"));
 	StyleSet->Set("ClassIcon.DialogGraph", new FSlateImageBrush(StyleSet->RootToContentDir(TEXT("Icons/AssetIcons/BehaviorTree_16x.png")), FVector2D(16.0f, 16.0f)));
 	StyleSet->Set("ClassThumbnail.DialogGraph", new FSlateImageBrush(StyleSet->RootToContentDir(TEXT("Icons/AssetIcons/BehaviorTree_64x.png")), FVector2D(64.0f, 64.0f)));
-	//StyleSet->Set("ClassIcon.MyComponent", new FSlateImageBrush("path/to/MyComponent16.png", FVector2D(16.0f, 16.0f)));
 	FSlateStyleRegistry::RegisterSlateStyle(*StyleSet.Get());
-	//FClassIconFinder::RegisterIconSource(&StyleSet.Get());
-	/**/
 
 	/* Registering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
@@ -104,10 +68,6 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 
 void FAdventurePluginDialogEditorModule::ShutdownModule()
 {
-	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
-	// we call this function before unloading the module.
-	FAdventurePluginDialogEditorStyle::Shutdown();
-	FAdventurePluginDialogEditorCommands::Unregister();
 
 	/* Unregistering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
@@ -116,9 +76,6 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_PlayAnimationBase::StaticClass()->GetFName());
 	PropertyModule.UnregisterCustomClassLayout(UDialogGraphNode_IfInInventory::StaticClass()->GetFName());
 	PropertyModule.UnregisterCustomPropertyTypeLayout(FDialogGraphEntryPoint::StaticStruct()->GetFName());
-	/**/
-
-	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(AdventurePluginDialogEditorTabName);
 
 	// Unregister all the asset types that we registered
 	if (FModuleManager::Get().IsModuleLoaded("AssetTools"))
@@ -129,50 +86,12 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 			AssetTools.UnregisterAssetTypeActions(CreatedAssetTypeActions[Index].ToSharedRef());
 		}
 	}
-
-	if (UObjectInitialized() && !IsRunningCommandlet())
-	{
-		// Unregister the level editor extensions
-		{
-			FAdventurePluginEditor& LevelEditor = FModuleManager::GetModuleChecked<FAdventurePluginEditor>(TEXT("AdventurePluginEditor"));
-			LevelEditor.GetAllAdventurePluginEditorToolbarExtenders().RemoveAll([=](const FAdventurePluginEditor::FAdventurePluginEditorMenuExtender& Extender) { return Extender.GetHandle() == EditorMenuExtenderHandle; });
-		}
-	}
-
 	/* Removing custom asset icon */
 	//FClassIconFinder::UnregisterIconSource(&StyleSet.Get());
 	FSlateStyleRegistry::UnRegisterSlateStyle(*StyleSet.Get());
 	ensure(StyleSet.IsUnique());
 	StyleSet.Reset();
 	/**/
-}
-
-void FAdventurePluginDialogEditorModule::PluginButtonClicked()
-{
-	FGlobalTabmanager::Get()->InvokeTab(AdventurePluginDialogEditorTabName);
-}
-
-void FAdventurePluginDialogEditorModule::AddMenuExtension(FMenuBuilder& Builder)
-{
-	Builder.AddMenuEntry(FAdventurePluginDialogEditorCommands::Get().OpenPluginWindow);
-}
-
-TSharedRef<SDockTab> FAdventurePluginDialogEditorModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)
-{
-	if (!DialogEditor.IsValid())
-	{
-		DialogEditor = CreateDialogEditor(EToolkitMode::Standalone, TSharedPtr<IToolkitHost>(), NewObject<UObject>()); // Only temporary
-	}
-	return DialogEditor->GetPluginTab(SpawnTabArgs);
-}
-
-TSharedRef<FAdventurePluginDialogEditor> FAdventurePluginDialogEditorModule::CreateDialogEditor(const EToolkitMode::Type Mode, const TSharedPtr<IToolkitHost>& InitToolkitHost, UObject* Object)
-{
-	TSharedRef<FAdventurePluginDialogEditor> NewDialogEditor(new FAdventurePluginDialogEditor());
-	//NewDialogEditor->InitEditorForMaterial(Object);
-	//OnMaterialEditorOpened().Broadcast(NewDialogEditor);
-	NewDialogEditor->InitDialogEditor(Mode, InitToolkitHost, Object);
-	return NewDialogEditor;
 }
 
 void FAdventurePluginDialogEditorModule::RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action)

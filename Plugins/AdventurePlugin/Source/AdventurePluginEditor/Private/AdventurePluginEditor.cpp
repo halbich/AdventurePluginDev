@@ -12,9 +12,6 @@
 #include "MessageLogInitializationOptions.h"
 #include "LevelEditor.h"
 #include "AssetToolsModule.h"
-#include "AdventurePluginEditorToolBar.h"
-#include "AdventurePluginEditorStyle.h"
-#include "AdventurePluginEditorCommands.h"
 #include "AssetTypeActions_AdventureCharacter.h"
 #include "AssetTypeActions_InventoryItem.h"
 #include "InventoryItemBlueprint.h"
@@ -44,19 +41,6 @@ void FAdventurePluginEditor::StartupModule()
 		MessageLogModule.RegisterLogListing(APLogName, LOCTEXT("AdventurePluginLog", "Adventure Plugin Log"), InitOptions);
 	}
 
-	// Note this must come before any tab spawning because that can create the SLevelEditor and attempt to map commands
-	FAdventurePluginEditorCommands::Register();
-
-	PluginCommands = MakeShareable(new FUICommandList);
-	ToolBarExtensibilityManager = MakeShareable(new FExtensibilityManager);
-
-	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
-	{
-		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
-		ToolbarExtender->AddToolBarExtension("Settings", EExtensionHook::After, PluginCommands, FToolBarExtensionDelegate::CreateRaw(this, &FAdventurePluginEditor::AddToolbarExtension));
-		LevelEditorModule.GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
-	}
-
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 	AdventurePluginAssetCategory = AssetTools.RegisterAdvancedAssetCategory(FName(TEXT("AdventurePlugin")), LOCTEXT("AdventurePluginAssetCategory", "Adventure Plugin"));
 
@@ -74,19 +58,6 @@ void FAdventurePluginEditor::StartupModule()
 	FGenericGraphEditorStyle::Initialize();
 
 	RegisterSettings();
-}
-
-void FAdventurePluginEditor::AddToolbarExtension(FToolBarBuilder& Builder)
-{
-	Builder.AddComboButton(
-		FUIAction(),
-		FOnGetContent::CreateStatic(&FAdventurePluginEditorToolBar::GeneratePluginMenu, PluginCommands.ToSharedRef()),
-		LOCTEXT("AdventurePluginEditorMenuCombo", "Adventure Editor"),
-		LOCTEXT("AdventurePluginEditorMenuCombo_ToolTip", "Adventure Editor menu combo button"),
-		FSlateIcon(FAdventurePluginEditorStyle::GetStyleSetName(), "AdventurePlugin.MenuButton"),
-		false,
-		"LevelToolbarAdventurePluginEditorMenuCombo"
-	);
 }
 
 void FAdventurePluginEditor::ShutdownModule()
@@ -120,9 +91,7 @@ void FAdventurePluginEditor::ShutdownModule()
 		MessageLogModule.UnregisterLogListing(APLogName);
 	}
 
-	ToolBarExtensibilityManager.Reset();
 
-	FAdventurePluginEditorCommands::Unregister();
 }
 
 void FAdventurePluginEditor::Log(const TSharedRef< class FTokenizedMessage >& Message) const

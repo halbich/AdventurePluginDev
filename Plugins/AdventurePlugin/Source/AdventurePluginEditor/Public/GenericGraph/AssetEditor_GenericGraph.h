@@ -33,11 +33,6 @@ public:
 	virtual void SaveAsset_Execute() override;
 	// End of FAssetEditorToolkit
 
-	//Toolbar
-	void UpdateToolbar();
-	TSharedPtr<class FAssetEditorToolbar_GenericGraph> GetToolbarBuilder() { return ToolbarBuilder; }
-	void RegisterToolbarTab(const TSharedRef<class FTabManager>& TabManager);
-
 
 	// FSerializableObject interface
 	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;
@@ -95,9 +90,6 @@ private:
 	void OnPackageSaved(const FString& PackageFileName, UObject* Outer);
 
 private:
-
-	//Toolbar
-	TSharedPtr<class FAssetEditorToolbar_GenericGraph> ToolbarBuilder;
 
 	/** Handle to the registered OnPackageSave delegate */
 	FDelegateHandle OnPackageSavedDelegateHandle;

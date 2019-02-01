@@ -1,5 +1,4 @@
 #include "GenericGraph/AssetEditor_GenericGraph.h"
-#include "GenericGraph/AssetEditorToolbar_GenericGraph.h"
 #include "GenericGraph/AssetGraphSchema_GenericGraph.h"
 #include "GenericGraph/EditorCommands_GenericGraph.h"
 #include "GenericGraph/EdGraph_GenericGraph.h"
@@ -55,18 +54,11 @@ void FAssetEditor_GenericGraph::InitGenericGraphAssetEditor(const EToolkitMode::
 	FGraphEditorCommands::Register();
 	FEditorCommands_GenericGraph::Register();
 
-	if (!ToolbarBuilder.IsValid())
-	{
-		ToolbarBuilder = MakeShareable(new FAssetEditorToolbar_GenericGraph(SharedThis(this)));
-	}
-
 	BindCommands();
 
 	CreateInternalWidgets();
 
 	TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
-
-	ToolbarBuilder->AddGenericGraphToolbar(ToolbarExtender);
 
 	// Layout
 	const TSharedRef<FTabManager::FLayout> StandaloneDefaultLayout = FTabManager::NewLayout("Standalone_GenericGraphEditor_Layout_v1")
@@ -681,11 +673,6 @@ void FAssetEditor_GenericGraph::OnFinishedChangingProperties(const FPropertyChan
 void FAssetEditor_GenericGraph::OnPackageSaved(const FString& PackageFileName, UObject* Outer)
 {
 	RebuildGenericGraph();
-}
-
-void FAssetEditor_GenericGraph::RegisterToolbarTab(const TSharedRef<class FTabManager>& InTabManager) 
-{
-	FAssetEditorToolkit::RegisterTabSpawners(InTabManager);
 }
 
 FGraphAppearanceInfo FAssetEditor_GenericGraph::GetViewportWidgetAppearanceInfo() const

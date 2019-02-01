@@ -30,11 +30,6 @@
       ]
     },
     {
-      "Name": "AdventurePluginInventoryEditor",
-      "Type": "Editor",
-      "LoadingPhase": "PostEngineInit"
-    },
-    {
       "Name": "AdventurePluginStoryEngineEditor",
       "Type": "Editor",
       "LoadingPhase": "Default"

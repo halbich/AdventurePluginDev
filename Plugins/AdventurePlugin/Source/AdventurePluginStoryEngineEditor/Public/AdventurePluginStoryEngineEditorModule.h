@@ -10,10 +10,6 @@
 
 extern const FName AdventurePluginStoryEngineEditorAppIdentifier;
 
-//class FToolBarBuilder;
-//class FMenuBuilder;
-//class SGraphEditor;
-
 class FAdventurePluginStoryEngineEditorModule : public IModuleInterface
 {
 public:
@@ -27,6 +23,5 @@ private:
 	void RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action);
 
 	TSharedPtr<FSlateStyleSet> StyleSet;
-	TSharedPtr<class FUICommandList> PluginCommands;
 	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
 };

@@ -10,7 +10,6 @@
 #include "AdventurePluginEditor.h"
 
 class FAdventurePluginDialogDebugger;
-class FToolBarBuilder;
 class FMenuBuilder;
 class SGraphEditor;
 class UDialogGraph;
@@ -49,7 +48,6 @@ private:
 	UDialogGraph* DialogGraph;
 
 private:
-	TSharedPtr<class FUICommandList> PluginCommands;
 	TSharedPtr<class SGraphEditor> GraphEditor;
 	TSharedPtr<FUICommandList> GraphEditorCommands;
 

@@ -28,7 +28,7 @@
  * The public interface to this module.  In most cases, this interface is only public to sibling modules
  * within this plugin.
  */
-class FAdventurePluginEditor : public IModuleInterface, public IHasToolBarExtensibility
+class FAdventurePluginEditor : public IModuleInterface
 {
 public:
 	/** IModuleInterface implementation */
@@ -65,14 +65,6 @@ public:
 		return AdventurePluginAssetCategory;
 	}
 
-	/** Delegates to be called to extend the level viewport menus */
-	DECLARE_DELEGATE_RetVal_OneParam(TSharedRef<FExtender>, FAdventurePluginEditorMenuExtender, const TSharedRef<FUICommandList>);
-
-
-	/** Gets the extensibility managers for outside entities to extend this editor's menus and toolbars */
-	virtual TSharedPtr<FExtensibilityManager> GetToolBarExtensibilityManager() override { return ToolBarExtensibilityManager; }
-	virtual TArray<FAdventurePluginEditorMenuExtender>& GetAllAdventurePluginEditorToolbarExtenders() { return AdventurePluginEditorToolbarExtenders; }
-
 private:
 
 	bool HandleSettingsSaved();
@@ -82,13 +74,7 @@ private:
 	void RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action);
 	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
 
-	TSharedPtr<class FExtensibilityManager> ToolBarExtensibilityManager;
-	TSharedPtr<class FUICommandList> PluginCommands;
-
-	TArray<FAdventurePluginEditorMenuExtender> AdventurePluginEditorToolbarExtenders;
 	EAssetTypeCategories::Type AdventurePluginAssetCategory;
-
-	void AddToolbarExtension(FToolBarBuilder& Builder);
 };
 
 #undef LOCTEXT_NAMESPACE
