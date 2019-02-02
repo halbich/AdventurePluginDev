@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "DetailLayoutBuilder.h"
 #include "IDetailCustomization.h"
-#include "Dialogue/Graph/DialogGraphNode_IfInInventory.h"
+#include "Dialog/Graph/DialogGraphNode_IfInInventory.h"
 
 class FDialogInventoryItemCustomization : public IDetailCustomization
 {

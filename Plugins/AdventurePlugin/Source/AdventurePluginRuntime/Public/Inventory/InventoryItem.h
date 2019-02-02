@@ -8,7 +8,7 @@
 #include "SimpleCombination.h"
 #include "CombinationInterface.h"
 #include "CombinableObject.h"
-#include "Dialogue/Structs/DialogGraphEntryPoint.h"
+#include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "InventoryItemState.h"
 #include "InventoryItem.generated.h"
 

@@ -1,5 +1,5 @@
 #include "Customizations/AnimationCustomization.h"
-#include "Dialogue/Graph/BaseClasses/DialogGraphNode_PlayAnimationBase.h"
+#include "Dialog/Graph/BaseClasses/DialogGraphNode_PlayAnimationBase.h"
 
 #define LOCTEXT_NAMESPACE "AnimationCustomization"
 

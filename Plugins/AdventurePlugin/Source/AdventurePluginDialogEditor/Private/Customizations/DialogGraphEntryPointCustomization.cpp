@@ -1,7 +1,7 @@
 #include "Customizations/DialogGraphEntryPointCustomization.h"
-#include "Dialogue/Structs/DialogGraphEntryPoint.h"
-#include "Dialogue/Graph/DialogGraph.h"
-#include "Dialogue/Graph/DialogGraphNode_EntrySecondary.h"
+#include "Dialog/Structs/DialogGraphEntryPoint.h"
+#include "Dialog/Graph/DialogGraph.h"
+#include "Dialog/Graph/DialogGraphNode_EntrySecondary.h"
 
 TSharedRef<IPropertyTypeCustomization> FDialogGraphEntryPointCustomization::MakeInstance()
 {

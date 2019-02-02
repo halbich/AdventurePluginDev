@@ -38,17 +38,17 @@ void UAPDevGameInstance::initCurrentGameContext()
 
 
 
-	auto dcInst = (settings->DefaultDialogueController.IsValid())
-		? settings->DefaultDialogueController.Get()				// we have C++ class
-		: settings->DefaultDialogueController.LoadSynchronous();	// we have Blueprint class
+	auto dcInst = (settings->DefaultDialogController.IsValid())
+		? settings->DefaultDialogController.Get()				// we have C++ class
+		: settings->DefaultDialogController.LoadSynchronous();	// we have Blueprint class
 	if (dcInst)
-		CurrentGameContext->DialogueController = dcInst->GetDefaultObject<UDialogueController>();
+		CurrentGameContext->DialogController = dcInst->GetDefaultObject<UDialogController>();
 
-	auto dpInst = (settings->DefaultDialoguePresenterWidget.IsValid())
-		? settings->DefaultDialoguePresenterWidget.Get()				// we have C++ class
-		: settings->DefaultDialoguePresenterWidget.LoadSynchronous();	// we have Blueprint class
+	auto dpInst = (settings->DefaultDialogPresenterWidget.IsValid())
+		? settings->DefaultDialogPresenterWidget.Get()				// we have C++ class
+		: settings->DefaultDialogPresenterWidget.LoadSynchronous();	// we have Blueprint class
 	if (dpInst)
-		CurrentGameContext->DialoguePresenter = CreateWidget<UDialoguePresenterWidget>(this, dpInst);
+		CurrentGameContext->DialogPresenter = CreateWidget<UDialogPresenterWidget>(this, dpInst);
 
 	auto imInstance = (settings->DefaultItemManager.IsValid())
 		? settings->DefaultItemManager.Get()				// we have C++ class

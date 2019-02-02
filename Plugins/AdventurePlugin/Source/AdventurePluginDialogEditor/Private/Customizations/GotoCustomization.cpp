@@ -1,5 +1,5 @@
 #include "Customizations/GotoCustomization.h"
-#include "Dialogue/Graph/DialogGraphNode_Goto.h"
+#include "Dialog/Graph/DialogGraphNode_Goto.h"
 #include "DetailCategoryBuilder.h"
 #include "DetailWidgetRow.h"
 

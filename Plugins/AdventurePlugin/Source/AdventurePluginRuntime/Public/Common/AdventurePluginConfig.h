@@ -6,8 +6,8 @@
 #include "UObject/NoExportTypes.h"
 #include "AdventurePluginConfig.generated.h"
 
-class UDialoguePresenterWidget;
-class UDialogueController;
+class UDialogPresenterWidget;
+class UDialogController;
 class UInventoryPresenterWidget;
 class UInventoryController;
 class UItemManager;
@@ -43,11 +43,11 @@ public:
 	//UPROPERTY(config, EditAnywhere, Category = Materials, meta = (AllowedClasses = "MaterialInterface"))
 	//	FStringAssetReference StringMaterialAssetReference;
 
-	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Presenter")
-		TSoftClassPtr<UDialoguePresenterWidget> DefaultDialoguePresenterWidget;
+	UPROPERTY(config, EditAnywhere, Category = Dialog, DisplayName = "Default Presenter")
+		TSoftClassPtr<UDialogPresenterWidget> DefaultDialogPresenterWidget;
 
-	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Controller")
-		TSoftClassPtr<UDialogueController> DefaultDialogueController;
+	UPROPERTY(config, EditAnywhere, Category = Dialog, DisplayName = "Default Controller")
+		TSoftClassPtr<UDialogController> DefaultDialogController;
 
 	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Default Presenter")
 		TSoftClassPtr<UInventoryPresenterWidget> DefaultInventoryPresenterWidget;
@@ -58,7 +58,7 @@ public:
 	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Default Item Manager")
 		TSoftClassPtr<UItemManager> DefaultItemManager;
 
-	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Adventure Character Manager")
+	UPROPERTY(config, EditAnywhere, Category = Dialog, DisplayName = "Default Adventure Character Manager")
 		TSoftClassPtr<UAdventureCharacterManager> DefaultAdventureCharacterManager;
 	/* Defines the actual actions that can be represented by the Use action. E.g. Using a talking sword might be Talk action, using a mechanism might also be a different action etc. Mainly for determining the Use action icon.*/
 	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Supported item tags")

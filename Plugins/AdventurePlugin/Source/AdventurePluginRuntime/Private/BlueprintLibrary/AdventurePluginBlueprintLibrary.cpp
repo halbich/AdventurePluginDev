@@ -23,10 +23,10 @@ void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePlugin
 		return;
 	}
 
-	auto dc = gameContext->DialogueController;
+	auto dc = gameContext->DialogController;
 	if (!dc || !dc->IsValidLowLevel())
 	{
-		LOG_Warning(NSLOCTEXT("AP", "DialogControllerNull", "Show dialog::gameContext->DialogueController is NULL"));
+		LOG_Warning(NSLOCTEXT("AP", "DialogControllerNull", "Show dialog::gameContext->DialogController is NULL"));
 		return;
 	}
 

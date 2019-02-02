@@ -9,8 +9,8 @@
 class UInventoryController;
 class IInventoryPresenterInterface;
 
-class UDialogueController;
-class IDialoguePresenterInterface;
+class UDialogController;
+class IDialogPresenterInterface;
 class UItemManager;
 class UAdventureCharacterManager;
 
@@ -33,10 +33,10 @@ public:
 		TScriptInterface< IInventoryPresenterInterface> InventoryPresenter;
 
 	UPROPERTY(BlueprintReadOnly, Transient)
-		UDialogueController* DialogueController;
+		UDialogController* DialogController;
 
 	UPROPERTY(BlueprintReadOnly, Transient)
-		TScriptInterface< IDialoguePresenterInterface> DialoguePresenter;
+		TScriptInterface< IDialogPresenterInterface> DialogPresenter;
 
 	UPROPERTY(BlueprintReadWrite, Transient, Category="Adventure Plugin | Game Context")
 		UAdventurePluginSaveGame* SaveGame;

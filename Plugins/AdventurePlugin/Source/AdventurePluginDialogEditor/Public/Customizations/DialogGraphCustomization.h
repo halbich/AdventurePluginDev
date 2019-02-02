@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "DetailLayoutBuilder.h"
 #include "IDetailCustomization.h"
-#include "Dialogue/Graph/DialogGraph.h"
+#include "Dialog/Graph/DialogGraph.h"
 
 class FDialogGraphCustomization : public IDetailCustomization
 {
