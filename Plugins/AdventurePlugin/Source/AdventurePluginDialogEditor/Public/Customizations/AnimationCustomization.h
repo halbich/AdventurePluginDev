@@ -1,27 +1,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DetailLayoutBuilder.h"
 #include "IDetailCustomization.h"
+#include "ComboBoxCustomization.h"
 
-class FAnimationCustomization : public IDetailCustomization
+class FAnimationCustomization : public FComboBoxCustomization
 {
 public:
-
-	typedef TSharedPtr<FName> FComboItemType;
-
 	static TSharedRef<IDetailCustomization> MakeInstance();
 
-	virtual void CustomizeDetails(IDetailLayoutBuilder& DetailLayout) override;
+	virtual void SetIdHandle(IDetailLayoutBuilder& DetailLayout) override;
 
-protected:
+	virtual FText GetComboBoxName() override;
 
-	virtual FText GetCurrentItemLabel() const;
-
-	TSharedRef<SWidget> MakeWidgetForName(FComboItemType InOption);
-
-	virtual void OnSelectionChanged(FComboItemType NewValue, ESelectInfo::Type);
-
-	TArray<FComboItemType> Options;
-	TSharedPtr<IPropertyHandle> IdHandle;
+	virtual TSet<FComboItemType> GetComboBoxOptions(UObject* ObjectBeingCustomized) override;
 };
