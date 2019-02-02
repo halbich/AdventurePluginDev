@@ -53,12 +53,9 @@ public:
 	/*This notification will be fired when this item is removed from inventory.*/
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Inventory")
 		FItemNotificationEvent OnRemovedFromInventory;
-
-
-	//TODO: Create nice picker for Tags that loads options from settings.
 	/* Tags assigned to this item, e.g. weapon, critical, red herring etc. No inherent function unless designers make it so*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory")
-		TSet<FName> Tags;
+		FGameplayTagContainer ItemTags;
 	/* The current state of the item, e.g. it is spawned, but not yet picked up. In defaults this is the inital state of the item.*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
 		EInventoryItemState ItemState;

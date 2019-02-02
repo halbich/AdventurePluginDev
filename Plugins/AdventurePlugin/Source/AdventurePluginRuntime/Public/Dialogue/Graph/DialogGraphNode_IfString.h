@@ -37,22 +37,9 @@ public:
 			FText::FromString(Constant));
 	}
 
-	virtual inline FLinearColor GetBackgroundColor() const
-	{
-		return FLinearColor::White;
-	}
-
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		return true;
-	}
-
 #endif
-
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		return IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(context, String.StringName)) == 0
-			? ChildTrue
-			: ChildFalse;
+		return IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(GameContext, String.StringName)) == 0;
 	}
 };

@@ -60,7 +60,7 @@ public:
 
 	UPROPERTY(config, EditAnywhere, Category = Dialogue, DisplayName = "Default Adventure Character Manager")
 		TSoftClassPtr<UAdventureCharacterManager> DefaultAdventureCharacterManager;
-
+	/* Defines the actual actions that can be represented by the Use action. E.g. Using a talking sword might be Talk action, using a mechanism might also be a different action etc. Mainly for determining the Use action icon.*/
 	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Supported item tags")
-		TSet<FName> SupportedItemTags;
+		TSet<FName> UseActionTypes;
 };

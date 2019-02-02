@@ -70,7 +70,6 @@ UEdGraphNode* FAssetSchemaAction_GenericGraph_NewNode::PerformAction(class UEdGr
 		ParentGraph->Modify();
 		if (FromPin != nullptr)
 			FromPin->Modify();
-
 		NodeTemplate->Rename(nullptr, ParentGraph);
 		ParentGraph->AddNode(NodeTemplate, true, bSelectNewNode);
 
@@ -86,6 +85,11 @@ UEdGraphNode* FAssetSchemaAction_GenericGraph_NewNode::PerformAction(class UEdGr
 		NodeTemplate->SetFlags(RF_Transactional);
 
 		ResultNode = NodeTemplate;
+
+		if (NodeTemplate->GenericGraphNode != nullptr)
+		{
+			NodeTemplate->GenericGraphNode->NodeGuid = NodeTemplate->NodeGuid;
+		}
 	}
 
 	return ResultNode;

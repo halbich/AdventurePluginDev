@@ -29,6 +29,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		UTexture2D* Icon;
 	// MARK: Animations
+	/* If true, no Animations should do nothing and no warnings should ever be fired. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		bool bIsAnimatable = true;
 	
 	//This event is fired when the actor representing this object is supposed to play a specific animation once. Call AnimationFinished once the animation is finished.
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable)

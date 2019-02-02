@@ -9,6 +9,7 @@
 #include "Dialogue/Graph/DialogGraphNode_EntrySecondary.h"
 #include "Dialogue/Graph/DialogGraphNode_Exit.h"
 #include "Dialogue/Graph/DialogGraphNode_Goto.h"
+#include "Dialogue/Graph/DialogGraphNode_Once.h"
 #include "EdDialogNode_Options.h"
 #include "EdDialogNode_TrueFalse.h"
 #include "EdDialogNode_NoInput.h"
@@ -22,6 +23,7 @@
 
 UAssetGraphSchema_DialogGraph::UAssetGraphSchema_DialogGraph()
 {
+	EditorNodeMap.Add(UDialogGraphNode_Once::StaticClass(),				UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfBool::StaticClass(),			UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfString::StaticClass(),			UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfQuestFlag::StaticClass(),		UEdDialogNode_TrueFalse::StaticClass());

@@ -32,23 +32,9 @@ public:
 			FText::FromString(IsValid(Flag.Quest) ? Flag.Quest->Name : "<EMPTY>"),
 			FText::FromName(Flag.FlagName));
 	}
-
-	virtual inline FLinearColor GetBackgroundColor() const
-	{
-		return FLinearColor::White;
-	}
-
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		return true;
-	}
-
 #endif
-
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		return IsValid(Flag.Quest) && Flag.Quest->GetFlag(context, Flag.FlagName)
-			? ChildTrue
-			: ChildFalse;
+		return IsValid(Flag.Quest) && Flag.Quest->GetFlag(GameContext, Flag.FlagName);
 	}
 };

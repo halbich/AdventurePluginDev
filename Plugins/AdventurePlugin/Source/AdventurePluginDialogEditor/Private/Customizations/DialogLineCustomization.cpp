@@ -1,5 +1,5 @@
 #include "Customizations/DialogLineCustomization.h"
-#include "Dialogue/Graph/DialogGraphNode_DialogLineBase.h"
+#include "Dialogue/Graph/BaseClasses/DialogGraphNode_DialogLineBase.h"
 #include "DetailCategoryBuilder.h"
 #include "DetailWidgetRow.h"
 

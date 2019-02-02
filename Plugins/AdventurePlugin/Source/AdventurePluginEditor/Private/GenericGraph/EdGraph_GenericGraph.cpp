@@ -33,6 +33,8 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 
 			Graph->AllNodes.Add(GenericGraphNode);
 
+			GenericGraphNode->NodeGuid = EdNode->NodeGuid;
+
 			for (int PinIdx = 0; PinIdx < EdNode->Pins.Num(); ++PinIdx)
 			{
 				UEdGraphPin* Pin = EdNode->Pins[PinIdx];

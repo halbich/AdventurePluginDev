@@ -28,9 +28,35 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildFalse;
 
+#if WITH_EDITOR
+
+	virtual inline FLinearColor GetBackgroundColor() const
+	{
+		return FLinearColor::White;
+	}
+
+	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
+	{
+		return true;
+	}
+
+#endif
+
+	// Specifies whether the expression this node represents is currently true or false. Child classes must override this method.
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext)
+	{
+		check(false && "This method must be overriden.");
+		return false;
+	}
+
 	virtual void ResetSpecialChildren() override
 	{
 		ChildTrue = nullptr;
 		ChildFalse = nullptr;
+	}
+
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	{
+		return IsTrue(context) ? ChildTrue : ChildFalse;
 	}
 };

@@ -42,39 +42,28 @@ public:
 			Item != nullptr && Item->IsValidLowLevel() ? Item.GetDefaultObject()->Name : FText::FromString("<EMPTY>"));
 	}
 
-	virtual inline FLinearColor GetBackgroundColor() const
-	{
-		return FLinearColor::White;
-	}
-
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		return true;
-	}
-
 #endif
 
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		if (context == NULL || !context->IsValidLowLevel() ||
-			context->InventoryController == NULL || !context->InventoryController->IsValidLowLevel() ||
-			context->ItemManager == NULL || !context->ItemManager->IsValidLowLevel())
+		if (GameContext == NULL || !GameContext->IsValidLowLevel() ||
+			GameContext->InventoryController == NULL || !GameContext->InventoryController->IsValidLowLevel() ||
+			GameContext->ItemManager == NULL || !GameContext->ItemManager->IsValidLowLevel())
 		{
 			LOG_Error(NSLOCTEXT("AP", "Invalid Inventory Game context", "Quest graph node: Inventory: Invalid context passed"));
-			return nullptr;
+			return false;
 		}
 		if (Item == NULL || !Item->IsValidLowLevel())
 		{
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Item", "Quest graph node: Inventory: Nil or invalid item passed"));
-			return nullptr;
+			return false;
 		}
-		auto* itemInstance = context->ItemManager->GetItem(Item);
+		auto* itemInstance = GameContext->ItemManager->GetItem(Item);
 		if (itemInstance == nullptr || !itemInstance->IsValidLowLevel())
 		{
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Item Instance", "Quest graph node: Item could not be instantiated"));
-			return nullptr;
+			return false;
 		}
-		bool hasItem = context->InventoryController->GetInventory()->HasItem(itemInstance);
-		return hasItem ? ChildTrue : ChildFalse;
+		return GameContext->InventoryController->GetInventory()->HasItem(itemInstance);
 	}
 };

@@ -33,22 +33,10 @@ public:
 			FText::FromName(Bool.BoolName));
 	}
 
-	virtual inline FLinearColor GetBackgroundColor() const
-	{
-		return FLinearColor::White;
-	}
-
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		return true;
-	}
-
 #endif
 
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		return IsValid(Bool.Quest) && Bool.Quest->GetBool(context, Bool.BoolName)
-			? ChildTrue
-			: ChildFalse;
+		return IsValid(Bool.Quest) && Bool.Quest->GetBool(GameContext, Bool.BoolName);
 	}
 };

@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Slate.h"
 #include "Dialogue/EdDialogNode.h"
-#include "Dialogue/Graph/DialogGraphNode_TrueFalse.h"
+#include "Dialogue/Graph/BaseClasses/DialogGraphNode_TrueFalse.h"
 #include "EdDialogNode_TrueFalse.generated.h"
 
 const FName PinNameTrue("True");

@@ -1,5 +1,5 @@
 #include "Customizations/AnimationCustomization.h"
-#include "Dialogue/Graph/DialogGraphNode_PlayAnimationBase.h"
+#include "Dialogue/Graph/BaseClasses/DialogGraphNode_PlayAnimationBase.h"
 #include "DetailCategoryBuilder.h"
 #include "DetailWidgetRow.h"
 

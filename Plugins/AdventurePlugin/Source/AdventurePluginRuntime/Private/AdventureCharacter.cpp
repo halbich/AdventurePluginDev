@@ -24,7 +24,7 @@ FName UAdventureCharacter::GetDefaultTalkingAnimationState_Implementation()
 
 bool UAdventureCharacter::SetAnimationState_Implementation(FName Animation)
 {
-	if (!IsActorProperlyBound() || !IsAnimationNameValid(Animation))
+	if (!bIsAnimatable || !IsActorProperlyBound() || !IsAnimationNameValid(Animation))
 	{
 		return false;
 	}
@@ -34,7 +34,7 @@ bool UAdventureCharacter::SetAnimationState_Implementation(FName Animation)
 
 void UAdventureCharacter::ResetAnimationState_Implementation()
 {
-	if (!IsActorProperlyBound())
+	if (!bIsAnimatable || !IsActorProperlyBound())
 	{
 		return;
 	}
@@ -42,7 +42,7 @@ void UAdventureCharacter::ResetAnimationState_Implementation()
 }
 void UAdventureCharacter::PlayAnimation_Implementation(FName Animation, const FAnimationCompletedEvent& Callback)
 {
-	if (!IsActorProperlyBound() || !IsAnimationNameValid(Animation))
+	if (!bIsAnimatable || !IsActorProperlyBound() || !IsAnimationNameValid(Animation))
 	{
 		Callback.ExecuteIfBound(Animation, this, false);
 		return;

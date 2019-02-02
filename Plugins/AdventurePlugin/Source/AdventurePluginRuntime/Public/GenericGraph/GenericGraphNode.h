@@ -26,6 +26,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
 	TArray<UGenericGraphNode*> ChildrenNodes;
 
+	UPROPERTY()
+		FGuid NodeGuid;
+
 	//UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
 	//TArray<int> ChildrenNodesBins;
 
