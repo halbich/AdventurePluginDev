@@ -21,7 +21,6 @@ public class AdventurePluginDev : ModuleRules
 
         PrivateDependencyModuleNames.AddRange(new string[] {
             "AdventurePluginRuntime",   // our plugin
-            "MessageLog"                // clearing the Log window
         });
 
         PrivateIncludePathModuleNames.AddRange(new string[] {

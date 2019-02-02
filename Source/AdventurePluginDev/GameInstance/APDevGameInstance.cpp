@@ -1,8 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "APDevGameInstance.h"
-#include "MessageLogModule.h"
-#include "IMessageLogListing.h"
 
 const FName AP_Log = "AdventurePluginLog";
 
@@ -13,11 +11,6 @@ void UAPDevGameInstance::Init()
 	initCurrentGameContext();
 
 #if WITH_EDITOR
-	FMessageLogModule& MessageLogModule = FModuleManager::LoadModuleChecked<FMessageLogModule>("MessageLog");
-	{
-		// Clear errors from log
-		MessageLogModule.GetLogListing(AP_Log)->ClearMessages();
-	}
 
 	FString t("DebugSave");
 	CurrentGameContext->SaveGame = UAdventurePluginSaveGame::CreateSave(t, 0);
