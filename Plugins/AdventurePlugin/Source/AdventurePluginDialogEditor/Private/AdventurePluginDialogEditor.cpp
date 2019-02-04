@@ -12,16 +12,11 @@
 #include "Kismet2/BlueprintEditorUtils.h"
 #include "Materials/Material.h"
 #include "EdGraph/EdGraphSchema.h"
-#include "AdventurePluginDialogDebugger.h"
 
 const FName FAdventurePluginDialogEditor::GraphCanvasTabId(TEXT("DialogEditor_GraphCanvas"));
 const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginDialogEditor"
-
-FAdventurePluginDialogEditor::~FAdventurePluginDialogEditor() {
-	Debugger.Reset();
-}
 
 void FAdventurePluginDialogEditor::InitDialogEditor(const EToolkitMode::Type Mode, const TSharedPtr<class IToolkitHost>& InitToolkitHost, UObject* ObjectToEdit)
 {
@@ -50,14 +45,6 @@ void FAdventurePluginDialogEditor::InitDialogEditor(const EToolkitMode::Type Mod
 	if (EditedObjects == nullptr || EditedObjects->Num() == 0)
 	{
 		FAssetEditorToolkit::InitAssetEditor(Mode, InitToolkitHost, DialogEditorAppIdentifier, StandaloneDefaultLayout, true, true, ObjectToEdit, false);
-
-		Debugger = MakeShareable(new FAdventurePluginDialogDebugger);
-		Debugger->Setup(DialogGraph, SharedThis(this));
-	}
-	else
-	{
-		check(Debugger.IsValid());
-		Debugger->Setup(DialogGraph, SharedThis(this));
 	}
 }
 
@@ -195,11 +182,6 @@ TSharedRef<SDockTab> FAdventurePluginDialogEditor::GetPluginTab(const FSpawnTabA
 		[
 			GraphEditor.ToSharedRef()
 		];
-
-}
-
-void FAdventurePluginDialogEditor::DebuggerUpdateGraph() {
-	// TODO implement me!
 
 }
 

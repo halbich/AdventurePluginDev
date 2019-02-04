@@ -312,7 +312,7 @@ void FAssetEditor_GenericGraph::CreateCommandList()
 	);
 }
 
-TSharedPtr<SGraphEditor> FAssetEditor_GenericGraph::GetCurrGraphEditor() const
+TSharedPtr<SGraphEditor> FAssetEditor_GenericGraph::GetCurrentGraphEditor() const
 {
 	return ViewportWidget;
 }
@@ -320,7 +320,7 @@ TSharedPtr<SGraphEditor> FAssetEditor_GenericGraph::GetCurrGraphEditor() const
 FGraphPanelSelectionSet FAssetEditor_GenericGraph::GetSelectedNodes() const
 {
 	FGraphPanelSelectionSet CurrentSelection;
-	TSharedPtr<SGraphEditor> FocusedGraphEd = GetCurrGraphEditor();
+	TSharedPtr<SGraphEditor> FocusedGraphEd = GetCurrentGraphEditor();
 	if (FocusedGraphEd.IsValid())
 	{
 		CurrentSelection = FocusedGraphEd->GetSelectedNodes();
@@ -345,7 +345,7 @@ void FAssetEditor_GenericGraph::RebuildGenericGraph()
 
 void FAssetEditor_GenericGraph::SelectAllNodes()
 {
-	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrGraphEditor();
+	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrentGraphEditor();
 	if (CurrentGraphEditor.IsValid())
 	{
 		CurrentGraphEditor->SelectAllNodes();
@@ -359,7 +359,7 @@ bool FAssetEditor_GenericGraph::CanSelectAllNodes()
 
 void FAssetEditor_GenericGraph::DeleteSelectedNodes()
 {
-	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrGraphEditor();
+	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrentGraphEditor();
 	if (!CurrentGraphEditor.IsValid())
 	{
 		return;
@@ -416,7 +416,7 @@ bool FAssetEditor_GenericGraph::CanDeleteNodes()
 
 void FAssetEditor_GenericGraph::DeleteSelectedDuplicatableNodes()
 {
-	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrGraphEditor();
+	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrentGraphEditor();
 	if (!CurrentGraphEditor.IsValid())
 	{
 		return;
@@ -500,7 +500,7 @@ bool FAssetEditor_GenericGraph::CanCopyNodes()
 
 void FAssetEditor_GenericGraph::PasteNodes()
 {
-	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrGraphEditor();
+	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrentGraphEditor();
 	if (CurrentGraphEditor.IsValid())
 	{
 		PasteNodesHere(CurrentGraphEditor->GetPasteLocation());
@@ -510,7 +510,7 @@ void FAssetEditor_GenericGraph::PasteNodes()
 void FAssetEditor_GenericGraph::PasteNodesHere(const FVector2D& Location)
 {
 	// Find the graph editor with focus
-	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrGraphEditor();
+	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrentGraphEditor();
 	if (!CurrentGraphEditor.IsValid())
 	{
 		return;
@@ -575,7 +575,7 @@ void FAssetEditor_GenericGraph::PasteNodesHere(const FVector2D& Location)
 
 bool FAssetEditor_GenericGraph::CanPasteNodes()
 {
-	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrGraphEditor();
+	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrentGraphEditor();
 	if (!CurrentGraphEditor.IsValid())
 	{
 		return false;
@@ -610,7 +610,7 @@ bool FAssetEditor_GenericGraph::CanGraphSettings() const
 
 void FAssetEditor_GenericGraph::OnRenameNode()
 {
-	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrGraphEditor();
+	TSharedPtr<SGraphEditor> CurrentGraphEditor = GetCurrentGraphEditor();
 	if (CurrentGraphEditor.IsValid())
 	{
 		const FGraphPanelSelectionSet SelectedNodes = GetSelectedNodes();

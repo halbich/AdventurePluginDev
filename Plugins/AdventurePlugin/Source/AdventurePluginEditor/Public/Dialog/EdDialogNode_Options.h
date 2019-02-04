@@ -36,9 +36,9 @@ public:
 			FString NumString = Pin->PinName.GetPlainNameString();
 			if (NumString.IsNumeric())
 			{
-				int number = FCString::Atoi(*NumString);
-				check(number > 0 && number <= (int)OptionsNode->ChoiceCount);
-				OptionsNode->ChildOptions.Add(number - 1, DialogChild);
+				int32 Number = FCString::Atoi(*NumString);
+				check(Number > 0 && Number <= (int32)OptionsNode->ChoiceCount);
+				OptionsNode->ChildOptions.Add(Number - 1, DialogChild);
 			}
 		}
 	}

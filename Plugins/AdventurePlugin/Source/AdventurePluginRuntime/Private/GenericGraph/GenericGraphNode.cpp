@@ -23,9 +23,9 @@ FText UGenericGraphNode::GetDescription_Implementation() const
 }
 
 /*
-UGenericGraphNode* UGenericGraphNode::GetFirstChildInBin(int bin) const
+UGenericGraphNode* UGenericGraphNode::GetFirstChildInBin(int32 bin) const
 {
-	int bins = ChildrenNodesBins.Num();
+	int32 bins = ChildrenNodesBins.Num();
 	//check(bins == GetOutputPinsCount());
 	check(bins > bin);
 	int32 child = ChildrenNodesBins[bin];

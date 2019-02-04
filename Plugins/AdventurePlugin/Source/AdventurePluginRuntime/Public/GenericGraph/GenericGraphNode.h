@@ -30,7 +30,7 @@ public:
 		FGuid NodeGuid;
 
 	//UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
-	//TArray<int> ChildrenNodesBins;
+	//TArray<int32> ChildrenNodesBins;
 
 	UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
 	bool IsLeafNode() const;
@@ -43,7 +43,7 @@ public:
 	virtual FText GetDescription_Implementation() const;
 
 	//UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
-	//UGenericGraphNode* GetFirstChildInBin(int bin) const;
+	//UGenericGraphNode* GetFirstChildInBin(int32 bin) const;
 
 	virtual void ResetSpecialChildren() { }
 

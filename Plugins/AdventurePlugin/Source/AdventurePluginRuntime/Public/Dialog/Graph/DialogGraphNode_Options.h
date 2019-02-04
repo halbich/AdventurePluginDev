@@ -32,7 +32,7 @@ public:
 	UDialogGraphNode* ChildFallback;
 
 	UPROPERTY(BlueprintReadOnly)
-	TMap<int, UDialogGraphNode*> ChildOptions;
+	TMap<int32, UDialogGraphNode*> ChildOptions;
 
 	virtual void ResetSpecialChildren() override
 	{
@@ -82,7 +82,7 @@ public:
 		auto optionsToPresent = TArray<FDialogLineData>();
 		optionsToPresent.Reserve(ChoiceCount);
 		check(ChildOptions.Num() == ChoiceCount);
-		for (int i = 0; i < (int)ChoiceCount; ++i)
+		for (int32 i = 0; i < (int32)ChoiceCount; ++i)
 		{
 			auto* childNode = ChildOptions[i];
 			while (childNode != nullptr)
@@ -128,7 +128,7 @@ public:
 	{
 		// TODO: Warning when calling with invalid index.
 		if (selectedOptionIndex < 0) return ChildFallback;
-		check(selectedOptionIndex < (int)ChoiceCount);
+		check(selectedOptionIndex < (int32)ChoiceCount);
 		return ChildOptions[selectedOptionIndex];
 		// return (selectedOptionIndex >= 0 && selectedOptionIndex < ChildrenNodes.Num()) ? Cast<UDialogGraphNode>(ChildrenNodes[selectedOptionIndex]) : nullptr;
 	}

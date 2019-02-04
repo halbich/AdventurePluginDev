@@ -21,7 +21,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 
 	Clear();
 
-	for (int i = 0; i < Nodes.Num(); ++i)
+	for (int32 i = 0; i < Nodes.Num(); ++i)
 	{
 		if (UEdNode_GenericGraphNode* EdNode = Cast<UEdNode_GenericGraphNode>(Nodes[i]))
 		{
@@ -35,7 +35,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 
 			GenericGraphNode->NodeGuid = EdNode->NodeGuid;
 
-			for (int PinIdx = 0; PinIdx < EdNode->Pins.Num(); ++PinIdx)
+			for (int32 PinIdx = 0; PinIdx < EdNode->Pins.Num(); ++PinIdx)
 			{
 				UEdGraphPin* Pin = EdNode->Pins[PinIdx];
 
@@ -43,7 +43,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 
 				//GenericGraphNode->ChildrenNodesBins.Add(GenericGraphNode->ChildrenNodes.Num());
 
-				for (int LinkToIdx = 0; LinkToIdx < Pin->LinkedTo.Num(); ++LinkToIdx)
+				for (int32 LinkToIdx = 0; LinkToIdx < Pin->LinkedTo.Num(); ++LinkToIdx)
 				{
 					UGenericGraphNode* ChildNode = nullptr;
 					if (UEdNode_GenericGraphNode* EdNode_Child = Cast<UEdNode_GenericGraphNode>(Pin->LinkedTo[LinkToIdx]->GetOwningNode()))
@@ -66,7 +66,7 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 		}
 	}
 
-	for (int i = 0; i < Graph->AllNodes.Num(); ++i)
+	for (int32 i = 0; i < Graph->AllNodes.Num(); ++i)
 	{
 		UGenericGraphNode* Node = Graph->AllNodes[i];
 		if (Node->ParentNodes.Num() == 0)
@@ -112,7 +112,7 @@ void UEdGraph_GenericGraph::Clear()
 	Graph->ClearGraph();
 	NodeMap.Reset();
 
-	for (int i = 0; i < Nodes.Num(); ++i)
+	for (int32 i = 0; i < Nodes.Num(); ++i)
 	{
 		if (UEdNode_GenericGraphNode* EdNode = Cast<UEdNode_GenericGraphNode>(Nodes[i]))
 		{

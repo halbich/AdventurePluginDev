@@ -9,7 +9,6 @@
 #include "Math/Color.h"
 #include "AdventurePluginEditor.h"
 
-class FAdventurePluginDialogDebugger;
 class FMenuBuilder;
 class SGraphEditor;
 class UDialogGraph;
@@ -17,8 +16,6 @@ class UDialogGraph;
 class FAdventurePluginDialogEditor : public FAssetEditorToolkit, public FNotifyHook
 {
 public:
-
-	~FAdventurePluginDialogEditor();
 
 	/** IToolkit interface */
 	virtual FName GetToolkitFName() const override;
@@ -31,8 +28,6 @@ public:
 
 	void InitDialogEditor(const EToolkitMode::Type Mode, const TSharedPtr<class IToolkitHost>& InitToolkitHost, UObject* ObjectToEdit);
 	TSharedRef<class SDockTab> GetPluginTab(const class FSpawnTabArgs& SpawnTabArgs);
-
-	void DebuggerUpdateGraph();
 	
 private:
 
@@ -40,7 +35,7 @@ private:
 	TSharedRef<SGraphEditor> CreateGraphEditorWidget();
 
 	TSharedRef<class SDockTab> SpawnTab_GraphCanvas(const class FSpawnTabArgs& SpawnTabArgs);
-
+	//QUESTION: Do Dummy actions have to stay for release?
 	void DummyAction();
 	bool CanDummyAction() const;
 
@@ -48,11 +43,10 @@ private:
 	UDialogGraph* DialogGraph;
 
 private:
+	//QUESTION: Why class?
 	TSharedPtr<class SGraphEditor> GraphEditor;
 	TSharedPtr<FUICommandList> GraphEditorCommands;
 
 	/**	The tab ids for the dialog editor */
 	static const FName GraphCanvasTabId;
-
-	TSharedPtr<class FAdventurePluginDialogDebugger> Debugger;
 };

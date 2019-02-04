@@ -22,7 +22,7 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginSaveGame : public USaveGame
 		TMap<FName, bool> storageBoolean;
 
 	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
-		TMap<FName, int> storageInt;
+		TMap<FName, int32> storageInt;
 
 	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
 		TMap<FName, FString> storageString;
@@ -47,13 +47,13 @@ public:
 
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		int GetInt(FName name);
+		int32 GetInt(FName name);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		int GetIntOrDefault(FName name, int defaultValue);
+		int32 GetIntOrDefault(FName name, int32 defaultValue);
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		void SetInt(FName name, int value);
+		void SetInt(FName name, int32 value);
 
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
@@ -67,7 +67,7 @@ public:
 
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		static UAdventurePluginSaveGame* CreateSave(FString& slotName , int userIndex );
+		static UAdventurePluginSaveGame* CreateSave(FString& slotName , int32 userIndex );
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
 		bool Save();

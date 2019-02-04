@@ -57,12 +57,12 @@ void SEdDialogNode_Options::CreatePinWidgets()
 	UEdNode_GenericGraphNode* StateNode = CastChecked<UEdNode_GenericGraphNode>(GraphNode);
 	UDialogGraphNode_Options* OptionsNode = CastChecked<UDialogGraphNode_Options>(DialogGraphNode);
 
-	int ChoiceCount = OptionsNode->ChoiceCount;
-	for (int i = StateNode->Pins.Num() - 1; i <= ChoiceCount; ++i)
+	int32 ChoiceCount = OptionsNode->ChoiceCount;
+	for (int32 i = StateNode->Pins.Num() - 1; i <= ChoiceCount; ++i)
 	{
 		StateNode->CreatePin(EGPD_Output, "MultipleNodes", FName(), FName(*FString::FromInt(i)));
 	}
-	for (int i = StateNode->Pins.Num() - 2; i > ChoiceCount; --i)
+	for (int32 i = StateNode->Pins.Num() - 2; i > ChoiceCount; --i)
 	{
 		StateNode->RemovePinAt(i, EGPD_Output);
 	}

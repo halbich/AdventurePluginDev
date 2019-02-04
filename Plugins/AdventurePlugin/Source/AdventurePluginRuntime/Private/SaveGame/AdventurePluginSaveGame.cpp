@@ -43,19 +43,19 @@ void UAdventurePluginSaveGame::SetBool(FName name, bool value)
 
 
 
-int UAdventurePluginSaveGame::GetInt(FName name)
+int32 UAdventurePluginSaveGame::GetInt(FName name)
 {
 	auto res = storageInt.Find(name);
 
 	// TODO better key handling
-	check(res && "Key not found in int storage");
+	check(res && "Key not found in int32 storage");
 
 	return *res;
 }
 
-int UAdventurePluginSaveGame::GetIntOrDefault(FName name, int defaultValue)
+int32 UAdventurePluginSaveGame::GetIntOrDefault(FName name, int32 defaultValue)
 {
-	int* var = storageInt.Find(name);
+	int32* var = storageInt.Find(name);
 	if (!var)
 	{
 		storageInt.Add(name, defaultValue);
@@ -65,7 +65,7 @@ int UAdventurePluginSaveGame::GetIntOrDefault(FName name, int defaultValue)
 		return *var;
 }
 
-void UAdventurePluginSaveGame::SetInt(FName name, int value)
+void UAdventurePluginSaveGame::SetInt(FName name, int32 value)
 {
 	// if key exist, value will be replaced
 	storageInt.Add(name, value);
@@ -103,7 +103,7 @@ void UAdventurePluginSaveGame::SetString(FName name, FString value)
 
 
 
-UAdventurePluginSaveGame* UAdventurePluginSaveGame::CreateSave(FString& slotName, int userIndex)
+UAdventurePluginSaveGame* UAdventurePluginSaveGame::CreateSave(FString& slotName, int32 userIndex)
 {
 	auto instance = Cast<UAdventurePluginSaveGame>(UGameplayStatics::CreateSaveGameObject(UAdventurePluginSaveGame::StaticClass()));
 	instance->SaveSlotName = slotName;

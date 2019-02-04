@@ -52,7 +52,7 @@ private:
 
 	void CreateCommandList();
 
-	TSharedPtr<SGraphEditor> GetCurrGraphEditor() const;
+	TSharedPtr<SGraphEditor> GetCurrentGraphEditor() const;
 
 	FGraphPanelSelectionSet GetSelectedNodes() const;
 
