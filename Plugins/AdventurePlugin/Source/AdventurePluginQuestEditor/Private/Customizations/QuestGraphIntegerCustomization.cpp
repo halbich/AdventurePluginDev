@@ -1,6 +1,6 @@
 #include "Customizations/QuestGraphIntegerCustomization.h"
-#include "StoryEngine/Structs/QuestGraphInteger.h"
-#include "StoryEngine/Graph/QuestGraph.h"
+#include "Quest/Structs/QuestGraphInteger.h"
+#include "Quest/Graph/QuestGraph.h"
 
 TSharedRef<IPropertyTypeCustomization> FQuestGraphIntegerCustomization::MakeInstance()
 {

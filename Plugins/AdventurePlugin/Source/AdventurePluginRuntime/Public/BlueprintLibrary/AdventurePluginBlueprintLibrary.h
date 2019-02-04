@@ -6,7 +6,7 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "DialogController.h"
-#include "StoryEngine/Graph/QuestGraph.h"
+#include "Quest/Graph/QuestGraph.h"
 #include "Dialog/Graph/DialogGraph.h"
 #include "Dialog/Graph/DialogGraphNode.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"

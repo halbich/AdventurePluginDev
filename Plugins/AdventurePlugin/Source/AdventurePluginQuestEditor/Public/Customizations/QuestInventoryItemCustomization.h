@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "DetailLayoutBuilder.h"
 #include "IDetailCustomization.h"
-#include "StoryEngine/Graph/QuestGraphNode_Inventory.h"
+#include "Quest/Graph/QuestGraphNode_Inventory.h"
 
 class FQuestInventoryItemCustomization : public IDetailCustomization
 {

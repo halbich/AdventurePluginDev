@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "StoryEngine/Graph/QuestGraphNode.h"
+#include "Quest/Graph/QuestGraphNode.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "GenericGraph/SEdNode_GenericGraphNode.h"
 

@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraph/AssetGraphSchema_GenericGraph.h"
-#include "StoryEngine/Graph/QuestGraphNode.h"
+#include "Quest/Graph/QuestGraphNode.h"
 #include "EdQuestNode.h"
 #include "AssetGraphSchema_QuestGraph.generated.h"
 

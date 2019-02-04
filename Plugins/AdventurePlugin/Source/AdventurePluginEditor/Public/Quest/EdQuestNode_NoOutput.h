@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "StoryEngine/EdQuestNode.h"
+#include "Quest/EdQuestNode.h"
 #include "EdQuestNode_NoOutput.generated.h"
 
 UCLASS()

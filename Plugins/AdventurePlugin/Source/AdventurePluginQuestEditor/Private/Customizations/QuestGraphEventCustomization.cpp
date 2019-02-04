@@ -1,6 +1,6 @@
 #include "Customizations/QuestGraphEventCustomization.h"
-#include "StoryEngine/Structs/QuestGraphEvent.h"
-#include "StoryEngine/Graph/QuestGraph.h"
+#include "Quest/Structs/QuestGraphEvent.h"
+#include "Quest/Graph/QuestGraph.h"
 
 TSharedRef<IPropertyTypeCustomization> FQuestGraphEventCustomization::MakeInstance()
 {

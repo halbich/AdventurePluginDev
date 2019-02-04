@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
-#include "StoryEngine/Graph/QuestGraph.h"
-#include "StoryEngine/Structs/QuestGraphBool.h"
+#include "Quest/Graph/QuestGraph.h"
+#include "Quest/Structs/QuestGraphBool.h"
 #include "DialogGraphNode_SwitchBool.generated.h"
 
 UCLASS(Blueprintable)

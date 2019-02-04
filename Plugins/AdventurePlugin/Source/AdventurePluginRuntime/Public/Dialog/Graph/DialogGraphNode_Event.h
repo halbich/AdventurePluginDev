@@ -2,9 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
-#include "StoryEngine/Graph/QuestGraph.h"
+#include "Quest/Graph/QuestGraph.h"
 #include "AdventurePluginRuntime.h"
-#include "StoryEngine/Structs/QuestGraphEvent.h"
+#include "Quest/Structs/QuestGraphEvent.h"
 #include "DialogGraphNode_Event.generated.h"
 
 UCLASS(Blueprintable)

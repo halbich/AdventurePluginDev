@@ -1,6 +1,6 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
-#include "AdventurePluginStoryEngineEditorModule.h"
+#include "AdventurePluginQuestEditorModule.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
@@ -13,12 +13,12 @@
 #include "PropertyEditorDelegates.h"
 #include "AdventurePluginEditor.h"
 #include "AssetTypeActions_QuestGraph.h"
-#include "StoryEngine/Structs/QuestGraphFlag.h"
-#include "StoryEngine/Structs/QuestGraphBool.h"
-#include "StoryEngine/Structs/QuestGraphString.h"
-#include "StoryEngine/Structs/QuestGraphInteger.h"
-#include "StoryEngine/Structs/QuestGraphEvent.h"
-#include "StoryEngine/Graph/QuestGraphNode_Inventory.h"
+#include "Quest/Structs/QuestGraphFlag.h"
+#include "Quest/Structs/QuestGraphBool.h"
+#include "Quest/Structs/QuestGraphString.h"
+#include "Quest/Structs/QuestGraphInteger.h"
+#include "Quest/Structs/QuestGraphEvent.h"
+#include "Quest/Graph/QuestGraphNode_Inventory.h"
 #include "Customizations/QuestGraphFlagCustomization.h"
 #include "Customizations/QuestGraphBoolCustomization.h"
 #include "Customizations/QuestGraphStringCustomization.h"
@@ -28,11 +28,11 @@
 #include "SlateStyleRegistry.h"
 #include "Styling/SlateStyle.h"
 
-const FName AdventurePluginStoryEngineEditorAppIdentifier = FName(TEXT("AdventurePluginStoryEngineEditorApp"));
+const FName AdventurePluginQuestEditorAppIdentifier = FName(TEXT("AdventurePluginQuestEditorApp"));
 
-#define LOCTEXT_NAMESPACE "FAdventurePluginStoryEngineEditorModule"
+#define LOCTEXT_NAMESPACE "FAdventurePluginQuestEditorModule"
 
-void FAdventurePluginStoryEngineEditorModule::StartupModule()
+void FAdventurePluginQuestEditorModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 
@@ -41,7 +41,7 @@ void FAdventurePluginStoryEngineEditorModule::StartupModule()
 	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_QuestGraph(AdventurePluginEditor.DefaultAssetCategory())));
 
 	/* Adding custom asset icon */
-	StyleSet = MakeShareable(new FSlateStyleSet("StoryEngineStyle"));
+	StyleSet = MakeShareable(new FSlateStyleSet("QuestStyle"));
 	StyleSet->SetContentRoot(FPaths::EngineContentDir() / TEXT("Editor/Slate"));
 	StyleSet->SetCoreContentRoot(FPaths::EngineContentDir() / TEXT("Slate"));
 	StyleSet->Set("ClassIcon.QuestGraph", new FSlateImageBrush(StyleSet->RootToContentDir(TEXT("Icons/AssetIcons/BehaviorTree_16x.png")), FVector2D(16.0f, 16.0f)));
@@ -59,7 +59,7 @@ void FAdventurePluginStoryEngineEditorModule::StartupModule()
 	/**/
 }
 
-void FAdventurePluginStoryEngineEditorModule::ShutdownModule()
+void FAdventurePluginQuestEditorModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
@@ -91,7 +91,7 @@ void FAdventurePluginStoryEngineEditorModule::ShutdownModule()
 	/**/
 }
 
-void FAdventurePluginStoryEngineEditorModule::RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action)
+void FAdventurePluginQuestEditorModule::RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action)
 {
 	AssetTools.RegisterAssetTypeActions(Action);
 	CreatedAssetTypeActions.Add(Action);
@@ -99,4 +99,4 @@ void FAdventurePluginStoryEngineEditorModule::RegisterAssetTypeAction(IAssetTool
 
 #undef LOCTEXT_NAMESPACE
 
-IMPLEMENT_MODULE(FAdventurePluginStoryEngineEditorModule, AdventurePluginStoryEngineEditor)
+IMPLEMENT_MODULE(FAdventurePluginQuestEditorModule, AdventurePluginQuestEditor)

@@ -1,7 +1,7 @@
 #include "Customizations/QuestGraphFlagCustomization.h"
-#include "StoryEngine/Structs/QuestGraphFlag.h"
-#include "StoryEngine/Graph/QuestGraph.h"
-#include "StoryEngine/Graph/QuestGraphNode_Flag.h"
+#include "Quest/Structs/QuestGraphFlag.h"
+#include "Quest/Graph/QuestGraph.h"
+#include "Quest/Graph/QuestGraphNode_Flag.h"
 
 TSharedRef<IPropertyTypeCustomization> FQuestGraphFlagCustomization::MakeInstance()
 {

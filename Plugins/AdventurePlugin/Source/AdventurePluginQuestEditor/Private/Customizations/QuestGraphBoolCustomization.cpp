@@ -1,6 +1,6 @@
 #include "Customizations/QuestGraphBoolCustomization.h"
-#include "StoryEngine/Structs/QuestGraphBool.h"
-#include "StoryEngine/Graph/QuestGraph.h"
+#include "Quest/Structs/QuestGraphBool.h"
+#include "Quest/Graph/QuestGraph.h"
 
 TSharedRef<IPropertyTypeCustomization> FQuestGraphBoolCustomization::MakeInstance()
 {

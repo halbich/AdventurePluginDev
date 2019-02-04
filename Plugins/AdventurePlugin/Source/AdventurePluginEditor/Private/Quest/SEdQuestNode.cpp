@@ -1,4 +1,4 @@
-#include "StoryEngine/SEdQuestNode.h"
+#include "Quest/SEdQuestNode.h"
 #include "SCommentBubble.h"
 #include "SlateOptMacros.h"
 #include "SGraphPin.h"

@@ -2,15 +2,15 @@
 
 using UnrealBuildTool;
 
-public class AdventurePluginStoryEngineEditor : ModuleRules
+public class AdventurePluginQuestEditor : ModuleRules
 {
-	public AdventurePluginStoryEngineEditor(ReadOnlyTargetRules Target) : base(Target)
+	public AdventurePluginQuestEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				"AdventurePluginStoryEngineEditor/Public"
+				"AdventurePluginQuestEditor/Public"
 				// ... add public include paths required here ...
 			}
 			);
@@ -18,7 +18,7 @@ public class AdventurePluginStoryEngineEditor : ModuleRules
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				"AdventurePluginStoryEngineEditor/Private",
+				"AdventurePluginQuestEditor/Private",
 				// ... add other private include paths required here ...
 			}
 			);

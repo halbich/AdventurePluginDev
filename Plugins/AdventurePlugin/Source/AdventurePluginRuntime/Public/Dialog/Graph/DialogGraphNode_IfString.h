@@ -3,8 +3,8 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_TrueFalse.h"
-#include "StoryEngine/Graph/QuestGraph.h"
-#include "StoryEngine/Structs/QuestGraphString.h"
+#include "Quest/Graph/QuestGraph.h"
+#include "Quest/Structs/QuestGraphString.h"
 #include "DialogGraphNode_IfString.generated.h"
 
 UCLASS(Blueprintable)

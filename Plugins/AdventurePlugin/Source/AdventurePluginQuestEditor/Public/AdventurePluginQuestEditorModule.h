@@ -8,9 +8,9 @@
 #include "IAssetTools.h"
 #include "AdventurePluginEditor.h"
 
-extern const FName AdventurePluginStoryEngineEditorAppIdentifier;
+extern const FName AdventurePluginQuestEditorAppIdentifier;
 
-class FAdventurePluginStoryEngineEditorModule : public IModuleInterface
+class FAdventurePluginQuestEditorModule : public IModuleInterface
 {
 public:
 

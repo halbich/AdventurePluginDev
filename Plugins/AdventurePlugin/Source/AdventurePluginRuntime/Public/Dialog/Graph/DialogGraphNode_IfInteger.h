@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
-#include "StoryEngine/Graph/QuestGraph.h"
-#include "StoryEngine/Structs/QuestGraphInteger.h"
+#include "Quest/Graph/QuestGraph.h"
+#include "Quest/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IfInteger.generated.h"
 
 UCLASS(Blueprintable)

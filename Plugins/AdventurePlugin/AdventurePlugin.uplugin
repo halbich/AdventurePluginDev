@@ -30,7 +30,7 @@
       ]
     },
     {
-      "Name": "AdventurePluginStoryEngineEditor",
+      "Name": "AdventurePluginQuestEditor",
       "Type": "Editor",
       "LoadingPhase": "Default"
     },

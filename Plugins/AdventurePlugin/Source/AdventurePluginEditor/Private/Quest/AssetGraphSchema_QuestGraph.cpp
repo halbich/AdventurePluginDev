@@ -1,5 +1,5 @@
-#include "StoryEngine/AssetGraphSchema_QuestGraph.h"
-#include "StoryEngine/EdQuestNode_NoOutput.h"
+#include "Quest/AssetGraphSchema_QuestGraph.h"
+#include "Quest/EdQuestNode_NoOutput.h"
 #include "QuestGraphNode_End.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "EdGraph/EdGraph.h"
