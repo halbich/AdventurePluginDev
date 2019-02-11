@@ -26,23 +26,23 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginBlueprintLibrary : public UBlue
 
 public:
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
-		static void ShowDialogFromEntryPoint(UAdventurePluginGameContext* gameContext, FDialogGraphEntryPoint entryPoint);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Dialog")
+		static void ShowDialogFromEntryPoint(UAdventurePluginGameContext* GameContext, FDialogGraphEntryPoint EntryPoint);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
-		static void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Dialog")
+		static void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
-		static void ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
+		static void ShowInventory(UAdventurePluginGameContext* GameContext, bool bShow);
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin")
-		static UInventoryItem* GetItem(UAdventurePluginGameContext* gameContext, TSubclassOf<UInventoryItem> Item);
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Inventory")
+		static UInventoryItem* GetItem(UAdventurePluginGameContext* GameContext, TSubclassOf<UInventoryItem> Item);
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin")
-		static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* gameContext, TSubclassOf<UAdventureCharacter> Character);
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Character")
+		static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
-		static bool BindQuestEvent(UAdventurePluginGameContext* gameContext, UQuestGraph* graph, FName eventName, FQuestEvent questEvent);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary|Quest")
+		static bool BindQuestEvent(UAdventurePluginGameContext* GameContext, UQuestGraph* QuestGraph, FName EventName, FQuestEvent QuestEvent);
 
 private:
 };

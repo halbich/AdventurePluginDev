@@ -15,8 +15,8 @@ public:
 	UQuestGraphNode();
 	virtual ~UQuestGraphNode();
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
-	virtual bool IsSatisfied(UAdventurePluginGameContext* gameContext) { return true; };
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) { return true; };
 
 #if WITH_EDITORONLY_DATA
 	/*TODO: Bind to some nice picker of available locations.*/

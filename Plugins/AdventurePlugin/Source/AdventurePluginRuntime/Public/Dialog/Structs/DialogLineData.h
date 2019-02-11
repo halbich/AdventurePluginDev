@@ -22,7 +22,7 @@ public:
 		float TextDuration;
 	/** Specifies whether the user should be able to skip this particular line of dialogue or not.. */
 	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
-		bool Skippable;
+		bool bSkippable;
 	/** The character saying this line.*/
 	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
 		UAdventureCharacter* SpeakerCharacter;

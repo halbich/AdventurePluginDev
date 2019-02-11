@@ -23,10 +23,10 @@ public:
 
 	UInventoryController()
 	{
-		defaultInventory = NewObject<UInventory>();
+		DefaultInventory = NewObject<UInventory>();
 	}
 
-	void ShowInventory(UAdventurePluginGameContext* gameContext, UInventory* inventory = nullptr);
+	void ShowInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory = nullptr);
 
 	void HideInventory();
 
@@ -37,16 +37,16 @@ public:
 private:
 
 	UPROPERTY(Transient)
-	UInventory* defaultInventory;
+	UInventory* DefaultInventory;
 
 	UPROPERTY(Transient)
-		UAdventurePluginGameContext* currentContext;
+		UAdventurePluginGameContext* CurrentGameContext;
 
 	UPROPERTY(Transient)
-		TScriptInterface<IInventoryPresenterInterface> currentPresenter;
+		TScriptInterface<IInventoryPresenterInterface> CurrentPresenter;
 
-	FORCEINLINE IInventoryPresenterInterface* presenter()
+	FORCEINLINE IInventoryPresenterInterface* GetPresenter()
 	{
-		return currentContext ? Cast<IInventoryPresenterInterface>(currentContext->InventoryPresenter.GetObject()) : NULL;
+		return IsValid(CurrentGameContext) ? Cast<IInventoryPresenterInterface>(CurrentGameContext->InventoryPresenter.GetObject()) : nullptr;
 	}
 };

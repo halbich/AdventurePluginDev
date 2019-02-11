@@ -12,103 +12,107 @@ UAdventurePluginSaveGame::UAdventurePluginSaveGame()
 
 
 
-bool UAdventurePluginSaveGame::GetBool(FName name)
+bool UAdventurePluginSaveGame::GetBool(FName Name)
 {
-	auto res = storageBoolean.Find(name);
+	bool* Result = StorageBoolean.Find(Name);
 
 	// TODO better key handling
-	check(res && "Key not found in boolean storage");
+	check(Result && "Key not found in boolean storage");
 
-	return *res;
+	return *Result;
 }
 
-bool UAdventurePluginSaveGame::GetBoolOrDefault(FName name, bool defaultValue)
+bool UAdventurePluginSaveGame::GetBoolOrDefault(FName Name, bool bDefaultValue)
 {
-	bool* var = storageBoolean.Find(name);
-	if (!var)
+	bool* Result = StorageBoolean.Find(Name);
+	if (Result == nullptr)
 	{
-		storageBoolean.Add(name, defaultValue);
-		return defaultValue;
+		StorageBoolean.Add(Name, bDefaultValue);
+		return bDefaultValue;
 	}
 	else
-		return *var;
+	{
+		return *Result;
+	}
 
 }
 
-void UAdventurePluginSaveGame::SetBool(FName name, bool value)
+void UAdventurePluginSaveGame::SetBool(FName Name, bool bValue)
 {
 	// if key exist, value will be replaced
-	storageBoolean.Add(name, value);
+	StorageBoolean.Add(Name, bValue);
 }
 
 
 
-int32 UAdventurePluginSaveGame::GetInt(FName name)
+int32 UAdventurePluginSaveGame::GetInt(FName Name)
 {
-	auto res = storageInt.Find(name);
+	int32* Result = StorageInt.Find(Name);
 
 	// TODO better key handling
-	check(res && "Key not found in int32 storage");
+	check(Result && "Key not found in int32 storage");
 
-	return *res;
+	return *Result;
 }
 
-int32 UAdventurePluginSaveGame::GetIntOrDefault(FName name, int32 defaultValue)
+int32 UAdventurePluginSaveGame::GetIntOrDefault(FName Name, int32 DefaultValue)
 {
-	int32* var = storageInt.Find(name);
-	if (!var)
+	int32* Result = StorageInt.Find(Name);
+	if (Result == nullptr)
 	{
-		storageInt.Add(name, defaultValue);
-		return defaultValue;
+		StorageInt.Add(Name, DefaultValue);
+		return DefaultValue;
 	}
 	else
-		return *var;
+		return *Result;
 }
 
-void UAdventurePluginSaveGame::SetInt(FName name, int32 value)
+void UAdventurePluginSaveGame::SetInt(FName Name, int32 Value)
 {
 	// if key exist, value will be replaced
-	storageInt.Add(name, value);
+	StorageInt.Add(Name, Value);
 }
 
 
 
-FString UAdventurePluginSaveGame::GetString(FName name)
+FString UAdventurePluginSaveGame::GetString(FName Name)
 {
-	auto res = storageString.Find(name);
+	FString* Result = StorageString.Find(Name);
 
 	// TODO better key handling
-	check(res && "Key not found in string storage");
+	check(Result && "Key not found in string storage");
 
-	return *res;
+	return *Result;
 }
 
-FString UAdventurePluginSaveGame::GetStringOrDefault(FName name, FString defaultValue)
+FString UAdventurePluginSaveGame::GetStringOrDefault(FName Name, FString DefaultValue)
 {
-	FString* var = storageString.Find(name);
-	if (!var)
+	FString* Result = StorageString.Find(Name);
+	if (Result == nullptr)
 	{
-		storageString.Add(name, defaultValue);
-		return defaultValue;
+		StorageString.Add(Name, DefaultValue);
+		return DefaultValue;
 	}
 	else
-		return *var;
+	{
+		return *Result;
+	}
 }
 
-void UAdventurePluginSaveGame::SetString(FName name, FString value)
+void UAdventurePluginSaveGame::SetString(FName Name, FString Value)
 {
 	// if key exist, value will be replaced
-	storageString.Add(name, value);
+	StorageString.Add(Name, Value);
 }
 
 
 
-UAdventurePluginSaveGame* UAdventurePluginSaveGame::CreateSave(FString& slotName, int32 userIndex)
+UAdventurePluginSaveGame* UAdventurePluginSaveGame::CreateSave(FString& SlotName, int32 UserIndex)
 {
-	auto instance = Cast<UAdventurePluginSaveGame>(UGameplayStatics::CreateSaveGameObject(UAdventurePluginSaveGame::StaticClass()));
-	instance->SaveSlotName = slotName;
-	instance->SaveUserIndex = userIndex;
-	return instance;
+	UAdventurePluginSaveGame* SaveGameInstance = Cast<UAdventurePluginSaveGame>(UGameplayStatics::CreateSaveGameObject(UAdventurePluginSaveGame::StaticClass()));
+	SaveGameInstance->SaveSlotName = SlotName;
+	SaveGameInstance->SaveUserIndex = UserIndex;
+	return SaveGameInstance;
 }
 
 bool UAdventurePluginSaveGame::Save()

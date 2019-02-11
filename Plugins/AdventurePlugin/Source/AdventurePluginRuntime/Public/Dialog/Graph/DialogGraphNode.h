@@ -42,12 +42,12 @@ public:
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context)
+	virtual bool Execute(UAdventurePluginGameContext* GameContext)
 	{
 		return true;
 	}
 
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context)
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext)
 	{
 		return ChildrenNodes.Num() > 0 ? Cast<UDialogGraphNode>(ChildrenNodes[0]) : nullptr;
 	}
@@ -57,7 +57,7 @@ public:
 		return false;
 	}
 
-	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* Context) const
+	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* GameContext) const
 	{
 		return FDialogLineData();
 	}

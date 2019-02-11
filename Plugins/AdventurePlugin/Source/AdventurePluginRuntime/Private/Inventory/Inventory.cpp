@@ -1,45 +1,50 @@
 #include "Inventory.h"
 
-bool UInventory::HasItem(UInventoryItem* item)
+bool UInventory::HasItem(UInventoryItem* Item)
 {
-	return Items.Contains(item);
+	return Items.Contains(Item);
 }
 
-bool UInventory::AddItem(UInventoryItem* item)
+bool UInventory::AddItem(UInventoryItem* Item)
 {
-	if (Items.Contains(item)) return false;
-	Items.Add(item);
-	item->ItemState = EInventoryItemState::ItemState_InInventory;
-	if (!isUpdating)
+	if (Items.Contains(Item))
 	{
-		InventoryChanged.Broadcast(item);
+		return false;
+	}
+	Items.Add(Item);
+	// TODO: Item state: Should we do it here? Or should presenter be responsible
+	Item->ItemState = EInventoryItemState::ItemState_InInventory;
+	if (!bIsUpdating)
+	{
+		InventoryChanged.Broadcast(Item);
 	}
 	return true;
 }
 
-bool UInventory::RemoveItem(UInventoryItem* item)
+bool UInventory::RemoveItem(UInventoryItem* Item)
 {
-	if (!Items.Contains(item)) return false;
-	Items.Remove(item);
-	item->ItemState = EInventoryItemState::ItemState_Used;
-	if (!isUpdating)
+	if (!Items.Contains(Item)) return false;
+	Items.Remove(Item);
+	// TODO: Item state: Should we do it here? Or should presenter be responsible
+	Item->ItemState = EInventoryItemState::ItemState_Used;
+	if (!bIsUpdating)
 	{
-		InventoryChanged.Broadcast(item);
+		InventoryChanged.Broadcast(Item);
 	}
 	return true;
 }
 
 void UInventory::BeginUpdate()
 {
-	isUpdating = true;
+	bIsUpdating = true;
 }
 
 void UInventory::EndUpdate()
 {
-	if (isUpdating)
+	if (bIsUpdating)
 	{
 		// TODO: Store changed items and broadcast also the list of modified items.
 		InventoryChanged.Broadcast(nullptr);
 	}
-	isUpdating = false;
+	bIsUpdating = false;
 }

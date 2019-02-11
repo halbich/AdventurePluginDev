@@ -19,16 +19,16 @@ UClass* FAssetEditor_QuestGraph::GetGraphSchemaClass() const
 
 void FAssetEditor_QuestGraph::RebuildGenericGraph() {
 	FAssetEditor_GenericGraph::RebuildGenericGraph();
-	auto * editingQuestGraph = Cast<UQuestGraph>(EditingGraph);
-	if (editingQuestGraph == nullptr)
+	UQuestGraph * EditingQuestGraph = Cast<UQuestGraph>(EditingGraph);
+	if (EditingQuestGraph == nullptr)
 	{
 		return;
 	}
-	editingQuestGraph->EndNode = nullptr;
-	for (auto* node : editingQuestGraph->AllNodes) {
-		if (node != nullptr && node->IsValidLowLevel() && node->GetClass()->IsChildOf<UQuestGraphNode_End>()) 
+	EditingQuestGraph->EndNode = nullptr;
+	for (UGenericGraphNode* Node : EditingQuestGraph->AllNodes) {
+		if (Node != nullptr && Node->IsValidLowLevel() && Node->GetClass()->IsChildOf<UQuestGraphNode_End>())
 		{
-			editingQuestGraph->EndNode = Cast<UQuestGraphNode>(node);
+			EditingQuestGraph->EndNode = Cast<UQuestGraphNode>(Node);
 			break;
 		}
 	}

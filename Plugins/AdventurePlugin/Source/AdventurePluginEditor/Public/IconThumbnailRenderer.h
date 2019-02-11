@@ -12,7 +12,6 @@ class FRenderTarget;
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UIconThumbnailRenderer : public UTextureThumbnailRenderer
 {
-	//GENERATED_UCLASS_BODY()
 	GENERATED_BODY()
 
 	// Begin UThumbnailRenderer Object

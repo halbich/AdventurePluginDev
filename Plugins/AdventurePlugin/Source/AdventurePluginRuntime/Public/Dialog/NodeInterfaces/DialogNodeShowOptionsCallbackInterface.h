@@ -14,6 +14,6 @@ class IDialogNodeShowOptionsCallbackInterface
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Dialog")
-		bool DialogOptionSelected(int32 selectedNodeIndex, UDialogController* controller);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Adventure Plugin|Dialog")
+		bool DialogOptionSelected(int32 SelectedNodeIndex, UDialogController* DialogController);
 };

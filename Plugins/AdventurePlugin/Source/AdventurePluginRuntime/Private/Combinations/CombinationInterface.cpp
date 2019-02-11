@@ -15,7 +15,6 @@ TArray<UClass*> ICombinationInterface::GetCombinationTargetClasses_Implementatio
 	return TArray<UClass*>();
 }
 
-UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Inventory")
 bool ICombinationInterface::CanCombineWith_Implementation(UObject* CombinationTarget)
 {
 	return false;

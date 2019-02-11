@@ -38,9 +38,9 @@ public:
 
 	virtual TArray<UClass*> GetCombinationTargetClasses_Implementation() override
 	{
-		auto toReturn = TArray<UClass*>();
-		toReturn.Add(TargetClass);
-		return toReturn;
+		TArray<UClass*> ToReturn = TArray<UClass*>();
+		ToReturn.Add(TargetClass);
+		return ToReturn;
 	}
 
 	virtual void Execute_Implementation(UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override

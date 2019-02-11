@@ -31,17 +31,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "GenericGraph")
 	TArray<UGenericGraphNode*> AllNodes;
 
-	/*
-	UFUNCTION(BlueprintCallable, Category = "GenericGraph")
-	void Print(bool ToConsole = true, bool ToScreen = true);
-
-	UFUNCTION(BlueprintCallable, Category = "GenericGraph")
-	int32 GetLevelNum() const;
-
-	UFUNCTION(BlueprintCallable, Category = "GenericGraph")
-	void GetNodesByLevel(int32 Level, TArray<UGenericGraphNode*>& Nodes);
-	*/
-
 	void ClearGraph();
 
 #if WITH_EDITORONLY_DATA

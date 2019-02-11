@@ -50,7 +50,7 @@ public:
 #endif
 
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		return true;
 	}
@@ -60,12 +60,12 @@ public:
 		return true;
 	}
 
-	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* Context) const override
+	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* GameContext) const override
 	{
-		auto toReturn = FDialogLineData();
-		toReturn.OptionText = OptionText;
-		auto* graph = GetDialogGraph();
-		toReturn.SpeakerCharacter = graph->GetDialogPlayerCharacterInstance(Context);
-		return toReturn;
+		FDialogLineData DialogOptionLine = FDialogLineData();
+		DialogOptionLine.OptionText = OptionText;
+		UDialogGraph* DialogGraph = GetDialogGraph();
+		DialogOptionLine.SpeakerCharacter = IsValid(DialogGraph) ? DialogGraph->GetDialogPlayerCharacterInstance(GameContext) : nullptr;
+		return DialogOptionLine;
 	}
 };

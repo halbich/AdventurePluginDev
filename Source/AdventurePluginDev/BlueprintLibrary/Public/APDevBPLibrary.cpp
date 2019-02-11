@@ -5,8 +5,8 @@
 
 
 
-UAdventurePluginGameContext* UAPDevBPLibrary::GetCurrentGameContext(UObject* worldObjectContext)
+UAdventurePluginGameContext* UAPDevBPLibrary::GetCurrentGameContext(UObject* WorldObjectContext)
 {
-	auto instance = Cast<UAPDevGameInstance>(UGameplayStatics::GetGameInstance(worldObjectContext));
-	return instance->CurrentGameContext;
+	UAPDevGameInstance* GameInstance = Cast<UAPDevGameInstance>(UGameplayStatics::GetGameInstance(WorldObjectContext));
+	return GameInstance->CurrentGameContext;
 }

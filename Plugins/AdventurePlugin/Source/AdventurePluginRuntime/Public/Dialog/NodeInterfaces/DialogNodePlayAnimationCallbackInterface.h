@@ -13,6 +13,6 @@ class IDialogNodePlayAnimationCallbackInterface
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Dialog|Animations")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Adventure Plugin|Animations")
 		bool PlayAnimationCallback(FName AnimationName, bool Success);
 };

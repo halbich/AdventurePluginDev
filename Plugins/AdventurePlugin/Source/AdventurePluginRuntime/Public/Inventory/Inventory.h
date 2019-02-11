@@ -19,21 +19,21 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Inventory")
 		FInventoryChangedEvent InventoryChanged;
 
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
-	bool HasItem(UInventoryItem* item);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+	bool HasItem(UInventoryItem* Item);
 
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
-	bool AddItem(UInventoryItem* item);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+	bool AddItem(UInventoryItem* Item);
 
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
-	bool RemoveItem(UInventoryItem* item);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+	bool RemoveItem(UInventoryItem* Item);
 	// Call if adding or removing multiple items in a row and you want to fire only one update event for all of those updates.
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	void BeginUpdate();
 	// Call if adding or removing multiple items in a row and you want to fire only one update event for all of those updates.
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	void EndUpdate();
 private:
 	UPROPERTY(Transient)
-	bool isUpdating;
+	bool bIsUpdating;
 };

@@ -49,11 +49,13 @@ public:
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		// TODO
-		if (!IsValid(String.Quest)) return true;
-		String.Quest->SetString(context, String.StringName, Constant);
+		if (!IsValid(String.Quest))
+		{
+			return true;
+		}
+		String.Quest->SetString(GameContext, String.StringName, Constant);
 		return true;
 	};
 };

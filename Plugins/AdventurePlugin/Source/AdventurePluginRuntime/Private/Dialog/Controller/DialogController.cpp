@@ -7,46 +7,51 @@
 
 #pragma optimize("", off)
 
-void UDialogController::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph)
+void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph)
 {
-	ShowDialog(gameContext, graph, graph->MainEntryPoint);
+	ShowDialog(GameContext, DialogGraph, DialogGraph->MainEntryPoint);
 }
 
-void UDialogController::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph, UDialogGraphNode* startNode)
+void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode)
 {
-	currentContext = gameContext;
-	CurrentGraph = graph;
+	CurrentGameContext = GameContext;
+	CurrentGraph = DialogGraph;
 
-	if (startNode == NULL || startNode->ChildrenNodes.Num() == 0)
+	if (StartNode == NULL || StartNode->ChildrenNodes.Num() == 0)
 	{
 		LOG_Error(NSLOCTEXT("AP", "startNodeNull", "Show dialog::startNode is NULL"));
 		return;
 	}
 
-	beginExecute(startNode);
+	BeginExecute(StartNode);
+	IDialogPresenterInterface* PresenterInstance = GetPresenter();
 
-	auto presenterInstance = presenter();
-	if (presenterInstance)
-		IDialogPresenterInterface::Execute_SetPresenterVisibility(presenterInstance->_getUObject(), true);
+	if (PresenterInstance)
+	{
+		IDialogPresenterInterface::Execute_SetPresenterVisibility(PresenterInstance->_getUObject(), true);
+	}
 }
 
 void UDialogController::HideDialog()
 {
-	auto presenterInstance = presenter();
-	if (presenterInstance)
-		IDialogPresenterInterface::Execute_SetPresenterVisibility(presenterInstance->_getUObject(), false);
+	IDialogPresenterInterface* PresenterInstance = GetPresenter();
+	if (PresenterInstance)
+	{
+		IDialogPresenterInterface::Execute_SetPresenterVisibility(PresenterInstance->_getUObject(), false);
+	}
 
-	currentContext = NULL;
+	CurrentGameContext = NULL;
 }
 
-void UDialogController::beginExecute(UDialogGraphNode* node)
+void UDialogController::BeginExecute(UDialogGraphNode* StartNode)
 {
-	currentNode = node;
+	CurrentNode = StartNode;
 
-	while (currentNode && currentNode->IsValidLowLevel() && currentNode->Execute(currentContext)) {
-		currentNode = currentNode->GetNextNode(currentContext);
+	while (CurrentNode && CurrentNode->IsValidLowLevel() && CurrentNode->Execute(CurrentGameContext))
+	{
+		CurrentNode = CurrentNode->GetNextNode(CurrentGameContext);
 	}
-	if (currentNode && currentNode->IsValidLowLevel()) {
+	if (CurrentNode && CurrentNode->IsValidLowLevel()) {
 		// Dialog not over yet, waiting for further input.
 		return;
 	}
@@ -56,31 +61,30 @@ void UDialogController::beginExecute(UDialogGraphNode* node)
 
 void UDialogController::ShowDialogLineCallback()
 {
-	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogNodeShowLineCallbackInterface::StaticClass())) {
-		if (IDialogNodeShowLineCallbackInterface::Execute_ShowDialogLineCallback(currentNode, this)) {
+	if (CurrentNode && CurrentNode->GetClass()->ImplementsInterface(UDialogNodeShowLineCallbackInterface::StaticClass())) {
+		if (IDialogNodeShowLineCallbackInterface::Execute_ShowDialogLineCallback(CurrentNode, this)) {
 			// The node responds to the callback and wishes to continue dialogue execution.
-			beginExecute(currentNode->GetNextNode(currentContext));
+			BeginExecute(CurrentNode->GetNextNode(CurrentGameContext));
 		}
 	}
 }
 
-void UDialogController::ShowDialogLineSelectionCallback(int32 selectedOptionIndex)
+void UDialogController::ShowDialogLineSelectionCallback(int32 SelectedOptionIndex)
 {
-	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogNodeShowOptionsCallbackInterface::StaticClass())) {
-		if (IDialogNodeShowOptionsCallbackInterface::Execute_DialogOptionSelected(currentNode, selectedOptionIndex, this)) {
+	if (CurrentNode && CurrentNode->GetClass()->ImplementsInterface(UDialogNodeShowOptionsCallbackInterface::StaticClass())) {
+		if (IDialogNodeShowOptionsCallbackInterface::Execute_DialogOptionSelected(CurrentNode, SelectedOptionIndex, this)) {
 			// The node responds to the callback and wishes to continue dialogue execution.
-			beginExecute(currentNode->GetNextNode(currentContext));
+			BeginExecute(CurrentNode->GetNextNode(CurrentGameContext));
 		}
 	}
 }
 
-UFUNCTION(BlueprintCallable, Category = "Dialog")
-void UDialogController::PlayAnimationCallback(FName AnimationName, bool Success)
+void UDialogController::PlayAnimationCallback(FName AnimationName, bool bSuccess)
 {
-	if (currentNode && currentNode->GetClass()->ImplementsInterface(UDialogNodePlayAnimationCallbackInterface::StaticClass())) {
-		if (IDialogNodePlayAnimationCallbackInterface::Execute_PlayAnimationCallback(currentNode, AnimationName, Success)) {
+	if (CurrentNode && CurrentNode->GetClass()->ImplementsInterface(UDialogNodePlayAnimationCallbackInterface::StaticClass())) {
+		if (IDialogNodePlayAnimationCallbackInterface::Execute_PlayAnimationCallback(CurrentNode, AnimationName, bSuccess)) {
 			// The node responds to the callback and wishes to continue dialogue execution.
-			beginExecute(currentNode->GetNextNode(currentContext));
+			BeginExecute(CurrentNode->GetNextNode(CurrentGameContext));
 		}
 	}
 }

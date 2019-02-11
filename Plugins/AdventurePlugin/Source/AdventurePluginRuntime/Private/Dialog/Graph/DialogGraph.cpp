@@ -33,20 +33,20 @@ UDialogGraphNode_Event* UDialogGraph::GetEventNode(FName EventName)
 	return NULL;
 }
 
-UAdventureCharacter* UDialogGraph::GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* Context)
+UAdventureCharacter* UDialogGraph::GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* GameContext)
 {
-	return GetSpeakerInstance(Context, PlayerCharacter);
+	return GetSpeakerInstance(GameContext, PlayerCharacter);
 }
 
-UAdventureCharacter* UDialogGraph::GetDialogNPCCharacterInstance(UAdventurePluginGameContext* Context)
+UAdventureCharacter* UDialogGraph::GetDialogNPCCharacterInstance(UAdventurePluginGameContext* GameContext)
 {
-	return GetSpeakerInstance(Context, NPCCharacter);
+	return GetSpeakerInstance(GameContext, NPCCharacter);
 }
 
-UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameContext* Context, TSubclassOf<UAdventureCharacter> Speaker)
+UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Speaker)
 {
-	if (Context == nullptr || !Context->IsValidLowLevel() ||
-		Context->AdventureCharacterManager == nullptr || !Context->AdventureCharacterManager->IsValidLowLevel())
+	if (GameContext == nullptr || !GameContext->IsValidLowLevel() ||
+		GameContext->AdventureCharacterManager == nullptr || !GameContext->AdventureCharacterManager->IsValidLowLevel())
 	{
 		// TODO: Log warning/error.
 		return nullptr;
@@ -56,7 +56,7 @@ UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameConte
 		// TODO: Log error.
 		return nullptr;
 	}
-	auto* characterInstance = Context->AdventureCharacterManager->GetCharacter(Speaker);
+	auto* characterInstance = GameContext->AdventureCharacterManager->GetCharacter(Speaker);
 	return characterInstance;
 }
 

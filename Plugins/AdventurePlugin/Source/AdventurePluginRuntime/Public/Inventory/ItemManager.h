@@ -19,10 +19,10 @@ class ADVENTUREPLUGINRUNTIME_API UItemManager : public UCombinableObjectManager
 
 public:
 
-	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 		UInventoryItem* GetItem(TSubclassOf<UInventoryItem> Item)
 	{
-		return Cast<UInventoryItem>(GetObject(Item));
+		return Cast<UInventoryItem>(GetCombinableObjectInstance(Item));
 	}
 	/*TODO: When Saving game works, this class should be responsible for serializing and deserializing the states of all items.*/
 };

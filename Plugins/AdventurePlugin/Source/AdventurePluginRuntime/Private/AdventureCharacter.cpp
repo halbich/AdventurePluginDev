@@ -82,9 +82,9 @@ bool UAdventureCharacter::IsAnimationNameValid(FName AnimationName)
 {
 	if (!AnimationStates.Contains(AnimationName))
 	{
-		auto warningText = FText::Format(NSLOCTEXT("AP", "InvalidAnimationState", "Animation state {0} not found."),
+		FText WarningText = FText::Format(NSLOCTEXT("AP", "InvalidAnimationState", "Animation state {0} not found."),
 			FText::FromName(AnimationName));
-		LOG_Error(warningText);
+		LOG_Error(WarningText);
 		return false;
 	}
 	return true;

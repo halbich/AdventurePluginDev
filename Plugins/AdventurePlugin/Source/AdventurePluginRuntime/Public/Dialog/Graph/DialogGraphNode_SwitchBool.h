@@ -45,12 +45,15 @@ public:
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		// TODO
-		if (!IsValid(Bool.Quest)) return true;
-		bool value = Bool.Quest->GetBool(context, Bool.BoolName);
-		Bool.Quest->SetBool(context, Bool.BoolName, !value);
+		if (!IsValid(Bool.Quest))
+		{
+			return true;
+		}
+		bool bOldValue = Bool.Quest->GetBool(GameContext, Bool.BoolName);
+		Bool.Quest->SetBool(GameContext, Bool.BoolName, !bOldValue);
 		return true;
 	};
 };

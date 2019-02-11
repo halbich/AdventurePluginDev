@@ -45,12 +45,11 @@ public:
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		// TODO
 		if (!IsValid(Integer.Quest)) return true;
-		int32 value = Integer.Quest->GetInteger(context, Integer.IntegerName);
-		Integer.Quest->SetInteger(context, Integer.IntegerName, value + 1);
+		int32 OldValue = Integer.Quest->GetInteger(GameContext, Integer.IntegerName);
+		Integer.Quest->SetInteger(GameContext, Integer.IntegerName, OldValue + 1);
 		return true;
 	};
 };

@@ -19,7 +19,7 @@ class ADVENTUREPLUGINDEV_API UAPDevBPLibrary : public UBlueprintFunctionLibrary
 	
 public:
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "APDevBPLibrary", meta = (WorldContext = worldObjectContext))
-		static UAdventurePluginGameContext* GetCurrentGameContext(UObject* worldObjectContext);
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "APDevBPLibrary", meta = (WorldContext = WorldObjectContext))
+		static UAdventurePluginGameContext* GetCurrentGameContext(UObject* WorldObjectContext);
 	
 };

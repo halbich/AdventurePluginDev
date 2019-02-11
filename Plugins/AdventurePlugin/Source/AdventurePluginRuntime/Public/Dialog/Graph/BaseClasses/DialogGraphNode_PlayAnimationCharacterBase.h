@@ -18,11 +18,11 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayAnimationCharacterBase : p
 
 public:
 
-	virtual TScriptInterface<IAnimatableObjectInterface> GetAnimatedObject(UAdventurePluginGameContext* context) override
+	virtual TScriptInterface<IAnimatableObjectInterface> GetAnimatedObject(UAdventurePluginGameContext* GameContext) override
 	{
-		auto* graph = GetDialogGraph();
-		TSubclassOf<UAdventureCharacter> characterClass = GetAnimatedObjectClass();
-		auto* characterInstance = graph && graph->IsValidLowLevel() ? graph->GetSpeakerInstance(context, characterClass) : nullptr;
-		return characterInstance;
+		UDialogGraph* DialogGraph = GetDialogGraph();
+		TSubclassOf<UAdventureCharacter> CharacterClass = GetAnimatedObjectClass();
+		UAdventureCharacter* CharacterInstance = DialogGraph && DialogGraph->IsValidLowLevel() ? DialogGraph->GetSpeakerInstance(GameContext, CharacterClass) : nullptr;
+		return CharacterInstance;
 	}
 };

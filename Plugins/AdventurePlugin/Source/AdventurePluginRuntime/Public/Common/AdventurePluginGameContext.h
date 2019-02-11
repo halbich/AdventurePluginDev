@@ -26,25 +26,25 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameContext : public UObject
 
 public:
 
-	UPROPERTY(BlueprintReadOnly, Transient)
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
 		UInventoryController* InventoryController;
 
-	UPROPERTY(BlueprintReadOnly, Transient)
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
 		TScriptInterface< IInventoryPresenterInterface> InventoryPresenter;
 
-	UPROPERTY(BlueprintReadOnly, Transient)
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
 		UDialogController* DialogController;
 
-	UPROPERTY(BlueprintReadOnly, Transient)
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
 		TScriptInterface< IDialogPresenterInterface> DialogPresenter;
 
-	UPROPERTY(BlueprintReadWrite, Transient, Category="Adventure Plugin | Game Context")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Game Context")
 		UAdventurePluginSaveGame* SaveGame;
 
-		UPROPERTY(BlueprintReadOnly, Transient)
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
 		UItemManager* ItemManager;
 
-	UPROPERTY(BlueprintReadOnly, Transient)
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Character")
 		UAdventureCharacterManager* AdventureCharacterManager;
 
 };

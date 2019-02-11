@@ -5,17 +5,18 @@
 #pragma optimize("", off)
 UTexture2D* UAdventureCharacterBlueprint::GetIcon() const
 {
+	//TODO: This is here two times, here and for items - make common ancestor with this? 
 	if (this->GeneratedClass == nullptr || !this->GeneratedClass->IsValidLowLevel() ||
 		this->GeneratedClass->ClassDefaultObject == nullptr || !this->GeneratedClass->ClassDefaultObject->IsValidLowLevel())
 	{
 		return nullptr;
 	}
-	auto* item = Cast<UAdventureCharacter>(this->GeneratedClass->ClassDefaultObject);
-	if (item == nullptr || !item->IsValidLowLevel())
+	UAdventureCharacter* CharacterInstance = Cast<UAdventureCharacter>(this->GeneratedClass->ClassDefaultObject);
+	if (CharacterInstance == nullptr || !CharacterInstance->IsValidLowLevel())
 	{
 		return nullptr;
 	}
-	return item->Icon;
+	return CharacterInstance->Icon;
 }
 
 UAdventureCharacter * UAdventureCharacterBlueprint::GetItemInstance(UAdventurePluginGameContext* GameContext)
@@ -26,8 +27,8 @@ UAdventureCharacter * UAdventureCharacterBlueprint::GetItemInstance(UAdventurePl
 	{
 		return nullptr;
 	}
-	TSubclassOf<UAdventureCharacter> characterClass = (TSubclassOf<UAdventureCharacter>)(this->GeneratedClass);
-	//TODO: Create some manager.
-	return GameContext->AdventureCharacterManager->GetCharacter(characterClass);
+	TSubclassOf<UAdventureCharacter> CharacterClass = (TSubclassOf<UAdventureCharacter>)(this->GeneratedClass);
+	
+	return GameContext->AdventureCharacterManager->GetCharacter(CharacterClass);
 }
 #pragma optimize("", on)

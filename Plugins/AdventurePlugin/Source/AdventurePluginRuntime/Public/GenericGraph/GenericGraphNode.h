@@ -29,21 +29,15 @@ public:
 	UPROPERTY()
 		FGuid NodeGuid;
 
-	//UPROPERTY(BlueprintReadOnly, Category = "GenericGraphNode")
-	//TArray<int32> ChildrenNodesBins;
-
-	UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Graph")
 	bool IsLeafNode() const;
 
-	UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Graph")
 	UGenericGraph* GetGraph() const;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "MissionNode")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Graph")
 	FText GetDescription() const;
 	virtual FText GetDescription_Implementation() const;
-
-	//UFUNCTION(BlueprintCallable, Category = "GenericGraphNode")
-	//UGenericGraphNode* GetFirstChildInBin(int32 bin) const;
 
 	virtual void ResetSpecialChildren() { }
 

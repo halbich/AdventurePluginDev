@@ -49,12 +49,12 @@ public:
 
 	virtual UClass* GetAnimatedObjectClass()
 	{
-		auto* dialogGraph = GetDialogGraph();
-		if (dialogGraph == nullptr || dialogGraph->PlayerCharacter == nullptr)
+		UDialogGraph* DialogGraph = GetDialogGraph();
+		if (DialogGraph == nullptr || DialogGraph->PlayerCharacter == nullptr)
 		{
 			// TODO: Log error.
 			return nullptr;
 		}
-		return dialogGraph->PlayerCharacter;
+		return DialogGraph->PlayerCharacter;
 	}
 };

@@ -56,37 +56,38 @@ public:
 
 #endif
 	/* Returns the speaker associated with this dialogue line. Must be overriden.*/
-	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* Context) const
+	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const
 	{
 		//Override this method.
 		check(false && "Get speaker function must be overriden");
 		return nullptr;
 	}
 	/*Displays the dialog line.*/
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		auto widget = Cast<IDialogPresenterInterface>(context->DialogPresenter.GetObject());
-		IDialogPresenterInterface::Execute_ShowDialogLine(widget->_getUObject(), GetDialogLine(context), context->DialogController);
+		auto widget = Cast<IDialogPresenterInterface>(GameContext->DialogPresenter.GetObject());
+		IDialogPresenterInterface::Execute_ShowDialogLine(widget->_getUObject(), GetDialogLine(GameContext), GameContext->DialogController);
 		return false;
 	};
 
-	virtual bool ShowDialogLineCallback_Implementation(UDialogController* controller) override {
+	virtual bool ShowDialogLineCallback_Implementation(UDialogController* DialogController) override {
 		return true;
 	}
 	/*Creates a dialog line data representing this line.*/
-	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* Context) const override
+	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* GameContext) const override
 	{
-		auto toReturn = FDialogLineData();
-		toReturn.DialogSound = DialogSound;
-		toReturn.LineText = DialogText;
-		toReturn.OptionText = DialogText;
-		toReturn.Skippable = bSkippable;
-		toReturn.TextDuration = TextDuration;
-		auto* speakerCharacter = GetSpeaker(Context);
-		toReturn.SpeakerCharacter = speakerCharacter;
-		auto defaultTextAnimation = speakerCharacter && speakerCharacter->IsValidLowLevel() ? speakerCharacter->DefaultTalkingAnimationState : FName();
-		toReturn.AnimationName = AnimationName.IsNone() ? defaultTextAnimation : AnimationName;
-		toReturn.UserData = nullptr;
-		return toReturn;
+		FDialogLineData DialogLine = FDialogLineData();
+		DialogLine.DialogSound = DialogSound;
+		DialogLine.LineText = DialogText;
+		DialogLine.OptionText = DialogText;
+		DialogLine.bSkippable = bSkippable;
+		DialogLine.TextDuration = TextDuration;
+		UAdventureCharacter* SpeakerCharacter = GetSpeaker(GameContext);
+		DialogLine.SpeakerCharacter = SpeakerCharacter;
+		// Used default animation if the animation was not explicitly specified.
+		FName DefaultTextAnimation = SpeakerCharacter && SpeakerCharacter->IsValidLowLevel() ? SpeakerCharacter->DefaultTalkingAnimationState : FName();
+		DialogLine.AnimationName = AnimationName.IsNone() ? DefaultTextAnimation : AnimationName;
+		DialogLine.UserData = nullptr;
+		return DialogLine;
 	}
 };

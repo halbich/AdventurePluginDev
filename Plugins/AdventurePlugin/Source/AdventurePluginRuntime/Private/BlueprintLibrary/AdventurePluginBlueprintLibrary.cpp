@@ -7,122 +7,143 @@
 
 #pragma optimize("", off)
 
-UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary")
-void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePluginGameContext* gameContext, FDialogGraphEntryPoint entryPoint)
+void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePluginGameContext* GameContext, FDialogGraphEntryPoint EntryPoint)
 {
-	if (!gameContext || !gameContext->IsValidLowLevel())
+	if (!GameContext || !GameContext->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "Show dialog::gameContext is NULL"));
 		return;
 	}
 
-	UDialogGraph* graph = entryPoint.Dialog;
-	if (!graph || !graph->IsValidLowLevel())
+	UDialogGraph* DialogGraph = EntryPoint.Dialog;
+	if (!DialogGraph || !DialogGraph->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "DialogGraphNull", "Show dialog::graph is NULL"));
 		return;
 	}
 
-	auto dc = gameContext->DialogController;
-	if (!dc || !dc->IsValidLowLevel())
+	UDialogController* DialogController = GameContext->DialogController;
+	if (!DialogController || !DialogController->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "DialogControllerNull", "Show dialog::gameContext->DialogController is NULL"));
 		return;
 	}
 
-	UDialogGraphNode* startNode;
-	if (entryPoint.EntryPointName == UDialogGraph::MainEntryName) startNode = graph->MainEntryPoint;
-	else startNode = *graph->IdToNodeMap.Find(entryPoint.EntryPointName);
-	if (startNode == nullptr) startNode = graph->MainEntryPoint;
-
-	dc->ShowDialog(gameContext, graph, startNode);
-}
-
-void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph)
-{
-	FDialogGraphEntryPoint entryPoint;
-	entryPoint.Dialog = graph;
-	entryPoint.EntryPointName = UDialogGraph::MainEntryName;
-
-	ShowDialogFromEntryPoint(gameContext, entryPoint);
-}
-
-void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* gameContext, bool bShow)
-{
-	if (!gameContext || !gameContext->IsValidLowLevel())
+	UDialogGraphNode* StartNode;
+	if (EntryPoint.EntryPointName == UDialogGraph::MainEntryName)
 	{
+		StartNode = DialogGraph->MainEntryPoint;
+	}
+	else
+	{
+		StartNode = *DialogGraph->IdToNodeMap.Find(EntryPoint.EntryPointName);
+	}
+	if (StartNode == nullptr) StartNode = DialogGraph->MainEntryPoint;
+
+	DialogController->ShowDialog(GameContext, DialogGraph, StartNode);
+}
+
+void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph)
+{
+	FDialogGraphEntryPoint EntryPoint;
+	EntryPoint.Dialog = DialogGraph;
+	EntryPoint.EntryPointName = UDialogGraph::MainEntryName;
+
+	ShowDialogFromEntryPoint(GameContext, EntryPoint);
+}
+
+void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* GameContext, bool bShow)
+{
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		// TODO: Error.
 		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "ShowInventory dialog::gameContext is NULL"));
 		return;
 	}
 
-	auto ic = gameContext->InventoryController;
-	if (!ic || !ic->IsValidLowLevel())
+	UInventoryController* InventoryController = GameContext->InventoryController;
+	if (!InventoryController || !InventoryController->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "InventoryControllerNull", "ShowInventory::gameContext->InventoryController is NULL"));
 		return;
 	}
 
 	if (bShow)
-		ic->ShowInventory(gameContext);
+	{
+		InventoryController->ShowInventory(GameContext);
+	}
 	else
-		ic->HideInventory();
+	{
+		InventoryController->HideInventory();
+	}
 }
 
 
-UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* gameContext, TSubclassOf<UInventoryItem> Item)
+UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* GameContext, TSubclassOf<UInventoryItem> Item)
 {
-	if (!gameContext || !gameContext->IsValidLowLevel())
+	if (!GameContext || !GameContext->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "GetItem::gameContext is NULL"));
 		return nullptr;
 	}
-	auto* itemManager = gameContext->ItemManager;
-	if (!itemManager || !itemManager->IsValidLowLevel())
+	UItemManager* ItemManager = GameContext->ItemManager;
+	if (!ItemManager || !ItemManager->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "ItemManagerNull", "GetItem::gameContext->ItemManager is NULL"));
 		return nullptr;
 	}
-	return itemManager->GetItem(Item);
+	return ItemManager->GetItem(Item);
 }
 
-UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAdventurePluginGameContext* gameContext, TSubclassOf<UAdventureCharacter> Character)
+UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character)
 {
-	if (!gameContext || !gameContext->IsValidLowLevel())
+	if (!GameContext || !GameContext->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Error(NSLOCTEXT("AP", "GetAdventureCharacterGameContextNull", "GetAdventureCharacter::gameContext is NULL"));
 		return nullptr;
 	}
-	auto* characterManager = gameContext->AdventureCharacterManager;
-	if (!characterManager || !characterManager->IsValidLowLevel())
+	UAdventureCharacterManager* CharacterManager = GameContext->AdventureCharacterManager;
+	if (!CharacterManager || !CharacterManager->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "AdventureCharacterManagerNull", "GetAdventureCharacter::gameContext->AdventureCharacterManager is NULL"));
 		return nullptr;
 	}
-	return characterManager->GetCharacter(Character);
+	return CharacterManager->GetCharacter(Character);
 }
 
-bool UAdventurePluginBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContext* gameContext, UQuestGraph* graph, FName eventName, FQuestEvent questEvent)
+bool UAdventurePluginBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContext* GameContext, UQuestGraph* QuestGraph, FName EventName, FQuestEvent QuestEvent)
 {
-	if (!gameContext || !gameContext->IsValidLowLevel())
+	if (!GameContext || !GameContext->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "GetItem::gameContext is NULL"));
 		return false;
 	}	
 
-	if (!graph || !graph->IsValidLowLevel())
+	if (!QuestGraph || !QuestGraph->IsValidLowLevel())
 	{
+		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "QuestGraphNull", "Bind event::graph is NULL"));
 		return false;
 	}
 
-	auto&& map = graph->QuestEvents;
-	if (!map.Contains(eventName))
+	TMap<FName, FQuestEvent>& QuestEventsMap = QuestGraph->QuestEvents;
+	if (!QuestEventsMap.Contains(EventName))
 	{
+		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "EventNameUndefined", "Bind event::event name is not defined in quest"));
 		return false;
 	}
 
-	map.Add(eventName, questEvent);
+	QuestEventsMap.Add(EventName, QuestEvent);
 	return true;
 }
 

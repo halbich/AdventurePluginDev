@@ -33,16 +33,21 @@ public:
 
 	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
-		auto* graph = GetDialogGraph();
-		return graph && graph->IsValidLowLevel() ? graph->PlayerCharacter.GetDefaultObject() : nullptr;
+		UDialogGraph* DialogGraph = GetDialogGraph();
+		return IsValid(DialogGraph) ? DialogGraph->PlayerCharacter.GetDefaultObject() : nullptr;
 	}
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		auto widget = Cast<IDialogPresenterInterface>(context->DialogPresenter.GetObject());
-		IDialogPresenterInterface::Execute_ShowDialogLine(widget->_getUObject(), GetDialogLine(context), context->DialogController);
+		if (!IsValid(GameContext) || !IsValid(GameContext->DialogPresenter.GetObject()))
+		{
+			/* TODO: Log warning.*/
+			return true;
+		}
+		UObject* DialogPresenter = GameContext->DialogPresenter.GetObject();
+		IDialogPresenterInterface::Execute_ShowDialogLine(DialogPresenter, GetDialogLine(GameContext), GameContext->DialogController);
 		return false;
 	}
 
@@ -51,9 +56,9 @@ public:
 		return true;
 	}
 
-	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* Context) const override
+	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const override
 	{
-		auto* graph = GetDialogGraph();
-		return graph && graph->IsValidLowLevel() ? graph->GetDialogPlayerCharacterInstance(Context) : nullptr;
+		UDialogGraph* DialogGraph = GetDialogGraph();
+		return DialogGraph && DialogGraph->IsValidLowLevel() ? DialogGraph->GetDialogPlayerCharacterInstance(GameContext) : nullptr;
 	}
 };

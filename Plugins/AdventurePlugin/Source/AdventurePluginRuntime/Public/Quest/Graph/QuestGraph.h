@@ -19,9 +19,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		bool DefaultValue;
-
-	/*UPROPERTY(EditAnywhere)
-		bool Value;*/
 };
 
 USTRUCT()
@@ -33,9 +30,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		int32 DefaultValue;
-
-	/*UPROPERTY(EditAnywhere)
-		int32 Value;*/
 };
 
 USTRUCT()
@@ -47,9 +41,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		FString DefaultValue;
-
-	/*UPROPERTY(EditAnywhere)
-		FString Value;*/
 };
 
 UCLASS(Blueprintable)
@@ -63,28 +54,28 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "QuestGraph")
 		UQuestGraphNode* EndNode;
 
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		bool GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		void SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
 	
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		bool GetBool(UAdventurePluginGameContext* GameContext, FName VarName);
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		bool SetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bValue);
 	
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		int32 GetInteger(UAdventurePluginGameContext* GameContext, FName VarName);
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		bool SetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 Value);
 	
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		FString GetString(UAdventurePluginGameContext* GameContext, FName VarName);
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		bool SetString(UAdventurePluginGameContext* GameContext, FName VarName, FString Value);
 	
 	/* Returns the list of all nodes that can be set to true, i.e. they are not true and all of their predecessors are true.*/
-	UFUNCTION(BlueprintCallable, Category = "QuestGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		TArray<UQuestGraphNode*> GetSatisfiableNodes(UAdventurePluginGameContext* GameContext);
 
 	UPROPERTY(EditAnywhere, Category = "QuestGraph")

@@ -19,13 +19,13 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginSaveGame : public USaveGame
 
 
 	UPROPERTY(EditDefaultsOnly, Category= "StoredValues")
-		TMap<FName, bool> storageBoolean;
+		TMap<FName, bool> StorageBoolean;
 
 	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
-		TMap<FName, int32> storageInt;
+		TMap<FName, int32> StorageInt;
 
 	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
-		TMap<FName, FString> storageString;
+		TMap<FName, FString> StorageString;
 
 public:
 
@@ -36,39 +36,39 @@ public:
 		uint32 SaveUserIndex;
 
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		bool GetBool(FName name);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		bool GetBool(FName Name);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		bool GetBoolOrDefault(FName name, bool defaultValue);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		bool GetBoolOrDefault(FName Name, bool bDefaultValue);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		void SetBool(FName name, bool value);
-
-
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		int32 GetInt(FName name);
-
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		int32 GetIntOrDefault(FName name, int32 defaultValue);
-
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		void SetInt(FName name, int32 value);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		void SetBool(FName Name, bool bValue);
 
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		FString GetString(FName name);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		int32 GetInt(FName Name);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		FString GetStringOrDefault(FName name, FString defaultValue);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		int32 GetIntOrDefault(FName Name, int32 DefaultValue);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		void SetString(FName name, FString value);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		void SetInt(FName Name, int32 Value);
 
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
-		static UAdventurePluginSaveGame* CreateSave(FString& slotName , int32 userIndex );
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		FString GetString(FName Name);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|SaveGame")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		FString GetStringOrDefault(FName Name, FString DefaultValue);
+
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		void SetString(FName Name, FString Value);
+
+
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		static UAdventurePluginSaveGame* CreateSave(FString& SlotName , int32 UserIndex );
+
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
 		bool Save();
 };

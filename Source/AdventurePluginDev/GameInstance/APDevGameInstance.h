@@ -34,6 +34,6 @@ public:
 		void TestContext();
 
 private:
-	void initCurrentGameContext();
+	void InitCurrentGameContext();
 
 };

@@ -14,6 +14,6 @@ class IDialogNodeShowLineCallbackInterface
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Dialog")
-		bool ShowDialogLineCallback(UDialogController* controller);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Adventure Plugin|Dialog")
+		bool ShowDialogLineCallback(UDialogController* DialogController);
 };

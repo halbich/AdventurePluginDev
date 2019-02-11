@@ -11,7 +11,6 @@ public:
 
 protected:
 
-	//virtual TSharedPtr<SBoxPanel> GetMainBox() override;
 	virtual TSharedPtr<SBorder> GetNodeBody() override;
 	virtual FReply IncrementOptionsCount();
 	virtual FReply DecrementOptionsCount();

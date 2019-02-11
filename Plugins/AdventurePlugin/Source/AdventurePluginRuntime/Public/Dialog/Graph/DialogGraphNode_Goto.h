@@ -60,20 +60,21 @@ public:
 
 #endif
 
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
 	{
-		auto* dialogueGraph = GetDialogGraph();
-		if (dialogueGraph == nullptr)
+		UDialogGraph* DialogGraph = GetDialogGraph();
+		if (!IsValid(DialogGraph))
 		{
+			//TODO: Log warning
 			return nullptr;
 		}
-		auto* targetNode = dialogueGraph->IdToNodeMap.Find(TargetNodeId);
-		if (targetNode == nullptr || *targetNode == nullptr || !(*targetNode)->IsValidLowLevel())
+		UDialogGraphNode** TargetNode = DialogGraph->IdToNodeMap.Find(TargetNodeId);
+		if (TargetNode == nullptr || *TargetNode == nullptr || !(*TargetNode)->IsValidLowLevel())
 		{
 			LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "GotoNode: Invalid target Id"));
 			return nullptr;
 		}
-		return *targetNode;
+		return *TargetNode;
 	}
 };
 

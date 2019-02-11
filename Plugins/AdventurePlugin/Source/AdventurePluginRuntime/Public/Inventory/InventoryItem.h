@@ -60,17 +60,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
 		EInventoryItemState ItemState;
 	/*The examine action of this item.*/
-	UFUNCTION(BlueprintNativeEvent, Category = "Inventory")
-		void Examine(UAdventurePluginGameContext* Context);
+	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
+		void Examine(UAdventurePluginGameContext* GameContext);
 	/*The use action of this object.*/
-	UFUNCTION(BlueprintNativeEvent, Category = "Inventory")
-		void Use(UAdventurePluginGameContext* Context);
+	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
+		void Use(UAdventurePluginGameContext* GameContext);
 	/*The icon representing this item in asset editor.*/
 	virtual UTexture2D* GetIcon() const override
 	{
 		return Icon;
 	}
 	/*Returns true if this item was already picked up.*/
-	UFUNCTION(BlueprintNativeEvent, Category = "Inventory")
+	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
 		bool WasPickedUp();
 };

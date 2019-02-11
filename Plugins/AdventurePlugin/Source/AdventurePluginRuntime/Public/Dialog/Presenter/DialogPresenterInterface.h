@@ -28,21 +28,21 @@ class IDialogPresenterInterface
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialog")
-		void SetPresenterVisibility(bool visible);
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
+		void SetPresenterVisibility(bool bVisible);
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialog")
-		void ShowDialogLine(FDialogLineData lineData, UDialogController* controller);
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
+		void ShowDialogLine(FDialogLineData DialogLineData, UDialogController* DialogController);
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialog")
-		void ShowDialogSelection(UPARAM(ref) TArray<FDialogLineData>& options, UDialogController* controller);
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
+		void ShowDialogSelection(UPARAM(ref) TArray<FDialogLineData>& Options, UDialogController* DialogController);
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialog")
-		void PlayAnimationOnce(const TScriptInterface<IAnimatableObjectInterface>& Target, FName AnimationName, UDialogController* Controller);
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
+		void PlayAnimationOnce(const TScriptInterface<IAnimatableObjectInterface>& AnimationTarget, FName AnimationName, UDialogController* DialogController);
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialog")
-		void SetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& Target, FName AnimationName);
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
+		void SetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& AnimationTarget, FName AnimationName);
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Dialog")
-		void ResetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& Target);
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
+		void ResetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& AnimationTarget);
 };

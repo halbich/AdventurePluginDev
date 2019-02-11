@@ -26,9 +26,9 @@ class ADVENTUREPLUGINRUNTIME_API IInventoryPresenterInterface
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Inventory")
-		void ShowInventory(UInventory* inventory, UInventoryController* manager);
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Inventory")
+		void ShowInventory(UInventory* Inventory, UInventoryController* InventoryController);
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Inventory")
-		void HideInventory(UInventoryController* manager);
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Inventory")
+		void HideInventory(UInventoryController* InventoryController);
 };

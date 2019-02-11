@@ -6,28 +6,40 @@
 
 
 
-void UInventoryController::ShowInventory(UAdventurePluginGameContext* gameContext, UInventory* inventory)
+void UInventoryController::ShowInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory)
 {
-	currentContext = gameContext;
-	auto inv = (inventory && inventory->IsValidLowLevel()) ? inventory : defaultInventory;
+	CurrentGameContext = GameContext;
+	UInventory* InventoryToShow = (Inventory && Inventory->IsValidLowLevel()) ? Inventory : DefaultInventory;
 
-	auto presenterInstance = presenter();
-	if (presenterInstance)
-		IInventoryPresenterInterface::Execute_ShowInventory(presenterInstance->_getUObject(), inv, currentContext->InventoryController);
+	IInventoryPresenterInterface* PresenterInstance = GetPresenter();
+	if (PresenterInstance && IsValid(GameContext))
+	{
+		IInventoryPresenterInterface::Execute_ShowInventory(PresenterInstance->_getUObject(), InventoryToShow, GameContext->InventoryController);
+	}
+	else
+	{
+		//TODO: Log Error.
+	}
 }
 
 UInventory* UInventoryController::GetInventory()
 {
-	return defaultInventory;
+	return DefaultInventory;
 }
 
 void UInventoryController::HideInventory()
 {
-	auto presenterInstance = presenter();
-	if (presenterInstance)
-		IInventoryPresenterInterface::Execute_HideInventory(presenterInstance->_getUObject(), currentContext->InventoryController);
+	IInventoryPresenterInterface* PresenterInstance = GetPresenter();
+	if (PresenterInstance && IsValid(CurrentGameContext))
+	{
+		IInventoryPresenterInterface::Execute_HideInventory(PresenterInstance->_getUObject(), CurrentGameContext->InventoryController);
+	}
+	else
+	{
+		//TODO: Log error
+	}
 
-	currentContext = NULL;
+	CurrentGameContext = nullptr;
 }
 
 #pragma optimize("", on)

@@ -45,13 +45,13 @@ public:
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		// TODO
-		if (!IsValid(Flag.Quest)) return true;
-		Flag.Quest->SetFlag(context, Flag.FlagName);
-
-
+		if (!IsValid(Flag.Quest))
+		{
+			return true;
+		}
+		Flag.Quest->SetFlag(GameContext, Flag.FlagName);
 		return true;
 	};
 };

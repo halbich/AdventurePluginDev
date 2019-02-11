@@ -1,12 +1,12 @@
 #include "InventoryItem.h"
 #include "AdventurePluginBlueprintLibrary.h"
 
-void UInventoryItem::Examine_Implementation(UAdventurePluginGameContext* Context)
+void UInventoryItem::Examine_Implementation(UAdventurePluginGameContext* GameContext)
 {
-	UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(Context, ExamineDialog);
+	UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(GameContext, ExamineDialog);
 }
 
-void UInventoryItem::Use_Implementation(UAdventurePluginGameContext* Context)
+void UInventoryItem::Use_Implementation(UAdventurePluginGameContext* GameContext)
 {
 
 }

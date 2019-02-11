@@ -19,7 +19,7 @@ class ADVENTUREPLUGINRUNTIME_API UInventoryPresenterWidget : public UUserWidget,
 
 public:
 
-	void ShowInventory(UInventory* inventory, UInventoryController* manager);
+	void ShowInventory(UInventory* Inventory, UInventoryController* InventoryController);
 
-	void HideInventory(UInventoryController* controller);
+	void HideInventory(UInventoryController* InventoryController);
 };

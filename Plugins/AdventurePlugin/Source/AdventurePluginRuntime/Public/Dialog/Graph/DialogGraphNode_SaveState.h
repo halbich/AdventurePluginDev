@@ -35,22 +35,21 @@ public:
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		if (!context || !context->IsValidLowLevel())
+		if (!GameContext || !GameContext->IsValidLowLevel())
 		{
 			LOG_Error(NSLOCTEXT("AP", "ContextNull", "NodeSaveState::gameContext is NULL"));
 			return false;
 		}
 
-
-		auto save = context->SaveGame;
-		if (!save || !save->IsValidLowLevel())
+		UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
+		if (!SaveGame || !SaveGame->IsValidLowLevel())
 		{
 			LOG_Error(NSLOCTEXT("AP", "SaveNull", "NodeSaveState::gameContext->SaveGame is NULL"));
 			return false;
 		}
 
-		return save->Save();
+		return SaveGame->Save();
 	}
 };

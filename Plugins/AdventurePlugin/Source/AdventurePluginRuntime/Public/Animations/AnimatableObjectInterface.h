@@ -9,7 +9,7 @@
 
 class UAdventurePluginGameContext;
 /*Delegate to call when an animation finishes. AnimationName is the name of the finished animation, sender is the class that caused it and CompletedSuccesfully is true if animation was found on the object and executed to finish, otherwise false. */
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(FAnimationCompletedEvent, FName, AnimationName, UObject*, Sender, bool, CompletedSuccessfully);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FAnimationCompletedEvent, FName, AnimationName, UObject*, Sender, bool, bCompletedSuccessfully);
 
 /**
 *A class implementing this interface represents a combination, i.e. that some object can be combined with another object and that combination will cause something will happen.
@@ -41,7 +41,7 @@ public:
 
 	/*Tells the actor represented by this object to change its animation state to some specific state. Returns false if the change cannot be made, for example because animation state does not exist.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		bool SetAnimationState(FName Animation);
+		bool SetAnimationState(FName AnimationName);
 
 	/*Resets the animation state of the represented actor to the default one, usually an idle animation.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
@@ -49,5 +49,5 @@ public:
 
 	/*Play the specified animation once, calling Callback once the animation finishes.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		void PlayAnimation(FName Animation, const FAnimationCompletedEvent& Callback);
+		void PlayAnimation(FName AnimationName, const FAnimationCompletedEvent& Callback);
 };

@@ -22,36 +22,36 @@ class ADVENTUREPLUGINRUNTIME_API UDialogController : public UObject
 
 public:
 
-	void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph);
+	void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
 
-	void ShowDialog(UAdventurePluginGameContext* gameContext, UDialogGraph* graph, UDialogGraphNode* startNode);
+	void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode);
 
 	void HideDialog();
 
-	UFUNCTION(BlueprintCallable, Category = "Dialog")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
 		void ShowDialogLineCallback();
 
-	UFUNCTION(BlueprintCallable, Category = "Dialog")
-		void ShowDialogLineSelectionCallback(int32 selectedOptionIndex);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
+		void ShowDialogLineSelectionCallback(int32 SelectedOptionIndex);
 
-	UFUNCTION(BlueprintCallable, Category = "Dialog")
-		void PlayAnimationCallback(FName AnimationName, bool Success);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
+		void PlayAnimationCallback(FName AnimationName, bool bSuccess);
 
-	UPROPERTY(BlueprintReadOnly, Transient)
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
 		UDialogGraph* CurrentGraph;
 
 	UPROPERTY(Transient)
-		UAdventurePluginGameContext* currentContext;
+		UAdventurePluginGameContext* CurrentGameContext;
 
 private:
 
 	UPROPERTY(Transient)
-		UDialogGraphNode* currentNode;
+		UDialogGraphNode* CurrentNode;
 
-	void beginExecute(UDialogGraphNode* node);
+	void BeginExecute(UDialogGraphNode* StartNode);
 
-	FORCEINLINE IDialogPresenterInterface* presenter()
+	FORCEINLINE IDialogPresenterInterface* GetPresenter()
 	{
-		return currentContext ? Cast<IDialogPresenterInterface>(currentContext->DialogPresenter.GetObject()) : NULL;
+		return CurrentGameContext ? Cast<IDialogPresenterInterface>(CurrentGameContext->DialogPresenter.GetObject()) : NULL;
 	}
 };

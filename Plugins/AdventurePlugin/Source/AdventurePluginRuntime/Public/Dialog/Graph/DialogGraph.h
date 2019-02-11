@@ -47,15 +47,15 @@ public:
 
 #endif
 
-	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
 		UDialogGraphNode_Event* GetEventNode(FName EventName);
 
-	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
-		UAdventureCharacter* GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* Context);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
+		UAdventureCharacter* GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* GameContext);
 
-	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
-		UAdventureCharacter* GetDialogNPCCharacterInstance(UAdventurePluginGameContext* Context);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
+		UAdventureCharacter* GetDialogNPCCharacterInstance(UAdventurePluginGameContext* GameContext);
 
-	UFUNCTION(BlueprintCallable, Category = "DialogGraph")
-	UAdventureCharacter * GetSpeakerInstance(UAdventurePluginGameContext* Context, TSubclassOf<UAdventureCharacter> Speaker);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
+	UAdventureCharacter * GetSpeakerInstance(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Speaker);
 };

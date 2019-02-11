@@ -34,15 +34,15 @@ public:
 
 	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
-		auto* graph = GetDialogGraph();
-		return graph && graph->IsValidLowLevel() ? graph->NPCCharacter.GetDefaultObject() : nullptr;
+		UDialogGraph* DialogGraph = GetDialogGraph();
+		return DialogGraph && DialogGraph->IsValidLowLevel() ? DialogGraph->NPCCharacter.GetDefaultObject() : nullptr;
 	}
 
 #endif
 
-	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* Context) const override
+	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const override
 	{
-		auto* graph = GetDialogGraph();
-		return graph && graph->IsValidLowLevel() ? graph->GetDialogNPCCharacterInstance(Context) : nullptr;
+		UDialogGraph* DialogGraph = GetDialogGraph();
+		return DialogGraph && DialogGraph->IsValidLowLevel() ? DialogGraph->GetDialogNPCCharacterInstance(GameContext) : nullptr;
 	}
 };

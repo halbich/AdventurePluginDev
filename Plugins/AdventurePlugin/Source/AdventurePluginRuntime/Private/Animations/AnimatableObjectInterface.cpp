@@ -15,7 +15,7 @@ FName IAnimatableObjectInterface::GetDefaultTalkingAnimationState_Implementation
 	return FName();
 }
 
-bool IAnimatableObjectInterface::SetAnimationState_Implementation(FName Animation)
+bool IAnimatableObjectInterface::SetAnimationState_Implementation(FName AnimationName)
 {
 	return false;
 }
@@ -25,7 +25,7 @@ void IAnimatableObjectInterface::ResetAnimationState_Implementation()
 
 }
 
-void IAnimatableObjectInterface::PlayAnimation_Implementation(FName Animation, const FAnimationCompletedEvent& Callback)
+void IAnimatableObjectInterface::PlayAnimation_Implementation(FName AnimationName, const FAnimationCompletedEvent& Callback)
 {
-	Callback.Execute(Animation, nullptr, false);
+	Callback.Execute(AnimationName, nullptr, false);
 }

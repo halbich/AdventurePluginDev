@@ -57,57 +57,37 @@ public:
 		return true;
 	}
 
-	/*
-	virtual void PostEditChangeProperty(struct FPropertyChangedEvent& e) override
-	{
-		FName PropertyName = (e.Property != NULL) ? e.Property->GetFName() : NAME_None;
-		if (PropertyName == GET_MEMBER_NAME_CHECKED(UDialogGraphNode_Options, ChoiceCount))
-		{
-			UEdGraph_GenericGraph* GenericGraph = CastChecked<UEdGraph_GenericGraph>(Graph->EdGraph);
-			UEdNode_GenericGraphNode* Node = GenericGraph->NodeMap[this];
-			for (UEdGraphPin* Pin : Node->Pins) Node->RemovePin(Pin);
-			Node->AllocateDefaultPins();
-		}
-		Super::PostEditChangeProperty(e);
-	}
-	*/
-
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		selectedOptionIndex = -1;
-		optionMapping.Reset();
+		SelectedOptionIndex = -1;
+		OptionMapping.Reset();
 		// Go through all child nodes, if visiting something other than Player Line, go to their children, find all Player Lines and show them to the player.
-		auto optionsToPresent = TArray<FDialogLineData>();
-		optionsToPresent.Reserve(ChoiceCount);
+		TArray<FDialogLineData> OptionsToPresent = TArray<FDialogLineData>();
+		OptionsToPresent.Reserve(ChoiceCount);
 		check(ChildOptions.Num() == ChoiceCount);
 		for (int32 i = 0; i < (int32)ChoiceCount; ++i)
 		{
-			auto* childNode = ChildOptions[i];
-			while (childNode != nullptr)
+			UDialogGraphNode* ChildNode = ChildOptions[i];
+			while (IsValid(ChildNode))
 			{
-				auto* nodeCasted = Cast<UDialogGraphNode>(childNode);
-				if (nodeCasted == nullptr)
-				{
-					// Invalid node found or end of tree. Stop this search.
-					break;
-				}
-				if (nodeCasted->IsDialogOption())
+				if (ChildNode->IsDialogOption())
 				{
 					// Found a player line to present
-					optionMapping.Add(optionsToPresent.Num(), i);
-					optionsToPresent.Add(nodeCasted->GetDialogLine(context));
+					OptionMapping.Add(OptionsToPresent.Num(), i);
+					OptionsToPresent.Add(ChildNode->GetDialogLine(GameContext));
 					break;
 				}
 				// Player line not found, go to child node.
-				childNode = nodeCasted->GetNextNode(context);
+				ChildNode = ChildNode->GetNextNode(GameContext);
 			}
 		}
-		if (optionsToPresent.Num() != 0)
+		if (OptionsToPresent.Num() != 0)
 		{
-			auto widget = Cast<IDialogPresenterInterface>(context->DialogPresenter.GetObject());
-			IDialogPresenterInterface::Execute_ShowDialogSelection(widget->_getUObject(), optionsToPresent, context->DialogController);
+			// Found some options, present them to the player.
+			UObject* DialogPresenter = GameContext->DialogPresenter.GetObject();
+			IDialogPresenterInterface::Execute_ShowDialogSelection(DialogPresenter, OptionsToPresent, GameContext->DialogController);
 		}
 		else
 		{
@@ -118,26 +98,32 @@ public:
 		return false;
 	}
 
-	virtual bool DialogOptionSelected_Implementation(int32 selectedNodeIndex, UDialogController* controller) override
+	virtual bool DialogOptionSelected_Implementation(int32 SelectedNodeIndex, UDialogController* DialogController) override
 	{
-		this->selectedOptionIndex = optionMapping[selectedNodeIndex];
+		this->SelectedOptionIndex = OptionMapping[SelectedNodeIndex];
 		return true;
 	}
 
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
 	{
-		// TODO: Warning when calling with invalid index.
-		if (selectedOptionIndex < 0) return ChildFallback;
-		check(selectedOptionIndex < (int32)ChoiceCount);
-		return ChildOptions[selectedOptionIndex];
-		// return (selectedOptionIndex >= 0 && selectedOptionIndex < ChildrenNodes.Num()) ? Cast<UDialogGraphNode>(ChildrenNodes[selectedOptionIndex]) : nullptr;
+		if (SelectedOptionIndex < 0)
+		{
+			return ChildFallback;
+		}
+		check(SelectedOptionIndex < (int32)ChoiceCount);
+		if (SelectedOptionIndex >= (int32)ChoiceCount)
+		{
+			// TODO: Log warning.
+			return ChildFallback;
+		}
+		return ChildOptions[SelectedOptionIndex];
 	}
 
 	
 protected:
 	UPROPERTY(Transient)
-	int32 selectedOptionIndex;
+	int32 SelectedOptionIndex;
 
 	UPROPERTY(Transient)
-	TMap<int32, int32> optionMapping;
+	TMap<int32, int32> OptionMapping;
 };

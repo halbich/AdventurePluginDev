@@ -6,7 +6,7 @@
 #include "IconThumbnailInterface.generated.h"
 
 UINTERFACE()
-class ADVENTUREPLUGINRUNTIME_API UIconThumbnailInterface : public UInterface // TODO I don't know why this class is here
+class ADVENTUREPLUGINRUNTIME_API UIconThumbnailInterface : public UInterface // TODO I don't know why this class is here. Do we need this class if we don't to blueprint inheritance?
 {
 	GENERATED_BODY()
 };

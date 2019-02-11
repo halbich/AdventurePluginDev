@@ -36,39 +36,46 @@ public:
 
 	virtual TScriptInterface<IAnimatableObjectInterface> GetEditorTimeAnimatableObject()
 	{
-		auto animatableObjectClass = GetAnimatedObjectClass();
-		if (animatableObjectClass == nullptr)
+		UClass* AnimatableObjectClass = GetAnimatedObjectClass();
+		if (AnimatableObjectClass == nullptr)
 		{
 			// TODO: Log error.
 			return nullptr;
 		}
-		return animatableObjectClass->ClassDefaultObject;
+		return AnimatableObjectClass->ClassDefaultObject;
 	}
 
 #endif
-
+	/*Returns the class representing the object that should be animated.*/
 	virtual UClass* GetAnimatedObjectClass()
 	{
 		// Must be overriden.
+		check(false && "Get Animated Object Class method must be overriden");
 		return nullptr;
 	}
-
-	virtual TScriptInterface<IAnimatableObjectInterface> GetAnimatedObject(UAdventurePluginGameContext* context)
+	/* Returns the instance of the class that should be animated.*/
+	virtual TScriptInterface<IAnimatableObjectInterface> GetAnimatedObject(UAdventurePluginGameContext* GameContext)
 	{
 		// Must be overriden.
+		check(false && "Get Animated Object method must be overriden");
 		return nullptr;
 	}
-
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	/* Plays the animation on the object.*/
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		TScriptInterface<IAnimatableObjectInterface> animatedObjectInstance = GetAnimatedObject(context);
-		if (animatedObjectInstance == nullptr)
+		TScriptInterface<IAnimatableObjectInterface> AnimatedObjectInstance = GetAnimatedObject(GameContext);
+		if (AnimatedObjectInstance == nullptr)
 		{
 			// TODO: Log Warning.
 			return true;
 		}
-		auto widget = Cast<IDialogPresenterInterface>(context->DialogPresenter.GetObject());
-		IDialogPresenterInterface::Execute_SetAnimationState(widget->_getUObject(), animatedObjectInstance, AnimationName);
+		if (!IsValid(GameContext) || IsValid(GameContext->DialogPresenter.GetObject()))
+		{
+			// TODO: Log Warning.
+			return true;
+		}
+		UObject* DialogPresenter = GameContext->DialogPresenter.GetObject();
+		IDialogPresenterInterface::Execute_SetAnimationState(DialogPresenter, AnimatedObjectInstance, AnimationName);
 		return true;
 	}
 };

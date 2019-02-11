@@ -18,19 +18,27 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayCharacterAnimationOnceBase
 
 public:
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		TScriptInterface<IAnimatableObjectInterface> characterInstance = GetAnimatedObject(context);
-		if (characterInstance == nullptr)
+		TScriptInterface<IAnimatableObjectInterface> CharacterInstance = GetAnimatedObject(GameContext);
+		if (CharacterInstance == nullptr)
 		{
 			// TODO: Log Warning.
 			return true;
 		}
-		auto widget = Cast<IDialogPresenterInterface>(context->DialogPresenter.GetObject());
-		IDialogPresenterInterface::Execute_PlayAnimationOnce(widget->_getUObject(), characterInstance, AnimationName, context->DialogController);
+		if (!IsValid(GameContext) || IsValid(GameContext->DialogPresenter.GetObject()))
+		{
+			// TODO: Log Warning.
+			return true;
+		}
+		UObject* DialogPresenter = GameContext->DialogPresenter.GetObject();
+		IDialogPresenterInterface::Execute_PlayAnimationOnce(DialogPresenter, CharacterInstance, AnimationName, GameContext->DialogController);
 		return false;
 	}
 
+	/*The animation is finished if the animation for which callback is called is the same one.
+	We just check by name, we do not know if it actually is the concrete animation that was started by this node. 
+	Success is ignored, as the execution should always continue, if the animation failed we would be stuck here forever.*/
 	virtual bool PlayAnimationCallback_Implementation(FName AnimationName, bool Success) override {
 		return AnimationName == this->AnimationName;
 	}

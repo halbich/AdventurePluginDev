@@ -48,7 +48,7 @@ public:
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* context) override
+	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(Event.Quest))
 		{
@@ -56,20 +56,20 @@ public:
 			return true;
 		}
 
-		auto&& questEvent = Event.Quest->QuestEvents.Find(Event.EventName);
-		if (!questEvent)
+		FQuestEvent* QuestEvent = Event.Quest->QuestEvents.Find(Event.EventName);
+		if (!QuestEvent)
 		{
 			LOG_Warning(NSLOCTEXT("DialogGraphNode_Event", "NameNotFound", "Execute::Event name not found in quest"));
 			return true;
 		}
 
-		if (!questEvent->IsBound())
+		if (!QuestEvent->IsBound())
 		{
 			LOG_Warning(NSLOCTEXT("DialogGraphNode_Event", "EventUnbound", "Execute::Event is not bound"));
 			return true;
 		}
 
-		questEvent->ExecuteIfBound();
+		QuestEvent->ExecuteIfBound();
 		return true;
 	};
 };

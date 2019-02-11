@@ -6,13 +6,13 @@
 
 void UCombinableObjectBlueprint::Compiled(UBlueprint* CompiledBlueprint)
 {
-	auto* item = Cast<UCombinableObject>(GeneratedClass->ClassDefaultObject);
-	if (item == nullptr || !item->IsValidLowLevel())
+	UCombinableObject* RepresentedObject = Cast<UCombinableObject>(GeneratedClass->ClassDefaultObject);
+	if (RepresentedObject == nullptr || !RepresentedObject->IsValidLowLevel())
 	{
 		return;
 	}
-	item->RefreshCombinations();
-	UpdateExternalCombinations(item);
+	RepresentedObject->RefreshCombinations();
+	UpdateExternalCombinations(RepresentedObject);
 }
 void UCombinableObjectBlueprint::UpdateExternalCombinations(UCombinableObject* RepresentedObject)
 {
@@ -21,46 +21,47 @@ void UCombinableObjectBlueprint::UpdateExternalCombinations(UCombinableObject* R
 	RepresentedObject->ExternalBlueprintCombinations.Empty();
 	FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
 	TArray<FAssetData> AssetData;
-	const UClass* blueprintClass = UCombinableObjectBlueprint::StaticClass();
-	AssetRegistryModule.Get().GetAssetsByClass(blueprintClass->GetFName(), AssetData, true);
+	const UClass* CombinableObjectBlueprintClass = UCombinableObjectBlueprint::StaticClass();
+	AssetRegistryModule.Get().GetAssetsByClass(CombinableObjectBlueprintClass->GetFName(), AssetData, true);
 	// Go through all assets, retrieve CDO's of classes they represent register external notifications on both the current and target objects.
-	for (auto asset : AssetData)
+	for (FAssetData& CombinableObjectBlueprintAsset : AssetData)
 	{
-		auto* targetObject = GetCombinableObjectFromAsset(asset);
-		if (targetObject == nullptr || targetObject == RepresentedObject)
+		auto* OtherCombinableObject = GetCombinableObjectFromAsset(CombinableObjectBlueprintAsset);
+		if (OtherCombinableObject == nullptr || OtherCombinableObject == RepresentedObject)
 		{
 			continue;
 		}
-		targetObject->ExternalBlueprintCombinations.Remove(this);
-		RegisterExternalCombinations(RepresentedObject, targetObject);
-		RegisterExternalCombinations(targetObject, RepresentedObject);
+		// Remove the old entry on the other item if exists.
+		OtherCombinableObject->ExternalBlueprintCombinations.Remove(this);
+		RegisterExternalCombinations(RepresentedObject, OtherCombinableObject);
+		RegisterExternalCombinations(OtherCombinableObject, RepresentedObject);
 	}
 #endif
 }
 
-void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject* SourceObject, UCombinableObject* TargetObject)
+void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject* SourceObject, UCombinableObject* OtherObject)
 {
 #if WITH_EDITOR
-	auto* targetBlueprint = TargetObject ? Cast<UBlueprint>(TargetObject->GetClass()->ClassGeneratedBy) : nullptr;
-	auto* sourceBlueprint = SourceObject ? Cast<UBlueprint>(SourceObject->GetClass()->ClassGeneratedBy) : nullptr;
-	if (targetBlueprint == nullptr || sourceBlueprint == nullptr)
+	auto* OtherBlueprint = OtherObject ? Cast<UBlueprint>(OtherObject->GetClass()->ClassGeneratedBy) : nullptr;
+	auto* SourceBlueprint = SourceObject ? Cast<UBlueprint>(SourceObject->GetClass()->ClassGeneratedBy) : nullptr;
+	if (OtherBlueprint == nullptr || SourceBlueprint == nullptr)
 	{
 		check(false && "Target and source blueprints should never be nil.");
 		return;
 	}
 	for (auto combination : SourceObject->LocalCombinations)
 	{
-		if (combination.TargetBlueprints.Contains(targetBlueprint))
+		if (combination.TargetBlueprints.Contains(OtherBlueprint))
 		{
 			/*Raise a warning if creating another combination between this and target item.*/
-			if (TargetObject->ExternalBlueprintCombinations.Contains(sourceBlueprint) || 
-				SourceObject->ExternalBlueprintCombinations.Contains(targetBlueprint))
+			if (OtherObject->ExternalBlueprintCombinations.Contains(SourceBlueprint) ||
+				SourceObject->ExternalBlueprintCombinations.Contains(OtherBlueprint))
 			{
 				LOG_Warning(FText::Format(NSLOCTEXT("AP", "RegisterExternalCombinationsDuplicate", "RegisterExternalCombinations:: Multiple combinations found between objects {0} and {1}. Behavior is undefined."),
-					FText::FromString(sourceBlueprint->GetFriendlyName()),
-					FText::FromString(targetBlueprint->GetFriendlyName())));
+					FText::FromString(SourceBlueprint->GetFriendlyName()),
+					FText::FromString(OtherBlueprint->GetFriendlyName())));
 			}
-			TargetObject->ExternalBlueprintCombinations.Add(sourceBlueprint, combination.Name);
+			OtherObject->ExternalBlueprintCombinations.Add(SourceBlueprint, combination.Name);
 		}
 	}
 #endif
@@ -69,23 +70,19 @@ void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject*
 UCombinableObject* UCombinableObjectBlueprint::GetCombinableObjectFromAsset(FAssetData& AssetData)
 {
 #if WITH_EDITOR
-	auto* assetObject = AssetData.GetAsset();
-	auto* assetCasted = Cast<UCombinableObjectBlueprint>(assetObject);
-	if (assetCasted == nullptr || !assetCasted->IsValidLowLevel())
+	UObject* AssetObject = AssetData.GetAsset();
+	UCombinableObjectBlueprint* AssetCombinableObject = Cast<UCombinableObjectBlueprint>(AssetObject);
+	if (AssetCombinableObject == nullptr || !AssetCombinableObject->IsValidLowLevel())
 	{
 		return nullptr;
 	}
-	auto* assetCDO = assetCasted->GeneratedClass ? assetCasted->GeneratedClass->ClassDefaultObject : nullptr;
-	if (assetCDO == nullptr || !assetCDO->IsValidLowLevel())
+	auto* AssetCDO = AssetCombinableObject->GeneratedClass ? AssetCombinableObject->GeneratedClass->ClassDefaultObject : nullptr;
+	auto* AssetCombinableObjectCDO = Cast<UCombinableObject>(AssetCDO);
+	if (AssetCombinableObjectCDO == nullptr || !AssetCombinableObjectCDO->IsValidLowLevel())
 	{
 		return nullptr;
 	}
-	auto* targetCombinableObject = Cast<UCombinableObject>(assetCDO);
-	if (targetCombinableObject == nullptr)
-	{
-		return nullptr;
-	}
-	return targetCombinableObject;
+	return AssetCombinableObjectCDO;
 #endif
 	return nullptr;
 }

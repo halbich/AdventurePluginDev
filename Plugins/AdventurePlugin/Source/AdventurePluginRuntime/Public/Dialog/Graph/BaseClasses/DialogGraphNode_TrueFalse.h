@@ -55,8 +55,8 @@ public:
 		ChildFalse = nullptr;
 	}
 
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
 	{
-		return IsTrue(context) ? ChildTrue : ChildFalse;
+		return IsTrue(GameContext) ? ChildTrue : ChildFalse;
 	}
 };

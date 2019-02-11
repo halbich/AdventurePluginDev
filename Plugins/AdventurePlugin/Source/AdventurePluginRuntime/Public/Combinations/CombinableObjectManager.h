@@ -20,13 +20,13 @@ class ADVENTUREPLUGINRUNTIME_API UCombinableObjectManager : public UObject
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
-		UCombinableObject* GetObject(TSubclassOf<UCombinableObject> Object);
+		UCombinableObject* GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass);
 
 
 private:
 
-	void RegisterObject(TSubclassOf<UCombinableObject> ObjectClass);
+	void RegisterObject(TSubclassOf<UCombinableObject> CombinableObjectClass);
 
 	UPROPERTY(Transient)
-		TMap<TSubclassOf<UCombinableObject>, UCombinableObject*> Objects;
+		TMap<TSubclassOf<UCombinableObject>, UCombinableObject*> CombinableObjects;
 };

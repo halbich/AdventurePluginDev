@@ -16,51 +16,31 @@ class UAdventureCharacterManager;
 /**
  *
  */
-UCLASS(config = AdventurePlugin, defaultconfig)
+UCLASS(Config = AdventurePlugin, DefaultConfig)
 class ADVENTUREPLUGINRUNTIME_API UAdventurePluginConfig : public UObject
 {
 	GENERATED_UCLASS_BODY()
 
 public:
 
-	//	/** Sample bool property */
-	//	UPROPERTY(EditAnywhere, config, Category = Custom)
-	//	bool bSampleBool;
-
-	///** Sample float property that requires a restart */
-	//UPROPERTY(EditAnywhere, config, Category = Custom, meta = (ConfigRestartRequired = true))
-	//	float SampleFloatRequireRestart;
-
-	///** Sample string list */
-	//UPROPERTY(config, EditAnywhere, Category = Custom)
-	//	TArray<FString> SampleStringList;
-
-	///** Or add min, max or clamp values to the settings */
-	//UPROPERTY(config, EditAnywhere, Category = Custom, meta = (UIMin = 1, ClampMin = 1))
-	//	int32 ClampedIntSetting;
-
-	///** We can even use asset references */
-	//UPROPERTY(config, EditAnywhere, Category = Materials, meta = (AllowedClasses = "MaterialInterface"))
-	//	FStringAssetReference StringMaterialAssetReference;
-
-	UPROPERTY(config, EditAnywhere, Category = Dialog, DisplayName = "Default Presenter")
+	UPROPERTY(Config, EditAnywhere, Category = Dialog, DisplayName = "Default Presenter")
 		TSoftClassPtr<UDialogPresenterWidget> DefaultDialogPresenterWidget;
 
-	UPROPERTY(config, EditAnywhere, Category = Dialog, DisplayName = "Default Controller")
+	UPROPERTY(Config, EditAnywhere, Category = Dialog, DisplayName = "Default Controller")
 		TSoftClassPtr<UDialogController> DefaultDialogController;
 
-	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Default Presenter")
+	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Default Presenter")
 		TSoftClassPtr<UInventoryPresenterWidget> DefaultInventoryPresenterWidget;
 
-	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Default Controller")
+	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Default Controller")
 		TSoftClassPtr<UInventoryController> DefaultInventoryController;
 
-	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Default Item Manager")
+	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Default Item Manager")
 		TSoftClassPtr<UItemManager> DefaultItemManager;
 
-	UPROPERTY(config, EditAnywhere, Category = Dialog, DisplayName = "Default Adventure Character Manager")
+	UPROPERTY(Config, EditAnywhere, Category = Dialog, DisplayName = "Default Adventure Character Manager")
 		TSoftClassPtr<UAdventureCharacterManager> DefaultAdventureCharacterManager;
 	/* Defines the actual actions that can be represented by the Use action. E.g. Using a talking sword might be Talk action, using a mechanism might also be a different action etc. Mainly for determining the Use action icon.*/
-	UPROPERTY(config, EditAnywhere, Category = Inventory, DisplayName = "Supported item tags")
+	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Supported item tags")
 		TSet<FName> UseActionTypes;
 };

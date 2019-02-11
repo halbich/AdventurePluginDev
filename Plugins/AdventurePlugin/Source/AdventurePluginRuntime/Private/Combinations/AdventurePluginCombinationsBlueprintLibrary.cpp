@@ -4,11 +4,11 @@
 
 #pragma optimize("", off)
 USimpleCombination* UAdventurePluginCombinationsBlueprintLibrary::CreateSimpleCombination(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FCombinationEvent CombinationEvent) {
-	auto* combination = NewObject<USimpleCombination>();
-	combination->Name = CombinationName;
-	combination->CombinationEvent = CombinationEvent;
-	combination->TargetClass = TargetObject;
-	return combination;
+	auto* NewCombination = NewObject<USimpleCombination>();
+	NewCombination->Name = CombinationName;
+	NewCombination->CombinationEvent = CombinationEvent;
+	NewCombination->TargetClass = TargetObject;
+	return NewCombination;
 }
 
 #pragma optimize("", on)

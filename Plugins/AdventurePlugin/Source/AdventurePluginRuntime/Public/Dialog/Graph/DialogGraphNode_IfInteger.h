@@ -65,13 +65,13 @@ public:
 
 #endif
 
-	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* context) override
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
 	{
 		if (IsValid(Integer.Quest))
 		{
-			int32 val = Integer.Quest->GetInteger(context, Integer.IntegerName);
-			if (val < Constant) return ChildLess;
-			else if (val == Constant) return ChildEqual;
+			int32 VariableValue = Integer.Quest->GetInteger(GameContext, Integer.IntegerName);
+			if (VariableValue < Constant) return ChildLess;
+			else if (VariableValue == Constant) return ChildEqual;
 			else return ChildMore;
 		}
 		return nullptr;

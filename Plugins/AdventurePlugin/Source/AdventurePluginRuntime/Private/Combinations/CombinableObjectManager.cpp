@@ -2,33 +2,33 @@
 #include "AdventurePluginRuntime.h"
 
 #pragma optimize("", off)
-UCombinableObject* UCombinableObjectManager::GetObject(TSubclassOf<UCombinableObject> Object)
+UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass)
 {
-	if (Object == nullptr)
+	if (CombinableObjectClass == nullptr)
 	{
 		LOG_Warning(NSLOCTEXT("AP", "getObjectNull", "CombinableObjectManager::GetObject - Object is NULL."));
 		return nullptr;
 	}
-	if (Object->HasAnyClassFlags(CLASS_Abstract))
+	if (CombinableObjectClass->HasAnyClassFlags(CLASS_Abstract))
 	{
 		LOG_Warning(NSLOCTEXT("AP", "getItemAbstract", "CombinableObjectManager::GetObject - Object is abstract."));
 		return nullptr;
 	}
-	auto* toReturn = Objects.Find(Object);
-	if (toReturn == nullptr || *toReturn == nullptr || !(*toReturn)->IsValidLowLevel())
+	UCombinableObject** CombinableObjectInstance = CombinableObjects.Find(CombinableObjectClass);
+	if (CombinableObjectInstance == nullptr || *CombinableObjectInstance == nullptr || !(*CombinableObjectInstance)->IsValidLowLevel())
 	{
-		RegisterObject(Object);
-		toReturn = Objects.Find(Object);
+		RegisterObject(CombinableObjectClass);
+		CombinableObjectInstance = CombinableObjects.Find(CombinableObjectClass);
 	}
-	check(toReturn && *toReturn && "Item instance should never be null");
-	return toReturn ? *toReturn : nullptr;
+	check(CombinableObjectInstance && *CombinableObjectInstance && "Item instance should never be null");
+	return CombinableObjectInstance ? *CombinableObjectInstance : nullptr;
 }
 
-void UCombinableObjectManager::RegisterObject(TSubclassOf<UCombinableObject> ObjectClass)
+void UCombinableObjectManager::RegisterObject(TSubclassOf<UCombinableObject> CombinableObjectClass)
 {
-	UCombinableObject* newObject = NewObject<UCombinableObject>(this, ObjectClass);
-	newObject->Init();
-	check(newObject != nullptr && "It should always be possible to instantiate a combinable object");
-	Objects.Add(ObjectClass, newObject);
+	UCombinableObject* NewCombinableObject = NewObject<UCombinableObject>(this, CombinableObjectClass);
+	NewCombinableObject->Init();
+	check(NewCombinableObject != nullptr && "It should always be possible to instantiate a combinable object");
+	CombinableObjects.Add(CombinableObjectClass, NewCombinableObject);
 }
 #pragma optimize("", on)

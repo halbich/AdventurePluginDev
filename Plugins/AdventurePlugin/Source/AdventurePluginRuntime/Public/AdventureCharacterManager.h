@@ -17,9 +17,9 @@ class ADVENTUREPLUGINRUNTIME_API UAdventureCharacterManager : public UCombinable
 
 public:
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin")
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Character")
 		UAdventureCharacter* GetCharacter(TSubclassOf<UAdventureCharacter> Character)
 	{
-		return Cast<UAdventureCharacter>(GetObject(Character));
+		return Cast<UAdventureCharacter>(GetCombinableObjectInstance(Character));
 	}
 };

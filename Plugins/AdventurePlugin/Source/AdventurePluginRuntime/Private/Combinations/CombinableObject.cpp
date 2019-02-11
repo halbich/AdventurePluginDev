@@ -10,41 +10,40 @@ void UCombinableObject::InitCombinations_Implementation() {
 }
 void UCombinableObject::CheckIsRefreshingCombinations()
 {
-	if (!IsRefreshingCombinations)
+	if (!bIsRefreshingCombinations)
 	{
 		LOG_Warning(NSLOCTEXT("AP", "Combinations not refreshing", "Combinations should not be added to an item outside of InitCombinations method and InitCombinations method should not be called outside RefreshCombinations method"));
 	}
 }
 void UCombinableObject::RefreshCombinations()
 {
-	IsRefreshingCombinations = true;
+	bIsRefreshingCombinations = true;
 	Combinations.Empty();
 	InitCombinations();
-	IsRefreshingCombinations = false;
+	bIsRefreshingCombinations = false;
 #if WITH_EDITORONLY_DATA
 	LocalCombinations.Empty();
-	for (auto entry : Combinations)
+	for (TScriptInterface<ICombinationInterface> CombinationInterface : Combinations)
 	{
-		auto currentCombination = entry;
-		if (!currentCombination || !currentCombination.GetObject()->IsValidLowLevel())
+		if (!CombinationInterface || !CombinationInterface.GetObject()->IsValidLowLevel())
 		{
 			continue;
 		}
-		auto allCombinationTargets = currentCombination->Execute_GetCombinationTargetClasses(currentCombination.GetObject());
-		auto name = currentCombination->Execute_GetDebugName(currentCombination.GetObject());
+		auto AllCombinationTargets = CombinationInterface->Execute_GetCombinationTargetClasses(CombinationInterface.GetObject());
+		auto CombinationDebugName = CombinationInterface->Execute_GetDebugName(CombinationInterface.GetObject());
 		auto toAdd = FLocalCombinationInfo();
-		toAdd.Name = name;
+		toAdd.Name = CombinationDebugName;
 		// Split combination targets into blueprints and classes so we can navigate to the place where the navigations are defined from editor.
-		for (auto* targetClass : allCombinationTargets)
+		for (UClass* CombinationTargetClass : AllCombinationTargets)
 		{
-			auto* targetBlueprint = targetClass->ClassGeneratedBy ? Cast<UBlueprint>(targetClass->ClassGeneratedBy) : nullptr;
-			if (targetBlueprint == nullptr)
+			UBlueprint* CombinationTargetBlueprint = CombinationTargetClass->ClassGeneratedBy ? Cast<UBlueprint>(CombinationTargetClass->ClassGeneratedBy) : nullptr;
+			if (CombinationTargetBlueprint == nullptr)
 			{
-				toAdd.TargetClasses.Add(targetClass);
+				toAdd.TargetClasses.Add(CombinationTargetClass);
 			}
 			else 
 			{
-				toAdd.TargetBlueprints.Add(targetBlueprint);
+				toAdd.TargetBlueprints.Add(CombinationTargetBlueprint);
 			}
 
 		}
@@ -59,35 +58,35 @@ void UCombinableObject::AddCombinationObject(TScriptInterface<ICombinationInterf
 	Combinations.Add(ToAdd);
 }
 
-bool UCombinableObject::TryCombineWith(UCombinableObject* TargetObject, UAdventurePluginGameContext* Context)
+bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
-	if (TargetObject == nullptr || !TargetObject->IsValidLowLevel())
+	if (OtherObject == nullptr || !OtherObject->IsValidLowLevel())
 	{
 		LOG_Warning(NSLOCTEXT("AP", "NullCombinationItem", "One of the items being combined is null."));
 		return false;
 	}
 	// Try to find a combination on this item
-	if (TryCombineWithLocalOnly(TargetObject, Context))
+	if (TryCombineWithLocalOnly(OtherObject, GameContext))
 	{
 		return true;
 	}
 	// Try to find a combination on the target item.
-	return TargetObject->TryCombineWithLocalOnly(this, Context);
+	return OtherObject->TryCombineWithLocalOnly(this, GameContext);
 }
-bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* TargetObject, UAdventurePluginGameContext* Context)
+bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
-	for (auto combination : Combinations)
+	for (TScriptInterface<ICombinationInterface> CombinationInterface : Combinations)
 	{
-		if (combination == nullptr)
+		if (CombinationInterface == nullptr)
 		{
 			continue;
 		}
-		auto* combinationObject = combination.GetObject();
-		if (!combination->Execute_CanCombineWith(combinationObject, TargetObject))
+		auto* CombinationObject = CombinationInterface.GetObject();
+		if (!CombinationInterface->Execute_CanCombineWith(CombinationObject, OtherObject))
 		{
 			continue;
 		}
-		combination->Execute_Execute(combinationObject, TargetObject, Context);
+		CombinationInterface->Execute_Execute(CombinationObject, OtherObject, GameContext);
 		return true;
 	}
 	return false;
