@@ -60,19 +60,19 @@ public:
 		void SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
 	
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-		bool GetBool(UAdventurePluginGameContext* GameContext, FName VarName);
+		bool GetBool(UAdventurePluginGameContext* GameContext, FName VariableName);
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-		bool SetBool(UAdventurePluginGameContext* GameContext, FName VarName, bool bValue);
+		bool SetBool(UAdventurePluginGameContext* GameContext, FName VariableName, bool bValue);
 	
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-		int32 GetInteger(UAdventurePluginGameContext* GameContext, FName VarName);
+		int32 GetInteger(UAdventurePluginGameContext* GameContext, FName VariableName);
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-		bool SetInteger(UAdventurePluginGameContext* GameContext, FName VarName, int32 Value);
+		bool SetInteger(UAdventurePluginGameContext* GameContext, FName VariableName, int32 Value);
 	
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-		FString GetString(UAdventurePluginGameContext* GameContext, FName VarName);
+		FString GetString(UAdventurePluginGameContext* GameContext, FName VariableName);
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-		bool SetString(UAdventurePluginGameContext* GameContext, FName VarName, FString Value);
+		bool SetString(UAdventurePluginGameContext* GameContext, FName VariableName, FString Value);
 	
 	/* Returns the list of all nodes that can be set to true, i.e. they are not true and all of their predecessors are true.*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")

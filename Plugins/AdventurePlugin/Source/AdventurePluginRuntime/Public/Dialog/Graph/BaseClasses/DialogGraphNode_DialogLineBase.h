@@ -65,8 +65,13 @@ public:
 	/*Displays the dialog line.*/
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		auto widget = Cast<IDialogPresenterInterface>(GameContext->DialogPresenter.GetObject());
-		IDialogPresenterInterface::Execute_ShowDialogLine(widget->_getUObject(), GetDialogLine(GameContext), GameContext->DialogController);
+		if (!IsValid(GameContext))
+		{
+			//TODO: Error
+			return true;
+		}
+		UObject* DialogPresenterInstance = GameContext->DialogPresenter.GetObject();
+		IDialogPresenterInterface::Execute_ShowDialogLine(DialogPresenterInstance, GetDialogLine(GameContext), GameContext->DialogController);
 		return false;
 	};
 

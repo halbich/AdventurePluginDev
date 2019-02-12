@@ -26,7 +26,7 @@ void FQuestGraphBoolCustomization::ReloadOptions()
 		UQuestGraph* Quest = Cast<UQuestGraph>(QuestObj);
 		if (Quest && Quest->IsValidLowLevel())
 		{
-			for (auto KeyValue : Quest->BoolVariables)
+			for (TPair<FName, FBoolVariable>& KeyValue : Quest->BoolVariables)
 			{
 				Options.Add(MakeShareable(new FName(KeyValue.Key)));
 			}

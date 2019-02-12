@@ -159,7 +159,7 @@ void UAssetGraphSchema_GenericGraph::GetGraphContextActions(FGraphContextMenuBui
 		return;
 	}
 
-	const bool bNoParent = (ContextMenuBuilder.FromPin == NULL);
+	const bool bNoParent = (ContextMenuBuilder.FromPin == nullptr);
 
 	const FText AddToolTip = LOCTEXT("NewGenericGraphNodeTooltip", "Add node here");
 

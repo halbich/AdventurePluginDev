@@ -77,7 +77,10 @@ void SEdDialogNode_Options::CreatePinWidgets()
 	PinToAdd->SetOwner(SharedThis(this));
 	const UEdGraphPin* PinObj = PinToAdd->GetPinObj();
 	const bool bAdvancedParameter = PinObj && PinObj->bAdvancedView;
-	if (bAdvancedParameter) PinToAdd->SetVisibility(TAttribute<EVisibility>(PinToAdd, &SGraphPin::IsPinVisibleAsAdvanced));
+	if (bAdvancedParameter)
+	{
+		PinToAdd->SetVisibility(TAttribute<EVisibility>(PinToAdd, &SGraphPin::IsPinVisibleAsAdvanced));
+	}
 	AddToVerticalBox(LeftNodeBox, PinToAdd);
 	OutputPins.Add(PinToAdd);
 
@@ -97,7 +100,7 @@ END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 FReply SEdDialogNode_Options::IncrementOptionsCount()
 {
-	auto OptionsNode = CastChecked<UDialogGraphNode_Options>(DialogGraphNode);
+	UDialogGraphNode_Options* OptionsNode = CastChecked<UDialogGraphNode_Options>(DialogGraphNode);
 	OptionsNode->ChoiceCount++;
 	UpdateGraphNode();
 	return FReply::Handled();
@@ -105,7 +108,7 @@ FReply SEdDialogNode_Options::IncrementOptionsCount()
 
 FReply SEdDialogNode_Options::DecrementOptionsCount()
 {
-	auto OptionsNode = CastChecked<UDialogGraphNode_Options>(DialogGraphNode);
+	UDialogGraphNode_Options* OptionsNode = CastChecked<UDialogGraphNode_Options>(DialogGraphNode);
 	if (OptionsNode->ChoiceCount > 1)
 	{
 		OptionsNode->ChoiceCount--;

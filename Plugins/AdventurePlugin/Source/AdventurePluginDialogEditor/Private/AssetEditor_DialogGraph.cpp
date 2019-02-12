@@ -18,41 +18,42 @@ UClass* FAssetEditor_DialogGraph::GetGraphSchemaClass() const
 }
 void FAssetEditor_DialogGraph::RebuildGenericGraph() {
 	FAssetEditor_GenericGraph::RebuildGenericGraph();
-	auto * editingDialogGraph = Cast<UDialogGraph>(EditingGraph);
-	if (editingDialogGraph == nullptr)
+	UDialogGraph * EditingDialogGraph = Cast<UDialogGraph>(EditingGraph);
+	if (EditingDialogGraph == nullptr)
 	{
 		return;
 	}
-	editingDialogGraph->IdToNodeMap.Empty();
-	for (auto* node : editingDialogGraph->RootNodes) {
-		auto* mainEntryPoint = Cast<UDialogGraphNode_EntryMain>(node);
-		if (mainEntryPoint != nullptr && mainEntryPoint->IsValidLowLevel()) {
-			editingDialogGraph->MainEntryPoint = mainEntryPoint;
+	EditingDialogGraph->IdToNodeMap.Empty();
+	// Find all entry points and put them in a map, so we can have a quick access to entry points by name.
+	for (UGenericGraphNode* Node : EditingDialogGraph->RootNodes) {
+		UDialogGraphNode_EntryMain* MainEntryPoint = Cast<UDialogGraphNode_EntryMain>(Node);
+		if (MainEntryPoint != nullptr && MainEntryPoint->IsValidLowLevel()) {
+			EditingDialogGraph->MainEntryPoint = MainEntryPoint;
 			continue;
 		}
-		auto* secondaryEntryPoint = Cast<UDialogGraphNode_EntrySecondary>(node);
-		if (secondaryEntryPoint != nullptr && secondaryEntryPoint->IsValidLowLevel() && !secondaryEntryPoint->Id.IsNone())
+		UDialogGraphNode_EntrySecondary* SecondaryEntryPoint = Cast<UDialogGraphNode_EntrySecondary>(Node);
+		if (SecondaryEntryPoint != nullptr && SecondaryEntryPoint->IsValidLowLevel() && !SecondaryEntryPoint->Id.IsNone())
 		{
-			editingDialogGraph->SecondaryEntryPoints.Add(secondaryEntryPoint->Id, secondaryEntryPoint);
+			EditingDialogGraph->SecondaryEntryPoints.Add(SecondaryEntryPoint->Id, SecondaryEntryPoint);
 			continue;
 		}
 		// TODO: Unknown root node. Should we throw something? Or assume it's an extension and everything's alright?
 	}
-	FillIdToNodeMap(editingDialogGraph);
+	FillIdToNodeMap(EditingDialogGraph);
 }
 
 void FAssetEditor_DialogGraph::FillIdToNodeMap(UDialogGraph* Graph)
 {
-	for (auto* node : Graph->AllNodes)
+	for (UGenericGraphNode* Node : Graph->AllNodes)
 	{
-		auto* dialogNode = Cast<UDialogGraphNode>(node);
-		if (dialogNode == NULL || !dialogNode->IsValidLowLevel())
+		UDialogGraphNode* DialogNode = Cast<UDialogGraphNode>(Node);
+		if (DialogNode == nullptr || !DialogNode->IsValidLowLevel())
 		{
 			continue;
 		}
-		if (!dialogNode->Id.IsNone())
+		if (!DialogNode->Id.IsNone())
 		{
-			Graph->IdToNodeMap.Add(dialogNode->Id, dialogNode);
+			Graph->IdToNodeMap.Add(DialogNode->Id, DialogNode);
 		}
 	}
 }

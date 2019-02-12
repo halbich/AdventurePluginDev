@@ -26,7 +26,7 @@ void UCombinableObjectBlueprint::UpdateExternalCombinations(UCombinableObject* R
 	// Go through all assets, retrieve CDO's of classes they represent register external notifications on both the current and target objects.
 	for (FAssetData& CombinableObjectBlueprintAsset : AssetData)
 	{
-		auto* OtherCombinableObject = GetCombinableObjectFromAsset(CombinableObjectBlueprintAsset);
+		UCombinableObject* OtherCombinableObject = GetCombinableObjectFromAsset(CombinableObjectBlueprintAsset);
 		if (OtherCombinableObject == nullptr || OtherCombinableObject == RepresentedObject)
 		{
 			continue;
@@ -42,16 +42,16 @@ void UCombinableObjectBlueprint::UpdateExternalCombinations(UCombinableObject* R
 void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject* SourceObject, UCombinableObject* OtherObject)
 {
 #if WITH_EDITOR
-	auto* OtherBlueprint = OtherObject ? Cast<UBlueprint>(OtherObject->GetClass()->ClassGeneratedBy) : nullptr;
-	auto* SourceBlueprint = SourceObject ? Cast<UBlueprint>(SourceObject->GetClass()->ClassGeneratedBy) : nullptr;
+	UBlueprint* OtherBlueprint = OtherObject ? Cast<UBlueprint>(OtherObject->GetClass()->ClassGeneratedBy) : nullptr;
+	UBlueprint* SourceBlueprint = SourceObject ? Cast<UBlueprint>(SourceObject->GetClass()->ClassGeneratedBy) : nullptr;
 	if (OtherBlueprint == nullptr || SourceBlueprint == nullptr)
 	{
 		check(false && "Target and source blueprints should never be nil.");
 		return;
 	}
-	for (auto combination : SourceObject->LocalCombinations)
+	for (FLocalCombinationInfo& Combination : SourceObject->LocalCombinations)
 	{
-		if (combination.TargetBlueprints.Contains(OtherBlueprint))
+		if (Combination.TargetBlueprints.Contains(OtherBlueprint))
 		{
 			/*Raise a warning if creating another combination between this and target item.*/
 			if (OtherObject->ExternalBlueprintCombinations.Contains(SourceBlueprint) ||
@@ -61,7 +61,7 @@ void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject*
 					FText::FromString(SourceBlueprint->GetFriendlyName()),
 					FText::FromString(OtherBlueprint->GetFriendlyName())));
 			}
-			OtherObject->ExternalBlueprintCombinations.Add(SourceBlueprint, combination.Name);
+			OtherObject->ExternalBlueprintCombinations.Add(SourceBlueprint, Combination.Name);
 		}
 	}
 #endif
@@ -76,8 +76,8 @@ UCombinableObject* UCombinableObjectBlueprint::GetCombinableObjectFromAsset(FAss
 	{
 		return nullptr;
 	}
-	auto* AssetCDO = AssetCombinableObject->GeneratedClass ? AssetCombinableObject->GeneratedClass->ClassDefaultObject : nullptr;
-	auto* AssetCombinableObjectCDO = Cast<UCombinableObject>(AssetCDO);
+	UObject* AssetCDO = AssetCombinableObject->GeneratedClass ? AssetCombinableObject->GeneratedClass->ClassDefaultObject : nullptr;
+	UCombinableObject* AssetCombinableObjectCDO = Cast<UCombinableObject>(AssetCDO);
 	if (AssetCombinableObjectCDO == nullptr || !AssetCombinableObjectCDO->IsValidLowLevel())
 	{
 		return nullptr;

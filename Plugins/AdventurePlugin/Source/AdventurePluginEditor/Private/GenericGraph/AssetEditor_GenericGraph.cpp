@@ -617,7 +617,7 @@ void FAssetEditor_GenericGraph::OnRenameNode()
 		for (FGraphPanelSelectionSet::TConstIterator NodeIt(SelectedNodes); NodeIt; ++NodeIt)
 		{
 			UEdGraphNode* SelectedNode = Cast<UEdGraphNode>(*NodeIt);
-			if (SelectedNode != NULL && SelectedNode->bCanRenameNode)
+			if (SelectedNode != nullptr && SelectedNode->bCanRenameNode)
 			{
 				CurrentGraphEditor->IsNodeTitleVisible(SelectedNode, true);
 				break;

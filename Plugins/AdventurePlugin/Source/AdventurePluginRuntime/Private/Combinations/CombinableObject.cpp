@@ -23,31 +23,31 @@ void UCombinableObject::RefreshCombinations()
 	bIsRefreshingCombinations = false;
 #if WITH_EDITORONLY_DATA
 	LocalCombinations.Empty();
-	for (TScriptInterface<ICombinationInterface> CombinationInterface : Combinations)
+	for (TScriptInterface<ICombinationInterface>& CombinationInterface : Combinations)
 	{
 		if (!CombinationInterface || !CombinationInterface.GetObject()->IsValidLowLevel())
 		{
 			continue;
 		}
-		auto AllCombinationTargets = CombinationInterface->Execute_GetCombinationTargetClasses(CombinationInterface.GetObject());
-		auto CombinationDebugName = CombinationInterface->Execute_GetDebugName(CombinationInterface.GetObject());
-		auto toAdd = FLocalCombinationInfo();
-		toAdd.Name = CombinationDebugName;
+		TArray<UClass*> AllCombinationTargets = CombinationInterface->Execute_GetCombinationTargetClasses(CombinationInterface.GetObject());
+		FText CombinationDebugName = CombinationInterface->Execute_GetDebugName(CombinationInterface.GetObject());
+		FLocalCombinationInfo CombinationInfoToAdd = FLocalCombinationInfo();
+		CombinationInfoToAdd.Name = CombinationDebugName;
 		// Split combination targets into blueprints and classes so we can navigate to the place where the navigations are defined from editor.
 		for (UClass* CombinationTargetClass : AllCombinationTargets)
 		{
 			UBlueprint* CombinationTargetBlueprint = CombinationTargetClass->ClassGeneratedBy ? Cast<UBlueprint>(CombinationTargetClass->ClassGeneratedBy) : nullptr;
 			if (CombinationTargetBlueprint == nullptr)
 			{
-				toAdd.TargetClasses.Add(CombinationTargetClass);
+				CombinationInfoToAdd.TargetClasses.Add(CombinationTargetClass);
 			}
 			else 
 			{
-				toAdd.TargetBlueprints.Add(CombinationTargetBlueprint);
+				CombinationInfoToAdd.TargetBlueprints.Add(CombinationTargetBlueprint);
 			}
 
 		}
-		LocalCombinations.Add(toAdd);
+		LocalCombinations.Add(CombinationInfoToAdd);
 	}
 #endif
 }
@@ -75,13 +75,13 @@ bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventur
 }
 bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
-	for (TScriptInterface<ICombinationInterface> CombinationInterface : Combinations)
+	for (TScriptInterface<ICombinationInterface>& CombinationInterface : Combinations)
 	{
 		if (CombinationInterface == nullptr)
 		{
 			continue;
 		}
-		auto* CombinationObject = CombinationInterface.GetObject();
+		UObject* CombinationObject = CombinationInterface.GetObject();
 		if (!CombinationInterface->Execute_CanCombineWith(CombinationObject, OtherObject))
 		{
 			continue;

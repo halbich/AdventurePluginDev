@@ -33,7 +33,7 @@ TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_QuestGraph::GetEditorNod
 	if (RuntimeNodeType && RuntimeNodeType->IsChildOf(UQuestGraphNode::StaticClass()))
 	{
 		TSubclassOf<UQuestGraphNode> QuestNodeType = *RuntimeNodeType;
-		if (auto EditorNodeType = EditorNodeMap.Find(*QuestNodeType))
+		if (const TSubclassOf<UEdQuestNode>* EditorNodeType = EditorNodeMap.Find(*QuestNodeType))
 		{
 			return *EditorNodeType;
 		}

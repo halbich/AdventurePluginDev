@@ -20,20 +20,20 @@ FText FDialogLineCustomization::GetComboBoxName()
 }
 TSet<FComboBoxCustomization::FComboItemType> FDialogLineCustomization::GetComboBoxOptions(UObject* ObjectBeingCustomized)
 {
-	TSet<FComboItemType> Ids;
+	TSet<FComboItemType> TalkingAnimationStates;
 	UDialogGraphNode_DialogLineBase* DialogNode = Cast<UDialogGraphNode_DialogLineBase>(ObjectBeingCustomized);
-	auto* animatedCharacter = DialogNode && DialogNode->IsValidLowLevel() ? DialogNode->GetSpeakerEditorOnly() : nullptr;
-	if (!IsValid(animatedCharacter))
+	UAdventureCharacter* AnimatedCharacter = DialogNode && DialogNode->IsValidLowLevel() ? DialogNode->GetSpeakerEditorOnly() : nullptr;
+	if (!IsValid(AnimatedCharacter))
 	{
-		return Ids;
+		return TalkingAnimationStates;
 	}
-	auto allAnimationStates = animatedCharacter->Execute_GetTalkingStates(animatedCharacter);
-	for (auto animationState : allAnimationStates)
+	TArray<FName> TalkingAnimationStateNames = AnimatedCharacter->Execute_GetTalkingStates(AnimatedCharacter);
+	for (FName& AnimationStateName : TalkingAnimationStateNames)
 	{
-		FComboItemType NewItem = MakeShareable(new FName(animationState));
-		Ids.Add(NewItem);
+		FComboItemType NewItem = MakeShareable(new FName(AnimationStateName));
+		TalkingAnimationStates.Add(NewItem);
 	}
-	return Ids;
+	return TalkingAnimationStates;
 }
 
 #undef LOCTEXT_NAMESPACE 

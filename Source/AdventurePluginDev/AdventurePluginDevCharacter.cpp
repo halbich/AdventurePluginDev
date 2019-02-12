@@ -106,7 +106,7 @@ void AAdventurePluginDevCharacter::LookUpAtRate(float Rate)
 
 void AAdventurePluginDevCharacter::MoveForward(float Value)
 {
-	if ((Controller != NULL) && (Value != 0.0f))
+	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -120,7 +120,7 @@ void AAdventurePluginDevCharacter::MoveForward(float Value)
 
 void AAdventurePluginDevCharacter::MoveRight(float Value)
 {
-	if ( (Controller != NULL) && (Value != 0.0f) )
+	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{
 		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();

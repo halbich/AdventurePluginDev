@@ -19,13 +19,13 @@ UQuestGraphNode::~UQuestGraphNode()
 
 
 bool UQuestGraphNode::ParentNodesSatisfied(UAdventurePluginGameContext* GameContext) {
-	for (auto* parentNodeUncasted : ParentNodes) {
-		auto* parentNode = Cast<UQuestGraphNode>(parentNodeUncasted);
-		if (parentNode == NULL || !parentNode->IsValidLowLevel())
+	for (UGenericGraphNode* ParentNodeUncasted : ParentNodes) {
+		UQuestGraphNode* ParentNode = Cast<UQuestGraphNode>(ParentNodeUncasted);
+		if (ParentNode == nullptr || !ParentNode->IsValidLowLevel())
 		{
 			continue;
 		}
-		if (!parentNode->IsSatisfied(GameContext)) {
+		if (!ParentNode->IsSatisfied(GameContext)) {
 			return false;
 		}
 	}

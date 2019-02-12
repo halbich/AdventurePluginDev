@@ -25,7 +25,7 @@ public:
 
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
-		if (Subquest == NULL || !Subquest->IsValidLowLevel())
+		if (Subquest == nullptr || !Subquest->IsValidLowLevel())
 		{
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Subquest", "Quest graph node: Subquest: Nil or invalid Subquest passed"));
 			return false;

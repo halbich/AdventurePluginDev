@@ -26,7 +26,7 @@ void FQuestGraphIntegerCustomization::ReloadOptions()
 		UQuestGraph* Quest = Cast<UQuestGraph>(QuestObj);
 		if (Quest && Quest->IsValidLowLevel())
 		{
-			for (auto KeyValue : Quest->IntegerVariables)
+			for (TPair<FName, FIntegerVariable>& KeyValue : Quest->IntegerVariables)
 			{
 				Options.Add(MakeShareable(new FName(KeyValue.Key)));
 			}

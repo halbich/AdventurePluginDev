@@ -23,7 +23,7 @@ TSet<FComboBoxCustomization::FComboItemType> FGotoCustomization::GetComboBoxOpti
 	UDialogGraphNode_Goto* GotoNode = Cast<UDialogGraphNode_Goto>(ObjectBeingCustomized);
 	if (GotoNode && GotoNode->IsValidLowLevel() && GotoNode->Graph && GotoNode->Graph->IsValidLowLevel())
 	{
-		for (auto Node : GotoNode->Graph->AllNodes)
+		for (UGenericGraphNode* Node : GotoNode->Graph->AllNodes)
 		{
 			UDialogGraphNode* GraphNode = Cast<UDialogGraphNode>(Node);
 			if (GraphNode && GraphNode->IsValidLowLevel() && !GraphNode->Id.IsNone())

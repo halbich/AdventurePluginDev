@@ -39,11 +39,11 @@ void FComboBoxCustomization::CustomizeDetails(IDetailLayoutBuilder& DetailLayout
 
 	if (Objects.Num() > 0)
 	{
-		auto* ObjectBeingCustomized = Cast<UObject>(Objects[0]);
-		auto Ids = GetComboBoxOptions(ObjectBeingCustomized);
-		Options = Ids.Array();
+		UObject* ObjectBeingCustomized = Cast<UObject>(Objects[0]);
+		TSet<TSharedPtr<FName>> ComboBoxOptionsSet = GetComboBoxOptions(ObjectBeingCustomized);
+		Options = ComboBoxOptionsSet.Array();
 		FComboItemType SelectedId;
-		for (auto ComboBoxId : Ids)
+		for (TSharedPtr<FName> ComboBoxId : ComboBoxOptionsSet)
 		{
 			if (*ComboBoxId == Id)
 			{

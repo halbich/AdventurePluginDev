@@ -29,7 +29,7 @@ void FQuestGraphFlagCustomization::ReloadOptions()
 		{
 			for (UGenericGraphNode* Node : Quest->AllNodes)
 			{
-				auto* FlagNode = Cast<UQuestGraphNode_Flag>(Node);
+				UQuestGraphNode_Flag* FlagNode = Cast<UQuestGraphNode_Flag>(Node);
 				if (FlagNode)
 				{
 					Options.Add(MakeShareable(new FName(FlagNode->FlagName)));

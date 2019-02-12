@@ -17,7 +17,7 @@ void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDi
 	CurrentGameContext = GameContext;
 	CurrentGraph = DialogGraph;
 
-	if (StartNode == NULL || StartNode->ChildrenNodes.Num() == 0)
+	if (StartNode == nullptr || StartNode->ChildrenNodes.Num() == 0)
 	{
 		LOG_Error(NSLOCTEXT("AP", "startNodeNull", "Show dialog::startNode is NULL"));
 		return;
@@ -40,7 +40,7 @@ void UDialogController::HideDialog()
 		IDialogPresenterInterface::Execute_SetPresenterVisibility(PresenterInstance->_getUObject(), false);
 	}
 
-	CurrentGameContext = NULL;
+	CurrentGameContext = nullptr;
 }
 
 void UDialogController::BeginExecute(UDialogGraphNode* StartNode)

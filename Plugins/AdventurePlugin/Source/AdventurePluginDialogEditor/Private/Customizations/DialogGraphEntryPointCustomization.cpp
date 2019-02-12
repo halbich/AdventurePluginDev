@@ -28,7 +28,7 @@ void FDialogGraphEntryPointCustomization::ReloadOptions()
 		if (Dialog && Dialog->IsValidLowLevel())
 		{
 			Options.Add(MakeShareable(new FName(UDialogGraph::MainEntryName)));
-			for (auto KeyValue : Dialog->SecondaryEntryPoints)
+			for (TPair<FName, UDialogGraphNode*> KeyValue : Dialog->SecondaryEntryPoints)
 			{
 				Options.Add(MakeShareable(new FName(KeyValue.Key)));
 			}

@@ -89,7 +89,7 @@ void FGraphNameCustomization::ReloadComboBox(FName Name)
 	FComboItemType Selected;
 	if (!Name.IsNone())
 	{
-		for (auto Value : Options)
+		for (TSharedPtr<FName>& Value : Options)
 		{
 			if (Name.IsEqual(*Value))
 			{

@@ -26,7 +26,7 @@ void FQuestGraphEventCustomization::ReloadOptions()
 		UQuestGraph* Quest = Cast<UQuestGraph>(QuestObj);
 		if (Quest && Quest->IsValidLowLevel())
 		{
-			for (auto KeyValue : Quest->QuestEvents)
+			for (TPair<FName, FQuestEvent>& KeyValue : Quest->QuestEvents)
 			{
 				Options.Add(MakeShareable(new FName(KeyValue.Key)));
 			}

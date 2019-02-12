@@ -42,13 +42,13 @@ bool UDialogGraphNode::CanRename() const
 
 UDialogGraph * UDialogGraphNode::GetDialogGraph() const
 {
-	auto* dialogGraph = Cast<UDialogGraph>(Graph);
-	if (dialogGraph == nullptr || !dialogGraph->IsValidLowLevel())
+	UDialogGraph* DialogGraph = Cast<UDialogGraph>(Graph);
+	if (DialogGraph == nullptr || !DialogGraph->IsValidLowLevel())
 	{
 		LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "DialogGraphNode: Parent graph is not a dialog graph"));
 		return nullptr;
 	}
-	return dialogGraph;
+	return DialogGraph;
 }
 
 #undef LOCTEXT_NAMESPACE

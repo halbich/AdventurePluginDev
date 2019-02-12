@@ -19,7 +19,7 @@ UObject* UInventoryItemFactory::FactoryCreateNew(UClass* Class, UObject* InParen
 	{
 		FFormatNamedArguments Args;
 		FMessageDialog::Open(EAppMsgType::Ok, NSLOCTEXT("UInventoryItemFactory", "CannotCreateInventoryItem", "Cannot create inventory item blueprint."));
-		return NULL;
+		return nullptr;
 	}
 	else
 	{

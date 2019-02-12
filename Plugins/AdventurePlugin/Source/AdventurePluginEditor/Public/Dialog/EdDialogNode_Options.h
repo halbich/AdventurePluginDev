@@ -28,8 +28,8 @@ public:
 
 	virtual void AddSpecialChild(const UEdGraphPin* Pin, UGenericGraphNode* Child) override
 	{
-		auto OptionsNode = CastChecked<UDialogGraphNode_Options>(GenericGraphNode);
-		auto DialogChild = CastChecked<UDialogGraphNode>(Child);
+		UDialogGraphNode_Options* OptionsNode = CastChecked<UDialogGraphNode_Options>(GenericGraphNode);
+		UDialogGraphNode* DialogChild = CastChecked<UDialogGraphNode>(Child);
 		if (Pin->PinName == PinNameFallback) OptionsNode->ChildFallback = DialogChild;
 		else
 		{

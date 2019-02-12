@@ -22,15 +22,15 @@ UDialogGraph::~UDialogGraph()
 
 UDialogGraphNode_Event* UDialogGraph::GetEventNode(FName EventName)
 {
-	for (auto* node : AllNodes)
+	for (UGenericGraphNode* Node : AllNodes)
 	{
-		UDialogGraphNode_Event* eventNode = Cast<UDialogGraphNode_Event>(node);
-		if (eventNode != NULL && eventNode->IsValidLowLevel() && eventNode->Event.EventName == EventName)
+		UDialogGraphNode_Event* EventNode = Cast<UDialogGraphNode_Event>(Node);
+		if (EventNode != nullptr && EventNode->IsValidLowLevel() && EventNode->Event.EventName == EventName)
 		{
-			return eventNode;
+			return EventNode;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 UAdventureCharacter* UDialogGraph::GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* GameContext)
@@ -56,8 +56,8 @@ UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameConte
 		// TODO: Log error.
 		return nullptr;
 	}
-	auto* characterInstance = GameContext->AdventureCharacterManager->GetCharacter(Speaker);
-	return characterInstance;
+	UAdventureCharacter* CharacterInstance = GameContext->AdventureCharacterManager->GetCharacter(Speaker);
+	return CharacterInstance;
 }
 
 #undef LOCTEXT_NAMESPACE

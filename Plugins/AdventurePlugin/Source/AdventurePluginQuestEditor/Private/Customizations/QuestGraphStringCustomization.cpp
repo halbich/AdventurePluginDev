@@ -26,7 +26,7 @@ void FQuestGraphStringCustomization::ReloadOptions()
 		UQuestGraph* Quest = Cast<UQuestGraph>(QuestObj);
 		if (Quest && Quest->IsValidLowLevel())
 		{
-			for (auto KeyValue : Quest->StringVariables)
+			for (TPair<FName, FStringVariable>& KeyValue : Quest->StringVariables)
 			{
 				Options.Add(MakeShareable(new FName(KeyValue.Key)));
 			}

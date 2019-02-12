@@ -17,20 +17,20 @@ FText FAnimationCustomization::GetComboBoxName()
 }
 TSet<FComboBoxCustomization::FComboItemType> FAnimationCustomization::GetComboBoxOptions(UObject* ObjectBeingCustomized)
 {
-	TSet<FComboItemType> Ids;
+	TSet<FComboItemType> AllAnimationStates;
 	UDialogGraphNode_PlayAnimationBase* AnimationNode = Cast<UDialogGraphNode_PlayAnimationBase>(ObjectBeingCustomized);
-	auto animatedObject = AnimationNode && AnimationNode->IsValidLowLevel() ? AnimationNode->GetEditorTimeAnimatableObject() : nullptr;
-	if (!IsValid(animatedObject.GetObject()))
+	TScriptInterface<IAnimatableObjectInterface> AnimatedObject = AnimationNode && AnimationNode->IsValidLowLevel() ? AnimationNode->GetEditorTimeAnimatableObject() : nullptr;
+	if (!IsValid(AnimatedObject.GetObject()))
 	{
-		return Ids;
+		return AllAnimationStates;
 	}
-	auto allAnimationStates = animatedObject->Execute_GetAllAnimationStates(animatedObject.GetObject());
-	for (auto animationState : allAnimationStates)
+	TArray<FName> AllAnimationStateNames = AnimatedObject->Execute_GetAllAnimationStates(AnimatedObject.GetObject());
+	for (FName AnimationStateName : AllAnimationStateNames)
 	{
-		FComboItemType NewItem = MakeShareable(new FName(animationState));
-		Ids.Add(NewItem);
+		FComboItemType NewItem = MakeShareable(new FName(AnimationStateName));
+		AllAnimationStates.Add(NewItem);
 	}
-	return Ids;
+	return AllAnimationStates;
 }
 
 #undef LOCTEXT_NAMESPACE 

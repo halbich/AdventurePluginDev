@@ -17,7 +17,7 @@ UObject* UAdventureCharacterFactory::FactoryCreateNew(UClass* Class, UObject* In
 	{
 		FFormatNamedArguments Args;
 		FMessageDialog::Open(EAppMsgType::Ok, NSLOCTEXT("UAdventureCharacterFactory", "CannotCreateAdventureCharacter", "Cannot create character blueprint."));
-		return NULL;
+		return nullptr;
 	}
 	else
 	{

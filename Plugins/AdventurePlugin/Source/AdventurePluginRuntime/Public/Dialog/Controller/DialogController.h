@@ -52,6 +52,6 @@ private:
 
 	FORCEINLINE IDialogPresenterInterface* GetPresenter()
 	{
-		return CurrentGameContext ? Cast<IDialogPresenterInterface>(CurrentGameContext->DialogPresenter.GetObject()) : NULL;
+		return CurrentGameContext ? Cast<IDialogPresenterInterface>(CurrentGameContext->DialogPresenter.GetObject()) : nullptr;
 	}
 };

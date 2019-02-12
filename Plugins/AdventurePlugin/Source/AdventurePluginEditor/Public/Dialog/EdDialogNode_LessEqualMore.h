@@ -30,8 +30,8 @@ public:
 
 	virtual void AddSpecialChild(const UEdGraphPin* Pin, UGenericGraphNode* Child) override
 	{
-		auto IntegerNode = CastChecked<UDialogGraphNode_IfInteger>(GenericGraphNode);
-		auto DialogChild = CastChecked<UDialogGraphNode>(Child);
+		UDialogGraphNode_IfInteger* IntegerNode = CastChecked<UDialogGraphNode_IfInteger>(GenericGraphNode);
+		UDialogGraphNode* DialogChild = CastChecked<UDialogGraphNode>(Child);
 		if (Pin->PinName == PinNameLess) IntegerNode->ChildLess = DialogChild;
 		else if (Pin->PinName == PinNameEqual) IntegerNode->ChildEqual = DialogChild;
 		else if (Pin->PinName == PinNameMore) IntegerNode->ChildMore = DialogChild;
