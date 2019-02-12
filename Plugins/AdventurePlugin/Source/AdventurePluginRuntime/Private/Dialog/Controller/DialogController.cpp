@@ -45,11 +45,18 @@ void UDialogController::HideDialog()
 
 void UDialogController::BeginExecute(UDialogGraphNode* StartNode)
 {
+	CurrentExecutionSteps = 0;
 	CurrentNode = StartNode;
 
 	while (CurrentNode && CurrentNode->IsValidLowLevel() && CurrentNode->Execute(CurrentGameContext))
 	{
 		CurrentNode = CurrentNode->GetNextNode(CurrentGameContext);
+		if (++CurrentExecutionSteps >= MaxExecutionSteps)
+		{
+			//TODO: Log error;
+			CurrentNode = nullptr;
+			break;
+		}
 	}
 	if (CurrentNode && CurrentNode->IsValidLowLevel()) {
 		// Dialog not over yet, waiting for further input.

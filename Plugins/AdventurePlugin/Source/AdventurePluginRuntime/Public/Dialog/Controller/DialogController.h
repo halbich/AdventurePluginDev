@@ -54,4 +54,9 @@ private:
 	{
 		return CurrentGameContext ? Cast<IDialogPresenterInterface>(CurrentGameContext->DialogPresenter.GetObject()) : nullptr;
 	}
+	/*How many steps since BeginExecute was last called.*/
+	uint32 CurrentExecutionSteps;
+
+	/*A fallback for infinite cycles - if the dialog execution takes more than this amount of steps, we'll assume we are in an infinite cycle.*/
+	static const uint32 MaxExecutionSteps = 100000;
 };

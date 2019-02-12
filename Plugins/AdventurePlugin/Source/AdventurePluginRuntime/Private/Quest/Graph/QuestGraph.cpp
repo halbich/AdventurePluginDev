@@ -20,6 +20,18 @@ UQuestGraph::~UQuestGraph()
 
 void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName)
 {
+	//TODO: This checking is for every method here, could be refactored outside.
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetFlag::gameContext is NULL"));
+		return;
+	}
+	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
+	if (!SaveGame || !SaveGame->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetFlag::gameContext::SaveGame is NULL"));
+		return;
+	}
 	FText FlagNameText = FText::FromName(FlagName);
 	for (UGenericGraphNode* Node : AllNodes)
 	{
@@ -30,7 +42,8 @@ void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
 			{
 				LOG_Warning(FText::Format(NSLOCTEXT("AP", "Parent nodes not true", "Quest {0}: Quest flag set to true even though at least one of its predecessors are false. FlagName: {1}"), GetGraphNameText(), FlagNameText));
 			}
-			FlagNode->FlagValue = true;
+			//TODO: Actually differentiate between flags and bools.
+			SaveGame->SetBool(FlagName, true);
 			return;
 		}
 	}
@@ -39,14 +52,26 @@ void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
 
 bool UQuestGraph::GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName)
 {
+	if (!GameContext || !GameContext->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetFlag::gameContext is NULL"));
+		return false;
+	}
+	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
+	if (!SaveGame || !SaveGame->IsValidLowLevel())
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetFlag::gameContext::SaveGame is NULL"));
+		return false;
+	}
 	for (UGenericGraphNode* Node : AllNodes)
 	{
 		UQuestGraphNode_Flag* FlagNode = Cast<UQuestGraphNode_Flag>(Node);
 		if (FlagNode != nullptr && FlagNode->FlagName == FlagName)
 		{
-			return FlagNode->FlagValue;
+			return SaveGame->GetBoolOrDefault(FlagName, false);
 		}
 	}
+	//TODO: Warning
 	return false;
 }
 FText UQuestGraph::GetGraphNameText()

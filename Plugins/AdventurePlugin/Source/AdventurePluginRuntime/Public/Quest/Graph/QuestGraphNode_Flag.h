@@ -21,12 +21,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FlagNode")
 	FName FlagName;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FlagNode")
-	bool FlagValue;
-
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
-		return FlagValue;
+		UQuestGraph* ParentGraph = Cast<UQuestGraph>(Graph);
+		check(IsValid(ParentGraph));
+		return ParentGraph && ParentGraph->GetFlag(GameContext, FlagName);
 	}
 
 #if WITH_EDITOR

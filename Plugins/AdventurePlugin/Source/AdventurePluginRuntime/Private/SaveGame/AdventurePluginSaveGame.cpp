@@ -10,18 +10,6 @@ UAdventurePluginSaveGame::UAdventurePluginSaveGame()
 	SaveUserIndex = 0;
 }
 
-
-
-bool UAdventurePluginSaveGame::GetBool(FName Name)
-{
-	bool* Result = StorageBoolean.Find(Name);
-
-	// TODO better key handling
-	check(Result && "Key not found in boolean storage");
-
-	return *Result;
-}
-
 bool UAdventurePluginSaveGame::GetBoolOrDefault(FName Name, bool bDefaultValue)
 {
 	bool* Result = StorageBoolean.Find(Name);
@@ -44,17 +32,6 @@ void UAdventurePluginSaveGame::SetBool(FName Name, bool bValue)
 }
 
 
-
-int32 UAdventurePluginSaveGame::GetInt(FName Name)
-{
-	int32* Result = StorageInt.Find(Name);
-
-	// TODO better key handling
-	check(Result && "Key not found in int32 storage");
-
-	return *Result;
-}
-
 int32 UAdventurePluginSaveGame::GetIntOrDefault(FName Name, int32 DefaultValue)
 {
 	int32* Result = StorageInt.Find(Name);
@@ -73,17 +50,6 @@ void UAdventurePluginSaveGame::SetInt(FName Name, int32 Value)
 	StorageInt.Add(Name, Value);
 }
 
-
-
-FString UAdventurePluginSaveGame::GetString(FName Name)
-{
-	FString* Result = StorageString.Find(Name);
-
-	// TODO better key handling
-	check(Result && "Key not found in string storage");
-
-	return *Result;
-}
 
 FString UAdventurePluginSaveGame::GetStringOrDefault(FName Name, FString DefaultValue)
 {
