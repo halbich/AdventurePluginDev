@@ -35,7 +35,7 @@ public:
 	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
-		return DialogGraph && DialogGraph->IsValidLowLevel() ? DialogGraph->NPCCharacter.GetDefaultObject() : nullptr;
+		return IsValid(DialogGraph) ? DialogGraph->NPCCharacter.GetDefaultObject() : nullptr;
 	}
 
 #endif
@@ -43,6 +43,6 @@ public:
 	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const override
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
-		return DialogGraph && DialogGraph->IsValidLowLevel() ? DialogGraph->GetDialogNPCCharacterInstance(GameContext) : nullptr;
+		return IsValid(DialogGraph) ? DialogGraph->GetDialogNPCCharacterInstance(GameContext) : nullptr;
 	}
 };

@@ -21,7 +21,7 @@ UQuestGraphNode::~UQuestGraphNode()
 bool UQuestGraphNode::ParentNodesSatisfied(UAdventurePluginGameContext* GameContext) {
 	for (UGenericGraphNode* ParentNodeUncasted : ParentNodes) {
 		UQuestGraphNode* ParentNode = Cast<UQuestGraphNode>(ParentNodeUncasted);
-		if (ParentNode == nullptr || !ParentNode->IsValidLowLevel())
+		if (!IsValid(ParentNode))
 		{
 			continue;
 		}

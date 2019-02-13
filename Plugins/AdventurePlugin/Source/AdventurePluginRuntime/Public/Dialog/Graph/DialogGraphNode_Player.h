@@ -59,6 +59,6 @@ public:
 	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const override
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
-		return DialogGraph && DialogGraph->IsValidLowLevel() ? DialogGraph->GetDialogPlayerCharacterInstance(GameContext) : nullptr;
+		return IsValid(DialogGraph) ? DialogGraph->GetDialogPlayerCharacterInstance(GameContext) : nullptr;
 	}
 };

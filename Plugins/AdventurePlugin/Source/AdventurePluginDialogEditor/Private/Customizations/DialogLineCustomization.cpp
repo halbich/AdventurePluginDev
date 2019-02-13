@@ -22,7 +22,7 @@ TSet<FComboBoxCustomization::FComboItemType> FDialogLineCustomization::GetComboB
 {
 	TSet<FComboItemType> TalkingAnimationStates;
 	UDialogGraphNode_DialogLineBase* DialogNode = Cast<UDialogGraphNode_DialogLineBase>(ObjectBeingCustomized);
-	UAdventureCharacter* AnimatedCharacter = DialogNode && DialogNode->IsValidLowLevel() ? DialogNode->GetSpeakerEditorOnly() : nullptr;
+	UAdventureCharacter* AnimatedCharacter = IsValid(DialogNode)? DialogNode->GetSpeakerEditorOnly() : nullptr;
 	if (!IsValid(AnimatedCharacter))
 	{
 		return TalkingAnimationStates;

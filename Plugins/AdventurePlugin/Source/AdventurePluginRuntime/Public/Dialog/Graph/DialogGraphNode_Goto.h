@@ -69,7 +69,7 @@ public:
 			return nullptr;
 		}
 		UDialogGraphNode** TargetNode = DialogGraph->IdToNodeMap.Find(TargetNodeId);
-		if (TargetNode == nullptr || *TargetNode == nullptr || !(*TargetNode)->IsValidLowLevel())
+		if (TargetNode == nullptr || !IsValid(*TargetNode))
 		{
 			LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "GotoNode: Invalid target Id"));
 			return nullptr;

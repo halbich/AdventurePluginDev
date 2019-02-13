@@ -112,21 +112,21 @@ UAdventureCharacter* UAssetGraphSchema_DialogGraph::GetCharacterFromAsset(FAsset
 #if WITH_EDITOR
 	UObject* AssetObject = AssetData.GetAsset();
 	UAdventureCharacterBlueprint* CharacterBlueprint = Cast<UAdventureCharacterBlueprint>(AssetObject);
-	if (CharacterBlueprint == nullptr || !CharacterBlueprint->IsValidLowLevel())
+	if (!IsValid(CharacterBlueprint))
 	{
 		return nullptr;
 	}
 	UObject* TargetObjectCDO = CharacterBlueprint->GeneratedClass ? CharacterBlueprint->GeneratedClass->ClassDefaultObject : nullptr;
-	if (TargetObjectCDO == nullptr || !TargetObjectCDO->IsValidLowLevel())
+	if (!IsValid(TargetObjectCDO))
 	{
 		return nullptr;
 	}
-	UAdventureCharacter* targetCombinableObject = Cast<UAdventureCharacter>(TargetObjectCDO);
-	if (targetCombinableObject == nullptr)
+	UAdventureCharacter* TargetCombinableObject = Cast<UAdventureCharacter>(TargetObjectCDO);
+	if (TargetCombinableObject == nullptr)
 	{
 		return nullptr;
 	}
-	return targetCombinableObject;
+	return TargetCombinableObject;
 #endif
 	return nullptr;
 }

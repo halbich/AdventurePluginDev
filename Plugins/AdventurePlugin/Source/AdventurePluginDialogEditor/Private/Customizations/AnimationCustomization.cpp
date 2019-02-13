@@ -19,7 +19,7 @@ TSet<FComboBoxCustomization::FComboItemType> FAnimationCustomization::GetComboBo
 {
 	TSet<FComboItemType> AllAnimationStates;
 	UDialogGraphNode_PlayAnimationBase* AnimationNode = Cast<UDialogGraphNode_PlayAnimationBase>(ObjectBeingCustomized);
-	TScriptInterface<IAnimatableObjectInterface> AnimatedObject = AnimationNode && AnimationNode->IsValidLowLevel() ? AnimationNode->GetEditorTimeAnimatableObject() : nullptr;
+	TScriptInterface<IAnimatableObjectInterface> AnimatedObject = IsValid(AnimationNode) ? AnimationNode->GetEditorTimeAnimatableObject() : nullptr;
 	if (!IsValid(AnimatedObject.GetObject()))
 	{
 		return AllAnimationStates;

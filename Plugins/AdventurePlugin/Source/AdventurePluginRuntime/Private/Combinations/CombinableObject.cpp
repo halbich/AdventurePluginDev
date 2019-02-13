@@ -25,7 +25,7 @@ void UCombinableObject::RefreshCombinations()
 	LocalCombinations.Empty();
 	for (TScriptInterface<ICombinationInterface>& CombinationInterface : Combinations)
 	{
-		if (!CombinationInterface || !CombinationInterface.GetObject()->IsValidLowLevel())
+		if (!IsValid(CombinationInterface.GetObject()))
 		{
 			continue;
 		}
@@ -60,7 +60,7 @@ void UCombinableObject::AddCombinationObject(TScriptInterface<ICombinationInterf
 
 bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
-	if (OtherObject == nullptr || !OtherObject->IsValidLowLevel())
+	if (!IsValid(OtherObject))
 	{
 		LOG_Warning(NSLOCTEXT("AP", "NullCombinationItem", "One of the items being combined is null."));
 		return false;

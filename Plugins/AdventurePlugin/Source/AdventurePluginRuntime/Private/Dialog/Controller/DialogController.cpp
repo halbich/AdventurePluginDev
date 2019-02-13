@@ -48,17 +48,17 @@ void UDialogController::BeginExecute(UDialogGraphNode* StartNode)
 	CurrentExecutionSteps = 0;
 	CurrentNode = StartNode;
 
-	while (CurrentNode && CurrentNode->IsValidLowLevel() && CurrentNode->Execute(CurrentGameContext))
+	while (IsValid(CurrentNode) && CurrentNode->Execute(CurrentGameContext))
 	{
 		CurrentNode = CurrentNode->GetNextNode(CurrentGameContext);
 		if (++CurrentExecutionSteps >= MaxExecutionSteps)
 		{
-			//TODO: Log error;
+			LOG_Error(NSLOCTEXT("AP", "DialogExecutionStuck", "BeginExecute: Dialog is probably stuck in a loop, breaking in by force. Reason - running too long."));
 			CurrentNode = nullptr;
 			break;
 		}
 	}
-	if (CurrentNode && CurrentNode->IsValidLowLevel()) {
+	if (IsValid(CurrentNode)) {
 		// Dialog not over yet, waiting for further input.
 		return;
 	}

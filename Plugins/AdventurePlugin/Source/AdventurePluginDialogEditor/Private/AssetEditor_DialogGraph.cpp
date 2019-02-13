@@ -27,12 +27,12 @@ void FAssetEditor_DialogGraph::RebuildGenericGraph() {
 	// Find all entry points and put them in a map, so we can have a quick access to entry points by name.
 	for (UGenericGraphNode* Node : EditingDialogGraph->RootNodes) {
 		UDialogGraphNode_EntryMain* MainEntryPoint = Cast<UDialogGraphNode_EntryMain>(Node);
-		if (MainEntryPoint != nullptr && MainEntryPoint->IsValidLowLevel()) {
+		if (IsValid(MainEntryPoint)) {
 			EditingDialogGraph->MainEntryPoint = MainEntryPoint;
 			continue;
 		}
 		UDialogGraphNode_EntrySecondary* SecondaryEntryPoint = Cast<UDialogGraphNode_EntrySecondary>(Node);
-		if (SecondaryEntryPoint != nullptr && SecondaryEntryPoint->IsValidLowLevel() && !SecondaryEntryPoint->Id.IsNone())
+		if (IsValid(SecondaryEntryPoint) && !SecondaryEntryPoint->Id.IsNone())
 		{
 			EditingDialogGraph->SecondaryEntryPoints.Add(SecondaryEntryPoint->Id, SecondaryEntryPoint);
 			continue;
@@ -47,7 +47,7 @@ void FAssetEditor_DialogGraph::FillIdToNodeMap(UDialogGraph* Graph)
 	for (UGenericGraphNode* Node : Graph->AllNodes)
 	{
 		UDialogGraphNode* DialogNode = Cast<UDialogGraphNode>(Node);
-		if (DialogNode == nullptr || !DialogNode->IsValidLowLevel())
+		if (!IsValid(DialogNode))
 		{
 			continue;
 		}

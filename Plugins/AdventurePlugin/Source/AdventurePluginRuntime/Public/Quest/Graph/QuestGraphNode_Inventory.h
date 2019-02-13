@@ -37,19 +37,18 @@ public:
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
 		// TODO: Log errors concisely
-		if (GameContext == nullptr || !GameContext->IsValidLowLevel() ||
-			GameContext->ItemManager == nullptr || !GameContext->ItemManager->IsValidLowLevel())
+		if (!IsValid(GameContext) || !IsValid(GameContext->ItemManager))
 		{
 			LOG_Error(NSLOCTEXT("AP", "Invalid Inventory Game context", "Quest graph node: Inventory: Invalid context passed"));
 			return false;
 		}
-		if (Item == nullptr || !Item->IsValidLowLevel())
+		if (!IsValid(Item))
 		{
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Item", "Quest graph node: Inventory: Nil or invalid item passed"));
 			return false;
 		}
 		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
-		if (ItemInstance == nullptr || !ItemInstance->IsValidLowLevel())
+		if (!IsValid(ItemInstance))
 		{
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Item Instance", "Quest graph node: Item could not be instantiated"));
 			return false;

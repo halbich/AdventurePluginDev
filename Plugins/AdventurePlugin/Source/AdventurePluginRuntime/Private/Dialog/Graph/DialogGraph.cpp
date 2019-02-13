@@ -25,7 +25,7 @@ UDialogGraphNode_Event* UDialogGraph::GetEventNode(FName EventName)
 	for (UGenericGraphNode* Node : AllNodes)
 	{
 		UDialogGraphNode_Event* EventNode = Cast<UDialogGraphNode_Event>(Node);
-		if (EventNode != nullptr && EventNode->IsValidLowLevel() && EventNode->Event.EventName == EventName)
+		if (IsValid(EventNode) && EventNode->Event.EventName == EventName)
 		{
 			return EventNode;
 		}
@@ -45,8 +45,7 @@ UAdventureCharacter* UDialogGraph::GetDialogNPCCharacterInstance(UAdventurePlugi
 
 UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Speaker)
 {
-	if (GameContext == nullptr || !GameContext->IsValidLowLevel() ||
-		GameContext->AdventureCharacterManager == nullptr || !GameContext->AdventureCharacterManager->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->AdventureCharacterManager))
 	{
 		// TODO: Log warning/error.
 		return nullptr;

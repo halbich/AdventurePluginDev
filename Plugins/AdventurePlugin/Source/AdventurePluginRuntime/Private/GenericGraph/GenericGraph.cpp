@@ -118,7 +118,7 @@ void UGenericGraph::ClearGraph()
 	for (int32 i = 0; i < AllNodes.Num(); ++i)
 	{
 		UGenericGraphNode* Node = AllNodes[i];
-		if (Node == nullptr || !Node->IsValidLowLevel())
+		if (!IsValid(Node))
 		{
 			continue;
 		}

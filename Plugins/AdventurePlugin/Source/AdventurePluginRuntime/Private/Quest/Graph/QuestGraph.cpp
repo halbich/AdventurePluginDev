@@ -21,17 +21,12 @@ UQuestGraph::~UQuestGraph()
 void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName)
 {
 	//TODO: This checking is for every method here, could be refactored outside.
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetFlag::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetFlag::gameContext is invalid"));
 		return;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetFlag::gameContext::SaveGame is NULL"));
-		return;
-	}
 	FText FlagNameText = FText::FromName(FlagName);
 	for (UGenericGraphNode* Node : AllNodes)
 	{
@@ -52,17 +47,12 @@ void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
  
 bool UQuestGraph::GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName)
 {
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetFlag::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetFlag::gameContext is invalid."));
 		return false;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetFlag::gameContext::SaveGame is NULL"));
-		return false;
-	}
 	for (UGenericGraphNode* Node : AllNodes)
 	{
 		UQuestGraphNode_Flag* FlagNode = Cast<UQuestGraphNode_Flag>(Node);
@@ -82,18 +72,13 @@ FText UQuestGraph::GetGraphNameText()
 bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName VariableName)
 {
 	bool bDefaultValue(false);
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetBool::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetBool::gameContext is invalid"));
 		return bDefaultValue;
 	}
 
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetBool::gameContext::SaveGame is NULL"));
-		return bDefaultValue;
-	}
 
 	FBoolVariable* BoolVariable = BoolVariables.Find(VariableName);
 	if (!BoolVariable)
@@ -107,17 +92,12 @@ bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName Variab
 
 bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName VariableName, bool bValue)
 {
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::SetBool::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::SetBool::gameContext is invalid."));
 		return false;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::SetBool::gameContext::SaveGame is NULL"));
-		return false;
-	}
 
 	if (!BoolVariables.Find(VariableName))
 	{
@@ -132,17 +112,12 @@ bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName Variab
 int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName VariableName)
 {
 	int32 DefaultValue(0);
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetInteger::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetInteger::gameContext is invalid."));
 		return DefaultValue;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetInteger::gameContext::SaveGame is NULL"));
-		return DefaultValue;
-	}
 
 	FIntegerVariable* IntegerVariable = IntegerVariables.Find(VariableName);
 	if (!IntegerVariable)
@@ -156,17 +131,12 @@ int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName Va
 
 bool UQuestGraph::SetInteger(UAdventurePluginGameContext* GameContext, FName VariableName, int32 Value)
 {
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::SetInteger::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid.", "QuestGraph::SetInteger::gameContext is invalid."));
 		return false;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::SetInteger::gameContext::SaveGame is NULL"));
-		return false;
-	}
 
 	if (!IntegerVariables.Find(VariableName))
 	{
@@ -182,17 +152,12 @@ FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName V
 {
 	FString DefaultValue;
 
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::GetString::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetString::gameContext is invalid."));
 		return DefaultValue;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::GetString::gameContext::SaveGame is NULL"));
-		return DefaultValue;
-	}
 
 	FStringVariable* StringVariable = StringVariables.Find(VariableName);
 	if (!StringVariable)
@@ -206,17 +171,12 @@ FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName V
 
 bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName VariableName, FString Value)
 {
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "QuestGraph::SetString::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::SetString::gameContext is invalid."));
 		return false;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "QuestGraph::SetString::gameContext::SaveGame is NULL"));
-		return false;
-	}
 
 	if (!StringVariables.Find(VariableName))
 	{
@@ -234,7 +194,7 @@ TArray<UQuestGraphNode*> UQuestGraph::GetSatisfiableNodes(UAdventurePluginGameCo
 	for (UGenericGraphNode* ChildNode : AllNodes)
 	{
 		UQuestGraphNode* ChildQuestNode = Cast<UQuestGraphNode>(ChildNode);
-		if (ChildQuestNode == nullptr || !ChildQuestNode->IsValidLowLevel())
+		if (!IsValid(ChildQuestNode))
 		{
 			LOG_Error(FText::Format(NSLOCTEXT("AP", "Nil or invalid quest node", "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph"), GetGraphNameText()));
 			continue;

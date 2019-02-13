@@ -24,7 +24,7 @@ void FQuestGraphStringCustomization::ReloadOptions()
 		UObject* QuestObj;
 		GraphHandle->GetValue(QuestObj);
 		UQuestGraph* Quest = Cast<UQuestGraph>(QuestObj);
-		if (Quest && Quest->IsValidLowLevel())
+		if (IsValid(Quest))
 		{
 			for (TPair<FName, FStringVariable>& KeyValue : Quest->StringVariables)
 			{

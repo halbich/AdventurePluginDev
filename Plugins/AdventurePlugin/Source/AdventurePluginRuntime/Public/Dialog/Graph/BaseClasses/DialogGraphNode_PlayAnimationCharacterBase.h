@@ -22,7 +22,7 @@ public:
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		TSubclassOf<UAdventureCharacter> CharacterClass = GetAnimatedObjectClass();
-		UAdventureCharacter* CharacterInstance = DialogGraph && DialogGraph->IsValidLowLevel() ? DialogGraph->GetSpeakerInstance(GameContext, CharacterClass) : nullptr;
+		UAdventureCharacter* CharacterInstance = IsValid(DialogGraph) ? DialogGraph->GetSpeakerInstance(GameContext, CharacterClass) : nullptr;
 		return CharacterInstance;
 	}
 };

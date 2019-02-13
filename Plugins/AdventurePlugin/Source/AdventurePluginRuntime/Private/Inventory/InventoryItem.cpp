@@ -20,35 +20,25 @@ bool UInventoryItem::WasPickedUp_Implementation(UAdventurePluginGameContext* Gam
 
 EInventoryItemState UInventoryItem::GetItemState(UAdventurePluginGameContext* GameContext)
 {
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "InventoryItem::GetItemState::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "InventoryItem::GetItemState::gameContext is invalid"));
 		return EInventoryItemState::ItemState_Invalid;
 	}
 
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "InventoryItem::GetItemState::gameContext::SaveGame is NULL"));
-		return EInventoryItemState::ItemState_Invalid;
-	}
 
 	return SaveGame->GetItemStateOrDefault(GetClass(), EInventoryItemState::ItemState_Invalid);
 }
 
 void UInventoryItem::SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContext)
 {
-	if (!GameContext || !GameContext->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextNull", "InventoryItem::SetItemState::gameContext is NULL"));
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "InventoryItem::GetItemState::gameContext is invalid"));
 		return;
 	}
 
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
-	if (!SaveGame || !SaveGame->IsValidLowLevel())
-	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextSaveGameNull", "InventoryItem::SetItemState::gameContext::SaveGame is NULL"));
-		return;
-	}
 	SaveGame->SetItemState(GetClass(), NewValue);
 }

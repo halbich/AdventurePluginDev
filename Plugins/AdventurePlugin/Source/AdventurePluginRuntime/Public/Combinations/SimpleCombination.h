@@ -50,6 +50,6 @@ public:
 
 	virtual	bool CanCombineWith_Implementation(UObject* CombinationTarget)
 	{
-		return CombinationTarget && CombinationTarget->IsValidLowLevel() ? CombinationTarget->GetClass()->IsChildOf(TargetClass) : false;
+		return IsValid(CombinationTarget) ? CombinationTarget->GetClass()->IsChildOf(TargetClass) : false;
 	}
 };

@@ -43,7 +43,7 @@ bool UDialogGraphNode::CanRename() const
 UDialogGraph * UDialogGraphNode::GetDialogGraph() const
 {
 	UDialogGraph* DialogGraph = Cast<UDialogGraph>(Graph);
-	if (DialogGraph == nullptr || !DialogGraph->IsValidLowLevel())
+	if (!IsValid(DialogGraph))
 	{
 		LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "DialogGraphNode: Parent graph is not a dialog graph"));
 		return nullptr;

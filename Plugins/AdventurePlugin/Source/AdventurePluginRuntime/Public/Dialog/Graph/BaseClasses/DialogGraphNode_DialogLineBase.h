@@ -90,7 +90,7 @@ public:
 		UAdventureCharacter* SpeakerCharacter = GetSpeaker(GameContext);
 		DialogLine.SpeakerCharacter = SpeakerCharacter;
 		// Used default animation if the animation was not explicitly specified.
-		FName DefaultTextAnimation = SpeakerCharacter && SpeakerCharacter->IsValidLowLevel() ? SpeakerCharacter->DefaultTalkingAnimationState : FName();
+		FName DefaultTextAnimation = IsValid(SpeakerCharacter) ? SpeakerCharacter->DefaultTalkingAnimationState : FName();
 		DialogLine.AnimationName = AnimationName.IsNone() ? DefaultTextAnimation : AnimationName;
 		DialogLine.UserData = nullptr;
 		return DialogLine;

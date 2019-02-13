@@ -15,7 +15,7 @@ UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubcla
 		return nullptr;
 	}
 	UCombinableObject** CombinableObjectInstance = CombinableObjects.Find(CombinableObjectClass);
-	if (CombinableObjectInstance == nullptr || *CombinableObjectInstance == nullptr || !(*CombinableObjectInstance)->IsValidLowLevel())
+	if (CombinableObjectInstance == nullptr || !IsValid(*CombinableObjectInstance))
 	{
 		RegisterObject(CombinableObjectClass);
 		CombinableObjectInstance = CombinableObjects.Find(CombinableObjectClass);

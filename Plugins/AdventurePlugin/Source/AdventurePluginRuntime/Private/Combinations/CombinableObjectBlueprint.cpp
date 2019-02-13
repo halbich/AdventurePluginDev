@@ -7,7 +7,7 @@
 void UCombinableObjectBlueprint::Compiled(UBlueprint* CompiledBlueprint)
 {
 	UCombinableObject* RepresentedObject = Cast<UCombinableObject>(GeneratedClass->ClassDefaultObject);
-	if (RepresentedObject == nullptr || !RepresentedObject->IsValidLowLevel())
+	if (!IsValid(RepresentedObject))
 	{
 		return;
 	}
@@ -72,13 +72,13 @@ UCombinableObject* UCombinableObjectBlueprint::GetCombinableObjectFromAsset(FAss
 #if WITH_EDITOR
 	UObject* AssetObject = AssetData.GetAsset();
 	UCombinableObjectBlueprint* AssetCombinableObject = Cast<UCombinableObjectBlueprint>(AssetObject);
-	if (AssetCombinableObject == nullptr || !AssetCombinableObject->IsValidLowLevel())
+	if (!IsValid(AssetCombinableObject))
 	{
 		return nullptr;
 	}
 	UObject* AssetCDO = AssetCombinableObject->GeneratedClass ? AssetCombinableObject->GeneratedClass->ClassDefaultObject : nullptr;
 	UCombinableObject* AssetCombinableObjectCDO = Cast<UCombinableObject>(AssetCDO);
-	if (AssetCombinableObjectCDO == nullptr || !AssetCombinableObjectCDO->IsValidLowLevel())
+	if (!IsValid(AssetCombinableObjectCDO))
 	{
 		return nullptr;
 	}

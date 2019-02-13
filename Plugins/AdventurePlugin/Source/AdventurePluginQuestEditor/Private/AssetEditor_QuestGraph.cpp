@@ -26,7 +26,7 @@ void FAssetEditor_QuestGraph::RebuildGenericGraph() {
 	}
 	EditingQuestGraph->EndNode = nullptr;
 	for (UGenericGraphNode* Node : EditingQuestGraph->AllNodes) {
-		if (Node != nullptr && Node->IsValidLowLevel() && Node->GetClass()->IsChildOf<UQuestGraphNode_End>())
+		if (IsValid(Node) && Node->GetClass()->IsChildOf<UQuestGraphNode_End>())
 		{
 			EditingQuestGraph->EndNode = Cast<UQuestGraphNode>(Node);
 			break;

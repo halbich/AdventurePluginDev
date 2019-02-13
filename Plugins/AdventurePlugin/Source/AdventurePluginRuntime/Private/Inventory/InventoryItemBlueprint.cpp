@@ -3,14 +3,13 @@
 #pragma optimize("", off)
 UTexture2D* UInventoryItemBlueprint::GetIcon() const
 {
-	if (this->GeneratedClass == nullptr || !this->GeneratedClass->IsValidLowLevel() ||
-		this->GeneratedClass->ClassDefaultObject == nullptr || !this->GeneratedClass->ClassDefaultObject->IsValidLowLevel())
+	if (!IsValid(this->GeneratedClass) || !IsValid(this->GeneratedClass->ClassDefaultObject))
 	{
 		// TODO: Log error.
 		return nullptr;
 	}
 	UInventoryItem* ItemInstance = Cast<UInventoryItem>(this->GeneratedClass->ClassDefaultObject);
-	if (ItemInstance == nullptr || !ItemInstance->IsValidLowLevel())
+	if (!IsValid(ItemInstance))
 	{
 		// TODO: Log error.
 		return nullptr;
@@ -20,9 +19,7 @@ UTexture2D* UInventoryItemBlueprint::GetIcon() const
 
 UInventoryItem * UInventoryItemBlueprint::GetItemInstance(UAdventurePluginGameContext* GameContext)
 {
-	if (GameContext == nullptr || !GameContext->IsValidLowLevel() ||
-		GameContext->ItemManager == nullptr || !GameContext->ItemManager->IsValidLowLevel() ||
-		this->GeneratedClass == nullptr || !this->GeneratedClass->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->ItemManager) || !IsValid(this->GeneratedClass))
 	{
 		return nullptr;
 	}

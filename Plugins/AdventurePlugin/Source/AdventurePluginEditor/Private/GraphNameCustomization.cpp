@@ -39,7 +39,7 @@ FText FGraphNameCustomization::GetHeaderRowName(TSharedRef<IPropertyHandle> Stru
 		UGenericGraph* Graph = Cast<UGenericGraph>(Obj);
 		FName Name;
 		NHandle->GetValue(Name);
-		if (Graph && Graph->IsValidLowLevel() && !Name.IsNone())
+		if (IsValid(Graph) && !Name.IsNone())
 		{
 			Desc = FText::Format(FText::FromString("{0}->{1}"), FText::FromString(Graph->Name), FText::FromName(Name));
 		}

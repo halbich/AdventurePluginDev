@@ -21,12 +21,12 @@ TSet<FComboBoxCustomization::FComboItemType> FGotoCustomization::GetComboBoxOpti
 {
 	TSet<FComboItemType> Ids;
 	UDialogGraphNode_Goto* GotoNode = Cast<UDialogGraphNode_Goto>(ObjectBeingCustomized);
-	if (GotoNode && GotoNode->IsValidLowLevel() && GotoNode->Graph && GotoNode->Graph->IsValidLowLevel())
+	if (IsValid(GotoNode) && IsValid(GotoNode->Graph))
 	{
 		for (UGenericGraphNode* Node : GotoNode->Graph->AllNodes)
 		{
 			UDialogGraphNode* GraphNode = Cast<UDialogGraphNode>(Node);
-			if (GraphNode && GraphNode->IsValidLowLevel() && !GraphNode->Id.IsNone())
+			if (IsValid(GraphNode) && !GraphNode->Id.IsNone())
 			{
 				FComboItemType NewItem = MakeShareable(new FName(GraphNode->Id));
 				Ids.Add(NewItem);

@@ -6,13 +6,12 @@
 UTexture2D* UAdventureCharacterBlueprint::GetIcon() const
 {
 	//TODO: This is here two times, here and for items - make common ancestor with this? 
-	if (this->GeneratedClass == nullptr || !this->GeneratedClass->IsValidLowLevel() ||
-		this->GeneratedClass->ClassDefaultObject == nullptr || !this->GeneratedClass->ClassDefaultObject->IsValidLowLevel())
+	if (!IsValid(this->GeneratedClass) || !IsValid(this->GeneratedClass->ClassDefaultObject))
 	{
 		return nullptr;
 	}
 	UAdventureCharacter* CharacterInstance = Cast<UAdventureCharacter>(this->GeneratedClass->ClassDefaultObject);
-	if (CharacterInstance == nullptr || !CharacterInstance->IsValidLowLevel())
+	if (!IsValid(CharacterInstance))
 	{
 		return nullptr;
 	}
@@ -21,9 +20,7 @@ UTexture2D* UAdventureCharacterBlueprint::GetIcon() const
 
 UAdventureCharacter * UAdventureCharacterBlueprint::GetItemInstance(UAdventurePluginGameContext* GameContext)
 {
-	if (GameContext == nullptr || !GameContext->IsValidLowLevel() || 
-		GameContext->AdventureCharacterManager == nullptr || !GameContext->AdventureCharacterManager->IsValidLowLevel() ||
-		this->GeneratedClass == nullptr || !this->GeneratedClass->IsValidLowLevel())
+	if (!IsValid(GameContext) || !IsValid(GameContext->AdventureCharacterManager) || !IsValid(this->GeneratedClass))
 	{
 		return nullptr;
 	}

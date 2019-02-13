@@ -9,7 +9,7 @@
 void UInventoryController::ShowInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory)
 {
 	CurrentGameContext = GameContext;
-	UInventory* InventoryToShow = (Inventory && Inventory->IsValidLowLevel()) ? Inventory : DefaultInventory;
+	UInventory* InventoryToShow = IsValid(Inventory) ? Inventory : DefaultInventory;
 
 	IInventoryPresenterInterface* PresenterInstance = GetPresenter();
 	if (PresenterInstance && IsValid(GameContext))
