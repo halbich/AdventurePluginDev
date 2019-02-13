@@ -23,12 +23,12 @@ public:
 		TScriptInterface<IAnimatableObjectInterface> CharacterInstance = GetAnimatedObject(GameContext);
 		if (CharacterInstance == nullptr)
 		{
-			// TODO: Log Warning.
+			LOG_Error(NSLOCTEXT("AP", "PlayCharacterAnimationOnceCharacterNull", "UDialogGraphNode_PlayCharacterAnimationOnceBase::Execute::Character is NULL"));
 			return true;
 		}
-		if (!IsValid(GameContext) || IsValid(GameContext->DialogPresenter.GetObject()))
+		if (!IsValid(GameContext) || !IsValid(GameContext->DialogPresenter.GetObject()))
 		{
-			// TODO: Log Warning.
+			LOG_Error(NSLOCTEXT("AP", "PlayCharacterAnimationOncePresenterInvalid", "UDialogGraphNode_PlayCharacterAnimationOnceBase::Execute::DialogPresenter is invalid"));
 			return true;
 		}
 		UObject* DialogPresenter = GameContext->DialogPresenter.GetObject();

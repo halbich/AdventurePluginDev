@@ -1,11 +1,11 @@
 #include "Inventory.h"
 
-bool UInventory::HasItem(UInventoryItem* Item)
+bool UInventory::HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
 	return Items.Contains(Item);
 }
 
-bool UInventory::AddItem(UInventoryItem* Item)
+bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
 	if (Items.Contains(Item))
 	{
@@ -13,24 +13,26 @@ bool UInventory::AddItem(UInventoryItem* Item)
 	}
 	Items.Add(Item);
 	// TODO: Item state: Should we do it here? Or should presenter be responsible
-	Item->ItemState = EInventoryItemState::ItemState_InInventory;
+	Item->SetItemState(EInventoryItemState::ItemState_InInventory, GameContext);
 	if (!bIsUpdating)
 	{
 		InventoryChanged.Broadcast(Item);
 	}
+	Item->OnAddedToInventory.Broadcast(Item);
 	return true;
 }
 
-bool UInventory::RemoveItem(UInventoryItem* Item)
+bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
 	if (!Items.Contains(Item)) return false;
 	Items.Remove(Item);
 	// TODO: Item state: Should we do it here? Or should presenter be responsible
-	Item->ItemState = EInventoryItemState::ItemState_Used;
+	Item->SetItemState(EInventoryItemState::ItemState_Used, GameContext);
 	if (!bIsUpdating)
 	{
 		InventoryChanged.Broadcast(Item);
 	}
+	Item->OnRemovedFromInventory.Broadcast(Item);
 	return true;
 }
 

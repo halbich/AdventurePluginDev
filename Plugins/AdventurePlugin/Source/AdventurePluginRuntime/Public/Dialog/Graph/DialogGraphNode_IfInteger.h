@@ -22,19 +22,19 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
-	FQuestGraphInteger Integer;
+		FQuestGraphInteger Integer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
-	int32 Constant;
+		int32 Constant;
 
 	UPROPERTY(BlueprintReadOnly)
-	UDialogGraphNode* ChildLess;
+		UDialogGraphNode* ChildLess;
 
 	UPROPERTY(BlueprintReadOnly)
-	UDialogGraphNode* ChildEqual;
+		UDialogGraphNode* ChildEqual;
 
 	UPROPERTY(BlueprintReadOnly)
-	UDialogGraphNode* ChildMore;
+		UDialogGraphNode* ChildMore;
 
 	virtual void ResetSpecialChildren() override
 	{
@@ -47,9 +47,9 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::Format(NSLOCTEXT("DialogGraphNode_IfInteger", "NodeTitle", "COMPARE {0}->{1} WITH {2}"), 
+		return FText::Format(NSLOCTEXT("DialogGraphNode_IfInteger", "NodeTitle", "COMPARE {0}->{1} WITH {2}"),
 			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : "<EMPTY>"),
-			FText::FromName(Integer.IntegerName), 
+			FText::FromName(Integer.IntegerName),
 			Constant);
 	}
 
@@ -67,13 +67,22 @@ public:
 
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
 	{
-		if (IsValid(Integer.Quest))
+		if (!IsValid(Integer.Quest))
 		{
-			int32 VariableValue = Integer.Quest->GetInteger(GameContext, Integer.IntegerName);
-			if (VariableValue < Constant) return ChildLess;
-			else if (VariableValue == Constant) return ChildEqual;
-			else return ChildMore;
+			return nullptr;
 		}
-		return nullptr;
+		int32 VariableValue = Integer.Quest->GetInteger(GameContext, Integer.IntegerName);
+		if (VariableValue < Constant)
+		{
+			return ChildLess;
+		}
+		else if (VariableValue == Constant)
+		{
+			return ChildEqual;
+		}
+		else
+		{
+			return ChildMore;
+		}
 	}
 };

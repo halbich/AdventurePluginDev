@@ -64,6 +64,6 @@ public:
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Item Instance", "Quest graph node: Item could not be instantiated"));
 			return false;
 		}
-		return GameContext->InventoryController->GetInventory()->HasItem(ItemInstance);
+		return GameContext->InventoryController->GetInventory()->HasItem(ItemInstance, GameContext);
 	}
 };

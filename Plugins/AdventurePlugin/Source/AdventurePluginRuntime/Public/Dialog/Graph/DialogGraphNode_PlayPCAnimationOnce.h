@@ -8,6 +8,7 @@
 #include "AdventureCharacterManager.h"
 #include "Presenter/DialogPresenterInterface.h"
 #include "AnimatableObjectInterface.h"
+#include "AdventurePluginRuntime.h"
 #include "DialogGraphNode_PlayPCAnimationOnce.generated.h"
 
 UCLASS(Blueprintable)
@@ -52,7 +53,7 @@ public:
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		if (DialogGraph == nullptr || DialogGraph->PlayerCharacter == nullptr)
 		{
-			// TODO: Log error.
+			LOG_Error(NSLOCTEXT("AP", "PlayPCAnimationOnceNodePlayerCharacterNull", "DialogGraphNode_PlayPCAnimationOnce::GetAnimatedObjectClass::Player is NULL"));
 			return nullptr;
 		}
 		return DialogGraph->PlayerCharacter;

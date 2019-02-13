@@ -54,7 +54,7 @@ public:
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Item Instance", "Quest graph node: Item could not be instantiated"));
 			return false;
 		}
-		return ItemInstance->WasPickedUp();
+		return ItemInstance->WasPickedUp(GameContext);
 	}
 
 #if WITH_EDITOR

@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
 #include "Kismet/GameplayStatics.h"
+#include "InventoryItemState.h"
+#include "InventoryItem.h"
 #include "AdventurePluginSaveGame.generated.h"
 
 /**
@@ -26,6 +28,9 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginSaveGame : public USaveGame
 
 	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
 		TMap<FName, FString> StorageString;
+
+	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
+		TMap<TSubclassOf<UInventoryItem>, EInventoryItemState> StorageItemStates;
 
 public:
 
@@ -55,6 +60,13 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
 		void SetString(FName Name, FString Value);
+
+
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		EInventoryItemState GetItemStateOrDefault(TSubclassOf<UInventoryItem> Item, EInventoryItemState DefaultValue);
+
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
+		void SetItemState(TSubclassOf<UInventoryItem> Item, EInventoryItemState Value);
 
 
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")

@@ -17,16 +17,16 @@ public:
 	TArray<UInventoryItem*> Items;
 
 	UPROPERTY(BlueprintAssignable, Category = "Inventory")
-		FInventoryChangedEvent InventoryChanged;
+	FInventoryChangedEvent InventoryChanged;
 
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	bool HasItem(UInventoryItem* Item);
+	bool HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
 
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	bool AddItem(UInventoryItem* Item);
+	bool AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
 
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	bool RemoveItem(UInventoryItem* Item);
+	bool RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
 	// Call if adding or removing multiple items in a row and you want to fire only one update event for all of those updates.
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	void BeginUpdate();

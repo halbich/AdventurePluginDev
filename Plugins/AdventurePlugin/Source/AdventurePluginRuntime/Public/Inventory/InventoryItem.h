@@ -56,9 +56,6 @@ public:
 	/* Tags assigned to this item, e.g. weapon, critical, red herring etc. No inherent function unless designers make it so*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory")
 		FGameplayTagContainer ItemTags;
-	/* The current state of the item, e.g. it is spawned, but not yet picked up. In defaults this is the inital state of the item.*/
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-		EInventoryItemState ItemState;
 	/*The examine action of this item.*/
 	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
 		void Examine(UAdventurePluginGameContext* GameContext);
@@ -72,5 +69,13 @@ public:
 	}
 	/*Returns true if this item was already picked up.*/
 	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
-		bool WasPickedUp();
+		bool WasPickedUp(UAdventurePluginGameContext* GameContext);
+
+	/* The default state of the item, e.g. it is spawned, but not yet picked up. In defaults this is the inital state of the item.*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory")
+		EInventoryItemState DefaultItemState;
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+		EInventoryItemState GetItemState(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+		void SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContext);
 };

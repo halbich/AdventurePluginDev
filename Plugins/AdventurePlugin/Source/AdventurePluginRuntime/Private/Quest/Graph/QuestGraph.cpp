@@ -49,7 +49,7 @@ void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
 	}
 	LOG_Error(FText::Format(NSLOCTEXT("AP", "Quest node not found", "Quest {0}: Cannot set a flag to true, flag with name {1} not found."), GetGraphNameText(), FlagNameText));
 }
-
+ 
 bool UQuestGraph::GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName)
 {
 	if (!GameContext || !GameContext->IsValidLowLevel())

@@ -12,4 +12,5 @@ enum class EInventoryItemState : uint8
 	ItemState_InInventory	 	UMETA(DisplayName = "In Inventory"),
 	ItemState_Used				UMETA(DisplayName = "Used"),
 	ItemState_Custom		 	UMETA(DisplayName = "Custom"),
+	ItemState_Invalid		 	UMETA(DisplayName = "Custom"),
 };

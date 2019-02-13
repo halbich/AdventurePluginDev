@@ -71,7 +71,24 @@ void UAdventurePluginSaveGame::SetString(FName Name, FString Value)
 	StorageString.Add(Name, Value);
 }
 
+EInventoryItemState UAdventurePluginSaveGame::GetItemStateOrDefault(TSubclassOf<UInventoryItem> Item, EInventoryItemState DefaultValue)
+{
+	EInventoryItemState* Result = StorageItemStates.Find(Item);
+	if (Result == nullptr)
+	{
+		StorageItemStates.Add(Item, DefaultValue);
+		return DefaultValue;
+	}
+	else
+	{
+		return *Result;
+	}
+}
 
+void UAdventurePluginSaveGame::SetItemState(TSubclassOf<UInventoryItem> Item, EInventoryItemState Value)
+{
+	StorageItemStates.Add(Item, Value);
+}
 
 UAdventurePluginSaveGame* UAdventurePluginSaveGame::CreateSave(FString& SlotName, int32 UserIndex)
 {

@@ -69,7 +69,7 @@ public:
 			// TODO: Log Warning.
 			return true;
 		}
-		if (!IsValid(GameContext) || IsValid(GameContext->DialogPresenter.GetObject()))
+		if (!IsValid(GameContext) || !IsValid(GameContext->DialogPresenter.GetObject()))
 		{
 			// TODO: Log Warning.
 			return true;
