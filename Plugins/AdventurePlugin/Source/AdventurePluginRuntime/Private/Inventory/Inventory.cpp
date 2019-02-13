@@ -1,12 +1,17 @@
+
 #include "Inventory.h"
+#include "AdventurePluginSaveGame.h"
+#include "AdventurePluginGameContext.h"
+#include "ItemManager.h"
 
 bool UInventory::HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
-	return Items.Contains(Item);
+	return GetItems(GameContext).Contains(Item);
 }
 
 bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
+	TArray<UInventoryItem*> Items = GetItems(GameContext);
 	if (Items.Contains(Item))
 	{
 		return false;
@@ -19,11 +24,13 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 		InventoryChanged.Broadcast(Item);
 	}
 	Item->OnAddedToInventory.Broadcast(Item);
+	SetItems(Items, GameContext);
 	return true;
 }
 
 bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
+	TArray<UInventoryItem*> Items = GetItems(GameContext);
 	if (!Items.Contains(Item)) return false;
 	Items.Remove(Item);
 	// TODO: Item state: Should we do it here? Or should presenter be responsible
@@ -33,6 +40,7 @@ bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* G
 		InventoryChanged.Broadcast(Item);
 	}
 	Item->OnRemovedFromInventory.Broadcast(Item);
+	SetItems(Items, GameContext);
 	return true;
 }
 
@@ -49,4 +57,37 @@ void UInventory::EndUpdate()
 		InventoryChanged.Broadcast(nullptr);
 	}
 	bIsUpdating = false;
+}
+
+TArray<UInventoryItem*> UInventory::GetItems(UAdventurePluginGameContext* GameContext)
+{
+	TArray<UInventoryItem*> InventoryItems = TArray<UInventoryItem*>();
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame) || !IsValid(GameContext->ItemManager))
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "Inventory::GetItems::gameContext is invalid"));
+		return InventoryItems;
+	}
+
+	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
+	for (TSubclassOf<UInventoryItem>& ItemClass : SaveGame->StorageInventory)
+	{
+		InventoryItems.Add(GameContext->ItemManager->GetItem(ItemClass));
+	}
+	return InventoryItems;
+}
+
+void UInventory::SetItems(TArray<UInventoryItem*> NewItems, UAdventurePluginGameContext* GameContext)
+{
+	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame) || !IsValid(GameContext->ItemManager))
+	{
+		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "Inventory::SetItems::gameContext is invalid"));
+		return;
+	}
+
+	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
+	SaveGame->StorageInventory.Empty();
+	for (UInventoryItem* Item : NewItems)
+	{
+		SaveGame->StorageInventory.Add(Item->GetClass());
+	}
 }

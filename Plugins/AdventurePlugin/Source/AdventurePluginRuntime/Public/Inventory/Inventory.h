@@ -13,8 +13,8 @@ class ADVENTUREPLUGINRUNTIME_API UInventory : public UObject
 
 public:
 
-	UPROPERTY(BlueprintReadOnly, Category = "Inventory")
-	TArray<UInventoryItem*> Items;
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+	TArray<UInventoryItem*> GetItems(UAdventurePluginGameContext* GameContext);
 
 	UPROPERTY(BlueprintAssignable, Category = "Inventory")
 	FInventoryChangedEvent InventoryChanged;
@@ -36,4 +36,7 @@ public:
 private:
 	UPROPERTY(Transient)
 	bool bIsUpdating;
+
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+	void SetItems(TArray<UInventoryItem*> NewItems, UAdventurePluginGameContext* GameContext);
 };

@@ -19,20 +19,22 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginSaveGame : public USaveGame
 
 		UAdventurePluginSaveGame();
 
-
-	UPROPERTY(EditDefaultsOnly, Category= "StoredValues")
+	UPROPERTY(VisibleAnywhere, Category= "StoredValues")
 		TMap<FName, bool> StorageBoolean;
 
-	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
+	UPROPERTY(VisibleAnywhere, Category = "StoredValues")
 		TMap<FName, int32> StorageInt;
 
-	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
+	UPROPERTY(VisibleAnywhere, Category = "StoredValues")
 		TMap<FName, FString> StorageString;
 
-	UPROPERTY(EditDefaultsOnly, Category = "StoredValues")
+	UPROPERTY(VisibleAnywhere, Category = "StoredValues")
 		TMap<TSubclassOf<UInventoryItem>, EInventoryItemState> StorageItemStates;
 
 public:
+
+	UPROPERTY(VisibleAnywhere, Category = "StoredValues")
+		TArray<TSubclassOf<UInventoryItem>> StorageInventory;
 
 	UPROPERTY(VisibleAnywhere, Category = Basic, meta = (DisplayName = "Slot Name"))
 		FString SaveSlotName;
