@@ -19,6 +19,7 @@
 #include "IconThumbnailRenderer.h"
 #include "GenericGraph/GenericGraphEditorStyle.h"
 #include "SaveGame/AdventurePluginSaveGame.h"
+#include "Customizations/InventoryItemCustomization.h"
 
 #include "PropertyEditorModule.h"
 
@@ -53,6 +54,10 @@ void FAdventurePluginEditor::StartupModule()
 	FGenericGraphEditorStyle::Initialize();
 
 	RegisterSettings();
+
+	// Registering custom property layouts
+	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+	PropertyModule.RegisterCustomClassLayout(UInventoryItem::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FInventoryItemCustomization::MakeInstance));
 }
 
 void FAdventurePluginEditor::ShutdownModule()
@@ -76,6 +81,12 @@ void FAdventurePluginEditor::ShutdownModule()
 		{
 			AssetTools.UnregisterAssetTypeActions(CreatedAssetTypeActions[Index].ToSharedRef());
 		}
+	}
+
+	if (FModuleManager::Get().IsModuleLoaded("PropertyEditor"))
+	{
+		FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+		PropertyModule.UnregisterCustomClassLayout(UInventoryItem::StaticClass()->GetFName());
 	}
 
 	FGenericGraphEditorStyle::Shutdown();
