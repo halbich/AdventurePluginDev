@@ -13,6 +13,7 @@
 #include "InventoryItem.generated.h"
 
 class UInventoryItemBlueprint;
+class UInventory;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FItemNotificationEvent, UInventoryItem*, AffectedItem);
 /*Represents a single game item.*/
@@ -46,20 +47,35 @@ public:
 	/*The type of the use action on this item*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Usage")
 		FName UseActionType;
-	/*This notification will be fired when this item is picked up.*/
-	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Inventory Item")
-		FItemNotificationEvent OnAddedToInventory;
-	/*This notification will be fired when this item is removed from inventory.*/
-	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Inventory Item")
-		FItemNotificationEvent OnRemovedFromInventory;
 	/* Tags assigned to this item, e.g. weapon, critical, red herring etc. No inherent function unless designers make it so*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
 		FGameplayTagContainer ItemTags;
-	/*The examine action of this item.*/
+	/* The default state of the item, e.g. it is spawned, but not yet picked up. In defaults this is the inital state of the item.*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
+		EInventoryItemState DefaultItemState;
+	/*Retrieves the current state of the item.*/
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+		EInventoryItemState GetItemState(UAdventurePluginGameContext* GameContext);
+	/*Sets the current state of the item*/
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
+		void SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContext);
+	/*This notification will be fired when this item is added to inventory.*/
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Inventory Item")
+		FItemNotificationEvent AddedToInventory;
+	/*This method is called when the item is added to inventory. Expected to be overriden on child classes to give custom behavior.*/
 	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
+		void OnAddedToInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
+	/*This notification will be fired when this item is removed from inventory.*/
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Inventory Item")
+		FItemNotificationEvent RemovedFromInventory;
+	/*This method is called when the item is removed from inventory. Expected to be overriden on child classes to give custom behavior.*/
+	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
+		void OnRemovedFromInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
+	/*Executes examine action on the item. Can be overriden, default behavior starts the examine dialog.*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
 		void Examine(UAdventurePluginGameContext* GameContext);
-	/*The use action of this object.*/
-	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
+	/*Executes the use action of the object. Does nothing by default.*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
 		void Use(UAdventurePluginGameContext* GameContext);
 	/*The icon representing this item in asset editor.*/
 	virtual UTexture2D* GetIcon() const override
@@ -67,14 +83,6 @@ public:
 		return Icon;
 	}
 	/*Returns true if this item was already picked up.*/
-	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
 		bool WasPickedUp(UAdventurePluginGameContext* GameContext);
-
-	/* The default state of the item, e.g. it is spawned, but not yet picked up. In defaults this is the inital state of the item.*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
-		EInventoryItemState DefaultItemState;
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-		EInventoryItemState GetItemState(UAdventurePluginGameContext* GameContext);
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-		void SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContext);
 };

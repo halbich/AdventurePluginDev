@@ -1,5 +1,6 @@
 ﻿#include "InventoryItem.h"
 #include "AdventurePluginSaveGame.h"
+#include "Inventory.h"
 #include "AdventurePluginBlueprintLibrary.h"
 
 void UInventoryItem::Examine_Implementation(UAdventurePluginGameContext* GameContext)
@@ -41,4 +42,10 @@ void UInventoryItem::SetItemState(EInventoryItemState NewValue, UAdventurePlugin
 
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
 	SaveGame->SetItemState(GetClass(), NewValue);
+}
+void UInventoryItem::OnAddedToInventory_Implementation(UInventory* Inventory, UAdventurePluginGameContext* GameContext)
+{
+}
+void UInventoryItem::OnRemovedFromInventory_Implementation(UInventory* Inventory, UAdventurePluginGameContext* GameContext)
+{
 }

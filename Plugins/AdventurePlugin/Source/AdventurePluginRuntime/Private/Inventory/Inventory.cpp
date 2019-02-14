@@ -23,7 +23,9 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 	{
 		InventoryChanged.Broadcast(Item);
 	}
-	Item->OnAddedToInventory.Broadcast(Item);
+	Item->OnAddedToInventory(this, GameContext);
+	// While it might be better for the event to be raised by OnAddedToInventory, that could be easily forgotten by designers overriding that. And we don't want that.
+	Item->AddedToInventory.Broadcast(Item);
 	SetItems(Items, GameContext);
 	return true;
 }
@@ -39,7 +41,9 @@ bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* G
 	{
 		InventoryChanged.Broadcast(Item);
 	}
-	Item->OnRemovedFromInventory.Broadcast(Item);
+	Item->OnRemovedFromInventory(this, GameContext);
+	// While it might be better for the event to be raised by OnRemovedFromInventory, that could be easily forgotten by designers overriding that. And we don't want that.
+	Item->RemovedFromInventory.Broadcast(Item);
 	SetItems(Items, GameContext);
 	return true;
 }
