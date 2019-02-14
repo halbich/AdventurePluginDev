@@ -22,6 +22,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
 		UCombinableObject* GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass);
 
+	void ClearMap();
+
 
 private:
 

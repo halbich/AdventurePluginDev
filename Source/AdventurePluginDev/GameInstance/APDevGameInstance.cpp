@@ -14,6 +14,8 @@ void UAPDevGameInstance::Init()
 
 	FString DebugSaveName("DebugSave");
 	CurrentGameContext->SaveGame = UAdventurePluginSaveGame::CreateSave(DebugSaveName, 0);
+	CurrentGameContext->ItemManager->ClearMap();
+	CurrentGameContext->AdventureCharacterManager->ClearMap();
 
 #endif
 }

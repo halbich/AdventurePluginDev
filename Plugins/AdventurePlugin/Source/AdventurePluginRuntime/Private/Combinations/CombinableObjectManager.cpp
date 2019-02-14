@@ -24,6 +24,11 @@ UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubcla
 	return CombinableObjectInstance ? *CombinableObjectInstance : nullptr;
 }
 
+void UCombinableObjectManager::ClearMap()
+{
+	CombinableObjects.Empty();
+}
+
 void UCombinableObjectManager::RegisterObject(TSubclassOf<UCombinableObject> CombinableObjectClass)
 {
 	UCombinableObject* NewCombinableObject = NewObject<UCombinableObject>(this, CombinableObjectClass);
