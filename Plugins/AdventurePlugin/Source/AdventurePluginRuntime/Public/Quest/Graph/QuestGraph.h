@@ -92,4 +92,5 @@ public:
 
 protected:
 	FText GetGraphNameText();
+	FName GetQualifiedVariableName(FName VariableName);
 };
