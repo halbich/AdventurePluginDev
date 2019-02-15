@@ -40,6 +40,11 @@ public:
 #endif
 	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		return IsValid(String.Quest) && Constant.Compare(String.Quest->GetString(GameContext, String.StringName)) == 0;
+		if (!IsValid(String.Quest))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfStringIsTrueQuestInvalid", "DialogGraphNode_IfString:IsTrue:Quest is null or invalid."));
+			return false;
+		}
+		return Constant.Compare(String.Quest->GetString(GameContext, String.StringName)) == 0;
 	}
 };

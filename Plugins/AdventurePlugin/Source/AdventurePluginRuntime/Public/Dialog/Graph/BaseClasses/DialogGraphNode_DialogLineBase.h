@@ -92,6 +92,10 @@ public:
 		FName DefaultTextAnimation = IsValid(SpeakerCharacter) ? SpeakerCharacter->DefaultTalkingAnimationState : FName();
 		DialogLine.AnimationName = AnimationName.IsNone() ? DefaultTextAnimation : AnimationName;
 		DialogLine.UserData = nullptr;
+		if (!IsValid(SpeakerCharacter))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_DialogLineBaseGetDialogLineSpeakerInvalid", "UDialogGraphNode_DialogLineBase:GetDialogLine::Speaker is null or invalid."));
+		}
 		return DialogLine;
 	}
 };

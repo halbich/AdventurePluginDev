@@ -47,7 +47,11 @@ public:
 
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		if (!IsValid(Integer.Quest)) return true;
+		if (!IsValid(Integer.Quest))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IncrementInteger", "DialogGraphNode_IncrementInteger:Execute:Quest is null or invalid."));
+			return true;
+		}
 		int32 OldValue = Integer.Quest->GetInteger(GameContext, Integer.IntegerName);
 		Integer.Quest->SetInteger(GameContext, Integer.IntegerName, OldValue + 1);
 		return true;

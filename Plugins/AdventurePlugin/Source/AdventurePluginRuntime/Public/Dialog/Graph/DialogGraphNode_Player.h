@@ -34,7 +34,12 @@ public:
 	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
-		return IsValid(DialogGraph) ? DialogGraph->PlayerCharacter.GetDefaultObject() : nullptr;
+		if (!IsValid(DialogGraph))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_PlayerGetSpeakerEditorOnlyGraphInvalid", "DialogGraphNode_Player:GetSpeaker:Dialog graph is null or invalid."));
+			return nullptr;
+		}
+		return DialogGraph->PlayerCharacter.GetDefaultObject();
 	}
 
 #endif
@@ -58,6 +63,11 @@ public:
 	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const override
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
-		return IsValid(DialogGraph) ? DialogGraph->GetDialogPlayerCharacterInstance(GameContext) : nullptr;
+		if (!IsValid(DialogGraph))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_PlayerGetSpeakerGraphInvalid", "DialogGraphNode_Player:GetSpeaker:Dialog graph is null or invalid."));
+			return nullptr;
+		}
+		return DialogGraph->GetDialogPlayerCharacterInstance(GameContext);
 	}
 };

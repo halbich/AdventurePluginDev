@@ -17,15 +17,4 @@ UTexture2D* UAdventureCharacterBlueprint::GetIcon() const
 	}
 	return CharacterInstance->Icon;
 }
-
-UAdventureCharacter * UAdventureCharacterBlueprint::GetItemInstance(UAdventurePluginGameContext* GameContext)
-{
-	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("AdventureCharacterBlueprint:GetItemInstance")) || !IsValid(this->GeneratedClass))
-	{
-		return nullptr;
-	}
-	TSubclassOf<UAdventureCharacter> CharacterClass = (TSubclassOf<UAdventureCharacter>)(this->GeneratedClass);
-	
-	return GameContext->AdventureCharacterManager->GetCharacter(CharacterClass);
-}
 #pragma optimize("", on)

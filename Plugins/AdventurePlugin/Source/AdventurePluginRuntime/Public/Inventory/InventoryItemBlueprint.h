@@ -20,8 +20,5 @@ class ADVENTUREPLUGINRUNTIME_API UInventoryItemBlueprint : public UCombinableObj
 public:
 
 	virtual UTexture2D* GetIcon() const override;
-
-	UFUNCTION(BlueprintCallable)
-	UInventoryItem* GetItemInstance(UAdventurePluginGameContext* GameContext);
 };
 #pragma optimize("", on)

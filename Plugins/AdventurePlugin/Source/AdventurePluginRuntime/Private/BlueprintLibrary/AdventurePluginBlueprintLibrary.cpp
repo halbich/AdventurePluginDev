@@ -17,7 +17,6 @@ void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePlugin
 	UDialogGraph* DialogGraph = EntryPoint.Dialog;
 	if (!IsValid(DialogGraph))
 	{
-		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "DialogGraphNull", "Show dialog::graph is NULL"));
 		return;
 	}
@@ -96,7 +95,6 @@ bool UAdventurePluginBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContex
 
 	if (!IsValid(QuestGraph))
 	{
-		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "QuestGraphInvalid", "Bind event::graph is invalid"));
 		return false;
 	}
@@ -104,7 +102,6 @@ bool UAdventurePluginBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContex
 	TMap<FName, FQuestEvent>& QuestEventsMap = QuestGraph->QuestEvents;
 	if (!QuestEventsMap.Contains(EventName))
 	{
-		// TODO: Error.
 		LOG_Warning(NSLOCTEXT("AP", "EventNameUndefined", "Bind event::event name is not defined in quest"));
 		return false;
 	}

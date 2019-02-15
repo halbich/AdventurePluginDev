@@ -35,7 +35,12 @@ public:
 	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
-		return IsValid(DialogGraph) ? DialogGraph->NPCCharacter.GetDefaultObject() : nullptr;
+		if (!IsValid(DialogGraph))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_NPCGetSpeakerEditorOnlyGraphInvalid", "DialogGraphNode_NPC:GetSpeakerEditorOnly:Quest is null or invalid."));
+			return nullptr;
+		}
+		return DialogGraph->NPCCharacter.GetDefaultObject();
 	}
 
 #endif
@@ -43,6 +48,11 @@ public:
 	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const override
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
-		return IsValid(DialogGraph) ? DialogGraph->GetDialogNPCCharacterInstance(GameContext) : nullptr;
+		if (!IsValid(DialogGraph))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_NPCGetSpeakerGraphInvalid", "DialogGraphNode_NPC:GetSpeaker:Quest is null or invalid."));
+			return nullptr;
+		}
+		return DialogGraph->GetDialogNPCCharacterInstance(GameContext);
 	}
 };

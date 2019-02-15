@@ -37,6 +37,11 @@ public:
 
 	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		return IsValid(Bool.Quest) && Bool.Quest->GetBool(GameContext, Bool.BoolName);
+		if (!IsValid(Bool.Quest))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfBool", "DialogGraphNode_IfBool:IsTrue:Quest is null or invalid."));
+			return false;
+		}
+		return Bool.Quest->GetBool(GameContext, Bool.BoolName);
 	}
 };

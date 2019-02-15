@@ -35,6 +35,11 @@ public:
 #endif
 	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		return IsValid(Flag.Quest) && Flag.Quest->GetFlag(GameContext, Flag.FlagName);
+		if (!IsValid(Flag.Quest))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfQuestFlagQuestInvalid", "DialogGraphNode_IfQuestFlag:IsTrue:Quest is null or invalid."));
+			return false;
+		}
+		return Flag.Quest->GetFlag(GameContext, Flag.FlagName);
 	}
 };

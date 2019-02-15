@@ -49,6 +49,7 @@ public:
 	{
 		if (!IsValid(Flag.Quest))
 		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_SetQuestFlagQuestInvalid", "DialogGraphNode_SetQuestFlag:Execute:Quest is null or invalid."));
 			return true;
 		}
 		Flag.Quest->SetFlag(GameContext, Flag.FlagName);

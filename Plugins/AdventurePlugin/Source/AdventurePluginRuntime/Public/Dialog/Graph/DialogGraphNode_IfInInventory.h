@@ -52,13 +52,13 @@ public:
 		}
 		if (!IsValid(Item))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "Invalid Item", "Quest graph node: Inventory: Nil or invalid item passed"));
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfInInventoryInvalidItem", "DialogGraphNode_IfInInventory:IsTrue: Nil or invalid item passed"));
 			return false;
 		}
 		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
 		if (!IsValid(ItemInstance))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "Invalid Item Instance", "Quest graph node: Item could not be instantiated"));
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfInInventoryInvalidItemInstance", "DialogGraphNode_IfInInventory:IsTrue: Item could not be instantiated"));
 			return false;
 		}
 		return GameContext->InventoryController->GetInventory()->HasItem(ItemInstance, GameContext);

@@ -27,6 +27,7 @@ void UCombinableObject::RefreshCombinations()
 	{
 		if (!IsValid(CombinationInterface.GetObject()))
 		{
+			LOG_Warning(NSLOCTEXT("AP", "CombinableObjectRefreshCombinationInvalidCombination", "CombinableObject:RefreshCombinations: Found null or invalid combination."));
 			continue;
 		}
 		TArray<UClass*> AllCombinationTargets = CombinationInterface->Execute_GetCombinationTargetClasses(CombinationInterface.GetObject());

@@ -65,7 +65,7 @@ public:
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		if (!IsValid(DialogGraph))
 		{
-			//TODO: Log warning
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_GotoGraphNullOrInvalid", "DialogGraphNode_Goto:GetNextNode:Graph is null or invalid."));
 			return nullptr;
 		}
 		UDialogGraphNode** TargetNode = DialogGraph->IdToNodeMap.Find(TargetNodeId);

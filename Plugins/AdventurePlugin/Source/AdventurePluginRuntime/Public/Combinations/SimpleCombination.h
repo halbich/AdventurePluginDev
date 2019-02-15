@@ -4,6 +4,7 @@
 #include "Delegate.h"
 #include "CombinableObject.h"
 #include "CombinationInterface.h"
+#include "AdventurePluginRuntime.h"
 #include "SimpleCombination.generated.h"
 
 class UAdventurePluginGameContext;
@@ -50,6 +51,11 @@ public:
 
 	virtual	bool CanCombineWith_Implementation(UObject* CombinationTarget)
 	{
-		return IsValid(CombinationTarget) ? CombinationTarget->GetClass()->IsChildOf(TargetClass) : false;
+		if (!IsValid(CombinationTarget))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "SimpleCombination_CanCombineWithNullItem", "SimpleCombination:CanCombineWith::The other item is null or invalid."));
+			return false;
+		}
+		return CombinationTarget->GetClass()->IsChildOf(TargetClass);
 	}
 };

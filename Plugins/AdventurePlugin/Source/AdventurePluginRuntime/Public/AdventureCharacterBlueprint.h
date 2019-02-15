@@ -19,8 +19,5 @@ class ADVENTUREPLUGINRUNTIME_API UAdventureCharacterBlueprint : public UCombinab
 public:
 
 	virtual UTexture2D* GetIcon() const override;
-
-	UFUNCTION(BlueprintCallable)
-		UAdventureCharacter* GetItemInstance(UAdventurePluginGameContext* GameContext);
 };
 #pragma optimize("", on)

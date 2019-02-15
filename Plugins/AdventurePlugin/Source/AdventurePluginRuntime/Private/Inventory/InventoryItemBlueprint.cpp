@@ -5,25 +5,13 @@ UTexture2D* UInventoryItemBlueprint::GetIcon() const
 {
 	if (!IsValid(this->GeneratedClass) || !IsValid(this->GeneratedClass->ClassDefaultObject))
 	{
-		// TODO: Log error.
 		return nullptr;
 	}
 	UInventoryItem* ItemInstance = Cast<UInventoryItem>(this->GeneratedClass->ClassDefaultObject);
 	if (!IsValid(ItemInstance))
 	{
-		// TODO: Log error.
 		return nullptr;
 	}
 	return ItemInstance->Icon;
-}
-
-UInventoryItem * UInventoryItemBlueprint::GetItemInstance(UAdventurePluginGameContext* GameContext)
-{
-	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryItemBlueprint:GetItemInstance")) || !IsValid(this->GeneratedClass))
-	{
-		return nullptr;
-	}
-	TSubclassOf<UInventoryItem> ItemClass = (TSubclassOf<UInventoryItem>)(this->GeneratedClass);
-	return GameContext->ItemManager->GetItem(ItemClass);
 }
 #pragma optimize("", on)

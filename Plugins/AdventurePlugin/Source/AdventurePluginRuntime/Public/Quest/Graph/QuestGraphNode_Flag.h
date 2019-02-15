@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
+#include "AdventurePluginRuntime.h"
 #include "QuestGraphNode_Flag.generated.h"
 
 UCLASS(Blueprintable)
@@ -24,8 +25,12 @@ public:
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
 		UQuestGraph* ParentGraph = Cast<UQuestGraph>(Graph);
-		check(IsValid(ParentGraph));
-		return ParentGraph && ParentGraph->GetFlag(GameContext, FlagName);
+		if (!IsValid(ParentGraph))
+		{
+			LOG_Warning(NSLOCTEXT("AP", "QuestGraphNode_Flag", "QuestGraphNode_Flag:IsSatisfied:Graph is invalid."));
+			return false;
+		}
+		return ParentGraph->GetFlag(GameContext, FlagName);
 	}
 
 #if WITH_EDITOR

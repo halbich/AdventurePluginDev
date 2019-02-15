@@ -47,9 +47,9 @@ public:
 
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		// TODO
 		if (!IsValid(Bool.Quest))
 		{
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_SwitchBoolQuestInvalid", "DialogGraphNode_SwitchBool:Execute: Quest null or invalid."));
 			return true;
 		}
 		bool bOldValue = Bool.Quest->GetBool(GameContext, Bool.BoolName);
