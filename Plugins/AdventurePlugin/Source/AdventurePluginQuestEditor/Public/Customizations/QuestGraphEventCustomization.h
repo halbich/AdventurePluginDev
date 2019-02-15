@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "PropertyHandle.h"
-#include "GraphNameCustomization.h"
+#include "Customizations/BaseClasses/GraphNameCustomization.h"
 
 class FQuestGraphEventCustomization : public FGraphNameCustomization
 {
