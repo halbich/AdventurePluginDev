@@ -45,8 +45,5 @@ private:
 	UPROPERTY(Transient)
 		TScriptInterface<IInventoryPresenterInterface> CurrentPresenter;
 
-	FORCEINLINE IInventoryPresenterInterface* GetPresenter()
-	{
-		return IsValid(CurrentGameContext) ? Cast<IInventoryPresenterInterface>(CurrentGameContext->InventoryPresenter.GetObject()) : nullptr;
-	}
+	TScriptInterface<IInventoryPresenterInterface> GetPresenter();
 };

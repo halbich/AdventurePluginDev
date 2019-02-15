@@ -41,9 +41,8 @@ public:
 
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		if (!IsValid(GameContext) || !IsValid(GameContext->DialogPresenter.GetObject()))
+		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_Player:Execute")))
 		{
-			/* TODO: Log warning.*/
 			return true;
 		}
 		UObject* DialogPresenter = GameContext->DialogPresenter.GetObject();

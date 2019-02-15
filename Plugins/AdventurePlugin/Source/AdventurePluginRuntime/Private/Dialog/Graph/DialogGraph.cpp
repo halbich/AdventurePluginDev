@@ -4,6 +4,7 @@
 #include "DialogGraphNode_Event.h"
 #include "AdventurePluginGameContext.h"
 #include "AdventureCharacterManager.h"
+#include "AdventurePluginRuntime.h"
 #include "Engine/Engine.h"
 
 #define LOCTEXT_NAMESPACE "DialogGraph"
@@ -45,14 +46,13 @@ UAdventureCharacter* UDialogGraph::GetDialogNPCCharacterInstance(UAdventurePlugi
 
 UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Speaker)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->AdventureCharacterManager))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraph:GetSpeakerInstance")))
 	{
-		// TODO: Log warning/error.
 		return nullptr;
 	}
 	if (Speaker == nullptr)
 	{
-		// TODO: Log error.
+		LOG_Warning(NSLOCTEXT("AP", "GetSpeakerInstanceSpeakerNull", "DialogGraph:GetSpeakerInstance: The speaker is null."));
 		return nullptr;
 	}
 	UAdventureCharacter* CharacterInstance = GameContext->AdventureCharacterManager->GetCharacter(Speaker);

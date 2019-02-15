@@ -20,10 +20,8 @@ UQuestGraph::~UQuestGraph()
 
 void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName)
 {
-	//TODO: This checking is for every method here, could be refactored outside.
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraph:SetFlag")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetFlag::gameContext is invalid"));
 		return;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
@@ -47,9 +45,8 @@ void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
  
 bool UQuestGraph::GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraph:GetFlag")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetFlag::gameContext is invalid."));
 		return false;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
@@ -72,9 +69,8 @@ FText UQuestGraph::GetGraphNameText()
 bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName VariableName)
 {
 	bool bDefaultValue(false);
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraph:GetBool")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetBool::gameContext is invalid"));
 		return bDefaultValue;
 	}
 
@@ -92,9 +88,8 @@ bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName Variab
 
 bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName VariableName, bool bValue)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraph:SetBool")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::SetBool::gameContext is invalid."));
 		return false;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
@@ -112,9 +107,8 @@ bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName Variab
 int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName VariableName)
 {
 	int32 DefaultValue(0);
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraph:GetInteger")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetInteger::gameContext is invalid."));
 		return DefaultValue;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
@@ -131,9 +125,8 @@ int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName Va
 
 bool UQuestGraph::SetInteger(UAdventurePluginGameContext* GameContext, FName VariableName, int32 Value)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraph:SetInteger")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid.", "QuestGraph::SetInteger::gameContext is invalid."));
 		return false;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
@@ -152,9 +145,8 @@ FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName V
 {
 	FString DefaultValue;
 
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraph:GetString")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::GetString::gameContext is invalid."));
 		return DefaultValue;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
@@ -171,9 +163,8 @@ FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName V
 
 bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName VariableName, FString Value)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraph:SetString")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "QuestGraph::SetString::gameContext is invalid."));
 		return false;
 	}
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;

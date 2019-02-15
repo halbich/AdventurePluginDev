@@ -27,24 +27,26 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameContext : public UObject
 public:
 
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
-		UInventoryController* InventoryController;
+	UInventoryController* InventoryController;
 
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
-		TScriptInterface< IInventoryPresenterInterface> InventoryPresenter;
+	TScriptInterface< IInventoryPresenterInterface> InventoryPresenter;
 
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
-		UDialogController* DialogController;
+	UDialogController* DialogController;
 
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
-		TScriptInterface< IDialogPresenterInterface> DialogPresenter;
+	TScriptInterface< IDialogPresenterInterface> DialogPresenter;
 
 	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Game Context")
-		UAdventurePluginSaveGame* SaveGame;
+	UAdventurePluginSaveGame* SaveGame;
 
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
-		UItemManager* ItemManager;
+	UItemManager* ItemManager;
 
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Character")
-		UAdventureCharacterManager* AdventureCharacterManager;
-
+	UAdventureCharacterManager* AdventureCharacterManager;
+	/*Returns true if the game context and all of its direct subclasses are true. If not, it will log an error, which will include caller as a description of where this problem happened.*/
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin")
+	static bool IsGameContextValid(const UAdventurePluginGameContext* GameContext, const FString& Caller);
 };

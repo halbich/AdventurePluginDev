@@ -9,10 +9,8 @@
 
 void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePluginGameContext* GameContext, FDialogGraphEntryPoint EntryPoint)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->DialogController))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("ShowDialogFromEntryPoint")))
 	{
-		// TODO: Error.
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "Show dialog::gameContext is invalid."));
 		return;
 	}
 
@@ -51,10 +49,8 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* G
 
 void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* GameContext, bool bShow)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->InventoryController))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("ShowInventory")))
 	{
-		// TODO: Error.
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "ShowInventory dialog::gameContext is invalid."));
 		return;
 	}
 
@@ -73,10 +69,8 @@ void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext
 
 UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* GameContext, TSubclassOf<UInventoryItem> Item)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->ItemManager))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetItem")))
 	{
-		// TODO: Error.
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "GetItem::gameContext is invalid."));
 		return nullptr;
 	}
 	UItemManager* ItemManager = GameContext->ItemManager;
@@ -85,10 +79,8 @@ UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameCo
 
 UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->AdventureCharacterManager))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetAdventureCharacter")))
 	{
-		// TODO: Error.
-		LOG_Error(NSLOCTEXT("AP", "GetAdventureCharacterGameContextInvalid", "GetAdventureCharacter::gameContext is invalid"));
 		return nullptr;
 	}
 	UAdventureCharacterManager* CharacterManager = GameContext->AdventureCharacterManager;
@@ -97,10 +89,8 @@ UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAd
 
 bool UAdventurePluginBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContext* GameContext, UQuestGraph* QuestGraph, FName EventName, FQuestEvent QuestEvent)
 {
-	if (!IsValid(GameContext))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("BindQuestEvent")))
 	{
-		// TODO: Error.
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "GetItem::gameContext is invalid."));
 		return false;
 	}	
 

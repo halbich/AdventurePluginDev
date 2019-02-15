@@ -23,9 +23,8 @@ bool UInventoryItem::WasPickedUp_Implementation(UAdventurePluginGameContext* Gam
 
 EInventoryItemState UInventoryItem::GetItemState(UAdventurePluginGameContext* GameContext)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryItem:GetItemState")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "InventoryItem::GetItemState::gameContext is invalid"));
 		return EInventoryItemState::ItemState_Invalid;
 	}
 
@@ -36,9 +35,8 @@ EInventoryItemState UInventoryItem::GetItemState(UAdventurePluginGameContext* Ga
 
 void UInventoryItem::SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContext)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryItem:SetItemState")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "InventoryItem::GetItemState::gameContext is invalid"));
 		return;
 	}
 
@@ -59,9 +57,8 @@ bool UInventoryItem::IsExaminable_Implementation(UAdventurePluginGameContext* Ga
 
 bool UInventoryItem::IsPickable_Implementation(UAdventurePluginGameContext* GameContext)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->InventoryController))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryItem:IsPickable")))
 	{
-		// TODO: Log error.
 		return false;
 	}
 	return bDefaultIsPickable && !GameContext->InventoryController->GetInventory()->HasItem(this, GameContext);

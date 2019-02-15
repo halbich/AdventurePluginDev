@@ -19,7 +19,7 @@ UTexture2D* UInventoryItemBlueprint::GetIcon() const
 
 UInventoryItem * UInventoryItemBlueprint::GetItemInstance(UAdventurePluginGameContext* GameContext)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->ItemManager) || !IsValid(this->GeneratedClass))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryItemBlueprint:GetItemInstance")) || !IsValid(this->GeneratedClass))
 	{
 		return nullptr;
 	}

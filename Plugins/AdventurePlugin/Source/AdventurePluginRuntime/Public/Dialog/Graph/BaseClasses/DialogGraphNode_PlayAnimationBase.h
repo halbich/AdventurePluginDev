@@ -64,14 +64,13 @@ public:
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		TScriptInterface<IAnimatableObjectInterface> AnimatedObjectInstance = GetAnimatedObject(GameContext);
-		if (AnimatedObjectInstance == nullptr)
+		if (!IsValid(AnimatedObjectInstance.GetObject()))
 		{
-			// TODO: Log Warning.
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_PlayAnimationBaseAnimatedObjectInvalid", "DialogGraphNode_PlayAnimationBase: Animated object is null or invalid."));
 			return true;
 		}
-		if (!IsValid(GameContext) || !IsValid(GameContext->DialogPresenter.GetObject()))
+		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_PlayAnimationBase:Execute")))
 		{
-			// TODO: Log Warning.
 			return true;
 		}
 		UObject* DialogPresenter = GameContext->DialogPresenter.GetObject();

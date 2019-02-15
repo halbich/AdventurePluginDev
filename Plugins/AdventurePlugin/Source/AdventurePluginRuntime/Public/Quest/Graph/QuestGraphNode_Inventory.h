@@ -37,9 +37,8 @@ public:
 	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
 	{
 		// TODO: Log errors concisely
-		if (!IsValid(GameContext) || !IsValid(GameContext->ItemManager))
+		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraphNode_Inventory:IsSatisfied")))
 		{
-			LOG_Error(NSLOCTEXT("AP", "Invalid Inventory Game context", "Quest graph node: Inventory: Invalid context passed"));
 			return false;
 		}
 		if (!IsValid(Item))

@@ -65,9 +65,8 @@ public:
 	/*Displays the dialog line.*/
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		if (!IsValid(GameContext))
+		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_DialogLineBase:Execute")))
 		{
-			//TODO: Error
 			return true;
 		}
 		UObject* DialogPresenterInstance = GameContext->DialogPresenter.GetObject();

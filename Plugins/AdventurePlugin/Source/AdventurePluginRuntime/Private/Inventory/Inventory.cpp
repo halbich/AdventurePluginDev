@@ -66,9 +66,8 @@ void UInventory::EndUpdate()
 TArray<UInventoryItem*> UInventory::GetItems(UAdventurePluginGameContext* GameContext)
 {
 	TArray<UInventoryItem*> InventoryItems = TArray<UInventoryItem*>();
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame) || !IsValid(GameContext->ItemManager))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("Inventory:GetItems")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "Inventory::GetItems::gameContext is invalid"));
 		return InventoryItems;
 	}
 
@@ -82,9 +81,8 @@ TArray<UInventoryItem*> UInventory::GetItems(UAdventurePluginGameContext* GameCo
 
 void UInventory::SetItems(TArray<UInventoryItem*> NewItems, UAdventurePluginGameContext* GameContext)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame) || !IsValid(GameContext->ItemManager))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("Inventory:SetItems")))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GameContextInvalid", "Inventory::SetItems::gameContext is invalid"));
 		return;
 	}
 

@@ -35,7 +35,7 @@ public:
 	/* Called as part of GetNextNode, this return true if it was not yet visited by Dialog Controller. When called as part of Dialog Controller execution, i.e. after Execute was called, this will be false forever. */
 	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame) || !NodeGuid.IsValid())
+		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_Once:IsTrue")) || !NodeGuid.IsValid())
 		{
 			return false;
 		}

@@ -37,9 +37,8 @@ public:
 
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
-		if (!IsValid(GameContext) || !IsValid(GameContext->SaveGame))
+		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_SaveState:Execute")))
 		{
-			LOG_Error(NSLOCTEXT("AP", "ContextNull", "NodeSaveState::gameContext is NULL"));
 			return false;
 		}
 

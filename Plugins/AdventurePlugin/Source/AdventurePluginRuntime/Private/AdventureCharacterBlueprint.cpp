@@ -20,7 +20,7 @@ UTexture2D* UAdventureCharacterBlueprint::GetIcon() const
 
 UAdventureCharacter * UAdventureCharacterBlueprint::GetItemInstance(UAdventurePluginGameContext* GameContext)
 {
-	if (!IsValid(GameContext) || !IsValid(GameContext->AdventureCharacterManager) || !IsValid(this->GeneratedClass))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("AdventureCharacterBlueprint:GetItemInstance")) || !IsValid(this->GeneratedClass))
 	{
 		return nullptr;
 	}

@@ -11,14 +11,10 @@ void UInventoryController::ShowInventory(UAdventurePluginGameContext* GameContex
 	CurrentGameContext = GameContext;
 	UInventory* InventoryToShow = IsValid(Inventory) ? Inventory : DefaultInventory;
 
-	IInventoryPresenterInterface* PresenterInstance = GetPresenter();
-	if (PresenterInstance && IsValid(GameContext))
+	TScriptInterface<IInventoryPresenterInterface> PresenterInstance = GetPresenter();
+	if (PresenterInstance && UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryController:ShowInventory")))
 	{
-		IInventoryPresenterInterface::Execute_ShowInventory(PresenterInstance->_getUObject(), InventoryToShow, GameContext->InventoryController);
-	}
-	else
-	{
-		//TODO: Log Error.
+		IInventoryPresenterInterface::Execute_ShowInventory(PresenterInstance.GetObject(), InventoryToShow, GameContext->InventoryController);
 	}
 }
 
@@ -29,17 +25,26 @@ UInventory* UInventoryController::GetInventory()
 
 void UInventoryController::HideInventory()
 {
-	IInventoryPresenterInterface* PresenterInstance = GetPresenter();
-	if (PresenterInstance && IsValid(CurrentGameContext))
+	TScriptInterface<IInventoryPresenterInterface> PresenterInstance = GetPresenter();
+	if (PresenterInstance && UAdventurePluginGameContext::IsGameContextValid(CurrentGameContext, TEXT("InventoryController:HideInventory")))
 	{
-		IInventoryPresenterInterface::Execute_HideInventory(PresenterInstance->_getUObject(), CurrentGameContext->InventoryController);
-	}
-	else
-	{
-		//TODO: Log error
+		IInventoryPresenterInterface::Execute_HideInventory(PresenterInstance.GetObject(), CurrentGameContext->InventoryController);
 	}
 
 	CurrentGameContext = nullptr;
+}
+TScriptInterface<IInventoryPresenterInterface> UInventoryController::GetPresenter()
+{
+	if (!UAdventurePluginGameContext::IsGameContextValid(CurrentGameContext, TEXT("InventoryController:GetPresenter")))
+	{
+		return nullptr;
+	}
+	if (!IsValid(CurrentGameContext->InventoryPresenter.GetObject()))
+	{
+		LOG_Error(NSLOCTEXT("AP", "InventoryControllerPresenterNull", "InventoryController:GetPresenter: Inventory presenter is null or invalid."));
+		return nullptr;
+	}
+	return CurrentGameContext->InventoryPresenter;
 }
 
 #pragma optimize("", on)
