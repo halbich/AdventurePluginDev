@@ -30,7 +30,7 @@ public:
 			LOG_Warning(NSLOCTEXT("AP", "Invalid Subquest", "Quest graph node: Subquest: Nil or invalid Subquest passed"));
 			return false;
 		}
-		return Subquest->EndNode->IsSatisfied(GameContext);
+		return Subquest->IsComplete(GameContext);
 	}
 
 #if WITH_EDITOR

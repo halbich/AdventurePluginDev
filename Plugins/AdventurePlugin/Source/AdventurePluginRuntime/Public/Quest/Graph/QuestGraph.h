@@ -78,6 +78,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 		TArray<UQuestGraphNode*> GetSatisfiableNodes(UAdventurePluginGameContext* GameContext);
 
+	/* Returns true if this graph is complete, i.e. its end node is true.*/
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+		bool IsComplete(UAdventurePluginGameContext* GameContext);
+
 	UPROPERTY(EditAnywhere, Category = "QuestGraph")
 		TMap<FName, FBoolVariable> BoolVariables;
 

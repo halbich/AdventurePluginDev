@@ -211,5 +211,14 @@ FName UQuestGraph::GetQualifiedVariableName(FName VariableName)
 	FString QualifiedName = VariableName.ToString() + GetFullName();
 	return FName(*QualifiedName);
 }
+bool UQuestGraph::IsComplete(UAdventurePluginGameContext* GameContext)
+{
+	if (!IsValid(EndNode))
+	{
+		LOG_Warning(NSLOCTEXT("AP", "UQuestGraphIsCompleteEndNodeNull", "QuestGraph:IsComplete: End node is null or invalid."));
+		return false;
+	}
+	return EndNode->IsSatisfied(GameContext);
+}
 
 #undef LOCTEXT_NAMESPACE
