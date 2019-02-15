@@ -13,7 +13,7 @@ TSharedPtr<IPropertyHandle> FDialogGraphEntryPointCustomization::GetGraphPropert
 	return StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FDialogGraphEntryPoint, Dialog));
 }
 
-TSharedPtr<IPropertyHandle> FDialogGraphEntryPointCustomization::GetNamePropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const
+TSharedPtr<IPropertyHandle> FDialogGraphEntryPointCustomization::GetIdPropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const
 {
 	return StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FDialogGraphEntryPoint, EntryPointName));
 }

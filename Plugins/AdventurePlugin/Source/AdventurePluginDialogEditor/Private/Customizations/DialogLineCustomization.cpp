@@ -10,30 +10,27 @@ TSharedRef<IDetailCustomization> FDialogLineCustomization::MakeInstance()
 {
 	return MakeShareable(new FDialogLineCustomization);
 }
-void FDialogLineCustomization::SetIdHandle(IDetailLayoutBuilder& DetailLayout)
+TSharedPtr<IPropertyHandle> FDialogLineCustomization::GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const
 {
-	IdHandle = DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_DialogLineBase, AnimationName));
+	return DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_DialogLineBase, AnimationName));
 }
-FText FDialogLineCustomization::GetComboBoxName()
+FText FDialogLineCustomization::GetComboBoxName() const
 {
 	return LOCTEXT("TalkingAnimation", "Talking Animation");
 }
-TSet<FComboBoxCustomization::FComboItemType> FDialogLineCustomization::GetComboBoxOptions(UObject* ObjectBeingCustomized)
+void FDialogLineCustomization::ReloadOptions()
 {
-	TSet<FComboItemType> TalkingAnimationStates;
 	UDialogGraphNode_DialogLineBase* DialogNode = Cast<UDialogGraphNode_DialogLineBase>(ObjectBeingCustomized);
 	UAdventureCharacter* AnimatedCharacter = IsValid(DialogNode)? DialogNode->GetSpeakerEditorOnly() : nullptr;
-	if (!IsValid(AnimatedCharacter))
+	if (IsValid(AnimatedCharacter))
 	{
-		return TalkingAnimationStates;
+		TArray<FName> TalkingAnimationStateNames = AnimatedCharacter->Execute_GetTalkingStates(AnimatedCharacter);
+		for (FName& AnimationStateName : TalkingAnimationStateNames)
+		{
+			FComboItemType NewItem = MakeShareable(new FName(AnimationStateName));
+			Options.Add(NewItem);
+		}
 	}
-	TArray<FName> TalkingAnimationStateNames = AnimatedCharacter->Execute_GetTalkingStates(AnimatedCharacter);
-	for (FName& AnimationStateName : TalkingAnimationStateNames)
-	{
-		FComboItemType NewItem = MakeShareable(new FName(AnimationStateName));
-		TalkingAnimationStates.Add(NewItem);
-	}
-	return TalkingAnimationStates;
 }
 
 #undef LOCTEXT_NAMESPACE 

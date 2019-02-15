@@ -19,7 +19,8 @@
 #include "IconThumbnailRenderer.h"
 #include "GenericGraph/GenericGraphEditorStyle.h"
 #include "SaveGame/AdventurePluginSaveGame.h"
-#include "Customizations/InventoryItemCustomization.h"
+#include "Inventory/Structs/UseActionType.h"
+#include "Customizations/UseActionTypeCustomization.h"
 
 #include "PropertyEditorModule.h"
 
@@ -57,7 +58,7 @@ void FAdventurePluginEditor::StartupModule()
 
 	// Registering custom property layouts
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
-	PropertyModule.RegisterCustomClassLayout(UInventoryItem::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FInventoryItemCustomization::MakeInstance));
+	PropertyModule.RegisterCustomPropertyTypeLayout(FUseActionType::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FUseActionTypeCustomization::MakeInstance));
 }
 
 void FAdventurePluginEditor::ShutdownModule()
@@ -86,7 +87,7 @@ void FAdventurePluginEditor::ShutdownModule()
 	if (FModuleManager::Get().IsModuleLoaded("PropertyEditor"))
 	{
 		FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
-		PropertyModule.UnregisterCustomClassLayout(UInventoryItem::StaticClass()->GetFName());
+		PropertyModule.UnregisterCustomPropertyTypeLayout(FUseActionType::StaticStruct()->GetFName());
 	}
 
 	FGenericGraphEditorStyle::Shutdown();

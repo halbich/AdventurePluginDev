@@ -8,6 +8,7 @@
 #include "CombinationInterface.h"
 #include "CombinableObject.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
+#include "Inventory/Structs/UseActionType.h"
 #include "InventoryItemState.h"
 #include "InventoryItem.generated.h"
 
@@ -59,7 +60,7 @@ public:
 		FText UseActionName;
 	/*The type of the use action on this item*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Usage")
-		FName UseActionType;
+		FUseActionType UseActionType;
 
 	/* The default state of the item, e.g. it is spawned, but not yet picked up. In defaults this is the inital state of the item.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")

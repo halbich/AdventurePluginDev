@@ -2,16 +2,16 @@
 
 #include "CoreMinimal.h"
 #include "IDetailCustomization.h"
-#include "ComboBoxCustomization.h"
+#include "Customizations/BaseClasses/ComboBoxDetailCustomization.h"
 
-class FAnimationCustomization : public FComboBoxCustomization
+class FAnimationCustomization : public FComboBoxDetailCustomization
 {
 public:
 	static TSharedRef<IDetailCustomization> MakeInstance();
 
-	virtual void SetIdHandle(IDetailLayoutBuilder& DetailLayout) override;
+	virtual TSharedPtr<IPropertyHandle> GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const override;
 
-	virtual FText GetComboBoxName() override;
+	virtual FText GetComboBoxName() const override;
 
-	virtual TSet<FComboItemType> GetComboBoxOptions(UObject* ObjectBeingCustomized) override;
+	virtual void ReloadOptions() override;
 };

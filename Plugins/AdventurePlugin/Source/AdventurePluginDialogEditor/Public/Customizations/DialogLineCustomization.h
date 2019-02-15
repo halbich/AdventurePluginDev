@@ -1,17 +1,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ComboBoxCustomization.h"
+#include "Customizations/BaseClasses/ComboBoxDetailCustomization.h"
 #include "IDetailCustomization.h"
 
-class FDialogLineCustomization : public FComboBoxCustomization
+class FDialogLineCustomization : public FComboBoxDetailCustomization
 {
 public:
 	static TSharedRef<IDetailCustomization> MakeInstance();
 
-	virtual void SetIdHandle(IDetailLayoutBuilder& DetailLayout) override;
+	virtual TSharedPtr<IPropertyHandle> GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const override;
 
-	virtual FText GetComboBoxName() override;
+	virtual FText GetComboBoxName() const override;
 
-	virtual TSet<FComboItemType> GetComboBoxOptions(UObject* ObjectBeingCustomized) override;
+	virtual void ReloadOptions() override;
 };

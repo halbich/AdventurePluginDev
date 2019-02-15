@@ -9,17 +9,16 @@ TSharedRef<IDetailCustomization> FGotoCustomization::MakeInstance()
 {
 	return MakeShareable(new FGotoCustomization);
 }
-void FGotoCustomization::SetIdHandle(IDetailLayoutBuilder& DetailLayout)
+TSharedPtr<IPropertyHandle> FGotoCustomization::GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const
 {
-	IdHandle = DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_Goto, TargetNodeId));
+	return DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_Goto, TargetNodeId));
 }
-FText FGotoCustomization::GetComboBoxName()
+FText FGotoCustomization::GetComboBoxName() const
 {
 	return LOCTEXT("TargetNodeId", "Target Node Id");
 }
-TSet<FComboBoxCustomization::FComboItemType> FGotoCustomization::GetComboBoxOptions(UObject* ObjectBeingCustomized)
+void FGotoCustomization::ReloadOptions()
 {
-	TSet<FComboItemType> Ids;
 	UDialogGraphNode_Goto* GotoNode = Cast<UDialogGraphNode_Goto>(ObjectBeingCustomized);
 	if (IsValid(GotoNode) && IsValid(GotoNode->Graph))
 	{
@@ -29,11 +28,10 @@ TSet<FComboBoxCustomization::FComboItemType> FGotoCustomization::GetComboBoxOpti
 			if (IsValid(GraphNode) && !GraphNode->Id.IsNone())
 			{
 				FComboItemType NewItem = MakeShareable(new FName(GraphNode->Id));
-				Ids.Add(NewItem);
+				Options.Add(NewItem);
 			}
 		}
 	}
-	return Ids;
 }
 
 #undef LOCTEXT_NAMESPACE 

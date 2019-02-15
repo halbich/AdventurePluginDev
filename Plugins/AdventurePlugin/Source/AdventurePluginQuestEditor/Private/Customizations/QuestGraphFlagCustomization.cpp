@@ -13,7 +13,7 @@ TSharedPtr<IPropertyHandle> FQuestGraphFlagCustomization::GetGraphPropertyHandle
 	return StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FQuestGraphFlag, Quest));
 }
 
-TSharedPtr<IPropertyHandle> FQuestGraphFlagCustomization::GetNamePropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const
+TSharedPtr<IPropertyHandle> FQuestGraphFlagCustomization::GetIdPropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const
 {
 	return StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FQuestGraphFlag, FlagName));
 }

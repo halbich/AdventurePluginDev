@@ -12,7 +12,7 @@ TSharedPtr<IPropertyHandle> FQuestGraphEventCustomization::GetGraphPropertyHandl
 	return StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FQuestGraphEvent, Quest));
 }
 
-TSharedPtr<IPropertyHandle> FQuestGraphEventCustomization::GetNamePropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const
+TSharedPtr<IPropertyHandle> FQuestGraphEventCustomization::GetIdPropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const
 {
 	return StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FQuestGraphEvent, EventName));
 }

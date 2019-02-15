@@ -12,7 +12,7 @@ TSharedPtr<IPropertyHandle> FQuestGraphIntegerCustomization::GetGraphPropertyHan
 	return StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FQuestGraphInteger, Quest));
 }
 
-TSharedPtr<IPropertyHandle> FQuestGraphIntegerCustomization::GetNamePropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const
+TSharedPtr<IPropertyHandle> FQuestGraphIntegerCustomization::GetIdPropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const
 {
 	return StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FQuestGraphInteger, IntegerName));
 }
