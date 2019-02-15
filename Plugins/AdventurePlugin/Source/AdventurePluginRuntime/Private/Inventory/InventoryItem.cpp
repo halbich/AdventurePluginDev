@@ -1,6 +1,8 @@
 ﻿#include "InventoryItem.h"
 #include "AdventurePluginSaveGame.h"
 #include "Inventory.h"
+#include "AdventurePluginGameContext.h"
+#include "ItemManager.h"
 #include "AdventurePluginBlueprintLibrary.h"
 
 void UInventoryItem::Examine_Implementation(UAdventurePluginGameContext* GameContext)
@@ -48,4 +50,23 @@ void UInventoryItem::OnAddedToInventory_Implementation(UInventory* Inventory, UA
 }
 void UInventoryItem::OnRemovedFromInventory_Implementation(UInventory* Inventory, UAdventurePluginGameContext* GameContext)
 {
+}
+
+bool UInventoryItem::IsExaminable_Implementation(UAdventurePluginGameContext* GameContext)
+{
+	return bDefaultIsExaminable;
+}
+
+bool UInventoryItem::IsPickable_Implementation(UAdventurePluginGameContext* GameContext)
+{
+	if (!IsValid(GameContext) || !IsValid(GameContext->InventoryController))
+	{
+		// TODO: Log error.
+		return false;
+	}
+	return bDefaultIsPickable && !GameContext->InventoryController->GetInventory()->HasItem(this, GameContext);
+}
+bool UInventoryItem::IsUsable_Implementation(UAdventurePluginGameContext* GameContext)
+{
+	return bDefaultIsUsable;
 }
