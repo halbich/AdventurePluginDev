@@ -86,28 +86,4 @@ UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAd
 	return CharacterManager->GetCharacter(Character);
 }
 
-bool UAdventurePluginBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContext* GameContext, UQuestGraph* QuestGraph, FName EventName, FQuestEvent QuestEvent)
-{
-	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("BindQuestEvent")))
-	{
-		return false;
-	}	
-
-	if (!IsValid(QuestGraph))
-	{
-		LOG_Warning(NSLOCTEXT("AP", "QuestGraphInvalid", "Bind event::graph is invalid"));
-		return false;
-	}
-
-	TMap<FName, FQuestEvent>& QuestEventsMap = QuestGraph->QuestEvents;
-	if (!QuestEventsMap.Contains(EventName))
-	{
-		LOG_Warning(NSLOCTEXT("AP", "EventNameUndefined", "Bind event::event name is not defined in quest"));
-		return false;
-	}
-
-	QuestEventsMap.Add(EventName, QuestEvent);
-	return true;
-}
-
 #pragma optimize("", on)

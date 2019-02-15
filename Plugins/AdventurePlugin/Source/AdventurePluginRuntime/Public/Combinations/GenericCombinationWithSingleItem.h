@@ -34,7 +34,7 @@ public:
 
 	virtual FText GetDebugName_Implementation() override
 	{
-		return FText::Format(NSLOCTEXT("AP", "GenericCombinationWithSingleItemDebugName", "SimpleCombination:{0}"),Name);
+		return FText::Format(NSLOCTEXT("AP", "GenericCombinationWithSingleItemDebugName", "Generic combination with single item:{0}"),Name);
 	}
 
 	virtual TArray<UClass*> GetCombinationTargetClasses_Implementation() override

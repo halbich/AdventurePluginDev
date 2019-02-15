@@ -41,8 +41,5 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Character")
 		static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character);
 
-	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary|Quest")
-		static bool BindQuestEvent(UAdventurePluginGameContext* GameContext, UQuestGraph* QuestGraph, FName EventName, FQuestEvent QuestEvent);
-
 private:
 };
