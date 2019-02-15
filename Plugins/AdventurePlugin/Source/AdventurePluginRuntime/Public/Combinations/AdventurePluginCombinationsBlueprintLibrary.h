@@ -5,7 +5,9 @@
 #include "Engine.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "CombinableObject.h"
-#include "SimpleCombination.h"
+#include "InventoryItem.h"
+#include "SimpleCombinationWithSingleItem.h"
+#include "GenericCombinationWithSingleItem.h"
 #include "AdventurePluginCombinationsBlueprintLibrary.generated.h"
 
 /**
@@ -19,7 +21,10 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginCombinationsBlueprintLibrary : 
 public:
 	/*Create a simple combination that represents combination with one single object, with specific constant combination name and that executes a specified event when Execute is called.*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
-		static USimpleCombination* CreateSimpleCombination(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FCombinationEvent CombinationEvent);
+		static UGenericCombinationWithSingleItem* CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FCombinationEvent CombinationEvent);
+	/*Create a simple combination that represents combination with one single object, with specific constant combination name and that, upon execute, creates a specified object in inventory and removes the combined items from inventory if possible.*/
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
+		static USimpleCombinationWithSingleItem* CreateSimpleCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, TSubclassOf<UInventoryItem> ResultItem, FText CombinationName);
 
 private:
 };

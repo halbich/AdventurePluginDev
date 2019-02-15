@@ -15,12 +15,12 @@ TArray<UClass*> ICombinationInterface::GetCombinationTargetClasses_Implementatio
 	return TArray<UClass*>();
 }
 
-bool ICombinationInterface::CanCombineWith_Implementation(UObject* CombinationTarget)
+bool ICombinationInterface::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget)
 {
 	return false;
 }
 
-void ICombinationInterface::Execute_Implementation(UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
+void ICombinationInterface::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
 {
 
 }

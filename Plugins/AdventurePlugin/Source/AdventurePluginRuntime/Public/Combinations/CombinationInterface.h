@@ -35,8 +35,8 @@ public:
 		TArray<UClass*> GetCombinationTargetClasses();
 	/*Returns true if this is a combination with the specified object.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
-		bool CanCombineWith(UObject* CombinationTarget);
+		bool CanCombineWith(UObject* CombinationSource, UObject* CombinationTarget);
 	/*Called when the user triggers this combination.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
-		void Execute(UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
+		void Execute(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
 };

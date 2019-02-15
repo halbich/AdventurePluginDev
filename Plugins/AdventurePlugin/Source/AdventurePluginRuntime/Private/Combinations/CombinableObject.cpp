@@ -83,11 +83,11 @@ bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* OtherObject, 
 			continue;
 		}
 		UObject* CombinationObject = CombinationInterface.GetObject();
-		if (!CombinationInterface->Execute_CanCombineWith(CombinationObject, OtherObject))
+		if (!CombinationInterface->Execute_CanCombineWith(CombinationObject, this, OtherObject))
 		{
 			continue;
 		}
-		CombinationInterface->Execute_Execute(CombinationObject, OtherObject, GameContext);
+		CombinationInterface->Execute_Execute(CombinationObject, this, OtherObject, GameContext);
 		return true;
 	}
 	return false;
