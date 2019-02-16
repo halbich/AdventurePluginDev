@@ -26,7 +26,7 @@ public:
 	* Identifies the variable to be modified.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SwitchBoolNode")
-		FQuestGraphBool Bool;
+	FQuestGraphBool Bool;
 
 #if WITH_EDITOR
 

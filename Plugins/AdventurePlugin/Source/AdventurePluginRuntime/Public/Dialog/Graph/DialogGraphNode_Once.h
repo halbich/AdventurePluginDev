@@ -78,7 +78,7 @@ protected:
 	* Marks that execute was just called, so IsTrue sets this node to false once executed.
 	*/
 	UPROPERTY(Transient)
-		bool bWasJustExecuted;
+	bool bWasJustExecuted;
 };
 
 

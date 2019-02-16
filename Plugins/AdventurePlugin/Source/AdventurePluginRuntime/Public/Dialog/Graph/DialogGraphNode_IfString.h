@@ -22,7 +22,6 @@ public:
 		ContextMenuName = FText::FromString("Branch on string variable");
 #endif
 	}
-}
 	/**
 	* Identifies the variable this node is working with.
 	*/

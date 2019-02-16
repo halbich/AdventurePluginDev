@@ -26,7 +26,7 @@ public:
 	* Identifies the variable this node is working with.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "IncrementIntegerNode")
-		FQuestGraphInteger Integer;
+	FQuestGraphInteger Integer;
 
 #if WITH_EDITOR
 

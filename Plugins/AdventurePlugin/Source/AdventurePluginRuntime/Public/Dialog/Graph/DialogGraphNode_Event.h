@@ -36,7 +36,7 @@ public:
 	* The event to be fired when this node is executed.
 	*/
 	UPROPERTY(EditAnywhere, Category = "EventNode")
-		FQuestGraphEvent Event;
+	FQuestGraphEvent Event;
 
 #if WITH_EDITOR
 

@@ -25,5 +25,5 @@ public:
 	* @return True if the execution should continue, i.e. the node was waiting for this callback, otherwise false.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Adventure Plugin|Dialog")
-		bool DialogOptionSelected(int32 SelectedNodeIndex, UDialogController* DialogController);
+	bool DialogOptionSelected(int32 SelectedNodeIndex, UDialogController* DialogController);
 };
