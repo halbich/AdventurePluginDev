@@ -33,24 +33,24 @@ public:
 	* Among other things, using this class you can access an inventory, add items and remove them.
 	* This class also provides some event dispatchers to notify listeners, about for example new inventory items.
 	*/
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Inventory")
 	UInventoryController* InventoryController;
 	/**
 	* The object responsible for showing the inventory to the player and hiding it.
 	*/
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Inventory")
 	TScriptInterface< IInventoryPresenterInterface> InventoryPresenter;
 	/**
 	* The object used to start a dialog and go through the dialog graph.
 	* Does not actually show anything, it binds itself to the DialogController, @see UAdventurePluginGameContext#DialogController
 	*/
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Dialog")
 	UDialogController* DialogController;
 	/**
 	* Provides dialog interaction for the DialogController. Is able to show a dialog line, play sounds, animations.
 	* It can also notify the DialogController about the player skipping a dialog, choosing a dialog option and animation finishing.
 	*/
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Dialog")
 	TScriptInterface< IDialogPresenterInterface> DialogPresenter;
 	/**
 	* The current save game. All classes that want to be serialized should store their data here and should load their data from here.
@@ -61,13 +61,13 @@ public:
 	* The object that manages instances of UInventoryItem classes. @see UInventoryItem
 	* For each class contains a single instance of that item.
 	*/
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Inventory")
 	UItemManager* ItemManager;
 	/**
 	* The object that manages instances of UAdventureCharacter classes. @see UAdventureCharacter
 	* For each class contains a single instance of that character.
 	*/
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Character")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Character")
 	UAdventureCharacterManager* AdventureCharacterManager;
 	/**
 	* Returns true if the game context and all of its direct subclasses are valid and not null.
