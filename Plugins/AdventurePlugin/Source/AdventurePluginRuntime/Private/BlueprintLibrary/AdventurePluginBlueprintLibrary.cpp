@@ -4,6 +4,7 @@
 #include "ItemManager.h"
 #include "AdventureCharacterManager.h"
 #include "AdventurePluginGameContext.h"
+#include "AdventurePluginGameInstance.h"
 
 #pragma optimize("", off)
 
@@ -84,6 +85,12 @@ UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAd
 	}
 	UAdventureCharacterManager* CharacterManager = GameContext->AdventureCharacterManager;
 	return CharacterManager->GetCharacter(Character);
+}
+
+UAdventurePluginGameContext* UAdventurePluginBlueprintLibrary::GetCurrentGameContext(UObject* WorldObjectContext)
+{
+	UAdventurePluginGameInstance* GameInstance = Cast<UAdventurePluginGameInstance>(UGameplayStatics::GetGameInstance(WorldObjectContext));
+	return GameInstance->CurrentGameContext;
 }
 
 #pragma optimize("", on)

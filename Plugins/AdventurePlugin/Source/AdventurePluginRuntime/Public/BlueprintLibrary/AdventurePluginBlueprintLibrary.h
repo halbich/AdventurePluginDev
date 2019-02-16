@@ -41,5 +41,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Character")
 		static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character);
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin", meta = (WorldContext = WorldObjectContext))
+		static UAdventurePluginGameContext* GetCurrentGameContext(UObject* WorldObjectContext);
+
 private:
 };

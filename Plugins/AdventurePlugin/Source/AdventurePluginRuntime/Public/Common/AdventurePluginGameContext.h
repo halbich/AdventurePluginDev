@@ -26,25 +26,25 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameContext : public UObject
 
 public:
 
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Inventory")
 	UInventoryController* InventoryController;
 
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Inventory")
 	TScriptInterface< IInventoryPresenterInterface> InventoryPresenter;
 
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Dialog")
 	UDialogController* DialogController;
 
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Dialog")
 	TScriptInterface< IDialogPresenterInterface> DialogPresenter;
 
 	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Game Context")
 	UAdventurePluginSaveGame* SaveGame;
 
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Inventory")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Inventory")
 	UItemManager* ItemManager;
 
-	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Character")
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Character")
 	UAdventureCharacterManager* AdventureCharacterManager;
 	/*Returns true if the game context and all of its direct subclasses are true. If not, it will log an error, which will include caller as a description of where this problem happened.*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin")
