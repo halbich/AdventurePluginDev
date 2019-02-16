@@ -26,7 +26,7 @@ class ADVENTUREPLUGINRUNTIME_API ICombinationInterface
 public:
 	/*The name of this combination. It should be possible to display this name to the user.*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
-	FText GetName();
+	FText GetName(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
 	/*The debug name of this combination to be shown in editor. */
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
 	FText GetDebugName();

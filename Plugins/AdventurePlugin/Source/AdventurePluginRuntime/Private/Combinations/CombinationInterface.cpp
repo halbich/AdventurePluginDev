@@ -1,7 +1,7 @@
 #include "CombinationInterface.h"
 #include "UseActionType.h"
 
-FText ICombinationInterface::GetName_Implementation()
+FText ICombinationInterface::GetName_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
 {
 	return FText();
 }
