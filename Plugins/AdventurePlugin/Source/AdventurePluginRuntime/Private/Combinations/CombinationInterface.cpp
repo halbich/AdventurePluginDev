@@ -1,4 +1,5 @@
 #include "CombinationInterface.h"
+#include "UseActionType.h"
 
 FText ICombinationInterface::GetName_Implementation()
 {
@@ -23,4 +24,9 @@ bool ICombinationInterface::CanCombineWith_Implementation(UObject* CombinationSo
 void ICombinationInterface::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
 {
 
+}
+
+FUseActionType ICombinationInterface::GetUseActionType_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
+{
+	return FUseActionType();
 }

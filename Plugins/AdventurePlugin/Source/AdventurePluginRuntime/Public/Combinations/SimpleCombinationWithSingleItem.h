@@ -4,6 +4,7 @@
 #include "Delegate.h"
 #include "InventoryItem.h"
 #include "CombinationInterface.h"
+#include "UseActionType.h"
 #include "SimpleCombinationWithSingleItem.generated.h"
 
 class UAdventurePluginGameContext;
@@ -17,13 +18,16 @@ class ADVENTUREPLUGINRUNTIME_API USimpleCombinationWithSingleItem : public UObje
 public:
 	/*The name of this combination.*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		FText Name;
+	FText Name;
+	/*The type of action of this combination.*/
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FUseActionType ActionType;
 	/*The event to be executed when Execute is called.*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		TSubclassOf<UInventoryItem> ResultItemClass;
+	TSubclassOf<UInventoryItem> ResultItemClass;
 	/*The single target class of this combination.*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		TSubclassOf<UCombinableObject> TargetClass;
+	TSubclassOf<UCombinableObject> TargetClass;
 
 	virtual FText GetName_Implementation() override
 	{
@@ -40,6 +44,11 @@ public:
 		TArray<UClass*> ToReturn = TArray<UClass*>();
 		ToReturn.Add(TargetClass);
 		return ToReturn;
+	}
+
+	FUseActionType GetUseActionType_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
+	{
+		return ActionType;
 	}
 
 	virtual void Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override;

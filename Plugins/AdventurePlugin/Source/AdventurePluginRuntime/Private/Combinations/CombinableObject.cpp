@@ -59,26 +59,54 @@ void UCombinableObject::AddCombinationObject(TScriptInterface<ICombinationInterf
 	Combinations.Add(ToAdd);
 }
 
-bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
 	if (!IsValid(OtherObject))
 	{
 		LOG_Warning(NSLOCTEXT("AP", "NullCombinationItem", "One of the items being combined is null."));
 		return false;
 	}
-	// Try to find a combination on this item
-	if (TryCombineWithLocalOnly(OtherObject, GameContext))
+	TScriptInterface<ICombinationInterface> FoundCombination = GetCombinationWithObjectLocalOnly(OtherObject, GameContext);
+	if (!IsValid(FoundCombination.GetObject()))
 	{
-		return true;
+		FoundCombination = OtherObject->GetCombinationWithObjectLocalOnly(this, GameContext);
 	}
-	// Try to find a combination on the target item.
-	return OtherObject->TryCombineWithLocalOnly(this, GameContext);
+	return FoundCombination;
 }
-bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+
+bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+{
+	TScriptInterface<ICombinationInterface> CombinationToExecute = GetCombinationWithObject(OtherObject, GameContext);
+	if (!IsValid(CombinationToExecute.GetObject()))
+	{
+		return false;
+	}
+	ExecuteCombination(CombinationToExecute, OtherObject, GameContext);
+	return true;
+}
+
+void UCombinableObject::ExecuteCombination(TScriptInterface<ICombinationInterface> Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+{
+	if (!IsValid(Combination.GetObject()))
+	{
+		LOG_Warning(NSLOCTEXT("AP", "CombinableObjectExecuteCombination_NullCombination", "UCombinableObject:ExecuteCombination: Combination is null or invalid."));
+	}
+	// Make sure that we are executing the combination with correct source and target object - This is source if the combination was defined here.
+	if (Combinations.Contains(Combination))
+	{
+		Combination->Execute_Execute(Combination.GetObject(), this, OtherObject, GameContext);
+	}
+	else
+	{
+		Combination->Execute_Execute(Combination.GetObject(), OtherObject, this, GameContext);
+	}
+}
+
+TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObjectLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
 	for (TScriptInterface<ICombinationInterface>& CombinationInterface : Combinations)
 	{
-		if (CombinationInterface == nullptr)
+		if (!IsValid(CombinationInterface.GetObject()))
 		{
 			continue;
 		}
@@ -87,9 +115,8 @@ bool UCombinableObject::TryCombineWithLocalOnly(UCombinableObject* OtherObject, 
 		{
 			continue;
 		}
-		CombinationInterface->Execute_Execute(CombinationObject, this, OtherObject, GameContext);
-		return true;
+		return CombinationInterface;
 	}
-	return false;
+	return nullptr;
 }
 #pragma optimize("", on)

@@ -5,6 +5,7 @@
 #include "CombinableObject.h"
 #include "CombinationInterface.h"
 #include "AdventurePluginRuntime.h"
+#include "UseActionType.h"
 #include "GenericCombinationWithSingleItem.generated.h"
 
 class UAdventurePluginGameContext;
@@ -20,6 +21,9 @@ public:
 	/*The name of this combination.*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		FText Name;
+	/*The type of action of this combination.*/
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		FUseActionType ActionType;
 	/*The event to be executed when Execute is called.*/
 	UPROPERTY(BlueprintReadWrite)
 		FCombinationEvent CombinationEvent;
@@ -47,6 +51,11 @@ public:
 	virtual void Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override
 	{
 		CombinationEvent.Execute(CombinationTarget, GameContext);
+	}
+
+	FUseActionType GetUseActionType_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
+	{
+		return ActionType;
 	}
 
 	virtual	bool CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget) override

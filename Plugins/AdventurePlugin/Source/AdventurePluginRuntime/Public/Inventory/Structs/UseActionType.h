@@ -12,4 +12,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UseActionType")
 	FName UseActionTypeName;
+
+	bool operator==(const FUseActionType& OtherAction) const
+	{
+		return UseActionTypeName == OtherAction.UseActionTypeName;
+	}
 };
