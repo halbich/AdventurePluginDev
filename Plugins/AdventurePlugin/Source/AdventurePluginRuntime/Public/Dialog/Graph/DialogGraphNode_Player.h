@@ -7,7 +7,10 @@
 #include "NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
 #include "DialogGraphNode_DialogLineBase.h"
 #include "DialogGraphNode_Player.generated.h"
-
+/*
+* Represents a line that can be said by player. When executed that line is displayed.
+* Is a dialog line option.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Player : public UDialogGraphNode_DialogLineBase
 {
@@ -30,7 +33,10 @@ public:
 	{
 		return FLinearColor::Green;
 	}
-
+	/*
+	* Returns the editor time instance of the PC character class.
+	* @return CDO of the player character class.
+	*/
 	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
@@ -44,22 +50,15 @@ public:
 
 #endif
 
-	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
-	{
-		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_Player:Execute")))
-		{
-			return true;
-		}
-		UObject* DialogPresenter = GameContext->DialogPresenter.GetObject();
-		IDialogPresenterInterface::Execute_ShowDialogLine(DialogPresenter, GetDialogLine(GameContext), GameContext->DialogController);
-		return false;
-	}
-
 	virtual bool IsDialogOption() const override
 	{
 		return true;
 	}
-
+	/**
+	* Returns the instance of the PC character class.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return The instance of the PC character class.
+	*/
 	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const override
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();

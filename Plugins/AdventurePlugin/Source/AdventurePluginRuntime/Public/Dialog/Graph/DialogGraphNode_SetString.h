@@ -5,7 +5,9 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphString.h"
 #include "DialogGraphNode_SetString.generated.h"
-
+/**
+* This node sets a specific string variable on a quest to a constant value.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_SetString : public UDialogGraphNode
 {
@@ -20,10 +22,14 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
-
+	/**
+	* Identifies the variable to be modified.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetStringNode")
 	FQuestGraphString String;
-
+	/**
+	* To what should we set the variable this node points to.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetStringNode")
 	FString Constant;
 
@@ -48,7 +54,12 @@ public:
 	}
 
 #endif
-
+	/* Sets the string variable on the quest to a specific constant value if the quest identification is valid.
+	* @see UDialogGraphNode_SetString#String
+	* @see UDialogGraphNode_SetString#Constant
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return Always true. This should never halt execution.
+	*/
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(String.Quest))

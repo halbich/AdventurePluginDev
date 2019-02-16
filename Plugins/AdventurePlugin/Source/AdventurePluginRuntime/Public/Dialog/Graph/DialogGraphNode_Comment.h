@@ -3,7 +3,9 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_Comment.generated.h"
-
+/**
+* This node does nothing. It is just a comment and should just be used to make a graph more readable.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Comment : public UDialogGraphNode
 {
@@ -18,7 +20,9 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}
-
+	/**
+	* The text to be displayed in the comment node.
+	*/
 	UPROPERTY(EditAnywhere, Category = "CommentNode")
 	FText Text;
 

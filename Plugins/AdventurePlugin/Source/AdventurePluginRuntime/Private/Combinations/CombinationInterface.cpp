@@ -16,7 +16,7 @@ TArray<UClass*> ICombinationInterface::GetCombinationTargetClasses_Implementatio
 	return TArray<UClass*>();
 }
 
-bool ICombinationInterface::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget)
+bool ICombinationInterface::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
 {
 	return false;
 }

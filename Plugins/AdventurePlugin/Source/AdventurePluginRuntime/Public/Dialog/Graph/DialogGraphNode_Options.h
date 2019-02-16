@@ -8,7 +8,16 @@
 #include "Presenter/DialogPresenterInterface.h"
 #include "NodeInterfaces/DialogNodeShowOptionsCallbackInterface.h"
 #include "DialogGraphNode_Options.generated.h"
-
+/**
+* This node should present the user with the list of possible options, allowing her to select how to continue.
+* When the node is visited, it visits all of its children. If a node can be a dialog option, it will presented to the user.
+* If it is not a dialog option, GetNextNode is called on that node and we check if that is a dialog option. 
+* We repeat that until we either get an option or a null node.
+* All of the valid options are then presented to the player and the execution halts until she chooses.
+* We then continue with the selected response.
+* This node can also have a fallback node, which is used if no other line of dialog is valid, as a fallback.
+* We determine if a node is a dialog option by calling a specific method, @see UDialogGraphNode#IsDialogOption.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Options : public UDialogGraphNode, public IDialogNodeShowOptionsCallbackInterface
 {
@@ -24,13 +33,19 @@ public:
 #endif
 		ChoiceCount = 1;
 	}
-
+	/**
+	* How many output nodes can this node have, i.e. how many options can be presented to the player.
+	*/
 	UPROPERTY(VisibleAnywhere, Category = "OptionsNode")
 	uint32 ChoiceCount;
-
+	/**
+	* The node with which to continue if no output nodes are found.
+	*/
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildFallback;
-
+	/**
+	* The options representing the dialog options to be presented to the player.
+	*/
 	UPROPERTY(BlueprintReadOnly)
 	TMap<int32, UDialogGraphNode*> ChildOptions;
 
@@ -58,12 +73,17 @@ public:
 	}
 
 #endif
-
+	/*
+	* Goes through the children to get the list of options to present and presents them.
+	* See class description to get better idea how that works, @see UDialogGraphNode_Options
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return False if some options were found, as we need to halt the execution until the user selects an option. True is returned if no options can be displayed.
+	*/
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		SelectedOptionIndex = -1;
 		OptionMapping.Reset();
-		// Go through all child nodes, if visiting something other than Player Line, go to their children, find all Player Lines and show them to the player.
+		// Go through all child nodes, if visiting something other than a Dialog Option go to their children, find all Dialog Option nodes and show them to the player.
 		TArray<FDialogLineData> OptionsToPresent = TArray<FDialogLineData>();
 		OptionsToPresent.Reserve(ChoiceCount);
 		check(ChildOptions.Num() == ChoiceCount);
@@ -97,13 +117,22 @@ public:
 		}
 		return false;
 	}
-
+	/**
+	* Called once the user selects an option. 
+	* @param SelectedNodeIndex Which node did the user select.
+	* @param DialogController The dialog controller that is executing this graph.
+	* @return Always true, we should continue with the execution.
+	*/
 	virtual bool DialogOptionSelected_Implementation(int32 SelectedNodeIndex, UDialogController* DialogController) override
 	{
 		this->SelectedOptionIndex = OptionMapping[SelectedNodeIndex];
 		return true;
 	}
-
+	/**
+	* Retrieves the next node to be executed. As Execute was called before this, we should now now which node to continue with.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return The node to continue with.
+	*/
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
 	{
 		if (SelectedOptionIndex < 0)
@@ -121,9 +150,15 @@ public:
 
 	
 protected:
+	/**
+	* The option the user selected.
+	*/
 	UPROPERTY(Transient)
 	int32 SelectedOptionIndex;
-
+	/**
+	* The mapping from the options presented to the player to internal option indices.
+	* As some nodes could be omitted from the Optinos array, we need to store which option index corresponds to index of child in this node.
+	*/
 	UPROPERTY(Transient)
 	TMap<int32, int32> OptionMapping;
 };

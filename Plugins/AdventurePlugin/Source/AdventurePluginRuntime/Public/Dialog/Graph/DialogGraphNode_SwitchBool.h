@@ -5,7 +5,9 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphBool.h"
 #include "DialogGraphNode_SwitchBool.generated.h"
-
+/**
+* This node sets a specific bool variable to the opposite value than what it currently has..
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_SwitchBool : public UDialogGraphNode
 {
@@ -20,7 +22,9 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
-
+	/**
+	* Identifies the variable to be modified.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SwitchBoolNode")
 		FQuestGraphBool Bool;
 
@@ -44,7 +48,11 @@ public:
 	}
 
 #endif
-
+	/* Sets the bool variable on the quest to the inverse value if the quest identification is valid.
+	* @see UDialogGraphNode_SwitchBool#Bool
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return Always true. This should never halt execution.
+	*/
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(Bool.Quest))

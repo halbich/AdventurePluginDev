@@ -6,6 +6,10 @@
 #include "DialogGraph.h"
 #include "DialogGraphNode_PlayerLineOption.generated.h"
 
+/**
+* This is node's purpose is to be a dialog option that does nothing when executed.
+* Common usecase - If the option name to be offered is different than the line spoken in dialog.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayerLineOption : public UDialogGraphNode
 {
@@ -21,9 +25,11 @@ public:
 #endif
 		OptionText = NSLOCTEXT("DialogGraphNode_PlayerLineOption", "DefaultDialog", "<Insert something clever>");
 	}
-
+	/**
+	* The option to present to the player.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "PlayerLineOptionNode")
-		FText OptionText;
+	FText OptionText;
 
 #if WITH_EDITOR
 
@@ -49,17 +55,15 @@ public:
 
 #endif
 
-
-	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
-	{
-		return true;
-	}
-
 	virtual bool IsDialogOption() const override
 	{
 		return true;
 	}
-
+	/**
+	* Build a dialog line option to display.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return The dialog option line to present to the player.
+	*/
 	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* GameContext) const override
 	{
 		FDialogLineData DialogOptionLine = FDialogLineData();

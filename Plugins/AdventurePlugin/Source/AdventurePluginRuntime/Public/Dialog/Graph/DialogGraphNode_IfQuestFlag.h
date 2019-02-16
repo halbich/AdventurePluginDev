@@ -6,7 +6,9 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphFlag.h"
 #include "DialogGraphNode_IfQuestFlag.generated.h"
-
+/**
+* This node is a branch node that can return a different next node based on a value of a flag on a quest.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfQuestFlag : public UDialogGraphNode_TrueFalse
 {
@@ -20,7 +22,9 @@ public:
 		ContextMenuName = FText::FromString("Branch on Quest Flag");
 #endif
 	}
-
+	/**
+	* Identifies the flag this node is working with.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnFlagNode")
 		FQuestGraphFlag Flag;
 
@@ -33,6 +37,11 @@ public:
 			FText::FromName(Flag.FlagName));
 	}
 #endif
+	/**
+	* This node is true if the flag this node points to is set.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return False if the flag specification is invalid or the flag is not set, otherwise true.
+	*/
 	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(Flag.Quest))

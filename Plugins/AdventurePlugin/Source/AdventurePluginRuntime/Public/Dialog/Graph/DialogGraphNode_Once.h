@@ -8,7 +8,14 @@
 #include "DialogGraphNode_Once.generated.h"
 
 #pragma optimize("", off)
-/*This node is true until the first time it is visited by DialogController, i.e. Execute is called, followed by GetNextNode. */
+/**
+* This node is true until the first time it is visited as part of the execution.
+* By that we mean that it won't become false if visited by the Dialog Options node looking for options to present.
+* To become false it needs this path actually needs to be selected.
+* Once false it is false forever, so it persists when the dialog is restarted.
+* Implementation detail - the behavior we described is ensured by the GetNextNode switching the variable to false if execute was called already.
+* Since this node does not halt execution, GetNextNode is called immediately after Execute is called.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Once : public UDialogGraphNode_TrueFalse
 {
@@ -32,7 +39,12 @@ public:
 	}
 
 #endif
-	/* Called as part of GetNextNode, this return true if it was not yet visited by Dialog Controller. When called as part of Dialog Controller execution, i.e. after Execute was called, this will be false forever. */
+	/**
+	* Called as part of GetNextNode, this return true if it was not yet visited by Dialog Controller.
+	* When called as part of Dialog Controller execution, i.e. after Execute was called, this switch the node to false forever, but still return true if its the first time. 
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return True if this is the first time we are visiting the node.
+	*/
 	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_Once:IsTrue")) || !NodeGuid.IsValid())
@@ -54,12 +66,17 @@ public:
 		return true;
 	};
 protected:
-	/* The name in the save file where this node will save its truth value. Based on node GUID.*/
+	/**
+	* Returns the name in the save file where this node will save its truth value. Based on node GUID.
+	* @return The name of the variable in save file.
+	*/
 	FName GetBoolVariableName()
 	{
 		return FName(*(TEXT("ONCE_") + NodeGuid.ToString()));
 	}
-	/*Marks that execute was just called, so IsTrue sets this node to false once executed.*/
+	/**
+	* Marks that execute was just called, so IsTrue sets this node to false once executed.
+	*/
 	UPROPERTY(Transient)
 		bool bWasJustExecuted;
 };

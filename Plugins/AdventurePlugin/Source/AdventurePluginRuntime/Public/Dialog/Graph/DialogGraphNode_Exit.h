@@ -5,6 +5,12 @@
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_Exit.generated.h"
 
+/**
+* This node marks the end of the graph. 
+* Does nothing, it is different only because it does not have input pins.
+* It exists to clearly mark that we expect the dialog to end here.
+* In the future we might want to add some warning if the execution ends anywhere else to avoid ending dialogs by mistake.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Exit : public UDialogGraphNode
 {

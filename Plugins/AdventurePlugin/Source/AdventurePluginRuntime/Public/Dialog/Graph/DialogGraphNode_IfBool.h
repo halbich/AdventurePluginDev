@@ -6,7 +6,9 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphBool.h"
 #include "DialogGraphNode_IfBool.generated.h"
-
+/**
+* This node is a branch node that can return a different next node based on a value of a bool variable on a quest.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfBool : public UDialogGraphNode_TrueFalse
 {
@@ -20,9 +22,11 @@ public:
 		ContextMenuName = FText::FromString("Branch on bool variable");
 #endif
 	}
-
+	/**
+	* Identifies the variable this node is working with.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnBoolNode")
-		FQuestGraphBool Bool;
+	FQuestGraphBool Bool;
 
 #if WITH_EDITOR
 
@@ -34,7 +38,11 @@ public:
 	}
 
 #endif
-
+	/**
+	* This node is true if the variable this node points to is true.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return False if the variable specification is invalid, otherwise value of that variable.
+	*/
 	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(Bool.Quest))

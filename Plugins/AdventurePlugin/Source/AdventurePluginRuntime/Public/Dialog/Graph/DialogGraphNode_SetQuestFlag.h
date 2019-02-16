@@ -5,7 +5,9 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphFlag.h"
 #include "DialogGraphNode_SetQuestFlag.generated.h"
-
+/**
+* This node sets a specific flag on a quest.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_SetQuestFlag : public UDialogGraphNode
 {
@@ -20,7 +22,9 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
-
+	/**
+	* Identifies the flag to be set.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetFlagNode")
 	FQuestGraphFlag Flag;
 
@@ -44,7 +48,11 @@ public:
 	}
 
 #endif
-
+	/* Sets the flag on the quest if the quest identification is valid.
+	* @see UDialogGraphNode_SetQuestFlag#Flag
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return Always true. This should never halt execution.
+	*/
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(Flag.Quest))

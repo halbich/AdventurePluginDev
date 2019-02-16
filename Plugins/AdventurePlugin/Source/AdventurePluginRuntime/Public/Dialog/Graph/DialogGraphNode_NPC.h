@@ -8,7 +8,9 @@
 #include "DialogGraph.h"
 #include "DialogGraphNode_DialogLineBase.h"
 #include "DialogGraphNode_NPC.generated.h"
-
+/**
+* This node represents a dialog line said by an NPC.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_NPC : public UDialogGraphNode_DialogLineBase
 {
@@ -31,7 +33,10 @@ public:
 	{
 		return FLinearColor::Red;
 	}
-
+	/**
+	* Get instance of the character that is speaking, i.e. CDO of the NPC character class.
+	* @return The NPC character instance.
+	*/
 	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
@@ -44,7 +49,11 @@ public:
 	}
 
 #endif
-
+	/**
+	* Get instance of the character that is speaking, i.e. the NPC class provided by the character manager in the GameContext.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return The NPC character instance.
+	*/
 	virtual UAdventureCharacter* GetSpeaker(UAdventurePluginGameContext* GameContext) const override
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();

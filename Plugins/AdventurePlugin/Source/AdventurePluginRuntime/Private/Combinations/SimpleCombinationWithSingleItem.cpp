@@ -14,7 +14,7 @@ void USimpleCombinationWithSingleItem::Execute_Implementation(UObject* Combinati
 	UInventoryItem* ResultItem = GameContext->ItemManager->GetItem(ResultItemClass);
 	if (!IsValid(ResultItem))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "SimpleCombinationWithSingleItem_ExecuteResultNull", "SimpleCombinationWithSingleItem:CanCombineWith::The result item is null or invalid."));
+		LOG_Warning(NSLOCTEXT("AP", "SimpleCombinationWithSingleItem_ExecuteResultNull", "SimpleCombinationWithSingleItem:Execute::The result item is null or invalid."));
 		return;
 	}
 	UInventoryItem* SourceItem = Cast<UInventoryItem>(CombinationSource);
@@ -32,7 +32,7 @@ void USimpleCombinationWithSingleItem::Execute_Implementation(UObject* Combinati
 	GameContext->InventoryController->GetInventory()->EndUpdate();
 }
 
-bool USimpleCombinationWithSingleItem::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget)
+bool USimpleCombinationWithSingleItem::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
 {
 	if (!IsValid(CombinationTarget))
 	{

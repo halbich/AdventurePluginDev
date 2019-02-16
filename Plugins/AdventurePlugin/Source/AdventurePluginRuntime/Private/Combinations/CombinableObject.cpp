@@ -111,7 +111,7 @@ TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObj
 			continue;
 		}
 		UObject* CombinationObject = CombinationInterface.GetObject();
-		if (!CombinationInterface->Execute_CanCombineWith(CombinationObject, this, OtherObject))
+		if (!CombinationInterface->Execute_CanCombineWith(CombinationObject, this, OtherObject, GameContext))
 		{
 			continue;
 		}

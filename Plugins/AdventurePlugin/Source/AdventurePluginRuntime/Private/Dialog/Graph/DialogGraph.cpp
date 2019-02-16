@@ -21,19 +21,6 @@ UDialogGraph::~UDialogGraph()
 {
 }
 
-UDialogGraphNode_Event* UDialogGraph::GetEventNode(FName EventName)
-{
-	for (UGenericGraphNode* Node : AllNodes)
-	{
-		UDialogGraphNode_Event* EventNode = Cast<UDialogGraphNode_Event>(Node);
-		if (IsValid(EventNode) && EventNode->Event.EventName == EventName)
-		{
-			return EventNode;
-		}
-	}
-	return nullptr;
-}
-
 UAdventureCharacter* UDialogGraph::GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* GameContext)
 {
 	return GetSpeakerInstance(GameContext, PlayerCharacter);

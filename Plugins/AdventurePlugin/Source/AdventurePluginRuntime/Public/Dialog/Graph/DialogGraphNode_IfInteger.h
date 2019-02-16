@@ -5,7 +5,9 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IfInteger.generated.h"
-
+/**
+* This node is a branch node that can return a different next node based on a value of an integer variable on a quest.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfInteger : public UDialogGraphNode
 {
@@ -20,21 +22,37 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
 #endif
 	}
-
+	/**
+	* Identifies the variable this node is working with.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
 		FQuestGraphInteger Integer;
-
+	/**
+	* The constant value with which we are comparing in this node.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
-		int32 Constant;
-
+	int32 Constant;
+	/**
+	* The child with which we should continue if the represented variable is less than the constant.
+	* #see UDialogGraphNode_IfInteger#Integer
+	* #see UDialogGraphNode_IfInteger#Constant
+	*/
 	UPROPERTY(BlueprintReadOnly)
-		UDialogGraphNode* ChildLess;
-
+	UDialogGraphNode* ChildLess;
+	/**
+	* The child with which we should continue if the represented variable is equal to the constant.
+	* #see UDialogGraphNode_IfInteger#Integer
+	* #see UDialogGraphNode_IfInteger#Constant
+	*/
 	UPROPERTY(BlueprintReadOnly)
-		UDialogGraphNode* ChildEqual;
-
+	UDialogGraphNode* ChildEqual;
+	/**
+	* The child with which we should continue if the represented variable is more than the constant.
+	* #see UDialogGraphNode_IfInteger#Integer
+	* #see UDialogGraphNode_IfInteger#Constant
+	*/
 	UPROPERTY(BlueprintReadOnly)
-		UDialogGraphNode* ChildMore;
+	UDialogGraphNode* ChildMore;
 
 	virtual void ResetSpecialChildren() override
 	{
@@ -64,7 +82,13 @@ public:
 	}
 
 #endif
-
+	/**
+	* Returns the next node to be executed, based on the value of the relevant int variable and constant, whether the variable is less, more or equal than the constant.
+	* #see UDialogGraphNode_IfInteger#Integer
+	* #see UDialogGraphNode_IfInteger#Constant
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return Null if the variable identification is not valid, otherwise the next child to be executed.
+	*/
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(Integer.Quest))

@@ -6,6 +6,12 @@
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode_Goto.generated.h"
 
+/**
+* This node serves to easily navigate to some other node in the graph by ID.
+* The node does nothing by itself, but the next node to be executed is specified by ID, not by an arrow.
+* Use to make the graph more readable, for example to navigate back to the option selection.
+* The other use case is to create cycles, as the graph does not support cycles by itself.
+*/
 #pragma optimize("", off)
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Goto : public UDialogGraphNode
@@ -25,9 +31,11 @@ public:
 	virtual ~UDialogGraphNode_Goto()
 	{
 	}
-
+	/**
+	* Defines the next node to be executed.
+	*/
 	UPROPERTY(EditAnywhere, Category = "GotoNode")
-		FName TargetNodeId;
+	FName TargetNodeId;
 
 #if WITH_EDITOR
 
@@ -59,7 +67,11 @@ public:
 	}
 
 #endif
-
+	/**
+	* Returns the next node to be executed, which is specified by the TargetNodeId, @see UDialogGraphNode_Goto#TargetNodeId.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return The next node to be executed, or null if the target node id does not point to a valid node.
+	*/
 	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();

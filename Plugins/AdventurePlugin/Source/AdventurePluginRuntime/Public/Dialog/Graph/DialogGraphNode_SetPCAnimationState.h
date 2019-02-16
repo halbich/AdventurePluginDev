@@ -10,6 +10,9 @@
 #include "AnimatableObjectInterface.h"
 #include "DialogGraphNode_SetPCAnimationState.generated.h"
 
+/**
+* Set the Player Character's animation state. It will repeat that until it is reset or the animation is changed.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_SetPCAnimationState : public UDialogGraphNode_PlayAnimationCharacterBase
 {
@@ -46,7 +49,10 @@ public:
 	}
 
 #endif
-
+	/**
+	* Retrieve the PC class from the dialog graph so it can be executed.
+	* @return The PC class that should animated.
+	*/
 	virtual UClass* GetAnimatedObjectClass()
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();

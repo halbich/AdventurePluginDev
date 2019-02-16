@@ -5,7 +5,9 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IncrementInteger.generated.h"
-
+/**
+* This node increments a specific variable when executed.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IncrementInteger : public UDialogGraphNode
 {
@@ -20,7 +22,9 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
-
+	/**
+	* Identifies the variable this node is working with.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "IncrementIntegerNode")
 		FQuestGraphInteger Integer;
 
@@ -44,7 +48,11 @@ public:
 	}
 
 #endif
-
+	/**
+	* Increments the variable this node is pointing to.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return Always true, this never halts the execution.
+	*/
 	virtual bool Execute(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(Integer.Quest))

@@ -6,7 +6,9 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphString.h"
 #include "DialogGraphNode_IfString.generated.h"
-
+/**
+* This node is a branch node that can return a different next node based on a value of a string variable on a quest.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfString : public UDialogGraphNode_TrueFalse
 {
@@ -20,10 +22,15 @@ public:
 		ContextMenuName = FText::FromString("Branch on string variable");
 #endif
 	}
-
+}
+	/**
+	* Identifies the variable this node is working with.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnStringNode")
 	FQuestGraphString String;
-
+	/**
+	* The constant with which we are comparing the string.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnStringNode")
 	FString Constant;
 
@@ -38,6 +45,13 @@ public:
 	}
 
 #endif
+	/**
+	* This node is true if the string this node points to is the same as the constant.
+	* #see UDialogGraphNode_IfString#String
+	* #see UDialogGraphNode_IfString#Constant
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return False if the variable specification is invalid or the string is not the same as the constant, otherwise true.
+	*/
 	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(String.Quest))

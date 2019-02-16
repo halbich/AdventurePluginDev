@@ -13,7 +13,19 @@
 
 
 /**
- *
+ * This class can walk through the dialog graph and play a dialog that corresponds to it.
+ * It is started from some specific node called an entry point.
+ * At each node the DialogController calls the Execute method, which should do whatever is the node supposed to be doing, for example showing dialog line to the player.
+ * When node execution is complete, the controller will call GetNextNode on that method to get the next node to execute.
+ * If GetNextNode returns null, we have reached of dialog.
+ * <p>
+ * Most nodes finish instantly, but some do not. For those the Execute method returns false, signaling that we should halt the execution.
+ * The dialog can be continued by calling some callback method defined on this object.
+ * For example, setting a variable finishes instantly, but showing a dialog line does not. 
+ * Instead, the execution will continue once the presenter calls the proper callback on this object.
+ * When the callback is called, the controller will check whether the current node also responds to that callback. 
+ * If it does, it asks the node to handle that callback and see whether it can continue or not.
+ * Also, the dialog can also end automatically once too many nodex are executed, assuming we are in an infinite loop.
  */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogController : public UObject
@@ -21,42 +33,77 @@ class ADVENTUREPLUGINRUNTIME_API UDialogController : public UObject
 	GENERATED_BODY()
 
 public:
-
+	/**
+	* Starts the specified dialog from the main entry point.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param DialogGraph The dialog graph to be started.
+	*/
 	void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
-
+	/**
+	* Starts the specified dialog from the specified node.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param DialogGraph The dialog graph to be started.
+	* @param StartNode The node from which the execution should be started.
+	*/
 	void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode);
-
+	/**
+	* Ends the dialog.
+	*/
 	void HideDialog();
-
+	/**
+	* Should be called by presenter when showing of a line, both PC and NPC, is over.
+	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
-		void ShowDialogLineCallback();
-
+	void ShowDialogLineCallback();
+	/**
+	* Should be called by presenter when the user selects a dialog option.
+	* @param SelectedOptionIndex The index of the option the user selected.
+	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
-		void ShowDialogLineSelectionCallback(int32 SelectedOptionIndex);
-
+	void ShowDialogLineSelectionCallback(int32 SelectedOptionIndex);
+	/**
+	* Should be called by presenter when an animation finishes.
+	* @param AnimationName The name of the animation that finished.
+	* @param bSuccess If true, the animation played successfully from start to finish, otherwise false.
+	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
-		void PlayAnimationCallback(FName AnimationName, bool bSuccess);
-
+	void PlayAnimationCallback(FName AnimationName, bool bSuccess);
+	/**
+	* The dialog graph being executed.
+	*/
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
-		UDialogGraph* CurrentGraph;
-
+	UDialogGraph* CurrentGraph;
+	/**
+	* The game context used in the current execution.
+	*/
 	UPROPERTY(Transient)
-		UAdventurePluginGameContext* CurrentGameContext;
+	UAdventurePluginGameContext* CurrentGameContext;
 
 private:
-
+	/**
+	* Where we are in the execution. When null, no dialog is in progress.
+	*/
 	UPROPERTY(Transient)
-		UDialogGraphNode* CurrentNode;
-
+	UDialogGraphNode* CurrentNode;
+	/*
+	* Starts executing the graph from the specified node.
+	* @param StartNode Where should the execution start.
+	*/
 	void BeginExecute(UDialogGraphNode* StartNode);
-
+	/**
+	* Retrieves the presenter we are using
+	* @return The instance of the currently used presenter,
+	*/
 	FORCEINLINE IDialogPresenterInterface* GetPresenter()
 	{
-		return CurrentGameContext ? Cast<IDialogPresenterInterface>(CurrentGameContext->DialogPresenter.GetObject()) : nullptr;
+		return IsValid(CurrentGameContext) ? Cast<IDialogPresenterInterface>(CurrentGameContext->DialogPresenter.GetObject()) : nullptr;
 	}
-	/*How many steps since BeginExecute was last called.*/
+	/**
+	* How many steps since BeginExecute was last called. Used so we can stop execution if we're in an infinite loop.
+	*/
 	uint32 CurrentExecutionSteps;
-
-	/*A fallback for infinite cycles - if the dialog execution takes more than this amount of steps, we'll assume we are in an infinite cycle.*/
+	/**
+	* A fallback for infinite cycles - if the dialog execution takes more than this amount of steps, we'll assume we are in an infinite cycle.
+	*/
 	static const uint32 MaxExecutionSteps = 100000;
 };
