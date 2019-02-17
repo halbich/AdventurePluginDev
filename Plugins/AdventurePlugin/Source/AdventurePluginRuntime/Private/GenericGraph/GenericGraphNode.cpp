@@ -1,3 +1,5 @@
+/* This file is based on a third party plugin called Generic Graph Editor, created by jinyuliao, which is distributed under MIT license and is available here: https://github.com/jinyuliao/GenericGraph */
+
 #include "GenericGraphNode.h"
 #include "GenericGraph.h"
 
@@ -22,17 +24,6 @@ FText UGenericGraphNode::GetDescription_Implementation() const
 	return LOCTEXT("NodeDesc", "Generic Graph Node");
 }
 
-/*
-UGenericGraphNode* UGenericGraphNode::GetFirstChildInBin(int32 bin) const
-{
-	int32 bins = ChildrenNodesBins.Num();
-	//check(bins == GetOutputPinsCount());
-	check(bins > bin);
-	int32 child = ChildrenNodesBins[bin];
-	if (bin + 1 < bins && ChildrenNodesBins[bin + 1] == child) return nullptr;
-	return ChildrenNodes.Num() > child ? ChildrenNodes[child] : nullptr;
-}
-*/
 
 #if WITH_EDITOR
 

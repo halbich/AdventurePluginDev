@@ -11,6 +11,7 @@ class UAdventurePluginGameContext;
 * Represents an object that can be combined with other some other object, e.g. inventory items and characters. Must be overriden.
 * All combinations should be added in the InitCombinations method to allow showing of combinations in editor. @see UCombinableObject#InitCombinations()
 * Init() method must be called before using it, otherwise combinations will not work. @see UCombinableObject#Init()
+* All non-abstract combinable items should be done in blueprints, otherwise combinations will not work correctly.
 */
 UCLASS(Abstract, BlueprintType, Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UCombinableObject : public UObject

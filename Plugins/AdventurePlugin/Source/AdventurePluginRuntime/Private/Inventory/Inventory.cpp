@@ -79,7 +79,7 @@ TArray<UInventoryItem*> UInventory::GetItems(UAdventurePluginGameContext* GameCo
 	return InventoryItems;
 }
 
-void UInventory::SetItems(TArray<UInventoryItem*> NewItems, UAdventurePluginGameContext* GameContext)
+void UInventory::SetItems(const TArray<UInventoryItem*>& NewItems, UAdventurePluginGameContext* GameContext)
 {
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("Inventory:SetItems")))
 	{
@@ -88,7 +88,7 @@ void UInventory::SetItems(TArray<UInventoryItem*> NewItems, UAdventurePluginGame
 
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
 	SaveGame->StorageInventory.Empty();
-	for (UInventoryItem* Item : NewItems)
+	for (const UInventoryItem* Item : NewItems)
 	{
 		SaveGame->StorageInventory.Add(Item->GetClass());
 	}

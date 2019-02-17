@@ -62,7 +62,13 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Character")
 	static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character);
-
+	/**
+	* Retrieves the default game context. Contains instances of class defined in game config.
+	* @see UAdventurePluginConfig
+	* A game can choose a different way of getting a game context.
+	* @param WorldObjectContext The object containing all data about the game world. Silently passed by Unreal Engine when possible.
+	* @return Tha default game context.
+	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin", meta = (WorldContext = WorldObjectContext))
 		static UAdventurePluginGameContext* GetCurrentGameContext(UObject* WorldObjectContext);
 

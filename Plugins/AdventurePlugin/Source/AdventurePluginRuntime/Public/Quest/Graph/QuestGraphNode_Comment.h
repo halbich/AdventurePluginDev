@@ -3,7 +3,10 @@
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
 #include "QuestGraphNode_Comment.generated.h"
-
+/**
+* This node represents just a commentary, does nothing, is true when its predecessors are true.
+* Exists just to make a graph more readable.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UQuestGraphNode_Comment : public UQuestGraphNode
 {
@@ -17,7 +20,9 @@ public:
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Comment", "ContextMenuName", "Comment");
 #endif
 	}
-
+	/**
+	* The text that should be displayed in the comment node.
+	*/
 	UPROPERTY(EditAnywhere, Category = "CommentNode")
 	FText Text;
 
@@ -33,7 +38,7 @@ public:
 		Text = NewTitle;
 	}
 
-	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) {
+	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override {
 		return ParentNodesSatisfied(GameContext);
 	}
 

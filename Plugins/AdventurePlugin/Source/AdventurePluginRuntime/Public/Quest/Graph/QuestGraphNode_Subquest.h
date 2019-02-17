@@ -5,7 +5,9 @@
 #include "QuestGraphNode.h"
 #include "AdventurePluginRuntime.h"
 #include "QuestGraphNode_Subquest.generated.h"
-
+/**
+* This node points to some other quest and is true if that quest is true.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UQuestGraphNode_Subquest : public UQuestGraphNode
 {
@@ -20,6 +22,9 @@ public:
 #endif
 	}
 
+	/**
+	* The quest that must be true for this node to be true.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SubquestNode")
 	UQuestGraph* Subquest;
 

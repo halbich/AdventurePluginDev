@@ -8,8 +8,10 @@
 #include "AdventureCharacter.h"
 #include "AdventureCharacterBlueprint.generated.h"
 
-class UAdventurePluginGameContext;
-
+/**
+* Blueprint class for adventure character.
+* This class exists so combinations with character work correctly and to give custom icons to character blueprints.
+*/
 #pragma optimize("", off)
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UAdventureCharacterBlueprint : public UCombinableObjectBlueprint, public IIconThumbnailInterface

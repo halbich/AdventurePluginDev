@@ -4,7 +4,10 @@
 #include "QuestGraphNode.h"
 #include "AdventurePluginRuntime.h"
 #include "QuestGraphNode_Flag.generated.h"
-
+/**
+* Represents a simple flag that can be set to true by any outside code.
+* Once true it can never be false again.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UQuestGraphNode_Flag : public UQuestGraphNode
 {
@@ -18,7 +21,9 @@ public:
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Flag", "ContextMenuName", "Simple flag");
 #endif
 	}
-
+	/**
+	* The human readable name identifying this flag.
+	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FlagNode")
 	FName FlagName;
 

@@ -8,7 +8,9 @@
 #include "AdventureCharacterManager.generated.h"
 
 /**
-*
+* Each UAdventureCharacter class should have only one instance common across the entire game.
+* This class creates those single instances and returns them when requested.
+* @see UAdventureCharacter
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UAdventureCharacterManager : public UCombinableObjectManager
@@ -16,7 +18,9 @@ class ADVENTUREPLUGINRUNTIME_API UAdventureCharacterManager : public UCombinable
 	GENERATED_BODY()
 
 public:
-
+	/**
+	* Retrieves the instance of the specified adventure character class.
+	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Character")
 		UAdventureCharacter* GetCharacter(TSubclassOf<UAdventureCharacter> Character)
 	{

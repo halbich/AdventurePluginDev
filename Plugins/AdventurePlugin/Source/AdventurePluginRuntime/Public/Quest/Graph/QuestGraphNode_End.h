@@ -5,6 +5,10 @@
 #include "QuestGraphNode.h"
 #include "QuestGraphNode_End.generated.h"
 
+/**
+* Marks the end of the quest. Exists only once in the graph, cannot be deleted or duplicated.
+* Is true if its predecessors are true.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UQuestGraphNode_End : public UQuestGraphNode
 {

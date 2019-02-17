@@ -10,6 +10,10 @@
 #include "ItemManager.h"
 #include "QuestGraphNode_Inventory.generated.h"
 
+/**
+* Checks whether the specific item was already picked up.
+* We check whether it was picked up instead of it is in inventory so it is still true that a node can be set to true and never becomes false.
+*/
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UQuestGraphNode_Inventory : public UQuestGraphNode
 {
@@ -23,12 +27,17 @@ public:
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Inventory", "ContextMenuName", "Picked up inventory item");
 #endif
 	}
-
+	/**
+	* The item we are checking for.
+	* In editor this is filled by PickerItem. That is done so we have a nice picker. @see UQuestGraphNode#PickerItem
+	*/
 	UPROPERTY(BlueprintReadOnly, Category = "InventoryItemNode")
 	TSubclassOf<UInventoryItem> Item;
 
 #if WITH_EDITORONLY_DATA
-
+	/**
+	* The item this node represents. Once that item is picked up, this node becomes true.
+	*/
 	UPROPERTY(EditAnywhere, Category = "InventoryItemNode", Meta = (DisplayName = "Item"))
 	UInventoryItemBlueprint* PickerItem;
 

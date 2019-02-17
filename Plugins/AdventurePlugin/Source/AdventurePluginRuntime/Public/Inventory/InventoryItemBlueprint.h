@@ -12,6 +12,10 @@
 #include "InventoryItemBlueprint.generated.h"
 
 #pragma optimize("", off)
+/**
+* The blueprint class for an items.
+* Exists to specify the item icon.
+*/
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UInventoryItemBlueprint : public UCombinableObjectBlueprint, public IIconThumbnailInterface
 {

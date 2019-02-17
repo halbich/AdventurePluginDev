@@ -90,6 +90,15 @@ UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAd
 UAdventurePluginGameContext* UAdventurePluginBlueprintLibrary::GetCurrentGameContext(UObject* WorldObjectContext)
 {
 	UAdventurePluginGameInstance* GameInstance = Cast<UAdventurePluginGameInstance>(UGameplayStatics::GetGameInstance(WorldObjectContext));
+	if (!IsValid(GameInstance))
+	{
+		LOG_Error(NSLOCTEXT("AP", "GetCurrentGameContext_GameInstanceNotValid", "GetCurrentGameContext provided by Adventure Plugin can only be used if the game instance inherits from UAdventurePluginGameInstance"));
+		return nullptr;
+	}
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameInstance->CurrentGameContext, TEXT("GetCurrentGameContext")))
+	{
+		return nullptr;
+	}
 	return GameInstance->CurrentGameContext;
 }
 

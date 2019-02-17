@@ -15,7 +15,8 @@
 #include "AdventurePluginGameInstance.generated.h"
 
 /**
- *
+ * A game instance that can be used for projects using our plugin.
+ * It contains a single game context that contains instances of the classes specified in the project configuration.
  */
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameInstance : public UGameInstance
@@ -23,6 +24,9 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameInstance : public UGameInst
 	GENERATED_BODY()
 
 public:
+	/**
+	* The game context used by this game instance.
+	*/
 	UPROPERTY(Transient, BlueprintReadOnly, Category="GameContext")
 		UAdventurePluginGameContext* CurrentGameContext;
 
@@ -31,6 +35,9 @@ public:
 	virtual void Shutdown() override;
 
 private:
+	/**
+	* Initializes the game context based on the project configuration.
+	*/
 	void InitCurrentGameContext();
 
 };
