@@ -4,36 +4,52 @@
 #include "PropertyHandle.h"
 #include "Widgets/Input/SComboBox.h"
 
-/*A base class for customizations adding a combobox picker for an FName property.*/
+/**
+* A base class for customizations adding a combobox picker for an FName property.
+*/
 class ADVENTUREPLUGINEDITOR_API FComboBoxCustomizationBase
 {
 public:
-	/*The type of an item in the combobox.*/
+	/**
+	* The type of an item in the combobox.
+	*/
 	typedef TSharedPtr<FName> FComboItemType;
 
 	virtual ~FComboBoxCustomizationBase();
 
 protected:
 
-	/* Retrieves the display name of the currently selected item.*/
+	/**
+	* Retrieves the display name of the currently selected item.
+	*/
 	virtual FText GetCurrentItemLabel() const;
 
-	/*Generates the name widget.*/
+	/**
+	* Generates the name widget.
+	*/
 	virtual TSharedRef<SWidget> MakeWidgetForName(FComboItemType InOption);
 
-	/*Called when the ComboBox selection changes.*/
+	/**
+	* Called when the ComboBox selection changes.
+	*/
 	virtual void OnSelectionChanged(FComboItemType NewValue, ESelectInfo::Type);
 
 	virtual void ReloadComboBox();
 
 	virtual void ReloadComboBox(FName Name);
-
+	/**
+	* Reloads the options offered by this combobox. Must be overriden.
+	*/
 	virtual void ReloadOptions() = 0;
 
-	// Retrieves the display label of this ComboBox. Must be overriden.
+	/**
+	* Retrieves the display label of this ComboBox. Must be overriden.
+	*/
 	virtual FText GetComboBoxName() const = 0;
 
-	/*The options displayed in the ComboBox.*/
+	/** 
+	* The options displayed in the ComboBox.
+	*/
 	TArray<FComboItemType> Options;
 
 	/*Handle to the property this ComboBox represents.*/

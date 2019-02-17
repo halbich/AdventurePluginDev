@@ -3,7 +3,11 @@
 #include "CoreMinimal.h"
 #include "PropertyHandle.h"
 #include "Customizations/BaseClasses/GraphNameCustomization.h"
-
+/**
+* Customization giving a combobox picker to FQuestGraphInteger, allowing the designer to select the variable name from a combobox.
+* And the combobox offers only variables specified on the selected graph.
+* @see FQuestGraphInteger
+*/
 class FQuestGraphIntegerCustomization : public FGraphNameCustomization
 {
 public:

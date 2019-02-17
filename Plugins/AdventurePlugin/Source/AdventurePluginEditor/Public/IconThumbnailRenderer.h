@@ -8,7 +8,10 @@
 
 class FCanvas;
 class FRenderTarget;
-
+/**
+* If an object implements IIconThumbnailInterface, this renderer will replace its asset editor icon with the one returned by GetIcon.
+* @see IIconThumbnailInterface
+*/
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UIconThumbnailRenderer : public UTextureThumbnailRenderer
 {

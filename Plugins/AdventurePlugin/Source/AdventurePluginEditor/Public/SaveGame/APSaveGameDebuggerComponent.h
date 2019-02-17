@@ -7,7 +7,9 @@
 #include "AdventurePluginSaveGame.h"
 #include "APSaveGameDebuggerComponent.generated.h"
 
-
+/**
+* A class showing the current state of a save game
+*/
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
 class ADVENTUREPLUGINEDITOR_API  UAPSaveGameDebuggerComponent : public USceneComponent
 {

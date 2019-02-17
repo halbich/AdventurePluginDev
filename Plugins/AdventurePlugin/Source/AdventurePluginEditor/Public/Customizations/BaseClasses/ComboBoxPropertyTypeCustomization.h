@@ -4,7 +4,9 @@
 #include "IPropertyTypeCustomization.h"
 #include "ComboBoxCustomizationBase.h"
 
-/*A base class for customizations adding a combobox picker for an FName property.*/
+/**
+* A base class for customizations adding a combobox picker for an FName property, which is a part of some sturct.
+*/
 class ADVENTUREPLUGINEDITOR_API FComboBoxPropertyTypeCustomization : public FComboBoxCustomizationBase, public IPropertyTypeCustomization
 {
 public:

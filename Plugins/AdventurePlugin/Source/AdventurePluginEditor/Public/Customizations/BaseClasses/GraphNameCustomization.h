@@ -4,6 +4,9 @@
 #include "Customizations/BaseClasses/ComboBoxPropertyTypeCustomization.h"
 
 // https://answers.unrealengine.com/questions/384327/slate-scombobox-example.html
+/**
+* Base class for customizations that contain both a graph and some other property and allow the user to select first the graph and then a property based on that graph.
+*/
 class ADVENTUREPLUGINEDITOR_API FGraphNameCustomization : public FComboBoxPropertyTypeCustomization
 {
 public:

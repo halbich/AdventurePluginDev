@@ -12,7 +12,6 @@ UAssetGraphSchema_QuestGraph::UAssetGraphSchema_QuestGraph()
 const FPinConnectionResponse UAssetGraphSchema_QuestGraph::CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const
 {
 	FPinConnectionResponse res = Super::CanCreateConnection(A, B);
-	//if (res.Response == CONNECT_RESPONSE_MAKE) res.Response = CONNECT_RESPONSE_BREAK_OTHERS_A;
 	return res;
 }
 

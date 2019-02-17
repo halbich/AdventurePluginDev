@@ -6,7 +6,6 @@
 
 class UDialogGraphNode;
 class UDialogGraph;
-
 class FAssetEditor_DialogGraph : public FAssetEditor_GenericGraph
 {
 protected:

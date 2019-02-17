@@ -3,7 +3,10 @@
 #include "Core.h"
 #include "AdventureCharacter.h"
 #include "AssetTypeActions_Base.h"
-
+/**
+* Action for creating adventure character asset, i.e. UAdventureCharacterBlueprint.
+* @see UAdventureCharacterBlueprint
+*/
 class FAssetTypeActions_AdventureCharacter : public FAssetTypeActions_Base
 {
 public:

@@ -5,7 +5,6 @@
 #include "Quest/Graph/QuestGraphNode.h"
 #include "EdQuestNode.h"
 #include "AssetGraphSchema_QuestGraph.generated.h"
-
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UAssetGraphSchema_QuestGraph : public UAssetGraphSchema_GenericGraph
 {

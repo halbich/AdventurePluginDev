@@ -3,7 +3,10 @@
 #include "Core.h"
 #include "Inventory/InventoryItem.h"
 #include "AssetTypeActions_Base.h"
-
+/**
+* Action for creating inventory item asset, which is an UInventoryItemBlueprint.
+* @see UInventoryItemBlueprint
+*/
 class FAssetTypeActions_InventoryItem : public FAssetTypeActions_Base
 {
 public:

@@ -14,7 +14,9 @@
 
 class FMenuBuilder;
 class SGraphEditor;
-
+/**
+* The module registers customizations and the asset editor.
+*/
 class FAdventurePluginDialogEditorModule : public IModuleInterface
 {
 public:

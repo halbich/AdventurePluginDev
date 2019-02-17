@@ -9,7 +9,9 @@
 #include "AdventurePluginEditor.h"
 
 extern const FName AdventurePluginQuestEditorAppIdentifier;
-
+/**
+* This module registers the asset editor for QuestGraph asset. It also registers some customizations relevant to quests.
+*/
 class FAdventurePluginQuestEditorModule : public IModuleInterface
 {
 public:

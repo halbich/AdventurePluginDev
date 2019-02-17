@@ -2,7 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraph/AssetTypeActions_GenericGraph.h"
-
+/**
+* Asset action for creating a dialog graph.
+*/
 class FAssetTypeActions_DialogGraph : public FAssetTypeActions_GenericGraph
 {
 public:

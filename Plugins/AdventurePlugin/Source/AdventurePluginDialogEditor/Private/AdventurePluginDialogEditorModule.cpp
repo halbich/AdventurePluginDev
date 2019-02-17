@@ -87,7 +87,6 @@ void FAdventurePluginDialogEditorModule::ShutdownModule()
 		}
 	}
 	/* Removing custom asset icon */
-	//FClassIconFinder::UnregisterIconSource(&StyleSet.Get());
 	FSlateStyleRegistry::UnRegisterSlateStyle(*StyleSet.Get());
 	ensure(StyleSet.IsUnique());
 	StyleSet.Reset();
