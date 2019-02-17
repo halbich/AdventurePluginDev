@@ -26,6 +26,7 @@
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules
  * within this plugin.
+ * Takes care of logging, registering inventory item and adventure character assets, creates a section in project settings, registers custom thumbnails renderers.
  */
 class FAdventurePluginEditor : public IModuleInterface
 {

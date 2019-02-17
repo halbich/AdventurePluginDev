@@ -117,16 +117,6 @@ void FAdventurePluginEditor::Log(const TSharedRef< class FTokenizedMessage >& Me
 
 void FAdventurePluginEditor::Log(EMessageSeverity::Type EngineMessageSeverity, const FText& Message) const
 {
-	/*EMessageSeverity::Type EngineMessageSeverity = EMessageSeverity::CriticalError;
-	switch (Severity)
-	{
-	case EAPMessageSeverity::CriticalError: EngineMessageSeverity = EMessageSeverity::CriticalError; break;
-	case EAPMessageSeverity::Error: EngineMessageSeverity = EMessageSeverity::Error; break;
-	case EAPMessageSeverity::PerformanceWarning: EngineMessageSeverity = EMessageSeverity::PerformanceWarning; break;
-	case EAPMessageSeverity::Warning: EngineMessageSeverity = EMessageSeverity::Warning; break;
-	case EAPMessageSeverity::Info: EngineMessageSeverity = EMessageSeverity::Info; break;
-	}
-*/
 	if (GIsEditor)
 	{
 		FMessageLog SlateStyleLog("AdventurePluginLog");
