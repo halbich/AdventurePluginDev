@@ -2,18 +2,19 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
-#include "DialogGraphNode_TrueFalse.h"
+#include "DialogGraphNode_ItemBase.h"
 #include "Inventory/InventoryItem.h"
 #include "Inventory/InventoryItemBlueprint.h"
 #include "InventoryController.h"
 #include "ItemManager.h"
 #include "AdventurePluginRuntime.h"
+#include "AdventurePluginGameContext.h"
 #include "DialogGraphNode_IfInInventory.generated.h"
 /**
 * This node is a branch node that can return a different next node based on whether a specified item is in inventory or not.
 */
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfInInventory : public UDialogGraphNode_TrueFalse
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfInInventory : public UDialogGraphNode_ItemBase
 {
 	GENERATED_BODY()
 
@@ -26,20 +27,15 @@ public:
 #endif
 	}
 	/**
-	* The class of the item that we are asking about.
-	* In editor we are actually filling this through PickerItem, so we can see icons of the items. @see UDialogGraphNode_IsInInventory#PickerItem
+	* The next node if this node is true.
 	*/
-	UPROPERTY(BlueprintReadOnly, Category = "BranchOnItemNode")
-	TSubclassOf<UInventoryItem> Item;
-
-#if WITH_EDITORONLY_DATA
+	UPROPERTY(BlueprintReadOnly)
+		UDialogGraphNode* ChildTrue;
 	/**
-	* The item this nodes represents.
+	* The next node if this node is false.
 	*/
-	UPROPERTY(EditAnywhere, Category = "BranchOnItemNode", Meta = (DisplayName = "Item"))
-	UInventoryItemBlueprint* PickerItem;
-
-#endif
+	UPROPERTY(BlueprintReadOnly)
+		UDialogGraphNode* ChildFalse;
 
 #if WITH_EDITOR
 
@@ -49,29 +45,45 @@ public:
 			IsValid(Item) ? Item.GetDefaultObject()->Name : FText::FromString("<EMPTY>"));
 	}
 
-#endif
-	/**
-	* This node is true if the item specified in Item is true, @see UDialogGraphNode_IsInInventory#Item
-	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	* @return False if either the GameContext or Item is invalid or not in inventory. Otherwise true.
-	*/
-	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
+	virtual inline FLinearColor GetBackgroundColor() const
 	{
-		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_IfInInventory:IsTrue")))
+		return FLinearColor::White;
+	}
+
+	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
+	{
+		return true;
+	}
+
+#endif
+	virtual void ResetSpecialChildren() override
+	{
+		ChildTrue = nullptr;
+		ChildFalse = nullptr;
+	}
+	/**
+	* Returns the next child based on whether this node is currently true (UDialogGraphNode_IsInInventory@see #ChildTrue) or false (UDialogGraphNode_IsInInventory@see #ChildFalse).
+	* This node is true if the item specified in Item is true, @see UDialogGraphNode_ItemBase#Item
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @return The next node to be executed.
+	*/
+	virtual UDialogGraphNode* GetNextNode(UAdventurePluginGameContext* GameContext) override
+	{
+		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_IfInInventory:GetNextNode")))
 		{
 			return false;
 		}
 		if (!IsValid(Item))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfInInventoryInvalidItem", "DialogGraphNode_IfInInventory:IsTrue: Nil or invalid item passed"));
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfInInventoryInvalidItem", "DialogGraphNode_IfInInventory:GetNextNode: Nil or invalid item passed"));
 			return false;
 		}
 		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
 		if (!IsValid(ItemInstance))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfInInventoryInvalidItemInstance", "DialogGraphNode_IfInInventory:IsTrue: Item could not be instantiated"));
+			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfInInventoryInvalidItemInstance", "DialogGraphNode_IfInInventory:GetNextNode: Item could not be instantiated"));
 			return false;
 		}
-		return GameContext->InventoryController->GetInventory()->HasItem(ItemInstance, GameContext);
+		return GameContext->InventoryController->GetInventory()->HasItem(ItemInstance, GameContext) ? ChildTrue: ChildFalse;
 	}
 };

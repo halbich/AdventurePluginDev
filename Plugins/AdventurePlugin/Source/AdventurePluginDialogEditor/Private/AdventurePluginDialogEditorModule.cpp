@@ -23,6 +23,7 @@
 #include "Dialog/Graph/DialogGraph.h"
 #include "Dialog/Graph/DialogGraphNode_Goto.h"
 #include "Dialog/Graph/DialogGraphNode_IfInInventory.h"
+#include "Dialog/Graph/BaseClasses/DialogGraphNode_ItemBase.h"
 #include "Dialog/Graph/BaseClasses/DialogGraphNode_PlayAnimationBase.h"
 #include "Dialog/Graph/BaseClasses/DialogGraphNode_DialogLineBase.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
@@ -34,7 +35,6 @@
 #include "Customizations/DialogLineCustomization.h"
 
 static const FName AdventurePluginDialogEditorTabName("AdventurePluginDialogEditor");
-//const FName DialogEditorAppIdentifier = FName(TEXT("DialogEditorApp"));
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginDialogEditorModule"
 
@@ -61,7 +61,7 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_Goto::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FGotoCustomization::MakeInstance));
 	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_PlayAnimationBase::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FAnimationCustomization::MakeInstance));
 	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_DialogLineBase::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FDialogLineCustomization::MakeInstance));
-	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_IfInInventory::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FDialogInventoryItemCustomization::MakeInstance));
+	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_ItemBase::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FDialogInventoryItemCustomization::MakeInstance));
 	PropertyModule.RegisterCustomPropertyTypeLayout(FDialogGraphEntryPoint::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FDialogGraphEntryPointCustomization::MakeInstance));
 	/**/
 }

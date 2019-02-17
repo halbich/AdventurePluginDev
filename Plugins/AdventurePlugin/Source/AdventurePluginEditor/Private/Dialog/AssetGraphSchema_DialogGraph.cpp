@@ -4,6 +4,7 @@
 #include "Dialog/Graph/DialogGraphNode_IfString.h"
 #include "Dialog/Graph/DialogGraphNode_IfInteger.h"
 #include "Dialog/Graph/DialogGraphNode_IfQuestFlag.h"
+#include "Dialog/Graph/DialogGraphNode_IfQuestComplete.h"
 #include "Dialog/Graph/DialogGraphNode_IfInInventory.h"
 #include "Dialog/Graph/DialogGraphNode_EntryMain.h"
 #include "Dialog/Graph/DialogGraphNode_EntrySecondary.h"
@@ -12,6 +13,7 @@
 #include "Dialog/Graph/DialogGraphNode_Once.h"
 #include "EdDialogNode_Options.h"
 #include "EdDialogNode_TrueFalse.h"
+#include "EdDialogNode_IfInInventory.h"
 #include "EdDialogNode_NoInput.h"
 #include "EdDialogNode_NoOutput.h"
 #include "EdDialogNode_LessEqualMore.h"
@@ -28,12 +30,14 @@ UAssetGraphSchema_DialogGraph::UAssetGraphSchema_DialogGraph()
 	EditorNodeMap.Add(UDialogGraphNode_IfString::StaticClass(),			UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfQuestFlag::StaticClass(),		UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfInInventory::StaticClass(),	UEdDialogNode_TrueFalse::StaticClass());
+	EditorNodeMap.Add(UDialogGraphNode_IfQuestComplete::StaticClass(),	UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfInteger::StaticClass(),		UEdDialogNode_LessEqualMore::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_Options::StaticClass(),			UEdDialogNode_Options::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_EntryMain::StaticClass(),		UEdDialogNode_NoInput::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_EntrySecondary::StaticClass(),	UEdDialogNode_NoInput::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_Exit::StaticClass(),				UEdDialogNode_NoOutput::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_Goto::StaticClass(),				UEdDialogNode_NoOutput::StaticClass());
+	EditorNodeMap.Add(UDialogGraphNode_IfInInventory::StaticClass(),	UEdDialogNode_IfInInventory::StaticClass());
 }
 
 const FPinConnectionResponse UAssetGraphSchema_DialogGraph::CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const

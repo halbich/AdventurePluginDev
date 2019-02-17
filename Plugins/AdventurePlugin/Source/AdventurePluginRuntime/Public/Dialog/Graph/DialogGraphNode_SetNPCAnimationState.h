@@ -8,22 +8,22 @@
 #include "AdventureCharacterManager.h"
 #include "Presenter/DialogPresenterInterface.h"
 #include "AnimatableObjectInterface.h"
-#include "DialogGraphNode_SetPCAnimationState.generated.h"
+#include "DialogGraphNode_SetNPCAnimationState.generated.h"
 
 /**
 * Set the Player Character's animation state. It will repeat that until it is reset or the animation is changed.
 */
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_SetPCAnimationState : public UDialogGraphNode_PlayAnimationCharacterBase
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_SetNPCAnimationState : public UDialogGraphNode_PlayAnimationCharacterBase
 {
 	GENERATED_BODY()
 
 public:
 
-	UDialogGraphNode_SetPCAnimationState()
+	UDialogGraphNode_SetNPCAnimationState()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Set PC Animation State");
+		ContextMenuName = FText::FromString("Set NPC Animation State");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "AnimationCategory", "Animations");
 #endif
 	}
@@ -34,11 +34,11 @@ public:
 	{
 		if (AnimationName.IsNone())
 		{
-			return NSLOCTEXT("DialogGraphNode_SetPCAnimationState", "Set PC animation state no animation", "PC animation state: No animation");
+			return NSLOCTEXT("DialogGraphNode_SetNPCAnimationState", "Set NPC animation state no animation", "NPC animation state: No animation");
 		}
 		else
 		{
-			return FText::Format(NSLOCTEXT("DialogGraphNode_SetPCAnimationState", "Set PC animation state", "PC animation state: {0}"), FText::FromName(AnimationName));
+			return FText::Format(NSLOCTEXT("DialogGraphNode_SetNPCAnimationState", "Set NPC animation state", "NPC animation state: {0}"), FText::FromName(AnimationName));
 		}
 		return FText::FromName(AnimationName);
 	}
@@ -50,17 +50,17 @@ public:
 
 #endif
 	/**
-	* Retrieve the PC class from the dialog graph so it can be executed.
-	* @return The PC class that should animated.
+	* Retrieve the NPC class from the dialog graph so it can be executed.
+	* @return The NPC class that should animated.
 	*/
 	virtual UClass* GetAnimatedObjectClass()
 	{
 		UDialogGraph* DialogGraph = GetDialogGraph();
-		if (DialogGraph == nullptr || DialogGraph->PlayerCharacter == nullptr)
+		if (DialogGraph == nullptr || DialogGraph->NPCCharacter == nullptr)
 		{
-			LOG_Error(NSLOCTEXT("AP", "SeNPCAnimationStatePCNull", "UDialogGraphNode_SetPCAnimationState::GetAnimatedObjectClass::PC is NULL"));
+			LOG_Error(NSLOCTEXT("AP", "SetNPCAnimationStateNPCNull", "UDialogGraphNode_SetNPCAnimationState::GetAnimatedObjectClass::NPC is NULL"));
 			return nullptr;
 		}
-		return DialogGraph->PlayerCharacter;
+		return DialogGraph->NPCCharacter;
 	}
 };

@@ -17,6 +17,6 @@ protected:
 
 	void OnPickerChanged();
 
-	UDialogGraphNode_IfInInventory* InventoryNode;
+	UDialogGraphNode_ItemBase* InventoryNode;
 	TSharedPtr<IPropertyHandle> PickerHandle;
 };

@@ -23,9 +23,9 @@ void FDialogInventoryItemCustomization::CustomizeDetails(IDetailLayoutBuilder& D
 	TArray<TWeakObjectPtr<UObject>> Objects;
 	DetailLayout.GetObjectsBeingCustomized(Objects);
 	check(Objects.Num() > 0);
-	InventoryNode = CastChecked<UDialogGraphNode_IfInInventory>(Objects[0]);
+	InventoryNode = CastChecked<UDialogGraphNode_ItemBase>(Objects[0]);
 
-	PickerHandle = DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_IfInInventory, PickerItem));
+	PickerHandle = DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_ItemBase, PickerItem));
 	PickerHandle->SetOnPropertyValueChanged(FSimpleDelegate::CreateSP(this, &FDialogInventoryItemCustomization::OnPickerChanged));
 }
 

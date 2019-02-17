@@ -30,7 +30,13 @@ public:
 	{
 		UDialogGraphNode_TrueFalse* TrueFalseNode = CastChecked<UDialogGraphNode_TrueFalse>(GenericGraphNode);
 		UDialogGraphNode* DialogChild = CastChecked<UDialogGraphNode>(Child);
-		if (Pin->PinName == PinNameTrue) TrueFalseNode->ChildTrue = DialogChild;
-		else if (Pin->PinName == PinNameFalse) TrueFalseNode->ChildFalse = DialogChild;
+		if (Pin->PinName == PinNameTrue)
+		{
+			TrueFalseNode->ChildTrue = DialogChild;
+		}
+		else if (Pin->PinName == PinNameFalse)
+		{
+			TrueFalseNode->ChildFalse = DialogChild;
+		}
 	}
 };
