@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
 #include "AdventurePluginRuntime.h"
+#include "QuestGraph.h"
 #include "QuestGraphNode_Flag.generated.h"
 /**
 * Represents a simple flag that can be set to true by any outside code.

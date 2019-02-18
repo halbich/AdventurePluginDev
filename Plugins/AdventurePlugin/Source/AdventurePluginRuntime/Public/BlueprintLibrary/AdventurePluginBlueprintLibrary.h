@@ -40,12 +40,24 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Dialog")
 	static void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
 	/**
-	* Shows or hides the inventory.
+	* Hides the inventory.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	* @param bShow If true, the method should show the inventory. If false, the method should hide the inventory.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
-	static void ShowInventory(UAdventurePluginGameContext* GameContext, bool bShow);
+	static void HideInventory(UAdventurePluginGameContext* GameContext);
+	/**
+	* Shows or hides the inventory.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param bVisible If true, the method should show the inventory. If false, the method should hide the inventory.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
+		static void SetInventoryVisibility(UAdventurePluginGameContext* GameContext, bool bVisible);
+	/**
+	* Shows the inventory.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
+		static void ShowInventory(UAdventurePluginGameContext* GameContext);
 	/**
 	* Retrieves the only instance of the requested item class. Neccessary to access any functionality provided by the Item class. Always use this method, never instantiate InventoryItem directly.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

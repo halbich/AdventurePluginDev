@@ -23,4 +23,14 @@ USimpleCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibrary::
 	return NewCombination;
 }
 
+UStartDialogCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibrary::CreateDialogCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FDialogGraphEntryPoint DialogToStart, FText CombinationName, FUseActionType CombinationType)
+{
+	UStartDialogCombinationWithSingleItem* NewCombination = NewObject<UStartDialogCombinationWithSingleItem>();
+	NewCombination->Name = CombinationName;
+	NewCombination->TargetClass = TargetObject;
+	NewCombination->DialogToStart = DialogToStart;
+	NewCombination->ActionType = CombinationType;
+	return NewCombination;
+}
+
 #pragma optimize("", on)

@@ -31,13 +31,3 @@ void USimpleCombinationWithSingleItem::Execute_Implementation(UObject* Combinati
 	GameContext->InventoryController->GetInventory()->AddItem(ResultItem, GameContext);
 	GameContext->InventoryController->GetInventory()->EndUpdate();
 }
-
-bool USimpleCombinationWithSingleItem::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
-{
-	if (!IsValid(CombinationTarget))
-	{
-		LOG_Warning(NSLOCTEXT("AP", "SimpleCombinationWithSingleItem_CanCombineWithNullItem", "SimpleCombinationWithSingleItem:CanCombineWith::The other item is null or invalid."));
-		return false;
-	}
-	return CombinationTarget->GetClass()->IsChildOf(TargetClass);
-}

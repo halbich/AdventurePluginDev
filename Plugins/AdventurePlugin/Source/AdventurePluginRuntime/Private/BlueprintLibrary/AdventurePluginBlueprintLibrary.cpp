@@ -47,7 +47,27 @@ void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* G
 	ShowDialogFromEntryPoint(GameContext, EntryPoint);
 }
 
-void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* GameContext, bool bShow)
+void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* GameContext)
+{
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("ShowInventory")))
+	{
+		return;
+	}
+	UInventoryController* InventoryController = GameContext->InventoryController;
+	InventoryController->ShowInventory(GameContext);
+}
+
+void UAdventurePluginBlueprintLibrary::HideInventory(UAdventurePluginGameContext* GameContext)
+{
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("HideInventory")))
+	{
+		return;
+	}
+	UInventoryController* InventoryController = GameContext->InventoryController;
+	InventoryController->HideInventory();
+}
+
+void UAdventurePluginBlueprintLibrary::SetInventoryVisibility(UAdventurePluginGameContext* GameContext, bool bVisible)
 {
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("ShowInventory")))
 	{
@@ -56,7 +76,7 @@ void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext
 
 	UInventoryController* InventoryController = GameContext->InventoryController;
 
-	if (bShow)
+	if (bVisible)
 	{
 		InventoryController->ShowInventory(GameContext);
 	}

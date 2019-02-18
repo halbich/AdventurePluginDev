@@ -1,13 +1,13 @@
-#pragma once
+ #pragma once
 
 #include "Core.h"
 #include "Inventory/InventoryItem.h"
 #include "Inventory.generated.h"
 /**
 * Description for an event raised when something in inventory changes, an item is added or removed.
-* @param ChangedItem The item being added or removed. If multiple items are removed or added, this is null.
+* @param ChangedItem The items being added or removed.
 */
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FInventoryChangedEvent, UInventoryItem*, ChangedItem);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FInventoryChangedEvent, const TArray<UInventoryItem*>&, ChangedItems);
 /**
 * An inventory, i.e. a collection of items. 
 * Each item can be only once in the inventory.
@@ -85,6 +85,14 @@ protected:
 	*/
 	UPROPERTY(Transient)
 	bool bIsUpdating;
+	/**
+	* This property stores the items that are being modified between BeginUpdate and EndUpdate calls.
+	* @see UInventory#InventoryChanged
+	* @see UInventory#BeginUpdate
+	* @see UInventory#EndUpdate
+	*/
+	UPROPERTY(Transient)
+		TArray<UInventoryItem*> ModifiedItems;
 	/**
 	* Replaces the entire inventory with a new set of items.
 	* @param NewItems The items that should now be in the inventory.

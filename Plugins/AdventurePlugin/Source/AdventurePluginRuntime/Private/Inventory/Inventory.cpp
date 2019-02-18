@@ -21,7 +21,11 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 	Item->SetItemState(EInventoryItemState::ItemState_InInventory, GameContext);
 	if (!bIsUpdating)
 	{
-		InventoryChanged.Broadcast(Item);
+		InventoryChanged.Broadcast(TArray<UInventoryItem*> { Item });
+	}
+	else
+	{
+		ModifiedItems.Add(Item);
 	}
 	Item->OnAddedToInventory(this, GameContext);
 	// While it might be better for the event to be raised by OnAddedToInventory, that could be easily forgotten by designers overriding that. And we don't want that.
@@ -39,7 +43,11 @@ bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* G
 	Item->SetItemState(EInventoryItemState::ItemState_Used, GameContext);
 	if (!bIsUpdating)
 	{
-		InventoryChanged.Broadcast(Item);
+		InventoryChanged.Broadcast(TArray<UInventoryItem*> {Item });
+	}
+	else
+	{
+		ModifiedItems.Add(Item);
 	}
 	Item->OnRemovedFromInventory(this, GameContext);
 	// While it might be better for the event to be raised by OnRemovedFromInventory, that could be easily forgotten by designers overriding that. And we don't want that.
@@ -51,14 +59,19 @@ bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* G
 void UInventory::BeginUpdate()
 {
 	bIsUpdating = true;
+	ModifiedItems.Empty();
 }
 
 void UInventory::EndUpdate()
 {
 	if (bIsUpdating)
 	{
-		// TODO: Store changed items and broadcast also the list of modified items.
-		InventoryChanged.Broadcast(nullptr);
+		InventoryChanged.Broadcast(ModifiedItems);
+		ModifiedItems.Empty();
+	}
+	else
+	{
+		check (false && "This method should only be called between begin update and end update calls.")
 	}
 	bIsUpdating = false;
 }

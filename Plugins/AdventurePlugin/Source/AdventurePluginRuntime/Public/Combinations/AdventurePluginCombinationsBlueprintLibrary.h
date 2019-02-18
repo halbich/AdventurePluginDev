@@ -8,7 +8,9 @@
 #include "InventoryItem.h"
 #include "SimpleCombinationWithSingleItem.h"
 #include "GenericCombinationWithSingleItem.h"
+#include "StartDialogCombinationWithSingleItem.h"
 #include "UseActionType.h"
+#include "DialogGraphEntryPoint.h"
 #include "AdventurePluginCombinationsBlueprintLibrary.generated.h"
 
 /**
@@ -42,5 +44,15 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
 	static USimpleCombinationWithSingleItem* CreateSimpleCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, TSubclassOf<UInventoryItem> ResultItem, FText CombinationName, FUseActionType CombinationType);
 
+	/**
+	* Creates a combination with some specific item. When triggered, this combination starts a dialog.
+	* @param TargetObject The other object of this combination. Defined by class so it can be easily used in editor.
+	* @param DialogToStart The dialog that should be started when this combination is triggered.
+	* @param CombinationName The name of this combination that can be displayed to the user.
+	* @param CombinationType The type of this combination. No default behavior, expected usecase is to allow cursor to change based on the type of the combination.
+	* @return The object representing this combination.
+	*/
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
+		static UStartDialogCombinationWithSingleItem* CreateDialogCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FDialogGraphEntryPoint DialogToStart, FText CombinationName, FUseActionType CombinationType);
 private:
 };
