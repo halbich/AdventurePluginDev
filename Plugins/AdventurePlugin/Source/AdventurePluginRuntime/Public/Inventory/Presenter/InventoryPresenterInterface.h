@@ -32,14 +32,15 @@ public:
 	/**
 	* Displays the specified inventory to the player.
 	* @param Inventory The inventory to present.
-	* @param InventoryController The controller managing this inventory.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Inventory")
-		void ShowInventory(UInventory* Inventory, UInventoryController* InventoryController);
+		void ShowInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
 	/**
 	* Hides the currently shown inventory.
-	* @param InventoryController The controller managing the currently shown inventory.
+	* @param Inventory The inventory to hide.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Inventory")
-		void HideInventory(UInventoryController* InventoryController);
+		void HideInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
 };

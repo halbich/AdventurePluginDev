@@ -35,8 +35,10 @@ public:
 	void ShowInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory = nullptr);
 	/**
 	* If an inventory is being shown, hide it.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param Inventory The inventory to hide. Defaults to null, which means showing the default inventory.
 	*/
-	void HideInventory();
+	void HideInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory = nullptr);
 	/**
 	* Retrieves the default inventory, belonging to the main player character.
 	* @return The default inventory.
@@ -52,19 +54,8 @@ private:
 	UPROPERTY(Transient)
 	UInventory* DefaultInventory;
 	/**
-	* Set if displaying an inventory, contains the game context used to show that inventory.
-	*/
-	UPROPERTY(Transient)
-		UAdventurePluginGameContext* CurrentGameContext;
-	/**
 	* If displaying an inventory, this contains the presenter used to show that inventory.
 	*/
 	UPROPERTY(Transient)
 		TScriptInterface<IInventoryPresenterInterface> CurrentPresenter;
-	/**
-	* Retrieves the presenter instance used for showing or displaying manuals. 
-	* Retrieved from current game context, @see UInventoryController#CurrentGameContext.
-	* @return The presenter used to display the inventory.
-	*/
-	TScriptInterface<IInventoryPresenterInterface> GetPresenter();
 };

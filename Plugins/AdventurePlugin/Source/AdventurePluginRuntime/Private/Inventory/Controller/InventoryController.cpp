@@ -4,14 +4,12 @@
 
 void UInventoryController::ShowInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory)
 {
-	CurrentGameContext = GameContext;
-	UInventory* InventoryToShow = IsValid(Inventory) ? Inventory : DefaultInventory;
-
-	TScriptInterface<IInventoryPresenterInterface> PresenterInstance = GetPresenter();
-	if (PresenterInstance && UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryController:ShowInventory")))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryController:ShowInventory")))
 	{
-		IInventoryPresenterInterface::Execute_ShowInventory(PresenterInstance.GetObject(), InventoryToShow, GameContext->InventoryController);
+		return;
 	}
+	UInventory* InventoryToShow = IsValid(Inventory) ? Inventory : DefaultInventory;
+	IInventoryPresenterInterface::Execute_ShowInventory(GameContext->InventoryPresenter.GetObject(), InventoryToShow, GameContext);
 }
 
 UInventory* UInventoryController::GetInventory()
@@ -19,26 +17,12 @@ UInventory* UInventoryController::GetInventory()
 	return DefaultInventory;
 }
 
-void UInventoryController::HideInventory()
+void UInventoryController::HideInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory)
 {
-	TScriptInterface<IInventoryPresenterInterface> PresenterInstance = GetPresenter();
-	if (PresenterInstance && UAdventurePluginGameContext::IsGameContextValid(CurrentGameContext, TEXT("InventoryController:HideInventory")))
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("InventoryController:HideInventory")))
 	{
-		IInventoryPresenterInterface::Execute_HideInventory(PresenterInstance.GetObject(), CurrentGameContext->InventoryController);
+		return;
 	}
-
-	CurrentGameContext = nullptr;
-}
-TScriptInterface<IInventoryPresenterInterface> UInventoryController::GetPresenter()
-{
-	if (!UAdventurePluginGameContext::IsGameContextValid(CurrentGameContext, TEXT("InventoryController:GetPresenter")))
-	{
-		return nullptr;
-	}
-	if (!IsValid(CurrentGameContext->InventoryPresenter.GetObject()))
-	{
-		LOG_Error(NSLOCTEXT("AP", "InventoryControllerPresenterNull", "InventoryController:GetPresenter: Inventory presenter is null or invalid."));
-		return nullptr;
-	}
-	return CurrentGameContext->InventoryPresenter;
+	UInventory* InventoryToHide = IsValid(Inventory) ? Inventory : DefaultInventory;
+	IInventoryPresenterInterface::Execute_HideInventory(GameContext->InventoryPresenter.GetObject(), InventoryToHide, GameContext);
 }

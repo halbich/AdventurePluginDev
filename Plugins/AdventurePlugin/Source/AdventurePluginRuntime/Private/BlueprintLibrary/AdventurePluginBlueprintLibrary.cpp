@@ -51,8 +51,7 @@ void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext
 	{
 		return;
 	}
-	UInventoryController* InventoryController = GameContext->InventoryController;
-	InventoryController->ShowInventory(GameContext);
+	GameContext->InventoryController->ShowInventory(GameContext);
 }
 
 void UAdventurePluginBlueprintLibrary::HideInventory(UAdventurePluginGameContext* GameContext)
@@ -61,8 +60,7 @@ void UAdventurePluginBlueprintLibrary::HideInventory(UAdventurePluginGameContext
 	{
 		return;
 	}
-	UInventoryController* InventoryController = GameContext->InventoryController;
-	InventoryController->HideInventory();
+	GameContext->InventoryController->HideInventory(GameContext);
 }
 
 void UAdventurePluginBlueprintLibrary::SetInventoryVisibility(UAdventurePluginGameContext* GameContext, bool bVisible)
@@ -72,15 +70,13 @@ void UAdventurePluginBlueprintLibrary::SetInventoryVisibility(UAdventurePluginGa
 		return;
 	}
 
-	UInventoryController* InventoryController = GameContext->InventoryController;
-
 	if (bVisible)
 	{
-		InventoryController->ShowInventory(GameContext);
+		GameContext->InventoryController->ShowInventory(GameContext);
 	}
 	else
 	{
-		InventoryController->HideInventory();
+		GameContext->InventoryController->HideInventory(GameContext);
 	}
 }
 
