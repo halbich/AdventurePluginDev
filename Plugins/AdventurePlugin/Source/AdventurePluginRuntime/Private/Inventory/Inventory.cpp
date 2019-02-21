@@ -17,6 +17,7 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 		return false;
 	}
 	Items.Add(Item);
+	SetItems(Items, GameContext);
 	// TODO: Item state: Should we do it here? Or should presenter be responsible
 	Item->SetItemState(EInventoryItemState::ItemState_InInventory, GameContext);
 	if (!bIsUpdating)
@@ -30,15 +31,18 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 	Item->OnAddedToInventory(this, GameContext);
 	// While it might be better for the event to be raised by OnAddedToInventory, that could be easily forgotten by designers overriding that. And we don't want that.
 	Item->AddedToInventory.Broadcast(Item);
-	SetItems(Items, GameContext);
 	return true;
 }
 
 bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
 	TArray<UInventoryItem*> Items = GetItems(GameContext);
-	if (!Items.Contains(Item)) return false;
+	if (!Items.Contains(Item)) 
+	{
+		return false;
+	}
 	Items.Remove(Item);
+	SetItems(Items, GameContext);
 	// TODO: Item state: Should we do it here? Or should presenter be responsible
 	Item->SetItemState(EInventoryItemState::ItemState_Used, GameContext);
 	if (!bIsUpdating)
@@ -52,7 +56,6 @@ bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* G
 	Item->OnRemovedFromInventory(this, GameContext);
 	// While it might be better for the event to be raised by OnRemovedFromInventory, that could be easily forgotten by designers overriding that. And we don't want that.
 	Item->RemovedFromInventory.Broadcast(Item);
-	SetItems(Items, GameContext);
 	return true;
 }
 
