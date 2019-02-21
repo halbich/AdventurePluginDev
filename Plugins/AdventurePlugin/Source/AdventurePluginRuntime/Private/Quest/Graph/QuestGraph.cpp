@@ -32,7 +32,7 @@ void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
 		UQuestGraphNode_Flag* FlagNode = Cast<UQuestGraphNode_Flag>(Node);
 		if (FlagNode != nullptr && FlagNode->FlagName == FlagName)
 		{
-			if (!FlagNode->ParentNodesSatisfied(GameContext))
+			if (!FlagNode->ParentNodesTrue(GameContext))
 			{
 				LOG_Warning(FText::Format(NSLOCTEXT("AdventurePlugin", "QuestGraph_SetFlag_ParentNodesNotTrue", "Quest {0}: Quest flag set to true even though at least one of its predecessors are false. FlagName: {1}."), GetGraphNameText(), FlagNameText));
 			}
@@ -188,22 +188,22 @@ bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName Vari
 	return true;
 }
 
-TArray<UQuestGraphNode*> UQuestGraph::GetSatisfiableNodes(UAdventurePluginGameContext* GameContext)
+TArray<UQuestGraphNode*> UQuestGraph::GetTrueNodes(UAdventurePluginGameContext* GameContext)
 {
-	TArray<UQuestGraphNode*> SatisfiableNodes = TArray<UQuestGraphNode*>();
+	TArray<UQuestGraphNode*> TrueNodes = TArray<UQuestGraphNode*>();
 	for (UGenericGraphNode* ChildNode : AllNodes)
 	{
 		UQuestGraphNode* ChildQuestNode = Cast<UQuestGraphNode>(ChildNode);
 		if (!IsValid(ChildQuestNode))
 		{
-			LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "QuestGraph_GetSatisfiableNodes_InvalidQuestNode", "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph."), GetGraphNameText()));
+			LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "QuestGraph_GetTrueNodes_InvalidQuestNode", "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph."), GetGraphNameText()));
 			continue;
 		}
-		if (!ChildQuestNode->IsSatisfied(GameContext) && ChildQuestNode->ParentNodesSatisfied(GameContext)) {
-			SatisfiableNodes.Add(ChildQuestNode);
+		if (!ChildQuestNode->IsTrue(GameContext) && ChildQuestNode->ParentNodesTrue(GameContext)) {
+			TrueNodes.Add(ChildQuestNode);
 		}
 	}
-	return SatisfiableNodes;
+	return TrueNodes;
 }
 
 FName UQuestGraph::GetQualifiedVariableName(FName VariableName)
@@ -218,7 +218,7 @@ bool UQuestGraph::IsComplete(UAdventurePluginGameContext* GameContext)
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_IsComplete_EndNodeNull", "QuestGraph:IsComplete: End node is null or invalid."));
 		return false;
 	}
-	return EndNode->IsSatisfied(GameContext);
+	return EndNode->IsTrue(GameContext);
 }
 
 #undef LOCTEXT_NAMESPACE

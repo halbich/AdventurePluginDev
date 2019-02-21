@@ -114,10 +114,10 @@ public:
 	/**
 	* Retrieves the list of all nodes that can be set to true, i.e. they are not true and all of their predecessors are true.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	* @return The list of satisfiable nodes.
+	* @return The list of true nodes.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-	TArray<UQuestGraphNode*> GetSatisfiableNodes(UAdventurePluginGameContext* GameContext);
+	TArray<UQuestGraphNode*> GetTrueNodes(UAdventurePluginGameContext* GameContext);
 
 	/**
 	* Returns true if this graph is complete.

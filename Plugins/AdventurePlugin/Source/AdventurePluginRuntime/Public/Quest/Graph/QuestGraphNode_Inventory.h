@@ -43,21 +43,21 @@ public:
 
 #endif
 
-	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraphNode_Inventory:IsSatisfied")))
+		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraphNode_Inventory:IsTrue")))
 		{
 			return false;
 		}
 		if (!IsValid(Item))
 		{
-			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Inventory_InvalidItem", "Quest graph node inventory:IsSatisfied: Nil or invalid item passed."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Inventory_InvalidItem", "Quest graph node inventory:IsTrue: Nil or invalid item passed."));
 			return false;
 		}
 		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
 		if (!IsValid(ItemInstance))
 		{
-			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Inventory_InvalidItemInstance", "Quest graph node inventory:IsSatisfied: Item could not be instantiated."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Inventory_InvalidItemInstance", "Quest graph node inventory:IsTrue: Item could not be instantiated."));
 			return false;
 		}
 		return ItemInstance->WasPickedUp(GameContext);

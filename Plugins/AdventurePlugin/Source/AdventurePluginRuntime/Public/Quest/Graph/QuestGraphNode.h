@@ -19,21 +19,21 @@ public:
 	virtual ~UQuestGraphNode();
 
 	/**
-	* Checks whether this node is satisfied, i.e. the player took all actions necessary for this node to be true.
+	* Checks whether this node is true, i.e. the player took all actions necessary for this node to be true.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	* @return True if this node is satisfied.
+	* @return True if this node is true.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext)
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext)
 	{ 
 		return true; 
 	}
 	/**
-	* Checks whether all parent nodes of this node are satisfied.
+	* Checks whether all parent nodes of this node are true.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	* @return True if all parent nodes of this node are satisfied.
+	* @return True if all parent nodes of this node are true.
 	*/
-	bool ParentNodesSatisfied(UAdventurePluginGameContext* GameContext);
+	bool ParentNodesTrue(UAdventurePluginGameContext* GameContext);
 
 #if WITH_EDITORONLY_DATA
 	/*TODO: Bind to some nice picker of available locations. Cannot be done as part of plugin because the plugin knows nothing about game locations.*/

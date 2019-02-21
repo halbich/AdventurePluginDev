@@ -28,11 +28,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SubquestNode")
 	UQuestGraph* Subquest;
 
-	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
 		if (!IsValid(Subquest))
 		{
-			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Subquest_InvalidSubquest", "Quest graph node Subquest:IsSatisfied: Nil or invalid Subquest passed"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Subquest_InvalidSubquest", "Quest graph node Subquest:IsTrue: Nil or invalid Subquest passed"));
 			return false;
 		}
 		return Subquest->IsComplete(GameContext);

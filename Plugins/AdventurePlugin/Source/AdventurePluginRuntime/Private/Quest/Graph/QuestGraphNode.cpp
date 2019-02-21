@@ -18,14 +18,14 @@ UQuestGraphNode::~UQuestGraphNode()
 }
 
 
-bool UQuestGraphNode::ParentNodesSatisfied(UAdventurePluginGameContext* GameContext) {
+bool UQuestGraphNode::ParentNodesTrue(UAdventurePluginGameContext* GameContext) {
 	for (UGenericGraphNode* ParentNodeUncasted : ParentNodes) {
 		UQuestGraphNode* ParentNode = Cast<UQuestGraphNode>(ParentNodeUncasted);
 		if (!IsValid(ParentNode))
 		{
 			continue;
 		}
-		if (!ParentNode->IsSatisfied(GameContext)) {
+		if (!ParentNode->IsTrue(GameContext)) {
 			return false;
 		}
 	}

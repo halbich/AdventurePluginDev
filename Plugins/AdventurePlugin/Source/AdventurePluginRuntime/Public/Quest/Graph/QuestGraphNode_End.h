@@ -27,9 +27,9 @@ public:
 	{
 	}
 
-	virtual bool IsSatisfied(UAdventurePluginGameContext* GameContext) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
 	{
-		return ParentNodesSatisfied(GameContext);
+		return ParentNodesTrue(GameContext);
 	}
 
 #if WITH_EDITOR
