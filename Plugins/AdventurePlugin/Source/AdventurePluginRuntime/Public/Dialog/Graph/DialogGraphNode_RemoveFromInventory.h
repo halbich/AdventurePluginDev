@@ -21,7 +21,6 @@ public:
 	UDialogGraphNode_RemoveFromInventory()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
 		ContextMenuName = FText::FromString("Remove item from inventory");
 #endif
 	}

@@ -67,6 +67,11 @@ private:
 	static int32 CurrentCacheRefreshID;
 
 protected:
+	UPROPERTY()
+		TMap<TSubclassOf<UGenericGraphNode>, TSubclassOf<UEdNode_GenericGraphNode>> EditorNodeMap;
+
 	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const;
+
+	const TSubclassOf<UEdNode_GenericGraphNode>* FindEditorNodeForRuntimeNode(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const;
 };
 

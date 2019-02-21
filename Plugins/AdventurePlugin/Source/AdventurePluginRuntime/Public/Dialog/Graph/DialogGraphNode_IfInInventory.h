@@ -23,6 +23,7 @@ public:
 	UDialogGraphNode_IfInInventory()
 	{
 #if WITH_EDITORONLY_DATA
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
 		ContextMenuName = FText::FromString("Branch on item in inventory");
 #endif
 	}

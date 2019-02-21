@@ -426,4 +426,29 @@ TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_GenericGraph::GetEditorN
 	return UEdNode_GenericGraphNode::StaticClass();
 }
 
+const TSubclassOf<UEdNode_GenericGraphNode>* UAssetGraphSchema_GenericGraph::FindEditorNodeForRuntimeNode(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const
+{
+	const TSubclassOf<UEdNode_GenericGraphNode>* RegisteredEditorNode = EditorNodeMap.Find(RuntimeNodeType);
+	if (RegisteredEditorNode != nullptr)
+	{
+		return RegisteredEditorNode;
+	}
+	const TSubclassOf<UGenericGraphNode>* ClosestRegisteredRuntimeNode = nullptr;
+	const TSubclassOf<UEdNode_GenericGraphNode>* ClosestRegisteredEditorNode = nullptr;
+	// This node was not explicitly registered. See if it inherits from some other registered node type.
+	for (const TPair<TSubclassOf<UGenericGraphNode>, TSubclassOf<UEdNode_GenericGraphNode>>& RegisteredNode : EditorNodeMap)
+	{
+		if (RuntimeNodeType->IsChildOf(RegisteredNode.Key))
+		{
+			// The node type is compatible. But we want to find the parent the closest to the queried type in terms of inheritance. 
+			// If we found some result we replace the already found result only if the current candidate inherits from the already found node, i.e. it is deeper in the inheritance tree.
+			if (ClosestRegisteredRuntimeNode == nullptr || RegisteredNode.Key->IsChildOf(*ClosestRegisteredRuntimeNode))
+			{
+				ClosestRegisteredRuntimeNode = &RegisteredNode.Key;
+				ClosestRegisteredEditorNode = &RegisteredNode.Value;
+			}
+		}
+	}
+	return ClosestRegisteredEditorNode;
+}
 #undef LOCTEXT_NAMESPACE

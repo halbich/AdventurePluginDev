@@ -11,6 +11,7 @@
 #include "Dialog/Graph/DialogGraphNode_Exit.h"
 #include "Dialog/Graph/DialogGraphNode_Goto.h"
 #include "Dialog/Graph/DialogGraphNode_Once.h"
+#include "Dialog/Graph/BaseClasses/DialogGraphNode_TrueFalse.h"
 #include "EdDialogNode_Options.h"
 #include "EdDialogNode_TrueFalse.h"
 #include "EdDialogNode_IfInInventory.h"
@@ -25,12 +26,10 @@
 
 UAssetGraphSchema_DialogGraph::UAssetGraphSchema_DialogGraph()
 {
-	EditorNodeMap.Add(UDialogGraphNode_Once::StaticClass(),				UEdDialogNode_TrueFalse::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_IfBool::StaticClass(),			UEdDialogNode_TrueFalse::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_IfString::StaticClass(),			UEdDialogNode_TrueFalse::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_IfQuestFlag::StaticClass(),		UEdDialogNode_TrueFalse::StaticClass());
+	// TODO: Remove the UDialogGraphNode, thats for testing inheritance
+	EditorNodeMap.Add(UDialogGraphNode::StaticClass(),					UEdDialogNode::StaticClass());
+	EditorNodeMap.Add(UDialogGraphNode_TrueFalse::StaticClass(),		UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfInInventory::StaticClass(),	UEdDialogNode_TrueFalse::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_IfQuestComplete::StaticClass(),	UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfInteger::StaticClass(),		UEdDialogNode_LessEqualMore::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_Options::StaticClass(),			UEdDialogNode_Options::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_EntryMain::StaticClass(),		UEdDialogNode_NoInput::StaticClass());
@@ -76,8 +75,7 @@ TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_DialogGraph::GetEditorNo
 {
 	if (RuntimeNodeType && RuntimeNodeType->IsChildOf(UDialogGraphNode::StaticClass()))
 	{
-		TSubclassOf<UDialogGraphNode> DialogNodeType = *RuntimeNodeType;
-		if (const TSubclassOf<UEdDialogNode>* EditorNodeType = EditorNodeMap.Find(*DialogNodeType))
+		if (const TSubclassOf<UEdNode_GenericGraphNode>* EditorNodeType = FindEditorNodeForRuntimeNode(RuntimeNodeType))
 		{
 			return *EditorNodeType;
 		}

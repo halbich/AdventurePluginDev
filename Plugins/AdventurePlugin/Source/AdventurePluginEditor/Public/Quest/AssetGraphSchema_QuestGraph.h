@@ -16,9 +16,4 @@ public:
 	virtual const FPinConnectionResponse CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const override;
 	virtual void CreateDefaultNodesForGraph(UEdGraph& Graph) const override;
 	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const override;
-
-protected:
-
-	UPROPERTY()
-		TMap<TSubclassOf<UQuestGraphNode>, TSubclassOf<UEdQuestNode>> EditorNodeMap;
 };

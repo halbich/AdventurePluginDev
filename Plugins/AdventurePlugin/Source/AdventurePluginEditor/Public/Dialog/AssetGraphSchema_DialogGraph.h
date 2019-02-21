@@ -21,9 +21,6 @@ public:
 	virtual TSubclassOf<UEdNode_GenericGraphNode> GetEditorNodeType(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const override;
 
 protected:
-
-	UPROPERTY()
-	TMap<TSubclassOf<UDialogGraphNode>, TSubclassOf<UEdDialogNode>> EditorNodeMap;
 	UAdventureCharacter* GetCharacterFromAsset(FAssetData& AssetData) const;
 	UAdventureCharacter* GetOnlyPlayerCharacter() const;
 };

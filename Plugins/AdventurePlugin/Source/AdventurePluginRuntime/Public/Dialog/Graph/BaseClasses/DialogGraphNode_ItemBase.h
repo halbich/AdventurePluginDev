@@ -17,6 +17,13 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_ItemBase : public UDialogGraph
 	GENERATED_BODY()
 
 public:
+
+	UDialogGraphNode_ItemBase()
+	{
+#if WITH_EDITORONLY_DATA
+		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ItemsCategory", "Items");
+#endif
+	}
 	/**
 	* The relevant item.
 	* In editor we are actually filling this through PickerItem, so we can see icons of the items. @see UDialogGraphNode_IsInInventory#PickerItem
