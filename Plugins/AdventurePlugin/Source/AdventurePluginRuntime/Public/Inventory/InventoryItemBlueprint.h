@@ -11,7 +11,6 @@
 #include "CombinableObjectBlueprint.h"
 #include "InventoryItemBlueprint.generated.h"
 
-#pragma optimize("", off)
 /**
 * The blueprint class for an items.
 * Exists to specify the item icon.
@@ -25,4 +24,3 @@ public:
 
 	virtual UTexture2D* GetIcon() const override;
 };
-#pragma optimize("", on)

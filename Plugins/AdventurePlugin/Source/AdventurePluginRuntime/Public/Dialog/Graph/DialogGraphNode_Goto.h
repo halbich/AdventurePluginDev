@@ -12,7 +12,6 @@
 * Use to make the graph more readable, for example to navigate back to the option selection.
 * The other use case is to create cycles, as the graph does not support cycles by itself.
 */
-#pragma optimize("", off)
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Goto : public UDialogGraphNode
 {
@@ -89,5 +88,3 @@ public:
 		return *TargetNode;
 	}
 };
-
-#pragma optimize("", on)

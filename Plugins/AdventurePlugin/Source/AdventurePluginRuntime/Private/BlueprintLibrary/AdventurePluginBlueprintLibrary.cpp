@@ -6,8 +6,6 @@
 #include "AdventurePluginGameContext.h"
 #include "AdventurePluginGameInstance.h"
 
-#pragma optimize("", off)
-
 void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePluginGameContext* GameContext, FDialogGraphEntryPoint EntryPoint)
 {
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("ShowDialogFromEntryPoint")))
@@ -121,5 +119,3 @@ UAdventurePluginGameContext* UAdventurePluginBlueprintLibrary::GetCurrentGameCon
 	}
 	return GameInstance->CurrentGameContext;
 }
-
-#pragma optimize("", on)

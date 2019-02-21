@@ -2,8 +2,6 @@
 
 #include "AdventurePluginSaveGame.h"
 
-#pragma optimize("", off)
-
 UAdventurePluginSaveGame::UAdventurePluginSaveGame()
 {
 	SaveSlotName = TEXT("DefaultSaveSlot");
@@ -102,5 +100,3 @@ bool UAdventurePluginSaveGame::Save()
 {
 	return UGameplayStatics::SaveGameToSlot(this, this->SaveSlotName, this->SaveUserIndex);
 }
-
-#pragma optimize("", on)

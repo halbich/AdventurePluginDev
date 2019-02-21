@@ -1,6 +1,5 @@
 #include "InventoryItemBlueprint.h"
 
-#pragma optimize("", off)
 UTexture2D* UInventoryItemBlueprint::GetIcon() const
 {
 	if (!IsValid(this->GeneratedClass) || !IsValid(this->GeneratedClass->ClassDefaultObject))
@@ -14,4 +13,3 @@ UTexture2D* UInventoryItemBlueprint::GetIcon() const
 	}
 	return ItemInstance->Icon;
 }
-#pragma optimize("", on)

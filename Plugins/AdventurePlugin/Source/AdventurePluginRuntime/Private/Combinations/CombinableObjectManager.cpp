@@ -1,7 +1,6 @@
 #include "CombinableObjectManager.h"
 #include "AdventurePluginRuntime.h"
 
-#pragma optimize("", off)
 UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass)
 {
 	if (CombinableObjectClass == nullptr)
@@ -36,4 +35,3 @@ void UCombinableObjectManager::RegisterObject(TSubclassOf<UCombinableObject> Com
 	check(NewCombinableObject != nullptr && "It should always be possible to instantiate a combinable object");
 	CombinableObjects.Add(CombinableObjectClass, NewCombinableObject);
 }
-#pragma optimize("", on)

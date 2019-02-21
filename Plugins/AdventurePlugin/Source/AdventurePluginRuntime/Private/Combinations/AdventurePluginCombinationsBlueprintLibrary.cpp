@@ -2,7 +2,6 @@
 
 #include "AdventurePluginCombinationsBlueprintLibrary.h"
 
-#pragma optimize("", off)
 UGenericCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibrary::CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FUseActionType CombinationType, FCombinationEvent CombinationEvent)
 {
 	UGenericCombinationWithSingleItem* NewCombination = NewObject<UGenericCombinationWithSingleItem>();
@@ -32,5 +31,3 @@ UStartDialogCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibr
 	NewCombination->ActionType = CombinationType;
 	return NewCombination;
 }
-
-#pragma optimize("", on)

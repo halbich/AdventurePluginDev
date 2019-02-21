@@ -4,7 +4,6 @@
 #include "AdventurePluginGameContext.h"
 #include "AdventurePluginRuntime.h"
 
-#pragma optimize("", off)
 void UCombinableObject::InitCombinations_Implementation() {
 
 }
@@ -119,4 +118,3 @@ TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObj
 	}
 	return nullptr;
 }
-#pragma optimize("", on)

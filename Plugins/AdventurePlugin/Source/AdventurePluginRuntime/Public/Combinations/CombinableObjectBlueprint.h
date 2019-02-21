@@ -5,7 +5,6 @@
 #include "AssetData.h"
 #include "CombinableObjectBlueprint.generated.h"
 
-#pragma optimize("", off)
 class UCombinableObject;
 /**
 * Custom blueprint class that makes sure that combinable objects know about combinations defined on other combinable objects.
@@ -51,4 +50,3 @@ private:
 	UFUNCTION()
 		void RegisterExternalCombinations(UCombinableObject* SourceObject, UCombinableObject* TargetObject);
 };
-#pragma optimize("", on)

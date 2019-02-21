@@ -2,7 +2,6 @@
 #include "AdventureCharacterManager.h"
 #include "AdventurePluginGameContext.h"
 
-#pragma optimize("", off)
 UTexture2D* UAdventureCharacterBlueprint::GetIcon() const
 {
 	//TODO: This is here two times, here and for items - make common ancestor with this? 
@@ -17,4 +16,3 @@ UTexture2D* UAdventureCharacterBlueprint::GetIcon() const
 	}
 	return CharacterInstance->Icon;
 }
-#pragma optimize("", on)

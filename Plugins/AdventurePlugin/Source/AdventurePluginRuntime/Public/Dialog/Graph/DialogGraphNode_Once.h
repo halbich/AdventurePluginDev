@@ -7,7 +7,6 @@
 #include"SaveGame/AdventurePluginSaveGame.h"
 #include "DialogGraphNode_Once.generated.h"
 
-#pragma optimize("", off)
 /**
 * This node is true until the first time it is visited as part of the execution.
 * By that we mean that it won't become false if visited by the Dialog Options node looking for options to present.
@@ -80,6 +79,3 @@ protected:
 	UPROPERTY(Transient)
 	bool bWasJustExecuted;
 };
-
-
-#pragma optimize("", on)

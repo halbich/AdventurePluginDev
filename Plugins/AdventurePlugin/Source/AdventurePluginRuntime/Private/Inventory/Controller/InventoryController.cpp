@@ -2,10 +2,6 @@
 
 #include "InventoryController.h"
 
-#pragma optimize("", off)
-
-
-
 void UInventoryController::ShowInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory)
 {
 	CurrentGameContext = GameContext;
@@ -46,5 +42,3 @@ TScriptInterface<IInventoryPresenterInterface> UInventoryController::GetPresente
 	}
 	return CurrentGameContext->InventoryPresenter;
 }
-
-#pragma optimize("", on)

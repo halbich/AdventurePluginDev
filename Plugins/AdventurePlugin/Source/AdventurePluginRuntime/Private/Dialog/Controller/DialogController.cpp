@@ -5,7 +5,6 @@
 #include "NodeInterfaces/DialogNodeShowOptionsCallbackInterface.h"
 #include "NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"
 
-#pragma optimize("", off)
 
 void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph)
 {
@@ -95,5 +94,3 @@ void UDialogController::PlayAnimationCallback(FName AnimationName, bool bSuccess
 		}
 	}
 }
-
-#pragma optimize("", on)
