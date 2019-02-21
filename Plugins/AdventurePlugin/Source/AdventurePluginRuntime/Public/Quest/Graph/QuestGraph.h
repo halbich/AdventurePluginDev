@@ -2,6 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraph/GenericGraph.h"
+#include "BoolVariable.h"
+#include "IntegerVariable.h"
+#include "StringVariable.h"
 #include "QuestGraph.generated.h"
 
 class UQuestGraphNode;
@@ -11,53 +14,7 @@ class UAdventurePluginGameContext;
 */
 class FQuestEvent;
 DECLARE_DYNAMIC_DELEGATE(FQuestEvent);
-/**
-* Data about a boolean variable that can be added to a quest.
-*/
-USTRUCT()
-struct ADVENTUREPLUGINRUNTIME_API FBoolVariable
-{
-	GENERATED_BODY()
 
-public:
-	/**
-	* The default value of this variable.
-	*/
-	UPROPERTY(EditAnywhere)
-		bool DefaultValue;
-};
-
-/**
-* Data about an integer variable that can be added to a quest.
-*/
-USTRUCT()
-struct ADVENTUREPLUGINRUNTIME_API FIntegerVariable
-{
-	GENERATED_BODY()
-
-public:
-	/**
-	* The default value of this variable.
-	*/
-	UPROPERTY(EditAnywhere)
-		int32 DefaultValue;
-};
-
-/**
-* Data about a string variable that can be added to a quest.
-*/
-USTRUCT()
-struct ADVENTUREPLUGINRUNTIME_API FStringVariable
-{
-	GENERATED_BODY()
-
-public:
-	/**
-	* The default value of this variable.
-	*/
-	UPROPERTY(EditAnywhere)
-		FString DefaultValue;
-};
 /**
 * This class represents a single quest, things a player have to do progress through the game.
 * It is a data storage for all the variables and flags tracking the state of the quest.
