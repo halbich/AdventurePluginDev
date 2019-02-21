@@ -111,7 +111,7 @@ public:
 		}
 		else
 		{
-			// This is fallback - execution of this node will end and the Controller will call GetNextNode, which will, thanks to selectedOptionIndex being -1, return ChildFallback.
+			// This is fallback - execution of this node will end and the Controller will call GetNextNode, which will, thanks to SelectedOptionIndex being -1, return ChildFallback.
 			// If ChildFallback is nullptr, execution of graph will end.
 			return true;
 		}
@@ -142,7 +142,7 @@ public:
 		check(SelectedOptionIndex < (int32)ChoiceCount);
 		if (SelectedOptionIndex >= (int32)ChoiceCount)
 		{
-			// TODO: Log warning.
+			LOG_Warning(NSLOCTEXT("AdventurePlugin", "DialogNodeOptions_GetNextNode_UsingFallback", " A dialog options node found no options and is using a fallback node."))
 			return ChildFallback;
 		}
 		return ChildOptions[SelectedOptionIndex];

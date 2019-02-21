@@ -32,7 +32,7 @@ public:
 	{
 		if (!IsValid(Subquest))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "Invalid Subquest", "Quest graph node: Subquest: Nil or invalid Subquest passed"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Subquest_InvalidSubquest", "Quest graph node Subquest:IsSatisfied: Nil or invalid Subquest passed"));
 			return false;
 		}
 		return Subquest->IsComplete(GameContext);

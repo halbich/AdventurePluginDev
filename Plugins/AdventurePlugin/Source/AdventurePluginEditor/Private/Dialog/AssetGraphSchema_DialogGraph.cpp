@@ -26,8 +26,6 @@
 
 UAssetGraphSchema_DialogGraph::UAssetGraphSchema_DialogGraph()
 {
-	// TODO: Remove the UDialogGraphNode, thats for testing inheritance
-	EditorNodeMap.Add(UDialogGraphNode::StaticClass(),					UEdDialogNode::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_TrueFalse::StaticClass(),		UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfInInventory::StaticClass(),	UEdDialogNode_TrueFalse::StaticClass());
 	EditorNodeMap.Add(UDialogGraphNode_IfInteger::StaticClass(),		UEdDialogNode_LessEqualMore::StaticClass());
@@ -58,7 +56,7 @@ void UAssetGraphSchema_DialogGraph::CreateDefaultNodesForGraph(UEdGraph& EdGraph
 	Action.NodeTemplate->GenericGraphNode->Graph = EditingGraph;
 	EditingGraph->MainEntryPoint = Cast<UDialogGraphNode>(Action.NodeTemplate->GenericGraphNode);
 	Action.PerformAction(EditingGraph->EdGraph, nullptr, FVector2D(0, 0), false);
-	//TODO: Maybe put this somewhere else? Not sure where though.
+	// Maybe put this somewhere else? Not sure where though.
 	// If there is only one player character class, use that.
 	if (EditingGraph->PlayerCharacter == nullptr)
 	{

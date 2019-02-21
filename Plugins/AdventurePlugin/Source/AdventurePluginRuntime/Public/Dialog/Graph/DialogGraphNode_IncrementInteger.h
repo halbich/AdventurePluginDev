@@ -57,7 +57,7 @@ public:
 	{
 		if (!IsValid(Integer.Quest))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IncrementInteger", "DialogGraphNode_IncrementInteger:Execute:Quest is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IncrementInteger_Execute_QuestInvalid", "DialogGraphNode_IncrementInteger:Execute:Quest is null or invalid."));
 			return true;
 		}
 		int32 OldValue = Integer.Quest->GetInteger(GameContext, Integer.IntegerName);

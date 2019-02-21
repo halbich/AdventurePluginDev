@@ -10,7 +10,7 @@ bool UAdventurePluginQuestBlueprintLibrary::GetQuestBool(UAdventurePluginGameCon
 	}
 	if (!IsValid(QuestBoolVariable.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "GetQuestBool_QuestNull", "GetQuestBool:Quest is null or invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_GetQuestBool_QuestNull", "GetQuestBool:Quest is null or invalid."));
 		return false;
 	}
 	return QuestBoolVariable.Quest->GetBool(GameContext, QuestBoolVariable.BoolName);
@@ -23,7 +23,7 @@ void UAdventurePluginQuestBlueprintLibrary::SetQuestBool(UAdventurePluginGameCon
 	}
 	if (!IsValid(QuestBoolVariable.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "SetQuestBool_QuestNull", "SetQuestBool:Quest is null or invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_SetQuestBool_QuestNull", "SetQuestBool:Quest is null or invalid."));
 		return;
 	}
 	QuestBoolVariable.Quest->SetBool(GameContext, QuestBoolVariable.BoolName, bNewValue);
@@ -37,7 +37,7 @@ bool UAdventurePluginQuestBlueprintLibrary::GetQuestFlag(UAdventurePluginGameCon
 	}
 	if (!IsValid(QuestFlag.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "GetQuestFlag_QuestNull", "GetQuestFlag:Quest is null or invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_GetQuestFlag_QuestNull", "GetQuestFlag:Quest is null or invalid."));
 		return false;
 	}
 	return QuestFlag.Quest->GetFlag(GameContext, QuestFlag.FlagName);
@@ -50,7 +50,7 @@ void UAdventurePluginQuestBlueprintLibrary::SetQuestFlag(UAdventurePluginGameCon
 	}
 	if (!IsValid(QuestFlag.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "SetQuestFlag_QuestNull", "SetQuestFlag:Quest is null or invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_SetQuestFlag_QuestNull", "SetQuestFlag:Quest is null or invalid."));
 		return;
 	}
 	QuestFlag.Quest->SetFlag(GameContext, QuestFlag.FlagName);
@@ -64,7 +64,7 @@ int32 UAdventurePluginQuestBlueprintLibrary::GetQuestInteger(UAdventurePluginGam
 	}
 	if (!IsValid(QuestIntegerVariable.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "GetQuestInteger_QuestNull", "GetQuestInteger:Quest is null or invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_GetQuestInteger_QuestNull", "GetQuestInteger:Quest is null or invalid."));
 		return 0;
 	}
 	return QuestIntegerVariable.Quest->GetInteger(GameContext, QuestIntegerVariable.IntegerName);
@@ -77,7 +77,7 @@ void UAdventurePluginQuestBlueprintLibrary::SetQuestInteger(UAdventurePluginGame
 	}
 	if (!IsValid(QuestIntegerVariable.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "SetQuestInteger_QuestNull", "SetQuestInteger:Quest is null or invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_SetQuestInteger_QuestNull", "SetQuestInteger:Quest is null or invalid."));
 		return;
 	}
 	QuestIntegerVariable.Quest->SetInteger(GameContext, QuestIntegerVariable.IntegerName, NewValue);
@@ -91,7 +91,7 @@ FString UAdventurePluginQuestBlueprintLibrary::GetQuestString(UAdventurePluginGa
 	}
 	if (!IsValid(QuestStringVariable.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "GetQuestString_QuestNull", "GetQuestString:Quest is null or invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_GetQuestString_QuestNull", "GetQuestString:Quest is null or invalid."));
 		return FString();
 	}
 	return QuestStringVariable.Quest->GetString(GameContext, QuestStringVariable.StringName);
@@ -104,7 +104,7 @@ void UAdventurePluginQuestBlueprintLibrary::SetQuestString(UAdventurePluginGameC
 	}
 	if (!IsValid(QuestStringVariable.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "SetQuestString_QuestNull", "SetQuestString:Quest is null or invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_SetQuestString_QuestNull", "SetQuestString:Quest is null or invalid"));
 		return;
 	}
 	QuestStringVariable.Quest->SetString(GameContext, QuestStringVariable.StringName, NewValue);
@@ -119,14 +119,14 @@ bool UAdventurePluginQuestBlueprintLibrary::BindQuestEvent(UAdventurePluginGameC
 
 	if (!IsValid(QuestEvent.Quest))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "QuestGraphInvalid", "Bind event::graph is invalid"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_BindQuestEvent_QuestGraphInvalid", "Bind event::graph is invalid"));
 		return false;
 	}
 
 	TMap<FName, FQuestEvent>& QuestEventsMap = QuestEvent.Quest->QuestEvents;
 	if (!QuestEventsMap.Contains(QuestEvent.EventName))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "EventNameUndefined", "Bind event::event name is not defined in quest"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_BindQuestEvent_EventNameUndefined", "Bind event::event name is not defined in quest"));
 		return false;
 	}
 

@@ -33,7 +33,7 @@ public:
 	*/
 	virtual FText GetDebugName_Implementation() override
 	{
-		return FText::Format(NSLOCTEXT("AP", "StartDialogCombinationWithSingleItemDebugName", "StartDialog combination with single item:{0}"), Name);
+		return FText::Format(NSLOCTEXT("AdventurePlugin", "StartDialogCombinationWithSingleItemDebugName", "StartDialog combination with single item:{0}"), Name);
 	}
 	/**
 	* Executes the action this combination represents.
@@ -50,7 +50,7 @@ public:
 		}
 		if (!IsValid(DialogToStart.Dialog))
 		{
-			LOG_Error(NSLOCTEXT("AP", "UStartDialogCombinationWithSingleItem_ExecuteDialogInvalid", "UStartDialogCombinationWithSingleItem:Execute: The dialog is invalid"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "StartDialogCombinationWithSingleItem_Execute_DialogInvalid", "StartDialogCombinationWithSingleItem:Execute: The dialog is invalid"));
 			return;
 		}
 		UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(GameContext, DialogToStart);

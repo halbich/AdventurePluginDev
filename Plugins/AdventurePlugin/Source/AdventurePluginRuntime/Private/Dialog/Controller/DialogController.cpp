@@ -18,7 +18,7 @@ void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDi
 
 	if (StartNode == nullptr || StartNode->ChildrenNodes.Num() == 0)
 	{
-		LOG_Error(NSLOCTEXT("AP", "startNodeNull", "Show dialog::startNode is NULL"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogController_ShowDialog_StartNodeNull", "Show dialog::StartNode is NULL"));
 		return;
 	}
 
@@ -52,7 +52,7 @@ void UDialogController::BeginExecute(UDialogGraphNode* StartNode)
 		CurrentNode = CurrentNode->GetNextNode(CurrentGameContext);
 		if (++CurrentExecutionSteps >= MaxExecutionSteps)
 		{
-			LOG_Error(NSLOCTEXT("AP", "DialogExecutionStuck", "BeginExecute: Dialog is probably stuck in a loop, breaking in by force. Reason - running too long."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogController_DialogExecutionStuck", "BeginExecute: Dialog is probably stuck in a loop, breaking it by force. Reason - running too long."));
 			CurrentNode = nullptr;
 			break;
 		}

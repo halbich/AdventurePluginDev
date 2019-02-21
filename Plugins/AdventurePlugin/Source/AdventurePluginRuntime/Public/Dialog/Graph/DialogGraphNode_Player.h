@@ -42,7 +42,7 @@ public:
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		if (!IsValid(DialogGraph))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_PlayerGetSpeakerEditorOnlyGraphInvalid", "DialogGraphNode_Player:GetSpeaker:Dialog graph is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_Player_GetSpeakerEditorOnly_GraphInvalid", "DialogGraphNode_Player:GetSpeaker:Dialog graph is null or invalid."));
 			return nullptr;
 		}
 		return DialogGraph->PlayerCharacter.GetDefaultObject();
@@ -64,7 +64,7 @@ public:
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		if (!IsValid(DialogGraph))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_PlayerGetSpeakerGraphInvalid", "DialogGraphNode_Player:GetSpeaker:Dialog graph is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_Player_GetSpeakerGraphInvalid", "DialogGraphNode_Player:GetSpeaker:Dialog graph is null or invalid."));
 			return nullptr;
 		}
 		return DialogGraph->GetDialogPlayerCharacterInstance(GameContext);

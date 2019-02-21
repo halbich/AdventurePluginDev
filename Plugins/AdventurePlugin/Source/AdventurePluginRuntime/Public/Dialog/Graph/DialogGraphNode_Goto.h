@@ -76,13 +76,13 @@ public:
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		if (!IsValid(DialogGraph))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_GotoGraphNullOrInvalid", "DialogGraphNode_Goto:GetNextNode:Graph is null or invalid."));
+			LOG_Warning(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_Goto_GetNextNode_GraphInvalid", "DialogGraphNode_Goto:GetNextNode:Graph is null or invalid."));
 			return nullptr;
 		}
 		UDialogGraphNode** TargetNode = DialogGraph->IdToNodeMap.Find(TargetNodeId);
 		if (TargetNode == nullptr || !IsValid(*TargetNode))
 		{
-			LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "GotoNode: Invalid target Id"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_Goto_GetNextNode_InvalidTarget", "DialogGraphNode_Goto:GetNextNode: Invalid target Id"));
 			return nullptr;
 		}
 		return *TargetNode;

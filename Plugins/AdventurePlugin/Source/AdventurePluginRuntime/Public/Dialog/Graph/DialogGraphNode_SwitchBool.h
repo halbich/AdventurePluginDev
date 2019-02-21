@@ -57,7 +57,7 @@ public:
 	{
 		if (!IsValid(Bool.Quest))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_SwitchBoolQuestInvalid", "DialogGraphNode_SwitchBool:Execute: Quest null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_SwitchBool_QuestInvalid", "DialogGraphNode_SwitchBool:Execute: Quest null or invalid."));
 			return true;
 		}
 		bool bOldValue = Bool.Quest->GetBool(GameContext, Bool.BoolName);

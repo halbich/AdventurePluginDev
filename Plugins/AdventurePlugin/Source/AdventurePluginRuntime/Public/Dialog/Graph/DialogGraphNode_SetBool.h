@@ -40,7 +40,7 @@ public:
 		return FText::Format(NSLOCTEXT("DialogGraphNode_SetBool", "NodeTitle", "Set {0}->{1} TO {2}"),
 			FText::FromString(IsValid(Bool.Quest) ? Bool.Quest->Name : "<EMPTY>"),
 			FText::FromName(Bool.BoolName),
-			bConstant ? NSLOCTEXT("AP", "TrueConstant", "true") : NSLOCTEXT("AP","FalseConstant", "false"));
+			bConstant ? NSLOCTEXT("AdventurePlugin", "TrueConstant", "true") : NSLOCTEXT("AdventurePlugin","FalseConstant", "false"));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const
@@ -64,7 +64,7 @@ public:
 	{
 		if (!IsValid(Bool.Quest))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_SetBoolQuestInvalid", "DialogGraphNode_SetBool:Execute: Quest null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_SetBool_Execute_QuestInvalid", "DialogGraphNode_SetBool:Execute: Quest null or invalid."));
 			return true;
 		}
 		Bool.Quest->SetBool(GameContext, Bool.BoolName, bConstant);

@@ -52,7 +52,7 @@ public:
 	virtual FText GetDebugName_Implementation() override
 	{
 		check (false && "This method should be overriden");
-		return FText::Format(NSLOCTEXT("AP", "CombinationWithSingleItemDebugName", "Abstract combination with single item:{0}"), Name);
+		return FText::Format(NSLOCTEXT("AdventurePlugin", "CombinationWithSingleItemDebugName", "Abstract combination with single item:{0}"), Name);
 	}
 	/**
 	* Retrieves the list of all possible target classes. Constant, getter for TargetClass wrapped in an array. @see UCombinationWithSingleItemBase#TargetClass
@@ -75,7 +75,7 @@ public:
 	{
 		if (!IsValid(CombinationTarget))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "CombinationWithSingleItemBase_CanCombineWithNullItem", "CombinationWithSingleItemBase:CanCombineWith::The other item is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinationWithSingleItemBase_CanCombineWith_NullItem", "CombinationWithSingleItemBase:CanCombineWith::The other item is null or invalid."));
 			return false;
 		}
 		return CombinationTarget->GetClass()->IsChildOf(TargetClass);

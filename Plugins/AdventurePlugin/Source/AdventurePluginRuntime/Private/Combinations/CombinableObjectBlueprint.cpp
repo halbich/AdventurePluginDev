@@ -57,7 +57,7 @@ void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject*
 			if (OtherObject->ExternalBlueprintCombinations.Contains(SourceBlueprint) ||
 				SourceObject->ExternalBlueprintCombinations.Contains(OtherBlueprint))
 			{
-				LOG_Warning(FText::Format(NSLOCTEXT("AP", "RegisterExternalCombinationsDuplicate", "RegisterExternalCombinations:: Multiple combinations found between objects {0} and {1}. Behavior is undefined."),
+				LOG_Warning(FText::Format(NSLOCTEXT("AdventurePlugin", "CombinableObjectBlueprint_RegisterExternalCombinationsDuplicate", "RegisterExternalCombinations:: Multiple combinations found between objects {0} and {1}. Behavior is undefined."),
 					FText::FromString(SourceBlueprint->GetFriendlyName()),
 					FText::FromString(OtherBlueprint->GetFriendlyName())));
 			}

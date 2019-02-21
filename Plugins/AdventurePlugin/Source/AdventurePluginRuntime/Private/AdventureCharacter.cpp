@@ -72,7 +72,7 @@ bool UAdventureCharacter::IsActorProperlyBound()
 {
 	if (!SetAnimationStateEvent.IsBound() || !ResetAnimationStateEvent.IsBound() || !PlayAnimationOnceEvent.IsBound())
 	{
-		LOG_Error(NSLOCTEXT("AP", "AnimationActorNotBound.", "No actor bound to UAdventureCharacter, animation state cannot be changed."));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventureCharacter_AnimationActorNotBound.", "No actor bound to UAdventureCharacter, animation state cannot be changed."));
 		return false;
 	}
 	return true;
@@ -82,9 +82,9 @@ bool UAdventureCharacter::IsAnimationNameValid(FName AnimationName)
 {
 	if (!AnimationStates.Contains(AnimationName))
 	{
-		FText WarningText = FText::Format(NSLOCTEXT("AP", "InvalidAnimationState", "Animation state {0} not found."),
+		FText ErrorText = FText::Format(NSLOCTEXT("AdventurePlugin", "AdventureCharacter_InvalidAnimationStateName", "Animation state {0} not found."),
 			FText::FromName(AnimationName));
-		LOG_Error(WarningText);
+		LOG_Error(ErrorText);
 		return false;
 	}
 	return true;

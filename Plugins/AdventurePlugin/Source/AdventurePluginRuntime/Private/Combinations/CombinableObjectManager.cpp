@@ -5,12 +5,12 @@ UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubcla
 {
 	if (CombinableObjectClass == nullptr)
 	{
-		LOG_Warning(NSLOCTEXT("AP", "getObjectNull", "CombinableObjectManager::GetObject - Object is NULL."));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "GetCombinableObjectInstance_GetObjectNull", "CombinableObjectManager::GetObject - Object is NULL."));
 		return nullptr;
 	}
 	if (CombinableObjectClass->HasAnyClassFlags(CLASS_Abstract))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "getItemAbstract", "CombinableObjectManager::GetObject - Object is abstract."));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "GetCombinableObjectInstance_GetItemAbstract", "CombinableObjectManager::GetObject - Object is abstract."));
 		return nullptr;
 	}
 	UCombinableObject** CombinableObjectInstance = CombinableObjects.Find(CombinableObjectClass);

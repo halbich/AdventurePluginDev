@@ -58,7 +58,7 @@ public:
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		if (DialogGraph == nullptr || DialogGraph->NPCCharacter == nullptr)
 		{
-			LOG_Error(NSLOCTEXT("AP", "PlayNPCAnimationOnceNodePlayerCharacterNull", "DialogGraphNode_PlayNPCAnimationOnce::GetAnimatedObjectClass::NPC is NULL"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_PlayNPCAnimationOnce_GetAnimatedObjectClass_NPCCharacterNull", "DialogGraphNode_PlayNPCAnimationOnce::GetAnimatedObjectClass::NPC is NULL"));
 			return nullptr;
 		}
 		return DialogGraph->NPCCharacter;

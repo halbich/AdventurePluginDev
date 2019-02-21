@@ -46,7 +46,7 @@ public:
 		UClass* AnimatableObjectClass = GetAnimatedObjectClass();
 		if (AnimatableObjectClass == nullptr)
 		{
-			LOG_Error(NSLOCTEXT("AP","DialogGraphNode_PlayAnimationBase_GetEditorTimeAnimatableObject_ClassNull", "DialogGraphNode_PlayAnimationBase:GetEditorTimeAnimatableObject: The animatable object class is null."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin","DialogGraphNode_PlayAnimationBase_GetEditorTimeAnimatableObject_ClassNull", "DialogGraphNode_PlayAnimationBase:GetEditorTimeAnimatableObject: The animatable object class is null."));
 			return nullptr;
 		}
 		return AnimatableObjectClass->ClassDefaultObject;
@@ -83,7 +83,7 @@ public:
 		TScriptInterface<IAnimatableObjectInterface> AnimatedObjectInstance = GetAnimatedObject(GameContext);
 		if (!IsValid(AnimatedObjectInstance.GetObject()))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_PlayAnimationBaseAnimatedObjectInvalid", "DialogGraphNode_PlayAnimationBase: Animated object is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_PlayAnimationBase_Execute_AnimatedObjectInvalid", "DialogGraphNode_PlayAnimationBase:Execute: Animated object is null or invalid."));
 			return true;
 		}
 		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_PlayAnimationBase:Execute")))

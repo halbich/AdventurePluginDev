@@ -11,6 +11,7 @@ bool UInventory::HasItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 
 bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
+	// Add an item, change item state and raise all events as necessary.
 	TArray<UInventoryItem*> Items = GetItems(GameContext);
 	if (Items.Contains(Item))
 	{
@@ -18,7 +19,6 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 	}
 	Items.Add(Item);
 	SetItems(Items, GameContext);
-	// TODO: Item state: Should we do it here? Or should presenter be responsible
 	Item->SetItemState(EInventoryItemState::ItemState_InInventory, GameContext);
 	if (!bIsUpdating)
 	{
@@ -36,6 +36,7 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 
 bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {
+	// Remove item, change item state and raise all events as necessary.
 	TArray<UInventoryItem*> Items = GetItems(GameContext);
 	if (!Items.Contains(Item)) 
 	{
@@ -43,7 +44,6 @@ bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* G
 	}
 	Items.Remove(Item);
 	SetItems(Items, GameContext);
-	// TODO: Item state: Should we do it here? Or should presenter be responsible
 	Item->SetItemState(EInventoryItemState::ItemState_Used, GameContext);
 	if (!bIsUpdating)
 	{

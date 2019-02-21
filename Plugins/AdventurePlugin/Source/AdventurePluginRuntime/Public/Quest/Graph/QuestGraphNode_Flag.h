@@ -33,7 +33,7 @@ public:
 		UQuestGraph* ParentGraph = Cast<UQuestGraph>(Graph);
 		if (!IsValid(ParentGraph))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "QuestGraphNode_Flag", "QuestGraphNode_Flag:IsSatisfied:Graph is invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Flag_IsSatisfied_GraphInvalid", "QuestGraphNode_Flag:IsSatisfied:Graph is invalid."));
 			return false;
 		}
 		return ParentGraph->GetFlag(GameContext, FlagName);

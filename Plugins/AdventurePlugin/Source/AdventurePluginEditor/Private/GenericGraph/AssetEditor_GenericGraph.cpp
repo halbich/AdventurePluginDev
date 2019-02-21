@@ -333,7 +333,6 @@ void FAssetEditor_GenericGraph::RebuildGenericGraph()
 {
 	if (EditingGraph == nullptr)
 	{
-		// TODO_LOG LOG_WARNING(TEXT("FGenericGraphAssetEditor::RebuildGenericGraph EditingGraph is nullptr"));
 		return;
 	}
 

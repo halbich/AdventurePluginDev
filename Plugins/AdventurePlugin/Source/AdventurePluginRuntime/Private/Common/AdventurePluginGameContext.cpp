@@ -21,7 +21,7 @@ bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameC
 		!IsValid(GameContext->AdventureCharacterManager))
 	{
 
-		FText ErrorText =  FText::Format(NSLOCTEXT("AP", "GameContextInvalid", "{0}: Game context or one of its subclasses is null or invalid"),
+		FText ErrorText =  FText::Format(NSLOCTEXT("AdventurePlugin", "GameContextInvalid", "{0}: Game context or one of its subclasses is null or invalid"),
 			FText::FromString(Caller));
 		LOG_Error(ErrorText);
 		return false;

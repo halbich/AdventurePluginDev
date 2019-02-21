@@ -37,7 +37,7 @@ void FAssetEditor_DialogGraph::RebuildGenericGraph() {
 			EditingDialogGraph->SecondaryEntryPoints.Add(SecondaryEntryPoint->Id, SecondaryEntryPoint);
 			continue;
 		}
-		// TODO: Unknown root node. Should we throw something? Or assume it's an extension and everything's alright?
+		// Unknown root node. While that is unexpected and not supported, it is concievable some extension might use root nodes unknown to us.
 	}
 	FillIdToNodeMap(EditingDialogGraph);
 }

@@ -16,7 +16,7 @@ void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePlugin
 	UDialogGraph* DialogGraph = EntryPoint.Dialog;
 	if (!IsValid(DialogGraph))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "DialogGraphNull", "Show dialog::graph is NULL"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_DialogGraphNull", "Show dialog::graph is NULL"));
 		return;
 	}
 
@@ -106,7 +106,7 @@ UAdventurePluginGameContext* UAdventurePluginBlueprintLibrary::GetCurrentGameCon
 	UAdventurePluginGameInstance* GameInstance = Cast<UAdventurePluginGameInstance>(UGameplayStatics::GetGameInstance(WorldObjectContext));
 	if (!IsValid(GameInstance))
 	{
-		LOG_Error(NSLOCTEXT("AP", "GetCurrentGameContext_GameInstanceNotValid", "GetCurrentGameContext provided by Adventure Plugin can only be used if the game instance inherits from UAdventurePluginGameInstance"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_GetCurrentGameContext_GameInstanceNotValid", "GetCurrentGameContext provided by Adventure Plugin can only be used if the game instance inherits from UAdventurePluginGameInstance"));
 		return nullptr;
 	}
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameInstance->CurrentGameContext, TEXT("GetCurrentGameContext")))

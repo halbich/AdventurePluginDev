@@ -36,7 +36,7 @@ public:
 	*/
 	virtual FText GetDebugName_Implementation() override
 	{
-		return FText::Format(NSLOCTEXT("AP", "GenericCombinationWithSingleItemDebugName", "Generic combination with single item:{0}"), Name);
+		return FText::Format(NSLOCTEXT("AdventurePlugin", "GenericCombinationWithSingleItemDebugName", "Generic combination with single item:{0}"), Name);
 	}
 	/**
 	* Executes the action this combination represents, i.e. the CombinationEvent. @see UGenericCombinationWithSingleItem#CombinationEvent.

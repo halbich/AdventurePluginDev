@@ -72,7 +72,7 @@ public:
 		DialogOptionLine.SpeakerCharacter = IsValid(DialogGraph) ? DialogGraph->GetDialogPlayerCharacterInstance(GameContext) : nullptr;
 		if (!IsValid(DialogOptionLine.SpeakerCharacter))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_PlayerLineOption", "DialogGraphNode_PlayerLineOption:GetDialogLine:Speaker is null or invalid."));
+			LOG_Warning(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_PlayerLineOption_GetDialogLine", "DialogGraphNode_PlayerLineOption:GetDialogLine:Speaker is null or invalid."));
 		}
 		return DialogOptionLine;
 	}

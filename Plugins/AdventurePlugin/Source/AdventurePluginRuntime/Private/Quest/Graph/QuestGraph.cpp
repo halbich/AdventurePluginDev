@@ -34,14 +34,14 @@ void UQuestGraph::SetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
 		{
 			if (!FlagNode->ParentNodesSatisfied(GameContext))
 			{
-				LOG_Warning(FText::Format(NSLOCTEXT("AP", "Parent nodes not true", "Quest {0}: Quest flag set to true even though at least one of its predecessors are false. FlagName: {1}"), GetGraphNameText(), FlagNameText));
+				LOG_Warning(FText::Format(NSLOCTEXT("AdventurePlugin", "QuestGraph_SetFlag_ParentNodesNotTrue", "Quest {0}: Quest flag set to true even though at least one of its predecessors are false. FlagName: {1}."), GetGraphNameText(), FlagNameText));
 			}
-			//TODO: Actually differentiate between flags and bools.
+			//TODO: It might be smart to store flags and boolean variables separately.
 			SaveGame->SetBool(QualifiedName, true);
 			return;
 		}
 	}
-	LOG_Error(FText::Format(NSLOCTEXT("AP", "Quest node not found", "Quest {0}: Cannot set a flag to true, flag with name {1} not found."), GetGraphNameText(), FlagNameText));
+	LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "QuestGraph_SetFlag_FlagNodeNotFound", "Quest {0}: Cannot set a flag to true, flag with name {1} not found."), GetGraphNameText(), FlagNameText));
 }
  
 bool UQuestGraph::GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName)
@@ -61,7 +61,7 @@ bool UQuestGraph::GetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
 			return SaveGame->GetBoolOrDefault(QualifiedName, false);
 		}
 	}
-	LOG_Error(FText::Format(NSLOCTEXT("AP", "UQuestGraph_GetFlag_FlagNotFound", "Quest {0}: Cannot get a flag with name {1}. Not found."), GetGraphNameText(), FlagNameText));
+	LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "UQuestGraph_GetFlag_FlagNotFound", "Quest {0}: Cannot get a flag with name {1}. Not found."), GetGraphNameText(), FlagNameText));
 	return false;
 }
 FText UQuestGraph::GetGraphNameText()
@@ -83,7 +83,7 @@ bool UQuestGraph::GetBool(UAdventurePluginGameContext* GameContext, FName Variab
 	FBoolVariable* BoolVariable = BoolVariables.Find(VariableName);
 	if (!BoolVariable)
 	{
-		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetBool - Variable was not found in dictionary"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_GetBool_VariableNotFound", "QuestGraph::GetBool - Variable was not found in dictionary."));
 		return bDefaultValue;
 	}
 
@@ -101,7 +101,7 @@ bool UQuestGraph::SetBool(UAdventurePluginGameContext* GameContext, FName Variab
 
 	if (!BoolVariables.Find(VariableName))
 	{
-		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::SetBool - Variable was not found in dictionary"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_SetBool_VariableNotFound", "QuestGraph::SetBool - Variable was not found in dictionary."));
 		return false;
 	}
 
@@ -122,7 +122,7 @@ int32 UQuestGraph::GetInteger(UAdventurePluginGameContext* GameContext, FName Va
 	FIntegerVariable* IntegerVariable = IntegerVariables.Find(VariableName);
 	if (!IntegerVariable)
 	{
-		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetInteger - Variable was not found in dictionary"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_GetIntegerBool_VariableNotFound", "QuestGraph::GetInteger - Variable was not found in dictionary."));
 		return DefaultValue;
 	}
 
@@ -140,7 +140,7 @@ bool UQuestGraph::SetInteger(UAdventurePluginGameContext* GameContext, FName Var
 
 	if (!IntegerVariables.Find(VariableName))
 	{
-		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::SetInteger - Variable was not found in dictionary"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_SetInteger_VariableNotFound", "QuestGraph::SetInteger - Variable was not found in dictionary."));
 		return false;
 	}
 
@@ -162,7 +162,7 @@ FString UQuestGraph::GetString(UAdventurePluginGameContext* GameContext, FName V
 	FStringVariable* StringVariable = StringVariables.Find(VariableName);
 	if (!StringVariable)
 	{
-		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::GetString - Variable was not found in dictionary"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_GetString_VariableNotFound", "QuestGraph::GetString - Variable was not found in dictionary."));
 		return DefaultValue;
 	}
 
@@ -180,7 +180,7 @@ bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName Vari
 
 	if (!StringVariables.Find(VariableName))
 	{
-		LOG_Error(NSLOCTEXT("AP", "VariableNotFound", "QuestGraph::SetString - Variable was not found in dictionary"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_SetBool_VariableNotFound", "QuestGraph::SetString - Variable was not found in dictionary."));
 		return false;
 	}
 
@@ -196,7 +196,7 @@ TArray<UQuestGraphNode*> UQuestGraph::GetSatisfiableNodes(UAdventurePluginGameCo
 		UQuestGraphNode* ChildQuestNode = Cast<UQuestGraphNode>(ChildNode);
 		if (!IsValid(ChildQuestNode))
 		{
-			LOG_Error(FText::Format(NSLOCTEXT("AP", "Nil or invalid quest node", "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph"), GetGraphNameText()));
+			LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "QuestGraph_GetSatisfiableNodes_InvalidQuestNode", "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph."), GetGraphNameText()));
 			continue;
 		}
 		if (!ChildQuestNode->IsSatisfied(GameContext) && ChildQuestNode->ParentNodesSatisfied(GameContext)) {
@@ -215,7 +215,7 @@ bool UQuestGraph::IsComplete(UAdventurePluginGameContext* GameContext)
 {
 	if (!IsValid(EndNode))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "UQuestGraphIsCompleteEndNodeNull", "QuestGraph:IsComplete: End node is null or invalid."));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_IsComplete_EndNodeNull", "QuestGraph:IsComplete: End node is null or invalid."));
 		return false;
 	}
 	return EndNode->IsSatisfied(GameContext);

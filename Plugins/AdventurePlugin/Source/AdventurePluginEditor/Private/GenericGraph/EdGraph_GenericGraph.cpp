@@ -15,8 +15,6 @@ UEdGraph_GenericGraph::~UEdGraph_GenericGraph()
 
 void UEdGraph_GenericGraph::RebuildGenericGraph()
 {
-	// TODO_LOG LOG_INFO(TEXT("UGenericGraphEdGraph::RebuildGenericGraph has been called"));
-
 	UGenericGraph* Graph = GetGenericGraph();
 
 	Clear();
@@ -56,10 +54,6 @@ void UEdGraph_GenericGraph::RebuildGenericGraph()
 						GenericGraphNode->ChildrenNodes.Add(ChildNode);
 						ChildNode->ParentNodes.Add(GenericGraphNode);
 						EdNode->AddSpecialChild(Pin, ChildNode);
-					}
-					else
-					{
-						// TODO_LOG LOG_ERROR(TEXT("UEdGraph_GenericGraph::RebuildGenericGraph can't find child node"));
 					}
 				}
 			}

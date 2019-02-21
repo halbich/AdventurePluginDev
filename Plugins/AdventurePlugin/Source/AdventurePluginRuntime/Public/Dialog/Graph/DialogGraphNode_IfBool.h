@@ -47,7 +47,7 @@ public:
 	{
 		if (!IsValid(Bool.Quest))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfBool", "DialogGraphNode_IfBool:IsTrue:Quest is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IfBool_IsTrue", "DialogGraphNode_IfBool:IsTrue:Quest is null or invalid."));
 			return false;
 		}
 		return Bool.Quest->GetBool(GameContext, Bool.BoolName);

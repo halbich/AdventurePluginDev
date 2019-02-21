@@ -36,7 +36,7 @@ public:
 	bool ParentNodesSatisfied(UAdventurePluginGameContext* GameContext);
 
 #if WITH_EDITORONLY_DATA
-	/*TODO: Bind to some nice picker of available locations.*/
+	/*TODO: Bind to some nice picker of available locations. Cannot be done as part of plugin because the plugin knows nothing about game locations.*/
 	/**
 	* The location where the user can do this action.
 	* Will be shown in the quest node.

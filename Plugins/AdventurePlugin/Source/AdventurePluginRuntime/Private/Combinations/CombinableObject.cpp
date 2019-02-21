@@ -11,7 +11,7 @@ void UCombinableObject::CheckIsRefreshingCombinations()
 {
 	if (!bIsRefreshingCombinations)
 	{
-		LOG_Warning(NSLOCTEXT("AP", "Combinations not refreshing", "Combinations should not be added to an item outside of InitCombinations method and InitCombinations method should not be called outside RefreshCombinations method"));
+		LOG_Warning(NSLOCTEXT("AdventurePlugin", "CombinableObjects_CombinationsNotRefreshing", "Combinations should not be added to an item outside of InitCombinations method and InitCombinations method should not be called outside RefreshCombinations method"));
 	}
 }
 void UCombinableObject::RefreshCombinations()
@@ -26,7 +26,7 @@ void UCombinableObject::RefreshCombinations()
 	{
 		if (!IsValid(CombinationInterface.GetObject()))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "CombinableObjectRefreshCombinationInvalidCombination", "CombinableObject:RefreshCombinations: Found null or invalid combination."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObject_RefreshCombinationInvalidCombination", "CombinableObject:RefreshCombinations: Found null or invalid combination."));
 			continue;
 		}
 		TArray<UClass*> AllCombinationTargets = CombinationInterface->Execute_GetCombinationTargetClasses(CombinationInterface.GetObject());
@@ -62,7 +62,7 @@ TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObj
 {
 	if (!IsValid(OtherObject))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "NullCombinationItem", "One of the items being combined is null."));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObject_GetCombination_NullCombinationItem", "One of the items being combined is null."));
 		return false;
 	}
 	TScriptInterface<ICombinationInterface> FoundCombination = GetCombinationWithObjectLocalOnly(OtherObject, GameContext);
@@ -88,7 +88,7 @@ void UCombinableObject::ExecuteCombination(TScriptInterface<ICombinationInterfac
 {
 	if (!IsValid(Combination.GetObject()))
 	{
-		LOG_Warning(NSLOCTEXT("AP", "CombinableObjectExecuteCombination_NullCombination", "UCombinableObject:ExecuteCombination: Combination is null or invalid."));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObjectExecuteCombination_NullCombination", "UCombinableObject:ExecuteCombination: Combination is null or invalid."));
 	}
 	// Make sure that we are executing the combination with correct source and target object - This is source if the combination was defined here.
 	if (Combinations.Contains(Combination))

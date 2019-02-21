@@ -31,7 +31,7 @@ public:
 		UAdventureCharacter* CharacterInstance = IsValid(DialogGraph) ? DialogGraph->GetSpeakerInstance(GameContext, CharacterClass) : nullptr;
 		if (!IsValid(CharacterInstance))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_PlayAnimationCharacterBasdeCharacterNull", "UDialogGraphNode_PlayAnimationCharacterBase:GetAnimatedObject: Cannot retrieve valid animated character."));
+			LOG_Warning(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_PlayAnimationCharacterBase_GetAnimatedObject_CharacterNull", "DialogGraphNode_PlayAnimationCharacterBase:GetAnimatedObject: Cannot retrieve valid animated character."));
 		}
 		return CharacterInstance;
 	}

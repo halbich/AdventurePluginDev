@@ -45,7 +45,7 @@ public:
 	{
 		if (!IsValid(Quest))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "UDialogGraphNode_IfQuestComplete", "UDialogGraphNode_IfQuestComplete:IsTrue:Quest is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IfQuestComplete_IsTrue", "UDialogGraphNode_IfQuestComplete:IsTrue:Quest is null or invalid."));
 			return false;
 		}
 		return Quest->IsComplete(GameContext);

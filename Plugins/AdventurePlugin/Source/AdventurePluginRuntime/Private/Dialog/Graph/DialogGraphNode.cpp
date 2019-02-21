@@ -45,7 +45,7 @@ UDialogGraph * UDialogGraphNode::GetDialogGraph() const
 	UDialogGraph* DialogGraph = Cast<UDialogGraph>(Graph);
 	if (!IsValid(DialogGraph))
 	{
-		LOG_Error(NSLOCTEXT("AP", "InvalidDialogGraph", "DialogGraphNode: Parent graph is not a dialog graph"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_InvalidDialogGraph", "DialogGraphNode: Parent graph is not a dialog graph"));
 		return nullptr;
 	}
 	return DialogGraph;

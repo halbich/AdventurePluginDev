@@ -34,7 +34,8 @@ public:
 		return FLinearColor::Red;
 	}
 	/**
-	* Get instance of the character that is speaking, i.e. CDO of the NPC character class.
+	* Get instance of the character that is speaking that is accessible without a game instance, i.e. CDO of the NPC character class.
+	* Use only in editor.
 	* @return The NPC character instance.
 	*/
 	virtual UAdventureCharacter* GetSpeakerEditorOnly() const
@@ -42,7 +43,7 @@ public:
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		if (!IsValid(DialogGraph))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_NPCGetSpeakerEditorOnlyGraphInvalid", "DialogGraphNode_NPC:GetSpeakerEditorOnly:Quest is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_NPCGetSpeakerEditorOnly_GraphInvalid", "DialogGraphNode_NPC:GetSpeakerEditorOnly:Quest is null or invalid."));
 			return nullptr;
 		}
 		return DialogGraph->NPCCharacter.GetDefaultObject();
@@ -59,7 +60,7 @@ public:
 		UDialogGraph* DialogGraph = GetDialogGraph();
 		if (!IsValid(DialogGraph))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_NPCGetSpeakerGraphInvalid", "DialogGraphNode_NPC:GetSpeaker:Quest is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_NPCGetSpeaker_GraphInvalid", "DialogGraphNode_NPC:GetSpeaker:Quest is null or invalid."));
 			return nullptr;
 		}
 		return DialogGraph->GetDialogNPCCharacterInstance(GameContext);

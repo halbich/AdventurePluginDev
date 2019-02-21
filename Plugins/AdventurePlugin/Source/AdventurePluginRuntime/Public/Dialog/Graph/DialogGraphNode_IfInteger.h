@@ -93,7 +93,7 @@ public:
 	{
 		if (!IsValid(Integer.Quest))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_IfInteger", "DialogGraphNode_IfInteger:GetNextNode:Quest is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IfInteger_GetNextNode", "DialogGraphNode_IfInteger:GetNextNode:Quest is null or invalid."));
 			return nullptr;
 		}
 		int32 VariableValue = Integer.Quest->GetInteger(GameContext, Integer.IntegerName);

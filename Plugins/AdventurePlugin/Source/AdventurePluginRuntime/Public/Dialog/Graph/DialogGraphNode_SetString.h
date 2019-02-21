@@ -64,7 +64,7 @@ public:
 	{
 		if (!IsValid(String.Quest))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_SetStringQuestInvalid", "DialogGraphNode_SetString:Execute:Quest is null or invalid."));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_SetString_Execute_QuestInvalid", "DialogGraphNode_SetString:Execute:Quest is null or invalid."));
 			return true;
 		}
 		String.Quest->SetString(GameContext, String.StringName, Constant);

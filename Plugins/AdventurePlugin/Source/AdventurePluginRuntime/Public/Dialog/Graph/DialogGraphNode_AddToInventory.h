@@ -57,13 +57,13 @@ public:
 		}
 		if (!IsValid(Item))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "UDialogGraphNode_AddToInventoryInvalidItem", "UDialogGraphNode_AddToInventory:Execute: Nil or invalid item passed"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_AddToInventory_Execute_InvalidItem", "DialogGraphNode_AddToInventory:Execute: Nil or invalid item passed"));
 			return false;
 		}
 		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
 		if (!IsValid(ItemInstance))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "UDialogGraphNode_AddToInventoryInvalidItemInstance", "UDialogGraphNode_AddToInventory:Execute: Item could not be instantiated"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_AddToInventory_Execute_InvalidItemInstance", "DialogGraphNode_AddToInventory:Execute: Item could not be instantiated"));
 			return false;
 		}
 		GameContext->InventoryController->GetInventory()->AddItem(ItemInstance, GameContext);

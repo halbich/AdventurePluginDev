@@ -30,7 +30,7 @@ public:
 		TScriptInterface<IAnimatableObjectInterface> CharacterInstance = GetAnimatedObject(GameContext);
 		if (CharacterInstance == nullptr)
 		{
-			LOG_Error(NSLOCTEXT("AP", "PlayCharacterAnimationOnceCharacterNull", "UDialogGraphNode_PlayCharacterAnimationOnceBase::Execute::Character is NULL"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_PlayCharacterAnimationOnce_Execute_CharacterNull", "DialogGraphNode_PlayCharacterAnimationOnceBase::Execute::Character is NULL"));
 			return true;
 		}
 		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_PlayCharacterAnimationOnceBase:Execute")))

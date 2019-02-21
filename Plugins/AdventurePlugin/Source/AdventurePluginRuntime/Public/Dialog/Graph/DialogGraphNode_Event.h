@@ -65,20 +65,20 @@ public:
 	{
 		if (!IsValid(Event.Quest))
 		{
-			LOG_Warning(NSLOCTEXT("DialogGraphNode_Event", "QuestGraphNull", "Execute::Quest graph is NULL"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_Event_Execute_QuestGraphNull", "DialogGraphNode_Event:Execute::Quest graph is NULL"));
 			return true;
 		}
 
 		FQuestEvent* QuestEvent = Event.Quest->QuestEvents.Find(Event.EventName);
 		if (!QuestEvent)
 		{
-			LOG_Warning(NSLOCTEXT("DialogGraphNode_Event", "NameNotFound", "Execute::Event name not found in quest"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_Event_Execute_NameNotFound", "DialogGraphNode_Event:Execute::Event name not found in quest"));
 			return true;
 		}
 
 		if (!QuestEvent->IsBound())
 		{
-			LOG_Warning(NSLOCTEXT("DialogGraphNode_Event", "EventUnbound", "Execute::Event is not bound"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_Event_Execute_EventUnbound", "DialogGraphNode_Event:Execute::Event is not bound"));
 			return true;
 		}
 

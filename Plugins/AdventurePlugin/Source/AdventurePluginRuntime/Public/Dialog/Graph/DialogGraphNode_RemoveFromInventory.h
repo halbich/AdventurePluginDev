@@ -57,13 +57,13 @@ public:
 		}
 		if (!IsValid(Item))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "UDialogGraphNode_RemoveFromInventoryInvalidItem", "UDialogGraphNode_RemoveFromInventory:Execute: Nil or invalid item passed"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_RemoveFromInventory_Execute_InvalidItem", "DialogGraphNode_RemoveFromInventory:Execute: Nil or invalid item passed."));
 			return false;
 		}
 		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
 		if (!IsValid(ItemInstance))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "UDialogGraphNode_RemoveFromInventoryInvalidItemInstance", "UDialogGraphNode_RemoveFromInventory:Execute: Item could not be instantiated"));
+			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_RemoveFromInventory_Execute_InvalidItemInstance", "DialogGraphNode_RemoveFromInventory:Execute: Item could not be instantiated."));
 			return false;
 		}
 		GameContext->InventoryController->GetInventory()->RemoveItem(ItemInstance, GameContext);

@@ -39,7 +39,7 @@ UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameConte
 	}
 	if (Speaker == nullptr)
 	{
-		LOG_Warning(NSLOCTEXT("AP", "GetSpeakerInstanceSpeakerNull", "DialogGraph:GetSpeakerInstance: The speaker is null."));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraph_GetSpeakerInstance_SpeakerNull", "DialogGraph:GetSpeakerInstance: The speaker is null."));
 		return nullptr;
 	}
 	UAdventureCharacter* CharacterInstance = GameContext->AdventureCharacterManager->GetCharacter(Speaker);

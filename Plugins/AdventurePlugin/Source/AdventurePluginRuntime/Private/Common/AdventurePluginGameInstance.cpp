@@ -22,7 +22,6 @@ void UAdventurePluginGameInstance::Init()
 
 void UAdventurePluginGameInstance::InitCurrentGameContext()
 {
-	//TODO: Is this correct? Using CDO's as managers?
 	CurrentGameContext = NewObject<UAdventurePluginGameContext>();
 
 	UAdventurePluginConfig* Settings = GetMutableDefault<UAdventurePluginConfig>();

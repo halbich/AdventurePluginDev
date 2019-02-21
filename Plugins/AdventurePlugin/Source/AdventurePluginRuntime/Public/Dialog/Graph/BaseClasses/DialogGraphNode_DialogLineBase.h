@@ -123,7 +123,7 @@ public:
 		DialogLine.UserData = nullptr;
 		if (!IsValid(SpeakerCharacter))
 		{
-			LOG_Warning(NSLOCTEXT("AP", "DialogGraphNode_DialogLineBaseGetDialogLineSpeakerInvalid", "UDialogGraphNode_DialogLineBase:GetDialogLine::Speaker is null or invalid."));
+			LOG_Warning(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_DialogLineBase_GetDialogLine_SpeakerInvalid", "DialogGraphNode_DialogLineBase:GetDialogLine::Speaker is null or invalid."));
 		}
 		return DialogLine;
 	}
