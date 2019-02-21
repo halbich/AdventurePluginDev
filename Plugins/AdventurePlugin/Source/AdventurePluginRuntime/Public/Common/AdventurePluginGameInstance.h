@@ -39,5 +39,27 @@ private:
 	* Initializes the game context based on the project configuration.
 	*/
 	void InitCurrentGameContext();
-
+	/**
+	 * Instantiate an instance of a specified class. Used to instantiate the classes specified in the config.
+	 * @param ClassToInstantiate The class that should be instantiated.
+	 * @return The instance of that class, or nullptr if the class could not be instantiated.
+	 */
+	template<class T>
+	T* InstantiateClass(TSoftClassPtr<T> ClassToInstantiate);
 };
+template<class T>
+T* UAdventurePluginGameInstance::InstantiateClass(TSoftClassPtr<T> ClassToInstantiate)
+{
+	UClass* ActualClass = ClassToInstantiate.IsValid()
+		? ClassToInstantiate.Get()				// we have C++ class
+		: ClassToInstantiate.LoadSynchronous();	// we have Blueprint class
+	if (!IsValid(ActualClass))
+	{
+		return nullptr;
+	}
+	if (ActualClass->IsChildOf(UWidget::StaticClass()))
+	{
+		return CreateWidget<T>(this, ActualClass);
+	}
+	return NewObject<T>(this, ActualClass);
+}

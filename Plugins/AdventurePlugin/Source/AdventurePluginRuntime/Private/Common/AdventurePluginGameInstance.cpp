@@ -26,46 +26,12 @@ void UAdventurePluginGameInstance::InitCurrentGameContext()
 	CurrentGameContext = NewObject<UAdventurePluginGameContext>();
 
 	UAdventurePluginConfig* Settings = GetMutableDefault<UAdventurePluginConfig>();
-	//TODO: Copy pasting. This should be in a templated method, or somehow else refactored.
-	UClass* InventoryControllerClass = (Settings->DefaultInventoryController.IsValid())
-		? Settings->DefaultInventoryController.Get()				// we have C++ class
-		: Settings->DefaultInventoryController.LoadSynchronous();	// we have Blueprint class
-	if (InventoryControllerClass)
-		CurrentGameContext->InventoryController = InventoryControllerClass->GetDefaultObject<UInventoryController>();
-
-	UClass* InventoryPresenterClass = (Settings->DefaultInventoryPresenterWidget.IsValid())
-		? Settings->DefaultInventoryPresenterWidget.Get()				// we have C++ class
-		: Settings->DefaultInventoryPresenterWidget.LoadSynchronous();	// we have Blueprint class
-	//TODO: What if it's not a widget?
-	if (InventoryPresenterClass)
-		CurrentGameContext->InventoryPresenter = CreateWidget<UInventoryPresenterWidget>(this, InventoryPresenterClass);
-
-
-
-	UClass* DialogControllerClass = (Settings->DefaultDialogController.IsValid())
-		? Settings->DefaultDialogController.Get()				// we have C++ class
-		: Settings->DefaultDialogController.LoadSynchronous();	// we have Blueprint class
-	if (DialogControllerClass)
-		CurrentGameContext->DialogController = DialogControllerClass->GetDefaultObject<UDialogController>();
-
-	UClass* DialogPresenterClass = (Settings->DefaultDialogPresenterWidget.IsValid())
-		? Settings->DefaultDialogPresenterWidget.Get()				// we have C++ class
-		: Settings->DefaultDialogPresenterWidget.LoadSynchronous();	// we have Blueprint class
-	//TODO: What if it's not a widget?
-	if (DialogPresenterClass)
-		CurrentGameContext->DialogPresenter = CreateWidget<UDialogPresenterWidget>(this, DialogPresenterClass);
-
-	UClass* InventoryManagerClass = (Settings->DefaultItemManager.IsValid())
-		? Settings->DefaultItemManager.Get()				// we have C++ class
-		: Settings->DefaultItemManager.LoadSynchronous();	// we have Blueprint class
-	if (InventoryManagerClass)
-		CurrentGameContext->ItemManager = InventoryManagerClass->GetDefaultObject<UItemManager>();
-
-	UClass* AdventureCharacterManagerClass = (Settings->DefaultAdventureCharacterManager.IsValid())
-		? Settings->DefaultAdventureCharacterManager.Get()				// we have C++ class
-		: Settings->DefaultAdventureCharacterManager.LoadSynchronous();	// we have Blueprint class
-	if (AdventureCharacterManagerClass)
-		CurrentGameContext->AdventureCharacterManager = AdventureCharacterManagerClass->GetDefaultObject<UAdventureCharacterManager>();
+	CurrentGameContext->InventoryController = InstantiateClass(Settings->DefaultInventoryController);
+	CurrentGameContext->InventoryPresenter = InstantiateClass(Settings->DefaultInventoryPresenterWidget);
+	CurrentGameContext->DialogController = InstantiateClass(Settings->DefaultDialogController);
+	CurrentGameContext->DialogPresenter = InstantiateClass(Settings->DefaultDialogPresenterWidget);
+	CurrentGameContext->ItemManager = InstantiateClass(Settings->DefaultItemManager);
+	CurrentGameContext->AdventureCharacterManager = InstantiateClass(Settings->DefaultAdventureCharacterManager);
 
 }
 
