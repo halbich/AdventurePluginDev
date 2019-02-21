@@ -43,14 +43,14 @@ public:
 	virtual bool HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
 	/**
 	* Adds a specified item to the inventory.
-	* @param The item to add.
+	* @param Item The item to add.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	virtual bool AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
 	/**
 	* Removes a specified item from the inventory.
-	* @param The item to remove.
+	* @param Item The item to remove.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the item was successfully removed, so mainly true if the item actually was in the inventory.
 	*/

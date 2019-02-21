@@ -65,7 +65,7 @@ public:
 	* Changes the value of an integer variable stored on a quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param QuestIntegerVariable Identification of the variable whose value should be changed.
-	* @param bNewValue The new value of the quest variable.
+	* @param NewValue The new value of the quest variable.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest")
 	static void SetQuestInteger(UAdventurePluginGameContext* GameContext, FQuestGraphInteger QuestIntegerVariable, int32 NewValue);
@@ -82,7 +82,7 @@ public:
 	* Changes the value of a string variable stored on a quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param QuestStringVariable Identification of the variable whose value should be changed.
-	* @param bNewValue The new value of the quest variable.
+	* @param NewValue The new value of the quest variable.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest")
 	static void SetQuestString(UAdventurePluginGameContext* GameContext, FQuestGraphString QuestStringVariable, const FString& NewValue);
