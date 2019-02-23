@@ -13,13 +13,17 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 {
 	// Add an item, change item state and raise all events as necessary.
 	TArray<UInventoryItem*> Items = GetItems(GameContext);
-	if (Items.Contains(Item))
+	if (!IsValid(Item) || Items.Contains(Item))
 	{
 		return false;
 	}
 	Items.Add(Item);
 	SetItems(Items, GameContext);
-	Item->SetItemState(EInventoryItemState::ItemState_InInventory, GameContext);
+	if (Item->GetItemState(GameContext) != EInventoryItemState::ItemState_Custom)
+	{
+		// Automatically change item state if the designer is not handling it himself.
+		Item->SetItemState(EInventoryItemState::ItemState_InInventory, GameContext);
+	}
 	if (!bIsUpdating)
 	{
 		InventoryChanged.Broadcast(TArray<UInventoryItem*> { Item });
@@ -38,13 +42,17 @@ bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* G
 {
 	// Remove item, change item state and raise all events as necessary.
 	TArray<UInventoryItem*> Items = GetItems(GameContext);
-	if (!Items.Contains(Item)) 
+	if (!IsValid(Item) || !Items.Contains(Item)) 
 	{
 		return false;
 	}
 	Items.Remove(Item);
 	SetItems(Items, GameContext);
-	Item->SetItemState(EInventoryItemState::ItemState_Used, GameContext);
+	if (Item->GetItemState(GameContext) != EInventoryItemState::ItemState_Custom)
+	{
+		// Automatically change item state if the designer is not handling it himself.
+		Item->SetItemState(EInventoryItemState::ItemState_Used, GameContext);
+	}
 	if (!bIsUpdating)
 	{
 		InventoryChanged.Broadcast(TArray<UInventoryItem*> {Item });

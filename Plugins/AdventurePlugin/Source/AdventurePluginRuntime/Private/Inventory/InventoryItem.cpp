@@ -30,7 +30,7 @@ EInventoryItemState UInventoryItem::GetItemState(UAdventurePluginGameContext* Ga
 
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
 
-	return SaveGame->GetItemStateOrDefault(GetClass(), EInventoryItemState::ItemState_Invalid);
+	return SaveGame->GetItemStateOrDefault(GetClass(), DefaultItemState);
 }
 
 void UInventoryItem::SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContext)
@@ -39,9 +39,9 @@ void UInventoryItem::SetItemState(EInventoryItemState NewValue, UAdventurePlugin
 	{
 		return;
 	}
-
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
 	SaveGame->SetItemState(GetClass(), NewValue);
+	ItemStateChanged.Broadcast(this);
 }
 void UInventoryItem::OnAddedToInventory_Implementation(UInventory* Inventory, UAdventurePluginGameContext* GameContext)
 {
