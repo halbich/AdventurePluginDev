@@ -1,4 +1,4 @@
-
+using System.IO;
 namespace UnrealBuildTool.Rules
 {
     public class AdventurePluginEditor : ModuleRules
@@ -9,14 +9,14 @@ namespace UnrealBuildTool.Rules
 
             PublicIncludePaths.AddRange(
                 new string[] {
-                    "AdventurePluginEditor/Public"
+                    Path.Combine(ModuleDirectory,"AdventurePluginEditor/Public")
 					// ... add public include paths required here ...
 				}
                 );
 
             PrivateIncludePaths.AddRange(
                 new string[] {
-                     "AdventurePluginEditor/Private"
+                    Path.Combine(ModuleDirectory, "AdventurePluginEditor/Private")
 					//"Developer/AdventurePluginEditor/Private",
 					// ... add other private include paths required here ...
 				}

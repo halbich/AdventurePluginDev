@@ -53,13 +53,27 @@ T* UAdventurePluginGameInstance::InstantiateClass(TSoftClassPtr<T> ClassToInstan
 	UClass* ActualClass = ClassToInstantiate.IsValid()
 		? ClassToInstantiate.Get()				// we have C++ class
 		: ClassToInstantiate.LoadSynchronous();	// we have Blueprint class
+	T* ToReturn = nullptr;
 	if (!IsValid(ActualClass))
 	{
+		LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "InstantiateClass_ClassNotValid", "Cannot instantiate class. Class not valid: {0}"), FText::FromString(ClassToInstantiate.GetAssetName())));
 		return nullptr;
 	}
-	if (ActualClass->IsChildOf(UWidget::StaticClass()))
+	if (ActualClass->IsChildOf(UUserWidget::StaticClass()))
 	{
-		return CreateWidget<T>(this, ActualClass);
+		ToReturn = Cast<T>(CreateWidget<UUserWidget>(this, ActualClass));
+		if (!IsValid(ToReturn))
+		{
+			LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "InstantiateClass_WidgetNotInstantiated", "Failed to instantiate widget class: {0}"), FText::FromString(ClassToInstantiate.GetAssetName())));
+		}
 	}
-	return NewObject<T>(this, ActualClass);
+	else
+	{
+		ToReturn = NewObject<T>(this, ActualClass);
+		if (!IsValid(ToReturn))
+		{
+			LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "InstantiateClass_ObjectNotInstantiated", "Failed to instantiate UObject class: {0}"), FText::FromString(ClassToInstantiate.GetAssetName())));
+		}
+	}
+	return ToReturn;
 }

@@ -6,6 +6,7 @@
 
 void UCombinableObjectBlueprint::Compiled(UBlueprint* CompiledBlueprint)
 {
+#if WITH_EDITOR
 	UCombinableObject* RepresentedObject = Cast<UCombinableObject>(GeneratedClass->ClassDefaultObject);
 	if (!IsValid(RepresentedObject))
 	{
@@ -13,6 +14,7 @@ void UCombinableObjectBlueprint::Compiled(UBlueprint* CompiledBlueprint)
 	}
 	RepresentedObject->RefreshCombinations();
 	UpdateExternalCombinations(RepresentedObject);
+#endif
 }
 void UCombinableObjectBlueprint::UpdateExternalCombinations(UCombinableObject* RepresentedObject)
 {

@@ -12,11 +12,10 @@ void UAdventurePluginGameInstance::Init()
 
 #if WITH_EDITOR
 
-	FString DebugSaveName("DebugSave");
+	FString DebugSaveName(TEXT("DebugSave"));
 	CurrentGameContext->SaveGame = UAdventurePluginSaveGame::CreateSave(DebugSaveName, 0);
 	CurrentGameContext->ItemManager->ClearMap();
 	CurrentGameContext->AdventureCharacterManager->ClearMap();
-
 #endif
 }
 
@@ -31,7 +30,13 @@ void UAdventurePluginGameInstance::InitCurrentGameContext()
 	CurrentGameContext->DialogPresenter = InstantiateClass(Settings->DefaultDialogPresenterWidget);
 	CurrentGameContext->ItemManager = InstantiateClass(Settings->DefaultItemManager);
 	CurrentGameContext->AdventureCharacterManager = InstantiateClass(Settings->DefaultAdventureCharacterManager);
-
+	//The save game is required for context to be valid, so ensure that a save is used. 
+	FString InitialSave(TEXT("InitialSave"));
+	CurrentGameContext->SaveGame = UAdventurePluginSaveGame::CreateSave(InitialSave, 0);
+	if (!IsValid(CurrentGameContext->SaveGame))
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "InitGameContextSaveInvalid", "Could not initialize game context"));
+	}
 }
 
 

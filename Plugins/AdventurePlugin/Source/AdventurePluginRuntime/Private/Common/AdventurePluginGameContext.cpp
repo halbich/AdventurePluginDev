@@ -20,9 +20,24 @@ bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameC
 		!IsValid(GameContext->ItemManager) ||
 		!IsValid(GameContext->AdventureCharacterManager))
 	{
+		FText ValidText(NSLOCTEXT("AdventurePlugin", "ValidConstant", "Valid"));
+		FText InvalidText(NSLOCTEXT("AdventurePluugin", "InvalidConstant", "Invalid"));
 
-		FText ErrorText =  FText::Format(NSLOCTEXT("AdventurePlugin", "GameContextInvalid", "{0}: Game context or one of its subclasses is null or invalid"),
-			FText::FromString(Caller));
+		FFormatOrderedArguments FormatArgs{
+			FText::FromString(Caller),
+			IsValid(GameContext) ? ValidText : InvalidText,
+			IsValid(GameContext) && IsValid(GameContext->InventoryController) ? ValidText : InvalidText,
+			IsValid(GameContext) && IsValid(GameContext->InventoryPresenter.GetObject()) ? ValidText : InvalidText,
+			IsValid(GameContext) && IsValid(GameContext->DialogController) ? ValidText : InvalidText,
+			IsValid(GameContext) && IsValid(GameContext->DialogPresenter.GetObject()) ? ValidText : InvalidText,
+			IsValid(GameContext) && IsValid(GameContext->SaveGame) ? ValidText : InvalidText,
+			IsValid(GameContext) && IsValid(GameContext->ItemManager) ? ValidText : InvalidText,
+			IsValid(GameContext) && IsValid(GameContext->AdventureCharacterManager) ? ValidText : InvalidText
+			};
+
+		FText ErrorText =  FText::Format(NSLOCTEXT("AdventurePlugin", "GameContextInvalid", "{0}: Game context or one of its subclasses is null or invalid. GameContext:{1}, InventoryController:{2},InventoryPresent:{3},DialogController:{4},DialogPresenter:{5},SaveGame:{6},ItemManager:{7},AdventureCharacterManager:{8}"),
+			FormatArgs
+			);
 		LOG_Error(ErrorText);
 		return false;
 	}
