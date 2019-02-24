@@ -50,7 +50,7 @@ void UCombinableObjectBlueprint::RegisterExternalCombinations(UCombinableObject*
 	{
 		check(false && "Target and source blueprints should never be nil.");
 		return;
-	}
+	} 
 	for (FLocalCombinationInfo& Combination : SourceObject->LocalCombinations)
 	{
 		if (Combination.TargetBlueprints.Contains(OtherBlueprint))

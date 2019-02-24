@@ -36,7 +36,7 @@ void UCombinableObject::RefreshCombinations()
 		// Split combination targets into blueprints and classes so we can navigate to the place where the navigations are defined from editor.
 		for (UClass* CombinationTargetClass : AllCombinationTargets)
 		{
-			UBlueprint* CombinationTargetBlueprint = CombinationTargetClass->ClassGeneratedBy ? Cast<UBlueprint>(CombinationTargetClass->ClassGeneratedBy) : nullptr;
+			UBlueprint* CombinationTargetBlueprint = IsValid(CombinationTargetClass) && IsValid(CombinationTargetClass->ClassGeneratedBy) ? Cast<UBlueprint>(CombinationTargetClass->ClassGeneratedBy) : nullptr;
 			if (CombinationTargetBlueprint == nullptr)
 			{
 				CombinationInfoToAdd.TargetClasses.Add(CombinationTargetClass);
