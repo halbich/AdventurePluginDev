@@ -38,36 +38,36 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param DialogGraph The dialog graph to be started.
 	*/
-	void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
+	virtual void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
 	/**
 	* Starts the specified dialog from the specified node.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param DialogGraph The dialog graph to be started.
 	* @param StartNode The node from which the execution should be started.
 	*/
-	void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode);
+	virtual void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode);
 	/**
 	* Ends the dialog.
 	*/
-	void HideDialog();
+	virtual void HideDialog();
 	/**
 	* Should be called by presenter when showing of a line, both PC and NPC, is over.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
-	void ShowDialogLineCallback();
+	virtual void ShowDialogLineCallback();
 	/**
 	* Should be called by presenter when the user selects a dialog option.
 	* @param SelectedOptionIndex The index of the option the user selected.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
-	void ShowDialogLineSelectionCallback(int32 SelectedOptionIndex);
+	virtual void ShowDialogLineSelectionCallback(int32 SelectedOptionIndex);
 	/**
 	* Should be called by presenter when an animation finishes.
 	* @param AnimationName The name of the animation that finished.
 	* @param bSuccess If true, the animation played successfully from start to finish, otherwise false.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
-	void PlayAnimationCallback(FName AnimationName, bool bSuccess);
+	virtual void PlayAnimationCallback(FName AnimationName, bool bSuccess);
 	/**
 	* The dialog graph being executed.
 	*/
@@ -79,7 +79,7 @@ public:
 	UPROPERTY(Transient)
 	UAdventurePluginGameContext* CurrentGameContext;
 
-private:
+protected:
 	/**
 	* Where we are in the execution. When null, no dialog is in progress.
 	*/
@@ -89,7 +89,7 @@ private:
 	* Starts executing the graph from the specified node.
 	* @param StartNode Where should the execution start.
 	*/
-	void BeginExecute(UDialogGraphNode* StartNode);
+	virtual void BeginExecute(UDialogGraphNode* StartNode);
 	/**
 	* Retrieves the presenter we are using
 	* @return The instance of the currently used presenter,

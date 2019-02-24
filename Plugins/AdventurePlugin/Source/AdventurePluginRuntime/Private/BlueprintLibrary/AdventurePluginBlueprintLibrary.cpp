@@ -16,24 +16,29 @@ void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePlugin
 	UDialogGraph* DialogGraph = EntryPoint.Dialog;
 	if (!IsValid(DialogGraph))
 	{
-		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_DialogGraphNull", "Show dialog::graph is NULL"));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_ShowDialog_DialogGraphNull", "Show dialog::graph is NULL"));
 		return;
 	}
 
 	UDialogController* DialogController = GameContext->DialogController;
-
-	UDialogGraphNode* StartNode;
-	if (EntryPoint.EntryPointName == UDialogGraph::MainEntryName)
+	UDialogGraphNode** StartNode = DialogGraph->IdToNodeMap.Find(EntryPoint.EntryPointName);
+	if (StartNode == nullptr)
 	{
-		StartNode = DialogGraph->MainEntryPoint;
+		// The name was not found in the on the graph. Use the main entry point.
+		StartNode = &DialogGraph->MainEntryPoint;
+		// This could be on purpose if the name was not specified or was explicitly main entry point. Otherwise we have an invalid entry point name and we should show a warning.
+		if (EntryPoint.EntryPointName != UDialogGraph::MainEntryName && !EntryPoint.EntryPointName.IsNone())
+		{
+			LOG_Warning(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_ShowDialog_InvalidEntryPoint", "ShowDialog:Entry point name is invalid"));
+		}
 	}
-	else
+	if (StartNode == nullptr || !IsValid(*StartNode)) 
 	{
-		StartNode = *DialogGraph->IdToNodeMap.Find(EntryPoint.EntryPointName);
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_ShowDialog_NoMainEntryPoint", "ShowDialog:Main entry point should be used, but was not found."));
+		return;
 	}
-	if (StartNode == nullptr) StartNode = DialogGraph->MainEntryPoint;
 
-	DialogController->ShowDialog(GameContext, DialogGraph, StartNode);
+	DialogController->ShowDialog(GameContext, DialogGraph, *StartNode);
 }
 
 void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph)
