@@ -11,6 +11,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "DialogController.generated.h"
 
+/**
+* A delegate for notifications fired when something dialog related happens.
+* @param Dialog The dialog this notification is about.
+* @param GameContext Provides access to all Adventure Plugin data and functionality.
+*/
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FDialogNotification, UDialogGraph*, Dialog, UAdventurePluginGameContext*, GameContext);
 
 /**
  * This class can walk through the dialog graph and play a dialog that corresponds to it.
@@ -33,6 +39,16 @@ class ADVENTUREPLUGINRUNTIME_API UDialogController : public UObject
 	GENERATED_BODY()
 
 public:
+	/**
+	* This event is raised when a dialog is started.
+	*/
+	UPROPERTY(BlueprintAssignable, Category = "Adventure Plugin|Dialog")
+	FDialogNotification DialogStarted;
+	/**
+	* This event is raised when a dialog ends. 
+	*/
+	UPROPERTY(BlueprintAssignable, Category = "Adventure Plugin|Dialog")
+	FDialogNotification DialogEnded;
 	/**
 	* Starts the specified dialog from the main entry point.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -68,6 +84,11 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
 	virtual void PlayAnimationCallback(FName AnimationName, bool bSuccess);
+	/**
+	* If true, a dialog is currently being executed.
+	*/
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
+	bool bIsShowingDialog;
 	/**
 	* The dialog graph being executed.
 	*/

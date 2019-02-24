@@ -21,6 +21,11 @@ public:
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	FText DialogText;
+	/**
+	* If not empty, this text will be used instead of DialogText when presenting this line as an option to the player.
+	*/
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
+	FText OptionText;
 	/** 
 	* The sound to be played for this dialog line. The line should disappear automatically after the sound finishes.
 	*/
@@ -112,7 +117,7 @@ public:
 		FDialogLineData DialogLine = FDialogLineData();
 		DialogLine.DialogSound = DialogSound;
 		DialogLine.LineText = DialogText;
-		DialogLine.OptionText = DialogText;
+		DialogLine.OptionText = OptionText.IsEmptyOrWhitespace() ? DialogText : OptionText;
 		DialogLine.bSkippable = bSkippable;
 		DialogLine.TextDuration = TextDuration;
 		UAdventureCharacter* SpeakerCharacter = GetSpeaker(GameContext);

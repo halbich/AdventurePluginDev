@@ -26,7 +26,7 @@ public:
 	* Also note that you can also subscribe to events on specific items themselves, they also have events fired when an item is added or removed from inventory.
 	*/
 	UPROPERTY(BlueprintAssignable, Category = "Adventure Plugin|Inventory")
-		FInventoryChangedEvent InventoryChanged;
+	FInventoryChangedEvent InventoryChanged;
 	/**
 	* Retrieves all items currently in this inventory.
 	* @return All items in the inventory.

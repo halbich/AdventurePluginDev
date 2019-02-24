@@ -13,22 +13,27 @@ void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDi
 
 void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode)
 {
-	CurrentGameContext = GameContext;
-	CurrentGraph = DialogGraph;
-
 	if (StartNode == nullptr || StartNode->ChildrenNodes.Num() == 0)
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogController_ShowDialog_StartNodeNull", "Show dialog::StartNode is NULL"));
 		return;
 	}
-
-	BeginExecute(StartNode);
+	if (bIsShowingDialog)
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogController_ShowDialog_Dialog in progress", "Show dialog::Another dialog is already being executed. Cannot execute another dialog."));
+		return;
+	}
+	CurrentGameContext = GameContext;
+	CurrentGraph = DialogGraph;
+	bIsShowingDialog = true;
+	DialogStarted.Broadcast(DialogGraph, GameContext);
 	IDialogPresenterInterface* PresenterInstance = GetPresenter();
 
 	if (PresenterInstance)
 	{
 		IDialogPresenterInterface::Execute_SetPresenterVisibility(PresenterInstance->_getUObject(), true);
 	}
+	BeginExecute(StartNode);
 }
 
 void UDialogController::HideDialog()
@@ -39,7 +44,10 @@ void UDialogController::HideDialog()
 		IDialogPresenterInterface::Execute_SetPresenterVisibility(PresenterInstance->_getUObject(), false);
 	}
 
+	DialogEnded.Broadcast(CurrentGraph, CurrentGameContext);
 	CurrentGameContext = nullptr;
+	CurrentGraph = nullptr;
+	bIsShowingDialog = false;
 }
 
 void UDialogController::BeginExecute(UDialogGraphNode* StartNode)
