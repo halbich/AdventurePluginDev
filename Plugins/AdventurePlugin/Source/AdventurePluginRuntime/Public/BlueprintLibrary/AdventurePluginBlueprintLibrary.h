@@ -32,6 +32,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Dialog")
 	static void ShowDialogFromEntryPoint(UAdventurePluginGameContext* GameContext, FDialogGraphEntryPoint EntryPoint);
+
 	/**
 	* Starts the specified dialog from the main entry point.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -39,25 +40,29 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Dialog")
 	static void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
+
 	/**
 	* Hides the inventory.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
 	static void HideInventory(UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Shows or hides the inventory.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param bVisible If true, the method should show the inventory. If false, the method should hide the inventory.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
-		static void SetInventoryVisibility(UAdventurePluginGameContext* GameContext, bool bVisible);
+	static void SetInventoryVisibility(UAdventurePluginGameContext* GameContext, bool bVisible);
+
 	/**
 	* Shows the inventory.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
-		static void ShowInventory(UAdventurePluginGameContext* GameContext);
+	static void ShowInventory(UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Retrieves the only instance of the requested item class. Neccessary to access any functionality provided by the Item class. Always use this method, never instantiate InventoryItem directly.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -66,6 +71,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Inventory")
 	static UInventoryItem* GetItem(UAdventurePluginGameContext* GameContext, TSubclassOf<UInventoryItem> Item);
+
 	/**
 	* Retrieves the only instance of the requested character class. Neccessary to access any functionality provided by the Character class. Always use this method, never instantiate AdventureCharacter directly.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -74,15 +80,16 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Character")
 	static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character);
+
 	/**
 	* Retrieves the default game context. Contains instances of class defined in game config.
 	* @see UAdventurePluginConfig
 	* A game can choose a different way of getting a game context.
 	* @param WorldObjectContext The object containing all data about the game world. Silently passed by Unreal Engine when possible.
-	* @return Tha default game context.
+	* @return The default game context.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin", meta = (WorldContext = WorldObjectContext))
-		static UAdventurePluginGameContext* GetCurrentGameContext(UObject* WorldObjectContext);
+	static UAdventurePluginGameContext* GetCurrentGameContext(UObject* WorldObjectContext);
 
 private:
 };

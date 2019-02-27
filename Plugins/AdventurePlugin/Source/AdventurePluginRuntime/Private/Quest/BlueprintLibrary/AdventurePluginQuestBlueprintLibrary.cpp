@@ -1,6 +1,7 @@
 #include "BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.h"
 #include "AdventurePluginRuntime.h"
 #include "AdventurePluginGameContext.h"
+#include "Quest/Graph/QuestGraph.h"
 
 bool UAdventurePluginQuestBlueprintLibrary::GetQuestBool(UAdventurePluginGameContext* GameContext, FQuestGraphBool QuestBoolVariable)
 {
@@ -15,6 +16,7 @@ bool UAdventurePluginQuestBlueprintLibrary::GetQuestBool(UAdventurePluginGameCon
 	}
 	return QuestBoolVariable.Quest->GetBool(GameContext, QuestBoolVariable.BoolName);
 }
+
 void UAdventurePluginQuestBlueprintLibrary::SetQuestBool(UAdventurePluginGameContext* GameContext, FQuestGraphBool QuestBoolVariable, bool bNewValue)
 {
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SetQuestBool")))
@@ -42,6 +44,7 @@ bool UAdventurePluginQuestBlueprintLibrary::GetQuestFlag(UAdventurePluginGameCon
 	}
 	return QuestFlag.Quest->GetFlag(GameContext, QuestFlag.FlagName);
 }
+
 void UAdventurePluginQuestBlueprintLibrary::SetQuestFlag(UAdventurePluginGameContext* GameContext, FQuestGraphFlag QuestFlag)
 {
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SetQuestFlag")))
@@ -69,6 +72,7 @@ int32 UAdventurePluginQuestBlueprintLibrary::GetQuestInteger(UAdventurePluginGam
 	}
 	return QuestIntegerVariable.Quest->GetInteger(GameContext, QuestIntegerVariable.IntegerName);
 }
+
 void UAdventurePluginQuestBlueprintLibrary::SetQuestInteger(UAdventurePluginGameContext* GameContext, FQuestGraphInteger QuestIntegerVariable, int32 NewValue)
 {
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SetQuestInteger")))
@@ -96,6 +100,7 @@ FString UAdventurePluginQuestBlueprintLibrary::GetQuestString(UAdventurePluginGa
 	}
 	return QuestStringVariable.Quest->GetString(GameContext, QuestStringVariable.StringName);
 }
+
 void UAdventurePluginQuestBlueprintLibrary::SetQuestString(UAdventurePluginGameContext* GameContext, FQuestGraphString QuestStringVariable, const FString& NewValue)
 {
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SetQuestString")))
@@ -132,4 +137,33 @@ bool UAdventurePluginQuestBlueprintLibrary::BindQuestEvent(UAdventurePluginGameC
 
 	QuestEventsMap.Add(QuestEvent.EventName, QuestEventHandler);
 	return true;
+}
+
+void UAdventurePluginQuestBlueprintLibrary::FireQuestEvent(UAdventurePluginGameContext* GameContext, FQuestGraphEvent QuestEvent)
+{
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("FireQuestEvent")))
+	{
+		return;
+	}
+
+	if (!IsValid(QuestEvent.Quest))
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_FireQuestEvent_QuestGraphInvalid", "Fire event::graph is invalid"));
+		return;
+	}
+
+	FQuestEvent* Event = QuestEvent.Quest->QuestEvents.Find(QuestEvent.EventName);
+	if (!Event)
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_FireQuestEvent_EventNameUndefined", "Fire event::event name is not defined in quest"));
+		return;
+	}
+
+	if (!Event->IsBound())
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestLibrary_FireQuestEvent_EventUnbound", "Fire event::Event is not bound"));
+		return;
+	}
+
+	Event->ExecuteIfBound();
 }

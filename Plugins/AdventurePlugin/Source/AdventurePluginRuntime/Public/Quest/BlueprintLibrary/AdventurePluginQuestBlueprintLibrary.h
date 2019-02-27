@@ -28,6 +28,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest")
 	static bool GetQuestBool(UAdventurePluginGameContext* GameContext, FQuestGraphBool QuestBoolVariable);
+
 	/**
 	* Changes the value of a boolean variable stored on a quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -43,8 +44,10 @@ public:
 	* @param QuestFlag Identification of the flag whose value is requested.
 	* @return True if the flag is set, false if not set or if the game context or flag identification is invalid.
 	*/
+
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest")
 	static bool GetQuestFlag(UAdventurePluginGameContext* GameContext, FQuestGraphFlag QuestFlag);
+
 	/**
 	* Sets a flag defined on a quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -61,6 +64,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest")
 	static int32 GetQuestInteger(UAdventurePluginGameContext* GameContext, FQuestGraphInteger QuestIntegerVariable);
+
 	/**
 	* Changes the value of an integer variable stored on a quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -78,6 +82,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest")
 	static FString GetQuestString(UAdventurePluginGameContext* GameContext, FQuestGraphString QuestStringVariable);
+
 	/**
 	* Changes the value of a string variable stored on a quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -94,7 +99,16 @@ public:
 	* @param QuestEvent The identification of the quest event the handler should handle.
 	* @param QuestEventHandler The method to be called when the event is fired.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "AdventurePluginBPLibrary|Quest")
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest")
 	static bool BindQuestEvent(UAdventurePluginGameContext* GameContext, FQuestGraphEvent QuestEvent, FQuestEvent QuestEventHandler);
+
+	/**
+	* Triggers an event, which executes method previously bound to this event.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param QuestEvent The identification of the quest event to trigger.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest")
+	static void FireQuestEvent(UAdventurePluginGameContext* GameContext, FQuestGraphEvent QuestEvent);
+
 private:
 };

@@ -85,7 +85,6 @@ void UAdventurePluginBlueprintLibrary::SetInventoryVisibility(UAdventurePluginGa
 	}
 }
 
-
 UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* GameContext, TSubclassOf<UInventoryItem> Item)
 {
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetItem")))
