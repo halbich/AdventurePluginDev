@@ -1,5 +1,5 @@
 
-#include "AdventurePluginQuestEditorModule.h"
+#include "AdventurePluginQuestEditor.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
@@ -31,9 +31,9 @@
 
 const FName AdventurePluginQuestEditorAppIdentifier = FName(TEXT("AdventurePluginQuestEditorApp"));
 
-#define LOCTEXT_NAMESPACE "FAdventurePluginQuestEditorModule"
+#define LOCTEXT_NAMESPACE "FAdventurePluginQuestEditor"
 
-void FAdventurePluginQuestEditorModule::StartupModule()
+void FAdventurePluginQuestEditor::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 
@@ -63,7 +63,7 @@ void FAdventurePluginQuestEditorModule::StartupModule()
 	/**/
 }
 
-void FAdventurePluginQuestEditorModule::ShutdownModule()
+void FAdventurePluginQuestEditor::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
@@ -95,7 +95,7 @@ void FAdventurePluginQuestEditorModule::ShutdownModule()
 	/**/
 }
 
-void FAdventurePluginQuestEditorModule::RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action)
+void FAdventurePluginQuestEditor::RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action)
 {
 	AssetTools.RegisterAssetTypeActions(Action);
 	CreatedAssetTypeActions.Add(Action);
@@ -103,4 +103,4 @@ void FAdventurePluginQuestEditorModule::RegisterAssetTypeAction(IAssetTools& Ass
 
 #undef LOCTEXT_NAMESPACE
 
-IMPLEMENT_MODULE(FAdventurePluginQuestEditorModule, AdventurePluginQuestEditor)
+IMPLEMENT_MODULE(FAdventurePluginQuestEditor, AdventurePluginQuestEditor)
