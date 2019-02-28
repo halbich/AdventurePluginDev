@@ -1,12 +1,11 @@
 #include "Quest/AssetGraphSchema_QuestGraph.h"
-#include "Quest/EdQuestNode_NoOutput.h"
 #include "QuestGraphNode_End.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "EdGraph/EdGraph.h"
+#include "AdventurePluginEditor.h"
 
 UAssetGraphSchema_QuestGraph::UAssetGraphSchema_QuestGraph()
 {
-	EditorNodeMap.Add(UQuestGraphNode_End::StaticClass(), UEdQuestNode_NoOutput::StaticClass());
 }
 
 const FPinConnectionResponse UAssetGraphSchema_QuestGraph::CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const
@@ -31,7 +30,8 @@ TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_QuestGraph::GetEditorNod
 {
 	if (RuntimeNodeType && RuntimeNodeType->IsChildOf(UQuestGraphNode::StaticClass()))
 	{
-		if (const TSubclassOf<UEdNode_GenericGraphNode>* EditorNodeType = FindEditorNodeForRuntimeNode(RuntimeNodeType))
+		FAdventurePluginEditor& AdventurePluginEditor = FAdventurePluginEditor::Get();
+		if (const TSubclassOf<UEdNode_GenericGraphNode>* EditorNodeType = AdventurePluginEditor.FindEditorNodeForRuntimeNode(RuntimeNodeType))
 		{
 			return *EditorNodeType;
 		}

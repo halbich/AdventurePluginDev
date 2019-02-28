@@ -328,40 +328,6 @@ const FPinConnectionResponse UAssetGraphSchema_GenericGraph::CanCreateConnection
 	return FPinConnectionResponse(CONNECT_RESPONSE_MAKE, LOCTEXT("PinConnect", "Connect nodes"));
 }
 
-/*
-bool UAssetGraphSchema_GenericGraph::CreateAutomaticConversionNodeAndConnections(UEdGraphPin* A, UEdGraphPin* B) const
-{
-	UEdNode_GenericGraphNode* NodeA = Cast<UEdNode_GenericGraphNode>(A->GetOwningNode());
-	UEdNode_GenericGraphNode* NodeB = Cast<UEdNode_GenericGraphNode>(B->GetOwningNode());
-
-	if (NodeA == nullptr || NodeB == nullptr)
-		return false;
-
-	if (NodeA->GetInputPin() == nullptr || NodeA->GetOutputPin() == nullptr || NodeB->GetInputPin() == nullptr || NodeB->GetOutputPin() == nullptr)
-		return false;
-
-	UGenericGraph* Graph = NodeA->GenericGraphNode->GetGraph();
-
-	FVector2D InitPos((NodeA->NodePosX + NodeB->NodePosX) / 2, (NodeA->NodePosY + NodeB->NodePosY) / 2);
-
-	FAssetSchemaAction_GenericGraph_NewEdge Action;
-	Action.NodeTemplate = NewObject<UEdNode_GenericGraphEdge>(NodeA->GetGraph());
-	Action.NodeTemplate->SetEdge(NewObject<UGenericGraphEdge>(Action.NodeTemplate, Graph->EdgeType));
-	UEdNode_GenericGraphEdge* EdgeNode = Cast<UEdNode_GenericGraphEdge>(Action.PerformAction(NodeA->GetGraph(), nullptr, InitPos, false));
-
-	if (A->Direction == EGPD_Output)
-	{
-		EdgeNode->CreateConnections(NodeA, NodeB);
-	}
-	else
-	{
-		EdgeNode->CreateConnections(NodeB, NodeA);
-	}
-
-	return true;
-}
-*/
-
 class FConnectionDrawingPolicy* UAssetGraphSchema_GenericGraph::CreateConnectionDrawingPolicy(int32 InBackLayerID, int32 InFrontLayerID, float InZoomFactor, const FSlateRect& InClippingRect, class FSlateWindowElementList& InDrawElements, class UEdGraph* InGraphObj) const
 {
 	return new FConnectionDrawingPolicy_GenericGraph(InBackLayerID, InFrontLayerID, InZoomFactor, InClippingRect, InDrawElements, InGraphObj);
@@ -432,29 +398,4 @@ TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_GenericGraph::GetEditorN
 	return UEdNode_GenericGraphNode::StaticClass();
 }
 
-const TSubclassOf<UEdNode_GenericGraphNode>* UAssetGraphSchema_GenericGraph::FindEditorNodeForRuntimeNode(TSubclassOf<UGenericGraphNode> RuntimeNodeType) const
-{
-	const TSubclassOf<UEdNode_GenericGraphNode>* RegisteredEditorNode = EditorNodeMap.Find(RuntimeNodeType);
-	if (RegisteredEditorNode != nullptr)
-	{
-		return RegisteredEditorNode;
-	}
-	const TSubclassOf<UGenericGraphNode>* ClosestRegisteredRuntimeNode = nullptr;
-	const TSubclassOf<UEdNode_GenericGraphNode>* ClosestRegisteredEditorNode = nullptr;
-	// This node was not explicitly registered. See if it inherits from some other registered node type.
-	for (const TPair<TSubclassOf<UGenericGraphNode>, TSubclassOf<UEdNode_GenericGraphNode>>& RegisteredNode : EditorNodeMap)
-	{
-		if (RuntimeNodeType->IsChildOf(RegisteredNode.Key))
-		{
-			// The node type is compatible. But we want to find the parent the closest to the queried type in terms of inheritance. 
-			// If we found some result we replace the already found result only if the current candidate inherits from the already found node, i.e. it is deeper in the inheritance tree.
-			if (ClosestRegisteredRuntimeNode == nullptr || RegisteredNode.Key->IsChildOf(*ClosestRegisteredRuntimeNode))
-			{
-				ClosestRegisteredRuntimeNode = &RegisteredNode.Key;
-				ClosestRegisteredEditorNode = &RegisteredNode.Value;
-			}
-		}
-	}
-	return ClosestRegisteredEditorNode;
-}
 #undef LOCTEXT_NAMESPACE

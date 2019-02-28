@@ -37,7 +37,7 @@ public:
 	* Human friendly name of this character.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	FString Name;
+	FText Name;
 	/**
 	* If true, this character can be a player character.
 	*/

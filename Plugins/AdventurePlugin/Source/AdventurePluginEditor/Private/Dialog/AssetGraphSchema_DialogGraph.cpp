@@ -1,40 +1,13 @@
 #include "Dialog/AssetGraphSchema_DialogGraph.h"
-#include "Dialog/Graph/DialogGraphNode_IfBool.h"
-#include "Dialog/Graph/DialogGraphNode_Options.h"
-#include "Dialog/Graph/DialogGraphNode_IfString.h"
-#include "Dialog/Graph/DialogGraphNode_IfInteger.h"
-#include "Dialog/Graph/DialogGraphNode_IfQuestFlag.h"
-#include "Dialog/Graph/DialogGraphNode_IfQuestComplete.h"
-#include "Dialog/Graph/DialogGraphNode_IfInInventory.h"
 #include "Dialog/Graph/DialogGraphNode_EntryMain.h"
-#include "Dialog/Graph/DialogGraphNode_EntrySecondary.h"
-#include "Dialog/Graph/DialogGraphNode_Exit.h"
-#include "Dialog/Graph/DialogGraphNode_Goto.h"
-#include "Dialog/Graph/DialogGraphNode_Once.h"
-#include "Dialog/Graph/BaseClasses/DialogGraphNode_TrueFalse.h"
-#include "EdDialogNode_Options.h"
-#include "EdDialogNode_TrueFalse.h"
-#include "EdDialogNode_IfInInventory.h"
-#include "EdDialogNode_NoInput.h"
-#include "EdDialogNode_NoOutput.h"
-#include "EdDialogNode_LessEqualMore.h"
-#include "DialogGraphNode_EntryMain.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "AssetRegistryModule.h"
 #include "AdventureCharacterBlueprint.h"
 #include "EdGraph/EdGraph.h"
+#include "AdventurePluginEditor.h"
 
 UAssetGraphSchema_DialogGraph::UAssetGraphSchema_DialogGraph()
 {
-	EditorNodeMap.Add(UDialogGraphNode_TrueFalse::StaticClass(),		UEdDialogNode_TrueFalse::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_IfInInventory::StaticClass(),	UEdDialogNode_TrueFalse::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_IfInteger::StaticClass(),		UEdDialogNode_LessEqualMore::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_Options::StaticClass(),			UEdDialogNode_Options::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_EntryMain::StaticClass(),		UEdDialogNode_NoInput::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_EntrySecondary::StaticClass(),	UEdDialogNode_NoInput::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_Exit::StaticClass(),				UEdDialogNode_NoOutput::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_Goto::StaticClass(),				UEdDialogNode_NoOutput::StaticClass());
-	EditorNodeMap.Add(UDialogGraphNode_IfInInventory::StaticClass(),	UEdDialogNode_IfInInventory::StaticClass());
 }
 
 const FPinConnectionResponse UAssetGraphSchema_DialogGraph::CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const
@@ -73,7 +46,8 @@ TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_DialogGraph::GetEditorNo
 {
 	if (RuntimeNodeType && RuntimeNodeType->IsChildOf(UDialogGraphNode::StaticClass()))
 	{
-		if (const TSubclassOf<UEdNode_GenericGraphNode>* EditorNodeType = FindEditorNodeForRuntimeNode(RuntimeNodeType))
+		FAdventurePluginEditor& AdventurePluginEditor = FAdventurePluginEditor::Get();
+		if (const TSubclassOf<UEdNode_GenericGraphNode>* EditorNodeType = AdventurePluginEditor.FindEditorNodeForRuntimeNode(RuntimeNodeType))
 		{
 			return *EditorNodeType;
 		}

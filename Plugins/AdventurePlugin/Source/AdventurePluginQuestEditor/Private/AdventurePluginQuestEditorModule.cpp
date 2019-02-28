@@ -17,6 +17,8 @@
 #include "Quest/Structs/QuestGraphString.h"
 #include "Quest/Structs/QuestGraphInteger.h"
 #include "Quest/Structs/QuestGraphEvent.h"
+#include "Quest/EdQuestNode_NoOutput.h"
+#include "Quest/Graph/QuestGraphNode_End.h"
 #include "Quest/Graph/QuestGraphNode_Inventory.h"
 #include "Customizations/QuestGraphFlagCustomization.h"
 #include "Customizations/QuestGraphBoolCustomization.h"
@@ -38,6 +40,9 @@ void FAdventurePluginQuestEditorModule::StartupModule()
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 	FAdventurePluginEditor& AdventurePluginEditor = FAdventurePluginEditor::Get();
 	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_QuestGraph(AdventurePluginEditor.DefaultAssetCategory())));
+
+	/* Registering editor nodes for runtime nodes */
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UQuestGraphNode_End::StaticClass(), UEdQuestNode_NoOutput::StaticClass());
 
 	/* Adding custom asset icon */
 	StyleSet = MakeShareable(new FSlateStyleSet("QuestStyle"));

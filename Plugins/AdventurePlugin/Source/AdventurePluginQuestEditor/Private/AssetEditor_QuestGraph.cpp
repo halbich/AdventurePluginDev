@@ -17,7 +17,8 @@ UClass* FAssetEditor_QuestGraph::GetGraphSchemaClass() const
 	return UAssetGraphSchema_QuestGraph::StaticClass();
 }
 
-void FAssetEditor_QuestGraph::RebuildGenericGraph() {
+void FAssetEditor_QuestGraph::RebuildGenericGraph()
+{
 	FAssetEditor_GenericGraph::RebuildGenericGraph();
 	UQuestGraph * EditingQuestGraph = Cast<UQuestGraph>(EditingGraph);
 	if (EditingQuestGraph == nullptr)

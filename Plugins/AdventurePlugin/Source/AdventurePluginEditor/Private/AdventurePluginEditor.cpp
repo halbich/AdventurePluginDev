@@ -27,9 +27,7 @@
 
 IMPLEMENT_MODULE(FAdventurePluginEditor, AdventurePluginEditor)
 
-
 const FName APLogName("AdventurePluginLog");
-
 
 void FAdventurePluginEditor::StartupModule()
 {
@@ -130,13 +128,15 @@ void FAdventurePluginEditor::Log(EMessageSeverity::Type EngineMessageSeverity, c
 
 
 // Callback for when the settings were saved.
-bool FAdventurePluginEditor::HandleSettingsSaved() {
+bool FAdventurePluginEditor::HandleSettingsSaved()
+{
 	UAdventurePluginConfig* Settings = GetMutableDefault<UAdventurePluginConfig>();
 	bool ResaveSettings = false;
 
 	// You can put any validation code in here and resave the settings in case an invalid // value has been entered
 
-	if (ResaveSettings) {
+	if (ResaveSettings)
+	{
 		Settings->SaveConfig();
 	}
 
@@ -149,7 +149,8 @@ void FAdventurePluginEditor::RegisterSettings()
 	// your desired class, feel free to add here all those settings you want to expose
 	// to your LDs or artists.
 
-	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings")) {
+	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
+	{
 		// Create the new category
 		ISettingsContainerPtr SettingsContainer = SettingsModule->GetContainer("Project");
 
@@ -160,7 +161,8 @@ void FAdventurePluginEditor::RegisterSettings()
 
 		// Register the save handler to your settings, you might want to use it to
 		// validate those or just act to settings changes.
-		if (SettingsSection.IsValid()) {
+		if (SettingsSection.IsValid())
+		{
 			SettingsSection->OnModified().BindRaw(this, &FAdventurePluginEditor::HandleSettingsSaved);
 		}
 	}
@@ -171,7 +173,8 @@ void FAdventurePluginEditor::UnregisterSettings()
 	// Ensure to unregister all of your registered settings here, hot-reload would
 	// otherwise yield unexpected results.
 
-	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings")) {
+	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
+	{
 		SettingsModule->UnregisterSettings("Project", "Plugins", "AdventurePlugin");
 	}
 }
@@ -180,6 +183,38 @@ void FAdventurePluginEditor::RegisterAssetTypeAction(IAssetTools& AssetTools, TS
 {
 	AssetTools.RegisterAssetTypeActions(Action);
 	CreatedAssetTypeActions.Add(Action);
+}
+
+void FAdventurePluginEditor::RegisterEditorNodeForRuntimeNode(TSubclassOf<UGenericGraphNode> RuntimeNode, TSubclassOf<UEdNode_GenericGraphNode> EditorNode)
+{
+	EditorNodeMap.Add(RuntimeNode, EditorNode);
+}
+
+const TSubclassOf<UEdNode_GenericGraphNode>* FAdventurePluginEditor::FindEditorNodeForRuntimeNode(TSubclassOf<UGenericGraphNode> RuntimeNode) const
+{
+	const TSubclassOf<UEdNode_GenericGraphNode>* RegisteredEditorNode = EditorNodeMap.Find(RuntimeNode);
+	if (RegisteredEditorNode != nullptr)
+	{
+		return RegisteredEditorNode;
+	}
+
+	const TSubclassOf<UGenericGraphNode>* ClosestRegisteredRuntimeNode = nullptr;
+	const TSubclassOf<UEdNode_GenericGraphNode>* ClosestRegisteredEditorNode = nullptr;
+	// This node was not explicitly registered. See if it inherits from some other registered node type.
+	for (const TPair<TSubclassOf<UGenericGraphNode>, TSubclassOf<UEdNode_GenericGraphNode>>& RegisteredNode : EditorNodeMap)
+	{
+		if (RuntimeNode->IsChildOf(RegisteredNode.Key))
+		{
+			// The node type is compatible. But we want to find the parent the closest to the queried type in terms of inheritance. 
+			// If we found some result we replace the already found result only if the current candidate inherits from the already found node, i.e. it is deeper in the inheritance tree.
+			if (ClosestRegisteredRuntimeNode == nullptr || RegisteredNode.Key->IsChildOf(*ClosestRegisteredRuntimeNode))
+			{
+				ClosestRegisteredRuntimeNode = &RegisteredNode.Key;
+				ClosestRegisteredEditorNode = &RegisteredNode.Value;
+			}
+		}
+	}
+	return ClosestRegisteredEditorNode;
 }
 
 

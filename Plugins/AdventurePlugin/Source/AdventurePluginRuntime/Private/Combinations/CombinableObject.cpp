@@ -63,7 +63,7 @@ TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObj
 	if (!IsValid(OtherObject))
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObject_GetCombination_NullCombinationItem", "One of the items being combined is null."));
-		return false;
+		return nullptr;
 	}
 	TScriptInterface<ICombinationInterface> FoundCombination = GetCombinationWithObjectLocalOnly(OtherObject, GameContext);
 	if (!IsValid(FoundCombination.GetObject()))

@@ -1,5 +1,5 @@
-
 #include "AdventurePluginDialogEditorModule.h"
+#include "AdventurePluginEditor.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
 #include "Widgets/Layout/SBox.h"
@@ -19,10 +19,22 @@
 #include "Styling/SlateStyle.h"
 #include "PropertyEditorModule.h"
 #include "PropertyEditorDelegates.h"
+#include "Dialog/EdDialogNode_Options.h"
+#include "Dialog/EdDialogNode_NoInput.h"
+#include "Dialog/EdDialogNode_NoOutput.h"
+#include "Dialog/EdDialogNode_TrueFalse.h"
+#include "Dialog/EdDialogNode_LessEqualMore.h"
+#include "Dialog/EdDialogNode_IfInInventory.h"
 #include "Dialog/Graph/DialogGraph.h"
 #include "Dialog/Graph/DialogGraphNode_Goto.h"
+#include "Dialog/Graph/DialogGraphNode_Exit.h"
+#include "Dialog/Graph/DialogGraphNode_Options.h"
+#include "Dialog/Graph/DialogGraphNode_EntryMain.h"
+#include "Dialog/Graph/DialogGraphNode_IfInteger.h"
 #include "Dialog/Graph/DialogGraphNode_IfInInventory.h"
+#include "Dialog/Graph/DialogGraphNode_EntrySecondary.h"
 #include "Dialog/Graph/BaseClasses/DialogGraphNode_ItemBase.h"
+#include "Dialog/Graph/BaseClasses/DialogGraphNode_TrueFalse.h"
 #include "Dialog/Graph/BaseClasses/DialogGraphNode_PlayAnimationBase.h"
 #include "Dialog/Graph/BaseClasses/DialogGraphNode_DialogLineBase.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
@@ -46,6 +58,17 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	FAdventurePluginEditor& AdventurePluginEditor = FAdventurePluginEditor::Get();
 	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_DialogGraph(AdventurePluginEditor.DefaultAssetCategory())));
 
+	/* Registering editor nodes for runtime nodes */
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_TrueFalse::StaticClass(), UEdDialogNode_TrueFalse::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_IfInInventory::StaticClass(), UEdDialogNode_TrueFalse::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_IfInteger::StaticClass(), UEdDialogNode_LessEqualMore::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_Options::StaticClass(), UEdDialogNode_Options::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_EntryMain::StaticClass(), UEdDialogNode_NoInput::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_EntrySecondary::StaticClass(), UEdDialogNode_NoInput::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_Exit::StaticClass(), UEdDialogNode_NoOutput::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_Goto::StaticClass(), UEdDialogNode_NoOutput::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_IfInInventory::StaticClass(), UEdDialogNode_IfInInventory::StaticClass());
+
 	/* Adding custom asset icon */
 	StyleSet = MakeShareable(new FSlateStyleSet("DialogStyle"));
 	StyleSet->SetContentRoot(FPaths::EngineContentDir() / TEXT("Editor/Slate"));
@@ -62,7 +85,6 @@ void FAdventurePluginDialogEditorModule::StartupModule()
 	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_DialogLineBase::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FDialogLineCustomization::MakeInstance));
 	PropertyModule.RegisterCustomClassLayout(UDialogGraphNode_ItemBase::StaticClass()->GetFName(), FOnGetDetailCustomizationInstance::CreateStatic(&FDialogInventoryItemCustomization::MakeInstance));
 	PropertyModule.RegisterCustomPropertyTypeLayout(FDialogGraphEntryPoint::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FDialogGraphEntryPointCustomization::MakeInstance));
-	/**/
 }
 
 void FAdventurePluginDialogEditorModule::ShutdownModule()

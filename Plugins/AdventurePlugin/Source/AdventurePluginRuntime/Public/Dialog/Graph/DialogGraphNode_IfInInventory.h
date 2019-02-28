@@ -72,18 +72,18 @@ public:
 	{
 		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("DialogGraphNode_IfInInventory:GetNextNode")))
 		{
-			return false;
+			return nullptr;
 		}
 		if (!IsValid(Item))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IfInInventory_GetNextNode_InvalidItem", "DialogGraphNode_IfInInventory:GetNextNode: Nil or invalid item passed."));
-			return false;
+			return nullptr;
 		}
 		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
 		if (!IsValid(ItemInstance))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IfInInventory_GetNextNode_InvalidItemInstance", "DialogGraphNode_IfInInventory:GetNextNode: Item could not be instantiated."));
-			return false;
+			return nullptr;
 		}
 		return GameContext->InventoryController->GetInventory()->HasItem(ItemInstance, GameContext) ? ChildTrue: ChildFalse;
 	}

@@ -7,7 +7,6 @@
 #include "Toolkits/AssetEditorToolkit.h"
 #include "Math/Color.h"
 #include "AdventurePluginEditor.h"
-#include "AdventurePluginDialogEditor.h"
 #include "IAssetTools.h"
 #include "Styling/SlateStyle.h"
 

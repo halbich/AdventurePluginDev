@@ -27,14 +27,14 @@
  * within this plugin.
  * Takes care of logging, registering inventory item and adventure character assets, creates a section in project settings, registers custom thumbnails renderers.
  */
-class FAdventurePluginEditor : public IModuleInterface
+class ADVENTUREPLUGINEDITOR_API FAdventurePluginEditor : public IModuleInterface
 {
 public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
-	virtual void Log(EMessageSeverity::Type EngineMessageSeverity, const FText& Message) const;;
+	virtual void Log(EMessageSeverity::Type EngineMessageSeverity, const FText& Message) const;
 	virtual void Log(const TSharedRef< class FTokenizedMessage >& Message) const;
 
 
@@ -64,6 +64,10 @@ public:
 		return AdventurePluginAssetCategory;
 	}
 
+	void RegisterEditorNodeForRuntimeNode(TSubclassOf<UGenericGraphNode> RuntimeNode, TSubclassOf<UEdNode_GenericGraphNode> EditorNode);
+
+	const TSubclassOf<UEdNode_GenericGraphNode>* FindEditorNodeForRuntimeNode(TSubclassOf<UGenericGraphNode> RuntimeNode) const;
+
 private:
 
 	bool HandleSettingsSaved();
@@ -74,6 +78,9 @@ private:
 	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
 
 	EAssetTypeCategories::Type AdventurePluginAssetCategory;
+
+	UPROPERTY()
+	TMap<TSubclassOf<UGenericGraphNode>, TSubclassOf<UEdNode_GenericGraphNode>> EditorNodeMap;
 };
 
 #undef LOCTEXT_NAMESPACE
