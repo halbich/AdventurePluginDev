@@ -10,6 +10,10 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 #include "Factories/Factory.h"
 #include "GenericGraphFactory.generated.h"
 
+/**
+* A Factory class responsible for creating and importing new objects of type UGenericGraph.
+* It is a base class for UDialogGraphFactory and UQuestGraphFactory.
+*/
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UGenericGraphFactory : public UFactory
 {
@@ -19,5 +23,15 @@ public:
 	UGenericGraphFactory();
 	virtual ~UGenericGraphFactory();
 
+	/**
+	* Creates a new object of given type.
+	* @param InClass
+	* @param InParent
+	* @param InName
+	* @param Flags
+	* @param Context
+	* @param Warn
+	* @return Newly created object.
+	*/
 	virtual UObject* FactoryCreateNew(UClass* Class, UObject* InParent, FName Name, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn) override;
 };

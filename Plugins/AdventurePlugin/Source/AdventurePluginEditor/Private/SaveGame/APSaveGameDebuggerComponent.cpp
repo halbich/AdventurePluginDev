@@ -1,7 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "APSaveGameDebuggerComponent.h"
-
 
 // Sets default values for this component's properties
 UAPSaveGameDebuggerComponent::UAPSaveGameDebuggerComponent()
@@ -13,7 +10,6 @@ UAPSaveGameDebuggerComponent::UAPSaveGameDebuggerComponent()
 	// ...
 }
 
-
 // Called when the game starts
 void UAPSaveGameDebuggerComponent::BeginPlay()
 {
@@ -22,7 +18,6 @@ void UAPSaveGameDebuggerComponent::BeginPlay()
 	// ...
 	
 }
-
 
 // Called every frame
 void UAPSaveGameDebuggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)

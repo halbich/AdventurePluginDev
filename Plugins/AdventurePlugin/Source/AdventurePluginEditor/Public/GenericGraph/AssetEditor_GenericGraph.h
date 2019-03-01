@@ -15,6 +15,9 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 
 class FGGAssetEditorToolbar;
 
+/**
+* Editor for editing assets of type UGenericGraph
+*/
 class ADVENTUREPLUGINEDITOR_API FAssetEditor_GenericGraph : public FAssetEditorToolkit, public FNotifyHook, public FGCObject
 {
 public:
@@ -23,12 +26,12 @@ public:
 
 	void InitGenericGraphAssetEditor(const EToolkitMode::Type Mode, const TSharedPtr< IToolkitHost >& InitToolkitHost, UGenericGraph* Graph);
 
-	// IToolkit interface
+	/* IToolkit interface */
 	virtual void RegisterTabSpawners(const TSharedRef<FTabManager>& TabManager) override;
 	virtual void UnregisterTabSpawners(const TSharedRef<FTabManager>& TabManager) override;
-	// End of IToolkit interface
+	/**/
 
-	// FAssetEditorToolkit
+	/* FAssetEditorToolkit */
 	virtual FName GetToolkitFName() const override;
 	virtual FText GetBaseToolkitName() const override;
 	virtual FText GetToolkitName() const override;
@@ -37,13 +40,13 @@ public:
 	virtual FString GetWorldCentricTabPrefix() const override;
 	virtual FString GetDocumentationLink() const override;
 	virtual void SaveAsset_Execute() override;
-	// End of FAssetEditorToolkit
+	/**/
 
 
-	// FSerializableObject interface
+	/* FSerializableObject interface */
 	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;
-	// End of FSerializableObject interface
-
+	/**/
+	
 private:
 	TSharedRef<SDockTab> SpawnTab_Viewport(const FSpawnTabArgs& Args);
 	TSharedRef<SDockTab> SpawnTab_Details(const FSpawnTabArgs& Args);
@@ -107,9 +110,25 @@ private:
 	TSharedPtr<FUICommandList> GraphEditorCommands;
 
 protected:
+
+	/**
+	* Returns FGraphAppearanceInfo for customizing the graph viewport, mainly for text
+	* in the lower right corner.
+	*/
 	virtual FGraphAppearanceInfo GetViewportWidgetAppearanceInfo() const;
+
+	/**
+	* Returns graph schema class for this graph.
+	*/
 	virtual UClass* GetGraphSchemaClass() const;
+
+	/**
+	* Executes rebuilding of this graph. It can be useful to override this method
+	* when there are actions needed after every graph rebuild, but it is necessary
+	* to call this base method first.
+	*/
 	virtual void RebuildGenericGraph();
+
 	UGenericGraph* EditingGraph;
 };
 

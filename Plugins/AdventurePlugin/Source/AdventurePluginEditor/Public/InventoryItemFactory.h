@@ -3,9 +3,10 @@
 #include "Core.h"
 #include "Factories/Factory.h"
 #include "InventoryItemFactory.generated.h"
+
 /**
-* Factory for creating blueprints for inventory items.
-* Makes sure that when the user creates a blueprint for UInventoryItem, she will create UInventoryItemBlueprint.
+* Factory for creating blueprints for inventory items. Makes sure that when the user
+* want to create UInventoryItem asset, it will create UInventoryItemBlueprint instead.
 */
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UInventoryItemFactory : public UFactory

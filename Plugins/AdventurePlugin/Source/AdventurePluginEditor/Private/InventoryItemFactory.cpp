@@ -3,7 +3,7 @@
 #include "Inventory/InventoryItem.h"
 #include "Inventory/InventoryItemBlueprint.h"
 
-UInventoryItemFactory::UInventoryItemFactory(/*const class FObjectInitializer &OBJ*/)// : Super(OBJ)
+UInventoryItemFactory::UInventoryItemFactory()
 {
 	bEditAfterNew = true;
 	bCreateNew = true;
@@ -12,9 +12,7 @@ UInventoryItemFactory::UInventoryItemFactory(/*const class FObjectInitializer &O
 
 UObject* UInventoryItemFactory::FactoryCreateNew(UClass* Class, UObject* InParent, FName Name, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn, FName CallingContext)
 {
-
 	check(Class->IsChildOf(UInventoryItem::StaticClass()));
-
 	if (!FKismetEditorUtilities::CanCreateBlueprintOfClass(UInventoryItem::StaticClass()))
 	{
 		FFormatNamedArguments Args;

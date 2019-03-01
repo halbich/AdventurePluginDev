@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -7,10 +6,11 @@
 #include "IAssetTools.h"
 #include "AdventurePluginEditor.h"
 
-extern const FName AdventurePluginQuestEditorAppIdentifier;
 /**
-* This module registers the asset editor for QuestGraph asset. It also registers some customizations relevant to quests.
-*/
+ * The module takes care of registering asset type actions and property editor customizations
+ * for Adventure Plugin classes related to the quest system, and also registers editor nodes
+ * for corresponding quest runtime nodes.
+ */
 class FAdventurePluginQuestEditor : public IModuleInterface
 {
 public:

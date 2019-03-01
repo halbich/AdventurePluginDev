@@ -5,6 +5,9 @@
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "GenericGraph/SEdNode_GenericGraphNode.h"
 
+/**
+* Slate widget for representing Quest graph node in the graph editor
+*/
 class ADVENTUREPLUGINEDITOR_API SEdQuestNode : public SEdNode_GenericGraphNode
 {
 public:
@@ -13,9 +16,20 @@ public:
 
 protected:
 
+	/** The runtime Quest graph node visualized by this widget */
 	UQuestGraphNode* QuestGraphNode;
 
 	virtual bool IsGraphHorizontal() const override { return true; }
+
+	/**
+	* Returns the text which should be displayed in the NodeBody, above the node title.
+	* In this case, it is the QuestGraphNode's Location, if set.
+	* @return The upper text
+	*/
 	virtual FText GetUpperText() const override;
+
+	/**
+	* @return Visible, when there is text to show, Collapsed otherwise
+	*/
 	virtual EVisibility GetUpperTextVisibility() const override;
 };

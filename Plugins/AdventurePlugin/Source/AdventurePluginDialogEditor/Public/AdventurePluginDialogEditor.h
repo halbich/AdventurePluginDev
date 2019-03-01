@@ -1,20 +1,16 @@
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
-#include "Misc/NotifyHook.h"
-#include "Toolkits/AssetEditorToolkit.h"
-#include "Math/Color.h"
-#include "AdventurePluginEditor.h"
-#include "IAssetTools.h"
 #include "Styling/SlateStyle.h"
+#include "IAssetTools.h"
+#include "AdventurePluginEditor.h"
 
-class FMenuBuilder;
-class SGraphEditor;
 /**
-* The module registers customizations and the asset editor.
-*/
+ * The module takes care of registering asset type actions and property editor customizations
+ * for Adventure Plugin classes related to the dialog system, and also registers editor nodes
+ * for corresponding dialog runtime nodes.
+ */
 class FAdventurePluginDialogEditor : public IModuleInterface
 {
 public:
@@ -27,10 +23,6 @@ private:
 
 	void RegisterAssetTypeAction(IAssetTools& AssetTools, TSharedRef<IAssetTypeActions> Action);
 
-private:
 	TSharedPtr<FSlateStyleSet> StyleSet;
 	TArray<TSharedPtr<IAssetTypeActions>> CreatedAssetTypeActions;
-
-	/**	The tab ids for the dialog editor */
-	static const FName GraphCanvasTabId;
 };

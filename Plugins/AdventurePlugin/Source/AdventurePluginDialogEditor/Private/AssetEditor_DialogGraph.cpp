@@ -16,7 +16,9 @@ UClass* FAssetEditor_DialogGraph::GetGraphSchemaClass() const
 {
 	return UAssetGraphSchema_DialogGraph::StaticClass();
 }
-void FAssetEditor_DialogGraph::RebuildGenericGraph() {
+
+void FAssetEditor_DialogGraph::RebuildGenericGraph()
+{
 	FAssetEditor_GenericGraph::RebuildGenericGraph();
 	UDialogGraph * EditingDialogGraph = Cast<UDialogGraph>(EditingGraph);
 	if (EditingDialogGraph == nullptr)
@@ -25,9 +27,11 @@ void FAssetEditor_DialogGraph::RebuildGenericGraph() {
 	}
 	EditingDialogGraph->IdToNodeMap.Empty();
 	// Find all entry points and put them in a map, so we can have a quick access to entry points by name.
-	for (UGenericGraphNode* Node : EditingDialogGraph->RootNodes) {
+	for (UGenericGraphNode* Node : EditingDialogGraph->RootNodes)
+	{
 		UDialogGraphNode_EntryMain* MainEntryPoint = Cast<UDialogGraphNode_EntryMain>(Node);
-		if (IsValid(MainEntryPoint)) {
+		if (IsValid(MainEntryPoint))
+		{
 			EditingDialogGraph->MainEntryPoint = MainEntryPoint;
 			continue;
 		}

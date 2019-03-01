@@ -10,6 +10,10 @@ const FName PinNameLess("<");
 const FName PinNameEqual("=");
 const FName PinNameMore(">");
 
+/**
+* Class representing behavior of a dialog node with one input pin and three output pins
+* labeled "<", "=" and ">".
+*/
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdDialogNode_LessEqualMore : public UEdDialogNode
 {
@@ -20,6 +24,9 @@ public:
 	UEdDialogNode_LessEqualMore() { }
 	virtual ~UEdDialogNode_LessEqualMore() { }
 
+	/**
+	* Allocates default pins for a LessEqualMore node, one input and three outputs.
+	*/
 	virtual void AllocateDefaultPins() override
 	{
 		CreatePin(EGPD_Input, "MultipleNodes", FName(), FName());
@@ -28,6 +35,13 @@ public:
 		CreatePin(EGPD_Output, "MultipleNodes", FName(), PinNameMore);
 	}
 
+	/**
+	* This method is called when the graph is rebuilding, for every output pin and
+	* the node connected to it. It sets the child node to the parent's ChildLess,
+	* ChildEqual or ChildMore property depending on the output pin's name.
+	* @param Pin Output pin of this node with valid child node connected
+	* @param Child Child node connected to this output pin
+	*/
 	virtual void AddSpecialChild(const UEdGraphPin* Pin, UGenericGraphNode* Child) override
 	{
 		UDialogGraphNode_IfInteger* IntegerNode = CastChecked<UDialogGraphNode_IfInteger>(GenericGraphNode);

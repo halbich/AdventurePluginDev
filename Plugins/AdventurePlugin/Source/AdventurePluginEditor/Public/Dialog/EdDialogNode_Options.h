@@ -9,6 +9,10 @@
 
 const FName PinNameFallback("FB");
 
+/**
+* Class representing behavior of a dialog node with one input pin and variable number of output pins,
+* first of which is labeled "FB" (fallback) and others are labeled "1", "2" and so on.
+*/
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdDialogNode_Options : public UEdDialogNode
 {
@@ -19,6 +23,9 @@ public:
 	UEdDialogNode_Options() { }
 	virtual ~UEdDialogNode_Options() { }
 
+	/**
+	* Allocates default pins for a Options node, one input, fallback output and first regular output.
+	*/
 	virtual void AllocateDefaultPins() override
 	{
 		CreatePin(EGPD_Input, "MultipleNodes", FName(), FName());
@@ -26,6 +33,14 @@ public:
 		CreatePin(EGPD_Output, "MultipleNodes", FName(), FName("1"));
 	}
 
+	/**
+	* This method is called when the graph is rebuilding, for every output pin and
+	* the node connected to it. It sets the child node to the parent's ChildFallback
+	* property if the output pin's name is "FB", otherwise it puts the child node to
+	* the parent's ChildOptions map, with number of the output pin as a key.
+	* @param Pin Output pin of this node with valid child node connected
+	* @param Child Child node connected to this output pin
+	*/
 	virtual void AddSpecialChild(const UEdGraphPin* Pin, UGenericGraphNode* Child) override
 	{
 		UDialogGraphNode_Options* OptionsNode = CastChecked<UDialogGraphNode_Options>(GenericGraphNode);

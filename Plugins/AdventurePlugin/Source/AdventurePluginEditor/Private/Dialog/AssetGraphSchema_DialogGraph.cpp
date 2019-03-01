@@ -54,6 +54,7 @@ TSubclassOf<UEdNode_GenericGraphNode> UAssetGraphSchema_DialogGraph::GetEditorNo
 	}
 	return UEdDialogNode::StaticClass();
 }
+
 UAdventureCharacter* UAssetGraphSchema_DialogGraph::GetOnlyPlayerCharacter() const
 {
 	FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");

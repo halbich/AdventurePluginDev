@@ -4,6 +4,9 @@
 #include "GenericGraph/GenericGraphFactory.h"
 #include "QuestGraphFactory.generated.h"
 
+/**
+* A Factory class responsible for creating and importing new objects of type UQuestGraph
+*/
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UQuestGraphFactory : public UGenericGraphFactory
 {

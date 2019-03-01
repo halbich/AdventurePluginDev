@@ -2,8 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraph/AssetTypeActions_GenericGraph.h"
+
 /**
-* The asset action for opening a quest graph.
+* Asset action for opening a quest graph.
+* @see UQuestGraph
 */
 class FAssetTypeActions_QuestGraph : public FAssetTypeActions_GenericGraph
 {

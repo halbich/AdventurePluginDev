@@ -3,7 +3,6 @@
 #include "SlateOptMacros.h"
 #include "GraphEditorSettings.h"
 #include "SGraphPin.h"
-#include "SWrapTitleBox.h"
 #include "STextBlock.h"
 
 void SEdDialogNode::Construct(const FArguments& InArgs, UEdNode_GenericGraphNode* InNode)

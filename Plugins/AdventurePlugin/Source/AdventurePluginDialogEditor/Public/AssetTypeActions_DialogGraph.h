@@ -2,12 +2,15 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraph/AssetTypeActions_GenericGraph.h"
+
 /**
-* Asset action for creating a dialog graph.
+* Asset action for opening a dialog graph.
+* @see UDialogGraph
 */
 class FAssetTypeActions_DialogGraph : public FAssetTypeActions_GenericGraph
 {
 public:
+
 	FAssetTypeActions_DialogGraph(EAssetTypeCategories::Type InAssetCategory);
 
 	virtual FText GetName() const override;

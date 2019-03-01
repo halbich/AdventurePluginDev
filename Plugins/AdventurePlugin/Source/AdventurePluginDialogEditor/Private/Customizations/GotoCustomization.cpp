@@ -9,14 +9,17 @@ TSharedRef<IDetailCustomization> FGotoCustomization::MakeInstance()
 {
 	return MakeShareable(new FGotoCustomization);
 }
+
 TSharedPtr<IPropertyHandle> FGotoCustomization::GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const
 {
 	return DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_Goto, TargetNodeId));
 }
+
 FText FGotoCustomization::GetComboBoxName() const
 {
 	return LOCTEXT("TargetNodeId", "Target Node Id");
 }
+
 void FGotoCustomization::ReloadOptions()
 {
 	UDialogGraphNode_Goto* GotoNode = Cast<UDialogGraphNode_Goto>(ObjectBeingCustomized);

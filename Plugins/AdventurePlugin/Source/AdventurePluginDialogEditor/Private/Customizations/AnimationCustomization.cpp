@@ -7,14 +7,17 @@ TSharedRef<IDetailCustomization> FAnimationCustomization::MakeInstance()
 {
 	return MakeShareable(new FAnimationCustomization);
 }
+
 TSharedPtr<IPropertyHandle> FAnimationCustomization::GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const
 {
 	return DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_PlayAnimationBase, AnimationName));
 }
+
 FText FAnimationCustomization::GetComboBoxName() const
 {
 	return LOCTEXT("AnimationName", "Animation");
 }
+
 void FAnimationCustomization::ReloadOptions()
 {
 	UDialogGraphNode_PlayAnimationBase* AnimationNode = Cast<UDialogGraphNode_PlayAnimationBase>(ObjectBeingCustomized);

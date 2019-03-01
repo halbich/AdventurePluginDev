@@ -5,8 +5,8 @@
 #include "AdventureCharacterFactory.generated.h"
 
 /**
-* Factory for creating blueprints for adventure characters..
-* Makes sure that when the user creates a blueprint for UAdventureCharacter, she will create UInventoryItemBlueprint.
+* Factory for creating blueprints for adventure characters. Makes sure that when the user
+* want to create UAdventureCharacter asset, it will create UAdventureCharacterBlueprint instead.
 */
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UAdventureCharacterFactory : public UFactory

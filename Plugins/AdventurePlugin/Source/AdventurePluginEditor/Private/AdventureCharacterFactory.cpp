@@ -3,7 +3,7 @@
 #include "Kismet2/KismetEditorUtilities.h"
 #include "AdventureCharacterBlueprint.h"
 
-UAdventureCharacterFactory::UAdventureCharacterFactory(/*const class FObjectInitializer &OBJ*/)// : Super(OBJ)
+UAdventureCharacterFactory::UAdventureCharacterFactory()
 {
 	bEditAfterNew = true;
 	bCreateNew = true;

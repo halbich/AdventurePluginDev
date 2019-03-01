@@ -1,10 +1,7 @@
-
 #include "AdventurePluginEditor.h"
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
-
 #include "SlateApplication.h"
-
 #include "Framework/MultiBox/MultiBoxBuilder.h"
 #include "Framework/SlateDelegates.h"
 #include "MessageLogModule.h"
@@ -20,7 +17,6 @@
 #include "SaveGame/AdventurePluginSaveGame.h"
 #include "Inventory/Structs/UseActionType.h"
 #include "Customizations/UseActionTypeCustomization.h"
-
 #include "PropertyEditorModule.h"
 
 #define LOCTEXT_NAMESPACE "AdventurePluginEditor"
@@ -32,7 +28,6 @@ const FName APLogName("AdventurePluginLog");
 void FAdventurePluginEditor::StartupModule()
 {
 	// This code will execute after your module is loaded into memory (but after global variables are initialized, of course.)
-
 	FMessageLogModule& MessageLogModule = FModuleManager::LoadModuleChecked<FMessageLogModule>("MessageLog");
 	{
 		FMessageLogInitializationOptions InitOptions;
@@ -43,9 +38,11 @@ void FAdventurePluginEditor::StartupModule()
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 	AdventurePluginAssetCategory = AssetTools.RegisterAdvancedAssetCategory(FName(TEXT("AdventurePlugin")), LOCTEXT("AdventurePluginAssetCategory", "Adventure Plugin"));
 
+	/* Registering actions for creating new Adventure Plugin assets */
 	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_AdventureCharacter(AdventurePluginAssetCategory)));
 	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_InventoryItem(AdventurePluginAssetCategory)));
 
+	/* Registering custom renderers for rendering thumbnails of the Adventure Plugin assets */
 	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacterBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
 	UThumbnailManager::Get().RegisterCustomRenderer(UInventoryItemBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());
 
@@ -53,7 +50,7 @@ void FAdventurePluginEditor::StartupModule()
 
 	RegisterSettings();
 
-	// Registering custom property layouts
+	/* Registering custom property layouts */
 	FPropertyEditorModule& PropertyModule = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
 	PropertyModule.RegisterCustomPropertyTypeLayout(FUseActionType::StaticStruct()->GetFName(), FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FUseActionTypeCustomization::MakeInstance));
 }
@@ -62,8 +59,6 @@ void FAdventurePluginEditor::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
-
-
 	if (UObjectInitialized())
 	{
 		UnregisterSettings();

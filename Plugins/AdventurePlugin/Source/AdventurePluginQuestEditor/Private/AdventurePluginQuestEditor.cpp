@@ -1,4 +1,3 @@
-
 #include "AdventurePluginQuestEditor.h"
 #include "LevelEditor.h"
 #include "Widgets/Docking/SDockTab.h"
@@ -28,8 +27,6 @@
 #include "Customizations/QuestInventoryItemCustomization.h"
 #include "SlateStyleRegistry.h"
 #include "Styling/SlateStyle.h"
-
-const FName AdventurePluginQuestEditorAppIdentifier = FName(TEXT("AdventurePluginQuestEditorApp"));
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginQuestEditor"
 

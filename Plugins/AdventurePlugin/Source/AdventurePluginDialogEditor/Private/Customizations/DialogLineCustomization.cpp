@@ -5,19 +5,21 @@
 
 #define LOCTEXT_NAMESPACE "DialogLineCustomization"
 
-
 TSharedRef<IDetailCustomization> FDialogLineCustomization::MakeInstance()
 {
 	return MakeShareable(new FDialogLineCustomization);
 }
+
 TSharedPtr<IPropertyHandle> FDialogLineCustomization::GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const
 {
 	return DetailLayout.GetProperty(GET_MEMBER_NAME_CHECKED(UDialogGraphNode_DialogLineBase, AnimationName));
 }
+
 FText FDialogLineCustomization::GetComboBoxName() const
 {
 	return LOCTEXT("TalkingAnimation", "Talking Animation");
 }
+
 void FDialogLineCustomization::ReloadOptions()
 {
 	UDialogGraphNode_DialogLineBase* DialogNode = Cast<UDialogGraphNode_DialogLineBase>(ObjectBeingCustomized);

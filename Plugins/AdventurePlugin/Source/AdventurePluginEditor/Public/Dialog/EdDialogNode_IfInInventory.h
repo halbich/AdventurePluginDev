@@ -7,6 +7,10 @@
 #include "Dialog/Graph/DialogGraphNode_IfInInventory.h"
 #include "EdDialogNode_IfInInventory.generated.h"
 
+/**
+* Class representing behavior of a IfInInventory dialog node with one input pin and two output pins
+* labeled "True" and "False".
+*/
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdDialogNode_IfInInventory : public UEdDialogNode_TrueFalse
 {

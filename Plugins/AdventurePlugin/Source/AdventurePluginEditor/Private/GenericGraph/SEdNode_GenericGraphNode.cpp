@@ -333,14 +333,4 @@ FSlateColor SEdNode_GenericGraphNode::GetBackgroundColor() const
 	return GenericGraphColors::NodeBody::Default;
 }
 
-EVisibility SEdNode_GenericGraphNode::GetDragOverMarkerVisibility() const
-{
-	return EVisibility::Visible;
-}
-
-const FSlateBrush* SEdNode_GenericGraphNode::GetNameIcon() const
-{
-	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
-}
-
 #undef LOCTEXT_NAMESPACE

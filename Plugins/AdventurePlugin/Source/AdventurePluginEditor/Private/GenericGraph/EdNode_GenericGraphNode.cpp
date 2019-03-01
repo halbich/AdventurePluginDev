@@ -29,11 +29,6 @@ void UEdNode_GenericGraphNode::AllocateDefaultPins()
 	CreatePin(EGPD_Output, "MultipleNodes", FName(), FName());
 }
 
-UEdGraph_GenericGraph* UEdNode_GenericGraphNode::GetGenericGraphEdGraph()
-{
-	return Cast<UEdGraph_GenericGraph>(GetGraph());
-}
-
 FText UEdNode_GenericGraphNode::GetNodeTitle(ENodeTitleType::Type TitleType) const
 {
 	if (GenericGraphNode == nullptr)
@@ -62,11 +57,6 @@ void UEdNode_GenericGraphNode::AutowireNewNode(UEdGraphPin* FromPin)
 			FromPin->GetOwningNode()->NodeConnectionListChanged();
 		}
 	}
-}
-
-void UEdNode_GenericGraphNode::SetGenericGraphNode(UGenericGraphNode* InNode)
-{
-	GenericGraphNode = InNode;
 }
 
 FLinearColor UEdNode_GenericGraphNode::GetBackgroundColor() const
