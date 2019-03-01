@@ -1,11 +1,11 @@
 #include "AdventureCharacter.h"
 #include "AdventurePluginRuntime.h"
 
-
 UTexture2D* UAdventureCharacter::GetIcon() const
 {
 	return Icon;
 }
+
 // MARK: IAnimatableObjectInterface Implementation
 TArray<FName> UAdventureCharacter::GetAllAnimationStates_Implementation()
 {
@@ -40,6 +40,7 @@ void UAdventureCharacter::ResetAnimationState_Implementation()
 	}
 	ResetAnimationStateEvent.Broadcast();
 }
+
 void UAdventureCharacter::PlayAnimation_Implementation(FName Animation, const FAnimationCompletedEvent& Callback)
 {
 	if (!bIsAnimatable || !IsActorProperlyBound() || !IsAnimationNameValid(Animation))
@@ -68,6 +69,7 @@ void UAdventureCharacter::AnimationFinished(FName AnimationName)
 	CurrentPlayAnimationCallback.Clear();
 	CurrentPlayAnimationName = FName();
 }
+
 bool UAdventureCharacter::IsActorProperlyBound()
 {
 	if (!SetAnimationStateEvent.IsBound() || !ResetAnimationStateEvent.IsBound() || !PlayAnimationOnceEvent.IsBound())

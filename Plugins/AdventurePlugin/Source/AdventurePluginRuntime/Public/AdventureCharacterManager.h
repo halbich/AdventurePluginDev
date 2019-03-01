@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "Core.h"
@@ -22,7 +20,7 @@ public:
 	* Retrieves the instance of the specified adventure character class.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Character")
-		UAdventureCharacter* GetCharacter(TSubclassOf<UAdventureCharacter> Character)
+	UAdventureCharacter* GetCharacter(TSubclassOf<UAdventureCharacter> Character)
 	{
 		return Cast<UAdventureCharacter>(GetCombinableObjectInstance(Character));
 	}

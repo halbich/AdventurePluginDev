@@ -1,4 +1,3 @@
-
 #include "AdventurePluginRuntime.h"
 #include "Modules/ModuleManager.h"
 

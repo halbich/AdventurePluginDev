@@ -22,16 +22,18 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
+
 	/**
 	* Identifies the variable to be modified.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetBoolNode")
-		FQuestGraphBool Bool;
+	FQuestGraphBool Bool;
+
 	/**
 	* The constant to which set the variable.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetBoolNode")
-		bool bConstant;
+	bool bConstant;
 
 #if WITH_EDITOR
 

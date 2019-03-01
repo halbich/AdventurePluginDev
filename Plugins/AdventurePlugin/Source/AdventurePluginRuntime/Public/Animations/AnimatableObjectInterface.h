@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +6,7 @@
 #include "AnimatableObjectInterface.generated.h"
 
 class UAdventurePluginGameContext;
+
 /**
 * Delegate to call when an animation finishes. 
 * @param AnimationName The name of the finished animation.
@@ -41,21 +40,24 @@ public:
 	* @return All of the animation states this object supports.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		TArray<FName> GetAllAnimationStates();
+	TArray<FName> GetAllAnimationStates();
+
 	/**
 	* Retrieves all animation states this objects supports that can be used as a talking animation - e.g. Angry, Crying etc.
 	* Should be a subset of GetAllAnimationStates(). @see UAnimatableObjectInterface#GetAllAnimationStates()
 	* @return All the talking animation states of this object.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		TArray<FName> GetTalkingStates();
+	TArray<FName> GetTalkingStates();
+
 	/**
 	* Retrieves the default animation state of the object, i.e. which talking animation should be used if no specific talking animation is specified.
 	* Should be an element from GetTalkingAnimationStates(). @see UAnimatableObjectInterface#GetTalkingStates()
 	* @return The default talking state.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		FName GetDefaultTalkingAnimationState();
+	FName GetDefaultTalkingAnimationState();
+
 	/**
 	* Sets an animation state on this object. 
 	* Expected behavior is that the object should continue doing this animation until either another call to SetAnimationState changes the state or ResetAnimationState clears the state and returns the control over animations to this object.
@@ -63,17 +65,19 @@ public:
 	* @return True if the animation state was found on the object and started succesfully, otherwise false.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		bool SetAnimationState(FName AnimationName);
+	bool SetAnimationState(FName AnimationName);
+
 	/**
 	* Resets the animation state on this object. The object should start managing its own animations again.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		void ResetAnimationState();
+	void ResetAnimationState();
+
 	/**
 	* Tells the object to play an animation once and call a callback once finished, either successfully on unsuccessfuly.
 	* @param AnimationName The name of the animation to be played once. Should be an element from GetAllAnimationStates(). @see UAnimatableObjectInterface#GetAllAnimationStates()
 	* @param Callback The delegate that should be called once this animation is finished. Not guaranteed to be bound.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
-		void PlayAnimation(FName AnimationName, const FAnimationCompletedEvent& Callback);
+	void PlayAnimation(FName AnimationName, const FAnimationCompletedEvent& Callback);
 };

@@ -31,7 +31,7 @@ public:
 	/**
 	* The user friendly name of this graph.
 	*/
-	UPROPERTY(EditDefaultsOnly, Category = "GenericGraph")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "GenericGraph")
 	FString Name;
 	/*
 	* The type of nodes that can be contained in this graph.

@@ -3,9 +3,7 @@
 #include "Core.h"
 #include "Classes/Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
-#include "Engine/Blueprint.h"
 #include "CombinableObjectBlueprint.h"
-#include "AdventureCharacter.h"
 #include "AdventureCharacterBlueprint.generated.h"
 
 /**

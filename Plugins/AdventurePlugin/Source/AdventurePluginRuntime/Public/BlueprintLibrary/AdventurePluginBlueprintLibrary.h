@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "AdventurePluginRuntime.h"
@@ -14,7 +12,6 @@
 #include "AdventurePluginRuntime.h"
 #include "AdventureCharacter.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
-
 
 /**
 * Blueprint library for all global Adventure Plugin methods that do not belong to any other category.

@@ -1,12 +1,9 @@
-
 #pragma once
 
 #include "MessageLog.h"
 #include "Engine.h"
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
-
-
 
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules
@@ -37,6 +34,7 @@ public:
 		return FModuleManager::Get().IsModuleLoaded("AdventurePluginRuntime");
 	}
 };
+
 /**
 * Logs the specific warning to the message log.
 * @param Message The text of the warning.

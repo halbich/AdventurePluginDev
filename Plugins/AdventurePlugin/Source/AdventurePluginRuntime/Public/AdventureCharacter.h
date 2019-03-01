@@ -14,10 +14,12 @@
 * @param AnimationName The name of the animation that should be played.
 */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAnimationEvent, FName, AnimationName);
+
 /**
 * A delegate for Reset animation event. 
 */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FResetAnimationEvent);
+
 /**
 * Class defining a character in game. Each subclass should define a single game character.
 * There should always be only one instance of each character at a time.
@@ -38,16 +40,19 @@ public:
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FText Name;
+
 	/**
 	* If true, this character can be a player character.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	bool bIsPlayerCharacter;
+
 	/**
 	* The icon representing this character, used by editor, but it can also be accessed in game if needed.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UTexture2D* Icon;
+
 	// MARK: Animations
 	/**
 	* If false, this object does not use the animation system. Animations should do nothing and no animation warnings should ever be fired. 
@@ -100,37 +105,45 @@ public:
 
 	// MARK: IIconThumbnailInterface implementation
 	virtual UTexture2D* GetIcon() const override;
+
 	// MARK: IAnimatableObjectInterface Implementation
 	/**
 	* @see IAnimatableObjectInterface#GetAllAnimationStates
 	*/
 	virtual TArray<FName> GetAllAnimationStates_Implementation();
+
 	/**
 	* @see IAnimatableObjectInterface#GetTalkingStates
 	*/
 	virtual TArray<FName> GetTalkingStates_Implementation();
+
 	/**
 	* @see IAnimatableObjectInterface#GetDefaultTalkingAnimationState
 	*/
 	virtual FName GetDefaultTalkingAnimationState_Implementation();
+
 	/**
 	* @see IAnimatableObjectInterface#SetAnimationState
 	*/
 	virtual bool SetAnimationState_Implementation(FName Animation);
+
 	/**
 	* @see IAnimatableObjectInterface#ResetAnimationState
 	*/
 	virtual void ResetAnimationState_Implementation();
+
 	/**
 	* @see IAnimatableObjectInterface#PlayAnimation
 	*/
 	virtual void PlayAnimation_Implementation(FName Animation, const FAnimationCompletedEvent& Callback);
+
 protected:
 	/**
 	* Makes sure that an actor is bound to all animation events and if not, display an error.
 	* @return True if it is, otherwise false.
 	*/
 	bool IsActorProperlyBound();
+
 	/**
 	* Checks whether the animation name is valid, i.e. if it is one of the animation states the object supports.
 	* @param AnimationName The animation to check.
