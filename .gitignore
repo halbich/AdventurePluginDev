@@ -78,3 +78,6 @@ DerivedDataCache/*
 
 # jakési Unrealí temp soubory
 enc_temp_folder/*
+
+# Generovaná dokumentace
+Documentation/Generated/*
