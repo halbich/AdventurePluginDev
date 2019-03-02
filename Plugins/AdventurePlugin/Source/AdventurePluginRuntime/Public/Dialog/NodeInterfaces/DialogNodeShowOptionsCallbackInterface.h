@@ -1,7 +1,10 @@
 #pragma once
+
 #include "Interface.h"
 #include "DialogNodeShowOptionsCallbackInterface.generated.h"
+
 class UDialogController;
+
 /**
 * @see IDialogNodeShowOptionsCallbackInterface
 */
@@ -10,6 +13,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogNodeShowOptionsCallbackInterface : publi
 {
 	GENERATED_BODY()
 };
+
 /**
 * A node implementing this interface can respond when the user selects a dialog option.
 */
@@ -18,6 +22,7 @@ class IDialogNodeShowOptionsCallbackInterface
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Called when the user sellects a dialog option.
 	* @param SelectedNodeIndex The option which the user selected.

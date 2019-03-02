@@ -10,8 +10,9 @@
 #include "AnimatableObjectInterface.h"
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode_PlayPCAnimationOnce.generated.h"
+
 /**
-* Playes just once the specified animnation on the player character.
+* Plays just once the specified animation on the player character.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayPCAnimationOnce : public UDialogGraphNode_PlayCharacterAnimationOnceBase
@@ -49,6 +50,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Retrieve the PC class from the dialog graph so it can be executed.
 	* @return The PC class that should animated.

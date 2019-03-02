@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_Comment.generated.h"
+
 /**
 * This node does nothing. It is just a comment and should just be used to make a graph more readable.
 */
@@ -20,6 +21,7 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}
+
 	/**
 	* The text to be displayed in the comment node.
 	*/

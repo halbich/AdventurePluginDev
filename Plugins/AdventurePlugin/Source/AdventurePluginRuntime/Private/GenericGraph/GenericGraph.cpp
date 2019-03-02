@@ -21,7 +21,6 @@ UGenericGraph::UGenericGraph()
 
 UGenericGraph::~UGenericGraph()
 {
-
 }
 
 void UGenericGraph::ClearGraph()

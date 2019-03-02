@@ -25,6 +25,7 @@ public:
 #endif
 		OptionText = NSLOCTEXT("DialogGraphNode_PlayerLineOption", "DefaultDialog", "<Insert something clever>");
 	}
+
 	/**
 	* The option to present to the player.
 	*/
@@ -59,6 +60,7 @@ public:
 	{
 		return true;
 	}
+
 	/**
 	* Build a dialog line option to display.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

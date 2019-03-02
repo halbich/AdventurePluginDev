@@ -20,7 +20,6 @@ UGenericGraphNode::UGenericGraphNode()
 
 UGenericGraphNode::~UGenericGraphNode()
 {
-
 }
 
 FText UGenericGraphNode::GetDescription_Implementation() const

@@ -19,6 +19,7 @@ public:
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphEvent")
 	UQuestGraph* Quest;
+
 	/**
 	* The name of the represented event.
 	*/

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -32,16 +30,19 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginSaveGame : public USaveGame
 	*/
 	UPROPERTY(VisibleAnywhere, Category= "StoredValues")
 	TMap<FName, bool> StorageBoolean;
+
 	/**
 	* Contains all integers stored in this save game.
 	*/
 	UPROPERTY(VisibleAnywhere, Category = "StoredValues")
 	TMap<FName, int32> StorageInt;
+
 	/**
 	* Contains all strings stored in this save game.
 	*/
 	UPROPERTY(VisibleAnywhere, Category = "StoredValues")
 	TMap<FName, FString> StorageString;
+
 	/**
 	* Contains all states of all items that have a state specified.
 	*/
@@ -49,16 +50,19 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginSaveGame : public USaveGame
 	TMap<TSubclassOf<UInventoryItem>, EInventoryItemState> StorageItemStates;
 
 public:
+
 	/**
 	* Contains items currently in inventory.
 	*/
 	UPROPERTY(VisibleAnywhere, Category = "StoredValues")
 	TArray<TSubclassOf<UInventoryItem>> StorageInventory;
+
 	/**
 	* The name of this save game.
 	*/
 	UPROPERTY(VisibleAnywhere, Category = Basic, meta = (DisplayName = "Slot Name"))
 	FString SaveSlotName;
+
 	/**
 	* For some platforms, master user index to identify the user doing the saving..
 	*/
@@ -73,6 +77,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
 	bool GetBoolOrDefault(FName Name, bool bDefaultValue);
+
 	/**
 	* Sets a value of a specific boolean variable.
 	* @param Name The name of the variable.
@@ -89,6 +94,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
 	int32 GetIntOrDefault(FName Name, int32 DefaultValue);
+
 	/**
 	* Sets a value of a specific integer variable.
 	* @param Name The name of the variable.
@@ -105,6 +111,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
 	FString GetStringOrDefault(FName Name, FString DefaultValue);
+
 	/**
 	* Sets a value of a specific string variable.
 	* @param Name The name of the variable.
@@ -121,6 +128,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
 	EInventoryItemState GetItemStateOrDefault(TSubclassOf<UInventoryItem> Item, EInventoryItemState DefaultValue);
+
 	/**
 	* Sets the state of a specific item.
 	* @param Item The item whose state should be changed.

@@ -5,6 +5,7 @@
 #include "DialogGraphNode_TrueFalse.h"
 #include "Quest/Graph/QuestGraph.h"
 #include "DialogGraphNode_IfQuestComplete.generated.h"
+
 /**
 * This node is a branch node that can return a different next node based on a value of a bool variable on a quest.
 */
@@ -21,11 +22,12 @@ public:
 		ContextMenuName = FText::FromString("Branch on quest completion");
 #endif
 	}
+
 	/**
 	* Identifies the Quest that this node is about.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnQuestCompleteNode")
-		UQuestGraph* Quest;
+	UQuestGraph* Quest;
 
 #if WITH_EDITOR
 
@@ -36,6 +38,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* This node is true if the variable this node points to is true.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

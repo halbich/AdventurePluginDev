@@ -4,6 +4,7 @@
 #include "DialogGraph.h"
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_EntrySecondary.generated.h"
+
 /**
 * This node represents an entry point from which the dialog can start.
 * This node does nothing special itself, just marks a place where a dialog can start.

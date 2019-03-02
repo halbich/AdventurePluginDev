@@ -3,11 +3,13 @@
 #include "Core.h"
 #include "Inventory/InventoryItem.h"
 #include "Inventory.generated.h"
+
 /**
 * Description for an event raised when something in inventory changes, an item is added or removed.
 * @param ChangedItem The items being added or removed.
 */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FInventoryChangedEvent, const TArray<UInventoryItem*>&, ChangedItems);
+
 /**
 * An inventory, i.e. a collection of items. 
 * Each item can be only once in the inventory.
@@ -19,6 +21,7 @@ class ADVENTUREPLUGINRUNTIME_API UInventory : public UObject
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* This event is raised when the inventory changes, i.e. an item is added or removed.
 	* The event has a ChangedItem parameter specifying which item was changed.
@@ -27,12 +30,14 @@ public:
 	*/
 	UPROPERTY(BlueprintAssignable, Category = "Adventure Plugin|Inventory")
 	FInventoryChangedEvent InventoryChanged;
+
 	/**
 	* Retrieves all items currently in this inventory.
 	* @return All items in the inventory.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	virtual TArray<UInventoryItem*> GetItems(UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Checks whether the specified item is in inventory.
 	* @param Item The item in question.
@@ -41,6 +46,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	virtual bool HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Adds a specified item to the inventory.
 	* @param Item The item to add.
@@ -48,6 +54,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	virtual bool AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Removes a specified item from the inventory.
 	* @param Item The item to remove.
@@ -56,6 +63,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	virtual bool RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Call if multiple AddItem and RemoveItem calls will follow.
 	* Will silence the InventoryChanged until EndUpdate is called.
@@ -66,6 +74,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	virtual void BeginUpdate();
+
 	/**
 	* Call always after EndUpdate.
 	* Will raise the InventoryChanged event.
@@ -75,7 +84,9 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
 	virtual void EndUpdate();
+
 protected:
+
 	/**
 	* True if we are between BeginUpdate and EndUpdate calls.
 	* InventoryChanged event should be silenced.
@@ -85,6 +96,7 @@ protected:
 	*/
 	UPROPERTY(Transient)
 	bool bIsUpdating;
+
 	/**
 	* This property stores the items that are being modified between BeginUpdate and EndUpdate calls.
 	* @see UInventory#InventoryChanged
@@ -92,7 +104,8 @@ protected:
 	* @see UInventory#EndUpdate
 	*/
 	UPROPERTY(Transient)
-		TArray<UInventoryItem*> ModifiedItems;
+	TArray<UInventoryItem*> ModifiedItems;
+
 	/**
 	* Replaces the entire inventory with a new set of items.
 	* @param NewItems The items that should now be in the inventory.

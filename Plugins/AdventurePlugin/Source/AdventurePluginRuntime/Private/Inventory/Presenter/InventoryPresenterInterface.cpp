@@ -1,2 +1,1 @@
 #include "InventoryPresenterInterface.h"
-

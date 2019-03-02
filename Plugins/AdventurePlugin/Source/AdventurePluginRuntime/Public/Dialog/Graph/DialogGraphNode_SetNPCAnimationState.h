@@ -49,6 +49,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Retrieve the NPC class from the dialog graph so it can be executed.
 	* @return The NPC class that should animated.

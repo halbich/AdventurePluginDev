@@ -5,6 +5,7 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IfInteger.generated.h"
+
 /**
 * This node is a branch node that can return a different next node based on a value of an integer variable on a quest.
 */
@@ -22,16 +23,19 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
 #endif
 	}
+
 	/**
 	* Identifies the variable this node is working with.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
-		FQuestGraphInteger Integer;
+	FQuestGraphInteger Integer;
+
 	/**
 	* The constant value with which we are comparing in this node.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
 	int32 Constant;
+
 	/**
 	* The child with which we should continue if the represented variable is less than the constant.
 	* #see UDialogGraphNode_IfInteger#Integer
@@ -39,6 +43,7 @@ public:
 	*/
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildLess;
+
 	/**
 	* The child with which we should continue if the represented variable is equal to the constant.
 	* #see UDialogGraphNode_IfInteger#Integer
@@ -46,6 +51,7 @@ public:
 	*/
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildEqual;
+
 	/**
 	* The child with which we should continue if the represented variable is more than the constant.
 	* #see UDialogGraphNode_IfInteger#Integer
@@ -82,6 +88,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Returns the next node to be executed, based on the value of the relevant int variable and constant, whether the variable is less, more or equal than the constant.
 	* #see UDialogGraphNode_IfInteger#Integer

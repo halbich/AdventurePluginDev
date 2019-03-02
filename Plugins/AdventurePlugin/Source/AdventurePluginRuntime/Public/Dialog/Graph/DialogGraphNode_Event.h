@@ -6,6 +6,7 @@
 #include "AdventurePluginRuntime.h"
 #include "Quest/Structs/QuestGraphEvent.h"
 #include "DialogGraphNode_Event.generated.h"
+
 /**
 * This node fires an event on a quest.
 * It is expected that something on a scene is bound to this event and will handle it. For example it might trigger some cutscene, fight scene etc.
@@ -32,6 +33,7 @@ public:
 	virtual ~UDialogGraphNode_Event()
 	{
 	}
+
 	/**
 	* The event to be fired when this node is executed.
 	*/
@@ -56,6 +58,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* If quest event is properly defined the execute method will fire that event.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

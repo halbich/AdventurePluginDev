@@ -10,6 +10,7 @@
 #include "AdventurePluginRuntime.h"
 #include "AdventurePluginGameContext.h"
 #include "DialogGraphNode_IfInInventory.generated.h"
+
 /**
 * This node is a branch node that can return a different next node based on whether a specified item is in inventory or not.
 */
@@ -27,16 +28,18 @@ public:
 		ContextMenuName = FText::FromString("Branch on item in inventory");
 #endif
 	}
+
 	/**
 	* The next node if this node is true.
 	*/
 	UPROPERTY(BlueprintReadOnly)
-		UDialogGraphNode* ChildTrue;
+	UDialogGraphNode* ChildTrue;
+
 	/**
 	* The next node if this node is false.
 	*/
 	UPROPERTY(BlueprintReadOnly)
-		UDialogGraphNode* ChildFalse;
+	UDialogGraphNode* ChildFalse;
 
 #if WITH_EDITOR
 
@@ -57,11 +60,13 @@ public:
 	}
 
 #endif
+
 	virtual void ResetSpecialChildren() override
 	{
 		ChildTrue = nullptr;
 		ChildFalse = nullptr;
 	}
+
 	/**
 	* Returns the next child based on whether this node is currently true (UDialogGraphNode_IsInInventory@see #ChildTrue) or false (UDialogGraphNode_IsInInventory@see #ChildFalse).
 	* This node is true if the item specified in Item is true, @see UDialogGraphNode_ItemBase#Item

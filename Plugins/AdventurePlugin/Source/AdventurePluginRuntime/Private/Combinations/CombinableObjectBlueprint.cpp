@@ -1,4 +1,3 @@
-#pragma once
 #include "CombinableObjectBlueprint.h"
 #include "CombinableObject.h"
 #include "AssetRegistryModule.h"
@@ -16,6 +15,7 @@ void UCombinableObjectBlueprint::Compiled(UBlueprint* CompiledBlueprint)
 	UpdateExternalCombinations(RepresentedObject);
 #endif
 }
+
 void UCombinableObjectBlueprint::UpdateExternalCombinations(UCombinableObject* RepresentedObject)
 {
 #if WITH_EDITOR

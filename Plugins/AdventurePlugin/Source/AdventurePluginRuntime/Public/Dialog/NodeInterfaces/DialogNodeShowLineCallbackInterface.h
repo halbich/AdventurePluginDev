@@ -1,7 +1,10 @@
 #pragma once
+
 #include "Interface.h"
 #include "DialogNodeShowLineCallbackInterface.generated.h"
+
 class UDialogController;
+
 /**
 * @see IDialogNodeShowLineCallbackInterface
 */
@@ -10,6 +13,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogNodeShowLineCallbackInterface : public U
 {
 	GENERATED_BODY()
 };
+
 /**
 * A node implementing this interface can respond when a dialog line finishes.
 */
@@ -18,6 +22,7 @@ class IDialogNodeShowLineCallbackInterface
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Called when a Dialog line finishes.
 	* @param DialogController Dialog controller which started the dialog line execution.

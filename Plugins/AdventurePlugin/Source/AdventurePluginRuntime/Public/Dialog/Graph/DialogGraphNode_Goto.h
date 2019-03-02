@@ -30,6 +30,7 @@ public:
 	virtual ~UDialogGraphNode_Goto()
 	{
 	}
+
 	/**
 	* Defines the next node to be executed.
 	*/
@@ -66,6 +67,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Returns the next node to be executed, which is specified by the TargetNodeId, @see UDialogGraphNode_Goto#TargetNodeId.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

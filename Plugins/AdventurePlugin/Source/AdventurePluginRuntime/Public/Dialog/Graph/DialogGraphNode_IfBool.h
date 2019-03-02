@@ -6,6 +6,7 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphBool.h"
 #include "DialogGraphNode_IfBool.generated.h"
+
 /**
 * This node is a branch node that can return a different next node based on a value of a bool variable on a quest.
 */
@@ -22,6 +23,7 @@ public:
 		ContextMenuName = FText::FromString("Branch on bool variable");
 #endif
 	}
+
 	/**
 	* Identifies the variable this node is working with.
 	*/
@@ -38,6 +40,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* This node is true if the variable this node points to is true.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

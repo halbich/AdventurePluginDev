@@ -5,6 +5,7 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphBool.h"
 #include "DialogGraphNode_SetBool.generated.h"
+
 /**
 * This node sets a specific bool variable to the opposite value than what it currently has..
 */

@@ -8,7 +8,6 @@ UDialogGraphNode::UDialogGraphNode()
 #if WITH_EDITORONLY_DATA
 	CompatibleGraphType = UDialogGraph::StaticClass();
 	ContextMenuCategory = NSLOCTEXT("NodeCategories", "DialogNodeCategory", "Dialog nodes");
-	//BackgroundColor = FLinearColor::Red;
 #endif
 }
 
@@ -25,7 +24,6 @@ FText UDialogGraphNode::GetDescription_Implementation() const
 
 void UDialogGraphNode::SetNodeTitle(const FText & NewTitle)
 {
-	//DialogText = NewTitle;
 }
 
 bool UDialogGraphNode::CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)

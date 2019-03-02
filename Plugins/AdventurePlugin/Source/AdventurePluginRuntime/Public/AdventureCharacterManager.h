@@ -16,6 +16,7 @@ class ADVENTUREPLUGINRUNTIME_API UAdventureCharacterManager : public UCombinable
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Retrieves the instance of the specified adventure character class.
 	*/

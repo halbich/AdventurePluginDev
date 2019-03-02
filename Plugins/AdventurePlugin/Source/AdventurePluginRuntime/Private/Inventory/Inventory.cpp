@@ -1,4 +1,3 @@
-
 #include "Inventory.h"
 #include "AdventurePluginSaveGame.h"
 #include "AdventurePluginGameContext.h"

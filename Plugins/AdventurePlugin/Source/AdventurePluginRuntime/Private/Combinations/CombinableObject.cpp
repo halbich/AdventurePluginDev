@@ -1,12 +1,12 @@
-#pragma once
 #include "CombinableObject.h"
 #include "CombinationInterface.h"
 #include "AdventurePluginGameContext.h"
 #include "AdventurePluginRuntime.h"
 
-void UCombinableObject::InitCombinations_Implementation() {
-
+void UCombinableObject::InitCombinations_Implementation()
+{
 }
+
 void UCombinableObject::CheckIsRefreshingCombinations()
 {
 	if (!bIsRefreshingCombinations)
@@ -14,6 +14,7 @@ void UCombinableObject::CheckIsRefreshingCombinations()
 		LOG_Warning(NSLOCTEXT("AdventurePlugin", "CombinableObjects_CombinationsNotRefreshing", "Combinations should not be added to an item outside of InitCombinations method and InitCombinations method should not be called outside RefreshCombinations method"));
 	}
 }
+
 void UCombinableObject::RefreshCombinations()
 {
 	bIsRefreshingCombinations = true;

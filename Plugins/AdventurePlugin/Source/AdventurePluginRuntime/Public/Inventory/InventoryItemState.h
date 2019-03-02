@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "UObject/ObjectMacros.h"
 #include "InventoryItemState.generated.h"
+
 /**
 * All the possible states of an item
 * This is really basic for normal lifetime of an item.

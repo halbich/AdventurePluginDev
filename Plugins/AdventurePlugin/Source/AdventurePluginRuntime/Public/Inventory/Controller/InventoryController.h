@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "Core.h"
@@ -27,18 +25,21 @@ public:
 	{
 		DefaultInventory = NewObject<UInventory>();
 	}
+
 	/**
 	* Tells the presenter to show the specified inventory, or the default inventory if no inventory is specified.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param Inventory The inventory to show. Defaults to null, which means showing the default inventory.
 	*/
 	void ShowInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory = nullptr);
+
 	/**
 	* If an inventory is being shown, hide it.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param Inventory The inventory to hide. Defaults to null, which means showing the default inventory.
 	*/
 	void HideInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory = nullptr);
+
 	/**
 	* Retrieves the default inventory, belonging to the main player character.
 	* @return The default inventory.
@@ -46,16 +47,17 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Adventure Plugin|Inventory")
 	UInventory* GetInventory();
 
-
 private:
+
 	/*
 	* The default inventory, probably that of the main player character.
 	*/
 	UPROPERTY(Transient)
 	UInventory* DefaultInventory;
+
 	/**
 	* If displaying an inventory, this contains the presenter used to show that inventory.
 	*/
 	UPROPERTY(Transient)
-		TScriptInterface<IInventoryPresenterInterface> CurrentPresenter;
+	TScriptInterface<IInventoryPresenterInterface> CurrentPresenter;
 };

@@ -8,6 +8,7 @@
 #include "AnimatableObjectInterface.h"
 #include "DialogPresenterInterface.h"
 #include "DialogGraphNode_PlayAnimationBase.generated.h"
+
 /**
 * Base class for dialog nodes that play animations.
 */
@@ -17,6 +18,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayAnimationBase : public UDi
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* The name of the animation this class will play.
 	*/
@@ -37,6 +39,7 @@ public:
 		}
 		return FText::FromName(AnimationName);
 	}
+
 	/**
 	* Use only in editor. Retrieves an instance of the animated object that does not depend on a game context.
 	* @return The animated object.
@@ -53,6 +56,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Returns the class representing the object that this node should animate. Must be overriden by child classes.
 	* @return The class this node is animating.
@@ -63,6 +67,7 @@ public:
 		check(false && "Get Animated Object Class method must be overriden");
 		return nullptr;
 	}
+
 	/**
 	* Returns the instance of the class that should be animated. Must be overriden by child classes.
 	* @return The animated object.
@@ -73,6 +78,7 @@ public:
 		check(false && "Get Animated Object method must be overriden");
 		return nullptr;
 	}
+
 	/**
 	* Sets the animation state on the animatable object represented by this node.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

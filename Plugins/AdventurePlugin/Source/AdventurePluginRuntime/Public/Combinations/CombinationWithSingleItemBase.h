@@ -9,6 +9,7 @@
 #include "CombinationWithSingleItemBase.generated.h"
 
 class UAdventurePluginGameContext;
+
 /**
 * Abstract class representing a combination with a target object, with a specific constant name. 
 * The combination action must be specified in subclasses.
@@ -19,23 +20,28 @@ class ADVENTUREPLUGINRUNTIME_API UCombinationWithSingleItemBase : public UObject
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* The name of this combination.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		FText Name;
+	FText Name;
+
 	/**
 	* The type of action of this combination.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		FUseActionType ActionType;
+	FUseActionType ActionType;
+
 	/**
 	* The single target class of this combination.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		TSubclassOf<UCombinableObject> TargetClass;
+	TSubclassOf<UCombinableObject> TargetClass;
+
 	/**
-	* Retrieves the name of this combination that can be displayed to the user. Constant, getter for Name. @see UCombinationWithSingleItemBase#Name
+	* Retrieves the name of this combination that can be displayed to the user. Constant, getter for Name.
+	* @see UCombinationWithSingleItemBase#Name
 	* @param CombinationSource The object where this combination originated.
 	* @param CombinationTarget The target of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -45,8 +51,10 @@ public:
 	{
 		return Name;
 	}
+
 	/**
-	* Retrieves the debug name of this combination to be shown in editor. Must be overriden. @see UCombinationWithSingleItemBase#Name
+	* Retrieves the debug name of this combination to be shown in editor. Must be overriden.
+	* @see UCombinationWithSingleItemBase#Name
 	* @return The debug combination name.
 	*/
 	virtual FText GetDebugName_Implementation() override
@@ -54,8 +62,10 @@ public:
 		check (false && "This method should be overriden");
 		return FText::Format(NSLOCTEXT("AdventurePlugin", "CombinationWithSingleItemDebugName", "Abstract combination with single item:{0}"), Name);
 	}
+
 	/**
-	* Retrieves the list of all possible target classes. Constant, getter for TargetClass wrapped in an array. @see UCombinationWithSingleItemBase#TargetClass
+	* Retrieves the list of all possible target classes. Constant, getter for TargetClass wrapped in an array.
+	* @see UCombinationWithSingleItemBase#TargetClass
 	* @return The list of all possible target classes.
 	*/
 	virtual TArray<UClass*> GetCombinationTargetClasses_Implementation() override
@@ -64,6 +74,7 @@ public:
 		ToReturn.Add(TargetClass);
 		return ToReturn;
 	}
+
 	/**
 	* Checks whether it is possible to combine the specified items.
 	* @param CombinationSource Ignored.
@@ -80,6 +91,7 @@ public:
 		}
 		return CombinationTarget->GetClass()->IsChildOf(TargetClass);
 	}
+
 	/**
 	* Override in child classes Executes the action this combination represents.
 	* @param CombinationSource The object that started the execution.
@@ -90,8 +102,10 @@ public:
 	{
 		check(false && "Must be overriden.");
 	}
+
 	/**
-	* Retrieves the type of this combination that can be displayed to the user. Constant, getter for ActionType. @see UCombinationWithSingleItemBase#ActionType
+	* Retrieves the type of this combination that can be displayed to the user. Constant, getter for ActionType.
+	* @see UCombinationWithSingleItemBase#ActionType
 	* @param CombinationSource Ignored.
 	* @param CombinationTarget Ignored.
 	* @param GameContext Ignored

@@ -20,11 +20,13 @@ class ADVENTUREPLUGINRUNTIME_API USimpleCombinationWithSingleItem : public UComb
 	GENERATED_BODY()
 
 public:
+
 	/** 
 	* The class specifying the item to be added when this combination is triggered.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSubclassOf<UInventoryItem> ResultItemClass;
+
 	/**
 	* Retrieves the debug name of this combination to be shown in editor. Contains identification of this class and Name. @see USimpleCombinationWithSingleItem#Name
 	* @return The debug combination name.
@@ -33,6 +35,7 @@ public:
 	{
 		return FText::Format(NSLOCTEXT("AdventurePlugin", "SimpleCombinationWithSingleItemDebugName", "Simple combination with single item:{0}"), Name);
 	}
+
 	/**
 	* Executes the action this combination represents.
 	* Removes both combined items from the inventory and adds an instance of ResultItemClass to the inventory. See USimpleCombinationWithSingleItem#ResultItemClass.

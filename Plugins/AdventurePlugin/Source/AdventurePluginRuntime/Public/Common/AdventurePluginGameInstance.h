@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -24,21 +22,24 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameInstance : public UGameInst
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* The game context used by this game instance.
 	*/
 	UPROPERTY(Transient, BlueprintReadOnly, Category="GameContext")
-		UAdventurePluginGameContext* CurrentGameContext;
+	UAdventurePluginGameContext* CurrentGameContext;
 
 	virtual void Init() override;
 
 	virtual void Shutdown() override;
 
 private:
+
 	/**
 	* Initializes the game context based on the project configuration.
 	*/
 	void InitCurrentGameContext();
+
 	/**
 	 * Instantiate an instance of a specified class. Used to instantiate the classes specified in the config.
 	 * @param ClassToInstantiate The class that should be instantiated.
@@ -47,6 +48,7 @@ private:
 	template<class T>
 	T* InstantiateClass(TSoftClassPtr<T> ClassToInstantiate);
 };
+
 template<class T>
 T* UAdventurePluginGameInstance::InstantiateClass(TSoftClassPtr<T> ClassToInstantiate)
 {

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "AdventurePluginGameInstance.h"
 
 const FName AP_Log = "AdventurePluginLog";
@@ -7,11 +5,9 @@ const FName AP_Log = "AdventurePluginLog";
 void UAdventurePluginGameInstance::Init()
 {
 	Super::Init();
-
 	InitCurrentGameContext();
 
 #if WITH_EDITOR
-
 	FString DebugSaveName(TEXT("DebugSave"));
 	CurrentGameContext->SaveGame = UAdventurePluginSaveGame::CreateSave(DebugSaveName, 0);
 	CurrentGameContext->ItemManager->ClearMap();

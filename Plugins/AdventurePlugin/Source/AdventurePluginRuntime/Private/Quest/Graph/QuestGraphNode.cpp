@@ -17,7 +17,6 @@ UQuestGraphNode::~UQuestGraphNode()
 {
 }
 
-
 bool UQuestGraphNode::ParentNodesTrue(UAdventurePluginGameContext* GameContext) {
 	for (UGenericGraphNode* ParentNodeUncasted : ParentNodes) {
 		UQuestGraphNode* ParentNode = Cast<UQuestGraphNode>(ParentNodeUncasted);

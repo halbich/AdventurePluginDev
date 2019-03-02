@@ -4,9 +4,9 @@
 #include "LocalCombinationInfo.h"
 #include "CombinableObject.generated.h"
 
-
 class ICombinationInterface;
 class UAdventurePluginGameContext;
+
 /**
 * Represents an object that can be combined with other some other object, e.g. inventory items and characters. Must be overriden.
 * All combinations should be added in the InitCombinations method to allow showing of combinations in editor. @see UCombinableObject#InitCombinations()
@@ -41,6 +41,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	TMap<UBlueprint*, FText> ExternalBlueprintCombinations;
 #endif
+
 	/**
 	* Registers a new combination on this object.
 	* Do not call outside of the InitCombinations method, otherwise the combinations will not be displayed correctly.
@@ -89,6 +90,7 @@ public:
 	void ExecuteCombination(TScriptInterface<ICombinationInterface> Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
 
 protected:
+
 	/**
 	* If true, RefreshCombinations method is currently being executed and combinations an be added without warnings.
 	*/
@@ -105,6 +107,7 @@ protected:
 	*/
 	UPROPERTY(Transient)
 	TArray<TScriptInterface<ICombinationInterface>> Combinations;
+
 	/**
 	* Helper for GetCombinationWithObject. Tries to find a combination with other object, but only using combinations defined on this object.
 	* @param OtherObject The combination with which this object should be combined.

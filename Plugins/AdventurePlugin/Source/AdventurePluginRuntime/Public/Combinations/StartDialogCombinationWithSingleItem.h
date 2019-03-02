@@ -14,7 +14,7 @@ class UAdventurePluginGameContext;
 
 /**
 * Represents a combination with a target object and with a specific constant name.
-* When the combination is triggered a dialogue will be started.
+* When the combination is triggered a dialog will be started.
 */
 UCLASS(BlueprintType, Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UStartDialogCombinationWithSingleItem : public UCombinationWithSingleItemBase
@@ -22,22 +22,27 @@ class ADVENTUREPLUGINRUNTIME_API UStartDialogCombinationWithSingleItem : public 
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* The class specifying the dialog to be started.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		FDialogGraphEntryPoint DialogToStart;
+	FDialogGraphEntryPoint DialogToStart;
+
 	/**
-	* Retrieves the debug name of this combination to be shown in editor. Contains identification of this class and Name. @see UStartDialogCombinationWithSingleItem#Name
+	* Retrieves the debug name of this combination to be shown in editor. Contains identification of this class and Name.
+	* @see UStartDialogCombinationWithSingleItem#Name
 	* @return The debug combination name.
 	*/
 	virtual FText GetDebugName_Implementation() override
 	{
 		return FText::Format(NSLOCTEXT("AdventurePlugin", "StartDialogCombinationWithSingleItemDebugName", "StartDialog combination with single item:{0}"), Name);
 	}
+
 	/**
 	* Executes the action this combination represents.
-	* Removes both combined items from the inventory and adds an instance of ResultItemClass to the inventory. See UStartDialogCombinationWithSingleItem#ResultItemClass.
+	* Removes both combined items from the inventory and adds an instance of ResultItemClass to the inventory.
+	* @see UStartDialogCombinationWithSingleItem#ResultItemClass.
 	* @param CombinationSource The source object of the combination.
 	* @param CombinationTarget The other object of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

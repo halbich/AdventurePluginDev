@@ -12,9 +12,10 @@ struct ADVENTUREPLUGINRUNTIME_API FIntegerVariable
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* The default value of this variable.
 	*/
 	UPROPERTY(EditAnywhere)
-		int32 DefaultValue;
+	int32 DefaultValue;
 };

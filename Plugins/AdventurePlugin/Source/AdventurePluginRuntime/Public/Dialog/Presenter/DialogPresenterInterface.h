@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -19,9 +17,8 @@ UINTERFACE(BlueprintType)
 class ADVENTUREPLUGINRUNTIME_API UDialogPresenterInterface : public UInterface
 {
 	GENERATED_BODY()
-
-
 };
+
 /**
 * Defines all methods that must be present on a dialog presenter.
 */
@@ -30,12 +27,14 @@ class IDialogPresenterInterface
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Changes the visibility of the presenter.
 	* @param bVisible If true the presenter should be shown, if false it should be hidden.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
 	void SetPresenterVisibility(bool bVisible);
+
 	/**
 	* Shows a dialog line to the user.
 	* @param DialogLineData The dialog line to be displayed.
@@ -43,6 +42,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
 	void ShowDialogLine(FDialogLineData DialogLineData, UDialogController* DialogController);
+	
 	/**
 	* Shows a couple of dialog options the player can choose from.
 	* @param Options The dialog line to be displayed.
@@ -50,6 +50,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
 	void ShowDialogSelection(UPARAM(ref) TArray<FDialogLineData>& Options, UDialogController* DialogController);
+	
 	/**
 	* Plays an animation on the specified object once.
 	* @param AnimationTarget The object which should play the animation.
@@ -58,6 +59,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
 	void PlayAnimationOnce(const TScriptInterface<IAnimatableObjectInterface>& AnimationTarget, FName AnimationName, UDialogController* DialogController);
+	
 	/**
 	* Sets the animation state of the animated object.
 	* @param AnimationTarget The object which should play the animation.
@@ -65,6 +67,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Dialog")
 	void SetAnimationState(const TScriptInterface<IAnimatableObjectInterface>& AnimationTarget, FName AnimationName);
+	
 	/**
 	* Resets the animation state of the object, giving it back control over its animations.
 	* @param AnimationTarget The object which should play the animation.

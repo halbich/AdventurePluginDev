@@ -5,6 +5,7 @@
 #include "AdventurePluginRuntime.h"
 #include "QuestGraph.h"
 #include "QuestGraphNode_Flag.generated.h"
+
 /**
 * Represents a simple flag that can be set to true by any outside code.
 * Once true it can never be false again.
@@ -22,6 +23,7 @@ public:
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Flag", "ContextMenuName", "Simple flag");
 #endif
 	}
+
 	/**
 	* The human readable name identifying this flag.
 	*/

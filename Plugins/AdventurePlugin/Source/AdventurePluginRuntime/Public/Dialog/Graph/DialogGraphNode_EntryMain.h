@@ -4,6 +4,7 @@
 #include "DialogGraph.h"
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_EntryMain.generated.h"
+
 /**
 * This node represents an entry point from which the dialog starts if no other entry point is specified.
 * One is always present in the graph and cannot be deleted.

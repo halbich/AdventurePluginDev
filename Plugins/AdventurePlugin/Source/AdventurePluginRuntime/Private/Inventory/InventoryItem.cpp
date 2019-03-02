@@ -43,9 +43,11 @@ void UInventoryItem::SetItemState(EInventoryItemState NewValue, UAdventurePlugin
 	SaveGame->SetItemState(GetClass(), NewValue);
 	ItemStateChanged.Broadcast(this);
 }
+
 void UInventoryItem::OnAddedToInventory_Implementation(UInventory* Inventory, UAdventurePluginGameContext* GameContext)
 {
 }
+
 void UInventoryItem::OnRemovedFromInventory_Implementation(UInventory* Inventory, UAdventurePluginGameContext* GameContext)
 {
 }
@@ -63,6 +65,7 @@ bool UInventoryItem::IsPickable_Implementation(UAdventurePluginGameContext* Game
 	}
 	return bDefaultIsPickable && !GameContext->InventoryController->GetInventory()->HasItem(this, GameContext);
 }
+
 bool UInventoryItem::IsUsable_Implementation(UAdventurePluginGameContext* GameContext)
 {
 	return bDefaultIsUsable;

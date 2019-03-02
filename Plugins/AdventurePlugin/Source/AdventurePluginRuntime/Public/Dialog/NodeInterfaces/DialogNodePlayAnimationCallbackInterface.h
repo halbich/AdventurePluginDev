@@ -1,8 +1,10 @@
 #pragma once
+
 #include "Interface.h"
 #include "DialogNodePlayAnimationCallbackInterface.generated.h"
 
 UINTERFACE(Blueprintable)
+
 /**
 * @see IDialogNodePlayAnimationCallbackInterface
 */
@@ -10,6 +12,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogNodePlayAnimationCallbackInterface : pub
 {
 	GENERATED_BODY()
 };
+
 /**
 * A node implementing this interface can respond when an animation finishes on an object.
 */
@@ -18,6 +21,7 @@ class IDialogNodePlayAnimationCallbackInterface
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Called when an animation finishes.
 	* @param AnimationName Which animation has finished.

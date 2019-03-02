@@ -8,8 +8,9 @@
 #include "AdventurePluginRuntime.h"
 #include "AdventurePluginGameContext.h"
 #include "DialogGraphNode_RemoveFromInventory.generated.h"
+
 /**
-* This node removes the specified inventory if it is there.
+* This node removes the specified inventory item from inventory if it is there.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_RemoveFromInventory : public UDialogGraphNode_ItemBase
@@ -44,6 +45,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Removes the specified item to the default inventory.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

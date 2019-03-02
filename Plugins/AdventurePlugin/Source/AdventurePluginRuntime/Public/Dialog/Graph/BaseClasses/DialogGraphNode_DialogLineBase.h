@@ -7,6 +7,7 @@
 #include "NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
 #include "DialogGraph.h"
 #include "DialogGraphNode_DialogLineBase.generated.h"
+
 /**
 * A base class for nodes showing a dialog line.
 */
@@ -16,39 +17,47 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_DialogLineBase : public UDialo
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* The text that should be shown to the player.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	FText DialogText;
+
 	/**
 	* If not empty, this text will be used instead of DialogText when presenting this line as an option to the player.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	FText OptionText;
+
 	/** 
 	* The sound to be played for this dialog line. The line should disappear automatically after the sound finishes.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	USoundBase* DialogSound;
+
 	/**
 	* If true, the user can skip this dialog line.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	bool bSkippable = true;
+
 	/**
 	* If set and dialog sound is null, the text should stay on this screen for this amount of seconds.
 	* If sound is defined this is ignored.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	float TextDuration;
+
 	/**
 	* The animation that should be played while this dialog line is being shown. 
 	* If None, the default animation state will be shown. @see IAnimatableObjectInterface#GetDefaultTalkingAnimationState
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	FName AnimationName;
+
 #if WITH_EDITOR
+
 	virtual inline FText GetNodeTitle() const
 	{
 		return DialogText;
@@ -62,6 +71,7 @@ public:
 	{
 		return true;
 	}
+
 	/** 
 	* Returns an instance of the speaker class that is not dependent on a game context. Use only in editor. Must be overriden.
 	* @return The speaker associated with this dialog line.
@@ -74,6 +84,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Returns the speaker associated with this dialogue line. Must be overriden.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -85,6 +96,7 @@ public:
 		check(false && "Get speaker function must be overriden");
 		return nullptr;
 	}
+
 	/**
 	* Displays the dialog line represented by this node.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -100,13 +112,16 @@ public:
 		IDialogPresenterInterface::Execute_ShowDialogLine(DialogPresenterInstance, GetDialogLine(GameContext), GameContext->DialogController);
 		return false;
 	};
+
 	/**
 	* Called when the dialog line finishes.
 	* @return Always true, to indicate that the dialog should continue.
 	*/
-	virtual bool ShowDialogLineCallback_Implementation(UDialogController* DialogController) override {
+	virtual bool ShowDialogLineCallback_Implementation(UDialogController* DialogController) override
+	{
 		return true;
 	}
+
 	/**
 	* Creates a dialog line data representing this line.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

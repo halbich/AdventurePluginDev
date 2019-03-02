@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "AdventurePluginCombinationsBlueprintLibrary.h"
 
 UGenericCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibrary::CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FUseActionType CombinationType, FCombinationEvent CombinationEvent)

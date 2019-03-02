@@ -64,6 +64,7 @@ bool UQuestGraph::GetFlag(UAdventurePluginGameContext* GameContext, FName FlagNa
 	LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "UQuestGraph_GetFlag_FlagNotFound", "Quest {0}: Cannot get a flag with name {1}. Not found."), GetGraphNameText(), FlagNameText));
 	return false;
 }
+
 FText UQuestGraph::GetGraphNameText()
 {
 	return FText::FromString(Name);
@@ -211,6 +212,7 @@ FName UQuestGraph::GetQualifiedVariableName(FName VariableName)
 	FString QualifiedName = VariableName.ToString() + GetFullName();
 	return FName(*QualifiedName);
 }
+
 bool UQuestGraph::IsComplete(UAdventurePluginGameContext* GameContext)
 {
 	if (!IsValid(EndNode))

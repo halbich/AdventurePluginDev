@@ -6,6 +6,7 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphString.h"
 #include "DialogGraphNode_IfString.generated.h"
+
 /**
 * This node is a branch node that can return a different next node based on a value of a string variable on a quest.
 */
@@ -22,11 +23,13 @@ public:
 		ContextMenuName = FText::FromString("Branch on string variable");
 #endif
 	}
+
 	/**
 	* Identifies the variable this node is working with.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnStringNode")
 	FQuestGraphString String;
+
 	/**
 	* The constant with which we are comparing the string.
 	*/
@@ -44,6 +47,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* This node is true if the string this node points to is the same as the constant.
 	* #see UDialogGraphNode_IfString#String

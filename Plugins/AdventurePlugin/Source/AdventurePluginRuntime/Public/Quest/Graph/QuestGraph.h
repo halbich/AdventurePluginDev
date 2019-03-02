@@ -9,6 +9,7 @@
 
 class UQuestGraphNode;
 class UAdventurePluginGameContext;
+
 /*
 * Delegate for handlers for quest events.
 */
@@ -39,11 +40,13 @@ class ADVENTUREPLUGINRUNTIME_API UQuestGraph : public UGenericGraph
 public:
 	UQuestGraph();
 	virtual ~UQuestGraph();
+
 	/**
 	* The last node in the quest graph. When it's true, the quest is complete.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "QuestGraph")
 	UQuestGraphNode* EndNode;
+
 	/**
 	* Retrieves the state of a quest flag defined on this quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -52,6 +55,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 	bool GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
+
 	/**
 	* Sets a quest flag defined on this quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -68,6 +72,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 	bool GetBool(UAdventurePluginGameContext* GameContext, FName VariableName);
+
 	/**
 	* Changes the value of a boolean variable defined on this quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -85,6 +90,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 	int32 GetInteger(UAdventurePluginGameContext* GameContext, FName VariableName);
+
 	/**
 	* Changes the value of an integer variable defined on this quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -102,6 +108,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
 	FString GetString(UAdventurePluginGameContext* GameContext, FName VariableName);
+
 	/**
 	* Changes the value of a string variable defined on this quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -133,16 +140,19 @@ public:
 	*/
 	UPROPERTY(EditAnywhere, Category = "QuestGraph")
 	TMap<FName, FBoolVariable> BoolVariables;
+
 	/**
 	* The list of all integer variables defined on this quest.
 	*/
 	UPROPERTY(EditAnywhere, Category = "QuestGraph")
 	TMap<FName, FIntegerVariable> IntegerVariables;
+
 	/**
 	* The list of all string variables defined on this quest.
 	*/
 	UPROPERTY(EditAnywhere, Category = "QuestGraph")
 	TMap<FName, FStringVariable> StringVariables;
+
 	/**
 	* The list of all quest events defined on this quest.
 	*/
@@ -150,11 +160,13 @@ public:
 	TMap<FName, FQuestEvent> QuestEvents;
 
 protected:
+
 	/**
 	* Converts the graph name to FText and return it. Used often when logging errors.
 	* @return The name of the graph as FText.
 	*/
 	FText GetGraphNameText();
+
 	/**
 	* For the passes variable, get a new name that includes the name of the graph, so the name is unique across all graphs.
 	* @param VariableName The variable for which we need the qualified name.

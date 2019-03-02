@@ -5,6 +5,7 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphFlag.h"
 #include "DialogGraphNode_SetQuestFlag.generated.h"
+
 /**
 * This node sets a specific flag on a quest.
 */
@@ -22,6 +23,7 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
+
 	/**
 	* Identifies the flag to be set.
 	*/
@@ -48,7 +50,9 @@ public:
 	}
 
 #endif
-	/* Sets the flag on the quest if the quest identification is valid.
+
+	/**
+	* Sets the flag on the quest if the quest identification is valid.
 	* @see UDialogGraphNode_SetQuestFlag#Flag
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return Always true. This should never halt execution.

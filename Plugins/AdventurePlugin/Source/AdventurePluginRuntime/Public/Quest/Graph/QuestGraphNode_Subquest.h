@@ -5,6 +5,7 @@
 #include "QuestGraphNode.h"
 #include "AdventurePluginRuntime.h"
 #include "QuestGraphNode_Subquest.generated.h"
+
 /**
 * This node points to some other quest and is true if that quest is true.
 */

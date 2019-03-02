@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "Engine.h"
@@ -22,6 +20,7 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginCombinationsBlueprintLibrary : 
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Creates a combination with some specific item that executes an event when triggered. Use when your usecase does not fit any other method for creating combinations.
 	* @param TargetObject The other object of this combination. Defined by class so it can be easily used in editor.
@@ -32,6 +31,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
 	static UGenericCombinationWithSingleItem* CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FUseActionType CombinationType, FCombinationEvent CombinationEvent);
+	
 	/**
 	* Creates a combination with some specific item. When triggered, this combination removes both objects from inventory and adds a new one. 
 	* If objects are not in inventory they are ignored, but the ResultItem is still added.
@@ -53,6 +53,5 @@ public:
 	* @return The object representing this combination.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
-		static UStartDialogCombinationWithSingleItem* CreateDialogCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FDialogGraphEntryPoint DialogToStart, FText CombinationName, FUseActionType CombinationType);
-private:
+	static UStartDialogCombinationWithSingleItem* CreateDialogCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FDialogGraphEntryPoint DialogToStart, FText CombinationName, FUseActionType CombinationType);
 };

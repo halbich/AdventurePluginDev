@@ -27,6 +27,7 @@ public:
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Inventory", "ContextMenuName", "Picked up inventory item");
 #endif
 	}
+
 	/**
 	* The item we are checking for.
 	* In editor this is filled by PickerItem. That is done so we have a nice picker. @see UQuestGraphNode#PickerItem
@@ -35,6 +36,7 @@ public:
 	TSubclassOf<UInventoryItem> Item;
 
 #if WITH_EDITORONLY_DATA
+
 	/**
 	* The item this node represents. Once that item is picked up, this node becomes true.
 	*/

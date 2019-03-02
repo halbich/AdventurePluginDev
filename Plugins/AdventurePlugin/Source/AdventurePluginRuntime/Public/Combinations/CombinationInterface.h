@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +6,7 @@
 #include "CombinationInterface.generated.h"
 
 class UAdventurePluginGameContext;
+
 /**
 * Interface for a class representing a combination. @see ICombinationInterface
 */
@@ -15,9 +14,8 @@ UINTERFACE(BlueprintType)
 class ADVENTUREPLUGINRUNTIME_API UCombinationInterface : public UInterface
 {
 	GENERATED_BODY()
-
-
 };
+
 /**
 * Interface for a class representing a single combination.
 * The combination happens when the user tries to use one object on another object.
@@ -29,6 +27,7 @@ class ADVENTUREPLUGINRUNTIME_API ICombinationInterface
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Retrieves the name of this combination that can be displayed to the user.
 	* @param CombinationSource The object on which the combination is defined.
@@ -38,18 +37,22 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
 	FText GetName(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Retrieves the debug name of this combination to be shown in editor.
 	* @return The debug combination name.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
 	FText GetDebugName();
+
 	/**
-	* Retrieves the list of all possible target classes. Target classes are those for which CanCombineWith can return true. @see ICombinationInterface#CanCombineWith
+	* Retrieves the list of all possible target classes. Target classes are those for which CanCombineWith can return true.
+	* @see ICombinationInterface#CanCombineWith
 	* @return The list of all possible target classes.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
 	TArray<UClass*> GetCombinationTargetClasses();
+
 	/**
 	* Checks whether it is possible to combine the specified items.
 	* @param CombinationSource The object on which the combination is defined.
@@ -59,6 +62,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
 	bool CanCombineWith(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Executes the action this combination represents.
 	* @param CombinationSource The object on which the combination is defined.
@@ -67,6 +71,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
 	void Execute(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Retrieves the use type of this combination.
 	* @param CombinationSource The object on which the combination is defined.

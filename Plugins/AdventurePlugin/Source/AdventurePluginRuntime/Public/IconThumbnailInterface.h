@@ -23,6 +23,7 @@ class ADVENTUREPLUGINRUNTIME_API IIconThumbnailInterface
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Retrieves the icon representing this object in the asset editor.
 	* @return The icon for this object.

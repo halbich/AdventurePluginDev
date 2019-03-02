@@ -7,6 +7,7 @@
 #include "NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
 #include "DialogGraphNode_DialogLineBase.h"
 #include "DialogGraphNode_Player.generated.h"
+
 /*
 * Represents a line that can be said by player. When executed that line is displayed.
 * Is a dialog line option.
@@ -33,6 +34,7 @@ public:
 	{
 		return FLinearColor::Green;
 	}
+
 	/*
 	* Returns the editor time instance of the PC character class.
 	* @return CDO of the player character class.
@@ -54,6 +56,7 @@ public:
 	{
 		return true;
 	}
+
 	/**
 	* Returns the instance of the PC character class.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

@@ -35,6 +35,7 @@ class ADVENTUREPLUGINRUNTIME_API UAdventureCharacter : public UCombinableObject,
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Human friendly name of this character.
 	*/

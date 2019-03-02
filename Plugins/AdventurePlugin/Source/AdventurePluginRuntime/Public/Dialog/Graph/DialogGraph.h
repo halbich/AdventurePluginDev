@@ -9,6 +9,7 @@
 
 class UDialogGraphNode;
 class UAdventurePluginGameContext;
+
 /**
 * This graph represents a a dialog between a PC and up to 1 NPC.
 * Can contain branching, changing of variables, firing events, displaying dialog lines and many other things.
@@ -24,6 +25,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraph : public UGenericGraph
 	GENERATED_BODY()
 
 public:
+
 	/*
 	* The name of the main entry point. Same for all graphs.
 	*/
@@ -31,21 +33,25 @@ public:
 
 	UDialogGraph();
 	virtual ~UDialogGraph();
+
 	/*
 	* The main entry point of this graph. The execution should start here if no other entry point is specified.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 	UDialogGraphNode* MainEntryPoint;
+
 	/**
 	* All the other entry points defined on this graph in a map indexed by their key.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 	TMap<FName, UDialogGraphNode*> SecondaryEntryPoints;
+
 	/**
 	* A map to provide easy access to nodes based on their ID.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 	TMap<FName, UDialogGraphNode*> IdToNodeMap;
+
 	/**
 	* The player character saying this dialog.
 	* <p>
@@ -54,6 +60,7 @@ public:
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 	TSubclassOf<UAdventureCharacter> PlayerCharacter;
+
 	/**
 	* The NPC with whom the PC is talking in this dialog. Can be null, but in that case NPC lines should not be used.
 	* <p>
@@ -64,11 +71,13 @@ public:
 	TSubclassOf<UAdventureCharacter> NPCCharacter;
 
 #if WITH_EDITORONLY_DATA
+
 	/**
 	* The player character saying this dialog.
 	*/
 	UPROPERTY(EditAnywhere, Category = "DialogGraph", Meta = (DisplayName = "Player Character"))
 	UAdventureCharacterBlueprint* PickerPlayerCharacter;
+
 	/**
 	* The NPC with whom the PC is talking in this dialog. Can be null, but in that case NPC lines should not be used.
 	*/
@@ -76,6 +85,7 @@ public:
 	UAdventureCharacterBlueprint* PickerNPCCharacter;
 
 #endif
+
 	/**
 	* Retrieve the instance of the player character in this dialog.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -83,6 +93,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
 	UAdventureCharacter* GetDialogPlayerCharacterInstance(UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Retrieve the instance of the NPC character in this dialog.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -90,6 +101,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
 	UAdventureCharacter* GetDialogNPCCharacterInstance(UAdventurePluginGameContext* GameContext);
+
 	/**
 	* Returns the instance of a specific character definition class.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

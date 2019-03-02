@@ -8,6 +8,7 @@
 #include "DialogGraph.h"
 #include "DialogGraphNode_DialogLineBase.h"
 #include "DialogGraphNode_NPC.generated.h"
+
 /**
 * This node represents a dialog line said by an NPC.
 */
@@ -33,6 +34,7 @@ public:
 	{
 		return FLinearColor::Red;
 	}
+
 	/**
 	* Get instance of the character that is speaking that is accessible without a game instance, i.e. CDO of the NPC character class.
 	* Use only in editor.
@@ -50,6 +52,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Get instance of the character that is speaking, i.e. the NPC class provided by the character manager in the GameContext.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

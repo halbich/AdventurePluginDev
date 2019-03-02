@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
 #include "QuestGraphNode_Comment.generated.h"
+
 /**
 * This node represents just a commentary, does nothing, is true when its predecessors are true.
 * Exists just to make a graph more readable.
@@ -20,6 +21,7 @@ public:
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Comment", "ContextMenuName", "Comment");
 #endif
 	}
+
 	/**
 	* The text that should be displayed in the comment node.
 	*/

@@ -20,6 +20,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayCharacterAnimationOnceBase
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Playes the specified animation on a character once.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -49,7 +50,8 @@ public:
 	* @param Success True if the animation completed successfully. Ignored, as we just want to know if the animation is over, successful or not.
 	* @return True if the animation should continue, that is if the AnimationName is the same as the the name of the animation represented by this node.
 	*/
-	virtual bool PlayAnimationCallback_Implementation(FName AnimationName, bool Success) override {
+	virtual bool PlayAnimationCallback_Implementation(FName AnimationName, bool Success) override
+	{
 		return AnimationName == this->AnimationName;
 	}
 };

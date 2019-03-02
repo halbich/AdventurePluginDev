@@ -8,6 +8,7 @@
 #include "AdventurePluginRuntime.h"
 #include "AdventurePluginGameContext.h"
 #include "DialogGraphNode_AddToInventory.generated.h"
+
 /**
 * This node adds a specified item to the default inventory.
 */
@@ -44,6 +45,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Adds the specified item to the default inventory.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

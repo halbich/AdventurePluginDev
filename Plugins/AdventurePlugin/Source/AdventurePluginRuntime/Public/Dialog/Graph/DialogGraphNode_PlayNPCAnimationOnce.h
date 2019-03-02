@@ -10,8 +10,9 @@
 #include "AnimatableObjectInterface.h"
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode_PlayNPCAnimationOnce.generated.h"
+
 /**
-* Playes just once the specified animnation on the player character.
+* Plays just once the specified animnation on the NPC character.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayNPCAnimationOnce : public UDialogGraphNode_PlayCharacterAnimationOnceBase

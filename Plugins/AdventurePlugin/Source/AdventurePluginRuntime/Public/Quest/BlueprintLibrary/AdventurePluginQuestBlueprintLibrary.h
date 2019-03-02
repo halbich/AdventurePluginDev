@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "Engine.h"
@@ -20,6 +18,7 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginQuestBlueprintLibrary : public 
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Retrieves the value of a boolean variable stored on a quest.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -44,7 +43,6 @@ public:
 	* @param QuestFlag Identification of the flag whose value is requested.
 	* @return True if the flag is set, false if not set or if the game context or flag identification is invalid.
 	*/
-
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest")
 	static bool GetQuestFlag(UAdventurePluginGameContext* GameContext, FQuestGraphFlag QuestFlag);
 
@@ -109,6 +107,4 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest")
 	static void FireQuestEvent(UAdventurePluginGameContext* GameContext, FQuestGraphEvent QuestEvent);
-
-private:
 };

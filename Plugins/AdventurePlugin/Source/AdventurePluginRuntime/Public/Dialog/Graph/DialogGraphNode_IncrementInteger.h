@@ -5,6 +5,7 @@
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IncrementInteger.generated.h"
+
 /**
 * This node increments a specific variable when executed.
 */
@@ -22,6 +23,7 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}
+
 	/**
 	* Identifies the variable this node is working with.
 	*/
@@ -48,6 +50,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Increments the variable this node is pointing to.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

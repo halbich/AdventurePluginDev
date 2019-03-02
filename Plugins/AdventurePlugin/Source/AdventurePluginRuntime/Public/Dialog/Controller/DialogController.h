@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "AdventurePluginRuntime.h"
@@ -39,22 +37,26 @@ class ADVENTUREPLUGINRUNTIME_API UDialogController : public UObject
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* This event is raised when a dialog is started.
 	*/
 	UPROPERTY(BlueprintAssignable, Category = "Adventure Plugin|Dialog")
 	FDialogNotification DialogStarted;
+
 	/**
 	* This event is raised when a dialog ends. 
 	*/
 	UPROPERTY(BlueprintAssignable, Category = "Adventure Plugin|Dialog")
 	FDialogNotification DialogEnded;
+
 	/**
 	* Starts the specified dialog from the main entry point.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param DialogGraph The dialog graph to be started.
 	*/
 	virtual void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
+
 	/**
 	* Starts the specified dialog from the specified node.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -62,21 +64,25 @@ public:
 	* @param StartNode The node from which the execution should be started.
 	*/
 	virtual void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode);
+
 	/**
 	* Ends the dialog.
 	*/
 	virtual void HideDialog();
+
 	/**
 	* Should be called by presenter when showing of a line, both PC and NPC, is over.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
 	virtual void ShowDialogLineCallback();
+
 	/**
 	* Should be called by presenter when the user selects a dialog option.
 	* @param SelectedOptionIndex The index of the option the user selected.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
 	virtual void ShowDialogLineSelectionCallback(int32 SelectedOptionIndex);
+
 	/**
 	* Should be called by presenter when an animation finishes.
 	* @param AnimationName The name of the animation that finished.
@@ -84,16 +90,19 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Dialog")
 	virtual void PlayAnimationCallback(FName AnimationName, bool bSuccess);
+
 	/**
 	* If true, a dialog is currently being executed.
 	*/
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
 	bool bIsShowingDialog;
+
 	/**
 	* The dialog graph being executed.
 	*/
 	UPROPERTY(BlueprintReadOnly, Transient, Category = "Adventure Plugin|Dialog")
 	UDialogGraph* CurrentGraph;
+
 	/**
 	* The game context used in the current execution.
 	*/
@@ -101,16 +110,19 @@ public:
 	UAdventurePluginGameContext* CurrentGameContext;
 
 protected:
+
 	/**
 	* Where we are in the execution. When null, no dialog is in progress.
 	*/
 	UPROPERTY(Transient)
 	UDialogGraphNode* CurrentNode;
+
 	/*
 	* Starts executing the graph from the specified node.
 	* @param StartNode Where should the execution start.
 	*/
 	virtual void BeginExecute(UDialogGraphNode* StartNode);
+
 	/**
 	* Retrieves the presenter we are using
 	* @return The instance of the currently used presenter,
@@ -119,10 +131,12 @@ protected:
 	{
 		return IsValid(CurrentGameContext) ? Cast<IDialogPresenterInterface>(CurrentGameContext->DialogPresenter.GetObject()) : nullptr;
 	}
+
 	/**
 	* How many steps since BeginExecute was last called. Used so we can stop execution if we're in an infinite loop.
 	*/
 	uint32 CurrentExecutionSteps;
+
 	/**
 	* A fallback for infinite cycles - if the dialog execution takes more than this amount of steps, we'll assume we are in an infinite cycle.
 	*/

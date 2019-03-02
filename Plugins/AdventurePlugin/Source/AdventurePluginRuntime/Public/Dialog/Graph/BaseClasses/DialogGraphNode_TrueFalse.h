@@ -6,6 +6,7 @@
 
 class UDialogController;
 class UAdventurePluginGameContext;
+
 /**
 * Base class for nodes that are branching. 
 * They have a true or false condition and based on the result will return the correct node when GetNextNode is called.
@@ -23,11 +24,13 @@ public:
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
 #endif
 	}
+
 	/**
 	* The next node if this node is true.
 	*/
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildTrue;
+
 	/**
 	* The next node if this node is false.
 	*/
@@ -58,11 +61,13 @@ public:
 		check(false && "This method must be overriden.");
 		return false;
 	}
+
 	virtual void ResetSpecialChildren() override
 	{
 		ChildTrue = nullptr;
 		ChildFalse = nullptr;
 	}
+
 	/**
 	* Returns the next node to be executed. 
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

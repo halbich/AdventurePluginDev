@@ -5,6 +5,7 @@
 #include "Controller/DialogController.h"
 #include "AdventurePluginSaveGame.h"
 #include "DialogGraphNode_SaveState.generated.h"
+
 /**
 *This node forces the immediate save of the game.
 */
@@ -36,6 +37,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Saves the game.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

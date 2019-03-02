@@ -38,6 +38,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Called as part of GetNextNode, this return true if it was not yet visited by Dialog Controller.
 	* When called as part of Dialog Controller execution, i.e. after Execute was called, this switch the node to false forever, but still return true if its the first time. 
@@ -64,7 +65,9 @@ public:
 		bWasJustExecuted = true;
 		return true;
 	};
+
 protected:
+
 	/**
 	* Returns the name in the save file where this node will save its truth value. Based on node GUID.
 	* @return The name of the variable in save file.
@@ -73,6 +76,7 @@ protected:
 	{
 		return FName(*(TEXT("ONCE_") + NodeGuid.ToString()));
 	}
+
 	/**
 	* Marks that execute was just called, so IsTrue sets this node to false once executed.
 	*/

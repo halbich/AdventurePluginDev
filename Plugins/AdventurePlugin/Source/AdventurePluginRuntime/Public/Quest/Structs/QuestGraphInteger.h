@@ -13,11 +13,13 @@ struct ADVENTUREPLUGINRUNTIME_API FQuestGraphInteger
 	GENERATED_USTRUCT_BODY()
 
 public:
+
 	/**
 	* The quest on which the represented variable is defined.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphInteger")
 	UQuestGraph* Quest;
+
 	/**
 	* The name of the represented variable.
 	*/

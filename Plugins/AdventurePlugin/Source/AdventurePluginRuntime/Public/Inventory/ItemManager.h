@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "Core.h"
@@ -19,6 +17,7 @@ class ADVENTUREPLUGINRUNTIME_API UItemManager : public UCombinableObjectManager
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Retrieves an instance of the specified item class
 	* @param Item The item whose instance is requested.

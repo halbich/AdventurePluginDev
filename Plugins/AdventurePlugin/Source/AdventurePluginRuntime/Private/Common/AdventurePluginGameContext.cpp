@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "AdventurePluginGameContext.h"
 #include "InventoryController.h"
 #include "InventoryPresenterInterface.h"
@@ -9,6 +7,7 @@
 #include "ItemManager.h"
 #include "AdventurePluginRuntime.h"
 #include "AdventureCharacterManager.h"
+
 bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameContext* GameContext, const FString& Caller)
 {
 	if (!IsValid(GameContext) ||

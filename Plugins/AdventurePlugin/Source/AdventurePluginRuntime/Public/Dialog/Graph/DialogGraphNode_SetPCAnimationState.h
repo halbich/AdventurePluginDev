@@ -49,6 +49,7 @@ public:
 	}
 
 #endif
+
 	/**
 	* Retrieve the PC class from the dialog graph so it can be executed.
 	* @return The PC class that should animated.

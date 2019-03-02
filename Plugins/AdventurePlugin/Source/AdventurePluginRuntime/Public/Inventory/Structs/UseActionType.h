@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "UseActionType.generated.h"
+
 /**
 * Specifies the type of an action a user can do with an item or when combining items.
 * For example, using a talking sword might be Talk action, combining two parts of an item might be Put Together action.
@@ -14,12 +15,14 @@ struct ADVENTUREPLUGINRUNTIME_API FUseActionType
 	GENERATED_USTRUCT_BODY()
 
 public:
+
 	/**
 	* The name of this action type.
 	* Must be defined in the Adventure Plugin configuration, @see UAdventurePluginConfig#UseActionTypes
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UseActionType")
 	FName UseActionTypeName;
+
 	/**
 	* Compares two action types. They are same if their names are the same.
 	*/

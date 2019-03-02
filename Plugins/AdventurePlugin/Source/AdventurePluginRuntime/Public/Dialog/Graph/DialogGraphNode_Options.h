@@ -8,6 +8,7 @@
 #include "Presenter/DialogPresenterInterface.h"
 #include "NodeInterfaces/DialogNodeShowOptionsCallbackInterface.h"
 #include "DialogGraphNode_Options.generated.h"
+
 /**
 * This node should present the user with the list of possible options, allowing her to select how to continue.
 * When the node is visited, it visits all of its children. If a node can be a dialog option, it will presented to the user.
@@ -33,16 +34,19 @@ public:
 #endif
 		ChoiceCount = 1;
 	}
+
 	/**
 	* How many output nodes can this node have, i.e. how many options can be presented to the player.
 	*/
 	UPROPERTY(VisibleAnywhere, Category = "OptionsNode")
 	uint32 ChoiceCount;
+
 	/**
 	* The node with which to continue if no output nodes are found.
 	*/
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildFallback;
+
 	/**
 	* The options representing the dialog options to be presented to the player.
 	*/
@@ -73,6 +77,7 @@ public:
 	}
 
 #endif
+
 	/*
 	* Goes through the children to get the list of options to present and presents them.
 	* See class description to get better idea how that works, @see UDialogGraphNode_Options
@@ -117,6 +122,7 @@ public:
 		}
 		return false;
 	}
+
 	/**
 	* Called once the user selects an option. 
 	* @param SelectedNodeIndex Which node did the user select.
@@ -128,6 +134,7 @@ public:
 		this->SelectedOptionIndex = OptionMapping[SelectedNodeIndex];
 		return true;
 	}
+
 	/**
 	* Retrieves the next node to be executed. As Execute was called before this, we should now now which node to continue with.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -150,14 +157,16 @@ public:
 
 	
 protected:
+
 	/**
 	* The option the user selected.
 	*/
 	UPROPERTY(Transient)
 	int32 SelectedOptionIndex;
+
 	/**
 	* The mapping from the options presented to the player to internal option indices.
-	* As some nodes could be omitted from the Optinos array, we need to store which option index corresponds to index of child in this node.
+	* As some nodes could be omitted from the Options array, we need to store which option index corresponds to index of child in this node.
 	*/
 	UPROPERTY(Transient)
 	TMap<int32, int32> OptionMapping;

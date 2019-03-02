@@ -10,6 +10,7 @@
 #include "NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"
 #include "AnimatableObjectInterface.h"
 #include "DialogGraphNode_PlayAnimationCharacterBase.generated.h"
+
 /**
 * Base class for nodes for playing animations on characters.
 */
@@ -19,6 +20,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayAnimationCharacterBase : p
 	GENERATED_BODY()
 
 public:
+
 	/**
 	* Retrieve the character animated by this class.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
