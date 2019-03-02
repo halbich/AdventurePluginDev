@@ -40,8 +40,7 @@ public:
 	TSubclassOf<UCombinableObject> TargetClass;
 
 	/**
-	* Retrieves the name of this combination that can be displayed to the user. Constant, getter for Name.
-	* @see UCombinationWithSingleItemBase#Name
+	* Retrieves the name of this combination that can be displayed to the user. Constant, getter for UCombinationWithSingleItemBase#Name.
 	* @param CombinationSource The object where this combination originated.
 	* @param CombinationTarget The target of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -54,7 +53,6 @@ public:
 
 	/**
 	* Retrieves the debug name of this combination to be shown in editor. Must be overriden.
-	* @see UCombinationWithSingleItemBase#Name
 	* @return The debug combination name.
 	*/
 	virtual FText GetDebugName_Implementation() override
@@ -64,8 +62,7 @@ public:
 	}
 
 	/**
-	* Retrieves the list of all possible target classes. Constant, getter for TargetClass wrapped in an array.
-	* @see UCombinationWithSingleItemBase#TargetClass
+	* Retrieves the list of all possible target classes. Constant, getter for UCombinationWithSingleItemBase#TargetClass wrapped in an array.
 	* @return The list of all possible target classes.
 	*/
 	virtual TArray<UClass*> GetCombinationTargetClasses_Implementation() override
@@ -80,7 +77,7 @@ public:
 	* @param CombinationSource Ignored.
 	* @param CombinationTarget The other object of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	* @return True if the combination is possible, i.e. CombinationTarget inherits from TargetClass otherwise false. @see UCombinationWithSingleItemBase#TargetClass
+	* @return True if the combination is possible, i.e. CombinationTarget inherits from UCombinationWithSingleItemBase#TargetClass otherwise false.
 	*/
 	virtual	bool CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override
 	{
@@ -93,7 +90,7 @@ public:
 	}
 
 	/**
-	* Override in child classes Executes the action this combination represents.
+	* Executes the action this combination represents. Must be overriden.
 	* @param CombinationSource The object that started the execution.
 	* @param CombinationTarget The other object of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
@@ -104,8 +101,7 @@ public:
 	}
 
 	/**
-	* Retrieves the type of this combination that can be displayed to the user. Constant, getter for ActionType.
-	* @see UCombinationWithSingleItemBase#ActionType
+	* Retrieves the type of this combination that can be displayed to the user. Constant, getter for UCombinationWithSingleItemBase#ActionType.
 	* @param CombinationSource Ignored.
 	* @param CombinationTarget Ignored.
 	* @param GameContext Ignored

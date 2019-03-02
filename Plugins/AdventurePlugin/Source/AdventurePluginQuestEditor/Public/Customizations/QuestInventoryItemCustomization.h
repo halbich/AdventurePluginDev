@@ -7,7 +7,8 @@
 
 /**
 * Property editor customization for UQuestGraphNode_Inventory class, which propagates
-* the inventory item selected from its PickerItem property to the Item property including
+* the inventory item selected from its UQuestGraphNode_Inventory#PickerItem property
+* to the UQuestGraphNode_Inventory#Item property including
 * the conversion from UInventoryItemBlueprint to TSubclassOf<UInventoryItem>. The reason
 * is that the picker for PickerItem displays thumbnail and is therefore more user-friendly.
 */
@@ -21,15 +22,15 @@ public:
 	static TSharedRef<IDetailCustomization> MakeInstance();
 
 	/**
-	* Binds the OnPickerChanged method to OnPropertyValueChanged for PickerHandle property.
+	* Binds the OnPickerChanged() method to OnPropertyValueChanged for PickerHandle property.
 	*/
 	virtual void CustomizeDetails(IDetailLayoutBuilder& DetailLayout) override;
 
 protected:
 
 	/**
-	* Sets the value, converted from the PickerItem property,
-	* to the Item property on UQuestGraphNode_Inventory.
+	* Sets the value, converted from the UQuestGraphNode_Inventory#PickerItem property,
+	* to the UQuestGraphNode_Inventory#Item property.
 	*/
 	void OnPickerChanged();
 

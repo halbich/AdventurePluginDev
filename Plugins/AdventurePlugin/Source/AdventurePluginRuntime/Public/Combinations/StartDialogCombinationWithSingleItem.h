@@ -30,8 +30,7 @@ public:
 	FDialogGraphEntryPoint DialogToStart;
 
 	/**
-	* Retrieves the debug name of this combination to be shown in editor. Contains identification of this class and Name.
-	* @see UStartDialogCombinationWithSingleItem#Name
+	* Retrieves the debug name of this combination to be shown in editor. Contains identification of this class and UStartDialogCombinationWithSingleItem#Name.
 	* @return The debug combination name.
 	*/
 	virtual FText GetDebugName_Implementation() override
@@ -41,8 +40,7 @@ public:
 
 	/**
 	* Executes the action this combination represents.
-	* Removes both combined items from the inventory and adds an instance of ResultItemClass to the inventory.
-	* @see UStartDialogCombinationWithSingleItem#ResultItemClass.
+	* Starts a dialog from the entry point defined in UStartDialogCombinationWithSingleItem#DialogToStart.
 	* @param CombinationSource The source object of the combination.
 	* @param CombinationTarget The other object of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.

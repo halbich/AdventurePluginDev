@@ -7,8 +7,8 @@
 
 /**
 * Property editor customization for UDialogGraph class, which propagates
-* the player and NPC characters selected from its Picker[Player|NPC]Character
-* properties to the [Player|NPC]Character properties including the conversion
+* the player and NPC characters selected from its UDialogGraph#PickerPlayerCharacter and UDialogGraph#PickerNPCCharacter
+* properties to the UDialogGraph#PlayerCharacter and UDialogGraph#NPCCharacter properties including the conversion
 * from UAdventureCharacterBlueprint to TSubclassOf<UAdventureCharacter>. The reason
 * is that the picker properties display thumbnails and are therefore more user-friendly.
 */
@@ -22,7 +22,7 @@ public:
 	static TSharedRef<IDetailCustomization> MakeInstance();
 
 	/**
-	* Binds the OnPlayerChanged and OnNPCChanged method to OnPropertyValueChanged for
+	* Binds the OnPlayerChanged() and OnNPCChanged() method to OnPropertyValueChanged for
 	* PickerPlayerHandle and PickerNPCHandle property, respectively.
 	*/
 	virtual void CustomizeDetails(IDetailLayoutBuilder& DetailLayout) override;
@@ -30,14 +30,14 @@ public:
 protected:
 
 	/**
-	* Sets the value, converted from the PickerPlayerCharacter property,
-	* to the PlayerCharacter property on UDialogGraph.
+	* Sets the value, converted from the UDialogGraph#PickerPlayerCharacter property,
+	* to the UDialogGraph#PlayerCharacter property.
 	*/
 	void OnPlayerChanged();
 
 	/**
-	* Sets the value, converted from the PickerNPCCharacter property,
-	* to the NPCCharacter property on UDialogGraph.
+	* Sets the value, converted from the UDialogGraph#PickerNPCCharacter property,
+	* to the UDialogGraph#NPCCharacter property.
 	*/
 	void OnNPCChanged();
 

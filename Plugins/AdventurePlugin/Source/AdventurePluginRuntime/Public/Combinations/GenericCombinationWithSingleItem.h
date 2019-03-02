@@ -35,8 +35,8 @@ public:
 	FCombinationEvent CombinationEvent;
 
 	/**
-	* Retrieves the debug name of this combination to be shown in editor. Contains identification of this class and Name.
-	* @see UGenericCombinationWithSingleItem#Name
+	* Retrieves the debug name of this combination to be shown in editor.
+	* Contains identification of this class and UGenericCombinationWithSingleItem#Name.
 	* @return The debug combination name.
 	*/
 	virtual FText GetDebugName_Implementation() override
@@ -45,8 +45,7 @@ public:
 	}
 
 	/**
-	* Executes the action this combination represents, i.e. the CombinationEvent.
-	* @see UGenericCombinationWithSingleItem#CombinationEvent.
+	* Executes the action this combination represents, the UGenericCombinationWithSingleItem#CombinationEvent.
 	* @param CombinationSource Ignored.
 	* @param CombinationTarget The other object of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
