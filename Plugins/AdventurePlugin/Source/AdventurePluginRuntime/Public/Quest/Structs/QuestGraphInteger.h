@@ -6,6 +6,7 @@
 
 /**
 * Identifies an integer quest variable.
+* It is a pair of UQuestGraph and FName representing name of an integer variable in the quest.
 */
 USTRUCT(BlueprintType)
 struct ADVENTUREPLUGINRUNTIME_API FQuestGraphInteger
@@ -15,7 +16,7 @@ struct ADVENTUREPLUGINRUNTIME_API FQuestGraphInteger
 public:
 
 	/**
-	* The quest on which the represented variable is defined.
+	* UQuestGraph representing the quest on which the variable is defined.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphInteger")
 	UQuestGraph* Quest;

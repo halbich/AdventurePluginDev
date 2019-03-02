@@ -4,7 +4,7 @@
 #include "GenericGraph/AssetTypeActions_GenericGraph.h"
 
 /**
-* Asset action for opening a dialog graph.
+* Asset action for creating a dialog graph asset of type UDialogGraph.
 * @see UDialogGraph
 */
 class FAssetTypeActions_DialogGraph : public FAssetTypeActions_GenericGraph

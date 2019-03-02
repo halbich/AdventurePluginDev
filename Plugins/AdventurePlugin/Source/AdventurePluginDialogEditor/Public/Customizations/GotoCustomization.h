@@ -6,8 +6,9 @@
 #include "Customizations/BaseClasses/ComboBoxDetailCustomization.h"
 
 /**
-* Property editor customization for UDialogGraphNode_Goto class, which replaces its TargetNodeId property
-* with a ComboBox picker, allowing to choose one of other nodes in the same graph by its Id.
+* Property editor customization for UDialogGraphNode_Goto class, which replaces
+* its UDialogGraphNode_Goto#TargetNodeId property with a ComboBox picker, allowing
+* to choose one of other nodes in the same graph by its Id.
 */
 class FGotoCustomization : public FComboBoxDetailCustomization
 {
@@ -19,7 +20,7 @@ public:
 	static TSharedRef<IDetailCustomization> MakeInstance();
 
 	/**
-	* Retrieves the TargetNodeId property of the customized UDialogGraphNode_Goto,
+	* Retrieves the UDialogGraphNode_Goto#TargetNodeId property of the customized UDialogGraphNode_Goto,
 	* which should be represented as a ComboBox.
 	*/
 	virtual TSharedPtr<IPropertyHandle> GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const override;
@@ -31,7 +32,7 @@ public:
 	virtual FText GetComboBoxName() const override;
 
 	/**
-	* Fills the Ids of other nodes in the graph to the Options
+	* Fills the Ids of other nodes in the graph to the FComboBoxCustomizationBase#Options
 	* array when the ComboBox reloads.
 	*/
 	virtual void ReloadOptions() override;

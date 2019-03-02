@@ -6,7 +6,7 @@
 
 /**
 * Property editor customization for FQuestGraphBool struct which replaces its
-* BoolName property with a combobox picker that allows the user to select from
+* FQuestGraphBool#BoolName property with a ComboBox picker that allows the user to select from
 * bool variables defined in the Quest graph.
 * @see FQuestGraphBool
 */
@@ -22,19 +22,19 @@ public:
 protected:
 
 	/**
-	* Retrieves the Quest property of the FQuestGraphBool, from which
+	* Retrieves the FQuestGraphBool#Quest property of the FQuestGraphBool, from which
 	* the variables for the ComboBox should be extracted.
 	*/
 	virtual TSharedPtr<IPropertyHandle> GetGraphPropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const override;
 
 	/**
-	* Retrieves the BoolName property of the FQuestGraphBool, which should
+	* Retrieves the FQuestGraphBool#BoolName property of the FQuestGraphBool, which should
 	* be represented as a ComboBox.
 	*/
 	virtual TSharedPtr<IPropertyHandle> GetIdPropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const override;
 
 	/**
-	* Fills the variables defined in the Quest graph to the Options
+	* Fills the variables defined in the Quest graph to the FComboBoxCustomizationBase#Options
 	* array when the ComboBox reloads.
 	*/
 	virtual void ReloadOptions() override;

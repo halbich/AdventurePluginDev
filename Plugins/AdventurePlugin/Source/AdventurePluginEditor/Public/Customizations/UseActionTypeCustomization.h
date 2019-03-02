@@ -5,7 +5,7 @@
 #include "PropertyHandle.h"
 
 /**
-* Property editor customization which replaces FUseAction struct with a combobox picker
+* Property editor customization which replaces FUseActionType struct with a combobox picker
 * that allows the user to select from action types defined in project configuration.
 */
 class ADVENTUREPLUGINEDITOR_API FUseActionTypeCustomization : public FComboBoxPropertyTypeCustomization
@@ -21,7 +21,7 @@ public:
 protected:
 
 	/**
-	* Fills the Action types defined in project configuration to the Options
+	* Fills the FUseActionType types defined in project configuration to the FComboBoxCustomizationBase#Options
 	* array when the ComboBox reloads.
 	*/
 	virtual void ReloadOptions() override;
@@ -33,7 +33,7 @@ protected:
 	virtual FText GetComboBoxName() const override;
 
 	/**
-	* Retrieves the FName property of the FUseAction struct, which should be represented as a ComboBox.
+	* Retrieves the FName property of the FUseActionType struct, which should be represented as a ComboBox.
 	*/
 	virtual TSharedPtr<IPropertyHandle> GetIdPropertyHandle(TSharedRef<IPropertyHandle> StructPropertyHandle) const override;
 };

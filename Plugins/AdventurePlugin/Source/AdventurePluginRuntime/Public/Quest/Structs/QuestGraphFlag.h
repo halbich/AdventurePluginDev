@@ -6,6 +6,7 @@
 
 /**
 * Identifies a quest flag.
+* It is a pair of UQuestGraph and FName representing name of a flag in the quest.
 */
 USTRUCT(BlueprintType)
 struct ADVENTUREPLUGINRUNTIME_API FQuestGraphFlag
@@ -15,7 +16,7 @@ struct ADVENTUREPLUGINRUNTIME_API FQuestGraphFlag
 public:
 
 	/**
-	* The quest on which the represented flag is defined.
+	* UQuestGraph representing the quest on which the flag is defined.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphFlag")
 	UQuestGraph* Quest;

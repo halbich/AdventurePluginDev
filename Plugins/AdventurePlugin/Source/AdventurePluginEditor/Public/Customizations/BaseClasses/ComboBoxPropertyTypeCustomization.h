@@ -20,7 +20,7 @@ public:
 
 	/**
 	* Customize the child properties of the customized struct. By default, this replaces the FName
-	* property defined by GetIdPropertyHandle method with a combobox.
+	* property defined by FComboBoxPropertyTypeCustomization#GetIdPropertyHandle method with a combobox.
 	*/
 	virtual void CustomizeChildren(TSharedRef<class IPropertyHandle> StructPropertyHandle, class IDetailChildrenBuilder& StructBuilder, IPropertyTypeCustomizationUtils& StructCustomizationUtils) override;
 

@@ -25,10 +25,10 @@ class ADVENTUREPLUGINRUNTIME_API UAnimatableObjectInterface : public UInterface
 };
 
 /**
-* Interface for a class representing an object that can be animated. An animated object should control animtaions on its own.
+* Interface for a class representing an object that can be animated. An animated object should control animations on its own.
 * So if the object is moving, it should switch to a moving animation, if the object is idle it should play idle animation.
 * This interface is here to allow other objects to explicitly state that they want some animation performed.
-* Written mainly for dialogs, so the interface also has methods for retrieving talking states.
+* It is written mainly for dialogs, so the interface also has methods for retrieving talking states.
 */
 class ADVENTUREPLUGINRUNTIME_API IAnimatableObjectInterface
 {
@@ -44,7 +44,7 @@ public:
 
 	/**
 	* Retrieves all animation states this objects supports that can be used as a talking animation - e.g. Angry, Crying etc.
-	* Should be a subset of GetAllAnimationStates(). @see UAnimatableObjectInterface#GetAllAnimationStates()
+	* Should be a subset of GetAllAnimationStates().
 	* @return All the talking animation states of this object.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
@@ -52,7 +52,7 @@ public:
 
 	/**
 	* Retrieves the default animation state of the object, i.e. which talking animation should be used if no specific talking animation is specified.
-	* Should be an element from GetTalkingAnimationStates(). @see UAnimatableObjectInterface#GetTalkingStates()
+	* Should be an element from GetTalkingStates().
 	* @return The default talking state.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
@@ -60,8 +60,9 @@ public:
 
 	/**
 	* Sets an animation state on this object. 
-	* Expected behavior is that the object should continue doing this animation until either another call to SetAnimationState changes the state or ResetAnimationState clears the state and returns the control over animations to this object.
-	* @param AnimationName The name of the animation state that should be set. Should be an element from GetAllAnimationStates. @see UAnimatableObjectInterface#GetAllAnimationStates()
+	* Expected behavior is that the object should continue doing this animation until either another call to SetAnimationState()
+	* changes the state or ResetAnimationState() clears the state and returns the control over animations to this object.
+	* @param AnimationName The name of the animation state that should be set. Should be an element from GetAllAnimationStates().
 	* @return True if the animation state was found on the object and started succesfully, otherwise false.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")
@@ -75,7 +76,7 @@ public:
 
 	/**
 	* Tells the object to play an animation once and call a callback once finished, either successfully on unsuccessfuly.
-	* @param AnimationName The name of the animation to be played once. Should be an element from GetAllAnimationStates(). @see UAnimatableObjectInterface#GetAllAnimationStates()
+	* @param AnimationName The name of the animation to be played once. Should be an element from GetAllAnimationStates().
 	* @param Callback The delegate that should be called once this animation is finished. Not guaranteed to be bound.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Animations")

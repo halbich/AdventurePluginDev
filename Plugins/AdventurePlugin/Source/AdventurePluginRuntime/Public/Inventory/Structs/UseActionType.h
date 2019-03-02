@@ -6,8 +6,8 @@
 /**
 * Specifies the type of an action a user can do with an item or when combining items.
 * For example, using a talking sword might be Talk action, combining two parts of an item might be Put Together action.
-* Adventure Plugin does not give these actions meaning. The expected use case of this is changing a cursor icon when the user is about to do that action.
-* The possible action types are defined in plugin configuration, @see UAdventurePluginConfig#UseActionTypes
+* Adventure Plugin does not give these actions any meaning. The expected use case of this is changing a cursor icon when the user is about to do that action.
+* The possible action types are defined in plugin configuration. @see UAdventurePluginConfig#UseActionTypes
 */
 USTRUCT(BlueprintType)
 struct ADVENTUREPLUGINRUNTIME_API FUseActionType

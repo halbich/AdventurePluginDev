@@ -4,7 +4,8 @@
 #include "StringVariable.generated.h"
 
 /**
-* Data about a string variable that can be added to a quest.
+* Simple struct representing definition of a string variable in a quest.
+* @see UQuestGraph
 */
 USTRUCT()
 struct ADVENTUREPLUGINRUNTIME_API FStringVariable
@@ -14,7 +15,8 @@ struct ADVENTUREPLUGINRUNTIME_API FStringVariable
 public:
 
 	/**
-	* The default value of this variable.
+	* The default value of this variable. It is used when the value
+	* of this variable is read from the quest without writing to it first.
 	*/
 	UPROPERTY(EditAnywhere)
 	FString DefaultValue;

@@ -5,7 +5,8 @@
 #include "IDetailCustomization.h"
 
 /**
-* Property editor customization for UDialogGraphNode_DialogLineBase class, which replaces its AnimationName property
+* Property editor customization for UDialogGraphNode_DialogLineBase class,
+* which replaces its UDialogGraphNode_DialogLineBase#AnimationName property
 * with a ComboBox picker, allowing to choose one of defined animation states.
 */
 class FDialogLineCustomization : public FComboBoxDetailCustomization
@@ -18,7 +19,8 @@ public:
 	static TSharedRef<IDetailCustomization> MakeInstance();
 
 	/**
-	* Retrieves the AnimationName property of the customized UDialogGraphNode_DialogLineBase,
+	* Retrieves the UDialogGraphNode_DialogLineBase#AnimationName property
+	* of the customized UDialogGraphNode_DialogLineBase,
 	* which should be represented as a ComboBox.
 	*/
 	virtual TSharedPtr<IPropertyHandle> GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const override;
@@ -30,7 +32,7 @@ public:
 	virtual FText GetComboBoxName() const override;
 
 	/**
-	* Fills the animation states to the Options array when the ComboBox reloads.
+	* Fills the animation states to the FComboBoxCustomizationBase#Options array when the ComboBox reloads.
 	*/
 	virtual void ReloadOptions() override;
 };

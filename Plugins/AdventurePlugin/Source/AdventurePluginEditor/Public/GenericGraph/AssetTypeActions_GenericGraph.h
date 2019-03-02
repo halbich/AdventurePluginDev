@@ -10,12 +10,16 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 #include "AssetTypeActions_Base.h"
 
 /**
-* Asset action for opening a generic graph.
+* Asset action for creating a graph asset of type UGenericGraph.
 * @see UGenericGraph
 */
 class ADVENTUREPLUGINEDITOR_API FAssetTypeActions_GenericGraph : public FAssetTypeActions_Base
 {
 public:
+
+	/**
+	* @param InAssetCategory Asset categories of this asset
+	*/
 	FAssetTypeActions_GenericGraph(EAssetTypeCategories::Type InAssetCategory);
 
 	/** Returns the name of this type */
@@ -24,7 +28,10 @@ public:
 	/** Returns the color associated with this type */
 	virtual FColor GetTypeColor() const override;
 
-	/** Checks to see if the specified object is handled by this type. */
+	/**
+	* Checks to see if the specified object is handled by this type.
+	* @return Asset type, in default case UGenericGraph
+	*/
 	virtual UClass* GetSupportedClass() const override;
 
 	/** Opens the asset editor for the specified objects. If EditWithinLevelEditor is valid, the world-centric editor will be used. */
@@ -34,5 +41,7 @@ public:
 	virtual uint32 GetCategories() override;
 
 private:
+
+	/** Asset categories of this asset */
 	EAssetTypeCategories::Type MyAssetCategory;
 };

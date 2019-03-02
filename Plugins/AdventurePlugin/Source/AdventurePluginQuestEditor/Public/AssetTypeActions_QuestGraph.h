@@ -4,7 +4,7 @@
 #include "GenericGraph/AssetTypeActions_GenericGraph.h"
 
 /**
-* Asset action for opening a quest graph.
+* Asset action for creating a quest graph asset of type UQuestGraph.
 * @see UQuestGraph
 */
 class FAssetTypeActions_QuestGraph : public FAssetTypeActions_GenericGraph

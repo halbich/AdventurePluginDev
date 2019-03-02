@@ -5,13 +5,18 @@
 #include "AssetTypeActions_Base.h"
 
 /**
-* Action for creating inventory item asset, which is an UInventoryItemBlueprint.
+* Action for creating UInventoryItem asset representing one inventory item.
+* However, the asset created will actually be of type UInventoryItemBlueprint.
+* @see UInventoryItem
 * @see UInventoryItemBlueprint
 */
 class FAssetTypeActions_InventoryItem : public FAssetTypeActions_Base
 {
 public:
 
+	/**
+	* @param InAssetCategory Asset categories of this asset
+	*/
 	FAssetTypeActions_InventoryItem(EAssetTypeCategories::Type InAssetCategory)
 		: MyAssetCategory(InAssetCategory)
 	{
@@ -37,7 +42,7 @@ public:
 
 	/**
 	* Returns the asset type for which this action is registered.
-	* @return Asset type
+	* @return Asset type, in this case UInventoryItem
 	*/
 	virtual UClass* GetSupportedClass() const override
 	{
@@ -73,5 +78,7 @@ public:
 	}
 
 private:
+
+	/** Asset categories of this asset */
 	EAssetTypeCategories::Type MyAssetCategory;
 };

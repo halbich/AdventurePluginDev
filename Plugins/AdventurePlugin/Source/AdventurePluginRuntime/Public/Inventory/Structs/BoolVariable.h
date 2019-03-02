@@ -4,7 +4,8 @@
 #include "BoolVariable.generated.h"
 
 /**
-* Data about a boolean variable that can be added to a quest.
+* Simple struct representing definition of a boolean variable in a quest.
+* @see UQuestGraph
 */
 USTRUCT()
 struct ADVENTUREPLUGINRUNTIME_API FBoolVariable
@@ -14,7 +15,8 @@ struct ADVENTUREPLUGINRUNTIME_API FBoolVariable
 public:
 
 	/**
-	* The default value of this variable.
+	* The default value of this variable. It is used when the value
+	* of this variable is read from the quest without writing to it first.
 	*/
 	UPROPERTY(EditAnywhere)
 	bool DefaultValue;

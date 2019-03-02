@@ -35,7 +35,7 @@ protected:
 
 	/**
 	* This method is called when the ComboBox selection changes. It sets
-	* the selected value to the IdHandle by default.
+	* the selected value to the FComboBoxCustomizationBase#IdHandle by default.
 	* @param NewValue Combobox item newly selected
 	*/
 	virtual void OnSelectionChanged(FComboItemType NewValue, ESelectInfo::Type);
@@ -52,7 +52,7 @@ protected:
 	virtual void ReloadComboBox(FName Name);
 
 	/**
-	* Handles the filling of items to the Options array itself when the
+	* Handles the filling of items to the FComboBoxCustomizationBase#Options array itself when the
 	* ComboBox reloads. Must be implemented in derived classes!
 	*/
 	virtual void ReloadOptions() = 0;

@@ -13,9 +13,9 @@ class ADVENTUREPLUGINEDITOR_API FComboBoxDetailCustomization : public FComboBoxC
 {
 public:
 
-	/* 
+	/**
 	* Applies the ComboBox customization. By default, it will hide the FName property
-	* defined by GetIdPropertyHandle method and replace it with a ComboBox.
+	* defined by FComboBoxDetailCustomization#GetIdPropertyHandle method and replace it with a ComboBox.
 	*/
 	virtual void CustomizeDetails(IDetailLayoutBuilder& DetailLayout) override;
 
@@ -27,5 +27,6 @@ protected:
 	*/
 	virtual TSharedPtr<IPropertyHandle> GetIdPropertyHandle(IDetailLayoutBuilder& DetailLayout) const = 0;
 
+	/** The UObject which is currently customized by this customization. */
 	UObject* ObjectBeingCustomized;
 };

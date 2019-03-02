@@ -6,6 +6,7 @@
 
 /**
 * Identifies a boolean quest variable.
+* It is a pair of UQuestGraph and FName representing name of a boolean variable in the quest.
 */
 USTRUCT(BlueprintType)
 struct ADVENTUREPLUGINRUNTIME_API FQuestGraphBool
@@ -15,7 +16,7 @@ struct ADVENTUREPLUGINRUNTIME_API FQuestGraphBool
 public:
 
 	/**
-	* The quest on which the represented variable is defined.
+	* UQuestGraph representing the quest on which the variable is defined.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "QuestGraphBool")
 	UQuestGraph* Quest;

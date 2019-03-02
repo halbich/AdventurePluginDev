@@ -5,7 +5,8 @@
 #include "DialogGraphEntryPoint.generated.h"
 
 /**
-* Specifies a point where a dialog can start.
+* Specifies the entry point where a dialog can start.
+* It is a pair of UDialogGraph and FName representing entry point name in that graph.
 */
 USTRUCT(BlueprintType)
 struct ADVENTUREPLUGINRUNTIME_API FDialogGraphEntryPoint
@@ -15,13 +16,13 @@ struct ADVENTUREPLUGINRUNTIME_API FDialogGraphEntryPoint
 public:
 
 	/**
-	* The dialog that should be played.
+	* UDialogGraph representing the dialog that should be played.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphEntryPoint")
 	UDialogGraph* Dialog;
 
 	/**
-	* The entry point where the execution should start.
+	* The entry point name where the execution of this dialog should start.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogGraphEntryPoint")
 	FName EntryPointName;

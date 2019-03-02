@@ -4,7 +4,8 @@
 #include "IntegerVariable.generated.h"
 
 /**
-* Data about an integer variable that can be added to a quest.
+* Simple struct representing definition of an integer variable in a quest.
+* @see UQuestGraph
 */
 USTRUCT()
 struct ADVENTUREPLUGINRUNTIME_API FIntegerVariable
@@ -14,7 +15,8 @@ struct ADVENTUREPLUGINRUNTIME_API FIntegerVariable
 public:
 
 	/**
-	* The default value of this variable.
+	* The default value of this variable. It is used when the value
+	* of this variable is read from the quest without writing to it first.
 	*/
 	UPROPERTY(EditAnywhere)
 	int32 DefaultValue;

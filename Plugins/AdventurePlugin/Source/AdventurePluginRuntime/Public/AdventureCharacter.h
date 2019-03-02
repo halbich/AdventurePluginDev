@@ -28,6 +28,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FResetAnimationEvent);
 * It also contains a really simple animation system. It is possible to set animation to be played in a loop, stop playing animations and to play an animation once.
 * This class raises events that some animations should happen, but does nothing directly.
 * A character object on the scene is expected to bind to these events and respond to them.
+* @see UAdventureCharacterBlueprint
 */
 UCLASS(Abstract, BlueprintType)
 class ADVENTUREPLUGINRUNTIME_API UAdventureCharacter : public UCombinableObject, public IIconThumbnailInterface, public IAnimatableObjectInterface
@@ -62,7 +63,7 @@ public:
 	bool bIsAnimatable = true;
 	
 	/**
-	* This event is fired when the actor representing this object is supposed to play a specific animation once. Call AnimationFinished once the animation is finished.
+	* This event is fired when the actor representing this object is supposed to play a specific animation once. Call AnimationFinished() once the animation is finished.
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable)
 	FAnimationEvent PlayAnimationOnceEvent;
@@ -86,13 +87,13 @@ public:
 	TArray<FName> AnimationStates;
 
 	/**
-	* Subset of AnimationStates, should contain all animations that can be used while talking, mainly emotions.
+	* Subset of UAdventureCharacter#AnimationStates, should contain all animations that can be used while talking, mainly emotions.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TArray<FName> TalkingAnimationStates;
 
 	/**
-	* From TalkingAnimationStates, contains the animation that should be shown while talking if no other animation is specified.
+	* From UAdventureCharacter#TalkingAnimationStates, contains the animation that should be shown while talking if no other animation is specified.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FName DefaultTalkingAnimationState;
@@ -154,8 +155,7 @@ protected:
 
 	/**
 	* A callback to call once an animation that is being played finishes.
-	* The callback is from the PlayAnimation method.
-	* @see UAnimatableObjectInterface#PlayAnimation
+	* The callback is from the IAnimatableObjectInterface#PlayAnimation method.
 	*/
 	UPROPERTY(Transient)
 	FAnimationCompletedEvent CurrentPlayAnimationCallback;

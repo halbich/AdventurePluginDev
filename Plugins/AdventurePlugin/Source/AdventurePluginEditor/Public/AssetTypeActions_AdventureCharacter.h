@@ -5,13 +5,18 @@
 #include "AssetTypeActions_Base.h"
 
 /**
-* Action for creating adventure character asset, i.e. UAdventureCharacterBlueprint.
+* Action for creating UAdventureCharacter asset representing one adventure character.
+* However, the asset created will actually be of type UAdventureCharacterBlueprint.
+* @see UAdventureCharacter
 * @see UAdventureCharacterBlueprint
 */
 class FAssetTypeActions_AdventureCharacter : public FAssetTypeActions_Base
 {
 public:
 
+	/**
+	* @param InAssetCategory Asset categories of this asset
+	*/
 	FAssetTypeActions_AdventureCharacter(EAssetTypeCategories::Type InAssetCategory)
 		: MyAssetCategory(InAssetCategory)
 	{
@@ -37,7 +42,7 @@ public:
 
 	/**
 	* Returns the asset type for which this action is registered.
-	* @return Asset type
+	* @return Asset type, in this case UAdventureCharacter
 	*/
 	virtual UClass* GetSupportedClass() const override
 	{
@@ -73,5 +78,7 @@ public:
 	}
 
 private:
+
+	/** Asset categories of this asset */
 	EAssetTypeCategories::Type MyAssetCategory;
 };
