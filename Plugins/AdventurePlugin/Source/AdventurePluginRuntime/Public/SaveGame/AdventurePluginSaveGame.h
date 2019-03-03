@@ -144,7 +144,7 @@ public:
 	* @return The created save game.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|SaveGame")
-	static UAdventurePluginSaveGame* CreateSave(FString& SlotName , int32 UserIndex );
+	static UAdventurePluginSaveGame* CreateSave(FString SlotName , int32 UserIndex);
 
 	/**
 	* Saves the data in this class to the disk.

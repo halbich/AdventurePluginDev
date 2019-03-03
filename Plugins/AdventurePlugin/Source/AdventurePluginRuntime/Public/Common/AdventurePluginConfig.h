@@ -10,6 +10,7 @@ class UInventoryPresenterWidget;
 class UInventoryController;
 class UItemManager;
 class UAdventureCharacterManager;
+class UAdventurePluginSaveGame;
 
 /**
  * Contains the configuration for the Adventure Plugin.
@@ -20,6 +21,12 @@ class ADVENTUREPLUGINRUNTIME_API UAdventurePluginConfig : public UObject
 	GENERATED_UCLASS_BODY()
 
 public:
+
+	/**
+	* Class specifying the save game to be used in the default GameContext. @see UAdventurePluginGameContext
+	*/
+	UPROPERTY(Config, EditAnywhere, Category=SaveGame, DisplayName="Default Save Game")
+	TSoftClassPtr<UAdventurePluginSaveGame> DefaultSaveGame;
 
 	/**
 	* Class specifying the dialog presenter widget to be used in the default GameContext. @see UAdventurePluginGameContext
@@ -60,7 +67,8 @@ public:
 	/**
 	* Defines the actions that can be represented by the Use action. 
 	* E.g. Using a talking sword might be Talk action, using a mechanism might also be a different action etc.
-	* Not doing anything by default, expected use case is determining which icon to use for the use action.*/
+	* Not doing anything by default, expected use case is determining which icon to use for the use action.
+	*/
 	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Use Action types")
 	TSet<FName> UseActionTypes;
 };

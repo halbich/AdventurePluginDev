@@ -1,4 +1,5 @@
 #include "AdventurePluginSaveGame.h"
+#include "Common/AdventurePluginConfig.h"
 
 UAdventurePluginSaveGame::UAdventurePluginSaveGame()
 {
@@ -86,9 +87,21 @@ void UAdventurePluginSaveGame::SetItemState(TSubclassOf<UInventoryItem> Item, EI
 	StorageItemStates.Add(Item, Value);
 }
 
-UAdventurePluginSaveGame* UAdventurePluginSaveGame::CreateSave(FString& SlotName, int32 UserIndex)
+UAdventurePluginSaveGame* UAdventurePluginSaveGame::CreateSave(FString SlotName, int32 UserIndex)
 {
-	UAdventurePluginSaveGame* SaveGameInstance = Cast<UAdventurePluginSaveGame>(UGameplayStatics::CreateSaveGameObject(UAdventurePluginSaveGame::StaticClass()));
+	UAdventurePluginConfig* Settings = GetMutableDefault<UAdventurePluginConfig>();
+	TSoftClassPtr<UAdventurePluginSaveGame> ClassToInstantiate = Settings->DefaultSaveGame;
+	UClass* ActualSaveClass = ClassToInstantiate.IsValid()
+		? ClassToInstantiate.Get()				// we have C++ class
+		: ClassToInstantiate.LoadSynchronous();	// we have Blueprint class
+
+	if (!IsValid(ActualSaveClass))
+	{
+		LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "CreateSave_ClassNotValid", "Cannot instantiate class. Class not valid: {0}"), FText::FromString(ClassToInstantiate.GetAssetName())));
+		return nullptr;
+	}
+
+	UAdventurePluginSaveGame* SaveGameInstance = Cast<UAdventurePluginSaveGame>(UGameplayStatics::CreateSaveGameObject(ActualSaveClass));
 	SaveGameInstance->SaveSlotName = SlotName;
 	SaveGameInstance->SaveUserIndex = UserIndex;
 	return SaveGameInstance;
