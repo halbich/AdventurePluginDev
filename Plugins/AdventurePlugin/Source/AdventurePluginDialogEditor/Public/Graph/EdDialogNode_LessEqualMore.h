@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Slate.h"
-#include "Dialog/EdDialogNode.h"
+#include "Graph/EdDialogNode.h"
 #include "Dialog/Graph/DialogGraphNode_IfInteger.h"
 #include "EdDialogNode_LessEqualMore.generated.h"
 
@@ -15,7 +15,7 @@ const FName PinNameMore(">");
 * labeled "<", "=" and ">".
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdDialogNode_LessEqualMore : public UEdDialogNode
+class ADVENTUREPLUGINDIALOGEDITOR_API UEdDialogNode_LessEqualMore : public UEdDialogNode
 {
 	GENERATED_BODY()
 

@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Slate.h"
-#include "Dialog/EdDialogNode.h"
+#include "Graph/EdDialogNode.h"
 #include "Dialog/Graph/BaseClasses/DialogGraphNode_TrueFalse.h"
 #include "EdDialogNode_TrueFalse.generated.h"
 
@@ -14,7 +14,7 @@ const FName PinNameFalse("False");
 * labeled "True" and "False".
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdDialogNode_TrueFalse : public UEdDialogNode
+class ADVENTUREPLUGINDIALOGEDITOR_API UEdDialogNode_TrueFalse : public UEdDialogNode
 {
 	GENERATED_BODY()
 

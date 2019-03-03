@@ -1,4 +1,4 @@
-#include "Dialog/AssetGraphSchema_DialogGraph.h"
+#include "AssetGraphSchema_DialogGraph.h"
 #include "Dialog/Graph/DialogGraphNode_EntryMain.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "AssetRegistryModule.h"

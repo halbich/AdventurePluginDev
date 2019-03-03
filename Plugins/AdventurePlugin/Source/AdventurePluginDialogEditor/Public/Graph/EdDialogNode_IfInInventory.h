@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "Slate.h"
-#include "Dialog/EdDialogNode.h"
-#include "Dialog/EdDialogNode_TrueFalse.h"
+#include "Graph/EdDialogNode.h"
+#include "Graph/EdDialogNode_TrueFalse.h"
 #include "Dialog/Graph/DialogGraphNode_IfInInventory.h"
 #include "EdDialogNode_IfInInventory.generated.h"
 
@@ -12,7 +12,7 @@
 * labeled "True" and "False".
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdDialogNode_IfInInventory : public UEdDialogNode_TrueFalse
+class ADVENTUREPLUGINDIALOGEDITOR_API UEdDialogNode_IfInInventory : public UEdDialogNode_TrueFalse
 {
 	GENERATED_BODY()
 

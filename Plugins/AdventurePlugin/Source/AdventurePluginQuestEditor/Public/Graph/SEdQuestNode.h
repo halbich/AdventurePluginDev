@@ -8,7 +8,7 @@
 /**
 * Slate widget for representing UQuestGraphNode in the graph editor
 */
-class ADVENTUREPLUGINEDITOR_API SEdQuestNode : public SEdNode_GenericGraphNode
+class ADVENTUREPLUGINQUESTEDITOR_API SEdQuestNode : public SEdNode_GenericGraphNode
 {
 public:
 

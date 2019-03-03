@@ -2,14 +2,14 @@
 
 #include "CoreMinimal.h"
 #include "Slate.h"
-#include "Dialog/EdDialogNode.h"
+#include "Graph/EdDialogNode.h"
 #include "EdDialogNode_NoOutput.generated.h"
 
 /**
 * Class representing behavior of a dialog node with one input pin but without any output pin.
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdDialogNode_NoOutput : public UEdDialogNode
+class ADVENTUREPLUGINDIALOGEDITOR_API UEdDialogNode_NoOutput : public UEdDialogNode
 {
 	GENERATED_BODY()
 

@@ -3,14 +3,14 @@
 #include "CoreMinimal.h"
 #include "Slate.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
-#include "Quest/SEdQuestNode.h"
+#include "Graph/SEdQuestNode.h"
 #include "EdQuestNode.generated.h"
 
 /**
 * Class representing quest node (UQuestGraphNode) behavior in editor (its pins, copying/deleting etc.)
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdQuestNode : public UEdNode_GenericGraphNode
+class ADVENTUREPLUGINQUESTEDITOR_API UEdQuestNode : public UEdNode_GenericGraphNode
 {
 	GENERATED_BODY()
 

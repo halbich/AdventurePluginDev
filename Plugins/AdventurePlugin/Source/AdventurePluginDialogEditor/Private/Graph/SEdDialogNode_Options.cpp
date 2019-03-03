@@ -1,4 +1,4 @@
-#include "Dialog/SEdDialogNode_Options.h"
+#include "Graph/SEdDialogNode_Options.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "GenericGraph/GenericGraphNode.h"
 #include "Dialog/Graph/DialogGraphNode_Options.h"

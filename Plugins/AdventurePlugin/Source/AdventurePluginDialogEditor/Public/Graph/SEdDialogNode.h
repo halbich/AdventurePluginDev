@@ -8,7 +8,7 @@
 /**
 * Slate widget for representing UDialogGraphNode in the graph editor
 */
-class ADVENTUREPLUGINEDITOR_API SEdDialogNode : public SEdNode_GenericGraphNode
+class ADVENTUREPLUGINDIALOGEDITOR_API SEdDialogNode : public SEdNode_GenericGraphNode
 {
 public:
 

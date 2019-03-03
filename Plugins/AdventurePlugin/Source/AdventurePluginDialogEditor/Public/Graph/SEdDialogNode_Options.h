@@ -1,13 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Dialog/SEdDialogNode.h"
+#include "Graph/SEdDialogNode.h"
 
 /**
 * Special Slate widget for representing graph node of type UDialogGraphNode_Options in the graph editor.
 * It adds +/- buttons to the node body for adding and removing output pins.
 */
-class ADVENTUREPLUGINEDITOR_API SEdDialogNode_Options : public SEdDialogNode
+class ADVENTUREPLUGINDIALOGEDITOR_API SEdDialogNode_Options : public SEdDialogNode
 {
 public:
 
