@@ -17,17 +17,19 @@ class FQuestEvent;
 DECLARE_DYNAMIC_DELEGATE(FQuestEvent);
 
 /**
-* This class represents a single quest, things a player have to do progress through the game.
+* This class represents a single quest, things a player has to fulfill to progress through the game.
 * It is a data storage for all the variables and flags tracking the state of the quest.
-* The nodes in the graph represent the concrete actions the player has to take to complete the quests.
+* The UQuestNode nodes in the graph represent the concrete actions the player has to take to complete the quests.
 * These nodes can be true or false. Once they are true, they should never be switched back to false.
 * That is because these nodes also store dependencies between the actions. Edge between two nodes means that the player must do that action before another one.
 * If at any time a node is true but its predecessor is false, it is a bug.
-* The quest is considered to be completed when a specific node, EndNode, has all of its predecessors true.
-* Because if the graph was designed and the flags were set correctly, it means that the player took all actions leading up to that end node, so she finished the quest.
-* For variables which are not so easy the designer can define string, integer and boolean variables on a quest.
+* <p>
+* The quest is considered to be completed when a specific node, UQuestGraphNode_End, has all of its predecessors true.
+* If the graph was designed and the flags were set correctly, it means that the player took all actions leading up to that end node, so he finished the quest.
+* For variables with more complex behavior the designer can define string, integer and boolean variables on a quest.
 * The designer can set default values for these variables. The variables are also automatically serialized.
-* Designer can also create define events on the quest. Another blueprint can then subscribe to that event with some method that will be executed when the event is fired.
+* <p>
+* Designer can also define events on the quest. Another blueprint can then subscribe to that event with some method that will be executed when the event is fired.
 * These events are the main way how dialogs can affect the game scene. A dialog exists indpendently of the game scene.
 * So if a designer wanted a dialog to, for example, start a scripted fight scene, the designer would create an event on a quest called StartFightScene.
 * The level blueprint would then bind a handler to that event that would start that fight scene. And dialog would trigger that event when necessary.
@@ -128,7 +130,7 @@ public:
 
 	/**
 	* Returns true if this graph is complete.
-	* Default implementation checks if the EndNode is true, @see UQuestGraph#EndNode
+	* Default implementation checks if the (always unique) UQuestGraph#EndNode is true.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the quest is complete, otherwise false.
 	*/

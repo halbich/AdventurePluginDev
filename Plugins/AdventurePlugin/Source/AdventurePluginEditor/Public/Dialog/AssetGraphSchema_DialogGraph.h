@@ -30,7 +30,7 @@ public:
 	virtual const FPinConnectionResponse CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const override;
 
 	/**
-	* Populates new graph with any default nodes. In this case, adds Main Entry Point node
+	* Populates new graph with any default nodes. In this case, adds UDialogGraphNode_EntryMain node
 	* and also automatically sets the player character if unambiguous.
 	* @param	Graph	Graph to add the default nodes to
 	*/
@@ -50,7 +50,7 @@ protected:
 
 	/**
 	* Iterates through all UAdventureCharacterBlueprint assets and returns the only one
-	* which could be Player character (bIsPlayerCharacter is true). If there is
+	* which could be Player character (UAdventureCharacter#bIsPlayerCharacter is true). If there is
 	* none or more of them, returns nullptr. It is useful for automatic setting
 	* of this character in newly created Dialog graph.
 	* @return Only Player character candidate or nullptr

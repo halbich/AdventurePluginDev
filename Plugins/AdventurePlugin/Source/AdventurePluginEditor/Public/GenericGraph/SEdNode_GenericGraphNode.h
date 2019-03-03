@@ -17,7 +17,7 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 class UEdNode_GenericGraphNode;
 
 /**
-* Default Slate widget representing generic graph node in the graph editor
+* Default Slate widget representing UGenericGraphNode in the graph editor
 */
 class ADVENTUREPLUGINEDITOR_API SEdNode_GenericGraphNode : public SGraphNode
 {
@@ -60,7 +60,7 @@ public:
 
 	/**
 	* Returns border color for this node, extracted from the associated
-	* generic editor node.
+	* generic editor node by UEdNode_GenericGraphNode#GetBackgroundColor.
 	*/
 	virtual FSlateColor GetBorderBackgroundColor() const;
 
@@ -103,7 +103,7 @@ protected:
 	*/
 	virtual TSharedPtr<SBoxPanel> GetMainBox();
 
-	/*
+	/**
 	* Creates the body of the node. It includes only the content area,
 	* without any input/output pin boxes. This can be overriden if
 	* the node should look different, but the pin areas should remain the same.
@@ -111,7 +111,7 @@ protected:
 	*/
 	virtual TSharedPtr<SBorder> GetNodeBody();
 
-	/*
+	/**
 	* Returns whether the graph is horizontal or not. If it is, LeftNodeBox and RightNodeBox
 	* are used for storing pins, otherwise TopNodeBox and BottomNodeBox are used.
 	* @return True, if the graph is horizontal
@@ -119,24 +119,24 @@ protected:
 	virtual bool IsGraphHorizontal() const { return false; }
 
 	/**
-	* Returns the text which should be displayed in the NodeBody, above the node title.
+	* Returns the text which should be displayed in the SEdNode_GenericGraphNode#NodeBody, above the node title.
 	* @return The upper text
 	*/
 	virtual FText GetUpperText() const { return FText(); }
 
 	/**
-	* @return The desired visibility of the upper text in the NodeBody area
+	* @return The desired visibility of the upper text in the SEdNode_GenericGraphNode#NodeBody area
 	*/
 	virtual EVisibility GetUpperTextVisibility() const { return EVisibility::Collapsed; }
 
 	/**
-	* Returns the text which should be displayed in the NodeBody, under the node title.
+	* Returns the text which should be displayed in the SEdNode_GenericGraphNode#NodeBody, under the node title.
 	* @return The lower text
 	*/
 	virtual FText GetLowerText() const { return FText(); }
 
 	/**
-	* @return The desired visibility of the lower text in the NodeBody area
+	* @return The desired visibility of the lower text in the SEdNode_GenericGraphNode#NodeBody area
 	*/
 	virtual EVisibility GetLowerTextVisibility() const { return EVisibility::Collapsed; }
 };

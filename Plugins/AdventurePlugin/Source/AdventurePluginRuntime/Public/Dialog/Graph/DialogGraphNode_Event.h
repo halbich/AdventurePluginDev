@@ -10,7 +10,7 @@
 /**
 * This node fires an event on a quest.
 * It is expected that something on a scene is bound to this event and will handle it. For example it might trigger some cutscene, fight scene etc.
-* Note that while this node does have an output pin, it does not wait for the handling to be be done.
+* Note that while this node does have an output pin, it does not wait for the handling to be done.
 * If, for example, you want to play a cutscene and then continue with the dialog, you would stop the execution here and add another entry point.
 * After the cutscene you would launch the dialog again from that entry point.
 * But you would not do that if for example you wanted to change the weather, etc. If you do not need to wait you would just use the output pin.

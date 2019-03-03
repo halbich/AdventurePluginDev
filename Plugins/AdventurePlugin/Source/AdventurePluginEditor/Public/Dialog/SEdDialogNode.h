@@ -6,7 +6,7 @@
 #include "GenericGraph/SEdNode_GenericGraphNode.h"
 
 /**
-* Slate widget for representing Dialog graph node in the graph editor
+* Slate widget for representing UDialogGraphNode in the graph editor
 */
 class ADVENTUREPLUGINEDITOR_API SEdDialogNode : public SEdNode_GenericGraphNode
 {
@@ -20,8 +20,8 @@ protected:
 	UDialogGraphNode* DialogGraphNode;
 
 	/**
-	* Returns the text which should be displayed in the NodeBody, above the node title.
-	* In this case, it is the DialogGraphNode's Id, if set.
+	* Returns the text which should be displayed in the SEdNode_GenericGraphNode#NodeBody, above the node title.
+	* In this case, it is the UDialogGraphNode#Id, if set.
 	* @return The upper text
 	*/
 	virtual FText GetUpperText() const override;
@@ -32,8 +32,8 @@ protected:
 	virtual EVisibility GetUpperTextVisibility() const override;
 
 	/**
-	* Returns the text which should be displayed in the NodeBody, under the node title.
-	* In this case, it is the DialogGraphNode's Note, if set.
+	* Returns the text which should be displayed in the SEdNode_GenericGraphNode#NodeBody, under the node title.
+	* In this case, it is the UDialogGraphNode#Note, if set.
 	* @return The lower text
 	*/
 	virtual FText GetLowerText() const override;

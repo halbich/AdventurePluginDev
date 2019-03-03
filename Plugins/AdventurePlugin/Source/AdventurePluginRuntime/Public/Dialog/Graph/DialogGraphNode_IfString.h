@@ -8,7 +8,8 @@
 #include "DialogGraphNode_IfString.generated.h"
 
 /**
-* This node is a branch node that can return a different next node based on a value of a string variable on a quest.
+* This node is a branch node that can return a different next node based
+* on a value of a string variable UDialogGraphNode_IfString#String on a quest.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfString : public UDialogGraphNode_TrueFalse
@@ -49,9 +50,8 @@ public:
 #endif
 
 	/**
-	* This node is true if the string this node points to is the same as the constant.
-	* #see UDialogGraphNode_IfString#String
-	* #see UDialogGraphNode_IfString#Constant
+	* This node is true if the string UDialogGraphNode_IfString#String is the same
+	* as the constant UDialogGraphNode_IfString#Constant.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return False if the variable specification is invalid or the string is not the same as the constant, otherwise true.
 	*/

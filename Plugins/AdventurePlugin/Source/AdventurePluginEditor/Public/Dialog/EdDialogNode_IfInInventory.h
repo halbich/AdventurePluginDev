@@ -8,7 +8,7 @@
 #include "EdDialogNode_IfInInventory.generated.h"
 
 /**
-* Class representing behavior of a IfInInventory dialog node with one input pin and two output pins
+* Class representing behavior of a UDialogGraphNode_IfInInventory dialog node with one input pin and two output pins
 * labeled "True" and "False".
 */
 UCLASS()
@@ -21,6 +21,13 @@ public:
 	UEdDialogNode_IfInInventory() { }
 	virtual ~UEdDialogNode_IfInInventory() { }
 
+	/**
+	* This method is called when the graph is rebuilding, for every output pin and
+	* the node connected to it. It sets the child node to the parent's UDialogGraphNode_IfInInventory#ChildTrue
+	* or UDialogGraphNode_IfInInventory#ChildFalse property depending on the output pin's name.
+	* @param Pin Output pin of this node with valid child node connected
+	* @param Child Child node connected to this output pin
+	*/
 	virtual void AddSpecialChild(const UEdGraphPin* Pin, UGenericGraphNode* Child) override
 	{
 		UDialogGraphNode_IfInInventory* TrueFalseNode = CastChecked<UDialogGraphNode_IfInInventory>(GenericGraphNode);

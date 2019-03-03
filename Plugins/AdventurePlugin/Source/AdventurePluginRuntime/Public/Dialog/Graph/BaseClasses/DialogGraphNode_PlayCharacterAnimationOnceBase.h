@@ -22,7 +22,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_PlayCharacterAnimationOnceBase
 public:
 
 	/**
-	* Playes the specified animation on a character once.
+	* Plays the specified animation on a character once.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return False if we could start the animation, as the execution should only continue once this animation finishes.
 	*/
@@ -45,7 +45,7 @@ public:
 
 	/**
 	* Called when an animation finishes on the animated character.
-	* Returns true if the execution should continue, which if the animation is the one this node started.
+	* Returns true if the execution should continue, which means the animation finished is the one this node started.
 	* @param AnimationName The name of the animation that finished.
 	* @param Success True if the animation completed successfully. Ignored, as we just want to know if the animation is over, successful or not.
 	* @return True if the animation should continue, that is if the AnimationName is the same as the the name of the animation represented by this node.

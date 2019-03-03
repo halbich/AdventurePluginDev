@@ -6,7 +6,8 @@
 #include "InventoryPresenterWidget.generated.h"
 
 /**
- * Base class for inventory presenter widgets. For details @see IInventoryPresenterInterface
+ * Base class for inventory presenter widgets. It has no behavior by default and must be overriden in blueprints.
+ * @see IInventoryPresenterInterface
  */
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UInventoryPresenterWidget : public UUserWidget, public IInventoryPresenterInterface

@@ -26,7 +26,7 @@ public:
 		CreatePin(EGPD_Input, "MultipleNodes", FName(), FName());
 	}
 
-	/*
+	/**
 	* Returns nullptr as this node has no output pin.
 	*/
 	virtual UEdGraphPin* GetOutputPin() const override

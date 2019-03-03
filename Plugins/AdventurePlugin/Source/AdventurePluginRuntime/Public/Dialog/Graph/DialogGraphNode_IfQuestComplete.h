@@ -7,7 +7,7 @@
 #include "DialogGraphNode_IfQuestComplete.generated.h"
 
 /**
-* This node is a branch node that can return a different next node based on a value of a bool variable on a quest.
+* This node is a branch node that can return a different next node if the quest UDialogGraphNode_IfQuestComplete#Quest is completed.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfQuestComplete : public UDialogGraphNode_TrueFalse
@@ -40,7 +40,7 @@ public:
 #endif
 
 	/**
-	* This node is true if the variable this node points to is true.
+	* This node is true if the quest UDialogGraphNode_IfQuestComplete#Quest is completed.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return False if the variable specification is invalid, otherwise value of that variable.
 	*/

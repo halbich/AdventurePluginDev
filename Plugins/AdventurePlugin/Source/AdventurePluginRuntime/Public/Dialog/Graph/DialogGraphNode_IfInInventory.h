@@ -68,8 +68,8 @@ public:
 	}
 
 	/**
-	* Returns the next child based on whether this node is currently true (UDialogGraphNode_IsInInventory@see #ChildTrue) or false (UDialogGraphNode_IsInInventory@see #ChildFalse).
-	* This node is true if the item specified in Item is true, @see UDialogGraphNode_ItemBase#Item
+	* Returns the next child based on whether this node is currently true (UDialogGraphNode_IfInInventory#ChildTrue) or false (UDialogGraphNode_IfInInventory#ChildFalse).
+	* This node is true if the item specified in UDialogGraphNode_ItemBase#Item is in inventory.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The next node to be executed.
 	*/

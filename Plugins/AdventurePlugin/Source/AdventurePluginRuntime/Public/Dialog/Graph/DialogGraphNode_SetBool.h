@@ -7,7 +7,8 @@
 #include "DialogGraphNode_SetBool.generated.h"
 
 /**
-* This node sets a specific bool variable to the opposite value than what it currently has..
+* This node sets a specific bool variable UDialogGraphNode_SetBool#Bool
+* to the constant value defined in UDialogGraphNode_SetBool#bConstant.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_SetBool : public UDialogGraphNode
@@ -57,9 +58,10 @@ public:
 	}
 
 #endif
-	/* Sets the bool variable on the quest to a specified constant value.
-	* @see UDialogGraphNode_SetBool#Bool
-	* @see UDialogGraphNode_SetBool#bConstant
+
+	/**
+	* Sets the bool variable UDialogGraphNode_SetBool#Bool on the quest
+	* to a specified constant value UDialogGraphNode_SetBool#bConstant.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return Always true. This should never halt execution.
 	*/

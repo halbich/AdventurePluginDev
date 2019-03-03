@@ -77,6 +77,7 @@ public:
 	* Registers specific editor node representation for corresponding runtime node class. It is
 	* necessary when the node visualization should be different from the default one. It is usable
 	* for both dialog nodes and quest nodes.
+	* @see FAdventurePluginEditor#FindEditorNodeForRuntimeNode
 	* @param RuntimeNode The runtime node class for which the editor node should be registered
 	* @param EditorNode The editor node class which will visualize the runtime node given
 	*/
@@ -86,6 +87,7 @@ public:
 	* Returns editor node class, which was previously registered for visualizing given runtime
 	* node class. When there is no editor node registered, returns the one which was registered
 	* for the nearest ancestor of given runtime node, or nullptr, when there was no ancestor registered.
+	* @see FAdventurePluginEditor#RegisterEditorNodeForRuntimeNode
 	* @param RuntimeNode The runtime node class for which the editor node should be returned
 	* @return Editor node class registered for the runtime node, or nullptr
 	*/

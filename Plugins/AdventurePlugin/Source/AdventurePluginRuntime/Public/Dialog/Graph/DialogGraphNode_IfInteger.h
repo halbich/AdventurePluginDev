@@ -37,25 +37,22 @@ public:
 	int32 Constant;
 
 	/**
-	* The child with which we should continue if the represented variable is less than the constant.
-	* #see UDialogGraphNode_IfInteger#Integer
-	* #see UDialogGraphNode_IfInteger#Constant
+	* The child with which we should continue if the variable UDialogGraphNode_IfInteger#Integer
+	* is less than the constant UDialogGraphNode_IfInteger#Constant.
 	*/
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildLess;
 
 	/**
-	* The child with which we should continue if the represented variable is equal to the constant.
-	* #see UDialogGraphNode_IfInteger#Integer
-	* #see UDialogGraphNode_IfInteger#Constant
+	* The child with which we should continue if the variable UDialogGraphNode_IfInteger#Integer
+	* is equal to the constant UDialogGraphNode_IfInteger#Constant.
 	*/
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildEqual;
 
 	/**
-	* The child with which we should continue if the represented variable is more than the constant.
-	* #see UDialogGraphNode_IfInteger#Integer
-	* #see UDialogGraphNode_IfInteger#Constant
+	* The child with which we should continue if the variable UDialogGraphNode_IfInteger#Integer
+	* is more than the constant UDialogGraphNode_IfInteger#Constant.
 	*/
 	UPROPERTY(BlueprintReadOnly)
 	UDialogGraphNode* ChildMore;
@@ -90,9 +87,8 @@ public:
 #endif
 
 	/**
-	* Returns the next node to be executed, based on the value of the relevant int variable and constant, whether the variable is less, more or equal than the constant.
-	* #see UDialogGraphNode_IfInteger#Integer
-	* #see UDialogGraphNode_IfInteger#Constant
+	* Returns the next node to be executed, based on the value of the relevant integer variable and constant,
+	* whether the variable UDialogGraphNode_IfInteger#Integer is less, more or equal than the constant UDialogGraphNode_IfInteger#Constant.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return Null if the variable identification is not valid, otherwise the next child to be executed.
 	*/

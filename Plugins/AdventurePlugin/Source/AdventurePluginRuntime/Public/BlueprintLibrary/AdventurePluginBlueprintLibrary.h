@@ -61,7 +61,7 @@ public:
 	static void ShowInventory(UAdventurePluginGameContext* GameContext);
 
 	/**
-	* Retrieves the only instance of the requested item class. Neccessary to access any functionality provided by the Item class. Always use this method, never instantiate InventoryItem directly.
+	* Retrieves the only instance of the requested item class. Neccessary to access any functionality provided by the Item class. Always use this method, never instantiate UInventoryItem directly.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param Item The class whose instance is requested.
 	* @return The only instance of this item.
@@ -70,7 +70,7 @@ public:
 	static UInventoryItem* GetItem(UAdventurePluginGameContext* GameContext, TSubclassOf<UInventoryItem> Item);
 
 	/**
-	* Retrieves the only instance of the requested character class. Neccessary to access any functionality provided by the Character class. Always use this method, never instantiate AdventureCharacter directly.
+	* Retrieves the only instance of the requested character class. Neccessary to access any functionality provided by the Character class. Always use this method, never instantiate UAdventureCharacter directly.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param Character The class whose instance is requested.
 	* @return The only instance of this character.
@@ -79,9 +79,9 @@ public:
 	static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character);
 
 	/**
-	* Retrieves the default game context. Contains instances of class defined in game config.
-	* @see UAdventurePluginConfig
+	* Retrieves the default game context. Contains instances of classes defined in game config.
 	* A game can choose a different way of getting a game context.
+	* @see UAdventurePluginConfig
 	* @param WorldObjectContext The object containing all data about the game world. Silently passed by Unreal Engine when possible.
 	* @return The default game context.
 	*/

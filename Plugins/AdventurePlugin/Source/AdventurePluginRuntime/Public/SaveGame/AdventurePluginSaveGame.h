@@ -9,13 +9,15 @@
 
 /**
  * Contains all data that should be serialized to represent the game state.
- * Adventure Plugin automatically serialzes all quest variables and flags, whether once node in dialogs where executed, inventory and inventory item states.
+ * Adventure Plugin automatically serializes all quest variables and flags, whether once node in dialogs where executed, inventory and inventory item states.
  * Everything else must be handled by the game itself.
+ * <p>
  * The serialized variables of Adventure Plugin work directly with the instance of this class stored on the game context.
  * The serialized variables are not stored on those objects at all
- * So for the Adventure Plugin methods loading a new game is as easy as replacing the save game on context.
+ * so loading a new game is as easy as replacing the save game on context.
  * However, it is expected that the scene objects will probably have to be reloaded to represent that game state.
- * If you want to work this object and use it for serialization of your own items, be careful to use unique names that will not clash with other variables.
+ * <p>
+ * If you want to work with this object and use it for serialization of your own items, be careful to use unique names that will not clash with other variables.
  * It is unlikely to clash with the Adventure Plugin variables, as the quest variables include full path to the quest as a name, once nodes use generated UUIDs.
  * And inventory items and their states are stored separately, you should not have to interact with those.
  */

@@ -52,7 +52,7 @@ public:
 #endif
 
 	/**
-	* Increments the variable this node is pointing to.
+	* Increments the variable UDialogGraphNode_IncrementInteger#Integer this node is pointing to.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return Always true, this never halts the execution.
 	*/

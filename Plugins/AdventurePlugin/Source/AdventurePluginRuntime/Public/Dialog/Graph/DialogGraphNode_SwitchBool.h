@@ -51,8 +51,8 @@ public:
 
 #endif
 
-	/* Sets the bool variable on the quest to the inverse value if the quest identification is valid.
-	* @see UDialogGraphNode_SwitchBool#Bool
+	/**
+	* Sets the bool variable UDialogGraphNode_SwitchBool#Bool on the quest to the inverse value if the quest identification is valid.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return Always true. This should never halt execution.
 	*/

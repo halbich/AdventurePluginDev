@@ -7,7 +7,7 @@
 #include "DialogPresenterWidget.generated.h"
 
 /**
-* Class responsible for showing dialog lines to the user. By default has no behavior and must be overriden in blueprints.
+* Class responsible for showing dialog lines to the user. It has no behavior by default and must be overriden in blueprints.
 */
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UDialogPresenterWidget : public UUserWidget, public IDialogPresenterInterface

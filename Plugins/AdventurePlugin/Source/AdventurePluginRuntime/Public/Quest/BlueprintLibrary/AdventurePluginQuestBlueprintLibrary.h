@@ -92,7 +92,7 @@ public:
 
 	/**
 	* Binds a handler for a quest event. When that event is fired, the passed method will be executed.
-	* Note - there can only one handler bound to an event. When you call BindQuestEvent again for the same event, the old handler will be discarded.
+	* Note - there can be only one handler bound to an event. When you call BindQuestEvent() again for the same event, the old handler will be discarded.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param QuestEvent The identification of the quest event the handler should handle.
 	* @param QuestEventHandler The method to be called when the event is fired.

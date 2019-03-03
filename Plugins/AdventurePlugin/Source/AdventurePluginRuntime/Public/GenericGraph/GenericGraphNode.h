@@ -15,8 +15,8 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 class UGenericGraph;
 
 /**
-* A single node in a generic graph.
-* In Adventure Plugin this serves as a base class for the different nodes in the Quest Graph and Dialog Graph.
+* A single node in a generic graph UGenericGraph.
+* In Adventure Plugin this serves as a base class for the different nodes in the UQuestGraph and UDialogGraph.
 * @see UQuestGraphNode
 * @see UDialogGraphNode
 */
@@ -81,8 +81,9 @@ public:
 	virtual FText GetDescription_Implementation() const;
 
 	/**
-	* Some nodes store some additional data concerning their children. This node clears them.
-	* For example, a branching node stores information about which child class should be followed when the condition is true and which to follow when the condition is false.
+	* Some nodes store some additional data concerning their children. This method clears them.
+	* For example, a branching node stores information about which child node should be followed
+	* when the condition is true and which to follow when the condition is false.
 	*/
 	virtual void ResetSpecialChildren() { }
 
@@ -91,7 +92,7 @@ public:
 
 	/**
 	* Editor time only. Title of this node to be displayed in the graph.
-	* Might be ignored if GetNodeTitle is overriden. @see UGenericGraphNode#GetNodeTitle
+	* Might be ignored if GetNodeTitle() is overriden.
 	*/
 	UPROPERTY(EditDefaultsOnly, Category = "GenericGraphNode_Editor")
 	FText NodeTitle;
@@ -104,7 +105,7 @@ public:
 
 	/**
 	* Editor time only. The background color of this node when displayed in the graph.
-	* Might be ignored if GetBackgroundColor is overriden. @see UGenericGraphNode#GetBackgroundColor
+	* Might be ignored if GetBackgroundColor() is overriden.
 	*/
 	UPROPERTY(EditDefaultsOnly, Category = "GenericGraphNode_Editor")
 	FLinearColor BackgroundColor;
@@ -155,14 +156,14 @@ public:
 
 	/**
 	* Editor time only.
-	* Checks the user can add this node to the graph. If false, this node can be only added from code.
+	* Checks whether the user can add this node to the graph. If false, this node can be only added from code.
 	* @return True if the user can add this node to a graph.
 	*/
 	virtual bool CanAdd() const;
 
 	/**
 	* Editor time only.
-	* Checks the user can delete this node from a graph. If false, this node can be only removed from code.
+	* Checks whether the user can delete this node from a graph. If false, this node can be only removed from code.
 	* @return True if the user can remvoe this node from a graph.
 	*/
 	virtual bool CanDelete() const;
@@ -176,7 +177,7 @@ public:
 
 	/**
 	* Editor time only.
-	* Checks the user can change the title of this node.
+	* Checks whether the user can change the title of this node.
 	* @return True if the user can change the title of this node.
 	*/
 	virtual bool CanRename() const;

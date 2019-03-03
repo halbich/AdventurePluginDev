@@ -56,14 +56,14 @@ public:
 	FGameplayTagContainer ItemTags;
 
 	/**
-	* If true, it is possible examine on this item. This is a value returned by IsExaminable if not overriden. @see UInventoryItem#IsExaminable
+	* If true, it is possible to examine this item. This is a value returned by IsExaminable() if not overriden.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Examination")
 	bool bDefaultIsExaminable = true;
 
 	/**
 	* Checks whether this item can be examined right now.
-	* Unless overriden this method returns bDefaultIsExaminable. @see UInventoryItem#bDefaultIsExaminable
+	* Unless overriden this method returns UInventoryItem#bDefaultIsExaminable.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the item can be examined right now, otherwise false.
 	*/
@@ -71,14 +71,14 @@ public:
 	bool IsExaminable(UAdventurePluginGameContext* GameContext);
 
 	/**
-	* If true, it is possible to pick up this item from scene. This is a value returned by IsPickable if not overriden. @see UInventoryItem#IsPickable
+	* If true, it is possible to pick up this item from scene. This is a value returned by IsPickable() if not overriden.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
 	bool bDefaultIsPickable = true;
 
 	/**
 	* Checks whether this item can be picked up right now.
-	* Unless overriden this method returns bDefaultIsPickable. @see UInventoryItem#bDefaultIsPickable
+	* Unless overriden this method returns UInventoryItem#bDefaultIsPickable.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the item can be picked up right now, otherwise false.
 	*/
@@ -86,14 +86,14 @@ public:
 	bool IsPickable(UAdventurePluginGameContext* GameContext);
 
 	/**
-	* If true, this item has a use action that can be called, e.g. reading a map. This is a value returned by IsUsable if not overriden. @see UInventoryItem#IsUsable
+	* If true, this item has a use action that can be called, e.g. reading a map. This is a value returned by IsUsable() if not overriden.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Usage")
 	bool bDefaultIsUsable = false;
 
 	/**
-	* Checks whether this item can be used right now, i.e. it is possible to call Use method. @see UInventoryItem#Use
-	* Unless overriden this method returns bDefaultIsUsable. @see UInventoryItem#bDefaultIsPickable
+	* Checks whether this item can be used right now, i.e. it is possible to call Use() method.
+	* Unless overriden this method returns UInventoryItem#bDefaultIsUsable.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the item can be used right now, otherwise false.
 	*/
@@ -107,7 +107,8 @@ public:
 	FText UseActionName;
 
 	/**
-	* The type of the use action, e.g. Use/Talk/Combine etc. @see UAdventurePluginConfig@ActionTypes
+	* The type of the use action, e.g. Use/Talk/Combine etc.
+	* @see UAdventurePluginConfig#UseActionTypes
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Usage")
 	FUseActionType UseActionType;
@@ -135,7 +136,7 @@ public:
 	void SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContext);
 
 	/**
-	* This event will be fired when this item is added to inventory.
+	* This event is fired when the item's state has changed.
 	*/
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Inventory Item")
 	FItemNotificationEvent ItemStateChanged;
@@ -193,7 +194,7 @@ public:
 
 	/**
 	* Returns true if this item was already picked up.
-	* Default behavior checks the ItemState to see if the item was already picked up. See UInventoryItem#GetItemState
+	* Default behavior checks the item state using GetItemState() to see if the item was already picked up. 
 	* Can be overriden if the item uses custom states.
 	* @return True if the item was already picked up.
 	*/

@@ -10,7 +10,8 @@
 #include "DialogGraphNode_ItemBase.generated.h"
 
 /**
-* This node is a base class for items contain an inventory item as a parameter.
+* This node is a base class for nodes containing an inventory item as a parameter.
+* @see FDialogInventoryItemCustomization
 */
 UCLASS(Abstract, Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_ItemBase : public UDialogGraphNode
@@ -28,8 +29,7 @@ public:
 
 	/**
 	* The relevant item.
-	* In editor we are actually filling this through PickerItem, so we can see icons of the items.
-	* @see UDialogGraphNode_IsInInventory#PickerItem
+	* In editor this is filled by UDialogGraphNode_ItemBase#PickerItem, because its picker supports user-friendly asset thumbnails.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "ItemNode")
 	TSubclassOf<UInventoryItem> Item;
@@ -37,7 +37,8 @@ public:
 #if WITH_EDITORONLY_DATA
 
 	/**
-	* The relevant item.
+	* The helper property for filling UDialogGraphNode_ItemBase#Item. It is used only in editor
+	* because its picker supports user-friendly asset thumbnails.
 	*/
 	UPROPERTY(EditAnywhere, Category = "BranchOnItemNode", Meta = (DisplayName = "Item"))
 	UInventoryItemBlueprint* PickerItem;

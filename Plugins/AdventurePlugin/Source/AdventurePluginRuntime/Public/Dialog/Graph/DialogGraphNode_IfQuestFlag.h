@@ -8,7 +8,8 @@
 #include "DialogGraphNode_IfQuestFlag.generated.h"
 
 /**
-* This node is a branch node that can return a different next node based on a value of a flag on a quest.
+* This node is a branch node that can return a different next node based
+* on a value of a flag UDialogGraphNode_IfQuestFlag#Flag on a quest.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfQuestFlag : public UDialogGraphNode_TrueFalse
@@ -42,7 +43,7 @@ public:
 #endif
 
 	/**
-	* This node is true if the flag this node points to is set.
+	* This node is true if the flag UDialogGraphNode_IfQuestFlag#Flag is set.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return False if the flag specification is invalid or the flag is not set, otherwise true.
 	*/

@@ -16,7 +16,7 @@ class UAdventurePluginSaveGame;
  * A class that provides access to all Adventure Plugin data and functionality.
  * Almost all of the methods in the plugin require the context. 
  * The purpose of this class is similar to that of the GameInstance, but is not that to allow flexibility.
- * For example it might be possible to have one game context set up for displaying normal dialogs and one for backgroun conversations.
+ * For example it might be possible to have one game context set up for displaying normal dialogs and one for background conversations.
  */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameContext : public UObject
@@ -41,7 +41,7 @@ public:
 
 	/**
 	* The object used to start a dialog and go through the dialog graph.
-	* Does not actually show anything, it binds itself to the DialogController, @see UAdventurePluginGameContext#DialogController
+	* Does not actually show anything, it binds itself to the DialogController.
 	*/
 	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Dialog")
 	UDialogController* DialogController;
@@ -60,14 +60,14 @@ public:
 	UAdventurePluginSaveGame* SaveGame;
 
 	/**
-	* The object that manages instances of UInventoryItem classes. @see UInventoryItem
+	* The object that manages instances of UInventoryItem classes.
 	* For each class contains a single instance of that item.
 	*/
 	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Inventory")
 	UItemManager* ItemManager;
 
 	/**
-	* The object that manages instances of UAdventureCharacter classes. @see UAdventureCharacter
+	* The object that manages instances of UAdventureCharacter classes.
 	* For each class contains a single instance of that character.
 	*/
 	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Character")

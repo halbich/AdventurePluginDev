@@ -59,9 +59,8 @@ public:
 #endif
 
 	/**
-	* Sets the string variable on the quest to a specific constant value if the quest identification is valid.
-	* @see UDialogGraphNode_SetString#String
-	* @see UDialogGraphNode_SetString#Constant
+	* Sets the string variable UDialogGraphNode_SetString#String on the quest to a specific
+	* constant value UDialogGraphNode_SetString#Constant if the quest identification is valid.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return Always true. This should never halt execution.
 	*/

@@ -17,19 +17,19 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FDialogNotification, UDialogGraph*, Dialog, UAdventurePluginGameContext*, GameContext);
 
 /**
- * This class can walk through the dialog graph and play a dialog that corresponds to it.
+ * This class can walk through the UDialogGraph and play a dialog that corresponds to it.
  * It is started from some specific node called an entry point.
- * At each node the DialogController calls the Execute method, which should do whatever is the node supposed to be doing, for example showing dialog line to the player.
- * When node execution is complete, the controller will call GetNextNode on that method to get the next node to execute.
- * If GetNextNode returns null, we have reached of dialog.
+ * On each node the UDialogController calls the UDialogGraphNode#Execute method, which should do whatever is the node supposed to be doing, for example showing dialog line to the player.
+ * When node execution is complete, the controller will call UDialogGraphNode#GetNextNode on that node to get the next node to execute.
+ * If UDialogGraphNode#GetNextNode returns null, we have reached the end of dialog.
  * <p>
- * Most nodes finish instantly, but some do not. For those the Execute method returns false, signaling that we should halt the execution.
+ * Most nodes finish instantly, but some do not. For those the UDialogGraphNode#Execute method returns false, signalling that we should halt the execution.
  * The dialog can be continued by calling some callback method defined on this object.
  * For example, setting a variable finishes instantly, but showing a dialog line does not. 
  * Instead, the execution will continue once the presenter calls the proper callback on this object.
  * When the callback is called, the controller will check whether the current node also responds to that callback. 
  * If it does, it asks the node to handle that callback and see whether it can continue or not.
- * Also, the dialog can also end automatically once too many nodex are executed, assuming we are in an infinite loop.
+ * Also, the dialog can also end automatically once too many nodes are executed, assuming we are in an infinite loop.
  */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogController : public UObject
@@ -117,7 +117,7 @@ protected:
 	UPROPERTY(Transient)
 	UDialogGraphNode* CurrentNode;
 
-	/*
+	/**
 	* Starts executing the graph from the specified node.
 	* @param StartNode Where should the execution start.
 	*/
@@ -125,7 +125,7 @@ protected:
 
 	/**
 	* Retrieves the presenter we are using
-	* @return The instance of the currently used presenter,
+	* @return The instance of the currently used presenter.
 	*/
 	FORCEINLINE IDialogPresenterInterface* GetPresenter()
 	{
@@ -133,7 +133,7 @@ protected:
 	}
 
 	/**
-	* How many steps since BeginExecute was last called. Used so we can stop execution if we're in an infinite loop.
+	* How many steps since BeginExecute() was last called. Used so we can stop execution if we're in an infinite loop.
 	*/
 	uint32 CurrentExecutionSteps;
 

@@ -29,8 +29,8 @@ public:
 	}
 
 	/**
-	* The item we are checking for.
-	* In editor this is filled by PickerItem. That is done so we have a nice picker. @see UQuestGraphNode#PickerItem
+	* The item this node represents. Once that item is picked up, this node becomes true.
+	* In editor this is filled by UQuestGraphNode_Inventory#PickerItem, because its picker supports user-friendly asset thumbnails.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "InventoryItemNode")
 	TSubclassOf<UInventoryItem> Item;
@@ -38,7 +38,8 @@ public:
 #if WITH_EDITORONLY_DATA
 
 	/**
-	* The item this node represents. Once that item is picked up, this node becomes true.
+	* The helper property for filling UQuestGraphNode_Inventory#Item. It is used only in editor
+	* because its picker supports user-friendly asset thumbnails.
 	*/
 	UPROPERTY(EditAnywhere, Category = "InventoryItemNode", Meta = (DisplayName = "Item"))
 	UInventoryItemBlueprint* PickerItem;

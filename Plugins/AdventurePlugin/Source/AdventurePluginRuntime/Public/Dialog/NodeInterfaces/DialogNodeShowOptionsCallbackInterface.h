@@ -24,7 +24,7 @@ class IDialogNodeShowOptionsCallbackInterface
 public:
 
 	/**
-	* Called when the user sellects a dialog option.
+	* Called when the user selects a dialog option.
 	* @param SelectedNodeIndex The option which the user selected.
 	* @param DialogController The controller that initiated this call.
 	* @return True if the execution should continue, i.e. the node was waiting for this callback, otherwise false.

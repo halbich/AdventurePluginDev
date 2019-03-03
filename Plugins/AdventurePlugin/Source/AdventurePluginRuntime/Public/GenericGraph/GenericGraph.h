@@ -15,11 +15,9 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 
 /**
 * This class represents a generic graph with no inherent functionality.
-* In Adventure Plugin it servers as a base class for Dialog Graph and Quest Graph.
-* @see UDialogGraph
-* @see UQuestGraph
-* This is the runtime version of the graph that contains only data needed to read graph data at runtime.
-* For editing in editor, @see UEdGraph
+* In Adventure Plugin it serves as a base class for UDialogGraph and UQuestGraph.
+* This is the runtime version of the graph that contains only data needed at runtime.
+* For editing in editor, see UEdGraph_GenericGraph.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UGenericGraph : public UObject
@@ -37,13 +35,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "GenericGraph")
 	FString Name;
 
-	/*
+	/**
 	* The type of nodes that can be contained in this graph.
 	*/
 	UPROPERTY()
 	TSubclassOf<UGenericGraphNode> NodeType;
 
-	/*
+	/**
 	* The tags defined for this graph.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "GenericGraph")

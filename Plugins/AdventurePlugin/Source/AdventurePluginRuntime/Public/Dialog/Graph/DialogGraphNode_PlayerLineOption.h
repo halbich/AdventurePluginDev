@@ -7,7 +7,7 @@
 #include "DialogGraphNode_PlayerLineOption.generated.h"
 
 /**
-* This is node's purpose is to be a dialog option that does nothing when executed.
+* This node's purpose is to be a dialog option that does nothing when executed.
 * Common usecase - If the option name to be offered is different than the line spoken in dialog.
 */
 UCLASS(Blueprintable)

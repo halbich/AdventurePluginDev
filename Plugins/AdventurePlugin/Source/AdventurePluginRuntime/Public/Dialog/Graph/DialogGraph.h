@@ -11,13 +11,13 @@ class UDialogGraphNode;
 class UAdventurePluginGameContext;
 
 /**
-* This graph represents a a dialog between a PC and up to 1 NPC.
+* This graph represents a dialog between a Player and up to 1 NPC.
 * Can contain branching, changing of variables, firing events, displaying dialog lines and many other things.
-* The easiest way to extend the graph is to create custom nodes inheriting from DialogGraphNode.
+* The easiest way to extend the graph is to create custom nodes inheriting from UDialogGraphNode.
 * That will add whole new capabilities to the graph. 
-* These nodes don't have to be registered anywhere, the graph automatically finds all nodes inheriting from DialogGraphNode.
-* To see how the actual displaying of this graph works, @see UDialogController.
-* Note that the dialog graph does not support creation of cycles, if you really nead one, you need to use a GOTO node, @see UDialogGraphNode_Goto
+* These nodes don't have to be registered anywhere, the graph automatically finds all nodes inheriting from UDialogGraphNode.
+* To see how the actual displaying of this graph works, see UDialogController.
+* Note that the dialog graph does not support creation of cycles, if you really need one, you need to use a UDialogGraphNode_Goto node.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraph : public UGenericGraph
@@ -26,7 +26,7 @@ class ADVENTUREPLUGINRUNTIME_API UDialogGraph : public UGenericGraph
 
 public:
 
-	/*
+	/**
 	* The name of the main entry point. Same for all graphs.
 	*/
 	static const FName MainEntryName;
@@ -34,7 +34,7 @@ public:
 	UDialogGraph();
 	virtual ~UDialogGraph();
 
-	/*
+	/**
 	* The main entry point of this graph. The execution should start here if no other entry point is specified.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
@@ -55,16 +55,16 @@ public:
 	/**
 	* The player character saying this dialog.
 	* <p>
-	* Note: In editor this is filled by PickerPlayerCharacter, @see UDialogGraph#PickerPlayerCharacter
+	* Note: In editor this is filled by UDialogGraph#PickerPlayerCharacter.
 	* We did that because TSubclassOf editor picker does not support icons, which we wanted to have.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
 	TSubclassOf<UAdventureCharacter> PlayerCharacter;
 
 	/**
-	* The NPC with whom the PC is talking in this dialog. Can be null, but in that case NPC lines should not be used.
+	* The NPC with whom the Player is talking in this dialog. Can be null, but in that case NPC lines should not be used.
 	* <p>
-	* Note: In editor this is filled by PickerNPCCharacter, @see UDialogGraph#PickerNPCCharacter
+	* Note: In editor this is filled by UDialogGraph#PickerNPCCharacter
 	* We did that because TSubclassOf editor picker does not support icons, which we wanted to have.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "DialogGraph")
@@ -73,13 +73,15 @@ public:
 #if WITH_EDITORONLY_DATA
 
 	/**
-	* The player character saying this dialog.
+	* The helper property for filling UDialogGraph#PlayerCharacter. It is used only in editor
+	* because its picker supports user-friendly asset thumbnails.
 	*/
 	UPROPERTY(EditAnywhere, Category = "DialogGraph", Meta = (DisplayName = "Player Character"))
 	UAdventureCharacterBlueprint* PickerPlayerCharacter;
 
 	/**
-	* The NPC with whom the PC is talking in this dialog. Can be null, but in that case NPC lines should not be used.
+	* The helper property for filling UDialogGraph#NPCCharacter. It is used only in editor
+	* because its picker supports user-friendly asset thumbnails. 
 	*/
 	UPROPERTY(EditAnywhere, Category = "DialogGraph", Meta = (DisplayName = "NPC Character"))
 	UAdventureCharacterBlueprint* PickerNPCCharacter;

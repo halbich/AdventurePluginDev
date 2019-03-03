@@ -12,8 +12,9 @@
 #include "InventoryItemBlueprint.generated.h"
 
 /**
-* The blueprint class for an items.
-* Exists to specify the item icon.
+* The blueprint class for inventory items. This class exists to specify the item icon
+* and to give user a possibility to define custom behavior of the item.
+* @see UInventoryItemFactory
 */
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UInventoryItemBlueprint : public UCombinableObjectBlueprint, public IIconThumbnailInterface

@@ -7,7 +7,7 @@
 #include "EdDialogNode.generated.h"
 
 /**
-* Class representing dialog node behavior in editor (its pins, copying/deleting etc.)
+* Class representing dialog node (UDialogGraphNode) behavior in editor (its pins, copying/deleting etc.)
 */
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdDialogNode : public UEdNode_GenericGraphNode

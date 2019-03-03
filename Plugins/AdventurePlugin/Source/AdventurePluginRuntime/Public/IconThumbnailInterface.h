@@ -16,7 +16,7 @@ class ADVENTUREPLUGINRUNTIME_API UIconThumbnailInterface : public UInterface
 
 /**
 * Interface that blueprints can implement. Used for custom thumbnails in the editor for these blueprints.
-* However, the thumbnail renderers must still be explicitly registered for each class;
+* However, the thumbnail renderers must still be explicitly registered for each class
 */
 class ADVENTUREPLUGINRUNTIME_API IIconThumbnailInterface
 {

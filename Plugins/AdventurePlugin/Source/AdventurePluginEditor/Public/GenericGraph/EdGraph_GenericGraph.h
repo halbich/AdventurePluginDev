@@ -14,6 +14,9 @@ class UGenericGraph;
 class UGenericGraphNode;
 class UEdNode_GenericGraphNode;
 
+/**
+* Class representing generic graph behavior in editor.
+*/
 UCLASS()
 class UEdGraph_GenericGraph : public UEdGraph
 {

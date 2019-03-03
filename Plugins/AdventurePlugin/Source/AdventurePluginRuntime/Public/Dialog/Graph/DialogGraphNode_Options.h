@@ -10,14 +10,14 @@
 #include "DialogGraphNode_Options.generated.h"
 
 /**
-* This node should present the user with the list of possible options, allowing her to select how to continue.
-* When the node is visited, it visits all of its children. If a node can be a dialog option, it will presented to the user.
-* If it is not a dialog option, GetNextNode is called on that node and we check if that is a dialog option. 
+* This node should present the list of possible options to the user, allowing him to select how the dialog should continue.
+* When the node is visited, it visits all of its children. If the child node can be a dialog option, it is presented to the user.
+* If it is not a dialog option, GetNextNode() is called on that node and we check if that one is a dialog option. 
 * We repeat that until we either get an option or a null node.
-* All of the valid options are then presented to the player and the execution halts until she chooses.
+* All of the valid options are then presented to the player and the execution halts until he chooses.
 * We then continue with the selected response.
-* This node can also have a fallback node, which is used if no other line of dialog is valid, as a fallback.
-* We determine if a node is a dialog option by calling a specific method, @see UDialogGraphNode#IsDialogOption.
+* This node can also have a fallback node, which is used if no other branch of dialog tree is valid, as a fallback.
+* We determine if a node is a dialog option by calling UDialogGraphNode#IsDialogOption.
 */
 UCLASS(Blueprintable)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_Options : public UDialogGraphNode, public IDialogNodeShowOptionsCallbackInterface
@@ -78,9 +78,9 @@ public:
 
 #endif
 
-	/*
+	/**
 	* Goes through the children to get the list of options to present and presents them.
-	* See class description to get better idea how that works, @see UDialogGraphNode_Options
+	* See class description to get better idea how that works.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return False if some options were found, as we need to halt the execution until the user selects an option. True is returned if no options can be displayed.
 	*/
@@ -136,7 +136,7 @@ public:
 	}
 
 	/**
-	* Retrieves the next node to be executed. As Execute was called before this, we should now now which node to continue with.
+	* Retrieves the next node to be executed. As Execute() was called before this, we should now know which node to continue with.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The node to continue with.
 	*/

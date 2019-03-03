@@ -91,6 +91,10 @@ public:
 	*/
  	virtual FLinearColor GetPinTypeColor(const FEdGraphPinType& PinType) const override;
 
+	/**
+	* Breaks all links from/to a single node
+	* @param	TargetNode	The node to break links on
+	*/
  	virtual void BreakNodeLinks(UEdGraphNode& TargetNode) const override;
 
 	/**
@@ -107,7 +111,7 @@ public:
 	*/
 	virtual void BreakSinglePinLink(UEdGraphPin* SourcePin, UEdGraphPin* TargetPin) const override;
 
-	/*
+	/**
 	* Some schemas have nodes that support the user dynamically adding pins when dropping a connection on the node
 	* @param InTargetNode			Node to check for pin adding support
 	* @param InSourcePinName		Name of the pin being dropped, a new pin of similar name will be constructed

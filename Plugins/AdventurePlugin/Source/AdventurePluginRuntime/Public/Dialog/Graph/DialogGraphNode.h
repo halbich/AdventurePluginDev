@@ -49,7 +49,7 @@ public:
 
 	/**
 	* Executes the action this node represents, like changing a variable, displaying a dialog line, firing an event etc.
-	* Default animation does nothing and returns true. Expected to be overriden.
+	* Default implementation does nothing and returns true. Expected to be overriden.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the executon should continue, false if the execution should be paused, since we are waiting for something.
 	*/

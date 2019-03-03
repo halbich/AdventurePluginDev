@@ -52,8 +52,7 @@ public:
 #endif
 
 	/**
-	* Sets the flag on the quest if the quest identification is valid.
-	* @see UDialogGraphNode_SetQuestFlag#Flag
+	* Sets the flag UDialogGraphNode_SetQuestFlag#Flag on the quest if the quest identification is valid.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return Always true. This should never halt execution.
 	*/

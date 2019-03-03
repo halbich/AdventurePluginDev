@@ -9,7 +9,7 @@ class UAdventurePluginGameContext;
 
 /**
 * Base class for nodes that are branching. 
-* They have a true or false condition and based on the result will return the correct node when GetNextNode is called.
+* They have a true or false condition and based on the result will return the correct node when GetNextNode() is called.
 */
 UCLASS(Abstract)
 class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_TrueFalse : public UDialogGraphNode

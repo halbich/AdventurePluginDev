@@ -65,10 +65,10 @@ public:
 	virtual bool RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
 
 	/**
-	* Call if multiple AddItem and RemoveItem calls will follow.
-	* Will silence the InventoryChanged until EndUpdate is called.
-	* EndUpdate will then raise the InventoryChanged event.
-	* Exists mainly so InventoryChanged event is not called multiple times when doing multiple inventory changes one after another.
+	* Call if multiple AddItem() and RemoveItem() calls will follow.
+	* Will silence the UInventory#InventoryChanged until EndUpdate() is called.
+	* EndUpdate() will then raise the UInventory#InventoryChanged event.
+	* Exists mainly so UInventory#InventoryChanged event is not called multiple times when doing multiple inventory changes one after another.
 	* @see UInventory#InventoryChanged
 	* @see UInventory#EndUpdate
 	*/
@@ -76,9 +76,9 @@ public:
 	virtual void BeginUpdate();
 
 	/**
-	* Call always after EndUpdate.
-	* Will raise the InventoryChanged event.
-	* Exists mainly so InventoryChanged event is not called multiple times when doing multiple inventory changes one after another.
+	* Call always after EndUpdate().
+	* Will raise the UInventory#InventoryChanged event.
+	* Exists mainly so UInventory#InventoryChanged event is not called multiple times when doing multiple inventory changes one after another.
 	* @see UInventory#InventoryChanged
 	* @see UInventory#BeginUpdate
 	*/
@@ -88,20 +88,14 @@ public:
 protected:
 
 	/**
-	* True if we are between BeginUpdate and EndUpdate calls.
-	* InventoryChanged event should be silenced.
-	* @see UInventory#InventoryChanged
-	* @see UInventory#BeginUpdate
-	* @see UInventory#EndUpdate
+	* True if we are between BeginUpdate() and EndUpdate() calls.
+	* UInventory#InventoryChanged event should be silenced.
 	*/
 	UPROPERTY(Transient)
 	bool bIsUpdating;
 
 	/**
-	* This property stores the items that are being modified between BeginUpdate and EndUpdate calls.
-	* @see UInventory#InventoryChanged
-	* @see UInventory#BeginUpdate
-	* @see UInventory#EndUpdate
+	* This property stores the items that are being modified between BeginUpdate() and EndUpdate() calls.
 	*/
 	UPROPERTY(Transient)
 	TArray<UInventoryItem*> ModifiedItems;

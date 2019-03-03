@@ -49,7 +49,7 @@ public:
 
 private:
 
-	/*
+	/**
 	* The default inventory, probably that of the main player character.
 	*/
 	UPROPERTY(Transient)

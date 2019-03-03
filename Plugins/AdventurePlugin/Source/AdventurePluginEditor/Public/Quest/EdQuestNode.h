@@ -7,7 +7,7 @@
 #include "EdQuestNode.generated.h"
 
 /**
-* Class representing quest node behavior in editor (its pins, copying/deleting etc.)
+* Class representing quest node (UQuestGraphNode) behavior in editor (its pins, copying/deleting etc.)
 */
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdQuestNode : public UEdNode_GenericGraphNode

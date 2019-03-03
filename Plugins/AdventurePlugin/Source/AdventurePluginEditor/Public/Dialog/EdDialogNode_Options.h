@@ -35,9 +35,9 @@ public:
 
 	/**
 	* This method is called when the graph is rebuilding, for every output pin and
-	* the node connected to it. It sets the child node to the parent's ChildFallback
+	* the node connected to it. It sets the child node to the parent's UDialogGraphNode_Options#ChildFallback
 	* property if the output pin's name is "FB", otherwise it puts the child node to
-	* the parent's ChildOptions map, with number of the output pin as a key.
+	* the parent's UDialogGraphNode_Options#ChildOptions map, with number of the output pin as a key.
 	* @param Pin Output pin of this node with valid child node connected
 	* @param Child Child node connected to this output pin
 	*/

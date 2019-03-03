@@ -26,7 +26,7 @@ public:
 	/**
 	* Called when a Dialog line finishes.
 	* @param DialogController Dialog controller which started the dialog line execution.
-	* @return True if the execution should continue, i.e. the node was waiting for this callback, otherwisefalse.
+	* @return True if the execution should continue, i.e. the node was waiting for this callback, otherwise false.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Adventure Plugin|Dialog")
 	bool ShowDialogLineCallback(UDialogController* DialogController);

@@ -8,9 +8,9 @@ class ICombinationInterface;
 class UAdventurePluginGameContext;
 
 /**
-* Represents an object that can be combined with other some other object, e.g. inventory items and characters. Must be overriden.
-* All combinations should be added in the InitCombinations method to allow showing of combinations in editor. @see UCombinableObject#InitCombinations()
-* Init() method must be called before using it, otherwise combinations will not work. @see UCombinableObject#Init()
+* Represents an object that can be combined with some other object, e.g. inventory items and characters. Must be overriden.
+* All combinations should be added in the InitCombinations() method to allow showing of combinations in editor.
+* Init() method must be called before using it, otherwise combinations will not work.
 * All non-abstract combinable items should be done in blueprints, otherwise combinations will not work correctly.
 */
 UCLASS(Abstract, BlueprintType, Blueprintable)
@@ -44,7 +44,7 @@ public:
 
 	/**
 	* Registers a new combination on this object.
-	* Do not call outside of the InitCombinations method, otherwise the combinations will not be displayed correctly.
+	* Do not call outside of the InitCombinations() method, otherwise the combinations will not be displayed correctly.
 	* @param ToAdd The combination object that should be added to the list of supported combinations.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
@@ -63,7 +63,7 @@ public:
 
 	/**
 	* Tries to find and return a combination between this and a specified object.
-	* Do not execute this combination directly, call, ExecuteCombination on this object. @see UCombinableObject#ExecuteCombination
+	* Do not execute this combination directly, call, ExecuteCombination() on this object.
 	* @param OtherObject The object with which this item should be combined.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The combination between the two objects, or null if such a combination does not exist.
@@ -92,7 +92,7 @@ public:
 protected:
 
 	/**
-	* If true, RefreshCombinations method is currently being executed and combinations an be added without warnings.
+	* If true, RefreshCombinations() method is currently being executed and combinations an be added without warnings.
 	*/
 	UPROPERTY(Transient)
 	bool bIsRefreshingCombinations;
@@ -109,7 +109,7 @@ protected:
 	TArray<TScriptInterface<ICombinationInterface>> Combinations;
 
 	/**
-	* Helper for GetCombinationWithObject. Tries to find a combination with other object, but only using combinations defined on this object.
+	* Helper for GetCombinationWithObject(). Tries to find a combination with other object, but only using combinations defined on this object.
 	* @param OtherObject The combination with which this object should be combined.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/

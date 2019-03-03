@@ -8,7 +8,7 @@
 #include "ItemManager.generated.h"
 
 /**
-* This class is responsible for retrieving item instances for item classes.
+* This class is responsible for retrieving item instances for UInventoryItem classes.
 * There should always be only one instance of one item class, this manager is where that instance is stored and retrieved from.
 */
 UCLASS(Blueprintable)

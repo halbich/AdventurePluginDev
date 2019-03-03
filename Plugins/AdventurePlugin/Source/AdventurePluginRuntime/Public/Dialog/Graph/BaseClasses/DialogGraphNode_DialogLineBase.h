@@ -25,7 +25,7 @@ public:
 	FText DialogText;
 
 	/**
-	* If not empty, this text will be used instead of DialogText when presenting this line as an option to the player.
+	* If not empty, this text will be used instead of UDialogGraphNode_DialogLineBase#DialogText when presenting this line as an option to the player.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	FText OptionText;
@@ -43,7 +43,7 @@ public:
 	bool bSkippable = true;
 
 	/**
-	* If set and dialog sound is null, the text should stay on this screen for this amount of seconds.
+	* If set and UDialogGraphNode_DialogLineBase#DialogSound is null, the text should stay on the screen for this amount of seconds.
 	* If sound is defined this is ignored.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
@@ -86,7 +86,7 @@ public:
 #endif
 
 	/**
-	* Returns the speaker associated with this dialogue line. Must be overriden.
+	* Returns the speaker associated with this dialog line. Must be overriden.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The speaker associated with this dialog line.
 	*/

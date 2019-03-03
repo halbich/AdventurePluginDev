@@ -21,7 +21,7 @@ public:
 	virtual const FPinConnectionResponse CanCreateConnection(const UEdGraphPin* A, const UEdGraphPin* B) const override;
 
 	/**
-	* Populates new graph with any default nodes. In this case, adds End node.
+	* Populates new graph with any default nodes. In this case, adds UQuestGraphNode_End node.
 	* @param	Graph	Graph to add the default nodes to
 	*/
 	virtual void CreateDefaultNodesForGraph(UEdGraph& Graph) const override;

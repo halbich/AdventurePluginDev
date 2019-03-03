@@ -15,7 +15,7 @@ class UEdGraph_GenericGraph;
 class SEdNode_GenericGraphNode;
 
 /**
-* Class representing generic node behavior in editor (its pins, copying/deleting etc.)
+* Class representing generic node (UGenericGraphNode) behavior in editor (its pins, copying/deleting etc.)
 */
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdNode_GenericGraphNode : public UEdGraphNode
@@ -77,13 +77,13 @@ public:
 	*/
 	virtual FLinearColor GetBackgroundColor() const;
 
-	/*
+	/**
 	* Returns the first input pin of this node
 	* @return Input pin
 	*/
 	virtual UEdGraphPin* GetInputPin() const;
 
-	/*
+	/**
 	* Returns the first output pin of this node
 	* @return Output pin
 	*/
