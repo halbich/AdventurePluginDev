@@ -106,5 +106,5 @@ protected:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	void SetItems(const TArray<UInventoryItem*>& NewItems, UAdventurePluginGameContext* GameContext);
+	virtual void SetItems(const TArray<UInventoryItem*>& NewItems, UAdventurePluginGameContext* GameContext);
 };
