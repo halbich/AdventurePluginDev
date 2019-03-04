@@ -21,7 +21,7 @@ public:
 	UDialogGraphNode_IfString()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Branch on string variable");
+		ContextMenuName = FText::FromString("Branch on string variable equality with a constant");
 #endif
 	}
 

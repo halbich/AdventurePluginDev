@@ -10,6 +10,7 @@
 /**
 * Class representing behavior of a UDialogGraphNode_IfInInventory dialog node with one input pin and two output pins
 * labeled "True" and "False".
+* Register this editor only for runtime nodes inheriting from UDialogGraphNode_IfInInventory.
 */
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdDialogNode_IfInInventory : public UEdDialogNode_TrueFalse
@@ -32,6 +33,11 @@ public:
 	{
 		UDialogGraphNode_IfInInventory* TrueFalseNode = CastChecked<UDialogGraphNode_IfInInventory>(GenericGraphNode);
 		UDialogGraphNode* DialogChild = CastChecked<UDialogGraphNode>(Child);
+		if (!IsValid(TrueFalseNode) || !IsValid(DialogChild))
+		{
+			check(TrueFalseNode && DialogChild && "Invalid inputs for UEdDialogNode_IfInInventory.");
+			return;
+		}
 		if (Pin->PinName == PinNameTrue)
 		{
 			TrueFalseNode->ChildTrue = DialogChild;

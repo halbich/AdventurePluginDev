@@ -44,6 +44,11 @@ public:
 	{
 		UDialogGraphNode_TrueFalse* TrueFalseNode = CastChecked<UDialogGraphNode_TrueFalse>(GenericGraphNode);
 		UDialogGraphNode* DialogChild = CastChecked<UDialogGraphNode>(Child);
+		if (!IsValid(TrueFalseNode) || !IsValid(DialogChild))
+		{
+			check(false && "Invalid input for UEdDialogNode_TrueFalse");
+			return;
+		}
 		if (Pin->PinName == PinNameTrue)
 		{
 			TrueFalseNode->ChildTrue = DialogChild;

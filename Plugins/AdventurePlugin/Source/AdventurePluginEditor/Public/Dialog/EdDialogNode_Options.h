@@ -45,7 +45,15 @@ public:
 	{
 		UDialogGraphNode_Options* OptionsNode = CastChecked<UDialogGraphNode_Options>(GenericGraphNode);
 		UDialogGraphNode* DialogChild = CastChecked<UDialogGraphNode>(Child);
-		if (Pin->PinName == PinNameFallback) OptionsNode->ChildFallback = DialogChild;
+		if (!IsValid(OptionsNode) || !IsValid(DialogChild))
+		{
+			check(false && "Invalid inputs for the EDDialogNode_Options");
+			return;
+		}
+		if (Pin->PinName == PinNameFallback)
+		{
+			OptionsNode->ChildFallback = DialogChild;
+		}
 		else
 		{
 			FString NumString = Pin->PinName.GetPlainNameString();

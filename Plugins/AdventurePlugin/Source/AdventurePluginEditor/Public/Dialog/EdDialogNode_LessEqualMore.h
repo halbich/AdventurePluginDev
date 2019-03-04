@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Slate.h"
 #include "Dialog/EdDialogNode.h"
-#include "Dialog/Graph/DialogGraphNode_IfInteger.h"
+#include "Dialog/Graph/BaseClasses/DialogGraphNode_LessEqualMoreBase.h"
 #include "EdDialogNode_LessEqualMore.generated.h"
 
 const FName PinNameLess("<");
@@ -13,6 +13,7 @@ const FName PinNameMore(">");
 /**
 * Class representing behavior of a dialog node with one input pin and three output pins
 * labeled "<", "=" and ">".
+* Register this editor node only for runtime node inheriting from UDialogGraphNode_LessEqualMoreBase.
 */
 UCLASS()
 class ADVENTUREPLUGINEDITOR_API UEdDialogNode_LessEqualMore : public UEdDialogNode
@@ -37,17 +38,31 @@ public:
 
 	/**
 	* This method is called when the graph is rebuilding, for every output pin and
-	* the node connected to it. It sets the child node to the parent's UDialogGraphNode_IfInteger#ChildLess,
-	* UDialogGraphNode_IfInteger#ChildEqual or UDialogGraphNode_IfInteger#ChildMore property depending on the output pin's name.
+	* the node connected to it. It sets the child node to the parent's UDialogGraphNode_LessEqualMoreBase#ChildLess,
+	* UDialogGraphNode_LessEqualMoreBase#ChildEqual or UDialogGraphNode_LessEqualMoreBase#ChildMore property depending on the output pin's name.
 	* @param Pin Output pin of this node with valid child node connected
 	* @param Child Child node connected to this output pin
 	*/
 	virtual void AddSpecialChild(const UEdGraphPin* Pin, UGenericGraphNode* Child) override
 	{
-		UDialogGraphNode_IfInteger* IntegerNode = CastChecked<UDialogGraphNode_IfInteger>(GenericGraphNode);
+		UDialogGraphNode_LessEqualMoreBase* LessEqualMoreNode = CastChecked<UDialogGraphNode_LessEqualMoreBase>(GenericGraphNode);
 		UDialogGraphNode* DialogChild = CastChecked<UDialogGraphNode>(Child);
-		if (Pin->PinName == PinNameLess) IntegerNode->ChildLess = DialogChild;
-		else if (Pin->PinName == PinNameEqual) IntegerNode->ChildEqual = DialogChild;
-		else if (Pin->PinName == PinNameMore) IntegerNode->ChildMore = DialogChild;
+		if (!IsValid(LessEqualMoreNode) || !IsValid(DialogChild))
+		{
+			check(false && "Invalid input for EDialogNode_LessEqualMore.");
+			return;
+		}
+		if (Pin->PinName == PinNameLess) 
+		{
+			LessEqualMoreNode->ChildLess = DialogChild;
+		}
+		else if (Pin->PinName == PinNameEqual)
+		{
+			LessEqualMoreNode->ChildEqual = DialogChild;
+		}
+		else if (Pin->PinName == PinNameMore)
+		{
+			LessEqualMoreNode->ChildMore = DialogChild;
+		}
 	}
 };
