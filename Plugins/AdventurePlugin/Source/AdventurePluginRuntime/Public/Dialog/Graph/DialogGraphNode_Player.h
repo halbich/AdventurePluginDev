@@ -22,7 +22,7 @@ public:
 	UDialogGraphNode_Player()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Player Line");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_Player_ContextName", "Player Line");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "LineCategory", "Lines");
 #endif
 		DialogText = NSLOCTEXT("DialogGraphNode_Player", "DefaultDialog", "<Insert something clever>");

@@ -23,7 +23,7 @@ public:
 	UDialogGraphNode_Goto()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Goto");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_Goto_ContextName", "Goto");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}

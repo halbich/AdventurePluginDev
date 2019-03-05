@@ -17,7 +17,7 @@ public:
 	UDialogGraphNode_Comment()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Comment");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_Comment_ContextName", "Comment");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}

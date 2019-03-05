@@ -19,7 +19,7 @@ public:
 	UDialogGraphNode_SetString()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Set string variable");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_SetString_ContextName", "Set string variable");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}

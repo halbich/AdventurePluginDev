@@ -19,7 +19,7 @@ public:
 	UDialogGraphNode_SaveState()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Save State");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_SaveState_ContextName", "Save State");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}

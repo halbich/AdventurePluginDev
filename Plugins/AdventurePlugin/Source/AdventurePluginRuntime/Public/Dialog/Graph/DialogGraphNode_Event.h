@@ -25,7 +25,7 @@ public:
 	UDialogGraphNode_Event()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Event");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_Event_ContextName", "Event");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}

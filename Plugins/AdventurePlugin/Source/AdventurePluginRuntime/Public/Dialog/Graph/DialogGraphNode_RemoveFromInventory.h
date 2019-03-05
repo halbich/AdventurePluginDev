@@ -22,7 +22,7 @@ public:
 	UDialogGraphNode_RemoveFromInventory()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Remove item from inventory");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_RemoveFromInventory_ContextName", "Remove item from inventory");
 #endif
 	}
 

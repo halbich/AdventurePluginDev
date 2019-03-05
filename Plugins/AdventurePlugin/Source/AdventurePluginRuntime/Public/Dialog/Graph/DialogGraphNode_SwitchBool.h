@@ -19,7 +19,7 @@ public:
 	UDialogGraphNode_SwitchBool()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Switch value of bool variable");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_SwitchBool_ContextName", "Switch value of bool variable");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}

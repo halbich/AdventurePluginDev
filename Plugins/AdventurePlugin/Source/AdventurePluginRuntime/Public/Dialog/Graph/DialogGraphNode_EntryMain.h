@@ -20,7 +20,7 @@ public:
 	UDialogGraphNode_EntryMain()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Main Entry Point");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_EntryMain_ContextName", "Main Entry Point");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}

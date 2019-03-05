@@ -20,7 +20,7 @@ public:
 	UDialogGraphNode_Exit()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Exit");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_Exit_ContextName", "Exit");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 	}

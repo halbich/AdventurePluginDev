@@ -19,7 +19,7 @@ public:
 	UDialogGraphNode_IfIntegerVariable()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Branch on integer variable comparison with a variable");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_IfIntegerVariable_ContextName", "Branch on integer variable comparison with a variable");
 #endif
 	}
 

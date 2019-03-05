@@ -22,7 +22,7 @@ public:
 	UDialogGraphNode_AddToInventory()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Add item to inventory");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_AddToInventory_ContextName", "Add item to inventory");
 #endif
 	}
 

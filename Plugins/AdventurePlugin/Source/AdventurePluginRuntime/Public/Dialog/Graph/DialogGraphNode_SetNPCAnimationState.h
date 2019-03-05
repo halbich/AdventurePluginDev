@@ -23,7 +23,7 @@ public:
 	UDialogGraphNode_SetNPCAnimationState()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Set NPC Animation State");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_SetNPCAnimationState_ContextName", "Set NPC Animation State");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "AnimationCategory", "Animations");
 #endif
 	}

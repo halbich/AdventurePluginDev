@@ -19,7 +19,7 @@ public:
 	UDialogGraphNode_IfQuestComplete()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Branch on quest completion");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_IfQuestComplete_ContextName", "Branch on quest completion");
 #endif
 	}
 

@@ -20,7 +20,7 @@ public:
 	UDialogGraphNode_SetBool()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Set value of bool variable");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_SetBool_ContextName", "Set value of bool variable");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}

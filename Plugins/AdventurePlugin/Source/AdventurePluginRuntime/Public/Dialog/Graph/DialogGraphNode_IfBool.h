@@ -21,7 +21,7 @@ public:
 	UDialogGraphNode_IfBool()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Branch on bool variable.");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_IfBool_ContextName", "Branch on bool variable.");
 #endif
 	}
 

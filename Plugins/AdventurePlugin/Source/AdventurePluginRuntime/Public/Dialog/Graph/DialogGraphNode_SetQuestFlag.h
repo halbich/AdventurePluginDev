@@ -19,7 +19,7 @@ public:
 	UDialogGraphNode_SetQuestFlag()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Set Quest Flag");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_SetQuestFlag_ContextName", "Set Quest Flag");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}

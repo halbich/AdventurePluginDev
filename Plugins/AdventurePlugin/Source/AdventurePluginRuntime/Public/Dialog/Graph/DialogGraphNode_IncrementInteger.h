@@ -19,7 +19,7 @@ public:
 	UDialogGraphNode_IncrementInteger()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Increment integer variable");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_IncrementInteger_ContextName", "Increment integer variable");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "ManipulationCategory", "Data Manipulation");
 #endif
 	}

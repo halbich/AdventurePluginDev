@@ -25,7 +25,7 @@ public:
 	{
 #if WITH_EDITORONLY_DATA
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
-		ContextMenuName = FText::FromString("Branch on item in inventory");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_IfInInventory_ContextName", "Branch on item in inventory");
 #endif
 	}
 

@@ -24,7 +24,7 @@ public:
 	UDialogGraphNode_PlayPCAnimationOnce()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Play PC Animation Once");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_PlayPCAnimationOnce_ContextName", "Play PC Animation Once");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "AnimationCategory", "Animations");
 #endif
 	}

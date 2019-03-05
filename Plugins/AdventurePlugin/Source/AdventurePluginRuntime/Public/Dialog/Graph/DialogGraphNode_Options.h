@@ -29,7 +29,7 @@ public:
 	UDialogGraphNode_Options()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Options");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_Options_ContextName", "Options");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "OtherCategory", "Other");
 #endif
 		ChoiceCount = 1;

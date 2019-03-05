@@ -20,7 +20,7 @@ public:
 	UDialogGraphNode_ResetPCAnimationState()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Reset PC Animation State");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_ResetPCAnimationState_ContextName", "Reset PC Animation State");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "AnimationCategory", "Animations");
 #endif
 	}

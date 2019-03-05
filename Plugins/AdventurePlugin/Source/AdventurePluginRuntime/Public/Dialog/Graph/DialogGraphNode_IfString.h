@@ -21,7 +21,7 @@ public:
 	UDialogGraphNode_IfString()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Branch on string variable equality with a constant");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_IfString_ContextName", "Branch on string variable equality with a constant");
 #endif
 	}
 

@@ -26,7 +26,7 @@ public:
 	UDialogGraphNode_Once()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Once");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_Once_ContextName", "Once");
 		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
 #endif
 	}

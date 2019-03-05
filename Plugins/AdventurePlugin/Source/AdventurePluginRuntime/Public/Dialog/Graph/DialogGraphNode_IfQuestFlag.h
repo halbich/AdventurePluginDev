@@ -21,7 +21,7 @@ public:
 	UDialogGraphNode_IfQuestFlag()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Branch on Quest Flag");
+		ContextMenuName = NSLOCTEXT("AdventurePlugin", "UDialogGraphNode_IfQuestFlag_ContextName", "Branch on Quest Flag");
 #endif
 	}
 
