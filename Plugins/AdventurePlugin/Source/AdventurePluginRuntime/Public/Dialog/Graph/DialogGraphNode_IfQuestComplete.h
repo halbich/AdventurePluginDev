@@ -34,7 +34,7 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_IfQuestComplete", "NodeTitle", "IF {0} IS COMPLETE"),
-			FText::FromString(IsValid(Quest) ? Quest->Name : "<EMPTY>"));
+			FText::FromString(IsValid(Quest) ? Quest->Name : TEXT("<EMPTY>")));
 	}
 
 #endif

@@ -42,9 +42,9 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_IfBoolVariable", "NodeTitle", "IF {0}->{1} EQUALS {2}->{3}"),
-			FText::FromString(IsValid(FirstBool.Quest) ? FirstBool.Quest->Name : "<EMPTY>"),
+			FText::FromString(IsValid(FirstBool.Quest) ? FirstBool.Quest->Name : TEXT("<EMPTY>")),
 			FText::FromName(FirstBool.BoolName),
-			FText::FromString(IsValid(SecondBool.Quest) ? SecondBool.Quest->Name : "<EMPTY>"),
+			FText::FromString(IsValid(SecondBool.Quest) ? SecondBool.Quest->Name : TEXT("<EMPTY>")),
 			FText::FromName(SecondBool.BoolName));
 	}
 

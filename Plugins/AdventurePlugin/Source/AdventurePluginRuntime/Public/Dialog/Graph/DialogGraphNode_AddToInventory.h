@@ -31,7 +31,7 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_IfInInventory", "NodeTitle", "ADD {0} TO INVENTORY"),
-			IsValid(Item) ? Item.GetDefaultObject()->Name : FText::FromString("<EMPTY>"));
+			IsValid(Item) ? Item.GetDefaultObject()->Name : FText::FromString(TEXT("<EMPTY>")));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const

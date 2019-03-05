@@ -40,9 +40,9 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_IfIntegerVariable", "NodeTitle", "COMPARE {0}->{1} WITH {2}->{3}"),
-			FText::FromString(IsValid(FirstInteger.Quest) ? FirstInteger.Quest->Name : "<EMPTY>"),
+			FText::FromString(IsValid(FirstInteger.Quest) ? FirstInteger.Quest->Name : TEXT("<EMPTY>")),
 			FText::FromName(FirstInteger.IntegerName),
-			FText::FromString(IsValid(SecondInteger.Quest) ? SecondInteger.Quest->Name : "<EMPTY>"),
+			FText::FromString(IsValid(SecondInteger.Quest) ? SecondInteger.Quest->Name : TEXT("<EMPTY>")),
 			FText::FromName(SecondInteger.IntegerName));
 	}
 

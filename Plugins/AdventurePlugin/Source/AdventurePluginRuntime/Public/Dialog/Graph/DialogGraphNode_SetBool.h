@@ -42,7 +42,7 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_SetBool", "NodeTitle", "Set {0}->{1} TO {2}"),
-			FText::FromString(IsValid(Bool.Quest) ? Bool.Quest->Name : "<EMPTY>"),
+			FText::FromString(IsValid(Bool.Quest) ? Bool.Quest->Name : TEXT("<EMPTY>")),
 			FText::FromName(Bool.BoolName),
 			bConstant ? NSLOCTEXT("AdventurePlugin", "TrueConstant", "true") : NSLOCTEXT("AdventurePlugin","FalseConstant", "false"));
 	}

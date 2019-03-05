@@ -28,7 +28,7 @@ public:
 
 	virtual inline FText GetNodeTitle() const
 	{
-		return FText::FromString("SAVE STATE");
+		return FText::FromString(TEXT("SAVE STATE"));
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const

@@ -41,7 +41,7 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_SetString", "NodeTitle", "SET {0}->{1} TO {2}"),
-			FText::FromString(IsValid(String.Quest) ? String.Quest->Name : "<EMPTY>"),
+			FText::FromString(IsValid(String.Quest) ? String.Quest->Name : TEXT("<EMPTY>")),
 			FText::FromName(String.StringName), 
 			FText::FromString(Constant));
 	}

@@ -35,7 +35,7 @@ public:
 	virtual inline FText GetNodeTitle() const
 	{
 		return FText::Format(NSLOCTEXT("DialogGraphNode_IncrementInteger", "NodeTitle", "INCREMENT {0}->{1}"),
-			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : "<EMPTY>"),
+			FText::FromString(IsValid(Integer.Quest) ? Integer.Quest->Name : TEXT("<EMPTY>")),
 			FText::FromName(Integer.IntegerName));
 	}
 
