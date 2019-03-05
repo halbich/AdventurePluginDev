@@ -11,6 +11,7 @@
 #include "InventoryController.h"
 #include "AdventurePluginRuntime.h"
 #include "AdventureCharacter.h"
+#include "InventoryItem.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
 
 /**
@@ -61,7 +62,32 @@ public:
 	static void ShowInventory(UAdventurePluginGameContext* GameContext);
 
 	/**
-	* Retrieves the only instance of the requested item class. Neccessary to access any functionality provided by the Item class. Always use this method, never instantiate UInventoryItem directly.
+	* Adds an item to the player's inventory
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param Item The item to add to the inventory.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
+	static void AddItemToInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item);
+
+	/**
+	* Remoes an item from the player's inventory
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param Item The item to remove from the inventory.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
+	static void RemoveItemFromInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item);
+
+	/**
+	* Checks if the player has the specified item in inventory.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param Item The item whose existence is in question.
+	* @return True if the specified item is in inventory, otherwise false.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Inventory")
+	static bool HasItemInInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item);
+
+	/**
+	* Retrieves the only instance of the requested item class. Necessary to access any functionality provided by the Item class. Always use this method, never instantiate UInventoryItem directly.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param Item The class whose instance is requested.
 	* @return The only instance of this item.

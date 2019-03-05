@@ -126,7 +126,7 @@ public:
 	* @return The list of true nodes.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-	TArray<UQuestGraphNode*> GetTrueNodes(UAdventurePluginGameContext* GameContext);
+	TArray<UQuestGraphNode*> GetFullfilableNodes(UAdventurePluginGameContext* GameContext);
 
 	/**
 	* Returns true if this graph is complete.

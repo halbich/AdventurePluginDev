@@ -1,5 +1,6 @@
 #include "AdventurePluginBlueprintLibrary.h"
 #include "ItemManager.h"
+#include "Inventory.h"
 #include "AdventureCharacterManager.h"
 #include "AdventurePluginGameContext.h"
 #include "AdventurePluginGameInstance.h"
@@ -81,6 +82,63 @@ void UAdventurePluginBlueprintLibrary::SetInventoryVisibility(UAdventurePluginGa
 	{
 		GameContext->InventoryController->HideInventory(GameContext);
 	}
+}
+void UAdventurePluginBlueprintLibrary::AddItemToInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item)
+{
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("AddItemToInventory")))
+	{
+		return;
+	}
+	if (!IsValid(Item))
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_AddItemToInventory_ItemNotValid", "AddItemToInventory: Invalid item passed as an argument."));
+		return;
+	}
+	UInventory* Inventory = GameContext->InventoryController->GetInventory();
+	if (!IsValid(Inventory))
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_AddItemToInventory_InventoryNotValid", "AddItemToInventory: The inventory on on the inventory controller is not valid."));
+		return;
+	}
+	Inventory->AddItem(Item, GameContext);
+}
+void UAdventurePluginBlueprintLibrary::RemoveItemFromInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item)
+{
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("RemoveItemFromInventory")))
+	{
+		return;
+	}
+	if (!IsValid(Item))
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_RemoveItemFromInventory_ItemNotValid", "RemoveItemFromInventory: Invalid item passed as an argument."));
+		return;
+	}
+	UInventory* Inventory = GameContext->InventoryController->GetInventory();
+	if (!IsValid(Inventory))
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_RemoveItemFromInventory_InventoryNotValid", "RemoveItemFromInventory: The inventory on on the inventory controller is not valid."));
+		return;
+	}
+	Inventory->RemoveItem(Item, GameContext);
+}
+bool UAdventurePluginBlueprintLibrary::HasItemInInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item)
+{
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("HasItemInInventory")))
+	{
+		return false;
+	}
+	if (!IsValid(Item))
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_HasItemInInventory_ItemNotValid", "HasItemInInventory: Invalid item passed as an argument."));
+		return false;
+	}
+	UInventory* Inventory = GameContext->InventoryController->GetInventory();
+	if (!IsValid(Inventory))
+	{
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_HasItemInInventory_InventoryNotValid", "HasItemInInventory: The inventory on on the inventory controller is not valid."));
+		return false;
+	}
+	return Inventory->HasItem(Item, GameContext);
 }
 
 UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* GameContext, TSubclassOf<UInventoryItem> Item)

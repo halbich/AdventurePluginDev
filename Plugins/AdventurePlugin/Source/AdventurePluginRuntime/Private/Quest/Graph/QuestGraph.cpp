@@ -189,7 +189,7 @@ bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName Vari
 	return true;
 }
 
-TArray<UQuestGraphNode*> UQuestGraph::GetTrueNodes(UAdventurePluginGameContext* GameContext)
+TArray<UQuestGraphNode*> UQuestGraph::GetFullfilableNodes(UAdventurePluginGameContext* GameContext)
 {
 	TArray<UQuestGraphNode*> TrueNodes = TArray<UQuestGraphNode*>();
 	for (UGenericGraphNode* ChildNode : AllNodes)
@@ -197,7 +197,7 @@ TArray<UQuestGraphNode*> UQuestGraph::GetTrueNodes(UAdventurePluginGameContext* 
 		UQuestGraphNode* ChildQuestNode = Cast<UQuestGraphNode>(ChildNode);
 		if (!IsValid(ChildQuestNode))
 		{
-			LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "QuestGraph_GetTrueNodes_InvalidQuestNode", "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph."), GetGraphNameText()));
+			LOG_Error(FText::Format(NSLOCTEXT("AdventurePlugin", "QuestGraph_GetFullfilableNodes_InvalidQuestNode", "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph."), GetGraphNameText()));
 			continue;
 		}
 		if (!ChildQuestNode->IsTrue(GameContext) && ChildQuestNode->ParentNodesTrue(GameContext)) {
