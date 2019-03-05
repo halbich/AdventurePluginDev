@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DialogGraphNode.h"
+#include "DialogGraphNode_LessEqualMoreBase.h"
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IfInteger.generated.h"
@@ -10,7 +10,7 @@
 * This node is a branch node that can return a different next node based on a value of an integer variable on a quest.
 */
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfInteger : public UDialogGraphNode
+class ADVENTUREPLUGINRUNTIME_API UDialogGraphNode_IfInteger : public UDialogGraphNode_LessEqualMoreBase
 {
 	GENERATED_BODY()
 
@@ -19,8 +19,7 @@ public:
 	UDialogGraphNode_IfInteger()
 	{
 #if WITH_EDITORONLY_DATA
-		ContextMenuName = FText::FromString("Branch on integer variable");
-		ContextMenuCategory = NSLOCTEXT("NodeCategories", "BranchingCategory", "Branching");
+		ContextMenuName = FText::FromString("Branch on integer variable comparison with a constant");
 #endif
 	}
 
@@ -36,34 +35,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "BranchOnIntegerNode")
 	int32 Constant;
 
-	/**
-	* The child with which we should continue if the variable UDialogGraphNode_IfInteger#Integer
-	* is less than the constant UDialogGraphNode_IfInteger#Constant.
-	*/
-	UPROPERTY(BlueprintReadOnly)
-	UDialogGraphNode* ChildLess;
-
-	/**
-	* The child with which we should continue if the variable UDialogGraphNode_IfInteger#Integer
-	* is equal to the constant UDialogGraphNode_IfInteger#Constant.
-	*/
-	UPROPERTY(BlueprintReadOnly)
-	UDialogGraphNode* ChildEqual;
-
-	/**
-	* The child with which we should continue if the variable UDialogGraphNode_IfInteger#Integer
-	* is more than the constant UDialogGraphNode_IfInteger#Constant.
-	*/
-	UPROPERTY(BlueprintReadOnly)
-	UDialogGraphNode* ChildMore;
-
-	virtual void ResetSpecialChildren() override
-	{
-		ChildLess = nullptr;
-		ChildEqual = nullptr;
-		ChildMore = nullptr;
-	}
-
 #if WITH_EDITOR
 
 	virtual inline FText GetNodeTitle() const
@@ -73,17 +44,6 @@ public:
 			FText::FromName(Integer.IntegerName),
 			Constant);
 	}
-
-	virtual inline FLinearColor GetBackgroundColor() const
-	{
-		return FLinearColor::White;
-	}
-
-	virtual inline bool CanCreateConnection(UGenericGraphNode* Other, FText& ErrorMessage)
-	{
-		return true;
-	}
-
 #endif
 
 	/**

@@ -30,7 +30,7 @@
 #include "Dialog/Graph/DialogGraphNode_Exit.h"
 #include "Dialog/Graph/DialogGraphNode_Options.h"
 #include "Dialog/Graph/DialogGraphNode_EntryMain.h"
-#include "Dialog/Graph/DialogGraphNode_IfInteger.h"
+#include "Dialog/Graph/BaseClasses/DialogGraphNode_LessEqualMoreBase.h"
 #include "Dialog/Graph/DialogGraphNode_IfInInventory.h"
 #include "Dialog/Graph/DialogGraphNode_EntrySecondary.h"
 #include "Dialog/Graph/BaseClasses/DialogGraphNode_ItemBase.h"
@@ -60,8 +60,7 @@ void FAdventurePluginDialogEditor::StartupModule()
 
 	/* Registering editor nodes for runtime nodes */
 	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_TrueFalse::StaticClass(), UEdDialogNode_TrueFalse::StaticClass());
-	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_IfInInventory::StaticClass(), UEdDialogNode_TrueFalse::StaticClass());
-	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_IfInteger::StaticClass(), UEdDialogNode_LessEqualMore::StaticClass());
+	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_LessEqualMoreBase::StaticClass(), UEdDialogNode_LessEqualMore::StaticClass());
 	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_Options::StaticClass(), UEdDialogNode_Options::StaticClass());
 	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_EntryMain::StaticClass(), UEdDialogNode_NoInput::StaticClass());
 	AdventurePluginEditor.RegisterEditorNodeForRuntimeNode(UDialogGraphNode_EntrySecondary::StaticClass(), UEdDialogNode_NoInput::StaticClass());
