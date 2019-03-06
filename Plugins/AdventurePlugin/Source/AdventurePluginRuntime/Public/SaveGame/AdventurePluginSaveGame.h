@@ -62,14 +62,14 @@ public:
 	/**
 	* The name of this save game.
 	*/
-	UPROPERTY(VisibleAnywhere, Category = Basic, meta = (DisplayName = "Slot Name"))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Basic, meta = (DisplayName = "Slot Name"))
 	FString SaveSlotName;
 
 	/**
 	* For some platforms, master user index to identify the user doing the saving..
 	*/
-	UPROPERTY(VisibleAnywhere, Category = Basic, meta = (DisplayName="User Index"))
-	uint32 SaveUserIndex;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Basic, meta = (DisplayName="User Index"))
+	int32 SaveUserIndex;
 
 	/**
 	* Retrieves the specific boolean variable, or the default value if the variable was not yet stored.

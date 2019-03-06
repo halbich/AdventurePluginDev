@@ -22,7 +22,6 @@ public:
 		ContextMenuName = NSLOCTEXT("QuestGraphNode_Subquest", "ContextMenuName", "Subquest");
 #endif
 	}
-
 	/**
 	* The quest that must be true for this node to be true.
 	*/
