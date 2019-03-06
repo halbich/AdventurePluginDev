@@ -1,43 +1,43 @@
 {
-  "FileVersion": 1,
-  "Version": 1,
-  "VersionName": "0.1",
-  "FriendlyName": "Adventure Plugin",
-  "Description": "Plugin for creating adventures",
-  "Category": "AdventurePlugin",
-  "CreatedBy": "TTTeam",
-  "CreatedByURL": "http://ttteam.cz",
-  "DocsURL": "",
-  "MarketplaceURL": "",
-  "SupportURL": "",
-  "EnabledByDefault": true,
-  "CanContainContent": true,
-  "IsBetaVersion": true,
-  "Installed": false,
-  "Modules": [
-    {
-      "Name": "AdventurePluginEditor",
-      "Type": "Developer",
-      "LoadingPhase": "Default"
-    },
-    {
-      "Name": "AdventurePluginRuntime",
-      "Type": "Runtime",
-      "LoadingPhase": "PreDefault",
-      "WhitelistPlatforms": [
-        "Win64",
-        "Win32"
-      ]
-    },
-    {
-      "Name": "AdventurePluginQuestEditor",
-      "Type": "Editor",
-      "LoadingPhase": "Default"
-    },
-    {
-      "Name": "AdventurePluginDialogEditor",
-      "Type": "Editor",
-      "LoadingPhase": "Default"
-    }
-  ]
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "Adventure Plugin",
+	"Description": "Plugin for creating adventures",
+	"Category": "AdventurePlugin",
+	"CreatedBy": "TTTeam",
+	"CreatedByURL": "http://ttteam.cz",
+	"DocsURL": "http://www.ms.mff.cuni.cz/~polakma1/adventure-plugin/index.html",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "AdventurePluginEditor",
+			"Type": "Developer",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "AdventurePluginRuntime",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Win32"
+			]
+		},
+		{
+			"Name": "AdventurePluginQuestEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "AdventurePluginDialogEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
 }
