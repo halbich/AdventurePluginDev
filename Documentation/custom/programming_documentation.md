@@ -2,7 +2,7 @@
 
 # Introduction
 
-This document is intended for programmers who already understand the functions of ourplugin, know the basics of programming in Unreal Engine 4 and who wish to understand the inner workings of our plugin and who might even want to extend it. In the first chapter, which you are reading right now, we will explain the structure of the document. We will also mention things you should have done and should know before reading the rest of the document. In the next chapter we will introduce the basic structure of the plugin, as well as some principles that apply throughout the plugin. The chapter after that will give you a high level overview of the functionality of this plugin. After that we will explain some basic ways how you can extend the plugin functionality. And in the last chapter we will share some tips and tricks we think might be useful. We will also explain some problems we found during the development, so you can avoid repeating our mistakes.
+This document is intended for programmers who already understand the functions of our plugin, know the basics of programming in Unreal Engine 4 and who wish to understand the inner workings of our plugin and who might even want to extend it. In the first chapter, which you are reading right now, we will explain the structure of the document. We will also mention things you should have done and should know before reading the rest of the document. In the next chapter we will introduce the basic structure of the plugin, as well as some principles that apply throughout the plugin. The chapter after that will give you a high level overview of the functionality of this plugin. After that we will explain some basic ways how you can extend the plugin functionality. And in the last chapter we will share some tips and tricks we think might be useful. We will also explain some problems we found during the development, so you can avoid repeating our mistakes.
 
 ## Requirements
 
@@ -38,7 +38,7 @@ First of all, note that the code is documented and that there is a generated ref
 
 All public methods assume that they might be given invalid parameters, even if they are not directly callable from blueprints. So all of our public methods check the input parameters before doing anything. If they are invalid, the method is expected to do nothing, return a value least likely to cause any problems and log an error. Sometime we also use assertions instead of logging errors - that is when we are absolutely certain that this problem is a developer oversight, like not overriding a method and calling a pure virtual function. But even in those cases the plugin will not crash when in release mode.
 
-Speaking of pure virtual functions - Unreal Engine 4 does not support them, at least not directly. The problem is with Class Default Objects. For each object, even an abstract one, Unreal Engine 4 generates an instance of that object called Class Default Object. And you cannot instantiate a class with pure virtual functions. Unreal Engine does provide a macro PURE_VIRTUAL the programmers can use to identify them, but we do not use it because for two main reasons:
+Speaking of pure virtual functions - Unreal Engine 4 does not support them, at least not directly. The problem is with Class Default Objects. For each object, even an abstract one, Unreal Engine 4 generates an instance of that object called Class Default Object. And you cannot instantiate a class with pure virtual functions. Unreal Engine does provide a macro PURE_VIRTUAL the programmers can use to identify them, but we do not use it because of two main reasons:
 
 * PURE_VIRTUAL macro is not recognized by doxygen, so the information would not be visible in documentation.
 
@@ -50,11 +50,11 @@ We already mentioned what Class Default Objects, or CDO for short, are. As we us
 
 * Unreal Engine 4 uses them to create instances of that specific class. So when you want to create a new instance of a class, constructor is not called. Instead the CDO is just copied to another place in memory, creating a new instance of this class. While this might sound like an internal Unreal Engine 4 thing, it is important to be aware of this, as this is the main reason why you should not modify the CDO of a class unless you really know what you are doing.
 
-* We use them frequently to access the default values. For example, when creating a thumbnail for an Adventure Character blueprint, we do not have an instance of the Adventure Character class, just the UClass specifying which UAdventureCharacter subclass the asset represents. However, we can get a CDO of that UClass, cast it to UAdventureCharacter and get the icon of that character from there. And we could not do that using static methods, as we can only cast the CDO to UAdventureCharacter class, as we have no idea which specific class the blueprint represents.
+* We use them frequently to access the default values. For example, when creating a thumbnail for an Adventure Character blueprint, we do not have an instance of the Adventure Character class, just the UClass specifying which UAdventureCharacter subclass the asset represents. However, we can get a CDO of that UClass, cast it to UAdventureCharacter and get the icon of that character from there. And we could not do that using static methods, as we can only cast the CDO to UAdventureCharacter class, we have no idea which specific class the blueprint represents.
 
 * Class defaults are visible in the blueprint editor, so we can use the CDO of a class to display something to the designer. We use Class Default Objects to display registered combinations. However, be careful about modifying CDOs. All new instances of that class will also have those variables you modified on the CDO. We can use it in this case only because the variables modified are used only in editor. So they cannot affect the game itself.
 
-Game context is often passes as a parameters and checking if it is valid is a very common procedure. Because of that, UAdventurePluginGameContext class has a static method IsGameContextValid, which you can use to verify if the game context and all of its subclasses are valid.
+Game context is often passed as a parameter and checking if it is valid is a very common procedure. Because of that, UAdventurePluginGameContext class has a static method IsGameContextValid, which you can use to verify if the game context and all of its subclasses are valid.
 
 Speaking of validating, if you want your methods to check whether some variables are valid, we recommend you to not just check whether the variable is null, but to call the IsValid global method from Unreal Engine 4. This method does return false if the passed object is nullptr, but it also returns false if the object is about to be destroyed. That should not normally happen, but when it does those bugs are difficult to find and debug.
 
@@ -88,17 +88,19 @@ There are a number of classes that need to be set up for the assets to work corr
 
     * When you create a blueprint asset, every asset you create is a subclass of the asset class. This means that you can modify methods of the class in blueprints, but Unreal Engine does not support pickers with thumbnails. When you need to select the asset in editor, you need to set it in a variable of type Class Reference, so you also need to convert the class reference from your variable to an instance of the class.
 
-* For every asset we also have a factory class - UDialogGraphFactory, UQuestGraphFactory, UAdventureCharacterFactory, UInventoryItemFactory. These are required by Unreal Engine. They do not have to be registered anywhere, they are automatically detected by the engine. For Data Assets the factory only specifies that it can create an asset of the corresponding type. For Blueprint Assets the factory also defines which UBlueprint class should hold the newly created asset. The UBlueprint class can define thumbanils and are responsible for editing and compiling the class the blueprint represents.
+* For every asset we also have a factory class - UDialogGraphFactory, UQuestGraphFactory, UAdventureCharacterFactory, UInventoryItemFactory. These are required by Unreal Engine. They do not have to be registered anywhere, they are automatically detected by the engine. For Data Assets the factory only specifies that it can create an asset of the corresponding type. For Blueprint Assets the factory also defines which UBlueprint class should hold the newly created asset. The UBlueprint class can define thumbnails and are responsible for editing and compiling the class the blueprint represents.
 
 * For data assets we have also created editors that can edit the asset - FAssetEditor_DialogGraph, FAssetEditor_QuestGraph. They will be described in more detail later in this chapter.
 
 * We also had to create the FAssetTypeActions class for every asset - FAssetTypeActions_QuestGraph, FAssetTypeActions_DialogGraph, FAssetTypeActions_InventoryItem, FAssetTypeActions_AdventureCharacter. These are used to add the asset to the content browser’s menu. For data assets they also define which editor should be opened when editing that asset by overriding the OpenAssetEditor method. Without this a generic Data Asset editor would open. These must be explicitly registered in some module in the StartupModule method and unregistered in the ShutdownModule method.
 
-The rest of the the functionality regarding assets, mainly about editing them, is specific to data assets and blueprint assets. Data assets share common functionality, as they are both graphs and use very similar graph editors. Blueprint assets both represent combinable objects and also share most of the functionality.
+The rest of the functionality regarding assets, mainly editing them, is specific to data assets and blueprint assets. Data assets share common functionality, as they are both graphs and use very similar graph editors. Blueprint assets both represent combinable objects and also share most of the functionality.
 
 ### Graph Editors
 
-Both Dialog Graph Editor and the Quest Graph Editor extend a Generic Graph Editor, a third party class mentioned in the beginning of the document. 
+Both Dialog Graph Editor and Quest Graph Editor extend a Generic Graph Editor, a third party class mentioned in the beginning of the document.
+
+![](diagram_1.png)
 
 The nodes in the graph represent runtime objects, as they are referenced when running the game, i.e. when executing dialogs and changing quest properties. The UQuestGraph and UDialogGraph classes have a NodeType property, which define which runtime nodes can actually appear in the graph. For UQuestGraph it is the UQuestGraphNode class and for UDialogGraph it is the UDialogGraphNode class. The graph editor automatically gathers all non-abstract classes which inherit from NodeType and allows them to be inserted into the graph.
 
@@ -106,13 +108,15 @@ However, the runtime nodes only define how the nodes behave during runtime. They
 
 The editor nodes have to be explicitly registered to be useful. The Adventure Plugin Module has the RegisterEditorNodeForRuntimeNode method. This registers the editor node as a representation of the runtime node. The registered nodes also support inheritance, i.e. if a runtime node does not have an editor node registered, it checks whether the parent class has a registered node, or parent of the parent etc.
 
-Now that you know what the node runtime nodes and editor classes are, we can explain how they are actually displayed. First you have the main Asset Editor classes, FAssetEditor_QuestGraph and FAssetEditor_DialogGraph. These define how will the editing window look. They contain a lot of functionality, but most of it is Unreal Engine boilerplate code that needs to be there for the windows to work correctly. It should be enough to just inherit from the FAssetEditor_GenericGraph class when creating your own graph. The important methods you might need to override are:
+![](diagram_2.png)
+
+Now that you know what the runtime nodes and editor nodes are, we can explain how they are actually displayed. First you have the main Asset Editor classes, FAssetEditor_QuestGraph and FAssetEditor_DialogGraph. These define how will the editing window look. They contain a lot of functionality, but most of it is Unreal Engine boilerplate code that needs to be there for the windows to work correctly. It should be enough to just inherit from the FAssetEditor_GenericGraph class when creating your own graph. The important methods you might need to override are:
 
 * GetViewPortWidgetAppearanceInfo: In this method you can set the name of the graph that appears in the bottom right corner of the editor.
 
 * GetGraphSchemaClass: The Graph Schema mainly defines the editor behavior, i.e. which editor nodes correspond to which runtime nodes, which nodes can actually appear in the graph, what actions appear in context menus etc.
 
-* RebuildGenericGraph: This method is called whenever the graph object should be rebuilt, i.e. when what is visualized in the graph editor should be saved to the asset object (the UDialogGraph and UQuestGraph object). That happens whenever when the graph is saved. You should override it if you want to save some additional data in the graph object. For example, for UDialogGraph we use this method to fill the map between node IDs and nodes, so the Goto node can just find the target node in the map instead of having to traverse the entire graph to find it.
+* RebuildGenericGraph: This method is called whenever the graph object should be rebuilt, i.e. when what is visualized in the graph editor should be saved to the asset object (the UDialogGraph and UQuestGraph object). That happens whenever the graph is saved. You should override it if you want to save some additional data in the graph object. For example, for UDialogGraph we use this method to fill the map between node IDs and nodes, so the Goto node can just find the target node in the map instead of having to traverse the entire graph to find it.
 
 Next there are the Schema classes, FAssetGraphSchema_QuestGraph and FAssetGraphSchema_DialogGraph. Again, the Generic Graph implementation does most of the heavy lifting, it finds all non-abstract subclasses of the runtime nodes that can be added, registers actions when you right click in the graph etc. The concrete implementations mainly specify the nodes that should be automatically added to new graphs.
 
@@ -120,7 +124,7 @@ Next we have customization classes, all classes ending in Customization. These a
 
 * Detail customization: These customize some property editors in the property pane of a specific object. For example, Goto node has a detail customization, as it needs to know into which graph the node belongs, so it can find all the IDs in the graph and present them to the designer. These customizations must be explicitly registered and unregistered using the PropertyModule.(Un)RegisterCustomClassLayout method on plugin startup and shutdown.
 
-* Property type customization: These customization specify that everywhere a specific struct appears, it should should use this customization to change its look in the property pane. For example, FQuestGraphBool structs has a property customization, as the struct defines both the quest and variable name, so wherever FQuestGraphBool appears as a property or variable, the editing field for that property can be replaced by the one specified in the customization. These customizations must be explicitly registered and unregistered using the PropertyModule.(Un)RegisterCustomPropertyTypeLayout method on plugin startup and shutdown.
+* Property type customization: These customization specify that everywhere a specific struct appears, it should use this customization to change its look in the property pane. For example, FQuestGraphBool structs has a property customization, as the struct defines both the quest and variable name, so wherever FQuestGraphBool appears as a property or variable, the editing field for that property can be replaced by the one specified in the customization. These customizations must be explicitly registered and unregistered using the PropertyModule.(Un)RegisterCustomPropertyTypeLayout method on plugin startup and shutdown.
 
 These classes together create the graph and dialog editors with all of their features. We will not be discussing the actual asset classes, UQuestGraph and UDialogGraph, in detail here. And we will not describe the runtime nodes either. Quests should be easily understood from code and the only complex thing regarding dialogs is the actual dialog execution, which will be described in the section about the Dialog Controller class.
 
@@ -148,7 +152,7 @@ This class is responsible for playing dialogs. It can play only one dialog at a 
 
 2. Call the Execute method on the current node. It can return either true or false.
 
-    1. If It returns true, go to step 3 directly
+    1. If it returns true, go to step 3 directly
 
     2. If it returns false, it means that a long running action was started. The execution should be temporarily halted and the method executing the graph will return, as some other object is now responsible for the flow of the dialog, usually the dialog presenter.
 
@@ -176,7 +180,7 @@ These classes are similar to each other, as they both inherit from the UCombinab
 
 ### UAdventurePluginSaveGame
 
-This class in itself has little functionality, it just a place for other classes to store their data. But since all game data is in one object, saving a game is as easy as serializing this object, which can be done by calling the Save method on this object.
+This class in itself has little functionality, it’s just a place for other classes to store their data. But since all game data is in one object, saving a game is as easy as serializing this object, which can be done by calling the Save method on this object.
 
 Adventure Plugin classes store and load persistent data directly on this object. So e.g. UInventory does not have the list of items stored in the class. Instead, when you call the GetItems method, it retrieves the current list of items from the UAdventurePluginSaveGame.
 
@@ -190,7 +194,7 @@ The UAdventurePluginConfig class contains the configuration the user can edit vi
 
 The UAdventurePluginGameInstance class contains just the default game context and fills its values with instances found in the UAdventurePluginConfig defaults, which are loaded from the project configuration.
 
-The UIconThumbnailRenderer can render thumbnails for classes implementing the IconThumbnailInterface. However, the thumbnails till have to be explicitly registered and deregistered in the UAdventurePluginEditor StartupModule and ShutdownModule for each class that uses it.
+The UIconThumbnailRenderer can render thumbnails for classes implementing the IconThumbnailInterface. However, the thumbnails still have to be explicitly registered and unregistered in the UAdventurePluginEditor StartupModule and ShutdownModule for each class that uses it.
 
 # Modifying the plugin
 
@@ -200,7 +204,7 @@ In general, there are two ways you can modify the plugin:
 
 * Modify the plugin source directly. This is great for playing with the plugin and rapid prototyping. However, when we release a new version of the plugin, you will have a harder time merging our changes with your own.
 
-* Create your own plugin that uses our plugin modules. You would also want to split your plugin into at least two modules, editor module and a runtime module. This way you could create custom implementations of our classes for the purposes of your game. And you would instruct your designers to use your classes instead of the ones provided by us.
+* Create your own plugin that uses our plugin modules. You would also want to split your plugin into at least two modules, editor module and runtime module. This way you could create custom implementations of our classes for the purposes of your game. And you would instruct your designers to use your classes instead of the ones provided by us.
 
 You can combine these approaches. There are some modifications that are easy to do when modifying our plugin directly, yet almost impossible to do by inheriting our classes without massive rewrites. You can do these changes in your own fork of the plugin and do the simpler changes in your own plugin. If you limit the changes in your fork, pulling the changes from our updated version should be easier.
 
@@ -218,7 +222,7 @@ If your nodes require more drastic UI changes, like for example the DialogGraphN
 
 Creating dialog graph nodes that do long running actions, like displaying dialog lines, is a bit more complicated. See the UDialogGraphNode_DialogLineBase class for inspiration. You need to create an interface for your node to handle the callback. You will also need to modify the UDialogController, to accept the callback, as blueprints cannot access the graph nodes directly. Or you can of course create a UDialogController subclass and use that instead.
 
-UDialogGraphNode_DialogLineBase is also has a picker that allows the designer to select the talking animation from a list of talking animations defined on the animated character. So if you are creating custom dialog line nodes, they should still inherit from this base class, as they will handle both the talking animation and the show dialog line callbacks.
+UDialogGraphNode_DialogLineBase also has a picker that allows the designer to select the talking animation from a list of talking animations defined on the animated character. So if you are creating custom dialog line nodes, they should still inherit from this base class, as they will handle both the talking animation and the show dialog line callbacks.
 
 When creating a new dialog branching node that can continue from either a True or False pin, we recommend you to subclass that node from the UDialogGraphNode_TrueFalse class. You will only need to override the IsTrue method, as the GetNextNode and Execute methods are already handled in the base class and the appropriate editor node is already registered.
 
@@ -234,7 +238,7 @@ Extending UDialogGraph or UQuestGraph classes is not easy, as Data Assets do not
 
 Extending these classes is easy, just create your own subclasses of those classes and make sure that the game context used by the designers uses your subclasses. Just make sure that the classes have still the same behavior as the old one. Also, make sure that the blueprint library methods still work or delete them if they are obsolete for your plugin.
 
-For UAdventureCharacter and UItemManager subclasses, make up to instance of any UAdventureCharacter and UInventoryItem exists at any given time and that you call the Init method on them before the are used.
+For UAdventureCharacter and UItemManager subclasses, make sure that only one instance of any UAdventureCharacter and UInventoryItem exists at any given time and that you call the Init method on them before the are used.
 
 When subclassing UDialogController, make sure that either:
 

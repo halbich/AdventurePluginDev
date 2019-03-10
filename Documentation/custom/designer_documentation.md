@@ -6,7 +6,7 @@ This document is meant as a guide for people who have never used the Adventure P
 
 ## Requirements
 
-We expect you have followed the Adventure Plugin Installation Guide packaged with the plugin that explains how to install Unreal Engine 4 and the plugin. For the purposes of this documentation it is not important which way of installing the plugin you chose, though the template is ideal, as you can already see everything in action without having to set anything up. 
+We expect you have followed the Adventure Plugin Installation Guide packaged with the plugin that explains how to install Unreal Engine 4 and the plugin. We also expect that you went through the Time Lapsus Demo Documentation for a quick introduction to the plugin. For the purposes of this documentation it is not important which way of installing the plugin you chose. 
 
 We also expect some basic familiarity with Unreal Engine 4. You do not need to be an expert, but you should be familiar with the editor, content browser and blueprints. If you are not, we recommend you go through the tutorials on this webpage: [https://docs.unrealengine.com/en-us/GettingStarted](https://docs.unrealengine.com/en-us/GettingStarted)
 
@@ -18,7 +18,7 @@ Quests keep track of the player’s progress - what actions has she already take
 
 Item definition describes all the information about an item that is not specific to its representation in the scene. It defines e.g. its name or what happens when the player examines an item. But it does not define how will the object look when rendered in the scene or what buttons must the player click to trigger actions or combinations.
 
-Dialogs describe communication between a player character (PC) and up to one non player character (NPC). Dialogs can show PC and NPC dialog lines, they support branching based on quest variables and quest flags, they allow the player to select dialog options, query which items are in inventory, give items to or remove items from the player’s inventory and a lot more. We also have our own class Adventure Character to identify characters involved in the dialog.
+Dialogs describe communication between a player character (PC) and up to one non player character (NPC). Dialogs can show PC and NPC dialog lines, they support branching based on quest variables and quest flags, they allow the player to select dialog options, query which items are in inventory, put items to or remove items from the player’s inventory and a lot more. We also have our own class Adventure Character to identify characters involved in the dialog.
 
 Dialogs, item definitions and quests do not work directly with the game scene. None of them are actors or widgets. To display anything to the player they use special presenter classes registered by designers. Some classes also define some event dispatchers, which can be used to notify actors in the scene when necessary. 
 
@@ -28,19 +28,19 @@ When the plugin is enabled, you can configure some general settings that are app
 
 * Dialog/Inventory Default Presenter: These define classes that can show dialogs or the player inventory. You will want to modify these when you create your own presenters. The presenters will be described more in the Adventure Plugin Blueprints chapter.
 
-* Default Dialog/Inventory Controller: These classes control the logic of dialogs and of the inventory. There is usually no reason for designers to modify these, as they just define some very simple logic, though there are some specific cases when you cannot avoid it. But as are meant to be modified by programmers and programming knowledge is required to understand them, they will not be described in this document in more detail.
+* Default Dialog/Inventory Controller: These classes control the logic of dialogs and of the inventory. There is usually no reason for designers to modify these, as they just define some very simple logic, though there are some specific cases when you cannot avoid it. But as they are meant to be modified by programmers and programming knowledge is required to understand them, they will not be described in this document in more detail.
 
 * Default Adventure Character/Item Manager: These classes can provide instances of Adventure Character and Item classes. Like controllers you probably do not need to modify these.
 
 * Save Game: The type of class that stores the persistent data. It makes sense to create your own subclass of our Adventure Plugin Save Game, so you can store information specific to your game. Saving will be described in more detail later.
 
-* Use Action Types: Here you can define all types of actions that the player can take, like Use, Read, Activate Mechanism etc. So for example, using a talking sword might be a talk action, eating a meal might be an Eat action. The purpose behind these is to provide the player with visual indication of what action is she about to take. In our template we change the cursor when over an object based on what would action would the character do if the player were to click right now.
+* Use Action Types: Here you can define all types of actions that the player can take, like Use, Read, Activate Mechanism etc. So for example, using a talking sword might be a Talk action, eating a meal might be an Eat action. The purpose behind these is to provide the player with visual indication of what action is she about to take. In our demo we change the cursor when over an object. The cursor then indicates what would happen on click.
 
 # Quest
 
 In adventure games the player usually has to do a number of actions. For example, to complete a level she might need to talk to some character, use some items, combine them etc. And often these actions must be taken in some order - for example, before stealing a key from a guard the player must first put the guard to sleep.
 
-These actions and their prerequisites can be represented by a graph, in which nodes are actions the player must take and the arrows between two items mean that the first action must be done before the other action can be completed. Like this:
+These actions and their prerequisites can be represented by a graph, in which the nodes are actions the player must take and the arrows between two nodes mean that the first action must be done before the other action can be completed. For example:
 
 ![](image_0.png)
 
@@ -52,7 +52,7 @@ Our plugin provides a very simple way to design these quests. A quest is an asse
 
 This will create a new quest. Name it however you want and open it. You will see a graphical editor that already contains one node - END node. You can now create more nodes by right clicking anywhere in the empty space in the graph and selecting the node you wish to create. You can also create connections by dragging from the right side of one node to the left side of another node.
 
-Right now you can add these types of nodes:
+Right now there are these types of nodes:
 
 * End node - There is only one node of this type. It is gray with a constant name END. 
 It cannot be deleted, cannot be added, it is in every graph when created and it cannot have outgoing arrows. This node represents the end of the quest. Once all nodes that point directly to this node are true (i.e. the player did the represented actions), the quest is considered to be completed.
@@ -77,7 +77,7 @@ The quest graph is a nice tool, but when designing you will often get into situa
 
 Usually the game has to keep track of not only these significant quest flags, but also of many smaller ones - which doors are open, which items has the player already examined, what do the different characters think about a player etc. And other times, things might be simple, but reversible, e.g. if three switches need to be in a correct position before proceeding, we must track them, but we cannot use flags, as the player can set a switch from the correct position back to the incorrect position. And we cannot set a flag to false.
 
-For these use cases we use variables. When no nodes are selected, you can see in the properties pane the following items: Bool Variables, Integer Variables and Quest Variables. Simply by clicking on the plus sign you can add a new variable to the quest, which can be accessed from blueprints, code and dialogs. You should always set a name for the variable, as well its default value, i.e. what value will this variable have before something changes it. You can store three kinds of variables: booleans (True/False), integer and string (text) variables.
+For these use cases we use variables. When no nodes are selected, you can see in the properties pane the following items: Bool Variables, Integer Variables and String Variables. Simply by clicking on the plus sign you can add a new variable to the quest, which can be accessed from blueprints, code and dialogs. You should always set a name for the variable, as well as its default value, i.e. what value will this variable have before something changes it. You can store three kinds of variables: booleans (True/False), integer and string (text) variables.
 
 ## Events
 
@@ -103,7 +103,7 @@ You might have noticed that you can set a name and tags for a quest. The name ri
 
 In most adventure games the player can pick up items, examine them, use them and combine them together. To specify the behavior of an item in one place, we created a new blueprint class Inventory Item. In this class you are meant to define everything about an item except for its visualization and behavior in the game scene. This limitation exists to allow flexibility. While different games might be 2D or 3D and while control schemes can be different in every game, in all adventure games the item will probably support some basic actions and have some common properties. 
 
-Every Item Definition is a different blueprint class, so to create one, find the folder in the content browser where you want to create the item, right click and select Adventure Plugin->Inventory Item. Like this:
+Every Item Definition is a different blueprint class, so to create one, find the folder in the content browser where you want to create the item, right click and select Adventure Plugin->Inventory Item:
 
 ![](image_2.png)
 
@@ -217,7 +217,7 @@ If you require some combinations not provided by the plugin, for example combina
 
 ## Tips and tricks
 
-You might have noticed that since each item is defined by a class, it is not possible to have more instances of a single class in inventory. But since the items support inheritance, it is not a problem if you know how many of those items will you need. Let us say that you need 4 pieces of a broken map and you want them to behave identically. Just create Map Piece class defining every map piecel and then create its subclasses Map Piece 1, Map Piece 2, Map Piece 3 and Map Piece 4.
+You might have noticed that since each item is defined by a class, it is not possible to have more instances of a single class in inventory. But since the items support inheritance, it is not a problem if you know how many of those items will you need. Let us say that you need 4 pieces of a broken map and you want them to behave identically. Just create Map Piece class defining every map piece and then create its subclasses Map Piece 1, Map Piece 2, Map Piece 3 and Map Piece 4.
 
 You can also use inheritance to add common behavior to items. Let us say you have multiple sharp items that you could pick up and that you could also have a dog in your inventory. And you would want your character to protest when the player tries to combine a sharp object with the dog. You would just need to give the sharp items a common ancestor, class Sharp Item inheriting from Inventory Item. The Sharp Item class could register the combination with the dog and the combination would be applied for all child items.
 
@@ -264,9 +264,9 @@ When playing an animation, the Adventure Character class does not play animation
 
 ## Dialog Graphs
 
-Now that you have the characters that can talk to each other, you can start designing the flow of the dialog. We use Dialog Graphs for that purpose. Each Dialog Graph contains a conversation between up to two characters. By that we mean that that a graph can also contain a monologue, for example a character can be describing an object or have a soliloquy.
+Now that you have the characters that can talk to each other, you can start designing the flow of the dialog. We use Dialog Graphs for that purpose. Each Dialog Graph contains a conversation between up to two characters. By that we mean that a graph can also contain a monologue, for example a character can be describing an object or have a soliloquy.
 
-Each Dialog Graph is an asset. To create it, find the folder where you want to create it in the content browser, then right click and select Adventure Plugin->Dialog Graph. Like this:
+Each Dialog Graph is an asset. To create it, find the folder where you want to create it in the content browser, then right click and select Adventure Plugin->Dialog Graph:
 
 ![](image_4.png)
 
@@ -278,7 +278,7 @@ Here is a short example:
 
 ![](image_5.png)
 
-This is a part of a graph that defines a very simple dialog. You should always read the dialog from top to bottom. In this example, the grey node will first check the Sell vase variable on the Main Quest. Based on that variable it will display one line or the other. You can of course chain these nodes to create much more complex dialogs, see the template for more examples.
+This is a part of a graph that defines a very simple dialog. You should always read the dialog from top to bottom. In this example, the grey node will first check the Sell vase variable on the Main Quest. Based on that variable it will display one line or the other. You can of course chain these nodes to create much more complex dialogs, see the demo for more examples.
 
 Some nodes have some specific properties you can set in the property pane. But for every node you can set an ID, which should uniquely identify the node. You do not have to set the ID if you never refer to that specific node by ID. You can also specify a note for each node. This note will be displayed in the node and serve as a commentary, for example specifying the intended tone of the dialog line.
 
@@ -304,7 +304,7 @@ Right now the plugin supports these types of nodes:
 
     * Branch on bool variable: For this node you need to define the boolean variable it points to. The node chooses the True pin if that variable is true.
 
-    * Branch on bool variable equality with a variable: Just like above, but the node is both given boolean variables are the same.
+    * Branch on bool variable equality with a variable: For this node you need to define two boolean variables. And the node is true if those variables have the same value.
 
     * Branch on integer variable comparison with a constant: For this node you need to specify an integer variable on a quest and a constant. The node has three output pins, one for when the variable is less than the constant, one for when it is more and one for when they are equal.
 
@@ -320,7 +320,7 @@ Right now the plugin supports these types of nodes:
 
     * Branch on quest completion: For this node you need to specify a quest. The node chooses the True pin if that quest is completed.
 
-    * Once: This is node is different from the others. It initially chooses the True pin. However, after the first time this node is executed, it will always choose the False pin. This node automatically serializes its state into a save file if using our default save game system.
+    * Once: This node is different from the others. It initially chooses the True pin. However, after the first time this node is executed, it will always choose the False pin. This node automatically serializes its state into a save file if using our default save game system.
 
 * Options: This node is a bit more complex. When it is visited, it should give the player a list options. And the option the player will select will specify which node will be executed next. This node has many unique features:
 
@@ -334,7 +334,7 @@ Right now the plugin supports these types of nodes:
 
     * The options node also has a fallback pin, marked FB. The arrow from this pin is followed if no valid options to present to the player were found.
 
-* Entry points: The Main Entry Point exists by default, but the designer can add Secondary Entry Points. All entry points work the same, the mark the places where the dialog can be started from code or blueprints. They cannot have input pins, they can only start a dialog. For Secondary Entry Points you should always set the ID, as it is used to identify the Entry Point from which the dialog can be started.
+* Entry points: The Main Entry Point exists by default, but the designer can add Secondary Entry Points. All entry points work the same, they mark the places where the dialog can be started from code or blueprints. They cannot have input pins, they can only start a dialog. For Secondary Entry Points you should always set the ID, as it is used to identify the Entry Point from which the dialog can be started.
 
 * Goto. For this node you must specify the ID of the target node. That node is considered to be the next node to be executed after this node, just like if there was an arrow connecting the Goto node and the target node.
 
@@ -413,11 +413,11 @@ Creating a Game Context is easy - just construct a new instance of the Adventure
 
 * Save Game: This is the class that contains all data that should be persisted on save game. All of your game contexts must use the same instance of the Save Game class. You might want to add your custom implementation here, so you can save things like player location and in general things that are not stored in quests. The Save Game must inherit from AdventurePluginSaveGame.
 
-* Inventory Controller: This class manages the player inventory and can tell a presenter show or hide inventory. You might want to use multiple instances if you have multiple player characters that can have their own inventories, or if you wanted to have inventories for NPCs or containers. Though for that you would need support from programmers, as creating multiple inventories is not as easy as just creating a new Inventory Controller. The problems are described in the Programming Documentation in more detail.
+* Inventory Controller: This class manages the player inventory and can tell a presenter to show or hide inventory. You might want to use multiple instances if you have multiple player characters that can have their own inventories, or if you wanted to have inventories for NPCs or containers. Though for that you would need support from programmers, as creating multiple inventories is not as easy as just creating a new Inventory Controller. The problems are described in the Programming Documentation in more detail.
 
 * Inventory Presenter: This class can show and hide inventory to the player. It is expected that you will create your own presenter to customize your UI. You might need more than one presenter if you decided to, for example, use inventory for containers like in RPG games.
 
-* Inventory Item Manager: This class can convert an Inventory Item class reference to its instance. All of your game contexts must the same instance of the Inventory Item Manager class.
+* Inventory Item Manager: This class can convert an Inventory Item class reference to its instance. All of your game contexts must use the same instance of the Inventory Item Manager class.
 
 You can quickly check if a game context is valid by calling the Is Game Context Valid method. Note that if you create your own game contexts, you are also responsible for their management. It might make sense to store them on the Game Instance, so you do not have to recreate them every time they are required.
 
@@ -439,7 +439,7 @@ A Dialog Presenter is any blueprint class implementing the Dialog Presenter Inte
 
     * Reset Animation State: The animation target should stop playing the animation it is playing.
 
-Once all of these methods are implemented, the presenter is ready for use. If there is anything unclear, just check the implementation in the template to see a working presenter.
+Once all of these methods are implemented, the presenter is ready for use. If there is anything unclear, just check the implementation in the demo to see a working presenter.
 
 ## Custom Inventory Presenter
 
@@ -511,6 +511,14 @@ To manipulate the inventory contents, you must get a reference to the inventory 
 
 * End Update: Call only after calling Begin Update. Stops suspending notifications and creates a notification with the list of all changes suspended since the Begin Update call. 
 
+For your convenience, the most common operations on the inventory are accessible through global blueprint functions. They only serves as shortcuts for the process described above. Those functions are:
+
+* Add Item to Inventory
+
+* Remove Item from Inventory
+
+* Has Item in Inventory
+
 ### Items
 
 If you get a reference to an item, either through inventory or by calling Get Item, you can call the methods described in the Inventory Item chapter.
@@ -521,7 +529,7 @@ These methods are defined on the quest object:
 
 * Is Complete: Returns true if the quest was completed.
 
-* GetTrueNodes: Returns the list of nodes that can be set true, but are not, i.e. their predecessors are true, but they themselves are not.
+* Get FullfilableNodes: Returns the list of nodes that can be set true, but are not, i.e. their predecessors are true, but they themselves are not.
 
 To work with quest variables, flags and events, you will first need a way of identifying them. For each type of variable there exists a structure like Quest Graph Flag or Quest Graph Bool. That structure uniquely identifies the desired variable. To define it, create variable of that type on some object and compile the class. You should now see a custom picker for that variable which allows you to select a quest and the variable in that quest you want to work with. It should look something like this:
 
@@ -551,11 +559,11 @@ Once you have that, you can use the following methods:
 
 ### Combinations
 
-Blueprint methods to create combinations were already in the Inventory Item chapter.
+Blueprint methods to create combinations were already mentioned in the Inventory Item chapter.
 
 To interact with them during the game you can use the following methods on both Inventory Items and on Adventure Character objects:
 
-* Get Combination with Object: You need to pass another Inventory Item or Adventure Character as an input parameter. If a combination exists between these two objects, it is returned. Otherwise it returns an empty object. Not that while you can call any methods on the interface, you should not call the Execute method directly. Call it using the Execute Combination on this object. But you can freely query the combination object you received to get its name and type.
+* Get Combination with Object: You need to pass another Inventory Item or Adventure Character as an input parameter. If a combination exists between these two objects, it is returned. Otherwise it returns an empty object. Note that while you can call any methods on the interface, you should not call the Execute method directly. Call it using the Execute Combination on this object. But you can freely query the combination object you received to get its name and type.
 
 * Try Combine With: You need to pass another Inventory Item or Adventure Character as an input parameter. If an combination exists between these two items, it is executed. Returns true if a combination was found and executed, otherwise false.
 
@@ -563,7 +571,7 @@ To interact with them during the game you can use the following methods on both 
 
 ## Animation System
 
-We created a very simple animation system for the purposes of the plugin. We already mentioned some of it in the Dialog chapter, but we will repeat it here so everything is in once place.
+We created a very simple animation system for the purposes of the plugin. We already mentioned some of it in the Dialog chapter, but we will repeat it here so everything is in one place.
 
 The Adventure Character class implements the Animatable Object Interface, which has these methods:
 
@@ -587,11 +595,11 @@ The Adventure Character class implements the Get All Animation States, Get Talki
 
 * Reset Animation State Event
 
-These event dispatchers are fired when the corresponding interface method is call. The object on the scene is then expected to change its animation state accordingly. Also, as the Play Animation Once interface method has a callback, once the object on the scene finishes playing the animation it should call the Animation Finished method on the Adventure Character, so the Adventure Character can call the callback it received in the Play Animation Once method.
+These event dispatchers are fired when the corresponding interface method is called. The object on the scene is then expected to change its animation state accordingly. Also, as the Play Animation Once interface method has a callback, once the object on the scene finishes playing the animation it should call the Animation Finished method on the Adventure Character, so the Adventure Character can call the callback it received in the Play Animation Once method.
 
 ## Save/Load System
 
-All of our classes store their persistent data in the Save Game object on the game context. In the default game context a save game is already present, but it you can create your own. Just make sure that all game contexts use the same Save Game object.
+All of our classes store their persistent data in the Save Game object on the game context. In the default game context a save game is already present, but you can create your own. Just make sure that all game contexts use the same Save Game object.
 
 To create a Save, call the Create Save method. This method requires a name of the save and a user index. The name is up to the designer. User Index is required only on some platforms and is the master user index used to identify the user doing the saving. It is not needed on PC, which means it is not covered by this documentation.
 
@@ -603,7 +611,7 @@ If you want to store your own data in the save game objects, like actor position
 
 * Create a special quest for this information and store everything there. This approach is easy, but not very flexible.
 
-* Add your own using data to the save game objects using the blueprint methods on the object. You have to make sure that you never create collisions, as data in the save game is saved by simple string identification. Collision with the plugin data is unlikely, as we store everything either by generated unique IDs or by a long string that includes full path to the quest asset. But be careful not to create collisions between your own objects. The methods on the save game object are:
+* Add your own data to the save game objects using the blueprint methods on the object. You have to make sure that you never create collisions, as data in the save game is saved by simple string identification. Collision with the plugin data is unlikely, as we store everything either by generated unique IDs or by a long string that includes full path to the quest asset. But be careful not to create collisions between your own objects. The methods on the save game object are:
 
     * Get Bool or Default: Return a boolean variable or the default value passed as a parameter if that variable was not yet stored.
 

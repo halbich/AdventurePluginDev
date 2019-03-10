@@ -10,7 +10,7 @@ This package contains the following:
 
     * Template: An example project, ideal for people new to the plugin.
 
-* Demo - A small game made to demonstrate the plugin capabilities.
+* [Demo](demo.html) - A small game made to demonstrate the plugin capabilities.
 
     * Binary - The game itself.
 

@@ -78,7 +78,7 @@ The project was also supposed to contain a demo level created by our designer Pe
 
 Now we will go through history, all the way back to the original Time Lapsus game made in 2015. We will describe the different stages this project took, marking the important dates in regards to the software project.
 
-* October 2015 - January 2016: Pavel Halbich (programmer), Petr Jenda (writer/designer), Matouš Kozma (programmer) and Pavel Liška (artist) formed the TTTeam and created Time Lapsus, an adventure game about time travel, as an assignment for the Computer Games Development course. The game went on to become the best game of the semester.
+* October 2015 - January 2016: Pavel Halbich (programmer), Petr Janda (writer/designer), Matouš Kozma (programmer) and Pavel Liška (artist) formed the TTTeam and created Time Lapsus, an adventure game about time travel, as an assignment for the Computer Games Development course. The game went on to become the best game of the semester.
 
 * January 2016 - September 2016: Time Lapsus was well received, some polishing was done and the developers went to conferences showcasing the game. The plan to expand the game during the Software Project course was formed, but for now the plan was intentionally put on hiatus, as between school courses and jobs, none of us had any free time.
 
@@ -104,15 +104,15 @@ Now we will go through history, all the way back to the original Time Lapsus gam
 
     * Marek Polák was doing most of the low level plugin work, like preparing graph editor and customizing nodes.
 
-    * Pavel Halbich first created a small 3D demo were we could easily test things like setting variables and showing quests.
+    * Pavel Halbich first created a small 3D demo where we could easily test things like setting variables on quests and showing simple dialogs.
 
-    * Matouš Kozma prepared a point a click 2D demo with assets from the original Time Lapsus. This demo would eventually become the only demo maintained, as it was closer to what we would be eventually releasing.
+    * Matouš Kozma prepared a point’n’click 2D demo with assets from the original Time Lapsus. This demo would eventually become the only demo maintained, as it was closer to what we would be eventually releasing.
 
 * November 2018-December 2018: The basics of the plugin were done and we were working on the remaining things that were only addons to existing structures and did not drastically affect the behavior of other nodes, like combinations and save games. Again, we all worked on everything, but specifically:
 
     * Pavel Halbich prepared the save game system.
 
-    * Marek Polák prepared the quest events and started implementing customizations.
+    * Marek Polák prepared the quest events and started implementing editor customizations.
 
     * Matouš Kozma prepared the combination system.
 
@@ -144,17 +144,17 @@ In this chapter we will discuss the various decisions we did or forgot to do dur
 
     * Reason: Because he told us to.
 
-    * Looking back: This was definitely a good decision, even if we were not the ones who made it. Regular meetings definitely definitely helped us with motivation, since we did not want to go to these meetings empty handed.
+    * Looking back: This was definitely a good decision, even if we were not the ones who made it. Regular meetings definitely helped us with motivation, since we did not want to go to these meetings empty handed.
 
 * We decided to have sprint plannings every two weeks, using Trello board to organize our work and track our progress.
 
-    * Reason: We needed to organize our progress somehow and from our experience, agile approach works best for great for small teams like this.
+    * Reason: We needed to organize our progress somehow and from our experience, agile approach works best for small teams like this.
 
     * Looking back: This was definitely a good idea, though in practice there were setbacks. As we all had personal lives, jobs and other courses, we were not able to schedule regular meetings, so we had to schedule the meetings ad hoc. For the same reasons the amount of time we could dedicate to the project varied wildly, so in some sprints almost nothing was done and in other sprints we did great progres. Still, overall, sprint plannings worked out great, as when there was little done in one sprint, we had extra incentive to work in the next one, else we would fall behind. So if nothing else, this helped us track our overall progress.
 
 * We failed to create a proper prioritized backlog of tasks in Trello. We had an Excel table with features we needed to implement and updated from time to time.
 
-    * Rason: No idea. We already had the Excel sheet, creating the appropriate tasks would have been easy. But none of us did that.
+    * Reason: No idea. We already had the Excel sheet, creating the appropriate tasks would have been easy. But none of us did that.
 
     * Looking back: This was definitely a bad idea. The Excel sheet was not updated often enough and since Trello did not have all the tasks in the backlog, we had no idea how many tasks were still left. Also, there were several times when we thought we had all the features, someone checked the specification and found something we did not do yet. This would not have happened if we took the time to fill the Trello board with tasks.
 
@@ -208,9 +208,9 @@ In this chapter we will discuss the various decisions we did or forgot to do dur
 
 * We used Github as source control for both the plugin and the demo projects, which were in two separate repositories.
 
-    * Reason: We all have good experience with Github. We split the projects because we wanted to demo and plugin to be completely separate things, like it would be for people using our plugin in real life.
+    * Reason: We all have good experience with Github. We split the projects because we wanted the demo and plugin to be completely separate things, like it would be for people using our plugin in real life.
 
-    * Looking back: Github for our C++ plugin was definitely great. For the demo, not so much, as working in parallel was difficult. Unreal Engine blueprints are binary files that cannot be merged. So we had to manually synchronize ourselves using slack so we would avoid conflicts. It would have been better to use Perforce or SVN, as they support locking of files, which is a better way of handling this problem.
+    * Looking back: Github for our C++ plugin was definitely great. For the demo, not so much, as working in parallel was difficult. Unreal Engine blueprints are binary files that cannot be merged. So we had to manually synchronize ourselves using Slack so we would avoid conflicts. It would have been better to use Perforce or SVN, as they support locking of files, which is a better way of handling this problem.
 
 * We did not do code review.
 
@@ -230,14 +230,14 @@ In this chapter we will discuss the various decisions we did or forgot to do dur
 
     * Reason: Originally we wanted to access the plugin classes through the Game Instance, forcing the designer to use our Game Instance. However, we then found out that our classes could not access the Game Instance correctly, because they were not actors. Our solution for this problem was the creation of the Game Context class, which we started passing to all of our methods.
 
-    * Looking back: Architecturally this was a good decision. Designers can create their game context any way they want and there is an easy default way get one. This means that the designers can use the context in a simple way or a complex way if they require dependency injection. Although it would have been better for all classes on the Game Context to be interfaces. That would make it easier to create mock implementations for testing. However, we did not do that. Instead we forced people extending our plugin to inherit from our classes, so they always have to first see the original implementation before implementing their own. There were also technical issues - properties and event dispatchers cannot be directly exposed through interfaces, so we would need to create a lot of extra code, making the interfaces unnecessarily large. Though this could have been solved by abstract classes. But using abstract classes would prevent a single class from having multiple interfaces.
+    * Looking back: Architecturally this was a good decision. Designers can create their game context any way they want and there is an easy default way to get one. This means that the designers can use the context in a simple way or a complex way if they require dependency injection. Although it would have been better for all classes on the Game Context to be interfaces. That would make it easier to create mock implementations for testing. However, we did not do that. Instead we forced people extending our plugin to inherit from our classes, so they always have to first see the original implementation before implementing their own. There were also technical issues - properties and event dispatchers cannot be directly exposed through interfaces, so we would need to create a lot of extra code, making the interfaces unnecessarily large. Though this could have been solved by abstract classes. But using abstract classes would prevent a single class from having multiple interfaces.
 But even if architecturally speaking this was a good idea, getting a game context for every function call is a bit bothersome for the designers. But we did not find a good way to solve this issue, other than providing the Get Current Game Context method.
 
 * We did not create any unit tests or any other automated tests.
 
     * Reason: We did not see them as necessary for a project of this scope and they were not required by specification.
 
-    * Looking back: This was a good decision for a project of this scope. We never faced an issue unit tests would help us avoid - the original developers were always around and problems with existing codes were usually resolved swiftly. The tests might be useful if we continue to work on the project for a longer time, if the project expands or if the developers change.
+    * Looking back: This was a good decision for a project of this scope. We never faced an issue unit tests would help us avoid - the original developers were always around and problems with existing code were usually resolved swiftly. The tests might be useful if we continue to work on the project for a longer time, if the project expands or if the developers change.
 
 * We decided to use the Generic Graph Editor as a basis for our project.
 
@@ -259,19 +259,19 @@ But even if architecturally speaking this was a good idea, getting a game contex
 
 * We decided to lock the Unreal Engine version to 4.19.2 when we started developing
 
-    * Reason: While changes between engine versions are not that great, there might be some changes that could break some feature of our plugin. So it is smarter to use one version only.
+    * Reason: While changes between engine versions are not that significant, there might be some changes that could break some feature of our plugin. So it is smarter to use one version only.
 
-    * Looking back: Well, hard to say what would have happened had we upgraded. We did not and nothing went wrong, so we do not know what would have happened had we upgraded. And there were no features in newer versions that we needed.
+    * Looking back: We did not need any features from newer versions, so this was probably worth it, as we avoided potential problems with upgrading.
 
 * We decided to make UAdventureCharacter  and UInventoryItem classes into blueprints instead of data assets.
 
     * Reason: Data assets do not support behaviors, which both of these classes needed to support, e.g. what will happen when using the item.
 
-    * Looking back: It was probably a good decision, but we are not entirely sure. For data assets Unreal Engine 4 already manages their instances and provides pickers with thumbnails. And there was a way of implementing behaviors. Each data assets could have as a property a class that implements the behavior. Basically, blueprints for behaviors, data assets for data. We could also add methods on the UInventoryItem class that would just call the methods on the behavior. However, in the end we decided against this approach for following reasons:
+    * Looking back: It was probably a good decision, but we are not entirely sure. For data assets Unreal Engine 4 already manages their instances and provides pickers with thumbnails. And there was a way of implementing behaviors. Each data asset could have a class that implements the behavior as a property. Basically, blueprints for behaviors, data assets for data. We could also add methods on the UInventoryItem class that would just call the methods on the behavior. However, in the end we decided against this approach for following reasons:
 
-        * It would hurt extensibility, as you cannot inherit from Data Assets properly. So it would be impossible to add new field to the item class. The could solved by having some general UObject as a User Data property of the asset that could contain anything, but that brings us to the other point.
+        * It would hurt extensibility, as you cannot inherit from Data Assets properly. So it would be impossible to add new field to the item class. This issue could be solved by having some general UObject as a User Data property of the asset that could contain anything, but that brings us to the other point.
 
-        * This approach would have been much more complicated for designers to understand. Create one object for item definition, one for its behavior, one for the actor in the scene. Explaining to them that usually using properties and methods on the item is enough, but sometimes you might need to access properties and methods through behaviors… This approach would definitely not be friendly to the designers.
+        * This approach would have been much more complicated for designers to understand. Create one object for item definition, one for its behavior, one for the actor in the scene. Explaining to them that usually, using properties and methods on the item is enough, but sometimes you might need to access properties and methods through behaviors… This approach would definitely not be friendly to the designers.
 
 ## Changes From Specification
 
@@ -311,7 +311,7 @@ But even if architecturally speaking this was a good idea, getting a game contex
 
     * Looking back: This caused no problems.
 
-* We decided to not implement the Quest manager class.
+* We decided not to implement the Quest manager class.
 
     * Reason: All planned functionality was implemented on the Quest Graph in a more user friendly way.
 
@@ -319,13 +319,13 @@ But even if architecturally speaking this was a good idea, getting a game contex
 
 * The example implementations of presenters are not included in the plugin, they are a part of the template.
 
-    * Reason: If not using our examples, they would clutter the project needlessly. Right now they are available only in a template if a user need them.
+    * Reason: If not using our examples, they would clutter the project needlessly. Right now they are available only in a template if a user needs them.
 
-    * Looking back: This caused to problems and it should make the plugin easier to use, as it does not have superfluous blueprint assets when not using a template.
+    * Looking back: This caused no problems and it should make the plugin easier to use, as it does not have superfluous blueprint assets when not using a template.
 
 # Future work
 
-While the plugin has a lot of features, it still has a lot less features than for example Adventure Creator for Unity. In the ideal end product, the designers could create a complete 2D or 3D game in this plugin without code and with as few blueprints as possible. That is still a long way off, so we can still work on that. There are also ways how the plugin could be made more user friendly.
+While the plugin has a lot of features, it still has a lot less features than for example Adventure Creator for Unity. In the ideal end product, the designers could create a complete 2D or 3D game in this plugin without any code and with as few blueprints as possible. That is still a long way off, so we can still work on that. There are also ways how the plugin could be made more user friendly.
 
 So, in no particular order, here are some ways how the plugin still be improved, though the list is in no way exhaustive:
 
@@ -393,7 +393,7 @@ So, in no particular order, here are some ways how the plugin still be improved,
 
 * Allow the designer to select some color scheme for the quest nodes - maybe they could have a color based on the location in which they have to be completed.
 
-* Define a list of levels in the game, both for a ChangeLevel dialog node and for a picker for a location for quest nodes.
+* Define a list of levels in the game. With that we could create a ChangeLevel dialog node and a picker for selecting location in quest nodes.
 
 * Variables could have a generated UUID and could be referenced by it. This would allow the variable references on e.g. dialogs to to still work even after the original variable was renamed.
 
@@ -425,5 +425,5 @@ So, in no particular order, here are some ways how the plugin still be improved,
 
     * And the animation system is very simple, it does not for example support changing of the animation in the middle of a dialog line.
 
-    * It would be great if it were possible to link Adventure Character classes with their actors and dialogs with maps in which they appear. Then we could create a tool that could create a preview of the dialog in the actual map. This would be especially helpful in 3D
+    * It would be great if it were possible to link Adventure Character classes with their actors and dialogs with maps in which they appear. Then we could create a tool that could create a preview of the dialog in the actual map. This would be especially helpful in 3D.
 
