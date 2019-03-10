@@ -1,18 +1,18 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "0.1",
+	"VersionName": "1.0",
 	"FriendlyName": "Adventure Plugin",
-	"Description": "Plugin for creating adventures",
+	"Description": "Plugin for creating adventure games.",
 	"Category": "AdventurePlugin",
-	"CreatedBy": "TTTeam",
+	"CreatedBy": "TTTeam (Marek Polák, Matouš Kozma, Pavel Halbich)",
 	"CreatedByURL": "http://ttteam.cz",
 	"DocsURL": "http://www.ms.mff.cuni.cz/~polakma1/adventure-plugin/index.html",
 	"MarketplaceURL": "",
 	"SupportURL": "",
 	"EnabledByDefault": true,
 	"CanContainContent": true,
-	"IsBetaVersion": true,
+	"IsBetaVersion": false,
 	"Installed": false,
 	"Modules": [
 		{
