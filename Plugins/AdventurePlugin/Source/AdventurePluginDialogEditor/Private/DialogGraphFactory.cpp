@@ -1,4 +1,4 @@
-#include "Dialog/DialogGraphFactory.h"
+#include "DialogGraphFactory.h"
 #include "AdventurePluginRuntime/Public/Dialog/Graph/DialogGraph.h"
 
 #define LOCTEXT_NAMESPACE "DialogGraphFactory"

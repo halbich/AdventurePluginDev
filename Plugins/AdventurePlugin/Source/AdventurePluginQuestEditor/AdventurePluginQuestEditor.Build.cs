@@ -46,7 +46,11 @@ public class AdventurePluginQuestEditor : ModuleRules
 				"SlateCore",
                 "EditorStyle",
 				// ... add private dependencies that you statically link with here ...	
-                "AdventurePluginEditor"
+                "AdventurePluginEditor",
+                "AdventurePluginRuntime",
+                "ApplicationCore",
+                "GraphEditor",
+                "AssetTools",
             }
 			);
 		

@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "Slate.h"
-#include "Dialog/EdDialogNode.h"
-#include "Dialog/SEdDialogNode_Options.h"
+#include "Graph/EdDialogNode.h"
+#include "Graph/SEdDialogNode_Options.h"
 #include "Dialog/Graph/DialogGraphNode_Options.h"
 #include "EdDialogNode_Options.generated.h"
 
@@ -14,7 +14,7 @@ const FName PinNameFallback("FB");
 * first of which is labeled "FB" (fallback) and others are labeled "1", "2" and so on.
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdDialogNode_Options : public UEdDialogNode
+class ADVENTUREPLUGINDIALOGEDITOR_API UEdDialogNode_Options : public UEdDialogNode
 {
 	GENERATED_BODY()
 

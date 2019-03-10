@@ -1,14 +1,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Quest/EdQuestNode.h"
+#include "Graph/EdQuestNode.h"
 #include "EdQuestNode_NoOutput.generated.h"
 
 /**
 * Class representing behavior of a quest node with one input pin but without any output pin.
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdQuestNode_NoOutput : public UEdQuestNode
+class ADVENTUREPLUGINQUESTEDITOR_API UEdQuestNode_NoOutput : public UEdQuestNode
 {
 	GENERATED_BODY()
 

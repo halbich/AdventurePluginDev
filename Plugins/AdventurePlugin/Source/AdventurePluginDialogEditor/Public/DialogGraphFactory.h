@@ -8,7 +8,7 @@
 * A Factory class responsible for creating and importing new objects of type UDialogGraph
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UDialogGraphFactory : public UGenericGraphFactory
+class ADVENTUREPLUGINDIALOGEDITOR_API UDialogGraphFactory : public UGenericGraphFactory
 {
 	GENERATED_BODY()
 

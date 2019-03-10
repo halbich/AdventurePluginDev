@@ -4,6 +4,8 @@
 #include "Slate.h"
 #include "Dialog/EdDialogNode.h"
 #include "Dialog/Graph/BaseClasses/DialogGraphNode_LessEqualMoreBase.h"
+#include "Graph/EdDialogNode.h"
+#include "Dialog/Graph/DialogGraphNode_IfInteger.h"
 #include "EdDialogNode_LessEqualMore.generated.h"
 
 const FName PinNameLess("<");
@@ -16,7 +18,7 @@ const FName PinNameMore(">");
 * Register this editor node only for runtime node inheriting from UDialogGraphNode_LessEqualMoreBase.
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdDialogNode_LessEqualMore : public UEdDialogNode
+class ADVENTUREPLUGINDIALOGEDITOR_API UEdDialogNode_LessEqualMore : public UEdDialogNode
 {
 	GENERATED_BODY()
 

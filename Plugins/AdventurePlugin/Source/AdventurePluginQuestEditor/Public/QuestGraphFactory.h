@@ -8,7 +8,7 @@
 * A Factory class responsible for creating and importing new objects of type UQuestGraph
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UQuestGraphFactory : public UGenericGraphFactory
+class ADVENTUREPLUGINQUESTEDITOR_API UQuestGraphFactory : public UGenericGraphFactory
 {
 	GENERATED_BODY()
 

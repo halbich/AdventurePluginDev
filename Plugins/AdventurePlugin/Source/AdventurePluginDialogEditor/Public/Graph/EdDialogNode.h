@@ -3,14 +3,14 @@
 #include "CoreMinimal.h"
 #include "Slate.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
-#include "Dialog/SEdDialogNode.h"
+#include "Graph/SEdDialogNode.h"
 #include "EdDialogNode.generated.h"
 
 /**
 * Class representing dialog node (UDialogGraphNode) behavior in editor (its pins, copying/deleting etc.)
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UEdDialogNode : public UEdNode_GenericGraphNode
+class ADVENTUREPLUGINDIALOGEDITOR_API UEdDialogNode : public UEdNode_GenericGraphNode
 {
 	GENERATED_BODY()
 

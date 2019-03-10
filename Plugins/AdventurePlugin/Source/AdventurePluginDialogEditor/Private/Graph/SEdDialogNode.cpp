@@ -1,4 +1,4 @@
-#include "Dialog/SEdDialogNode.h"
+#include "Graph/SEdDialogNode.h"
 #include "SCommentBubble.h"
 #include "SlateOptMacros.h"
 #include "GraphEditorSettings.h"

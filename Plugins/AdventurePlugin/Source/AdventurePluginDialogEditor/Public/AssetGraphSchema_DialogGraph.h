@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "GenericGraph/AssetGraphSchema_GenericGraph.h"
 #include "Dialog/Graph/DialogGraphNode.h"
-#include "EdDialogNode.h"
+#include "Graph/EdDialogNode.h"
 #include "AssetGraphSchema_DialogGraph.generated.h"
 
 class UAdventureCharacter;
@@ -12,7 +12,7 @@ class UAdventureCharacter;
 * Graph schema for UDialogGraph graph
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UAssetGraphSchema_DialogGraph : public UAssetGraphSchema_GenericGraph
+class ADVENTUREPLUGINDIALOGEDITOR_API UAssetGraphSchema_DialogGraph : public UAssetGraphSchema_GenericGraph
 {
 	GENERATED_BODY()
 

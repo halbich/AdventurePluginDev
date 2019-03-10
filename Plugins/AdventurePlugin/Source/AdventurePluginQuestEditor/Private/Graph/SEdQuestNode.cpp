@@ -1,4 +1,4 @@
-#include "Quest/SEdQuestNode.h"
+#include "Graph/SEdQuestNode.h"
 #include "SCommentBubble.h"
 #include "SlateOptMacros.h"
 #include "SGraphPin.h"

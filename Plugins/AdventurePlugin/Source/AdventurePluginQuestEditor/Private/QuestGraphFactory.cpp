@@ -1,4 +1,4 @@
-#include "Quest/QuestGraphFactory.h"
+#include "QuestGraphFactory.h"
 #include "AdventurePluginRuntime/Public/Quest/Graph/QuestGraph.h"
 
 #define LOCTEXT_NAMESPACE "DialogGraphFactory"

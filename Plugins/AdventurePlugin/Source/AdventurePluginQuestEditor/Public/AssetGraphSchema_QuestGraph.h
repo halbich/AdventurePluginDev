@@ -3,14 +3,14 @@
 #include "CoreMinimal.h"
 #include "GenericGraph/AssetGraphSchema_GenericGraph.h"
 #include "Quest/Graph/QuestGraphNode.h"
-#include "EdQuestNode.h"
+#include "Graph/EdQuestNode.h"
 #include "AssetGraphSchema_QuestGraph.generated.h"
 
 /**
 * Graph schema for UQuestGraph graph
 */
 UCLASS()
-class ADVENTUREPLUGINEDITOR_API UAssetGraphSchema_QuestGraph : public UAssetGraphSchema_GenericGraph
+class ADVENTUREPLUGINQUESTEDITOR_API UAssetGraphSchema_QuestGraph : public UAssetGraphSchema_GenericGraph
 {
 	GENERATED_BODY()
 

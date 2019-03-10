@@ -16,7 +16,7 @@
 #include "Quest/Structs/QuestGraphString.h"
 #include "Quest/Structs/QuestGraphInteger.h"
 #include "Quest/Structs/QuestGraphEvent.h"
-#include "Quest/EdQuestNode_NoOutput.h"
+#include "Graph/EdQuestNode_NoOutput.h"
 #include "Quest/Graph/QuestGraphNode_End.h"
 #include "Quest/Graph/QuestGraphNode_Inventory.h"
 #include "Customizations/QuestGraphFlagCustomization.h"
