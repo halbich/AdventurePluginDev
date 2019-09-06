@@ -1,14 +1,8 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.19",
+	"EngineAssociation": "4.23",
 	"Category": "",
 	"Description": "",
-	"Plugins": [
-		{
-			"Name": "AdventurePlugin",
-			"Enabled": true
-		}
-	],
 	"Modules": [
 		{
 			"Name": "AdventurePluginDev",
@@ -18,6 +12,12 @@
 				"CoreUObject",
 				"Engine"
 			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "AdventurePlugin",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [

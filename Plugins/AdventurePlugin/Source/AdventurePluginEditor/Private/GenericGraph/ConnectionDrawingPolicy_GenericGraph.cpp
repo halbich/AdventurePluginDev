@@ -128,10 +128,10 @@ void FConnectionDrawingPolicy_GenericGraph::DetermineLinkGeometry(FArrangedChild
 {
 	StartWidgetGeometry = PinGeometries->Find(OutputPinWidget);
 	
-	if (TSharedRef<SGraphPin>* pTargetWidget = PinToPinWidgetMap.Find(InputPin))
+	if (TSharedPtr<SGraphPin>* pTargetWidget = PinToPinWidgetMap.Find(InputPin))
 	{
-		TSharedRef<SGraphPin> InputWidget = *pTargetWidget;
-		EndWidgetGeometry = PinGeometries->Find(InputWidget);
+		TSharedPtr<SGraphPin> InputWidget = *pTargetWidget;
+		EndWidgetGeometry = PinGeometries->Find(InputWidget.ToSharedRef());
 	}
 }
 

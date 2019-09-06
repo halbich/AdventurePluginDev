@@ -9,14 +9,14 @@ namespace UnrealBuildTool.Rules
 
             PublicIncludePaths.AddRange(
                 new string[] {
-                    Path.Combine(ModuleDirectory,"AdventurePluginEditor/Public")
+                    Path.Combine(ModuleDirectory,"Public")
 					// ... add public include paths required here ...
 				}
                 );
 
             PrivateIncludePaths.AddRange(
                 new string[] {
-                    Path.Combine(ModuleDirectory, "AdventurePluginEditor/Private")
+                    Path.Combine(ModuleDirectory, "Private")
 					//"Developer/AdventurePluginEditor/Private",
 					// ... add other private include paths required here ...
 				}

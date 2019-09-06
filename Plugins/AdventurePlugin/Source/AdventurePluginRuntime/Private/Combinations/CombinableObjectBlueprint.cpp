@@ -5,6 +5,8 @@
 
 void UCombinableObjectBlueprint::Compiled(UBlueprint* CompiledBlueprint)
 {
+	// HACK: While this stops external combinations from working, without this creating a shipping build would be impossible.
+	return;
 #if WITH_EDITOR
 	UCombinableObject* RepresentedObject = Cast<UCombinableObject>(GeneratedClass->ClassDefaultObject);
 	if (!IsValid(RepresentedObject))

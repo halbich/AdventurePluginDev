@@ -10,7 +10,7 @@ namespace UnrealBuildTool.Rules
 
             PublicIncludePaths.AddRange(
 				new string[] {
-                    Path.Combine(ModuleDirectory,"AdventurePluginRuntime/Public")
+                    Path.Combine(ModuleDirectory,"Public")
 					// ... add public include paths required here ...
                 }
 				);
@@ -19,7 +19,7 @@ namespace UnrealBuildTool.Rules
 				new string[] {
 					//"Developer/AdventurePluginRuntime/Private",
 					// ... add other private include paths required here ...
-                    Path.Combine(ModuleDirectory,"AdventurePluginRuntime/Private")
+                    Path.Combine(ModuleDirectory,"Private")
                 }
 				);
 

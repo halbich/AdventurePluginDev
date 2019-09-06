@@ -9,7 +9,7 @@ public class AdventurePluginQuestEditor : ModuleRules
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-                Path.Combine(ModuleDirectory,"AdventurePluginQuestEditor/Public")
+                Path.Combine(ModuleDirectory,"Public")
 				// ... add public include paths required here ...
 			}
 			);
@@ -17,7 +17,7 @@ public class AdventurePluginQuestEditor : ModuleRules
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-                Path.Combine(ModuleDirectory,"AdventurePluginQuestEditor/Private")
+                Path.Combine(ModuleDirectory,"Private")
 				// ... add other private include paths required here ...
 			}
 			);
