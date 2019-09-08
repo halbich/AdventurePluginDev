@@ -31,7 +31,7 @@ public:
 	/**
 	* The event to be executed when Execute is called.
 	*/
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, Category = "Adventure Plugin")
 	FCombinationEvent CombinationEvent;
 
 	/**

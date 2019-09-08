@@ -26,7 +26,7 @@ public:
 	/**
 	* The class specifying the dialog to be started.
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Adventure Plugin")
 	FDialogGraphEntryPoint DialogToStart;
 
 	/**

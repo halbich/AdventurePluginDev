@@ -42,19 +42,19 @@ public:
 	/**
 	* The child with which we should continue if the result of this node is less.
 	*/
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "Adventure Plugin")
 		UDialogGraphNode* ChildLess;
 
 	/**
 	* The child with which we should continue if the result of this node is equal.
 	*/
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "Adventure Plugin")
 		UDialogGraphNode* ChildEqual;
 
 	/**
 	* The child with which we should continue if the result of this node is more.
 	*/
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "Adventure Plugin")
 		UDialogGraphNode* ChildMore;
 
 	virtual void ResetSpecialChildren() override

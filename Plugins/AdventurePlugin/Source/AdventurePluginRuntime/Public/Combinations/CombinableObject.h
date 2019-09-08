@@ -32,13 +32,13 @@ public:
 	/**
 	* Editor only. This array has informations about all combinations registered on this object. Use only in editor time.
 	*/
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "Adventure Plugin")
 	TArray<FLocalCombinationInfo> LocalCombinations;
 
 	/**
 	* Editor only. This array has informations about all combinations with this object registered on other blueprint objects.
 	*/
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "Adventure Plugin")
 	TMap<UBlueprint*, FText> ExternalBlueprintCombinations;
 #endif
 

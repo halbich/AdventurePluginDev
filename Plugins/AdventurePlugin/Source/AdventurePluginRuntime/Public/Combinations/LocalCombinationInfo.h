@@ -14,19 +14,19 @@ struct FLocalCombinationInfo
 	/**
 	* The debug name of the combination.
 	*/
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "Adventure Plugin")
 	FText Name;
 
 	/**
 	* All blueprints which specify target classes of the combination. Together with TargetClasses specifies all targets of this combination.
 	*/
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "Adventure Plugin")
 	TArray<UBlueprint*> TargetBlueprints;
 
 	/**
 	* Native classes which specify target classes of the combination. Together with TargetBlueprints specifies all targets of this combination
 	*/
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "Adventure Plugin")
 	TArray<UClass*> TargetClasses;
 
 };

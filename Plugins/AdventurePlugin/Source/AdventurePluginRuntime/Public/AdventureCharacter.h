@@ -40,62 +40,62 @@ public:
 	/**
 	* Human friendly name of this character.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
 	FText Name;
 
 	/**
 	* If true, this character can be a player character.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
 	bool bIsPlayerCharacter;
 
 	/**
 	* The icon representing this character, used by editor, but it can also be accessed in game if needed.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
 	UTexture2D* Icon;
 
 	// MARK: Animations
 	/**
 	* If false, this object does not use the animation system. Animations should do nothing and no animation warnings should ever be fired. 
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
 	bool bIsAnimatable = true;
 	
 	/**
 	* This event is fired when the actor representing this object is supposed to play a specific animation once. Call AnimationFinished() once the animation is finished.
 	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable)
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Adventure Plugin")
 	FAnimationEvent PlayAnimationOnceEvent;
 
 	/**
 	* This event is called whenever the actor representing this object is supposed to play an animation in a loop until the animation state is changed or canceled. 
 	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable)
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Adventure Plugin")
 	FAnimationEvent SetAnimationStateEvent;
 
 	/**
 	* This event is called whenever the actor representing this object is supposed to stop playing animations requested by this object and start doing whatever it wants, usually playing an idle animation. 
 	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable)
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Adventure Plugin")
 	FResetAnimationEvent ResetAnimationStateEvent;
 
 	/**
 	* Contains all animation states defined on this character.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
 	TArray<FName> AnimationStates;
 
 	/**
 	* Subset of UAdventureCharacter#AnimationStates, should contain all animations that can be used while talking, mainly emotions.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
 	TArray<FName> TalkingAnimationStates;
 
 	/**
 	* From UAdventureCharacter#TalkingAnimationStates, contains the animation that should be shown while talking if no other animation is specified.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
 	FName DefaultTalkingAnimationState;
 
 	/**

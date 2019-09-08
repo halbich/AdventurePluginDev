@@ -24,19 +24,19 @@ public:
 	/**
 	* The name of this combination.
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Adventure Plugin")
 	FText Name;
 
 	/**
 	* The type of action of this combination.
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Adventure Plugin")
 	FUseActionType ActionType;
 
 	/**
 	* The single target class of this combination.
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Adventure Plugin")
 	TSubclassOf<UCombinableObject> TargetClass;
 
 	/**

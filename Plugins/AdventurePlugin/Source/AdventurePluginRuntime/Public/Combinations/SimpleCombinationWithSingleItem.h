@@ -24,7 +24,7 @@ public:
 	/** 
 	* The class specifying the item to be added when this combination is triggered.
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Adventure Plugin")
 	TSubclassOf<UInventoryItem> ResultItemClass;
 
 	/**

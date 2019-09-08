@@ -32,13 +32,13 @@ public:
 	/**
 	* The next node if this node is true.
 	*/
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "Adventure Plugin")
 	UDialogGraphNode* ChildTrue;
 
 	/**
 	* The next node if this node is false.
 	*/
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "Adventure Plugin")
 	UDialogGraphNode* ChildFalse;
 
 #if WITH_EDITOR

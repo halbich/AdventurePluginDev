@@ -18,6 +18,6 @@ public:
 	* The default value of this variable. It is used when the value
 	* of this variable is read from the quest without writing to it first.
 	*/
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Adventure Plugin")
 	int32 DefaultValue;
 };

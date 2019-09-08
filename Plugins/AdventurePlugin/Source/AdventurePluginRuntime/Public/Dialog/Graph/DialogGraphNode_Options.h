@@ -44,13 +44,13 @@ public:
 	/**
 	* The node with which to continue if no output nodes are found.
 	*/
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "Adventure Plugin")
 	UDialogGraphNode* ChildFallback;
 
 	/**
 	* The options representing the dialog options to be presented to the player.
 	*/
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "Adventure Plugin")
 	TMap<int32, UDialogGraphNode*> ChildOptions;
 
 	virtual void ResetSpecialChildren() override
