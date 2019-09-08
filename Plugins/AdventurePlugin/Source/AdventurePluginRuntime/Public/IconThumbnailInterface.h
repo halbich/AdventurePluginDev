@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Core.h"
-#include "Interface.h"
 #include "Classes/Engine/Texture2D.h"
 #include "IconThumbnailInterface.generated.h"
 

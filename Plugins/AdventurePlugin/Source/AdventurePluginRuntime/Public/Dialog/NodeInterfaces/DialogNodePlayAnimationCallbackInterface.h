@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Interface.h"
+#include "CoreMinimal.h"
 #include "DialogNodePlayAnimationCallbackInterface.generated.h"
 
 UINTERFACE(Blueprintable)

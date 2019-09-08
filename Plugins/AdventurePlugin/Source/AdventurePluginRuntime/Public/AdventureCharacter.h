@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Core.h"
-#include "Classes/Engine/DataAsset.h"
+#include "Engine/DataAsset.h"
 #include "Classes/Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
 #include "Animations/AnimatableObjectInterface.h"

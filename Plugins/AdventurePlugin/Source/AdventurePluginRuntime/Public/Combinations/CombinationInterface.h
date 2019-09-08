@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Interface.h"
 #include "UseActionType.h"
 #include "CombinationInterface.generated.h"
 

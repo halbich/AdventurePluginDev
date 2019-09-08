@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ModuleManager.h"
+#include "Modules/ModuleManager.h"
 #include "Styling/SlateStyle.h"
 #include "IAssetTools.h"
 #include "AdventurePluginEditor.h"

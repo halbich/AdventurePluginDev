@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Interface.h"
+#include "CoreMinimal.h"
 #include "DialogNodeShowOptionsCallbackInterface.generated.h"
 
 class UDialogController;

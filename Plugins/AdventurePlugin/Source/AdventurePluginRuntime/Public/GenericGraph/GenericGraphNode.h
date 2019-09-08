@@ -7,9 +7,9 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SubclassOf.h"
-#include "TextProperty.h"
-#include "Map.h"
+#include "Templates/SubclassOf.h"
+#include "UObject/TextProperty.h"
+#include "Containers/Map.h"
 #include "GenericGraphNode.generated.h"
 
 class UGenericGraph;
