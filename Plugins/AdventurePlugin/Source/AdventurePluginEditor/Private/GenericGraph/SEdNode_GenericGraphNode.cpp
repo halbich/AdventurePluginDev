@@ -8,7 +8,7 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 #include "GenericGraph/Colors_GenericGraph.h"
 #include "GenericGraph/GenericGraph.h"
 #include "SLevelOfDetailBranchNode.h"
-#include "SInlineEditableTextBlock.h"
+#include "Widgets/Text/SInlineEditableTextBlock.h"
 #include "SCommentBubble.h"
 #include "SlateOptMacros.h"
 #include "SGraphPin.h"

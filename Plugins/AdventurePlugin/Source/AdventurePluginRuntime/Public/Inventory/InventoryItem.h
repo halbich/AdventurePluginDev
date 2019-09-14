@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Core.h"
-#include "TextProperty.h" 
-#include "Classes/Engine/Texture2D.h"
+#include "CoreMinimal.h"
+#include "UObject/TextProperty.h" 
+#include "Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
-#include "Delegate.h"
-#include "CombinationInterface.h"
-#include "CombinableObject.h"
+#include "Delegates/Delegate.h"
+#include "Combinations/CombinationInterface.h"
+#include "Combinations/CombinableObject.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "Inventory/Structs/UseActionType.h"
-#include "InventoryItemState.h"
+#include "Inventory/InventoryItemState.h"
 #include "InventoryItem.generated.h"
 
 class UInventoryItemBlueprint;

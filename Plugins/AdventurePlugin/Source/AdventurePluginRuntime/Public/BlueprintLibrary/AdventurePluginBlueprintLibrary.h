@@ -1,17 +1,18 @@
 #pragma once
 
+#include "CoreMinimal.h"
 #include "AdventurePluginRuntime.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "DialogController.h"
+#include "Dialog/Controller/DialogController.h"
 #include "Quest/Graph/QuestGraph.h"
 #include "Dialog/Graph/DialogGraph.h"
 #include "Dialog/Graph/DialogGraphNode.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
-#include "InventoryController.h"
+#include "Inventory/Controller/InventoryController.h"
 #include "AdventurePluginRuntime.h"
 #include "AdventureCharacter.h"
-#include "InventoryItem.h"
+#include "Inventory/InventoryItem.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
 
 /**

@@ -3,9 +3,9 @@
 #include "AdventurePluginRuntime.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "Common/AdventurePluginConfig.h"
-#include "DialogGraph.h"
-#include "DialogGraphNode.h"
-#include "Presenter/DialogPresenterInterface.h"
+#include "Dialog/Graph/DialogGraph.h"
+#include "Dialog/Graph/DialogGraphNode.h"
+#include "Dialog/Presenter/DialogPresenterInterface.h"
 #include "Kismet/GameplayStatics.h"
 #include "DialogController.generated.h"
 

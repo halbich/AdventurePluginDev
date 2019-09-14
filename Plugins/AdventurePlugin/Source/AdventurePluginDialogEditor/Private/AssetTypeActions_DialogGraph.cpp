@@ -1,6 +1,6 @@
 #include "AssetTypeActions_DialogGraph.h"
 #include "AssetEditor_DialogGraph.h"
-#include "DialogGraph.h"
+#include "Dialog/Graph/DialogGraph.h"
 
 #define LOCTEXT_NAMESPACE "AssetTypeActions_DialogGraph"
 

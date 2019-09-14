@@ -1,6 +1,6 @@
  #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "Inventory/InventoryItem.h"
 #include "Inventory.generated.h"
 

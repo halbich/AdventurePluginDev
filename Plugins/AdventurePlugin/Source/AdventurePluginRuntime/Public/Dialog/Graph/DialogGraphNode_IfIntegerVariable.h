@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DialogGraphNode_LessEqualMoreBase.h"
+#include "BaseClasses/DialogGraphNode_LessEqualMoreBase.h"
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphInteger.h"
 #include "DialogGraphNode_IfIntegerVariable.generated.h"

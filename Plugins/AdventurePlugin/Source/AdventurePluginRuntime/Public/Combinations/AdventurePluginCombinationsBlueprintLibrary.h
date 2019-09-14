@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Engine.h"
+#include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "CombinableObject.h"
-#include "InventoryItem.h"
+#include "Combinations/CombinableObject.h"
+#include "Inventory/InventoryItem.h"
 #include "SimpleCombinationWithSingleItem.h"
 #include "GenericCombinationWithSingleItem.h"
 #include "StartDialogCombinationWithSingleItem.h"
-#include "UseActionType.h"
-#include "DialogGraphEntryPoint.h"
+#include "Inventory/Structs/UseActionType.h"
+#include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "AdventurePluginCombinationsBlueprintLibrary.generated.h"
 
 /**

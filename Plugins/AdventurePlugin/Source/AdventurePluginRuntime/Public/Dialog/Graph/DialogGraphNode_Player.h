@@ -3,9 +3,9 @@
 #include "CoreMinimal.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "DialogGraphNode.h"
-#include "Presenter/DialogPresenterInterface.h"
-#include "NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
-#include "DialogGraphNode_DialogLineBase.h"
+#include "Dialog/Presenter/DialogPresenterInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
+#include "BaseClasses/DialogGraphNode_DialogLineBase.h"
 #include "DialogGraphNode_Player.generated.h"
 
 /*

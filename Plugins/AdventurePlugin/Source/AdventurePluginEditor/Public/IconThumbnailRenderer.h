@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "AdventureCharacter.h"
 #include "IconThumbnailInterface.h"
-#include "Classes/ThumbnailRendering/TextureThumbnailRenderer.h"
+#include "ThumbnailRendering/TextureThumbnailRenderer.h"
 #include "IconThumbnailRenderer.generated.h"
 
 class FCanvas;

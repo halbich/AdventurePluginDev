@@ -3,8 +3,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
 #include "Kismet/GameplayStatics.h"
-#include "InventoryItemState.h"
-#include "InventoryItem.h"
+#include "Inventory/InventoryItemState.h"
+#include "Inventory/InventoryItem.h"
 #include "AdventurePluginSaveGame.generated.h"
 
 /**

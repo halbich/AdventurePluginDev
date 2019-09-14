@@ -1,11 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DialogGraphNode.h"
+#include "Dialog/Graph/DialogGraphNode.h"
 #include "Inventory/InventoryItem.h"
 #include "Inventory/InventoryItemBlueprint.h"
-#include "InventoryController.h"
-#include "ItemManager.h"
+#include "Inventory/Controller/InventoryController.h"
+#include "Inventory/ItemManager.h"
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode_ItemBase.generated.h"
 

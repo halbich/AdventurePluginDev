@@ -1,7 +1,7 @@
-#include "DialogController.h"
-#include "NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
-#include "NodeInterfaces/DialogNodeShowOptionsCallbackInterface.h"
-#include "NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"
+#include "Dialog/Controller/DialogController.h"
+#include "Dialog/NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodeShowOptionsCallbackInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"
 
 void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph)
 {

@@ -1,4 +1,4 @@
-#include "AdventurePluginGameInstance.h"
+#include "Common/AdventurePluginGameInstance.h"
 
 const FName AP_Log = "AdventurePluginLog";
 

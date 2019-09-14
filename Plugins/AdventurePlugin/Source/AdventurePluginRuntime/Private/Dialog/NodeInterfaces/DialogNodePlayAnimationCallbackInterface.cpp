@@ -1,1 +1,1 @@
-#include "DialogNodePlayAnimationCallbackInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"

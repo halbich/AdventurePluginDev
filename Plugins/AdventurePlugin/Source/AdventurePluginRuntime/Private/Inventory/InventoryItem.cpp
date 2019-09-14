@@ -1,9 +1,9 @@
-﻿#include "InventoryItem.h"
-#include "AdventurePluginSaveGame.h"
-#include "Inventory.h"
-#include "AdventurePluginGameContext.h"
-#include "ItemManager.h"
-#include "AdventurePluginBlueprintLibrary.h"
+﻿#include "Inventory/InventoryItem.h"
+#include "SaveGame/AdventurePluginSaveGame.h"
+#include "Inventory/Inventory.h"
+#include "Common/AdventurePluginGameContext.h"
+#include "Inventory/ItemManager.h"
+#include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
 
 void UInventoryItem::Examine_Implementation(UAdventurePluginGameContext* GameContext)
 {

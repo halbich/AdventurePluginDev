@@ -4,10 +4,10 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "DialogGraphNode.h"
 #include "DialogGraph.h"
-#include "DialogGraphNode_PlayCharacterAnimationOnceBase.h"
+#include "BaseClasses/DialogGraphNode_PlayCharacterAnimationOnceBase.h"
 #include "AdventureCharacterManager.h"
-#include "Presenter/DialogPresenterInterface.h"
-#include "AnimatableObjectInterface.h"
+#include "Dialog/Presenter/DialogPresenterInterface.h"
+#include "Animations/AnimatableObjectInterface.h"
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode_PlayNPCAnimationOnce.generated.h"
 

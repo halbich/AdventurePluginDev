@@ -1,5 +1,5 @@
 #include "AssetGraphSchema_QuestGraph.h"
-#include "QuestGraphNode_End.h"
+#include "Quest/Graph/QuestGraphNode_End.h"
 #include "GenericGraph/EdNode_GenericGraphNode.h"
 #include "EdGraph/EdGraph.h"
 #include "AdventurePluginEditor.h"

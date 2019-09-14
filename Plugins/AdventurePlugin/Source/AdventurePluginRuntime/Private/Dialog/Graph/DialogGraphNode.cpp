@@ -1,5 +1,5 @@
-#include "DialogGraphNode.h"
-#include "DialogGraph.h"
+#include "Dialog/Graph/DialogGraphNode.h"
+#include "Dialog/Graph/DialogGraph.h"
 
 #define LOCTEXT_NAMESPACE "DialogGraphNode"
 

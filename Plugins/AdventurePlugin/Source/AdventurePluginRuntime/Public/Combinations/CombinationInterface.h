@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UseActionType.h"
+#include "Inventory/Structs/UseActionType.h"
 #include "CombinationInterface.generated.h"
 
 class UAdventurePluginGameContext;

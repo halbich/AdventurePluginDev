@@ -1,4 +1,4 @@
-#include "CombinableObjectManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "AdventurePluginRuntime.h"
 
 UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass)

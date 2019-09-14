@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "LocalCombinationInfo.h"
 #include "CombinableObject.generated.h"
 

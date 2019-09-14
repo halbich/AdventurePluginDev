@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
-#include "NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
 #include "DialogGraph.h"
 #include "DialogGraphNode_PlayerLineOption.generated.h"
 

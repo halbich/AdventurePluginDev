@@ -4,7 +4,7 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "DialogGraphNode.h"
 #include "DialogGraph.h"
-#include "DialogPresenterInterface.h"
+#include "Dialog/Presenter/DialogPresenterInterface.h"
 #include "DialogGraphNode_ResetNPCAnimationState.generated.h"
 
 /**

@@ -11,8 +11,8 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 #include "GraphEditorActions.h"
 #include "Framework/Commands/GenericCommands.h"
 #include "ScopedTransaction.h"
-#include "MultiBoxBuilder.h"
-#include "UObjectIterator.h"
+#include "Framework/MultiBox/MultiBoxBuilder.h"
+#include "UObject/UObjectIterator.h"
 #include "EdGraph/EdGraph.h"
 
 #define LOCTEXT_NAMESPACE "AssetSchema_GenericGraph"

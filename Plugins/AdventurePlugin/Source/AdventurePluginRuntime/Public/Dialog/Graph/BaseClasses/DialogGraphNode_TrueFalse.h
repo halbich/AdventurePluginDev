@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DialogGraphNode.h"
+#include "Dialog/Graph/DialogGraphNode.h"
 #include "DialogGraphNode_TrueFalse.generated.h"
 
 class UDialogController;

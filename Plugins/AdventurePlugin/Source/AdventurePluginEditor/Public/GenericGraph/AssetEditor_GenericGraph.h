@@ -8,9 +8,9 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 
 #include "CoreMinimal.h"
 #include "GenericGraph/GenericGraph.h"
-#include "NotifyHook.h"
+#include "Misc/NotifyHook.h"
 #include "GraphEditor.h"
-#include "AssetEditorToolkit.h"
+#include "Toolkits/AssetEditorToolkit.h"
 
 class FGGAssetEditorToolbar;
 

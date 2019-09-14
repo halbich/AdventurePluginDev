@@ -7,7 +7,7 @@ here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Commands.h"
+#include "Framework/Commands/Commands.h"
 #include "EditorStyleSet.h"
 
 class FEditorCommands_GenericGraph : public TCommands<FEditorCommands_GenericGraph>

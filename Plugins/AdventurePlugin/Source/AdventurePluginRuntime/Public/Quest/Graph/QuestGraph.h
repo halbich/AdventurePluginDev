@@ -2,9 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraph/GenericGraph.h"
-#include "BoolVariable.h"
-#include "IntegerVariable.h"
-#include "StringVariable.h"
+#include "Quest/Structs/BoolVariable.h"
+#include "Quest/Structs/IntegerVariable.h"
+#include "Quest/Structs/StringVariable.h"
 #include "QuestGraph.generated.h"
 
 class UQuestGraphNode;

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Engine.h"
+#include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "QuestGraphBool.h"
-#include "QuestGraphFlag.h"
-#include "QuestGraphEvent.h"
-#include "QuestGraphInteger.h"
-#include "QuestGraphString.h"
+#include "Quest/Structs/QuestGraphBool.h"
+#include "Quest/Structs/QuestGraphFlag.h"
+#include "Quest/Structs/QuestGraphEvent.h"
+#include "Quest/Structs/QuestGraphInteger.h"
+#include "Quest/Structs/QuestGraphString.h"
 #include "AdventurePluginQuestBlueprintLibrary.generated.h"
 
 /**

@@ -2,13 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "DialogGraphNode.h"
+#include "Dialog/Graph/DialogGraphNode.h"
 #include "DialogGraphNode_PlayAnimationCharacterBase.h"
-#include "DialogGraph.h"
+#include "Dialog/Graph/DialogGraph.h"
 #include "AdventureCharacterManager.h"
-#include "Presenter/DialogPresenterInterface.h"
-#include "AnimatableObjectInterface.h"
-#include "NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"
+#include "Dialog/Presenter/DialogPresenterInterface.h"
+#include "Animations/AnimatableObjectInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"
 #include "DialogGraphNode_PlayCharacterAnimationOnceBase.generated.h"
 
 /**

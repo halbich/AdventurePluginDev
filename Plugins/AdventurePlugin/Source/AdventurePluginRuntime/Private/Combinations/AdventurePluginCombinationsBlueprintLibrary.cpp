@@ -1,4 +1,4 @@
-#include "AdventurePluginCombinationsBlueprintLibrary.h"
+#include "Combinations/AdventurePluginCombinationsBlueprintLibrary.h"
 
 UGenericCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibrary::CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FUseActionType CombinationType, FCombinationEvent CombinationEvent)
 {

@@ -1,6 +1,6 @@
-#include "CombinableObject.h"
-#include "CombinationInterface.h"
-#include "AdventurePluginGameContext.h"
+#include "Combinations/CombinableObject.h"
+#include "Combinations/CombinationInterface.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "AdventurePluginRuntime.h"
 
 void UCombinableObject::InitCombinations_Implementation()

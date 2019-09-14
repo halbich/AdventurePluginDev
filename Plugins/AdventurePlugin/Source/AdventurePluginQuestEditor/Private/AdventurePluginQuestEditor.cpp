@@ -25,7 +25,7 @@
 #include "Customizations/QuestGraphIntegerCustomization.h"
 #include "Customizations/QuestGraphEventCustomization.h"
 #include "Customizations/QuestInventoryItemCustomization.h"
-#include "SlateStyleRegistry.h"
+#include "Styling/SlateStyleRegistry.h"
 #include "Styling/SlateStyle.h"
 
 #define LOCTEXT_NAMESPACE "FAdventurePluginQuestEditor"

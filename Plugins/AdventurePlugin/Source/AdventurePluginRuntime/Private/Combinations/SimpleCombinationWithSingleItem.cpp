@@ -1,9 +1,9 @@
-#include "SimpleCombinationWithSingleItem.h"
-#include "AdventurePluginGameContext.h"
+#include "Combinations/SimpleCombinationWithSingleItem.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "AdventurePluginRuntime.h"
-#include "InventoryController.h"
-#include "ItemManager.h"
-#include "Inventory.h"
+#include "Inventory/Controller/InventoryController.h"
+#include "Inventory/ItemManager.h"
+#include "Inventory/Inventory.h"
 
 void USimpleCombinationWithSingleItem::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
 {

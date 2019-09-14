@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Delegate.h"
+#include "Delegates/Delegate.h"
 #include "AnimatableObjectInterface.generated.h"
 
 class UAdventurePluginGameContext;

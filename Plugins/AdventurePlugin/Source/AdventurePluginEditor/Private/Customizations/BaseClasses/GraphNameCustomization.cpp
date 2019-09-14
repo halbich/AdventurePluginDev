@@ -1,4 +1,4 @@
-#include "GraphNameCustomization.h"
+#include "Customizations/BaseClasses/GraphNameCustomization.h"
 #include "Widgets/Text/STextBlock.h"
 #include "IDetailChildrenBuilder.h"
 #include "DetailWidgetRow.h"

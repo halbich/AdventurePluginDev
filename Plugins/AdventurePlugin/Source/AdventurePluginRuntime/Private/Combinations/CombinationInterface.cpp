@@ -1,2 +1,1 @@
-#include "CombinationInterface.h"
-#include "UseActionType.h"
+#include "Combinations/CombinationInterface.h"

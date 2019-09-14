@@ -5,8 +5,8 @@
 #include "DialogGraph.h"
 #include "DialogGraphNode.h"
 #include "DialogGraphNode_Player.h"
-#include "Presenter/DialogPresenterInterface.h"
-#include "NodeInterfaces/DialogNodeShowOptionsCallbackInterface.h"
+#include "Dialog/Presenter/DialogPresenterInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodeShowOptionsCallbackInterface.h"
 #include "DialogGraphNode_Options.generated.h"
 
 /**

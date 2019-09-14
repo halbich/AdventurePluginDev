@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "Engine.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "Presenter/InventoryPresenterInterface.h"
+#include "Inventory/Presenter/InventoryPresenterInterface.h"
 #include "Common/AdventurePluginConfig.h"
 #include "Kismet/GameplayStatics.h"
 #include "InventoryController.generated.h"

@@ -1,4 +1,4 @@
-#include "UseActionTypeCustomization.h"
+#include "Customizations/UseActionTypeCustomization.h"
 #include "Inventory/Structs/UseActionType.h"
 #include "Common/AdventurePluginConfig.h"
 

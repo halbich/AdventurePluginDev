@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "Classes/Engine/Texture2D.h"
+#include "Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
 #include "Animations/AnimatableObjectInterface.h"
-#include "CombinableObject.h"
-#include "Delegate.h"
+#include "Combinations/CombinableObject.h"
+#include "Delegates/Delegate.h"
 #include "AdventureCharacter.generated.h"
 
 /**

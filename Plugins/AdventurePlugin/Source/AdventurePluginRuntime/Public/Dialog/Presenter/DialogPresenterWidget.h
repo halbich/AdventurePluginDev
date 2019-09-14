@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Graph/DialogGraphNode.h"
+#include "Dialog/Graph/DialogGraphNode.h"
 #include "DialogPresenterInterface.h"
 #include "DialogPresenterWidget.generated.h"
 

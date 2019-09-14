@@ -3,8 +3,8 @@
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
 #include "BaseClasses/DialogGraphNode_TrueFalse.h"
-#include "AdventurePluginGameContext.h"
-#include"SaveGame/AdventurePluginSaveGame.h"
+#include "Common/AdventurePluginGameContext.h"
+#include "SaveGame/AdventurePluginSaveGame.h"
 #include "DialogGraphNode_Once.generated.h"
 
 /**

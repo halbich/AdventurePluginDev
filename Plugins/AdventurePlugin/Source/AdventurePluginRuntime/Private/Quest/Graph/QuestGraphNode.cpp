@@ -1,5 +1,5 @@
-#include "QuestGraphNode.h"
-#include "QuestGraph.h"
+#include "Quest/Graph/QuestGraphNode.h"
+#include "Quest/Graph/QuestGraph.h"
 
 #define LOCTEXT_NAMESPACE "QuestGraphNode"
 

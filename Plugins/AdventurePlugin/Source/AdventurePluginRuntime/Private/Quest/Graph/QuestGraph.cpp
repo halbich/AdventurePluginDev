@@ -1,10 +1,10 @@
-#include "QuestGraph.h"
-#include "QuestGraphNode.h"
-#include "QuestGraphNode_Flag.h"
+#include "Quest/Graph/QuestGraph.h"
+#include "Quest/Graph/QuestGraphNode.h"
+#include "Quest/Graph/QuestGraphNode_Flag.h"
 #include "Engine/Engine.h"
 #include "AdventurePluginRuntime.h"
 #include "SaveGame/AdventurePluginSaveGame.h"
-#include "AdventurePluginGameContext.h"
+#include "Common/AdventurePluginGameContext.h"
 
 #define LOCTEXT_NAMESPACE "QuestGraph"
 

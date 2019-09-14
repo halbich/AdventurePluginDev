@@ -1,7 +1,7 @@
-#include "Inventory.h"
-#include "AdventurePluginSaveGame.h"
-#include "AdventurePluginGameContext.h"
-#include "ItemManager.h"
+#include "Inventory/Inventory.h"
+#include "SaveGame/AdventurePluginSaveGame.h"
+#include "Common/AdventurePluginGameContext.h"
+#include "Inventory/ItemManager.h"
 
 bool UInventory::HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
 {

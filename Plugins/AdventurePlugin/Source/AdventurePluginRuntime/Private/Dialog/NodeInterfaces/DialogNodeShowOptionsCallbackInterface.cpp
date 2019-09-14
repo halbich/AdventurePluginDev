@@ -1,1 +1,1 @@
-#include "DialogNodeShowOptionsCallbackInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodeShowOptionsCallbackInterface.h"

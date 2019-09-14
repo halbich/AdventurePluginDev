@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Core.h"
-#include "Delegate.h"
-#include "CombinationInterface.h"
-#include "DialogGraphEntryPoint.h"
+#include "CoreMinimal.h"
+#include "Delegates/Delegate.h"
+#include "Combinations/CombinationInterface.h"
+#include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "AdventurePluginRuntime.h"
-#include "AdventurePluginGameContext.h"
-#include "AdventurePluginBlueprintLibrary.h"
-#include "CombinationWithSingleItemBase.h"
+#include "Common/AdventurePluginGameContext.h"
+#include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
+#include "Combinations/CombinationWithSingleItemBase.h"
 #include "StartDialogCombinationWithSingleItem.generated.h"
 
 class UAdventurePluginGameContext;

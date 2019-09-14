@@ -2,8 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "UniquePtr.h"
-#include "Structs/DialogLineData.h"
+#include "Dialog/Structs/DialogLineData.h"
 #include "DialogPresenterInterface.generated.h"
 
 class UDialogGraphNode;

@@ -4,8 +4,8 @@ created by jinyuliao, which is distributed under MIT license and is available
 here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder.
 */
 
-#include "GenericGraphNode.h"
-#include "GenericGraph.h"
+#include "GenericGraph/GenericGraphNode.h"
+#include "GenericGraph/GenericGraph.h"
 
 #define LOCTEXT_NAMESPACE "GenericGraphNode"
 

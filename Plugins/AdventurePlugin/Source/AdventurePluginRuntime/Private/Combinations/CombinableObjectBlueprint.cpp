@@ -1,5 +1,5 @@
-#include "CombinableObjectBlueprint.h"
-#include "CombinableObject.h"
+#include "Combinations/CombinableObjectBlueprint.h"
+#include "Combinations/CombinableObject.h"
 #include "AssetRegistryModule.h"
 #include "AdventurePluginRuntime.h"
 

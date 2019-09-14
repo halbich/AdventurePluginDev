@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "Engine/Blueprint.h"
 #include "AssetData.h"
 #include "CombinableObjectBlueprint.generated.h"

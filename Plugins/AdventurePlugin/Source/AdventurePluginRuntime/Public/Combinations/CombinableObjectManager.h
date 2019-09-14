@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "Engine.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "CombinableObject.h"
+#include "Combinations/CombinableObject.h"
 #include "CombinableObjectManager.generated.h"
 
 /**

@@ -1,1 +1,1 @@
-#include "DialogNodeShowLineCallbackInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodeShowLineCallbackInterface.h"

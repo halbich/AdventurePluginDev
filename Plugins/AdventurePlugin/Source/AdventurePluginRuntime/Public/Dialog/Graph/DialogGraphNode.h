@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GenericGraph/GenericGraphNode.h"
-#include "Structs/DialogLineData.h"
+#include "Dialog/Structs/DialogLineData.h"
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode.generated.h"
 

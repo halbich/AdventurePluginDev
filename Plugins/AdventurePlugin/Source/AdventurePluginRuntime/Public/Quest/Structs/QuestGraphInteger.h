@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "QuestGraph.h"
+#include "Quest/Graph/QuestGraph.h"
 #include "QuestGraphInteger.generated.h"
 
 /**

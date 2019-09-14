@@ -1,4 +1,4 @@
-#include "InventoryController.h"
+#include "Inventory/Controller/InventoryController.h"
 
 void UInventoryController::ShowInventory(UAdventurePluginGameContext* GameContext, UInventory* Inventory)
 {

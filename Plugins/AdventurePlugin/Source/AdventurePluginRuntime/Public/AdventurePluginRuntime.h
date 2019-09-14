@@ -1,7 +1,7 @@
 #pragma once
 
-#include "MessageLog.h"
-#include "Engine.h"
+#include "CoreMinimal.h"
+#include "Logging/MessageLog.h"
 #include "Modules/ModuleInterface.h"
 #include "Modules/ModuleManager.h"
 

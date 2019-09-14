@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "Factories/Factory.h"
 #include "AdventureCharacterFactory.generated.h"
 

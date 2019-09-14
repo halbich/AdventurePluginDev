@@ -2,8 +2,8 @@
 
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode.h"
-#include "Controller/DialogController.h"
-#include "AdventurePluginSaveGame.h"
+#include "Dialog/Controller/DialogController.h"
+#include "SaveGame/AdventurePluginSaveGame.h"
 #include "DialogGraphNode_SaveState.generated.h"
 
 /**

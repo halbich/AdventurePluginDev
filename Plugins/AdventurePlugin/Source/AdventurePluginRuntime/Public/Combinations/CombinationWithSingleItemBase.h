@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Core.h"
-#include "Delegate.h"
-#include "CombinableObject.h"
-#include "CombinationInterface.h"
+#include "CoreMinimal.h"
+#include "Delegates/Delegate.h"
+#include "Combinations/CombinableObject.h"
+#include "Combinations/CombinationInterface.h"
 #include "AdventurePluginRuntime.h"
-#include "UseActionType.h"
+#include "Inventory/Structs/UseActionType.h"
 #include "CombinationWithSingleItemBase.generated.h"
 
 class UAdventurePluginGameContext;

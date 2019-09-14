@@ -1,13 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AdventurePluginGameContext.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "QuestGraphNode.h"
 #include "Inventory/InventoryItem.h"
 #include "Inventory/InventoryItemBlueprint.h"
 #include "AdventurePluginRuntime.h"
-#include "InventoryController.h"
-#include "ItemManager.h"
+#include "Inventory/Controller/InventoryController.h"
+#include "Inventory/ItemManager.h"
 #include "QuestGraphNode_Inventory.generated.h"
 
 /**

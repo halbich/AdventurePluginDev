@@ -2,10 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "DialogGraphNode.h"
-#include "Presenter/DialogPresenterInterface.h"
-#include "NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
-#include "DialogGraph.h"
+#include "Dialog/Graph/DialogGraphNode.h"
+#include "Dialog/Presenter/DialogPresenterInterface.h"
+#include "Dialog/NodeInterfaces/DialogNodeShowLineCallbackInterface.h"
+#include "Dialog/Graph/DialogGraph.h"
 #include "DialogGraphNode_DialogLineBase.generated.h"
 
 /**

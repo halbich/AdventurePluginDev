@@ -4,7 +4,7 @@ created by jinyuliao, which is distributed under MIT license and is available
 here: https://github.com/jinyuliao/GenericGraph. See LICENSE file in this folder.
 */
 
-#include "GenericGraph.h"
+#include "GenericGraph/GenericGraph.h"
 #include "Engine/Engine.h"
 
 #define LOCTEXT_NAMESPACE "GenericGraph"

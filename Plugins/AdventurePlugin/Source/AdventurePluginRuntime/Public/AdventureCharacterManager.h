@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "Combinations/CombinableObjectManager.h"
 #include "AdventureCharacter.h"
 #include "AdventureCharacterManager.generated.h"

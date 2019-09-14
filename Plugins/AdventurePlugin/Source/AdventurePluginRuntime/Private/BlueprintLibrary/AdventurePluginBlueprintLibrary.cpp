@@ -1,9 +1,9 @@
-#include "AdventurePluginBlueprintLibrary.h"
-#include "ItemManager.h"
-#include "Inventory.h"
+#include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
+#include "Inventory/ItemManager.h"
+#include "Inventory/Inventory.h"
 #include "AdventureCharacterManager.h"
-#include "AdventurePluginGameContext.h"
-#include "AdventurePluginGameInstance.h"
+#include "Common/AdventurePluginGameContext.h"
+#include "Common/AdventurePluginGameInstance.h"
 
 void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePluginGameContext* GameContext, FDialogGraphEntryPoint EntryPoint)
 {

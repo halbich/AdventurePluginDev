@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Core.h"
-#include "TextProperty.h" 
-#include "Classes/Engine/Texture2D.h"
+#include "CoreMinimal.h"
+#include "UObject/TextProperty.h" 
+#include "Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
 #include "Engine/Blueprint.h"
 #include "InventoryItem.h"
-#include "AdventurePluginGameContext.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "ItemManager.h"
-#include "CombinableObjectBlueprint.h"
+#include "Combinations/CombinableObjectBlueprint.h"
 #include "InventoryItemBlueprint.generated.h"
 
 /**

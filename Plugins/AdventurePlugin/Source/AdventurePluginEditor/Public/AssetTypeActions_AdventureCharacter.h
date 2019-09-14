@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "CoreMinimal.h"
 #include "AdventureCharacter.h"
 #include "AssetTypeActions_Base.h"
 

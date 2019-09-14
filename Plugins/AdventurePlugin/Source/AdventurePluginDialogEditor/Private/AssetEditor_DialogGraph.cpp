@@ -1,7 +1,7 @@
 #include "AssetEditor_DialogGraph.h"
 #include "AssetGraphSchema_DialogGraph.h"
-#include "DialogGraphNode_EntryMain.h"
-#include "DialogGraphNode_EntrySecondary.h"
+#include "Dialog/Graph/DialogGraphNode_EntryMain.h"
+#include "Dialog/Graph/DialogGraphNode_EntrySecondary.h"
 
 #define LOCTEXT_NAMESPACE "AssetEditor_DialogGraph"
 

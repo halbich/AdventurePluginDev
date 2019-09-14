@@ -15,7 +15,7 @@
 #include "IAssetTypeActions.h"
 #include "AssetTypeActions_DialogGraph.h"
 #include "ClassIconFinder.h"
-#include "SlateStyleRegistry.h"
+#include "Styling/SlateStyleRegistry.h"
 #include "Styling/SlateStyle.h"
 #include "PropertyEditorModule.h"
 #include "PropertyEditorDelegates.h"

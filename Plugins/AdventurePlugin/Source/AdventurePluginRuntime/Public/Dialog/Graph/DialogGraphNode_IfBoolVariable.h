@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
-#include "DialogGraphNode_TrueFalse.h"
+#include "BaseClasses/DialogGraphNode_TrueFalse.h"
 #include "Quest/Graph/QuestGraph.h"
 #include "Quest/Structs/QuestGraphBool.h"
 #include "DialogGraphNode_IfBoolVariable.generated.h"

@@ -1,6 +1,6 @@
 #include "AssetTypeActions_QuestGraph.h"
 #include "AssetEditor_QuestGraph.h"
-#include "QuestGraph.h"
+#include "Quest/Graph/QuestGraph.h"
 
 #define LOCTEXT_NAMESPACE "AssetTypeActions_QuestGraph"
 

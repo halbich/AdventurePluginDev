@@ -2,13 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "DialogGraphNode.h"
-#include "DialogGraphNode_ItemBase.h"
+#include "BaseClasses/DialogGraphNode_ItemBase.h"
 #include "Inventory/InventoryItem.h"
 #include "Inventory/InventoryItemBlueprint.h"
-#include "InventoryController.h"
-#include "ItemManager.h"
+#include "Inventory/Controller/InventoryController.h"
+#include "Inventory/ItemManager.h"
 #include "AdventurePluginRuntime.h"
-#include "AdventurePluginGameContext.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "DialogGraphNode_IfInInventory.generated.h"
 
 /**

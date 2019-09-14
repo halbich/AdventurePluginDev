@@ -1,1 +1,1 @@
-#include "InventoryPresenterWidget.h"
+#include "Inventory/Presenter/InventoryPresenterWidget.h"

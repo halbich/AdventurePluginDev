@@ -1,6 +1,6 @@
-#include "BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.h"
+#include "Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.h"
 #include "AdventurePluginRuntime.h"
-#include "AdventurePluginGameContext.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "Quest/Graph/QuestGraph.h"
 
 bool UAdventurePluginQuestBlueprintLibrary::GetQuestBool(UAdventurePluginGameContext* GameContext, FQuestGraphBool QuestBoolVariable)
