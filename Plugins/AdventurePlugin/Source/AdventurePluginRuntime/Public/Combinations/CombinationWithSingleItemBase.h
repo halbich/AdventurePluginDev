@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Delegates/Delegate.h"
 #include "Combinations/CombinableObject.h"
-#include "Combinations/CombinationInterface.h"
+#include "Combinations/Combination.h"
 #include "AdventurePluginRuntime.h"
 #include "Inventory/Structs/UseActionType.h"
 #include "CombinationWithSingleItemBase.generated.h"
@@ -15,7 +15,7 @@ class UAdventurePluginGameContext;
 * The combination action must be specified in subclasses.
 */
 UCLASS(Abstract, BlueprintType, Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UCombinationWithSingleItemBase : public UObject, public ICombinationInterface
+class ADVENTUREPLUGINRUNTIME_API UCombinationWithSingleItemBase : public UCombination
 {
 	GENERATED_BODY()
 

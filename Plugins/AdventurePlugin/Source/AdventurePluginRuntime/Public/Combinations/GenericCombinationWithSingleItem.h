@@ -3,7 +3,6 @@
 #include "CoreMinimal.h"
 #include "Delegates/Delegate.h"
 #include "Combinations/CombinableObject.h"
-#include "Combinations/CombinationInterface.h"
 #include "AdventurePluginRuntime.h"
 #include "Inventory/Structs/UseActionType.h"
 #include "CombinationWithSingleItemBase.h"

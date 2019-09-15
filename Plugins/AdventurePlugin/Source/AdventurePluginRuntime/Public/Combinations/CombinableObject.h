@@ -5,7 +5,7 @@
 #include "WorldContextProvidingObject.h"
 #include "CombinableObject.generated.h"
 
-class ICombinationInterface;
+class UCombination;
 class UAdventurePluginGameContext;
 
 /**
@@ -49,7 +49,7 @@ public:
 	* @param ToAdd The combination object that should be added to the list of supported combinations.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
-	void AddCombinationObject(TScriptInterface<ICombinationInterface> ToAdd);
+	void AddCombinationObject(UCombination* ToAdd);
 
 	/**
 	* Override this method to register combinations. All combinations should be registered in this method. Do not call this method directly.
@@ -70,7 +70,7 @@ public:
 	* @return The combination between the two objects, or null if such a combination does not exist.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
-	TScriptInterface<ICombinationInterface> GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
+	UCombination* GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
 
 	/**
 	* Tries to find and execute a combination between this and a specified object.
@@ -88,8 +88,13 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
-	void ExecuteCombination(TScriptInterface<ICombinationInterface> Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
+	void ExecuteCombination(UCombination* Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
 
+	/*
+	* Sets the World object for this object and sets in on all internal combinations.
+	* @param WorldObject - The world object to use.
+	*/
+	void SetWorldObject(UWorld* WorldObject);
 protected:
 
 	/**
@@ -107,12 +112,12 @@ protected:
 	* List of all combinations defined on this object.
 	*/
 	UPROPERTY(Transient)
-	TArray<TScriptInterface<ICombinationInterface>> Combinations;
+	TArray<UCombination*> Combinations;
 
 	/**
 	* Helper for GetCombinationWithObject(). Tries to find a combination with other object, but only using combinations defined on this object.
 	* @param OtherObject The combination with which this object should be combined.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	TScriptInterface<ICombinationInterface> GetCombinationWithObjectLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
+	UCombination* GetCombinationWithObjectLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
 };

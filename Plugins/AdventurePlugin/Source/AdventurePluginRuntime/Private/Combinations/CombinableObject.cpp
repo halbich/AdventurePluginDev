@@ -1,5 +1,5 @@
 #include "Combinations/CombinableObject.h"
-#include "Combinations/CombinationInterface.h"
+#include "Combinations/Combination.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "AdventurePluginRuntime.h"
 
@@ -23,15 +23,15 @@ void UCombinableObject::RefreshCombinations()
 	bIsRefreshingCombinations = false;
 #if WITH_EDITORONLY_DATA
 	LocalCombinations.Empty();
-	for (TScriptInterface<ICombinationInterface>& CombinationInterface : Combinations)
+	for (auto* Combination : Combinations)
 	{
-		if (!IsValid(CombinationInterface.GetObject()))
+		if (!IsValid(Combination))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObject_RefreshCombinationInvalidCombination", "CombinableObject:RefreshCombinations: Found null or invalid combination."));
 			continue;
 		}
-		TArray<UClass*> AllCombinationTargets = CombinationInterface->Execute_GetCombinationTargetClasses(CombinationInterface.GetObject());
-		FText CombinationDebugName = CombinationInterface->Execute_GetDebugName(CombinationInterface.GetObject());
+		TArray<UClass*> AllCombinationTargets = Combination->GetCombinationTargetClasses();
+		FText CombinationDebugName = Combination->GetDebugName();
 		FLocalCombinationInfo CombinationInfoToAdd = FLocalCombinationInfo();
 		CombinationInfoToAdd.Name = CombinationDebugName;
 		// Split combination targets into blueprints and classes so we can navigate to the place where the navigations are defined from editor.
@@ -53,21 +53,21 @@ void UCombinableObject::RefreshCombinations()
 #endif
 }
 
-void UCombinableObject::AddCombinationObject(TScriptInterface<ICombinationInterface> ToAdd)
+void UCombinableObject::AddCombinationObject(UCombination* ToAdd)
 {
 	CheckIsRefreshingCombinations();
 	Combinations.Add(ToAdd);
 }
 
-TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+UCombination* UCombinableObject::GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
 	if (!IsValid(OtherObject))
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObject_GetCombination_NullCombinationItem", "One of the items being combined is null."));
 		return nullptr;
 	}
-	TScriptInterface<ICombinationInterface> FoundCombination = GetCombinationWithObjectLocalOnly(OtherObject, GameContext);
-	if (!IsValid(FoundCombination.GetObject()))
+	UCombination* FoundCombination = GetCombinationWithObjectLocalOnly(OtherObject, GameContext);
+	if (!IsValid(FoundCombination))
 	{
 		FoundCombination = OtherObject->GetCombinationWithObjectLocalOnly(this, GameContext);
 	}
@@ -76,8 +76,8 @@ TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObj
 
 bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
-	TScriptInterface<ICombinationInterface> CombinationToExecute = GetCombinationWithObject(OtherObject, GameContext);
-	if (!IsValid(CombinationToExecute.GetObject()))
+	UCombination* CombinationToExecute = GetCombinationWithObject(OtherObject, GameContext);
+	if (!IsValid(CombinationToExecute))
 	{
 		return false;
 	}
@@ -85,37 +85,45 @@ bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventur
 	return true;
 }
 
-void UCombinableObject::ExecuteCombination(TScriptInterface<ICombinationInterface> Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+void UCombinableObject::ExecuteCombination(UCombination* Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
-	if (!IsValid(Combination.GetObject()))
+	if (!IsValid(Combination))
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObjectExecuteCombination_NullCombination", "UCombinableObject:ExecuteCombination: Combination is null or invalid."));
 	}
 	// Make sure that we are executing the combination with correct source and target object - This is source if the combination was defined here.
 	if (Combinations.Contains(Combination))
 	{
-		Combination->Execute_Execute(Combination.GetObject(), this, OtherObject, GameContext);
+		Combination->Execute(this, OtherObject, GameContext);
 	}
 	else
 	{
-		Combination->Execute_Execute(Combination.GetObject(), OtherObject, this, GameContext);
+		Combination->Execute(OtherObject, this, GameContext);
 	}
 }
 
-TScriptInterface<ICombinationInterface> UCombinableObject::GetCombinationWithObjectLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+UCombination* UCombinableObject::GetCombinationWithObjectLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
-	for (TScriptInterface<ICombinationInterface>& CombinationInterface : Combinations)
+	for (UCombination* Combination : Combinations)
 	{
-		if (!IsValid(CombinationInterface.GetObject()))
+		if (!IsValid(Combination))
 		{
 			continue;
 		}
-		UObject* CombinationObject = CombinationInterface.GetObject();
-		if (!CombinationInterface->Execute_CanCombineWith(CombinationObject, this, OtherObject, GameContext))
+		if (!Combination->CanCombineWith(this, OtherObject, GameContext))
 		{
 			continue;
 		}
-		return CombinationInterface;
+		return Combination;
 	}
 	return nullptr;
+}
+
+void UCombinableObject::SetWorldObject(UWorld* WorldObject)
+{
+	CachedWorldObject = WorldObject;
+	for (auto* combination : Combinations) 
+	{
+		combination->CachedWorldObject = MakeWeakObjectPtr(WorldObject);
+	}
 }

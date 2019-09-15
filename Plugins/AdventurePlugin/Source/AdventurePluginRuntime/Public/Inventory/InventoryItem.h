@@ -5,7 +5,6 @@
 #include "Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
 #include "Delegates/Delegate.h"
-#include "Combinations/CombinationInterface.h"
 #include "Combinations/CombinableObject.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "Inventory/Structs/UseActionType.h"

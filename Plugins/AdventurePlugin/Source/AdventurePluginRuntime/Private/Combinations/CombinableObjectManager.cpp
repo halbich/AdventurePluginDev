@@ -41,6 +41,6 @@ void UCombinableObjectManager::RegisterObject(TSubclassOf<UCombinableObject> Com
 void UCombinableObjectManager::SetWorldContext(UObject* WorldObjectContext) {
 	CachedWorldObject = MakeWeakObjectPtr(WorldObjectContext->GetWorld());
 	for (auto registeredCombinableObject: CombinableObjects) {
-		registeredCombinableObject.Value->CachedWorldObject = CachedWorldObject;
+		registeredCombinableObject.Value->SetWorldObject(CachedWorldObject.Get());
 	}
 }

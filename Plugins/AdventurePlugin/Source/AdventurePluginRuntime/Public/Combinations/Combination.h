@@ -2,26 +2,19 @@
 
 #include "CoreMinimal.h"
 #include "Inventory/Structs/UseActionType.h"
-#include "CombinationInterface.generated.h"
+#include "WorldContextProvidingObject.h"
+#include "Combination.generated.h"
 
 class UAdventurePluginGameContext;
 
 /**
-* Interface for a class representing a combination. @see ICombinationInterface
-*/
-UINTERFACE(BlueprintType)
-class ADVENTUREPLUGINRUNTIME_API UCombinationInterface : public UInterface
-{
-	GENERATED_BODY()
-};
-
-/**
-* Interface for a class representing a single combination.
+* A class representing a single combination.
 * The combination happens when the user tries to use one object on another object.
 * A class inheriting this interface specifies what combination is possible and what will happen when that combination is executed.
 * As there is no design limitation specifying that a combination is paired with a specific object, most methods accept both source and target combination objects parameters.
 */
-class ADVENTUREPLUGINRUNTIME_API ICombinationInterface
+UCLASS(Blueprintable)
+class ADVENTUREPLUGINRUNTIME_API UCombination: public UWorldContextProvidingObject
 {
 	GENERATED_BODY()
 
@@ -46,7 +39,7 @@ public:
 
 	/**
 	* Retrieves the list of all possible target classes. Target classes are those for which CanCombineWith can return true.
-	* @see ICombinationInterface#CanCombineWith
+	* @see UCombination#CanCombineWith
 	* @return The list of all possible target classes.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")

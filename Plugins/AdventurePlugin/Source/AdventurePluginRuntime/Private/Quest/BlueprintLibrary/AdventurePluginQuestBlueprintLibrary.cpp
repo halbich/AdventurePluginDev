@@ -3,8 +3,9 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "Quest/Graph/QuestGraph.h"
 
-bool UAdventurePluginQuestBlueprintLibrary::GetQuestBool(UAdventurePluginGameContext* GameContext, FQuestGraphBool QuestBoolVariable)
+bool UAdventurePluginQuestBlueprintLibrary::GetQuestBool(UAdventurePluginGameContext* GameContextOverride, FQuestGraphBool QuestBoolVariable, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetQuestBool")))
 	{
 		return false;
@@ -17,8 +18,9 @@ bool UAdventurePluginQuestBlueprintLibrary::GetQuestBool(UAdventurePluginGameCon
 	return QuestBoolVariable.Quest->GetBool(GameContext, QuestBoolVariable.BoolName);
 }
 
-void UAdventurePluginQuestBlueprintLibrary::SetQuestBool(UAdventurePluginGameContext* GameContext, FQuestGraphBool QuestBoolVariable, bool bNewValue)
+void UAdventurePluginQuestBlueprintLibrary::SetQuestBool(UAdventurePluginGameContext* GameContextOverride, FQuestGraphBool QuestBoolVariable, bool bNewValue, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SetQuestBool")))
 	{
 		return;
@@ -31,8 +33,9 @@ void UAdventurePluginQuestBlueprintLibrary::SetQuestBool(UAdventurePluginGameCon
 	QuestBoolVariable.Quest->SetBool(GameContext, QuestBoolVariable.BoolName, bNewValue);
 }
 
-bool UAdventurePluginQuestBlueprintLibrary::GetQuestFlag(UAdventurePluginGameContext* GameContext, FQuestGraphFlag QuestFlag)
+bool UAdventurePluginQuestBlueprintLibrary::GetQuestFlag(UAdventurePluginGameContext* GameContextOverride, FQuestGraphFlag QuestFlag, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetQuestFlag")))
 	{
 		return false;
@@ -45,8 +48,9 @@ bool UAdventurePluginQuestBlueprintLibrary::GetQuestFlag(UAdventurePluginGameCon
 	return QuestFlag.Quest->GetFlag(GameContext, QuestFlag.FlagName);
 }
 
-void UAdventurePluginQuestBlueprintLibrary::SetQuestFlag(UAdventurePluginGameContext* GameContext, FQuestGraphFlag QuestFlag)
+void UAdventurePluginQuestBlueprintLibrary::SetQuestFlag(UAdventurePluginGameContext* GameContextOverride, FQuestGraphFlag QuestFlag, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SetQuestFlag")))
 	{
 		return;
@@ -59,8 +63,9 @@ void UAdventurePluginQuestBlueprintLibrary::SetQuestFlag(UAdventurePluginGameCon
 	QuestFlag.Quest->SetFlag(GameContext, QuestFlag.FlagName);
 }
 
-int32 UAdventurePluginQuestBlueprintLibrary::GetQuestInteger(UAdventurePluginGameContext* GameContext, FQuestGraphInteger QuestIntegerVariable)
+int32 UAdventurePluginQuestBlueprintLibrary::GetQuestInteger(UAdventurePluginGameContext* GameContextOverride, FQuestGraphInteger QuestIntegerVariable, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetQuestInteger")))
 	{
 		return 0;
@@ -73,8 +78,9 @@ int32 UAdventurePluginQuestBlueprintLibrary::GetQuestInteger(UAdventurePluginGam
 	return QuestIntegerVariable.Quest->GetInteger(GameContext, QuestIntegerVariable.IntegerName);
 }
 
-void UAdventurePluginQuestBlueprintLibrary::SetQuestInteger(UAdventurePluginGameContext* GameContext, FQuestGraphInteger QuestIntegerVariable, int32 NewValue)
+void UAdventurePluginQuestBlueprintLibrary::SetQuestInteger(UAdventurePluginGameContext* GameContextOverride, FQuestGraphInteger QuestIntegerVariable, int32 NewValue, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SetQuestInteger")))
 	{
 		return;
@@ -87,8 +93,9 @@ void UAdventurePluginQuestBlueprintLibrary::SetQuestInteger(UAdventurePluginGame
 	QuestIntegerVariable.Quest->SetInteger(GameContext, QuestIntegerVariable.IntegerName, NewValue);
 }
 
-FString UAdventurePluginQuestBlueprintLibrary::GetQuestString(UAdventurePluginGameContext* GameContext, FQuestGraphString QuestStringVariable)
+FString UAdventurePluginQuestBlueprintLibrary::GetQuestString(UAdventurePluginGameContext* GameContextOverride, FQuestGraphString QuestStringVariable, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetQuestString")))
 	{
 		return FString();
@@ -101,8 +108,9 @@ FString UAdventurePluginQuestBlueprintLibrary::GetQuestString(UAdventurePluginGa
 	return QuestStringVariable.Quest->GetString(GameContext, QuestStringVariable.StringName);
 }
 
-void UAdventurePluginQuestBlueprintLibrary::SetQuestString(UAdventurePluginGameContext* GameContext, FQuestGraphString QuestStringVariable, const FString& NewValue)
+void UAdventurePluginQuestBlueprintLibrary::SetQuestString(UAdventurePluginGameContext* GameContextOverride, FQuestGraphString QuestStringVariable, const FString& NewValue, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SetQuestString")))
 	{
 		return;
@@ -115,8 +123,9 @@ void UAdventurePluginQuestBlueprintLibrary::SetQuestString(UAdventurePluginGameC
 	QuestStringVariable.Quest->SetString(GameContext, QuestStringVariable.StringName, NewValue);
 }
 
-bool UAdventurePluginQuestBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContext* GameContext, FQuestGraphEvent QuestEvent, FQuestEvent QuestEventHandler)
+bool UAdventurePluginQuestBlueprintLibrary::BindQuestEvent(UAdventurePluginGameContext* GameContextOverride, FQuestGraphEvent QuestEvent, FQuestEvent QuestEventHandler, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("BindQuestEvent")))
 	{
 		return false;
@@ -139,8 +148,9 @@ bool UAdventurePluginQuestBlueprintLibrary::BindQuestEvent(UAdventurePluginGameC
 	return true;
 }
 
-void UAdventurePluginQuestBlueprintLibrary::FireQuestEvent(UAdventurePluginGameContext* GameContext, FQuestGraphEvent QuestEvent)
+void UAdventurePluginQuestBlueprintLibrary::FireQuestEvent(UAdventurePluginGameContext* GameContextOverride, FQuestGraphEvent QuestEvent, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("FireQuestEvent")))
 	{
 		return;

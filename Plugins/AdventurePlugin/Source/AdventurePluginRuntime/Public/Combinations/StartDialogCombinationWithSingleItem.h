@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "Delegates/Delegate.h"
-#include "Combinations/CombinationInterface.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "AdventurePluginRuntime.h"
 #include "Common/AdventurePluginGameContext.h"

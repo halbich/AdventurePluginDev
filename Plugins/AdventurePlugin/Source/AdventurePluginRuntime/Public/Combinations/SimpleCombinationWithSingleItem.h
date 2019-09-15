@@ -3,7 +3,6 @@
 #include "CoreMinimal.h"
 #include "Delegates/Delegate.h"
 #include "Inventory/InventoryItem.h"
-#include "Combinations/CombinationInterface.h"
 #include "Inventory/Structs/UseActionType.h"
 #include "Combinations/CombinationWithSingleItemBase.h"
 #include "SimpleCombinationWithSingleItem.generated.h"
