@@ -7,6 +7,7 @@
 #include "Dialog/Graph/DialogGraphNode.h"
 #include "Dialog/Presenter/DialogPresenterInterface.h"
 #include "Kismet/GameplayStatics.h"
+#include "WorldContextProvidingObject.h"
 #include "DialogController.generated.h"
 
 /**
@@ -32,7 +33,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FDialogNotification, UDialogGraph*,
  * Also, the dialog can also end automatically once too many nodes are executed, assuming we are in an infinite loop.
  */
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UDialogController : public UObject
+class ADVENTUREPLUGINRUNTIME_API UDialogController : public UWorldContextProvidingObject
 {
 	GENERATED_BODY()
 
@@ -55,7 +56,7 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param DialogGraph The dialog graph to be started.
 	*/
-	virtual void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph);
+	virtual void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UObject* WorldContextObject);
 
 	/**
 	* Starts the specified dialog from the specified node.
@@ -63,7 +64,7 @@ public:
 	* @param DialogGraph The dialog graph to be started.
 	* @param StartNode The node from which the execution should be started.
 	*/
-	virtual void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode);
+	virtual void ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode, UObject* WorldContextObject);
 
 	/**
 	* Ends the dialog.

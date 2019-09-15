@@ -21,12 +21,12 @@ public:
 	* @param Inventory The inventory to present.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	void ShowInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
+	void ShowInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Hides the currently shown inventory
 	* @param Inventory The inventory to hide.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	void HideInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
+	void HideInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContextOverride);
 };

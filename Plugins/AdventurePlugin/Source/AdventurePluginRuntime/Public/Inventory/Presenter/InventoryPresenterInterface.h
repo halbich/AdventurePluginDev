@@ -32,7 +32,7 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Inventory")
-	void ShowInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
+	void ShowInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Hides the currently shown inventory.
@@ -40,5 +40,5 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Adventure Plugin|Inventory")
-	void HideInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
+	void HideInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContextOverride);
 };

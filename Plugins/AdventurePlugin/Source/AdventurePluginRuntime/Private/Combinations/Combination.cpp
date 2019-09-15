@@ -1,6 +1,6 @@
 #include "Combinations/Combination.h"
 
-FText UCombination::GetName_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
+FText UCombination::GetName_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
 {
 	check(false && "This method must be overriden");
 	return FText();
@@ -18,18 +18,18 @@ TArray<UClass*> UCombination::GetCombinationTargetClasses_Implementation()
 	return TArray<UClass*>();
 }
 
-bool UCombination::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
+bool UCombination::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
 {
 	check(false && "This method must be overriden");
 	return false;
 }
 
-void UCombination::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
+void UCombination::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
 {
 	check(false && "This method must be overriden");
 }
 
-FUseActionType UCombination::GetUseActionType_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext)
+FUseActionType UCombination::GetUseActionType_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
 {
 	check(false && "This method must be overriden");
 	return FUseActionType();

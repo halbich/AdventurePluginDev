@@ -79,9 +79,9 @@ public:
 	* @param GameContext Context to verify.
 	* @param Caller Specifies from where this method was called so the log can tell us where the invalid context appeared.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Adventure Plugin")
 	static bool IsGameContextValid(const UAdventurePluginGameContext* GameContext, const FString& Caller);
 
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin", meta = (WorldContext=WorldObjectContext, AdvancedDisplay=GameContextOverride))
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Adventure Plugin", meta = (WorldContext=WorldObjectContext, AdvancedDisplay=GameContextOverride))
 	static UAdventurePluginGameContext* ResolveGameContext(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 };

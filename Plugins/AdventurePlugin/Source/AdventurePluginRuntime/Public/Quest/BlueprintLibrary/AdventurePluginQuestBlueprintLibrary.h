@@ -26,7 +26,7 @@ public:
 	* @return The variable's value, or false if the identification of variable or game context is invalid.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static bool GetQuestBool(UAdventurePluginGameContext* GameContextOverride, FQuestGraphBool QuestBoolVariable, UObject* WorldObjectContex);
+	static bool GetQuestBool(UAdventurePluginGameContext* GameContextOverride, FQuestGraphBool QuestBoolVariable, UObject* WorldObjectContext);
 
 	/**
 	* Changes the value of a boolean variable stored on a quest.
@@ -35,7 +35,7 @@ public:
 	* @param bNewValue The new value of the quest variable.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static void SetQuestBool(UAdventurePluginGameContext* GameContextOverride, FQuestGraphBool QuestBoolVariable, bool bNewValue, UObject* WorldObjectContex);
+	static void SetQuestBool(UAdventurePluginGameContext* GameContextOverride, FQuestGraphBool QuestBoolVariable, bool bNewValue, UObject* WorldObjectContext);
 
 	/**
 	* Retrieves the state of a flag set on a quest.
@@ -44,7 +44,7 @@ public:
 	* @return True if the flag is set, false if not set or if the game context or flag identification is invalid.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static bool GetQuestFlag(UAdventurePluginGameContext* GameContextOverride, FQuestGraphFlag QuestFlag, UObject* WorldObjectContex);
+	static bool GetQuestFlag(UAdventurePluginGameContext* GameContextOverride, FQuestGraphFlag QuestFlag, UObject* WorldObjectContext);
 
 	/**
 	* Sets a flag defined on a quest.
@@ -52,7 +52,7 @@ public:
 	* @param QuestFlag Identification of the flag that should be set.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static void SetQuestFlag(UAdventurePluginGameContext* GameContextOverride, FQuestGraphFlag QuestFlag, UObject* WorldObjectContex);
+	static void SetQuestFlag(UAdventurePluginGameContext* GameContextOverride, FQuestGraphFlag QuestFlag, UObject* WorldObjectContext);
 
 	/**
 	* Retrieves the value of an integer variable stored on a quest.
@@ -61,7 +61,7 @@ public:
 	* @return The variable's value, or 0 if the identification of variable or game context is invalid.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static int32 GetQuestInteger(UAdventurePluginGameContext* GameContextOverride, FQuestGraphInteger QuestIntegerVariable, UObject* WorldObjectContex);
+	static int32 GetQuestInteger(UAdventurePluginGameContext* GameContextOverride, FQuestGraphInteger QuestIntegerVariable, UObject* WorldObjectContext);
 
 	/**
 	* Changes the value of an integer variable stored on a quest.
@@ -70,7 +70,7 @@ public:
 	* @param NewValue The new value of the quest variable.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static void SetQuestInteger(UAdventurePluginGameContext* GameContextOverride, FQuestGraphInteger QuestIntegerVariable, int32 NewValue, UObject* WorldObjectContex);
+	static void SetQuestInteger(UAdventurePluginGameContext* GameContextOverride, FQuestGraphInteger QuestIntegerVariable, int32 NewValue, UObject* WorldObjectContext);
 
 	/**
 	* Retrieves the value of a string variable stored on a quest.
@@ -79,7 +79,7 @@ public:
 	* @return The variable's value, or empty string if the identification of variable or game context is invalid.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static FString GetQuestString(UAdventurePluginGameContext* GameContextOverride, FQuestGraphString QuestStringVariable, UObject* WorldObjectContex);
+	static FString GetQuestString(UAdventurePluginGameContext* GameContextOverride, FQuestGraphString QuestStringVariable, UObject* WorldObjectContext);
 
 	/**
 	* Changes the value of a string variable stored on a quest.
@@ -88,7 +88,7 @@ public:
 	* @param NewValue The new value of the quest variable.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static void SetQuestString(UAdventurePluginGameContext* GameContextOverride, FQuestGraphString QuestStringVariable, const FString& NewValue, UObject* WorldObjectContex);
+	static void SetQuestString(UAdventurePluginGameContext* GameContextOverride, FQuestGraphString QuestStringVariable, const FString& NewValue, UObject* WorldObjectContext);
 
 	/**
 	* Binds a handler for a quest event. When that event is fired, the passed method will be executed.
@@ -98,7 +98,7 @@ public:
 	* @param QuestEventHandler The method to be called when the event is fired.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static bool BindQuestEvent(UAdventurePluginGameContext* GameContextOverride, FQuestGraphEvent QuestEvent, FQuestEvent QuestEventHandler, UObject* WorldObjectContex);
+	static bool BindQuestEvent(UAdventurePluginGameContext* GameContextOverride, FQuestGraphEvent QuestEvent, FQuestEvent QuestEventHandler, UObject* WorldObjectContext);
 
 	/**
 	* Triggers an event, which executes method previously bound to this event.
@@ -106,5 +106,5 @@ public:
 	* @param QuestEvent The identification of the quest event to trigger.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
-	static void FireQuestEvent(UAdventurePluginGameContext* GameContextOverride, FQuestGraphEvent QuestEvent, UObject* WorldObjectContex);
+	static void FireQuestEvent(UAdventurePluginGameContext* GameContextOverride, FQuestGraphEvent QuestEvent, UObject* WorldObjectContext);
 };

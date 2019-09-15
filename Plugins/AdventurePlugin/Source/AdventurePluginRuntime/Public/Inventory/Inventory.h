@@ -35,8 +35,8 @@ public:
 	* Retrieves all items currently in this inventory.
 	* @return All items in the inventory.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	virtual TArray<UInventoryItem*> GetItems(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	virtual TArray<UInventoryItem*> GetItems(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 
 	/**
 	* Checks whether the specified item is in inventory.
@@ -44,16 +44,16 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if this item is in the inventory, otherwise false.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	virtual bool HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	virtual bool HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 
 	/**
 	* Adds a specified item to the inventory.
 	* @param Item The item to add.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	virtual bool AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	virtual bool AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 
 	/**
 	* Removes a specified item from the inventory.
@@ -61,8 +61,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the item was successfully removed, so mainly true if the item actually was in the inventory.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	virtual bool RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	virtual bool RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 
 	/**
 	* Call if multiple AddItem() and RemoveItem() calls will follow.

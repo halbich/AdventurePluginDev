@@ -27,8 +27,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The name of the combination.
 	*/
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
-	FText GetName(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
+	FText GetName(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Retrieves the debug name of this combination to be shown in editor.
@@ -52,8 +52,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the combination is possible, otherwise false
 	*/
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
-	bool CanCombineWith(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
+	bool CanCombineWith(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Executes the action this combination represents.
@@ -61,8 +61,8 @@ public:
 	* @param CombinationTarget The other object of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
-	void Execute(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
+	void Execute(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Retrieves the use type of this combination.
@@ -71,6 +71,6 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The action type of this action, e.g. if this is destroying items, putting them together, talking, giving an item etc. Game specific.
 	*/
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations")
-	FUseActionType GetUseActionType(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
+	FUseActionType GetUseActionType(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride);
 };

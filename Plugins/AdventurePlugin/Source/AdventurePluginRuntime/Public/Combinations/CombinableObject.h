@@ -69,8 +69,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The combination between the two objects, or null if such a combination does not exist.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
-	UCombination* GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
+	UCombination* GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Tries to find and execute a combination between this and a specified object.
@@ -78,8 +78,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the combination was found and executed, otherwise false.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
-	bool TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
+	bool TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Use this to trigger a combination. Executes the combination, ensuring that source and other objects are set up properly.
@@ -87,8 +87,8 @@ public:
 	* @param OtherObject The object with which this item should be combined.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
-	void ExecuteCombination(UCombination* Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
+	void ExecuteCombination(UCombination* Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContextOverride);
 
 	/*
 	* Sets the World object for this object and sets in on all internal combinations.

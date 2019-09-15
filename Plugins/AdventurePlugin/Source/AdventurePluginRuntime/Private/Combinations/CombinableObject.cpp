@@ -59,8 +59,9 @@ void UCombinableObject::AddCombinationObject(UCombination* ToAdd)
 	Combinations.Add(ToAdd);
 }
 
-UCombination* UCombinableObject::GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+UCombination* UCombinableObject::GetCombinationWithObject(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContextOverride)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, this);
 	if (!IsValid(OtherObject))
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObject_GetCombination_NullCombinationItem", "One of the items being combined is null."));
@@ -74,8 +75,9 @@ UCombination* UCombinableObject::GetCombinationWithObject(UCombinableObject* Oth
 	return FoundCombination;
 }
 
-bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContextOverride)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, this);
 	UCombination* CombinationToExecute = GetCombinationWithObject(OtherObject, GameContext);
 	if (!IsValid(CombinationToExecute))
 	{
@@ -85,8 +87,9 @@ bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventur
 	return true;
 }
 
-void UCombinableObject::ExecuteCombination(UCombination* Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
+void UCombinableObject::ExecuteCombination(UCombination* Combination, UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContextOverride)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, this);
 	if (!IsValid(Combination))
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObjectExecuteCombination_NullCombination", "UCombinableObject:ExecuteCombination: Combination is null or invalid."));

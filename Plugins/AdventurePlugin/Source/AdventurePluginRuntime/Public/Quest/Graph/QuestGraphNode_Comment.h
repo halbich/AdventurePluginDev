@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "QuestGraphNode_Comment.generated.h"
 
 /**
@@ -40,8 +41,9 @@ public:
 		Text = NewTitle;
 	}
 
-	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override {
-		return ParentNodesTrue(GameContext);
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext) override {
+		auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
+		return ParentNodesTrue(GameContext, WorldObjectContext);
 	}
 
 	virtual inline FLinearColor GetBackgroundColor() const override

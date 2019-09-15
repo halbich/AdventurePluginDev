@@ -38,7 +38,7 @@ void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePlugin
 		return;
 	}
 
-	DialogController->ShowDialog(GameContext, DialogGraph, *StartNode);
+	DialogController->ShowDialog(GameContext, DialogGraph, *StartNode, WorldObjectContext);
 }
 
 void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* GameContextOverride, UDialogGraph* DialogGraph, UObject* WorldObjectContext)
@@ -59,6 +59,15 @@ void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext
 		return;
 	}
 	GameContext->InventoryController->ShowInventory(GameContext);
+}
+UInventory* UAdventurePluginBlueprintLibrary::GetInventory(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
+{
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetInventory")))
+	{
+		return nullptr;
+	}
+	return GameContext->InventoryController->GetInventory();
 }
 
 void UAdventurePluginBlueprintLibrary::HideInventory(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
@@ -106,7 +115,7 @@ void UAdventurePluginBlueprintLibrary::AddItemToInventory(UAdventurePluginGameCo
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_AddItemToInventory_InventoryNotValid", "AddItemToInventory: The inventory on on the inventory controller is not valid."));
 		return;
 	}
-	Inventory->AddItem(Item, GameContext);
+	Inventory->AddItem(Item, GameContext, WorldObjectContext);
 }
 void UAdventurePluginBlueprintLibrary::RemoveItemFromInventory(UAdventurePluginGameContext* GameContextOverride, UInventoryItem* Item, UObject* WorldObjectContext)
 {
@@ -126,7 +135,7 @@ void UAdventurePluginBlueprintLibrary::RemoveItemFromInventory(UAdventurePluginG
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_RemoveItemFromInventory_InventoryNotValid", "RemoveItemFromInventory: The inventory on on the inventory controller is not valid."));
 		return;
 	}
-	Inventory->RemoveItem(Item, GameContext);
+	Inventory->RemoveItem(Item, GameContext, WorldObjectContext);
 }
 bool UAdventurePluginBlueprintLibrary::HasItemInInventory(UAdventurePluginGameContext* GameContextOverride, UInventoryItem* Item, UObject* WorldObjectContext)
 {
@@ -146,7 +155,7 @@ bool UAdventurePluginBlueprintLibrary::HasItemInInventory(UAdventurePluginGameCo
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_HasItemInInventory_InventoryNotValid", "HasItemInInventory: The inventory on on the inventory controller is not valid."));
 		return false;
 	}
-	return Inventory->HasItem(Item, GameContext);
+	return Inventory->HasItem(Item, GameContext, WorldObjectContext);
 }
 
 UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UInventoryItem> Item, UObject* WorldObjectContext)
@@ -169,9 +178,4 @@ UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAd
 	}
 	UAdventureCharacterManager* CharacterManager = GameContext->AdventureCharacterManager;
 	return CharacterManager->GetCharacter(Character);
-}
-
-UAdventurePluginGameContext* UAdventurePluginBlueprintLibrary::GetCurrentGameContext(UObject* WorldObjectContext)
-{
-	return UAdventurePluginGameContext::ResolveGameContext(nullptr, WorldObjectContext);
 }

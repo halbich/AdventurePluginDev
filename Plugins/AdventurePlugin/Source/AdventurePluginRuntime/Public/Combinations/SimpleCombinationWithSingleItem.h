@@ -42,5 +42,5 @@ public:
 	* @param CombinationTarget The other object of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	virtual void Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override;
+	virtual void Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride) override;
 };

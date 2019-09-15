@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GenericGraph/GenericGraph.h"
 #include "GenericGraph/GenericGraphNode.h"
 #include "Dialog/Structs/DialogLineData.h"
 #include "AdventurePluginRuntime.h"
@@ -89,6 +90,10 @@ public:
 		return FDialogLineData();
 	}
 
+	virtual class UWorld* GetWorld() const override {
+		return Graph->GetWorld();
+	}
+	
 protected:
 
 	/**

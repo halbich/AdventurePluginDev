@@ -65,8 +65,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the item can be examined right now, otherwise false.
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	bool IsExaminable(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	bool IsExaminable(UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* If true, it is possible to pick up this item from scene. This is a value returned by IsPickable() if not overriden.
@@ -80,8 +80,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the item can be picked up right now, otherwise false.
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	bool IsPickable(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	bool IsPickable(UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* If true, this item has a use action that can be called, e.g. reading a map. This is a value returned by IsUsable() if not overriden.
@@ -95,8 +95,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the item can be used right now, otherwise false.
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	bool IsUsable(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	bool IsUsable(UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* The name of the use action that can be displayed to the user, e.g. "Read a map".
@@ -122,16 +122,16 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The current state of the item.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	EInventoryItemState GetItemState(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	EInventoryItemState GetItemState(UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Changes the state of the item. Is serialized.
 	* @param NewValue The new state of the item.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	void SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	void SetItemState(EInventoryItemState NewValue, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* This event is fired when the item's state has changed.
@@ -150,8 +150,8 @@ public:
 	* @param Inventory The inventory to which this item was added.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
-	void OnAddedToInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	void OnAddedToInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* This event will be fired when this item is removed from inventory.
@@ -164,22 +164,22 @@ public:
 	* @param Inventory The inventory from which this item was removed.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory")
-	void OnRemovedFromInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	void OnRemovedFromInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Executes examine action on the item. Can be overriden, default behavior starts the examine dialog.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	void Examine(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	void Examine(UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Executes the use action of the object. Can be overriden, does nothing by default.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	void Use(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	void Use(UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Returns the icon representing this item in asset editor.
@@ -196,6 +196,6 @@ public:
 	* Can be overriden if the item uses custom states.
 	* @return True if the item was already picked up.
 	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	bool WasPickedUp(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
+	bool WasPickedUp(UAdventurePluginGameContext* GameContextOverride);
 };

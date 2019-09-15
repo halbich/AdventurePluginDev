@@ -55,7 +55,7 @@ public:
 	* @param FlagName The name of the flag whose value is requested.
 	* @return True if the flag is set, otherwise false.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	UFUNCTION(Category = "Adventure Plugin|Quest")
 	bool GetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
 
 	/**
@@ -63,7 +63,7 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @param FlagName The name of the flag that should be set.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	UFUNCTION(Category = "Adventure Plugin|Quest")
 	void SetFlag(UAdventurePluginGameContext* GameContext, FName FlagName);
 
 	/**
@@ -72,7 +72,7 @@ public:
 	* @param VariableName The name of the variable whose value is requested.
 	* @return The value of the variable, or false if the variable does not exist in the graph.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	UFUNCTION(Category = "Adventure Plugin|Quest")
 	bool GetBool(UAdventurePluginGameContext* GameContext, FName VariableName);
 
 	/**
@@ -81,7 +81,7 @@ public:
 	* @param VariableName The name of the variable whose value is requested.
 	* @param bValue The new value of the variable.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	UFUNCTION(Category = "Adventure Plugin|Quest")
 	bool SetBool(UAdventurePluginGameContext* GameContext, FName VariableName, bool bValue);
 
 	/**
@@ -90,7 +90,7 @@ public:
 	* @param VariableName The name of the variable whose value is requested.
 	* @return The value of the variable, or 0 if the variable does not exist in the graph.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	UFUNCTION(Category = "Adventure Plugin|Quest")
 	int32 GetInteger(UAdventurePluginGameContext* GameContext, FName VariableName);
 
 	/**
@@ -99,7 +99,7 @@ public:
 	* @param VariableName The name of the variable whose value is requested.
 	* @param Value The new value of the variable.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	UFUNCTION(Category = "Adventure Plugin|Quest")
 	bool SetInteger(UAdventurePluginGameContext* GameContext, FName VariableName, int32 Value);
 
 	/**
@@ -108,7 +108,7 @@ public:
 	* @param VariableName The name of the variable whose value is requested.
 	* @return The value of the variable, or an empty string if the variable does not exist in the graph.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	UFUNCTION(Category = "Adventure Plugin|Quest")
 	FString GetString(UAdventurePluginGameContext* GameContext, FName VariableName);
 
 	/**
@@ -117,7 +117,7 @@ public:
 	* @param VariableName The name of the variable whose value is requested.
 	* @param Value The new value of the variable.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
+	UFUNCTION(Category = "Adventure Plugin|Quest")
 	bool SetString(UAdventurePluginGameContext* GameContext, FName VariableName, FString Value);
 	
 	/**
@@ -125,8 +125,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The list of true nodes.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-	TArray<UQuestGraphNode*> GetFullfilableNodes(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	TArray<UQuestGraphNode*> GetFullfilableNodes(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 
 	/**
 	* Returns true if this graph is complete.
@@ -134,8 +134,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the quest is complete, otherwise false.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-	virtual bool IsComplete(UAdventurePluginGameContext* GameContext);
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	virtual bool IsComplete(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 
 	/**
 	* The list of all boolean variables defined on this quest.

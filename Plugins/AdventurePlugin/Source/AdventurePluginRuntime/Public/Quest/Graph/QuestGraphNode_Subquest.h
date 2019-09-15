@@ -4,6 +4,7 @@
 #include "QuestGraph.h"
 #include "QuestGraphNode.h"
 #include "AdventurePluginRuntime.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "QuestGraphNode_Subquest.generated.h"
 
 /**
@@ -28,14 +29,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SubquestNode")
 	UQuestGraph* Subquest;
 
-	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext) override
 	{
+		auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 		if (!IsValid(Subquest))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Subquest_InvalidSubquest", "Quest graph node Subquest:IsTrue: Nil or invalid Subquest passed"));
 			return false;
 		}
-		return Subquest->IsComplete(GameContext);
+		return Subquest->IsComplete(GameContext, WorldObjectContext);
 	}
 
 #if WITH_EDITOR

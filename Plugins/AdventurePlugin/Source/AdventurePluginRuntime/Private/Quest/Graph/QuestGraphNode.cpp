@@ -17,14 +17,14 @@ UQuestGraphNode::~UQuestGraphNode()
 {
 }
 
-bool UQuestGraphNode::ParentNodesTrue(UAdventurePluginGameContext* GameContext) {
+bool UQuestGraphNode::ParentNodesTrue(UAdventurePluginGameContext* GameContext, UObject* WorldObjectContext) {
 	for (UGenericGraphNode* ParentNodeUncasted : ParentNodes) {
 		UQuestGraphNode* ParentNode = Cast<UQuestGraphNode>(ParentNodeUncasted);
 		if (!IsValid(ParentNode))
 		{
 			continue;
 		}
-		if (!ParentNode->IsTrue(GameContext)) {
+		if (!ParentNode->IsTrue(GameContext, WorldObjectContext)) {
 			return false;
 		}
 	}

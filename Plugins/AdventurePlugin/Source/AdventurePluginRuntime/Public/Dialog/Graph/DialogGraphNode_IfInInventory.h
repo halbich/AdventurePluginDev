@@ -90,6 +90,6 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IfInInventory_GetNextNode_InvalidItemInstance", "DialogGraphNode_IfInInventory:GetNextNode: Item could not be instantiated."));
 			return nullptr;
 		}
-		return GameContext->InventoryController->GetInventory()->HasItem(ItemInstance, GameContext) ? ChildTrue: ChildFalse;
+		return GameContext->InventoryController->GetInventory()->HasItem(ItemInstance, GameContext, this) ? ChildTrue: ChildFalse;
 	}
 };

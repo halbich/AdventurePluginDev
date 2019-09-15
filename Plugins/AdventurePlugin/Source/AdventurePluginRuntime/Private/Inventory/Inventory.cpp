@@ -3,15 +3,17 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "Inventory/ItemManager.h"
 
-bool UInventory::HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
+bool UInventory::HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
 {
-	return GetItems(GameContext).Contains(Item);
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
+	return GetItems(GameContext, WorldObjectContext).Contains(Item);
 }
 
-bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
+bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	// Add an item, change item state and raise all events as necessary.
-	TArray<UInventoryItem*> Items = GetItems(GameContext);
+	TArray<UInventoryItem*> Items = GetItems(GameContext, WorldObjectContext);
 	if (!IsValid(Item) || Items.Contains(Item))
 	{
 		return false;
@@ -37,10 +39,11 @@ bool UInventory::AddItem(UInventoryItem* Item, UAdventurePluginGameContext* Game
 	return true;
 }
 
-bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContext)
+bool UInventory::RemoveItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	// Remove item, change item state and raise all events as necessary.
-	TArray<UInventoryItem*> Items = GetItems(GameContext);
+	TArray<UInventoryItem*> Items = GetItems(GameContext, WorldObjectContext);
 	if (!IsValid(Item) || !Items.Contains(Item)) 
 	{
 		return false;
@@ -86,8 +89,9 @@ void UInventory::EndUpdate()
 	bIsUpdating = false;
 }
 
-TArray<UInventoryItem*> UInventory::GetItems(UAdventurePluginGameContext* GameContext)
+TArray<UInventoryItem*> UInventory::GetItems(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	TArray<UInventoryItem*> InventoryItems = TArray<UInventoryItem*>();
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("Inventory:GetItems")))
 	{

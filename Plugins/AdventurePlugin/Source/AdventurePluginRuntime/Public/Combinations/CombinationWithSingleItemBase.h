@@ -46,7 +46,7 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return The name of the combination.
 	*/
-	virtual FText GetName_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override
+	virtual FText GetName_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride) override
 	{
 		return Name;
 	}
@@ -79,7 +79,7 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if the combination is possible, i.e. CombinationTarget inherits from UCombinationWithSingleItemBase#TargetClass otherwise false.
 	*/
-	virtual	bool CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override
+	virtual	bool CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride) override
 	{
 		if (!IsValid(CombinationTarget))
 		{
@@ -95,7 +95,7 @@ public:
 	* @param CombinationTarget The other object of the combination.
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	*/
-	virtual void Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override
+	virtual void Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride) override
 	{
 		check(false && "Must be overriden.");
 	}
@@ -107,7 +107,7 @@ public:
 	* @param GameContext Ignored
 	* @return The type of the combination.
 	*/
-	FUseActionType GetUseActionType_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContext) override
+	FUseActionType GetUseActionType_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride) override
 	{
 		return ActionType;
 	}

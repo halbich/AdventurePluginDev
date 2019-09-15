@@ -13,6 +13,7 @@
 #include "AdventurePluginRuntime.h"
 #include "AdventureCharacter.h"
 #include "Inventory/InventoryItem.h"
+#include "Inventory/Inventory.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
 
 /**
@@ -39,6 +40,13 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Dialog", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
 	static void ShowDialog(UAdventurePluginGameContext* GameContextOverride, UDialogGraph* DialogGraph, UObject* WorldObjectContext);
+
+	/**
+	* Retrieves the inventory.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	*/
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Inventory", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	static UInventory* GetInventory(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 
 	/**
 	* Hides the inventory.
@@ -104,16 +112,6 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Character", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
 	static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UAdventureCharacter> Character, UObject* WorldObjectContext);
-
-	/**
-	* Retrieves the default game context. Contains instances of classes defined in game config.
-	* A game can choose a different way of getting a game context.
-	* @see UAdventurePluginConfig
-	* @param WorldObjectContext The object containing all data about the game world. Silently passed by Unreal Engine when possible.
-	* @return The default game context.
-	*/
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin", meta = (WorldContext = WorldObjectContext))
-	static UAdventurePluginGameContext* GetCurrentGameContext(UObject* WorldObjectContext);
 
 private:
 };

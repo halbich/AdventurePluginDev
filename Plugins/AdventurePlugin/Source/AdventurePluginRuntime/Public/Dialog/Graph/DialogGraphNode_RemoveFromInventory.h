@@ -68,7 +68,7 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_RemoveFromInventory_Execute_InvalidItemInstance", "DialogGraphNode_RemoveFromInventory:Execute: Item could not be instantiated."));
 			return false;
 		}
-		GameContext->InventoryController->GetInventory()->RemoveItem(ItemInstance, GameContext);
+		GameContext->InventoryController->GetInventory()->RemoveItem(ItemInstance, GameContext, this);
 		return true;
 	}
 };

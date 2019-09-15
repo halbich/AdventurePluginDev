@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "QuestGraph.h"
 #include "QuestGraphNode.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "QuestGraphNode_End.generated.h"
 
 /**
@@ -27,9 +28,10 @@ public:
 	{
 	}
 
-	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext) override
 	{
-		return ParentNodesTrue(GameContext);
+		auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
+		return ParentNodesTrue(GameContext, WorldObjectContext);
 	}
 
 #if WITH_EDITOR

@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "QuestGraphNode.h"
 #include "AdventurePluginRuntime.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "QuestGraph.h"
 #include "QuestGraphNode_Flag.generated.h"
 
@@ -30,8 +31,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "FlagNode")
 	FName FlagName;
 
-	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext) override
 	{
+		auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 		UQuestGraph* ParentGraph = Cast<UQuestGraph>(Graph);
 		if (!IsValid(ParentGraph))
 		{

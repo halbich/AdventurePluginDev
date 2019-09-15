@@ -24,8 +24,8 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if this node is true.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest")
-	virtual bool IsTrue(UAdventurePluginGameContext* GameContext)
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Quest", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
 	{ 
 		return true; 
 	}
@@ -35,7 +35,7 @@ public:
 	* @param GameContext Provides access to all Adventure Plugin data and functionality.
 	* @return True if all parent nodes of this node are true.
 	*/
-	bool ParentNodesTrue(UAdventurePluginGameContext* GameContext);
+	bool ParentNodesTrue(UAdventurePluginGameContext* GameContext, UObject* WorldObjectContext);
 
 #if WITH_EDITORONLY_DATA
 

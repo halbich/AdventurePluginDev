@@ -46,8 +46,9 @@ public:
 
 #endif
 
-	virtual bool IsTrue(UAdventurePluginGameContext* GameContext) override
+	virtual bool IsTrue(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext) override
 	{
+		auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 		if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("QuestGraphNode_Inventory:IsTrue")))
 		{
 			return false;

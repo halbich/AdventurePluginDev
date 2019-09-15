@@ -68,7 +68,7 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_AddToInventory_Execute_InvalidItemInstance", "DialogGraphNode_AddToInventory:Execute: Item could not be instantiated"));
 			return false;
 		}
-		GameContext->InventoryController->GetInventory()->AddItem(ItemInstance, GameContext);
+		GameContext->InventoryController->GetInventory()->AddItem(ItemInstance, GameContext, this);
 		return true;
 	}
 };
