@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Inventory/Inventory.h"
+#include "UObject/Interface.h"
 #include "InventoryPresenterInterface.generated.h"
 
 class UInventoryController;

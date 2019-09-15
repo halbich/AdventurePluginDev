@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "Combinations/CombinableObjectManager.h"
 #include "InventoryItem.h"

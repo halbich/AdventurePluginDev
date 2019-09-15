@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UObject/Interface.h"
 #include "DialogNodeShowLineCallbackInterface.generated.h"
 
 class UDialogController;

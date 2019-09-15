@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Delegates/Delegate.h"
+#include "Common/AdventurePluginGameContext.h"
 #include "Combinations/CombinableObject.h"
 #include "AdventurePluginRuntime.h"
 #include "Inventory/Structs/UseActionType.h"

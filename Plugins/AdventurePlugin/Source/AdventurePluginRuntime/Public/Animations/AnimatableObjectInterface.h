@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Delegates/Delegate.h"
+#include "UObject/Interface.h"
 #include "AnimatableObjectInterface.generated.h"
 
 class UAdventurePluginGameContext;

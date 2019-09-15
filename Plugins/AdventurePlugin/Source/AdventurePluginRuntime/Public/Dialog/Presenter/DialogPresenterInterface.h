@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Dialog/Structs/DialogLineData.h"
+#include "UObject/Interface.h"
 #include "DialogPresenterInterface.generated.h"
 
 class UDialogGraphNode;

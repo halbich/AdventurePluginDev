@@ -5,7 +5,6 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "AdventureCharacterManager.h"
 #include "AdventurePluginRuntime.h"
-#include "Engine/Engine.h"
 
 #define LOCTEXT_NAMESPACE "DialogGraph"
 

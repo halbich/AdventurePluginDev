@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/Texture2D.h"
+#include "UObject/Interface.h"
 #include "IconThumbnailInterface.generated.h"
 
 /**
