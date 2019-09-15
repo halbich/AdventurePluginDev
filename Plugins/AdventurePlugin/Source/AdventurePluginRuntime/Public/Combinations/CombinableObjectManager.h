@@ -4,6 +4,7 @@
 #include "Engine.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "Combinations/CombinableObject.h"
+#include "WorldContextProvidingObject.h"
 #include "CombinableObjectManager.generated.h"
 
 /**
@@ -12,7 +13,7 @@
 * Used because in editor we will work mainly with class definitions, whereas in game we will work mainly with class instances.
 */
 UCLASS(Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UCombinableObjectManager : public UObject
+class ADVENTUREPLUGINRUNTIME_API UCombinableObjectManager : public UWorldContextProvidingObject
 {
 	GENERATED_BODY()
 
@@ -32,6 +33,8 @@ public:
 	*/
 	void ClearMap();
 
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin", meta = (WorldContext = WorldObjectContext))
+	void SetWorldContext(UObject* WorldObjectContext);
 private:
 
 	/**

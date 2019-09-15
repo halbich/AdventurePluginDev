@@ -29,7 +29,6 @@ class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UCombinableObject, publ
 	GENERATED_BODY()
 
 public:
-
 	/**
 	* The name of this item that should be displayed to the player.
 	*/

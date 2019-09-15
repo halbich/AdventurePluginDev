@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "LocalCombinationInfo.h"
+#include "WorldContextProvidingObject.h"
 #include "CombinableObject.generated.h"
 
 class ICombinationInterface;
@@ -14,7 +15,7 @@ class UAdventurePluginGameContext;
 * All non-abstract combinable items should be done in blueprints, otherwise combinations will not work correctly.
 */
 UCLASS(Abstract, BlueprintType, Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UCombinableObject : public UObject
+class ADVENTUREPLUGINRUNTIME_API UCombinableObject : public UWorldContextProvidingObject
 {
 	GENERATED_BODY()
 

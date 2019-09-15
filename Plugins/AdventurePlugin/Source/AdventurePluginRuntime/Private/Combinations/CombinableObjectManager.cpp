@@ -1,4 +1,5 @@
 #include "Combinations/CombinableObjectManager.h"
+#include "Templates/SharedPointer.h"
 #include "AdventurePluginRuntime.h"
 
 UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass)
@@ -33,5 +34,13 @@ void UCombinableObjectManager::RegisterObject(TSubclassOf<UCombinableObject> Com
 	UCombinableObject* NewCombinableObject = NewObject<UCombinableObject>(this, CombinableObjectClass);
 	NewCombinableObject->Init();
 	check(NewCombinableObject != nullptr && "It should always be possible to instantiate a combinable object");
+	NewCombinableObject->CachedWorldObject = CachedWorldObject;
 	CombinableObjects.Add(CombinableObjectClass, NewCombinableObject);
+}
+
+void UCombinableObjectManager::SetWorldContext(UObject* WorldObjectContext) {
+	CachedWorldObject = MakeWeakObjectPtr(WorldObjectContext->GetWorld());
+	for (auto registeredCombinableObject: CombinableObjects) {
+		registeredCombinableObject.Value->CachedWorldObject = CachedWorldObject;
+	}
 }
