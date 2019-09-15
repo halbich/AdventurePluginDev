@@ -10,6 +10,7 @@
 #include "SaveGame/AdventurePluginSaveGame.h"
 #include "Inventory/ItemManager.h"
 #include "AdventureCharacterManager.h"
+#include "Common/AdventurePluginGameInstanceInterface.h"
 #include "AdventurePluginGameInstance.generated.h"
 
 /**
@@ -17,7 +18,7 @@
  * It contains a single game context that contains instances of the classes specified in the project configuration.
  */
 UCLASS()
-class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameInstance : public UGameInstance
+class ADVENTUREPLUGINRUNTIME_API UAdventurePluginGameInstance : public UGameInstance, public IAdventurePluginGameInstanceInterface
 {
 	GENERATED_BODY()
 
@@ -32,6 +33,15 @@ public:
 	virtual void Init() override;
 
 	virtual void Shutdown() override;
+
+	/**
+	* Retrieves the default game context used by this game instance. Contains instances of classes defined in game config.
+	* @see UAdventurePluginConfig
+	* @return The default game context.
+	*/
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Adventure Plugin")
+	UAdventurePluginGameContext* GetDefaultGameContext();
+	virtual UAdventurePluginGameContext* GetDefaultGameContext_Implementation() override;
 
 private:
 

@@ -6,6 +6,7 @@
 #include "SaveGame/AdventurePluginSaveGame.h"
 #include "Inventory/ItemManager.h"
 #include "AdventurePluginRuntime.h"
+#include "Common/AdventurePluginGameInstanceInterface.h"
 #include "AdventureCharacterManager.h"
 
 bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameContext* GameContext, const FString& Caller)
@@ -41,4 +42,15 @@ bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameC
 		return false;
 	}
 	return true;
+}
+UAdventurePluginGameContext* UAdventurePluginGameContext::ResolveGameContext(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext) {
+	if (IsValid(GameContextOverride)) {
+		return GameContextOverride;
+	}
+	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(WorldObjectContext);
+	if (IsValid(GameInstance) && GameInstance->GetClass()->ImplementsInterface(UAdventurePluginGameInstanceInterface::StaticClass())) 
+	{
+		return IAdventurePluginGameInstanceInterface::Execute_GetDefaultGameContext(GameInstance);
+	}
+	return nullptr;
 }

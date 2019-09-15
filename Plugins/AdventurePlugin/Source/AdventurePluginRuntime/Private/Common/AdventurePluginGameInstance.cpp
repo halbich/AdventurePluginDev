@@ -45,3 +45,8 @@ void UAdventurePluginGameInstance::Shutdown()
 	FMessageLog(AP_Log).Open(EMessageSeverity::Type::Warning);
 #endif
 }
+
+UAdventurePluginGameContext* UAdventurePluginGameInstance::GetDefaultGameContext_Implementation()
+{
+	return CurrentGameContext;
+}

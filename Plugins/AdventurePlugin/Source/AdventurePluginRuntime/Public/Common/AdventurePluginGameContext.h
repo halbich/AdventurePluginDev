@@ -81,4 +81,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin")
 	static bool IsGameContextValid(const UAdventurePluginGameContext* GameContext, const FString& Caller);
+
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin", meta = (WorldContext=WorldObjectContext, AdvancedDisplay=GameContextOverride))
+	static UAdventurePluginGameContext* ResolveGameContext(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext);
 };

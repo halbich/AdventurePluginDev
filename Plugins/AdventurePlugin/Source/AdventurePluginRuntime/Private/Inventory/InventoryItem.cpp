@@ -7,7 +7,7 @@
 
 void UInventoryItem::Examine_Implementation(UAdventurePluginGameContext* GameContext)
 {
-	UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(GameContext, ExamineDialog);
+	UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(GameContext, ExamineDialog, this);
 }
 
 void UInventoryItem::Use_Implementation(UAdventurePluginGameContext* GameContext)

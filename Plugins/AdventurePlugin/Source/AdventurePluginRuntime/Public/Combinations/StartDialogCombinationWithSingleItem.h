@@ -56,6 +56,6 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "StartDialogCombinationWithSingleItem_Execute_DialogInvalid", "StartDialogCombinationWithSingleItem:Execute: The dialog is invalid"));
 			return;
 		}
-		UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(GameContext, DialogToStart);
+		UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(GameContext, DialogToStart, this);
 	}
 };

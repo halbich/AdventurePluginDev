@@ -5,8 +5,9 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "Common/AdventurePluginGameInstance.h"
 
-void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePluginGameContext* GameContext, FDialogGraphEntryPoint EntryPoint)
+void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePluginGameContext* GameContextOverride, FDialogGraphEntryPoint EntryPoint, UObject* WorldObjectContext)
 {
+	auto GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("ShowDialogFromEntryPoint")))
 	{
 		return;
@@ -40,17 +41,19 @@ void UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(UAdventurePlugin
 	DialogController->ShowDialog(GameContext, DialogGraph, *StartNode);
 }
 
-void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph)
+void UAdventurePluginBlueprintLibrary::ShowDialog(UAdventurePluginGameContext* GameContextOverride, UDialogGraph* DialogGraph, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	FDialogGraphEntryPoint EntryPoint;
 	EntryPoint.Dialog = DialogGraph;
 	EntryPoint.EntryPointName = UDialogGraph::MainEntryName;
 
-	ShowDialogFromEntryPoint(GameContext, EntryPoint);
+	ShowDialogFromEntryPoint(GameContext, EntryPoint, WorldObjectContext);
 }
 
-void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* GameContext)
+void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("ShowInventory")))
 	{
 		return;
@@ -58,8 +61,9 @@ void UAdventurePluginBlueprintLibrary::ShowInventory(UAdventurePluginGameContext
 	GameContext->InventoryController->ShowInventory(GameContext);
 }
 
-void UAdventurePluginBlueprintLibrary::HideInventory(UAdventurePluginGameContext* GameContext)
+void UAdventurePluginBlueprintLibrary::HideInventory(UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("HideInventory")))
 	{
 		return;
@@ -67,8 +71,9 @@ void UAdventurePluginBlueprintLibrary::HideInventory(UAdventurePluginGameContext
 	GameContext->InventoryController->HideInventory(GameContext);
 }
 
-void UAdventurePluginBlueprintLibrary::SetInventoryVisibility(UAdventurePluginGameContext* GameContext, bool bVisible)
+void UAdventurePluginBlueprintLibrary::SetInventoryVisibility(UAdventurePluginGameContext* GameContextOverride, bool bVisible, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("ShowInventory")))
 	{
 		return;
@@ -83,8 +88,9 @@ void UAdventurePluginBlueprintLibrary::SetInventoryVisibility(UAdventurePluginGa
 		GameContext->InventoryController->HideInventory(GameContext);
 	}
 }
-void UAdventurePluginBlueprintLibrary::AddItemToInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item)
+void UAdventurePluginBlueprintLibrary::AddItemToInventory(UAdventurePluginGameContext* GameContextOverride, UInventoryItem* Item, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("AddItemToInventory")))
 	{
 		return;
@@ -102,8 +108,9 @@ void UAdventurePluginBlueprintLibrary::AddItemToInventory(UAdventurePluginGameCo
 	}
 	Inventory->AddItem(Item, GameContext);
 }
-void UAdventurePluginBlueprintLibrary::RemoveItemFromInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item)
+void UAdventurePluginBlueprintLibrary::RemoveItemFromInventory(UAdventurePluginGameContext* GameContextOverride, UInventoryItem* Item, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("RemoveItemFromInventory")))
 	{
 		return;
@@ -121,8 +128,9 @@ void UAdventurePluginBlueprintLibrary::RemoveItemFromInventory(UAdventurePluginG
 	}
 	Inventory->RemoveItem(Item, GameContext);
 }
-bool UAdventurePluginBlueprintLibrary::HasItemInInventory(UAdventurePluginGameContext* GameContext, UInventoryItem* Item)
+bool UAdventurePluginBlueprintLibrary::HasItemInInventory(UAdventurePluginGameContext* GameContextOverride, UInventoryItem* Item, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("HasItemInInventory")))
 	{
 		return false;
@@ -141,8 +149,9 @@ bool UAdventurePluginBlueprintLibrary::HasItemInInventory(UAdventurePluginGameCo
 	return Inventory->HasItem(Item, GameContext);
 }
 
-UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* GameContext, TSubclassOf<UInventoryItem> Item)
+UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UInventoryItem> Item, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetItem")))
 	{
 		return nullptr;
@@ -151,8 +160,9 @@ UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameCo
 	return ItemManager->GetItem(Item);
 }
 
-UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Character)
+UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UAdventureCharacter> Character, UObject* WorldObjectContext)
 {
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetAdventureCharacter")))
 	{
 		return nullptr;
@@ -163,15 +173,5 @@ UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAd
 
 UAdventurePluginGameContext* UAdventurePluginBlueprintLibrary::GetCurrentGameContext(UObject* WorldObjectContext)
 {
-	UAdventurePluginGameInstance* GameInstance = Cast<UAdventurePluginGameInstance>(UGameplayStatics::GetGameInstance(WorldObjectContext));
-	if (!IsValid(GameInstance))
-	{
-		LOG_Error(NSLOCTEXT("AdventurePlugin", "AdventurePluginBlueprintLibrary_GetCurrentGameContext_GameInstanceNotValid", "GetCurrentGameContext provided by Adventure Plugin can only be used if the game instance inherits from UAdventurePluginGameInstance"));
-		return nullptr;
-	}
-	if (!UAdventurePluginGameContext::IsGameContextValid(GameInstance->CurrentGameContext, TEXT("GetCurrentGameContext")))
-	{
-		return nullptr;
-	}
-	return GameInstance->CurrentGameContext;
+	return UAdventurePluginGameContext::ResolveGameContext(nullptr, WorldObjectContext);
 }
