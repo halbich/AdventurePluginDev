@@ -20,9 +20,9 @@ public:
 	/**
 	* Retrieves the instance of the specified adventure character class.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Character")
-	UAdventureCharacter* GetCharacter(TSubclassOf<UAdventureCharacter> Character)
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Character", meta = (WorldContext = WorldObjectContext))
+	UAdventureCharacter* GetCharacter(TSubclassOf<UAdventureCharacter> Character, UObject* WorldObjectContext)
 	{
-		return Cast<UAdventureCharacter>(GetCombinableObjectInstance(Character));
+		return Cast<UAdventureCharacter>(GetCombinableObjectInstance(Character, WorldObjectContext));
 	}
 };

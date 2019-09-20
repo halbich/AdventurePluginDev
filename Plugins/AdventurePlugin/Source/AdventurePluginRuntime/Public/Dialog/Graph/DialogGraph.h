@@ -6,6 +6,7 @@
 #include "Templates/SharedPointer.h"
 #include "AdventureCharacterBlueprint.h"
 #include "DialogGraphNode_Event.h"
+#include "Engine/GameInstance.h"
 #include "DialogGraph.generated.h"
 
 class UDialogGraphNode;
@@ -35,7 +36,7 @@ public:
 	UDialogGraph();
 	virtual ~UDialogGraph();
 
-	TWeakObjectPtr<UWorld> CachedWorldObject;
+	TWeakObjectPtr<UGameInstance> CachedGameInstance;
 
 	/**
 	* The main entry point of this graph. The execution should start here if no other entry point is specified.
@@ -117,9 +118,9 @@ public:
 	UAdventureCharacter * GetSpeakerInstance(UAdventurePluginGameContext* GameContext, TSubclassOf<UAdventureCharacter> Speaker);
 
 	virtual class UWorld* GetWorld() const override {
-		if (CachedWorldObject.IsValid())
+		if (CachedGameInstance.IsValid())
 		{
-			return CachedWorldObject.Get();
+			return CachedGameInstance.Get()->GetWorld();
 		}
 		return nullptr;
 	}

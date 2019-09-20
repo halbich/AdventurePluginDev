@@ -2,18 +2,19 @@
 
 #include "CoreMinimal.h"
 #include "Templates/SharedPointer.h"
+#include "Engine/GameInstance.h"
 #include "WorldContextProvidingObject.generated.h"
 
 UCLASS()
 class ADVENTUREPLUGINRUNTIME_API UWorldContextProvidingObject : public UObject {
 	GENERATED_BODY()
 public:
-	TWeakObjectPtr<UWorld> CachedWorldObject;
+	TWeakObjectPtr<UGameInstance> CachedGameInstance;
 
 	virtual class UWorld* GetWorld() const override {
-		if (CachedWorldObject.IsValid()) 
+		if (CachedGameInstance.IsValid())
 		{
-			return CachedWorldObject.Get();
+			return CachedGameInstance.Get()->GetWorld();
 		}
 		return nullptr;
 	}

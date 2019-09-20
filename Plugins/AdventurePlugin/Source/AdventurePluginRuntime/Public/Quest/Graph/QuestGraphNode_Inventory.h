@@ -58,7 +58,7 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Inventory_InvalidItem", "Quest graph node inventory:IsTrue: Nil or invalid item passed."));
 			return false;
 		}
-		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
+		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item, WorldObjectContext);
 		if (!IsValid(ItemInstance))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Inventory_InvalidItemInstance", "Quest graph node inventory:IsTrue: Item could not be instantiated."));

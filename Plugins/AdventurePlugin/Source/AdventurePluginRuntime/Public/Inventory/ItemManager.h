@@ -22,9 +22,9 @@ public:
 	* @param Item The item whose instance is requested.
 	* @return The instance of that item.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory")
-	UInventoryItem* GetItem(TSubclassOf<UInventoryItem> Item)
+	UFUNCTION(BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (WorldContext = WorldObjectContext))
+	UInventoryItem* GetItem(TSubclassOf<UInventoryItem> Item, UObject* WorldObjectContext)
 	{
-		return Cast<UInventoryItem>(GetCombinableObjectInstance(Item));
+		return Cast<UInventoryItem>(GetCombinableObjectInstance(Item, WorldObjectContext));
 	}
 };

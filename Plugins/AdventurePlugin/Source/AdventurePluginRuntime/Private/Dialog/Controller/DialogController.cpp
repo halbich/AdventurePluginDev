@@ -10,7 +10,9 @@ void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDi
 
 void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDialogGraph* DialogGraph, UDialogGraphNode* StartNode, UObject* WorldContextObject)
 {
-	CachedWorldObject = MakeWeakObjectPtr(WorldContextObject->GetWorld());
+	auto* world = WorldContextObject ? WorldContextObject->GetWorld() : nullptr;
+	auto* gameInstance = world ? world->GetGameInstance() : nullptr;
+	CachedGameInstance = MakeWeakObjectPtr(gameInstance);
 	if (StartNode == nullptr || StartNode->ChildrenNodes.Num() == 0)
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogController_ShowDialog_StartNodeNull", "Show dialog::StartNode is NULL"));
@@ -23,7 +25,7 @@ void UDialogController::ShowDialog(UAdventurePluginGameContext* GameContext, UDi
 	}
 	CurrentGameContext = GameContext;
 	CurrentGraph = DialogGraph;
-	CurrentGraph->CachedWorldObject = MakeWeakObjectPtr(WorldContextObject->GetWorld());
+	CurrentGraph->CachedGameInstance = MakeWeakObjectPtr(gameInstance);
 	bIsShowingDialog = true;
 	DialogStarted.Broadcast(DialogGraph, GameContext);
 	IDialogPresenterInterface* PresenterInstance = GetPresenter();

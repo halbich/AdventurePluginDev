@@ -166,7 +166,7 @@ UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameCo
 		return nullptr;
 	}
 	UItemManager* ItemManager = GameContext->ItemManager;
-	return ItemManager->GetItem(Item);
+	return ItemManager->GetItem(Item, WorldObjectContext);
 }
 
 UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UAdventureCharacter> Character, UObject* WorldObjectContext)
@@ -177,5 +177,5 @@ UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAd
 		return nullptr;
 	}
 	UAdventureCharacterManager* CharacterManager = GameContext->AdventureCharacterManager;
-	return CharacterManager->GetCharacter(Character);
+	return CharacterManager->GetCharacter(Character, WorldObjectContext);
 }

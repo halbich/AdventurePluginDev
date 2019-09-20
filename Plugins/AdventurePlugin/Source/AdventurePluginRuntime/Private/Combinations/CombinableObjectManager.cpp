@@ -2,7 +2,7 @@
 #include "Templates/SharedPointer.h"
 #include "AdventurePluginRuntime.h"
 
-UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass)
+UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass, UObject* WorldObjectContext)
 {
 	if (CombinableObjectClass == nullptr)
 	{
@@ -17,7 +17,7 @@ UCombinableObject* UCombinableObjectManager::GetCombinableObjectInstance(TSubcla
 	UCombinableObject** CombinableObjectInstance = CombinableObjects.Find(CombinableObjectClass);
 	if (CombinableObjectInstance == nullptr || !IsValid(*CombinableObjectInstance))
 	{
-		RegisterObject(CombinableObjectClass);
+		RegisterObject(CombinableObjectClass, WorldObjectContext);
 		CombinableObjectInstance = CombinableObjects.Find(CombinableObjectClass);
 	}
 	check(CombinableObjectInstance && *CombinableObjectInstance && "Item instance should never be null");
@@ -29,18 +29,13 @@ void UCombinableObjectManager::ClearMap()
 	CombinableObjects.Empty();
 }
 
-void UCombinableObjectManager::RegisterObject(TSubclassOf<UCombinableObject> CombinableObjectClass)
+void UCombinableObjectManager::RegisterObject(TSubclassOf<UCombinableObject> CombinableObjectClass, UObject* WorldObjectContext)
 {
 	UCombinableObject* NewCombinableObject = NewObject<UCombinableObject>(this, CombinableObjectClass);
 	NewCombinableObject->Init();
 	check(NewCombinableObject != nullptr && "It should always be possible to instantiate a combinable object");
-	NewCombinableObject->CachedWorldObject = CachedWorldObject;
+	auto* world = WorldObjectContext ? WorldObjectContext->GetWorld() : nullptr;
+	auto* gameInstance = world ? world->GetGameInstance() : nullptr;
+	NewCombinableObject->CachedGameInstance = MakeWeakObjectPtr(gameInstance);
 	CombinableObjects.Add(CombinableObjectClass, NewCombinableObject);
-}
-
-void UCombinableObjectManager::SetWorldContext(UObject* WorldObjectContext) {
-	CachedWorldObject = MakeWeakObjectPtr(WorldObjectContext->GetWorld());
-	for (auto registeredCombinableObject: CombinableObjects) {
-		registeredCombinableObject.Value->SetWorldObject(CachedWorldObject.Get());
-	}
 }

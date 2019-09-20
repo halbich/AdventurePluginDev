@@ -7,6 +7,7 @@
 #include "Inventory/ItemManager.h"
 #include "AdventurePluginRuntime.h"
 #include "Common/AdventurePluginGameInstanceInterface.h"
+#include "Engine/GameInstance.h"
 #include "AdventureCharacterManager.h"
 
 bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameContext* GameContext, const FString& Caller)

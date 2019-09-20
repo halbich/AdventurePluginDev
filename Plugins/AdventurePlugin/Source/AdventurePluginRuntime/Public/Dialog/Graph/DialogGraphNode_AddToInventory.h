@@ -62,7 +62,7 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_AddToInventory_Execute_InvalidItem", "DialogGraphNode_AddToInventory:Execute: Nil or invalid item passed"));
 			return false;
 		}
-		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
+		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item, this);
 		if (!IsValid(ItemInstance))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_AddToInventory_Execute_InvalidItemInstance", "DialogGraphNode_AddToInventory:Execute: Item could not be instantiated"));

@@ -62,7 +62,7 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_RemoveFromInventory_Execute_InvalidItem", "DialogGraphNode_RemoveFromInventory:Execute: Nil or invalid item passed."));
 			return false;
 		}
-		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item);
+		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item, this);
 		if (!IsValid(ItemInstance))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_RemoveFromInventory_Execute_InvalidItemInstance", "DialogGraphNode_RemoveFromInventory:Execute: Item could not be instantiated."));

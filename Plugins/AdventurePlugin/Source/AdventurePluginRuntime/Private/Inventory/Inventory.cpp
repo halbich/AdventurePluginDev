@@ -101,7 +101,7 @@ TArray<UInventoryItem*> UInventory::GetItems(UAdventurePluginGameContext* GameCo
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
 	for (TSubclassOf<UInventoryItem>& ItemClass : SaveGame->StorageInventory)
 	{
-		InventoryItems.Add(GameContext->ItemManager->GetItem(ItemClass));
+		InventoryItems.Add(GameContext->ItemManager->GetItem(ItemClass, WorldObjectContext));
 	}
 	return InventoryItems;
 }

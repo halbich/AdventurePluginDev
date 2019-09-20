@@ -124,9 +124,10 @@ UCombination* UCombinableObject::GetCombinationWithObjectLocalOnly(UCombinableOb
 
 void UCombinableObject::SetWorldObject(UWorld* WorldObject)
 {
-	CachedWorldObject = WorldObject;
+	auto* gameInstance = WorldObject ? WorldObject->GetGameInstance() : nullptr;
+	CachedGameInstance = MakeWeakObjectPtr(gameInstance);
 	for (auto* combination : Combinations) 
 	{
-		combination->CachedWorldObject = MakeWeakObjectPtr(WorldObject);
+		combination->CachedGameInstance = MakeWeakObjectPtr(gameInstance);
 	}
 }

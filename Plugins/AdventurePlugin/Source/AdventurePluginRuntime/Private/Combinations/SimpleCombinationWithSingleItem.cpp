@@ -12,7 +12,7 @@ void USimpleCombinationWithSingleItem::Execute_Implementation(UObject* Combinati
 	{
 		return;
 	}
-	UInventoryItem* ResultItem = GameContext->ItemManager->GetItem(ResultItemClass);
+	UInventoryItem* ResultItem = GameContext->ItemManager->GetItem(ResultItemClass, this);
 	if (!IsValid(ResultItem))
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "SimpleCombinationWithSingleItem_ExecuteResultNull", "SimpleCombinationWithSingleItem:Execute::The result item is null or invalid."));

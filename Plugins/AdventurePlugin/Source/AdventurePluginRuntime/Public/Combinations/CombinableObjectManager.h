@@ -23,24 +23,21 @@ public:
 	* @param CombinableObjectClass The class whose instance is requested.
 	* @return The only instance of the specified class.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations")
-	UCombinableObject* GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass);
+	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Combinations", meta = (WorldContext = WorldObjectContext))
+	UCombinableObject* GetCombinableObjectInstance(TSubclassOf<UCombinableObject> CombinableObjectClass, UObject* WorldObjectContext);
 
 	/**
 	* Removes all data from the manager. 
 	* Used because the manager is not recreated upon PIE restart and it would happen that old classes, which should no longer exists, because of blueprint recompile, would stil be stored here.
 	*/
 	void ClearMap();
-
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin", meta = (WorldContext = WorldObjectContext))
-	void SetWorldContext(UObject* WorldObjectContext);
 private:
 
 	/**
 	* Creates a new instance of the specified class and stores it in the map
 	* Should only be called once for each CombinableObjectClass.
 	*/
-	void RegisterObject(TSubclassOf<UCombinableObject> CombinableObjectClass);
+	void RegisterObject(TSubclassOf<UCombinableObject> CombinableObjectClass, UObject* WorldObjectContext);
 
 	/**
 	* Stores all registered combinable objects.
