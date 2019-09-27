@@ -5,6 +5,7 @@
 #include "DialogLineData.generated.h"
 
 class UAdventureCharacter;
+class UDialogueWave;
 
 /**
 * Contains all information about a dialog line that can be played as part of a dialog.
@@ -14,7 +15,11 @@ struct FDialogLineData
 {
 	GENERATED_USTRUCT_BODY()
 public:
-
+	/**
+	* The dialogue wave that should be played for this dialogue.
+	*/
+	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
+	UDialogueWave* DialogueWave;
 	/**
 	*The text that should be displayed for this line, should be the same as what is said in the audio line. 
 	*/

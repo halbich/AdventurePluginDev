@@ -8,8 +8,9 @@
 #include "Dialog/Graph/DialogGraph.h"
 #include "DialogGraphNode_DialogLineBase.generated.h"
 
-class UDialogueWave;
 class USoundWave;
+class UDialogueWave;
+
 
 /**
 * A base class for nodes showing a dialog line.
@@ -136,6 +137,7 @@ public:
 	virtual FDialogLineData GetDialogLine(UAdventurePluginGameContext* GameContext) const override
 	{
 		FDialogLineData DialogLine = FDialogLineData();
+		DialogLine.DialogueWave = DialogueWave;
 		DialogLine.DialogSound = DialogSound;
 		DialogLine.LineText = DialogText;
 		DialogLine.OptionText = OptionText.IsEmptyOrWhitespace() ? DialogText : OptionText;

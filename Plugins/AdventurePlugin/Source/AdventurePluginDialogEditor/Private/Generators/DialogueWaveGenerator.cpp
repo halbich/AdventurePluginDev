@@ -5,8 +5,8 @@
 #include "AdventureCharacter.h"
 #include "Factories/DialogueWaveFactory.h"
 #include "Factories/DialogueVoiceFactory.h"
-#include "Sound/DialogueWave.h"
 #include "Sound/DialogueVoice.h"
+#include "Sound/DialogueWave.h"
 #include "AssetRegistryModule.h"
 #include "FileHelpers.h"
 

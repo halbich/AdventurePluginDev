@@ -4,7 +4,6 @@
 class UDialogGraph;
 class UDialogueWave;
 class UDialogueVoice;
-class UDialogueWave;
 class UAdventureCharacter;
 class UDialogGraphNode_DialogLineBase;
 
