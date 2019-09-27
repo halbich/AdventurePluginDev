@@ -8,6 +8,9 @@
 #include "Dialog/Graph/DialogGraph.h"
 #include "DialogGraphNode_DialogLineBase.generated.h"
 
+class UDialogueWave;
+class USoundWave;
+
 /**
 * A base class for nodes showing a dialog line.
 */
@@ -34,7 +37,7 @@ public:
 	* The sound to be played for this dialog line. The line should disappear automatically after the sound finishes.
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
-	USoundBase* DialogSound;
+	USoundWave* DialogSound;
 
 	/**
 	* If true, the user can skip this dialog line.
@@ -55,6 +58,9 @@ public:
 	*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "DialogLineNode")
 	FName AnimationName;
+
+	UPROPERTY(BlueprintReadonly, VisibleAnywhere, Category = "DialogLineNode")
+	UDialogueWave* DialogueWave;
 
 #if WITH_EDITOR
 

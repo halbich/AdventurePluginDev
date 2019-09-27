@@ -7,6 +7,7 @@
 #include "Animations/AnimatableObjectInterface.h"
 #include "Combinations/CombinableObject.h"
 #include "Delegates/Delegate.h"
+#include "Sound/DialogueVoice.h"
 #include "AdventureCharacter.generated.h"
 
 /**
@@ -36,6 +37,22 @@ class ADVENTUREPLUGINRUNTIME_API UAdventureCharacter : public UCombinableObject,
 	GENERATED_BODY()
 
 public:
+
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = DialogueVoice)
+	TEnumAsByte<EGrammaticalGender::Type> Gender;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = DialogueVoice)
+	TEnumAsByte<EGrammaticalNumber::Type> Plurality;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
+	UDialogueVoice* Voice;
+
+	/**
+	* Internal Id of this character
+	*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
+	FName Id;
 
 	/**
 	* Human friendly name of this character.

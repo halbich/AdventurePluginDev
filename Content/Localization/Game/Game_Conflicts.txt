@@ -1,13 +1,4 @@
-AP - InvalidDialogGraph 
-	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialogue/Graph/DialogGraphNode_Goto.h - line 78 - "GotoNode: Invalid target Id" 
-	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialogue/Graph/DialogGraphNode_Goto.h - line 72 - "GotoNode: Parent graph is not a dialog graph" 
-
-AP - GameContextNull 
-	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp - line 42 - "ShowInventory dialog::gameContext is NULL" 
-	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp - line 12 - "Show dialog::gameContext is NULL" 
-	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp - line 64 - "GetItem::gameContext is NULL" 
-
-AssetSchema_GenericGraph - PinConnect 
-	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/GenericGraphEditor/Private/GenericGraphAssetEditor/AssetGraphSchema_GenericGraph.cpp - line 359 - "Connect nodes" 
-	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/GenericGraphEditor/Private/GenericGraphAssetEditor/AssetGraphSchema_GenericGraph.cpp - line 355 - "Connect nodes with edge" 
+AdventurePlugin - QuestGraph_SetBool_VariableNotFound 
+	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp - line 184 - "QuestGraph::SetString - Variable was not found in dictionary." 
+	/Engine/Binaries/Win64/Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp - line 105 - "QuestGraph::SetBool - Variable was not found in dictionary." 
 

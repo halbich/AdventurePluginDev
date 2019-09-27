@@ -36,6 +36,7 @@ public class AdventurePluginDialogEditor : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+                "AudioEditor",
 				"Projects",
 				"InputCore",
 				"UnrealEd",

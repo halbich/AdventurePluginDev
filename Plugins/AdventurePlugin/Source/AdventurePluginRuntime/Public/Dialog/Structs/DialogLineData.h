@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Sound/SoundBase.h"
+#include "Sound/SoundWave.h"
 #include "DialogLineData.generated.h"
 
 class UAdventureCharacter;
@@ -49,7 +49,7 @@ public:
 	* Specifies the sound that should be played when this option is displayed.
 	*/
 	UPROPERTY(BlueprintReadWrite, Category = "DialogPlayerOptionData")
-	USoundBase* DialogSound;
+	USoundWave* DialogSound;
 
 	/**
 	* The text that should be displayed for this line. 

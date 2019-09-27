@@ -1,0 +1,1457 @@
+﻿# Game Czech translation.
+# Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Game\n"
+"POT-Creation-Date: 2019-09-27 14:11\n"
+"PO-Revision-Date: 2019-09-27 14:11\n"
+"Language-Team: \n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. Key:	AdventureCharacter_AnimationActorNotBound.
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/AdventureCharacter.cpp:77
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/AdventureCharacter.cpp:77
+msgctxt "AdventurePlugin,AdventureCharacter_AnimationActorNotBound."
+msgid "No actor bound to UAdventureCharacter, animation state cannot be changed."
+msgstr ""
+
+#. Key:	AdventureCharacter_InvalidAnimationStateName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/AdventureCharacter.cpp:87
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/AdventureCharacter.cpp:87
+msgctxt "AdventurePlugin,AdventureCharacter_InvalidAnimationStateName"
+msgid "Animation state {0} not found."
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_AddItemToInventory_InventoryNotValid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:115
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:115
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_AddItemToInventory_InventoryNotValid"
+msgid "AddItemToInventory: The inventory on on the inventory controller is not valid."
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_AddItemToInventory_ItemNotValid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:109
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:109
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_AddItemToInventory_ItemNotValid"
+msgid "AddItemToInventory: Invalid item passed as an argument."
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_HasItemInInventory_InventoryNotValid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:155
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:155
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_HasItemInInventory_InventoryNotValid"
+msgid "HasItemInInventory: The inventory on on the inventory controller is not valid."
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_HasItemInInventory_ItemNotValid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:149
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:149
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_HasItemInInventory_ItemNotValid"
+msgid "HasItemInInventory: Invalid item passed as an argument."
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_RemoveItemFromInventory_InventoryNotValid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:135
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:135
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_RemoveItemFromInventory_InventoryNotValid"
+msgid "RemoveItemFromInventory: The inventory on on the inventory controller is not valid."
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_RemoveItemFromInventory_ItemNotValid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:129
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:129
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_RemoveItemFromInventory_ItemNotValid"
+msgid "RemoveItemFromInventory: Invalid item passed as an argument."
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_ShowDialog_DialogGraphNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:19
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:19
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_ShowDialog_DialogGraphNull"
+msgid "Show dialog::graph is NULL"
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_ShowDialog_InvalidEntryPoint
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:32
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:32
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_ShowDialog_InvalidEntryPoint"
+msgid "ShowDialog:Entry point name is invalid"
+msgstr ""
+
+#. Key:	AdventurePluginBlueprintLibrary_ShowDialog_NoMainEntryPoint
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:37
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/BlueprintLibrary/AdventurePluginBlueprintLibrary.cpp:37
+msgctxt "AdventurePlugin,AdventurePluginBlueprintLibrary_ShowDialog_NoMainEntryPoint"
+msgid "ShowDialog:Main entry point should be used, but was not found."
+msgstr ""
+
+#. Key:	CombinableObject_GetCombination_NullCombinationItem
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObject.cpp:67
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObject.cpp:67
+msgctxt "AdventurePlugin,CombinableObject_GetCombination_NullCombinationItem"
+msgid "One of the items being combined is null."
+msgstr ""
+
+#. Key:	CombinableObjectExecuteCombination_NullCombination
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObject.cpp:95
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObject.cpp:95
+msgctxt "AdventurePlugin,CombinableObjectExecuteCombination_NullCombination"
+msgid "UCombinableObject:ExecuteCombination: Combination is null or invalid."
+msgstr ""
+
+#. Key:	CombinableObjects_CombinationsNotRefreshing
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObject.cpp:14
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObject.cpp:14
+msgctxt "AdventurePlugin,CombinableObjects_CombinationsNotRefreshing"
+msgid "Combinations should not be added to an item outside of InitCombinations method and InitCombinations method should not be called outside RefreshCombinations method"
+msgstr ""
+
+#. Key:	CombinationWithSingleItemBase_CanCombineWith_NullItem
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/CombinationWithSingleItemBase.h:86
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/CombinationWithSingleItemBase.h:86
+msgctxt "AdventurePlugin,CombinationWithSingleItemBase_CanCombineWith_NullItem"
+msgid "CombinationWithSingleItemBase:CanCombineWith::The other item is null or invalid."
+msgstr ""
+
+#. Key:	CombinationWithSingleItemDebugName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/CombinationWithSingleItemBase.h:61
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/CombinationWithSingleItemBase.h:61
+msgctxt "AdventurePlugin,CombinationWithSingleItemDebugName"
+msgid "Abstract combination with single item:{0}"
+msgstr ""
+
+#. Key:	CreateSave_ClassNotValid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/SaveGame/AdventurePluginSaveGame.cpp:100
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/SaveGame/AdventurePluginSaveGame.cpp:100
+msgctxt "AdventurePlugin,CreateSave_ClassNotValid"
+msgid "Cannot instantiate class. Class not valid: {0}"
+msgstr ""
+
+#. Key:	DialogController_DialogExecutionStuck
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Controller/DialogController.cpp:64
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Controller/DialogController.cpp:64
+msgctxt "AdventurePlugin,DialogController_DialogExecutionStuck"
+msgid "BeginExecute: Dialog is probably stuck in a loop, breaking it by force. Reason - running too long."
+msgstr ""
+
+#. Key:	DialogController_ShowDialog_Dialog in progress
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Controller/DialogController.cpp:23
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Controller/DialogController.cpp:23
+msgctxt "AdventurePlugin,DialogController_ShowDialog_Dialog in progress"
+msgid "Show dialog::Another dialog is already being executed. Cannot execute another dialog."
+msgstr ""
+
+#. Key:	DialogController_ShowDialog_StartNodeNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Controller/DialogController.cpp:18
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Controller/DialogController.cpp:18
+msgctxt "AdventurePlugin,DialogController_ShowDialog_StartNodeNull"
+msgid "Show dialog::StartNode is NULL"
+msgstr ""
+
+#. Key:	DialogGraph_GetSpeakerInstance_SpeakerNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Graph/DialogGraph.cpp:41
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Graph/DialogGraph.cpp:41
+msgctxt "AdventurePlugin,DialogGraph_GetSpeakerInstance_SpeakerNull"
+msgid "DialogGraph:GetSpeakerInstance: The speaker is null."
+msgstr ""
+
+#. Key:	DialogGraphNode_AddToInventory_Execute_InvalidItem
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_AddToInventory.h:62
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_AddToInventory.h:62
+msgctxt "AdventurePlugin,DialogGraphNode_AddToInventory_Execute_InvalidItem"
+msgid "DialogGraphNode_AddToInventory:Execute: Nil or invalid item passed"
+msgstr ""
+
+#. Key:	DialogGraphNode_AddToInventory_Execute_InvalidItemInstance
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_AddToInventory.h:68
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_AddToInventory.h:68
+msgctxt "AdventurePlugin,DialogGraphNode_AddToInventory_Execute_InvalidItemInstance"
+msgid "DialogGraphNode_AddToInventory:Execute: Item could not be instantiated"
+msgstr ""
+
+#. Key:	DialogGraphNode_DialogLineBase_GetDialogLine_SpeakerInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/BaseClasses/DialogGraphNode_DialogLineBase.h:152
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/BaseClasses/DialogGraphNode_DialogLineBase.h:152
+msgctxt "AdventurePlugin,DialogGraphNode_DialogLineBase_GetDialogLine_SpeakerInvalid"
+msgid "DialogGraphNode_DialogLineBase:GetDialogLine::Speaker is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_Event_Execute_EventUnbound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Event.h:84
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Event.h:84
+msgctxt "AdventurePlugin,DialogGraphNode_Event_Execute_EventUnbound"
+msgid "DialogGraphNode_Event:Execute::Event is not bound"
+msgstr ""
+
+#. Key:	DialogGraphNode_Event_Execute_NameNotFound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Event.h:78
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Event.h:78
+msgctxt "AdventurePlugin,DialogGraphNode_Event_Execute_NameNotFound"
+msgid "DialogGraphNode_Event:Execute::Event name not found in quest"
+msgstr ""
+
+#. Key:	DialogGraphNode_Event_Execute_QuestGraphNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Event.h:71
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Event.h:71
+msgctxt "AdventurePlugin,DialogGraphNode_Event_Execute_QuestGraphNull"
+msgid "DialogGraphNode_Event:Execute::Quest graph is NULL"
+msgstr ""
+
+#. Key:	DialogGraphNode_Goto_GetNextNode_GraphInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Goto.h:82
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Goto.h:82
+msgctxt "AdventurePlugin,DialogGraphNode_Goto_GetNextNode_GraphInvalid"
+msgid "DialogGraphNode_Goto:GetNextNode:Graph is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_Goto_GetNextNode_InvalidTarget
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Goto.h:88
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Goto.h:88
+msgctxt "AdventurePlugin,DialogGraphNode_Goto_GetNextNode_InvalidTarget"
+msgid "DialogGraphNode_Goto:GetNextNode: Invalid target Id"
+msgstr ""
+
+#. Key:	DialogGraphNode_IfBool_IsTrue
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfBool.h:54
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfBool.h:54
+msgctxt "AdventurePlugin,DialogGraphNode_IfBool_IsTrue"
+msgid "DialogGraphNode_IfBool:IsTrue:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfBoolVariable_IsTrue
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfBoolVariable.h:62
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfBoolVariable.h:62
+msgctxt "AdventurePlugin,DialogGraphNode_IfBoolVariable_IsTrue"
+msgid "DialogGraphNode_IfBoolVariable:IsTrue:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfInInventory_GetNextNode_InvalidItem
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfInInventory.h:84
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfInInventory.h:84
+msgctxt "AdventurePlugin,DialogGraphNode_IfInInventory_GetNextNode_InvalidItem"
+msgid "DialogGraphNode_IfInInventory:GetNextNode: Nil or invalid item passed."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfInInventory_GetNextNode_InvalidItemInstance
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfInInventory.h:90
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfInInventory.h:90
+msgctxt "AdventurePlugin,DialogGraphNode_IfInInventory_GetNextNode_InvalidItemInstance"
+msgid "DialogGraphNode_IfInInventory:GetNextNode: Item could not be instantiated."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfInteger_GetNextNode
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfInteger.h:59
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfInteger.h:59
+msgctxt "AdventurePlugin,DialogGraphNode_IfInteger_GetNextNode"
+msgid "DialogGraphNode_IfInteger:GetNextNode:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfIntegerVariable_GetNextNode
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfIntegerVariable.h:61
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfIntegerVariable.h:61
+msgctxt "AdventurePlugin,DialogGraphNode_IfIntegerVariable_GetNextNode"
+msgid "DialogGraphNode_IfIntegerVariable:GetNextNode:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfQuestComplete_IsTrue
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfQuestComplete.h:51
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfQuestComplete.h:51
+msgctxt "AdventurePlugin,DialogGraphNode_IfQuestComplete_IsTrue"
+msgid "UDialogGraphNode_IfQuestComplete:IsTrue:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfQuestFlag_IsTrue_QuestInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfQuestFlag.h:54
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfQuestFlag.h:54
+msgctxt "AdventurePlugin,DialogGraphNode_IfQuestFlag_IsTrue_QuestInvalid"
+msgid "DialogGraphNode_IfQuestFlag:IsTrue:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfString_IsTrue_QuestInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfString.h:62
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfString.h:62
+msgctxt "AdventurePlugin,DialogGraphNode_IfString_IsTrue_QuestInvalid"
+msgid "DialogGraphNode_IfString:IsTrue:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_IfStringVariable_IsTrue_QuestInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfStringVariable.h:63
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IfStringVariable.h:63
+msgctxt "AdventurePlugin,DialogGraphNode_IfStringVariable_IsTrue_QuestInvalid"
+msgid "DialogGraphNode_IfStringVariable:IsTrue:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_IncrementInteger_Execute_QuestInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IncrementInteger.h:63
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_IncrementInteger.h:63
+msgctxt "AdventurePlugin,DialogGraphNode_IncrementInteger_Execute_QuestInvalid"
+msgid "DialogGraphNode_IncrementInteger:Execute:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_InvalidDialogGraph
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Graph/DialogGraphNode.cpp:46
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Graph/DialogGraphNode.cpp:46
+msgctxt "AdventurePlugin,DialogGraphNode_InvalidDialogGraph"
+msgid "DialogGraphNode: Parent graph is not a dialog graph"
+msgstr ""
+
+#. Key:	DialogGraphNode_NPCGetSpeaker_GraphInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_NPC.h:66
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_NPC.h:66
+msgctxt "AdventurePlugin,DialogGraphNode_NPCGetSpeaker_GraphInvalid"
+msgid "DialogGraphNode_NPC:GetSpeaker:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_PlayAnimationBase_Execute_AnimatedObjectInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/BaseClasses/DialogGraphNode_PlayAnimationBase.h:92
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/BaseClasses/DialogGraphNode_PlayAnimationBase.h:92
+msgctxt "AdventurePlugin,DialogGraphNode_PlayAnimationBase_Execute_AnimatedObjectInvalid"
+msgid "DialogGraphNode_PlayAnimationBase:Execute: Animated object is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_PlayAnimationCharacterBase_GetAnimatedObject_CharacterNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/BaseClasses/DialogGraphNode_PlayAnimationCharacterBase.h:36
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/BaseClasses/DialogGraphNode_PlayAnimationCharacterBase.h:36
+msgctxt "AdventurePlugin,DialogGraphNode_PlayAnimationCharacterBase_GetAnimatedObject_CharacterNull"
+msgid "DialogGraphNode_PlayAnimationCharacterBase:GetAnimatedObject: Cannot retrieve valid animated character."
+msgstr ""
+
+#. Key:	DialogGraphNode_PlayCharacterAnimationOnce_Execute_CharacterNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/BaseClasses/DialogGraphNode_PlayCharacterAnimationOnceBase.h:34
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/BaseClasses/DialogGraphNode_PlayCharacterAnimationOnceBase.h:34
+msgctxt "AdventurePlugin,DialogGraphNode_PlayCharacterAnimationOnce_Execute_CharacterNull"
+msgid "DialogGraphNode_PlayCharacterAnimationOnceBase::Execute::Character is NULL"
+msgstr ""
+
+#. Key:	DialogGraphNode_Player_GetSpeakerGraphInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Player.h:70
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Player.h:70
+msgctxt "AdventurePlugin,DialogGraphNode_Player_GetSpeakerGraphInvalid"
+msgid "DialogGraphNode_Player:GetSpeaker:Dialog graph is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_PlayerLineOption_GetDialogLine
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_PlayerLineOption.h:77
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_PlayerLineOption.h:77
+msgctxt "AdventurePlugin,DialogGraphNode_PlayerLineOption_GetDialogLine"
+msgid "DialogGraphNode_PlayerLineOption:GetDialogLine:Speaker is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_PlayNPCAnimationOnce_GetAnimatedObjectClass_NPCCharacterNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_PlayNPCAnimationOnce.h:62
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_PlayNPCAnimationOnce.h:62
+msgctxt "AdventurePlugin,DialogGraphNode_PlayNPCAnimationOnce_GetAnimatedObjectClass_NPCCharacterNull"
+msgid "DialogGraphNode_PlayNPCAnimationOnce::GetAnimatedObjectClass::NPC is NULL"
+msgstr ""
+
+#. Key:	DialogGraphNode_RemoveFromInventory_Execute_InvalidItem
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_RemoveFromInventory.h:62
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_RemoveFromInventory.h:62
+msgctxt "AdventurePlugin,DialogGraphNode_RemoveFromInventory_Execute_InvalidItem"
+msgid "DialogGraphNode_RemoveFromInventory:Execute: Nil or invalid item passed."
+msgstr ""
+
+#. Key:	DialogGraphNode_RemoveFromInventory_Execute_InvalidItemInstance
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_RemoveFromInventory.h:68
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_RemoveFromInventory.h:68
+msgctxt "AdventurePlugin,DialogGraphNode_RemoveFromInventory_Execute_InvalidItemInstance"
+msgid "DialogGraphNode_RemoveFromInventory:Execute: Item could not be instantiated."
+msgstr ""
+
+#. Key:	DialogGraphNode_SetBool_Execute_QuestInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetBool.h:72
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetBool.h:72
+msgctxt "AdventurePlugin,DialogGraphNode_SetBool_Execute_QuestInvalid"
+msgid "DialogGraphNode_SetBool:Execute: Quest null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_SetInteger_Execute_QuestInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetInteger.h:70
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetInteger.h:70
+msgctxt "AdventurePlugin,DialogGraphNode_SetInteger_Execute_QuestInvalid"
+msgid "DialogGraphNode_SetInteger:Execute:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_SetNPCAnimationState_GetAnimatedObjectClass_NPCNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetNPCAnimationState.h:62
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetNPCAnimationState.h:62
+msgctxt "AdventurePlugin,DialogGraphNode_SetNPCAnimationState_GetAnimatedObjectClass_NPCNull"
+msgid "DialogGraphNode_SetNPCAnimationState::GetAnimatedObjectClass::NPC is NULL"
+msgstr ""
+
+#. Key:	DialogGraphNode_SetPCAnimationState_GetAnimatedObjectClass_PCNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetPCAnimationState.h:62
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetPCAnimationState.h:62
+msgctxt "AdventurePlugin,DialogGraphNode_SetPCAnimationState_GetAnimatedObjectClass_PCNull"
+msgid "DialogGraphNode_SetPCAnimationState::GetAnimatedObjectClass::PC is NULL"
+msgstr ""
+
+#. Key:	DialogGraphNode_SetQuestFlag_Execute_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetQuestFlag.h:63
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetQuestFlag.h:63
+msgctxt "AdventurePlugin,DialogGraphNode_SetQuestFlag_Execute_QuestNull"
+msgid "DialogGraphNode_SetQuestFlag:Execute:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_SetString_Execute_QuestInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetString.h:71
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SetString.h:71
+msgctxt "AdventurePlugin,DialogGraphNode_SetString_Execute_QuestInvalid"
+msgid "DialogGraphNode_SetString:Execute:Quest is null or invalid."
+msgstr ""
+
+#. Key:	DialogGraphNode_SwitchBool_QuestInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SwitchBool.h:63
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_SwitchBool.h:63
+msgctxt "AdventurePlugin,DialogGraphNode_SwitchBool_QuestInvalid"
+msgid "DialogGraphNode_SwitchBool:Execute: Quest null or invalid."
+msgstr ""
+
+#. Key:	DialogNodeOptions_GetNextNode_UsingFallback
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Options.h:152
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Options.h:152
+msgctxt "AdventurePlugin,DialogNodeOptions_GetNextNode_UsingFallback"
+msgid " A dialog options node found no options and is using a fallback node."
+msgstr ""
+
+#. Key:	GameContextInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Common/AdventurePluginGameContext.cpp:39
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Common/AdventurePluginGameContext.cpp:39
+msgctxt "AdventurePlugin,GameContextInvalid"
+msgid "{0}: Game context or one of its subclasses is null or invalid. GameContext:{1}, InventoryController:{2},InventoryPresent:{3},DialogController:{4},DialogPresenter:{5},SaveGame:{6},ItemManager:{7},AdventureCharacterManager:{8}"
+msgstr ""
+
+#. Key:	GenericCombinationWithSingleItemDebugName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/GenericCombinationWithSingleItem.h:44
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/GenericCombinationWithSingleItem.h:44
+msgctxt "AdventurePlugin,GenericCombinationWithSingleItemDebugName"
+msgid "Generic combination with single item:{0}"
+msgstr ""
+
+#. Key:	GetCombinableObjectInstance_GetItemAbstract
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObjectManager.cpp:14
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObjectManager.cpp:14
+msgctxt "AdventurePlugin,GetCombinableObjectInstance_GetItemAbstract"
+msgid "CombinableObjectManager::GetObject - Object is abstract."
+msgstr ""
+
+#. Key:	GetCombinableObjectInstance_GetObjectNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObjectManager.cpp:9
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/CombinableObjectManager.cpp:9
+msgctxt "AdventurePlugin,GetCombinableObjectInstance_GetObjectNull"
+msgid "CombinableObjectManager::GetObject - Object is NULL."
+msgstr ""
+
+#. Key:	InitGameContextSaveInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Common/AdventurePluginGameInstance.cpp:34
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Common/AdventurePluginGameInstance.cpp:34
+msgctxt "AdventurePlugin,InitGameContextSaveInvalid"
+msgid "Could not initialize game context"
+msgstr ""
+
+#. Key:	InstantiateClass_ClassNotValid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Common/AdventurePluginGameInstance.h:72
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Common/AdventurePluginGameInstance.h:72
+msgctxt "AdventurePlugin,InstantiateClass_ClassNotValid"
+msgid "Cannot instantiate class. Class not valid: {0}"
+msgstr ""
+
+#. Key:	InstantiateClass_ObjectNotInstantiated
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Common/AdventurePluginGameInstance.h:88
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Common/AdventurePluginGameInstance.h:88
+msgctxt "AdventurePlugin,InstantiateClass_ObjectNotInstantiated"
+msgid "Failed to instantiate UObject class: {0}"
+msgstr ""
+
+#. Key:	InstantiateClass_WidgetNotInstantiated
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Common/AdventurePluginGameInstance.h:80
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Common/AdventurePluginGameInstance.h:80
+msgctxt "AdventurePlugin,InstantiateClass_WidgetNotInstantiated"
+msgid "Failed to instantiate widget class: {0}"
+msgstr ""
+
+#. Key:	PlayPCAnimationOnceNodePlayerCharacterNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_PlayPCAnimationOnce.h:63
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_PlayPCAnimationOnce.h:63
+msgctxt "AdventurePlugin,PlayPCAnimationOnceNodePlayerCharacterNull"
+msgid "DialogGraphNode_PlayPCAnimationOnce::GetAnimatedObjectClass::Player is NULL"
+msgstr ""
+
+#. Key:	QuestGraph_GetBool_VariableNotFound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:87
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:87
+msgctxt "AdventurePlugin,QuestGraph_GetBool_VariableNotFound"
+msgid "QuestGraph::GetBool - Variable was not found in dictionary."
+msgstr ""
+
+#. Key:	QuestGraph_GetFullfilableNodes_InvalidQuestNode
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:201
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:201
+msgctxt "AdventurePlugin,QuestGraph_GetFullfilableNodes_InvalidQuestNode"
+msgid "Quest {0}: Nil node or node that is not a QuestGraphNode found in a quest graph."
+msgstr ""
+
+#. Key:	QuestGraph_GetIntegerBool_VariableNotFound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:126
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:126
+msgctxt "AdventurePlugin,QuestGraph_GetIntegerBool_VariableNotFound"
+msgid "QuestGraph::GetInteger - Variable was not found in dictionary."
+msgstr ""
+
+#. Key:	QuestGraph_GetString_VariableNotFound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:166
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:166
+msgctxt "AdventurePlugin,QuestGraph_GetString_VariableNotFound"
+msgid "QuestGraph::GetString - Variable was not found in dictionary."
+msgstr ""
+
+#. Key:	QuestGraph_IsComplete_EndNodeNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:222
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:222
+msgctxt "AdventurePlugin,QuestGraph_IsComplete_EndNodeNull"
+msgid "QuestGraph:IsComplete: End node is null or invalid."
+msgstr ""
+
+#. Key:	QuestGraph_SetBool_VariableNotFound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:105
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:105
+msgctxt "AdventurePlugin,QuestGraph_SetBool_VariableNotFound"
+msgid "QuestGraph::SetBool - Variable was not found in dictionary."
+msgstr ""
+
+#. Key:	QuestGraph_SetFlag_FlagNodeNotFound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:44
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:44
+msgctxt "AdventurePlugin,QuestGraph_SetFlag_FlagNodeNotFound"
+msgid "Quest {0}: Cannot set a flag to true, flag with name {1} not found."
+msgstr ""
+
+#. Key:	QuestGraph_SetFlag_ParentNodesNotTrue
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:37
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:37
+msgctxt "AdventurePlugin,QuestGraph_SetFlag_ParentNodesNotTrue"
+msgid "Quest {0}: Quest flag set to true even though at least one of its predecessors are false. FlagName: {1}."
+msgstr ""
+
+#. Key:	QuestGraph_SetInteger_VariableNotFound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:144
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:144
+msgctxt "AdventurePlugin,QuestGraph_SetInteger_VariableNotFound"
+msgid "QuestGraph::SetInteger - Variable was not found in dictionary."
+msgstr ""
+
+#. Key:	QuestGraphNode_Flag_IsTrue_GraphInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Quest/Graph/QuestGraphNode_Flag.h:40
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Quest/Graph/QuestGraphNode_Flag.h:40
+msgctxt "AdventurePlugin,QuestGraphNode_Flag_IsTrue_GraphInvalid"
+msgid "QuestGraphNode_Flag:IsTrue:Graph is invalid."
+msgstr ""
+
+#. Key:	QuestGraphNode_Inventory_InvalidItem
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Quest/Graph/QuestGraphNode_Inventory.h:58
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Quest/Graph/QuestGraphNode_Inventory.h:58
+msgctxt "AdventurePlugin,QuestGraphNode_Inventory_InvalidItem"
+msgid "Quest graph node inventory:IsTrue: Nil or invalid item passed."
+msgstr ""
+
+#. Key:	QuestGraphNode_Inventory_InvalidItemInstance
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Quest/Graph/QuestGraphNode_Inventory.h:64
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Quest/Graph/QuestGraphNode_Inventory.h:64
+msgctxt "AdventurePlugin,QuestGraphNode_Inventory_InvalidItemInstance"
+msgid "Quest graph node inventory:IsTrue: Item could not be instantiated."
+msgstr ""
+
+#. Key:	QuestGraphNode_Subquest_InvalidSubquest
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Quest/Graph/QuestGraphNode_Subquest.h:37
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Quest/Graph/QuestGraphNode_Subquest.h:37
+msgctxt "AdventurePlugin,QuestGraphNode_Subquest_InvalidSubquest"
+msgid "Quest graph node Subquest:IsTrue: Nil or invalid Subquest passed"
+msgstr ""
+
+#. Key:	QuestLibrary_BindQuestEvent_EventNameUndefined
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:143
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:143
+msgctxt "AdventurePlugin,QuestLibrary_BindQuestEvent_EventNameUndefined"
+msgid "Bind event::event name is not defined in quest"
+msgstr ""
+
+#. Key:	QuestLibrary_BindQuestEvent_QuestGraphInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:136
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:136
+msgctxt "AdventurePlugin,QuestLibrary_BindQuestEvent_QuestGraphInvalid"
+msgid "Bind event::graph is invalid"
+msgstr ""
+
+#. Key:	QuestLibrary_FireQuestEvent_EventNameUndefined
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:168
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:168
+msgctxt "AdventurePlugin,QuestLibrary_FireQuestEvent_EventNameUndefined"
+msgid "Fire event::event name is not defined in quest"
+msgstr ""
+
+#. Key:	QuestLibrary_FireQuestEvent_EventUnbound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:174
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:174
+msgctxt "AdventurePlugin,QuestLibrary_FireQuestEvent_EventUnbound"
+msgid "Fire event::Event is not bound"
+msgstr ""
+
+#. Key:	QuestLibrary_FireQuestEvent_QuestGraphInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:161
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:161
+msgctxt "AdventurePlugin,QuestLibrary_FireQuestEvent_QuestGraphInvalid"
+msgid "Fire event::graph is invalid"
+msgstr ""
+
+#. Key:	QuestLibrary_GetQuestBool_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:15
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:15
+msgctxt "AdventurePlugin,QuestLibrary_GetQuestBool_QuestNull"
+msgid "GetQuestBool:Quest is null or invalid."
+msgstr ""
+
+#. Key:	QuestLibrary_GetQuestFlag_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:45
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:45
+msgctxt "AdventurePlugin,QuestLibrary_GetQuestFlag_QuestNull"
+msgid "GetQuestFlag:Quest is null or invalid."
+msgstr ""
+
+#. Key:	QuestLibrary_GetQuestInteger_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:75
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:75
+msgctxt "AdventurePlugin,QuestLibrary_GetQuestInteger_QuestNull"
+msgid "GetQuestInteger:Quest is null or invalid."
+msgstr ""
+
+#. Key:	QuestLibrary_GetQuestString_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:105
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:105
+msgctxt "AdventurePlugin,QuestLibrary_GetQuestString_QuestNull"
+msgid "GetQuestString:Quest is null or invalid."
+msgstr ""
+
+#. Key:	QuestLibrary_SetQuestBool_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:30
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:30
+msgctxt "AdventurePlugin,QuestLibrary_SetQuestBool_QuestNull"
+msgid "SetQuestBool:Quest is null or invalid."
+msgstr ""
+
+#. Key:	QuestLibrary_SetQuestFlag_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:60
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:60
+msgctxt "AdventurePlugin,QuestLibrary_SetQuestFlag_QuestNull"
+msgid "SetQuestFlag:Quest is null or invalid."
+msgstr ""
+
+#. Key:	QuestLibrary_SetQuestInteger_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:90
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:90
+msgctxt "AdventurePlugin,QuestLibrary_SetQuestInteger_QuestNull"
+msgid "SetQuestInteger:Quest is null or invalid."
+msgstr ""
+
+#. Key:	QuestLibrary_SetQuestString_QuestNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:120
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/BlueprintLibrary/AdventurePluginQuestBlueprintLibrary.cpp:120
+msgctxt "AdventurePlugin,QuestLibrary_SetQuestString_QuestNull"
+msgid "SetQuestString:Quest is null or invalid"
+msgstr ""
+
+#. Key:	SimpleCombinationWithSingleItem_ExecuteResultNull
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/SimpleCombinationWithSingleItem.cpp:18
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Combinations/SimpleCombinationWithSingleItem.cpp:18
+msgctxt "AdventurePlugin,SimpleCombinationWithSingleItem_ExecuteResultNull"
+msgid "SimpleCombinationWithSingleItem:Execute::The result item is null or invalid."
+msgstr ""
+
+#. Key:	SimpleCombinationWithSingleItemDebugName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/SimpleCombinationWithSingleItem.h:35
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/SimpleCombinationWithSingleItem.h:35
+msgctxt "AdventurePlugin,SimpleCombinationWithSingleItemDebugName"
+msgid "Simple combination with single item:{0}"
+msgstr ""
+
+#. Key:	StartDialogCombinationWithSingleItem_Execute_DialogInvalid
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/StartDialogCombinationWithSingleItem.h:56
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/StartDialogCombinationWithSingleItem.h:56
+msgctxt "AdventurePlugin,StartDialogCombinationWithSingleItem_Execute_DialogInvalid"
+msgid "StartDialogCombinationWithSingleItem:Execute: The dialog is invalid"
+msgstr ""
+
+#. Key:	StartDialogCombinationWithSingleItemDebugName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/StartDialogCombinationWithSingleItem.h:37
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Combinations/StartDialogCombinationWithSingleItem.h:37
+msgctxt "AdventurePlugin,StartDialogCombinationWithSingleItemDebugName"
+msgid "StartDialog combination with single item:{0}"
+msgstr ""
+
+#. Key:	UQuestGraph_GetFlag_FlagNotFound
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:64
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Quest/Graph/QuestGraph.cpp:64
+msgctxt "AdventurePlugin,UQuestGraph_GetFlag_FlagNotFound"
+msgid "Quest {0}: Cannot get a flag with name {1}. Not found."
+msgstr ""
+
+#. Key:	ValidConstant
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Common/AdventurePluginGameContext.cpp:24
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Common/AdventurePluginGameContext.cpp:24
+msgctxt "AdventurePlugin,ValidConstant"
+msgid "Valid"
+msgstr ""
+
+#. Key:	AdventurePluginAssetCategory
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventurePluginEditor.cpp:39
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventurePluginEditor.cpp:39
+msgctxt "AdventurePluginEditor,AdventurePluginAssetCategory"
+msgid "Adventure Plugin"
+msgstr ""
+
+#. Key:	AdventurePluginLog
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventurePluginEditor.cpp:35
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventurePluginEditor.cpp:35
+msgctxt "AdventurePluginEditor,AdventurePluginLog"
+msgid "Adventure Plugin Log"
+msgstr "Log AP"
+
+#. Key:	SettingsGeneralSectionDescription
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventurePluginEditor.cpp:155
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventurePluginEditor.cpp:155
+msgctxt "AdventurePluginEditor,SettingsGeneralSectionDescription"
+msgid "Base configuration for the Adventure Plugin"
+msgstr ""
+
+#. Key:	SettingsGeneralSectionName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventurePluginEditor.cpp:154
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventurePluginEditor.cpp:154
+msgctxt "AdventurePluginEditor,SettingsGeneralSectionName"
+msgid "Adventure Plugin"
+msgstr ""
+
+#. Key:	InvalidConstant
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Common/AdventurePluginGameContext.cpp:25
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Common/AdventurePluginGameContext.cpp:25
+msgctxt "AdventurePluugin,InvalidConstant"
+msgid "Invalid"
+msgstr ""
+
+#. Key:	AnimationName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Customizations/AnimationCustomization.cpp:18
+#: Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Customizations/AnimationCustomization.cpp:18
+msgctxt "AnimationCustomization,AnimationName"
+msgid "Animation"
+msgstr ""
+
+#. Key:	AppearanceCornerText_DialogGraph
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/AssetEditor_DialogGraph.cpp:19
+#: Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/AssetEditor_DialogGraph.cpp:19
+msgctxt "AssetEditor_DialogGraph,AppearanceCornerText_DialogGraph"
+msgid "DIALOG GRAPH"
+msgstr ""
+
+#. Key:	AppearanceCornerText_GenericGraph
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:686
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:686
+msgctxt "AssetEditor_GenericGraph,AppearanceCornerText_GenericGraph"
+msgid "Generic Graph"
+msgstr ""
+
+#. Key:	Details_Title
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:207
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:207
+msgctxt "AssetEditor_GenericGraph,Details_Title"
+msgid "Property"
+msgstr ""
+
+#. Key:	DetailsTab
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:117
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:117
+msgctxt "AssetEditor_GenericGraph,DetailsTab"
+msgid "Property"
+msgstr ""
+
+#. Key:	GenericGraphEditorAppLabel
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:137
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:137
+msgctxt "AssetEditor_GenericGraph,GenericGraphEditorAppLabel"
+msgid "Generic Graph Editor"
+msgstr ""
+
+#. Key:	GenericGraphEditorToolkitName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:147
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:147
+msgctxt "AssetEditor_GenericGraph,GenericGraphEditorToolkitName"
+msgid "{GenericGraphName}{DirtyState}"
+msgstr ""
+
+#. Key:	GraphCanvasTab
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:112
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:112
+msgctxt "AssetEditor_GenericGraph,GraphCanvasTab"
+msgid "Viewport"
+msgstr ""
+
+#. Key:	ViewportTab_Title
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:191
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:191
+msgctxt "AssetEditor_GenericGraph,ViewportTab_Title"
+msgid "Viewport"
+msgstr ""
+
+#. Key:	WorkspaceMenu_GenericGraphEditor
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:106
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetEditor_GenericGraph.cpp:106
+msgctxt "AssetEditor_GenericGraph,WorkspaceMenu_GenericGraphEditor"
+msgid "Generic Graph Editor"
+msgstr ""
+
+#. Key:	AppearanceCornerText_QuestGraph
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginQuestEditor/Private/AssetEditor_QuestGraph.cpp:11
+#: Plugins/AdventurePlugin/Source/AdventurePluginQuestEditor/Private/AssetEditor_QuestGraph.cpp:11
+msgctxt "AssetEditor_QuestGraph,AppearanceCornerText_QuestGraph"
+msgid "QUEST GRAPH"
+msgstr ""
+
+#. Key:	BreakDesc
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:141
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:141
+msgctxt "AssetSchema_GenericGraph,BreakDesc"
+msgid "Break link to {NodeTitle}"
+msgstr ""
+
+#. Key:	BreakDescMulti
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:145
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:145
+msgctxt "AssetSchema_GenericGraph,BreakDescMulti"
+msgid "Break link to {NodeTitle} ({NumberOfNodes})"
+msgstr ""
+
+#. Key:	BreakDescPin
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:129
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:129
+msgctxt "AssetSchema_GenericGraph,BreakDescPin"
+msgid "{NodeTitle} ({PinName})"
+msgstr ""
+
+#. Key:	BreakLinkTo
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:250
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:250
+msgctxt "AssetSchema_GenericGraph,BreakLinkTo"
+msgid "Break Link To..."
+msgstr ""
+
+#. Key:	BreakSpecificLinks
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:251
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:251
+msgctxt "AssetSchema_GenericGraph,BreakSpecificLinks"
+msgid "Break a specific link..."
+msgstr ""
+
+#. Key:	GenericGraphEditorNewNode
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:75
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:75
+msgctxt "AssetSchema_GenericGraph,GenericGraphEditorNewNode"
+msgid "Generic Graph Editor: New Node"
+msgstr ""
+
+#. Key:	NewGenericGraphNodeTooltip
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:170
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:170
+msgctxt "AssetSchema_GenericGraph,NewGenericGraphNodeTooltip"
+msgid "Add node here"
+msgstr ""
+
+#. Key:	NodeActionsMenuHeader
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:264
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:264
+msgctxt "AssetSchema_GenericGraph,NodeActionsMenuHeader"
+msgid "Node Actions"
+msgstr ""
+
+#. Key:	PinActionsMenuHeader
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:239
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:239
+msgctxt "AssetSchema_GenericGraph,PinActionsMenuHeader"
+msgid "Pin Actions"
+msgstr ""
+
+#. Key:	PinConnect
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:328
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:328
+msgctxt "AssetSchema_GenericGraph,PinConnect"
+msgid "Connect nodes"
+msgstr ""
+
+#. Key:	PinError
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:309
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:309
+msgctxt "AssetSchema_GenericGraph,PinError"
+msgid "Not a valid UGenericGraphEdNode"
+msgstr ""
+
+#. Key:	PinErrorCycle
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:301
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:301
+msgctxt "AssetSchema_GenericGraph,PinErrorCycle"
+msgid "Can't create a graph cycle"
+msgstr ""
+
+#. Key:	PinErrorInput
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:290
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:290
+msgctxt "AssetSchema_GenericGraph,PinErrorInput"
+msgid "Can't connect input node to input node"
+msgstr ""
+
+#. Key:	PinErrorOutput
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:294
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:294
+msgctxt "AssetSchema_GenericGraph,PinErrorOutput"
+msgid "Can't connect output node to output node"
+msgstr ""
+
+#. Key:	PinErrorSameNode
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:284
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetGraphSchema_GenericGraph.cpp:284
+msgctxt "AssetSchema_GenericGraph,PinErrorSameNode"
+msgid "Both are on the same node"
+msgstr ""
+
+#. Key:	AssetDescription
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/AssetTypeActions_AdventureCharacter.h:67
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/AssetTypeActions_AdventureCharacter.h:67
+msgctxt "AssetTypeActions_AdventureCharacter,AssetDescription"
+msgid "Adventure Character"
+msgstr ""
+
+#. Key:	AssetName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/AssetTypeActions_AdventureCharacter.h:31
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/AssetTypeActions_AdventureCharacter.h:31
+msgctxt "AssetTypeActions_AdventureCharacter,AssetName"
+msgid "Adventure Character"
+msgstr ""
+
+#. Key:	FDialogGraphAssetTypeActionsName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/AssetTypeActions_DialogGraph.cpp:14
+#: Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/AssetTypeActions_DialogGraph.cpp:14
+msgctxt "AssetTypeActions_DialogGraph,FDialogGraphAssetTypeActionsName"
+msgid "Dialog Graph"
+msgstr ""
+
+#. Key:	FGenericGraphAssetTypeActionsName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetTypeActions_GenericGraph.cpp:19
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/AssetTypeActions_GenericGraph.cpp:19
+msgctxt "AssetTypeActions_GenericGraph,FGenericGraphAssetTypeActionsName"
+msgid "Generic Graph"
+msgstr ""
+
+#. Key:	AssetDescription
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/AssetTypeActions_InventoryItem.h:67
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/AssetTypeActions_InventoryItem.h:67
+msgctxt "AssetTypeActions_InventoryItem,AssetDescription"
+msgid "Inventory Item"
+msgstr ""
+
+#. Key:	AssetName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/AssetTypeActions_InventoryItem.h:31
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/AssetTypeActions_InventoryItem.h:31
+msgctxt "AssetTypeActions_InventoryItem,AssetName"
+msgid "Inventory Item"
+msgstr ""
+
+#. Key:	FQuestGraphAssetTypeActionsName
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginQuestEditor/Private/AssetTypeActions_QuestGraph.cpp:14
+#: Plugins/AdventurePlugin/Source/AdventurePluginQuestEditor/Private/AssetTypeActions_QuestGraph.cpp:14
+msgctxt "AssetTypeActions_QuestGraph,FQuestGraphAssetTypeActionsName"
+msgid "Quest Graph"
+msgstr ""
+
+#. Key:	InvalidComboEntryText
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/Customizations/BaseClasses/ComboBoxCustomizationBase.cpp:21
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/Customizations/BaseClasses/ComboBoxCustomizationBase.cpp:21
+msgctxt "ComboBoxCustomizationBase,InvalidComboEntryText"
+msgid "<Empty>"
+msgstr ""
+
+#. Key:	GenericGraphEditor
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/GenericGraph/EditorCommands_GenericGraph.h:18
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Public/GenericGraph/EditorCommands_GenericGraph.h:18
+msgctxt "Contexts,GenericGraphEditor"
+msgid "Generic Graph Editor"
+msgstr ""
+
+#. Key:	NodeDesc
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Graph/DialogGraphNode.cpp:20
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/Dialog/Graph/DialogGraphNode.cpp:20
+msgctxt "DialogGraphNode,NodeDesc"
+msgid "Dialog Graph Node"
+msgstr ""
+
+#. Key:	DefaultDialog
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_NPC.h:28
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_NPC.h:28
+msgctxt "DialogGraphNode_NPC,DefaultDialog"
+msgid "<Insert something clever>"
+msgstr ""
+
+#. Key:	DefaultDialog
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Player.h:28
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_Player.h:28
+msgctxt "DialogGraphNode_Player,DefaultDialog"
+msgid "<Insert something clever>"
+msgstr ""
+
+#. Key:	DefaultDialog
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_PlayerLineOption.h:26
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Public/Dialog/Graph/DialogGraphNode_PlayerLineOption.h:26
+msgctxt "DialogGraphNode_PlayerLineOption,DefaultDialog"
+msgid "<Insert something clever>"
+msgstr ""
+
+#. Key:	TalkingAnimation
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Customizations/DialogLineCustomization.cpp:20
+#: Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Customizations/DialogLineCustomization.cpp:20
+msgctxt "DialogLineCustomization,TalkingAnimation"
+msgid "Talking Animation"
+msgstr ""
+
+#. Key:	008D211C402DC8B8199B9FB9AD55A263_ComplexDialog.QuestDoneBragging
+#. SourceLocation:	/Game/Generated/ComplexDialog/QuestDoneBragging.QuestDoneBragging
+#. InfoMetaData:	"AudioFile" : "008D211C402DC8B8199B9FB9AD55A263_ComplexDialog.QuestDoneBragging.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/QuestDoneBragging.QuestDoneBragging
+msgctxt "Dialogue,008D211C402DC8B8199B9FB9AD55A263_ComplexDialog.QuestDoneBragging"
+msgid "I finished my quest!"
+msgstr ""
+
+#. Key:	040452E6421D8CD71304D1AE1FA528F4_ComplexDialog.GoodbyeDontComeBack
+#. SourceLocation:	/Game/Generated/ComplexDialog/GoodbyeDontComeBack.GoodbyeDontComeBack
+#. InfoMetaData:	"AudioFile" : "040452E6421D8CD71304D1AE1FA528F4_ComplexDialog.GoodbyeDontComeBack.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#. InfoMetaData:	"VoiceActorDirection" : "Really angry here, don't hold back, be angry"
+#: /Game/Generated/ComplexDialog/GoodbyeDontComeBack.GoodbyeDontComeBack
+msgctxt "Dialogue,040452E6421D8CD71304D1AE1FA528F4_ComplexDialog.GoodbyeDontComeBack"
+msgid "I'm sick of you, don't come back"
+msgstr ""
+
+#. Key:	0578298A47DBA651A1A5AD925BB7B0E8_ComplexDialog.SetSShovelsDone
+#. SourceLocation:	/Game/Generated/ComplexDialog/SetSShovelsDone.SetSShovelsDone
+#. InfoMetaData:	"AudioFile" : "0578298A47DBA651A1A5AD925BB7B0E8_ComplexDialog.SetSShovelsDone.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/SetSShovelsDone.SetSShovelsDone
+msgctxt "Dialogue,0578298A47DBA651A1A5AD925BB7B0E8_ComplexDialog.SetSShovelsDone"
+msgid "Already did."
+msgstr ""
+
+#. Key:	07A584A2443E334E841C96B02378AB06_ComplexDialog.SecondaryGreeting
+#. SourceLocation:	/Game/Generated/ComplexDialog/SecondaryGreeting.SecondaryGreeting
+#. InfoMetaData:	"AudioFile" : "07A584A2443E334E841C96B02378AB06_ComplexDialog.SecondaryGreeting.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/SecondaryGreeting.SecondaryGreeting
+msgctxt "Dialogue,07A584A2443E334E841C96B02378AB06_ComplexDialog.SecondaryGreeting"
+msgid "Hello there"
+msgstr ""
+
+#. Key:	09FBFE2841512907838397AB53A09087_ComplexDialog.DanceOff
+#. SourceLocation:	/Game/Generated/ComplexDialog/DanceOff.DanceOff
+#. InfoMetaData:	"AudioFile" : "09FBFE2841512907838397AB53A09087_ComplexDialog.DanceOff.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/DanceOff.DanceOff
+msgctxt "Dialogue,09FBFE2841512907838397AB53A09087_ComplexDialog.DanceOff"
+msgid "DANCE OFF!"
+msgstr ""
+
+#. Key:	0C534DD541A561BEB518198CE4980F40_ComplexDialog.ShowStats
+#. SourceLocation:	/Game/Generated/ComplexDialog/ShowStats.ShowStats
+#. InfoMetaData:	"AudioFile" : "0C534DD541A561BEB518198CE4980F40_ComplexDialog.ShowStats.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/ShowStats.ShowStats
+msgctxt "Dialogue,0C534DD541A561BEB518198CE4980F40_ComplexDialog.ShowStats"
+msgid "Show me the stats!"
+msgstr ""
+
+#. Key:	25AD8C294DCBC81D83474FA7853A8847_ComplexDialog.TalkingBored
+#. SourceLocation:	/Game/Generated/ComplexDialog/TalkingBored.TalkingBored
+#. InfoMetaData:	"AudioFile" : "25AD8C294DCBC81D83474FA7853A8847_ComplexDialog.TalkingBored.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/TalkingBored.TalkingBored
+msgctxt "Dialogue,25AD8C294DCBC81D83474FA7853A8847_ComplexDialog.TalkingBored"
+msgid "Yeah, I'm bored now"
+msgstr ""
+
+#. Key:	2743752C4BF01ADB424098915B21B1DA_ComplexDialog.DanceDismissal
+#. SourceLocation:	/Game/Generated/ComplexDialog/DanceDismissal.DanceDismissal
+#. InfoMetaData:	"AudioFile" : "2743752C4BF01ADB424098915B21B1DA_ComplexDialog.DanceDismissal.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/DanceDismissal.DanceDismissal
+msgctxt "Dialogue,2743752C4BF01ADB424098915B21B1DA_ComplexDialog.DanceDismissal"
+msgid "Eh, seen better."
+msgstr ""
+
+#. Key:	2CCD3FE94954201DFBC878AD0AC655AC_ComplexDialog.TalkingHammertime
+#. SourceLocation:	/Game/Generated/ComplexDialog/TalkingHammertime.TalkingHammertime
+#. InfoMetaData:	"AudioFile" : "2CCD3FE94954201DFBC878AD0AC655AC_ComplexDialog.TalkingHammertime.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/TalkingHammertime.TalkingHammertime
+msgctxt "Dialogue,2CCD3FE94954201DFBC878AD0AC655AC_ComplexDialog.TalkingHammertime"
+msgid "Hammer time!"
+msgstr ""
+
+#. Key:	40AF45294EA14EA390991291095DBB6B_ComplexDialog.ShowStatsLaterConfirmation
+#. SourceLocation:	/Game/Generated/ComplexDialog/ShowStatsLaterConfirmation.ShowStatsLaterConfirmation
+#. InfoMetaData:	"AudioFile" : "40AF45294EA14EA390991291095DBB6B_ComplexDialog.ShowStatsLaterConfirmation.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/ShowStatsLaterConfirmation.ShowStatsLaterConfirmation
+msgctxt "Dialogue,40AF45294EA14EA390991291095DBB6B_ComplexDialog.ShowStatsLaterConfirmation"
+msgid "Ok. Let us wait."
+msgstr ""
+
+#. Key:	47E9F35542E1E4EAF511C498D3A84D7D_ComplexDialog.OddAttemptTest2
+#. SourceLocation:	/Game/Generated/ComplexDialog/OddAttemptTest2.OddAttemptTest2
+#. InfoMetaData:	"AudioFile" : "47E9F35542E1E4EAF511C498D3A84D7D_ComplexDialog.OddAttemptTest2.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/OddAttemptTest2.OddAttemptTest2
+msgctxt "Dialogue,47E9F35542E1E4EAF511C498D3A84D7D_ComplexDialog.OddAttemptTest2"
+msgid "This is odd attempt."
+msgstr ""
+
+#. Key:	59ADD7C04A9CCC5382BF8EB44C425921_ComplexDialog.TeleportIntroduction
+#. SourceLocation:	/Game/Generated/ComplexDialog/TeleportIntroduction.TeleportIntroduction
+#. InfoMetaData:	"AudioFile" : "59ADD7C04A9CCC5382BF8EB44C425921_ComplexDialog.TeleportIntroduction.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/TeleportIntroduction.TeleportIntroduction
+msgctxt "Dialogue,59ADD7C04A9CCC5382BF8EB44C425921_ComplexDialog.TeleportIntroduction"
+msgid "I am the teleport."
+msgstr ""
+
+#. Key:	59F8EC724F9B2D19AE3981AF592D7302_ComplexDialog.WhoAreYou
+#. SourceLocation:	/Game/Generated/ComplexDialog/WhoAreYou.WhoAreYou
+#. InfoMetaData:	"AudioFile" : "59F8EC724F9B2D19AE3981AF592D7302_ComplexDialog.WhoAreYou.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/WhoAreYou.WhoAreYou
+msgctxt "Dialogue,59F8EC724F9B2D19AE3981AF592D7302_ComplexDialog.WhoAreYou"
+msgid "Who are you?"
+msgstr ""
+
+#. Key:	5D6A7A6046C3840271DC09807CFFD94E_ComplexDialog.ShowStatsNowYes
+#. SourceLocation:	/Game/Generated/ComplexDialog/ShowStatsNowYes.ShowStatsNowYes
+#. InfoMetaData:	"AudioFile" : "5D6A7A6046C3840271DC09807CFFD94E_ComplexDialog.ShowStatsNowYes.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/ShowStatsNowYes.ShowStatsNowYes
+msgctxt "Dialogue,5D6A7A6046C3840271DC09807CFFD94E_ComplexDialog.ShowStatsNowYes"
+msgid "Yes."
+msgstr ""
+
+#. Key:	68719A4145C3060C4A63BA86D2317B30_ComplexDialog.GoodbyePlsComeBack
+#. SourceLocation:	/Game/Generated/ComplexDialog/GoodbyePlsComeBack.GoodbyePlsComeBack
+#. InfoMetaData:	"AudioFile" : "68719A4145C3060C4A63BA86D2317B30_ComplexDialog.GoodbyePlsComeBack.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#. InfoMetaData:	"VoiceActorDirection" : "Really beg him, you hate to be alone"
+#: /Game/Generated/ComplexDialog/GoodbyePlsComeBack.GoodbyePlsComeBack
+msgctxt "Dialogue,68719A4145C3060C4A63BA86D2317B30_ComplexDialog.GoodbyePlsComeBack"
+msgid "You'll come back, right"
+msgstr ""
+
+#. Key:	794F5F09402954EA8BBF1890D00C01E2_ComplexDialog.SetHadShovels
+#. SourceLocation:	/Game/Generated/ComplexDialog/SetHadShovels.SetHadShovels
+#. InfoMetaData:	"AudioFile" : "794F5F09402954EA8BBF1890D00C01E2_ComplexDialog.SetHadShovels.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/SetHadShovels.SetHadShovels
+msgctxt "Dialogue,794F5F09402954EA8BBF1890D00C01E2_ComplexDialog.SetHadShovels"
+msgid "Set Had shovels"
+msgstr ""
+
+#. Key:	7D7799704EA55839CF245587AED11B67_ComplexDialog.OtherSecondaryGreeting
+#. SourceLocation:	/Game/Generated/ComplexDialog/OtherSecondaryGreeting.OtherSecondaryGreeting
+#. InfoMetaData:	"AudioFile" : "7D7799704EA55839CF245587AED11B67_ComplexDialog.OtherSecondaryGreeting.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/OtherSecondaryGreeting.OtherSecondaryGreeting
+msgctxt "Dialogue,7D7799704EA55839CF245587AED11B67_ComplexDialog.OtherSecondaryGreeting"
+msgid "You already know me."
+msgstr ""
+
+#. Key:	82C1F8674C67A1AE3060FFBC6B08BEED_ComplexDialog.ShowStatsNow
+#. SourceLocation:	/Game/Generated/ComplexDialog/ShowStatsNow.ShowStatsNow
+#. InfoMetaData:	"AudioFile" : "82C1F8674C67A1AE3060FFBC6B08BEED_ComplexDialog.ShowStatsNow.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/ShowStatsNow.ShowStatsNow
+msgctxt "Dialogue,82C1F8674C67A1AE3060FFBC6B08BEED_ComplexDialog.ShowStatsNow"
+msgid "Now?"
+msgstr ""
+
+#. Key:	89B4E365448C84C1E4E8A08F650DADB1_ComplexDialog.TalkingResponse
+#. SourceLocation:	/Game/Generated/ComplexDialog/TalkingResponse.TalkingResponse
+#. InfoMetaData:	"AudioFile" : "89B4E365448C84C1E4E8A08F650DADB1_ComplexDialog.TalkingResponse.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/TalkingResponse.TalkingResponse
+msgctxt "Dialogue,89B4E365448C84C1E4E8A08F650DADB1_ComplexDialog.TalkingResponse"
+msgid "Interesting..."
+msgstr ""
+
+#. Key:	9FD00036403D46D428EB15A13673C430_ComplexDialog.ShowStatsLater
+#. SourceLocation:	/Game/Generated/ComplexDialog/ShowStatsLater.ShowStatsLater
+#. InfoMetaData:	"AudioFile" : "9FD00036403D46D428EB15A13673C430_ComplexDialog.ShowStatsLater.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/ShowStatsLater.ShowStatsLater
+msgctxt "Dialogue,9FD00036403D46D428EB15A13673C430_ComplexDialog.ShowStatsLater"
+msgid "No, in 3 seconds."
+msgstr ""
+
+#. Key:	A21FE0364ECE4A80170496B999C52537_ComplexDialog.SetShovelsDone
+#. SourceLocation:	/Game/Generated/ComplexDialog/SetShovelsDone.SetShovelsDone
+#. InfoMetaData:	"AudioFile" : "A21FE0364ECE4A80170496B999C52537_ComplexDialog.SetShovelsDone.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/SetShovelsDone.SetShovelsDone
+msgctxt "Dialogue,A21FE0364ECE4A80170496B999C52537_ComplexDialog.SetShovelsDone"
+msgid "DONE!"
+msgstr ""
+
+#. Key:	A3C17DEE4BD0A5ED260DD9BB68BAD38E_ComplexDialog.ShovelNice
+#. SourceLocation:	/Game/Generated/ComplexDialog/ShovelNice.ShovelNice
+#. InfoMetaData:	"AudioFile" : "A3C17DEE4BD0A5ED260DD9BB68BAD38E_ComplexDialog.ShovelNice.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/ShovelNice.ShovelNice
+msgctxt "Dialogue,A3C17DEE4BD0A5ED260DD9BB68BAD38E_ComplexDialog.ShovelNice"
+msgid "Yes, your shovel is very nice."
+msgstr ""
+
+#. Key:	BEB5FB094E180A0C620B2C9529699304_ComplexDialog.kthxbye
+#. SourceLocation:	/Game/Generated/ComplexDialog/kthxbye.kthxbye
+#. InfoMetaData:	"AudioFile" : "BEB5FB094E180A0C620B2C9529699304_ComplexDialog.kthxbye.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/kthxbye.kthxbye
+msgctxt "Dialogue,BEB5FB094E180A0C620B2C9529699304_ComplexDialog.kthxbye"
+msgid "KTHXBYE"
+msgstr ""
+
+#. Key:	CA5EC9054F9979062AB6748A4E5A4DFA_ComplexDialog.FirstSecondaryGreeting
+#. SourceLocation:	/Game/Generated/ComplexDialog/FirstSecondaryGreeting.FirstSecondaryGreeting
+#. InfoMetaData:	"AudioFile" : "CA5EC9054F9979062AB6748A4E5A4DFA_ComplexDialog.FirstSecondaryGreeting.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/FirstSecondaryGreeting.FirstSecondaryGreeting
+msgctxt "Dialogue,CA5EC9054F9979062AB6748A4E5A4DFA_ComplexDialog.FirstSecondaryGreeting"
+msgid "You don't know me yet."
+msgstr ""
+
+#. Key:	CA750D264C45923CC2F06BA6A54698B6_ComplexDialog.QuestDoneBraggingStop
+#. SourceLocation:	/Game/Generated/ComplexDialog/QuestDoneBraggingStop.QuestDoneBraggingStop
+#. InfoMetaData:	"AudioFile" : "CA750D264C45923CC2F06BA6A54698B6_ComplexDialog.QuestDoneBraggingStop.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/QuestDoneBraggingStop.QuestDoneBraggingStop
+msgctxt "Dialogue,CA750D264C45923CC2F06BA6A54698B6_ComplexDialog.QuestDoneBraggingStop"
+msgid "Stop bragging!"
+msgstr ""
+
+#. Key:	CD94E54A4350937175C721B14C731FC4_ComplexDialog.AskShovel
+#. SourceLocation:	/Game/Generated/ComplexDialog/AskShovel.AskShovel
+#. InfoMetaData:	"AudioFile" : "CD94E54A4350937175C721B14C731FC4_ComplexDialog.AskShovel.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/AskShovel.AskShovel
+msgctxt "Dialogue,CD94E54A4350937175C721B14C731FC4_ComplexDialog.AskShovel"
+msgid "Say something about the shovel!"
+msgstr ""
+
+#. Key:	CDC47A154C3CE4A0BC14C0980166FB6C_ComplexDialog.SetShovelsOk
+#. SourceLocation:	/Game/Generated/ComplexDialog/SetShovelsOk.SetShovelsOk
+#. InfoMetaData:	"AudioFile" : "CDC47A154C3CE4A0BC14C0980166FB6C_ComplexDialog.SetShovelsOk.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/SetShovelsOk.SetShovelsOk
+msgctxt "Dialogue,CDC47A154C3CE4A0BC14C0980166FB6C_ComplexDialog.SetShovelsOk"
+msgid "If you say so..."
+msgstr ""
+
+#. Key:	CFCB5BB2430D39B9597DB7A02C39AB46_ComplexDialog.Third
+#. SourceLocation:	/Game/Generated/ComplexDialog/Third.Third
+#. InfoMetaData:	"AudioFile" : "CFCB5BB2430D39B9597DB7A02C39AB46_ComplexDialog.Third.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/Third.Third
+msgctxt "Dialogue,CFCB5BB2430D39B9597DB7A02C39AB46_ComplexDialog.Third"
+msgid "And it is the third one"
+msgstr ""
+
+#. Key:	D28B0EFE47A21FA2E8AB34BEDDB8BCC3_ComplexDialog.Freakout
+#. SourceLocation:	/Game/Generated/ComplexDialog/Freakout.Freakout
+#. InfoMetaData:	"AudioFile" : "D28B0EFE47A21FA2E8AB34BEDDB8BCC3_ComplexDialog.Freakout.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#. InfoMetaData:	"VoiceActorDirection" : "This is serious, he's being staring at you for eons, so really, be scared as much as possible."
+#: /Game/Generated/ComplexDialog/Freakout.Freakout
+msgctxt "Dialogue,D28B0EFE47A21FA2E8AB34BEDDB8BCC3_ComplexDialog.Freakout"
+msgid "You're freaking me out, man!"
+msgstr ""
+
+#. Key:	D8E58C4442FFBFFE93EA7384515A50B0_ComplexDialog.EvenAttempt
+#. SourceLocation:	/Game/Generated/ComplexDialog/EvenAttempt.EvenAttempt
+#. InfoMetaData:	"AudioFile" : "D8E58C4442FFBFFE93EA7384515A50B0_ComplexDialog.EvenAttempt.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/EvenAttempt.EvenAttempt
+msgctxt "Dialogue,D8E58C4442FFBFFE93EA7384515A50B0_ComplexDialog.EvenAttempt"
+msgid "This is an even attempt"
+msgstr ""
+
+#. Key:	DAAA791E44D0001ED0CBEFA9DCF76D4D_ComplexDialog.BreakShovel
+#. SourceLocation:	/Game/Generated/ComplexDialog/BreakShovel.BreakShovel
+#. InfoMetaData:	"AudioFile" : "DAAA791E44D0001ED0CBEFA9DCF76D4D_ComplexDialog.BreakShovel.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/BreakShovel.BreakShovel
+msgctxt "Dialogue,DAAA791E44D0001ED0CBEFA9DCF76D4D_ComplexDialog.BreakShovel"
+msgid "Could you break my shovel?"
+msgstr ""
+
+#. Key:	DD5E0C72478ECE7A0BA4C7B797BBA5A7_ComplexDialog.MoreThanThree
+#. SourceLocation:	/Game/Generated/ComplexDialog/MoreThanThree.MoreThanThree
+#. InfoMetaData:	"AudioFile" : "DD5E0C72478ECE7A0BA4C7B797BBA5A7_ComplexDialog.MoreThanThree.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/MoreThanThree.MoreThanThree
+msgctxt "Dialogue,DD5E0C72478ECE7A0BA4C7B797BBA5A7_ComplexDialog.MoreThanThree"
+msgid "But it's more than 3"
+msgstr ""
+
+#. Key:	DFD3E797494A837CBF2DEB817A405DE9_ComplexDialog.LessThan3
+#. SourceLocation:	/Game/Generated/ComplexDialog/LessThan3.LessThan3
+#. InfoMetaData:	"AudioFile" : "DFD3E797494A837CBF2DEB817A405DE9_ComplexDialog.LessThan3.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/LessThan3.LessThan3
+msgctxt "Dialogue,DFD3E797494A837CBF2DEB817A405DE9_ComplexDialog.LessThan3"
+msgid "And it's less than 3"
+msgstr ""
+
+#. Key:	E24651894F224911CDFD158E1831BBFB_ComplexDialog.QuestDoneCongrats
+#. SourceLocation:	/Game/Generated/ComplexDialog/QuestDoneCongrats.QuestDoneCongrats
+#. InfoMetaData:	"AudioFile" : "E24651894F224911CDFD158E1831BBFB_ComplexDialog.QuestDoneCongrats.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/QuestDoneCongrats.QuestDoneCongrats
+msgctxt "Dialogue,E24651894F224911CDFD158E1831BBFB_ComplexDialog.QuestDoneCongrats"
+msgid "Good for you"
+msgstr ""
+
+#. Key:	ED6CFE824CC4540CD508D29FD7542C0E_ComplexDialog.TalkingStop
+#. SourceLocation:	/Game/Generated/ComplexDialog/TalkingStop.TalkingStop
+#. InfoMetaData:	"AudioFile" : "ED6CFE824CC4540CD508D29FD7542C0E_ComplexDialog.TalkingStop.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/TalkingStop.TalkingStop
+msgctxt "Dialogue,ED6CFE824CC4540CD508D29FD7542C0E_ComplexDialog.TalkingStop"
+msgid "Now stop!"
+msgstr ""
+
+#. Key:	EE6173CD49EF32B934EF26B4EE84D8AE_ComplexDialog.ShovelNone
+#. SourceLocation:	/Game/Generated/ComplexDialog/ShovelNone.ShovelNone
+#. InfoMetaData:	"AudioFile" : "EE6173CD49EF32B934EF26B4EE84D8AE_ComplexDialog.ShovelNone.wav"
+#. InfoMetaData:	"Context" : "antagonist -> protagonist"
+#: /Game/Generated/ComplexDialog/ShovelNone.ShovelNone
+msgctxt "Dialogue,EE6173CD49EF32B934EF26B4EE84D8AE_ComplexDialog.ShovelNone"
+msgid "But you don't have any."
+msgstr ""
+
+#. Key:	F52E3FCB491B6318305B418A836DBC4B_ComplexDialog.TalkingDemonstration
+#. SourceLocation:	/Game/Generated/ComplexDialog/TalkingDemonstration.TalkingDemonstration
+#. InfoMetaData:	"AudioFile" : "F52E3FCB491B6318305B418A836DBC4B_ComplexDialog.TalkingDemonstration.wav"
+#. InfoMetaData:	"Context" : "protagonist -> antagonist"
+#: /Game/Generated/ComplexDialog/TalkingDemonstration.TalkingDemonstration
+msgctxt "Dialogue,F52E3FCB491B6318305B418A836DBC4B_ComplexDialog.TalkingDemonstration"
+msgid "Let me show you how I talk"
+msgstr ""
+
+#. Key:	GenericGraphEditorRenameNode
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/SEdNode_GenericGraphNode.cpp:317
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/SEdNode_GenericGraphNode.cpp:317
+msgctxt "EdNode_GenericGraph,GenericGraphEditorRenameNode"
+msgid "Generic Graph Editor: Rename Node"
+msgstr ""
+
+#. Key:	NodeDesc
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/GenericGraph/GenericGraphNode.cpp:27
+#: Plugins/AdventurePlugin/Source/AdventurePluginRuntime/Private/GenericGraph/GenericGraphNode.cpp:27
+msgctxt "GenericGraphNode,NodeDesc"
+msgid "Generic Graph Node"
+msgstr ""
+
+#. Key:	TargetNodeId
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Customizations/GotoCustomization.cpp:20
+#: Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Customizations/GotoCustomization.cpp:20
+msgctxt "GotoCustomization,TargetNodeId"
+msgid "Target Node Id"
+msgstr ""
+
+#. Key:	InvalidStructValue
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/Customizations/BaseClasses/GraphNameCustomization.cpp:33
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/Customizations/BaseClasses/GraphNameCustomization.cpp:33
+msgctxt "GraphNameCustomization,InvalidStructValue"
+msgid "<Empty>"
+msgstr ""
+
+#. Key:	Name
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/Customizations/BaseClasses/GraphNameCustomization.cpp:53
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/Customizations/BaseClasses/GraphNameCustomization.cpp:53
+msgctxt "GraphNameCustomization,Name"
+msgid "Name"
+msgstr ""
+
+#. Key:	MinusButton
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Graph/SEdDialogNode_Options.cpp:48
+#: Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Graph/SEdDialogNode_Options.cpp:48
+msgctxt "SEdDialogNode_Options,MinusButton"
+msgid "-"
+msgstr ""
+
+#. Key:	PlusButton
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Graph/SEdDialogNode_Options.cpp:38
+#: Plugins/AdventurePlugin/Source/AdventurePluginDialogEditor/Private/Graph/SEdDialogNode_Options.cpp:38
+msgctxt "SEdDialogNode_Options,PlusButton"
+msgid "+"
+msgstr ""
+
+#. Key:	SpineAtlasAssetFactory
+#. SourceLocation:	Plugins/SpinePlugin/Source/SpineEditorPlugin/Private/SpineAtlasImportFactory.cpp:57
+#: Plugins/SpinePlugin/Source/SpineEditorPlugin/Private/SpineAtlasImportFactory.cpp:57
+msgctxt "Spine,SpineAtlasAssetFactory"
+msgid "Animations exported from Spine"
+msgstr ""
+
+#. Key:	USpineSkeletonAssetFactory
+#. SourceLocation:	Plugins/SpinePlugin/Source/SpineEditorPlugin/Private/SpineSkeletonImportFactory.cpp:56
+#: Plugins/SpinePlugin/Source/SpineEditorPlugin/Private/SpineSkeletonImportFactory.cpp:56
+msgctxt "Spine,USpineSkeletonAssetFactory"
+msgid "Animations exported from Spine"
+msgstr ""
+
+#. Key:	CannotCreateAdventureCharacter
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventureCharacterFactory.cpp:19
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/AdventureCharacterFactory.cpp:19
+msgctxt "UAdventureCharacterFactory,CannotCreateAdventureCharacter"
+msgid "Cannot create character blueprint."
+msgstr ""
+
+#. Key:	GraphSettings
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/EditorCommands_GenericGraph.cpp:13
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/EditorCommands_GenericGraph.cpp:13
+msgctxt "UICommands.EditorCommands_GenericGraph,GraphSettings"
+msgid "Graph Settings"
+msgstr ""
+
+#. Key:	GraphSettings_ToolTip
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/EditorCommands_GenericGraph.cpp:13
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/GenericGraph/EditorCommands_GenericGraph.cpp:13
+msgctxt "UICommands.EditorCommands_GenericGraph,GraphSettings_ToolTip"
+msgid "Graph Settings"
+msgstr ""
+
+#. Key:	CannotCreateInventoryItem
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/InventoryItemFactory.cpp:19
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/InventoryItemFactory.cpp:19
+msgctxt "UInventoryItemFactory,CannotCreateInventoryItem"
+msgid "Cannot create inventory item blueprint."
+msgstr ""
+
+#. Key:	UseActionType
+#. SourceLocation:	Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/Customizations/UseActionTypeCustomization.cpp:24
+#: Plugins/AdventurePlugin/Source/AdventurePluginEditor/Private/Customizations/UseActionTypeCustomization.cpp:24
+msgctxt "UseActionTypeCustomization,UseActionType"
+msgid "Use Action Type"
+msgstr ""
+

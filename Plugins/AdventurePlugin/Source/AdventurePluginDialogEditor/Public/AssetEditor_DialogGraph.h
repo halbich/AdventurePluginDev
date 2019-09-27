@@ -6,6 +6,9 @@
 
 class UDialogGraphNode;
 class UDialogGraph;
+class UDialogueVoice;
+class UAdventureCharacter;
+class UDialogGraphNode_DialogLineBase;
 
 /**
 * Editor class for editing assets of type UDialogGraph.
@@ -36,4 +39,16 @@ private:
 	* which have a UDialogGraphNode#Id to the map for quicker access.
 	*/
 	void FillIdToNodeMap(UDialogGraph* Graph);
+
+	void GenerateDialogueWaves(UDialogGraph* Graph);
+
+	void GenerateDialogueWaveForNode(UDialogGraph* Graph, UDialogGraphNode_DialogLineBase* Node);
+
+	bool IsDialogueWaveNameCorrect(UDialogGraph* Graph, UDialogGraphNode_DialogLineBase* Node);
+
+	FString GetDialogueWavePath(UDialogGraph* Graph, UDialogGraphNode_DialogLineBase* Node);
+
+	UDialogueVoice* GetDialogueVoiceOfCharacter(UAdventureCharacter* Character);
+
+	void GenerateDialogueVoiceForCharacter(UAdventureCharacter* Character);
 };
