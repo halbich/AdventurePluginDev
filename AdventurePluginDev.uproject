@@ -18,6 +18,10 @@
 		{
 			"Name": "AdventurePlugin",
 			"Enabled": true
+		},
+		{
+			"Name": "SpinePlugin",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [

@@ -16,7 +16,8 @@ void FDialogueWaveGenerator::GenerateDialogueWaves()
 	PlayerCharacter = Cast<UAdventureCharacter>(Graph->PlayerCharacter ? Graph->PlayerCharacter->ClassDefaultObject : nullptr);
 	NpcCharacter = Cast<UAdventureCharacter>(Graph->NPCCharacter ? Graph->NPCCharacter->ClassDefaultObject : nullptr);
 	PlayerVoice = PlayerCharacter ? GetDialogueVoiceOfCharacter(PlayerCharacter) : nullptr;
-	NpcVoice = NpcCharacter ? GetDialogueVoiceOfCharacter(NpcCharacter) : nullptr;
+	// Target must be set, so use player as a target in a monologue
+	NpcVoice = NpcCharacter ? GetDialogueVoiceOfCharacter(NpcCharacter) : PlayerVoice;
 	for (UGenericGraphNode* Node : Graph->AllNodes)
 	{
 		UDialogGraphNode_DialogLineBase* DialogNode = Cast<UDialogGraphNode_DialogLineBase>(Node);
