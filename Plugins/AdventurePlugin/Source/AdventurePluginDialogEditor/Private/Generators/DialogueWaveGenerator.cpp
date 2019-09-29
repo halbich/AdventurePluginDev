@@ -65,7 +65,7 @@ void FDialogueWaveGenerator::UpdateDialogueWaveForDialogueNode(UDialogGraphNode_
 		dialogueWave->MarkPackageDirty();
 	}
 	// The localization key that should be used for this node.
-	FString localizationKey = Graph->Name + "." + DialogNode->Id.ToString();
+	FString localizationKey = Graph->Name + "_" + DialogNode->Id.ToString();
 	if (mapping.LocalizationKeyFormat != localizationKey)
 	{
 		mapping.LocalizationKeyFormat = localizationKey;

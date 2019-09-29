@@ -181,7 +181,7 @@ bool UQuestGraph::SetString(UAdventurePluginGameContext* GameContext, FName Vari
 
 	if (!StringVariables.Find(VariableName))
 	{
-		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_SetBool_VariableNotFound", "QuestGraph::SetString - Variable was not found in dictionary."));
+		LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraph_SetString_VariableNotFound", "QuestGraph::SetString - Variable was not found in dictionary."));
 		return false;
 	}
 
