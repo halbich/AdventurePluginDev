@@ -20,10 +20,12 @@ public class AdventurePluginDev : ModuleRules
 
         PrivateDependencyModuleNames.AddRange(new string[] {
             "AdventurePluginRuntime",   // our plugin
+            "SpinePlugin"
         });
 
         PrivateIncludePathModuleNames.AddRange(new string[] {
-            "AdventurePluginRuntime"    // our plugin
+            "AdventurePluginRuntime",    // our plugin
+            "SpinePlugin"
         });
 
 

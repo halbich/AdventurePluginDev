@@ -8,5 +8,7 @@ public class AdventurePluginDevEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 		ExtraModuleNames.Add("AdventurePluginDev");
-	}
+        ExtraModuleNames.Add("SpinePlugin");
+        ExtraModuleNames.Add("SpineEditorPlugin");
+    }
 }

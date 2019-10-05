@@ -8,5 +8,6 @@ public class AdventurePluginDevTarget : TargetRules
 	{
 		Type = TargetType.Game;
 		ExtraModuleNames.Add("AdventurePluginDev");
+        ExtraModuleNames.Add("SpinePlugin");
 	}
 }
