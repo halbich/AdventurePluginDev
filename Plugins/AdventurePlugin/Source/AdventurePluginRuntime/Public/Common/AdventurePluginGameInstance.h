@@ -28,7 +28,7 @@ public:
 	/**
 	* The game context used by this game instance.
 	*/
-	UPROPERTY(Transient, BlueprintReadOnly, Category="GameContext")
+	UPROPERTY(Transient, BlueprintReadWrite, Category="GameContext")
 	UAdventurePluginGameContext* CurrentGameContext;
 
 	virtual void Init() override;

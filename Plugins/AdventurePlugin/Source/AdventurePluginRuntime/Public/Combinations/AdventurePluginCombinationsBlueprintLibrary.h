@@ -4,12 +4,12 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Combinations/CombinableObject.h"
 #include "Inventory/InventoryItem.h"
-#include "SimpleCombinationWithSingleItem.h"
-#include "GenericCombinationWithSingleItem.h"
-#include "StartDialogCombinationWithSingleItem.h"
 #include "Inventory/Structs/UseActionType.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
+#include "Combinations/Actions/GenericCombinationAction.h"
 #include "AdventurePluginCombinationsBlueprintLibrary.generated.h"
+
+class UCombination;
 
 /**
 * Blueprint library for all global Adventure Plugin methods concerning combinations.
@@ -30,7 +30,7 @@ public:
 	* @return The object representing this combination.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
-	static UGenericCombinationWithSingleItem* CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FUseActionType CombinationType, FCombinationEvent CombinationEvent);
+	static UCombination* CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FUseActionType CombinationType, FCombinationEvent CombinationEvent);
 	
 	/**
 	* Creates a combination with some specific item. When triggered, this combination removes both objects from inventory and adds a new one. 
@@ -42,7 +42,7 @@ public:
 	* @return The object representing this combination.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
-	static USimpleCombinationWithSingleItem* CreateSimpleCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, TSubclassOf<UInventoryItem> ResultItem, FText CombinationName, FUseActionType CombinationType);
+	static UCombination* CreateSimpleCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, TSubclassOf<UInventoryItem> ResultItem, FText CombinationName, FUseActionType CombinationType);
 
 	/**
 	* Creates a combination with some specific item. When triggered, this combination starts a dialog.
@@ -53,5 +53,5 @@ public:
 	* @return The object representing this combination.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Combinations")
-	static UStartDialogCombinationWithSingleItem* CreateDialogCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FDialogGraphEntryPoint DialogToStart, FText CombinationName, FUseActionType CombinationType);
+	static UCombination* CreateDialogCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FDialogGraphEntryPoint DialogToStart, FText CombinationName, FUseActionType CombinationType);
 };

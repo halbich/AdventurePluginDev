@@ -1,11 +1,9 @@
-#include "Combinations/SimpleCombinationWithSingleItem.h"
+#include "CombineIntoOneItemCombinationAction.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "AdventurePluginRuntime.h"
-#include "Inventory/Controller/InventoryController.h"
 #include "Combinations/CombinableObjectManager.h"
-#include "Inventory/Inventory.h"
+#include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
 
-void USimpleCombinationWithSingleItem::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
+void UCombineIntoOneItemCombinationAction::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
 {
 	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, this);
 	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("SimpleCombinationWithSingleItem:Execute")))

@@ -1,36 +1,43 @@
 #include "Combinations/Combination.h"
+#include "Combinations/Actions/CombinationActionBase.h"
+#include "Combinations/Triggers/CombinationTriggerBase.h"
 
 FText UCombination::GetName_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
 {
-	check(false && "This method must be overriden");
-	return FText();
+	return Name;
 }
 
 FText UCombination::GetDebugName_Implementation()
 {
-	check(false && "This method must be overriden");
-	return FText();
-}
-
-TArray<UClass*> UCombination::GetCombinationTargetClasses_Implementation()
-{
-	check(false && "This method must be overriden");
-	return TArray<UClass*>();
-}
-
-bool UCombination::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
-{
-	check(false && "This method must be overriden");
-	return false;
+	return Name;
 }
 
 void UCombination::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
 {
-	check(false && "This method must be overriden");
+	CombinationAction->Execute(CombinationSource, CombinationTarget, GameContextOverride);
+}
+
+TArray<UClass*> UCombination::GetCombinationTargetClasses_Implementation()
+{
+	return CombinationTrigger->GetCombinationTargetClasses();
+}
+
+bool UCombination::CanCombineWith_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
+{
+	return CombinationTrigger->CanCombineWith(CombinationSource, CombinationTarget, GameContextOverride);
 }
 
 FUseActionType UCombination::GetUseActionType_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
 {
-	check(false && "This method must be overriden");
-	return FUseActionType();
+	return ActionType;
+}
+
+int UCombination::GetPriority(UAdventurePluginGameContext* GameContextOverride)
+{
+	check(IsValid(CombinationTrigger));
+	if (!IsValid(CombinationTrigger))
+	{
+		return -1;
+	}
+	return CombinationTrigger->Priority;
 }

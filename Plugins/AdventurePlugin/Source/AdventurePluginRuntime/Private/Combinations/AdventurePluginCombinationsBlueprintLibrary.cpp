@@ -1,31 +1,57 @@
 #include "Combinations/AdventurePluginCombinationsBlueprintLibrary.h"
+#include "Combinations/Combination.h"
+#include "Combinations/Triggers/SingleObjectCombinationTrigger.h"
+#include "Combinations/Actions/GenericCombinationAction.h"
+#include "Combinations/Actions/CombineIntoOneItemCombinationAction.h"
+#include "Combinations/Actions/StartDialogCombinationAction.h"
 
-UGenericCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibrary::CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FUseActionType CombinationType, FCombinationEvent CombinationEvent)
+UCombination* UAdventurePluginCombinationsBlueprintLibrary::CreateGenericCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FText CombinationName, FUseActionType CombinationType, FCombinationEvent CombinationEvent)
 {
-	UGenericCombinationWithSingleItem* NewCombination = NewObject<UGenericCombinationWithSingleItem>();
+	UCombination* NewCombination = NewObject<UCombination>();
 	NewCombination->Name = CombinationName;
-	NewCombination->CombinationEvent = CombinationEvent;
-	NewCombination->TargetClass = TargetObject;
 	NewCombination->ActionType = CombinationType;
+
+	auto* action = NewObject<UGenericCombinationAction>();
+	action->CombinationEvent = CombinationEvent;
+	NewCombination->CombinationAction = action;
+
+	auto* trigger = NewObject<USingleObjectCombinationTrigger>();
+	trigger->TargetClass = TargetObject;
+	NewCombination->CombinationTrigger = trigger;
+
 	return NewCombination;
 }
 
-USimpleCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibrary::CreateSimpleCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, TSubclassOf<UInventoryItem> ResultItem, FText CombinationName, FUseActionType CombinationType)
+UCombination* UAdventurePluginCombinationsBlueprintLibrary::CreateSimpleCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, TSubclassOf<UInventoryItem> ResultItem, FText CombinationName, FUseActionType CombinationType)
 {
-	USimpleCombinationWithSingleItem* NewCombination = NewObject<USimpleCombinationWithSingleItem>();
+	UCombination* NewCombination = NewObject<UCombination>();
 	NewCombination->Name = CombinationName;
-	NewCombination->TargetClass = TargetObject;
-	NewCombination->ResultItemClass = ResultItem;
 	NewCombination->ActionType = CombinationType;
+
+	auto* action = NewObject<UCombineIntoOneItemCombinationAction>();
+	action->ResultItemClass = ResultItem;
+	NewCombination->CombinationAction = action;
+
+	auto* trigger = NewObject<USingleObjectCombinationTrigger>();
+	trigger->TargetClass = TargetObject;
+	NewCombination->CombinationTrigger = trigger;
+
 	return NewCombination;
 }
 
-UStartDialogCombinationWithSingleItem* UAdventurePluginCombinationsBlueprintLibrary::CreateDialogCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FDialogGraphEntryPoint DialogToStart, FText CombinationName, FUseActionType CombinationType)
+UCombination* UAdventurePluginCombinationsBlueprintLibrary::CreateDialogCombinationWithSingleItem(TSubclassOf<UCombinableObject> TargetObject, FDialogGraphEntryPoint DialogToStart, FText CombinationName, FUseActionType CombinationType)
 {
-	UStartDialogCombinationWithSingleItem* NewCombination = NewObject<UStartDialogCombinationWithSingleItem>();
+	UCombination* NewCombination = NewObject<UCombination>();
 	NewCombination->Name = CombinationName;
-	NewCombination->TargetClass = TargetObject;
-	NewCombination->DialogToStart = DialogToStart;
 	NewCombination->ActionType = CombinationType;
+
+	auto* action = NewObject<UStartDialogCombinationAction>();
+	action->DialogToStart = DialogToStart;
+	NewCombination->CombinationAction = action;
+
+	auto* trigger = NewObject<USingleObjectCombinationTrigger>();
+	trigger->TargetClass = TargetObject;
+	NewCombination->CombinationTrigger = trigger;
+
 	return NewCombination;
 }

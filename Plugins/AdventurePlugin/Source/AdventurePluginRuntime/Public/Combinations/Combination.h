@@ -6,6 +6,8 @@
 #include "Combination.generated.h"
 
 class UAdventurePluginGameContext;
+class UCombinationActionBase;
+class UCombinationTriggerBase;
 
 /**
 * A class representing a single combination.
@@ -19,12 +21,42 @@ class ADVENTUREPLUGINRUNTIME_API UCombination: public UWorldContextProvidingObje
 	GENERATED_BODY()
 
 public:
+	/*
+	* Action that will be executed when this combination is triggered.
+	*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Adventure Plugin")
+	UCombinationActionBase* CombinationAction;
+	/**
+	* The trigger that specifies whether this combination will trigger for the two specific items.
+	*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Adventure Plugin")
+	UCombinationTriggerBase* CombinationTrigger;
 
+	/**
+	* The name of this combination.
+	*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Adventure Plugin")
+	FText Name;
+	
+	/**
+	* The type of action of this combination.
+	*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Adventure Plugin")
+	FUseActionType ActionType;
+	/**
+	* Retrieves the priority of this combination. Only positive values are allowed. The higher the value, the higher the priority.
+	* If multiple items are applicable to a pair of items, only the one with the highest priority will be considered.
+	* @param GameContextOverride Provides access to all Adventure Plugin data and functionality.
+	* @return The priority of this combination.
+	*/
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
+	int GetPriority(UAdventurePluginGameContext* GameContextOverride);
+	
 	/**
 	* Retrieves the name of this combination that can be displayed to the user.
 	* @param CombinationSource The object on which the combination is defined.
 	* @param CombinationTarget The other object of the combination.
-	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param GameContextOverride Provides access to all Adventure Plugin data and functionality.
 	* @return The name of the combination.
 	*/
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "AdventurePlugin|Combinations", meta = (AdvancedDisplay = GameContextOverride))
