@@ -9,6 +9,7 @@
 #include "LevelEditor.h"
 #include "AssetToolsModule.h"
 #include "AssetTypeActions_AdventureCharacter.h"
+#include "AssetTypeActions_InteractableSceneObject.h"
 #include "AssetTypeActions_InventoryItem.h"
 #include "Inventory/InventoryItemBlueprint.h"
 #include "AdventureCharacterBlueprint.h"
@@ -41,6 +42,7 @@ void FAdventurePluginEditor::StartupModule()
 	/* Registering actions for creating new Adventure Plugin assets */
 	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_AdventureCharacter(AdventurePluginAssetCategory)));
 	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_InventoryItem(AdventurePluginAssetCategory)));
+	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_InteractableSceneObject(AdventurePluginAssetCategory)));
 
 	/* Registering custom renderers for rendering thumbnails of the Adventure Plugin assets */
 	UThumbnailManager::Get().RegisterCustomRenderer(UAdventureCharacterBlueprint::StaticClass(), UIconThumbnailRenderer::StaticClass());

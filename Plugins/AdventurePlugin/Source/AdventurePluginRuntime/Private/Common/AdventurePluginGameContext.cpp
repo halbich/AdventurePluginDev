@@ -4,12 +4,10 @@
 #include "Dialog/Controller/DialogController.h"
 #include "Dialog/Presenter/DialogPresenterInterface.h"
 #include "SaveGame/AdventurePluginSaveGame.h"
-#include "Inventory/ItemManager.h"
 #include "Combinations/CombinableObjectManager.h"
 #include "AdventurePluginRuntime.h"
 #include "Common/AdventurePluginGameInstanceInterface.h"
 #include "Engine/GameInstance.h"
-#include "AdventureCharacterManager.h"
 
 bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameContext* GameContext, const FString& Caller)
 {
@@ -19,8 +17,7 @@ bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameC
 		!IsValid(GameContext->DialogController) ||
 		!IsValid(GameContext->DialogPresenter.GetObject()) ||
 		!IsValid(GameContext->SaveGame) ||
-		!IsValid(GameContext->ItemManager) ||
-		!IsValid(GameContext->AdventureCharacterManager))
+		!IsValid(GameContext->CombinableObjectManager))
 	{
 		FText ValidText(NSLOCTEXT("AdventurePlugin", "ValidConstant", "Valid"));
 		FText InvalidText(NSLOCTEXT("AdventurePluugin", "InvalidConstant", "Invalid"));

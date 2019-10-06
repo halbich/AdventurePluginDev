@@ -1,7 +1,6 @@
 #include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
-#include "Inventory/ItemManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "Inventory/Inventory.h"
-#include "AdventureCharacterManager.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "Common/AdventurePluginGameInstance.h"
 
@@ -165,8 +164,8 @@ UInventoryItem* UAdventurePluginBlueprintLibrary::GetItem(UAdventurePluginGameCo
 	{
 		return nullptr;
 	}
-	UItemManager* ItemManager = GameContext->ItemManager;
-	return ItemManager->GetItem(Item, WorldObjectContext);
+	UCombinableObjectManager* CombinableObjectManager = GameContext->CombinableObjectManager;
+	return Cast<UInventoryItem>(CombinableObjectManager->GetCombinableObjectInstance(Item, WorldObjectContext));
 }
 
 UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UAdventureCharacter> Character, UObject* WorldObjectContext)
@@ -176,6 +175,15 @@ UAdventureCharacter* UAdventurePluginBlueprintLibrary::GetAdventureCharacter(UAd
 	{
 		return nullptr;
 	}
-	UAdventureCharacterManager* CharacterManager = GameContext->AdventureCharacterManager;
-	return CharacterManager->GetCharacter(Character, WorldObjectContext);
+	return Cast<UAdventureCharacter>(GameContext->CombinableObjectManager->GetCombinableObjectInstance(Character, WorldObjectContext));
+}
+
+UInteractableSceneObject* UAdventurePluginBlueprintLibrary::GetInteractableSceneObject(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UInteractableSceneObject> Object, UObject* WorldObjectContext)
+{
+	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, WorldObjectContext);
+	if (!UAdventurePluginGameContext::IsGameContextValid(GameContext, TEXT("GetAdventureCharacter")))
+	{
+		return nullptr;
+	}
+	return Cast<UInteractableSceneObject>(GameContext->CombinableObjectManager->GetCombinableObjectInstance(Object, WorldObjectContext));
 }

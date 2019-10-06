@@ -5,7 +5,6 @@
 #include "Dialog/Graph/DialogGraphNode.h"
 #include "DialogGraphNode_PlayAnimationCharacterBase.h"
 #include "Dialog/Graph/DialogGraph.h"
-#include "AdventureCharacterManager.h"
 #include "Dialog/Presenter/DialogPresenterInterface.h"
 #include "Animations/AnimatableObjectInterface.h"
 #include "Dialog/NodeInterfaces/DialogNodePlayAnimationCallbackInterface.h"

@@ -22,7 +22,7 @@ public:
 	/**
 	* The name of this item that should be displayed to the player.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Interactable object")
 	FText Name;
 	/**
 	* The dialog that should be started when this item is examined.
@@ -33,7 +33,7 @@ public:
 	* Tags assigned to this object, e.g. weapon, critical, red herring etc.
 	* No inherent function unless designers make it so.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Interactable object")
 	FGameplayTagContainer ObjectTags;
 	/**
 	* If true, it is possible to examine this item. This is a value returned by IsExaminable() if not overriden.

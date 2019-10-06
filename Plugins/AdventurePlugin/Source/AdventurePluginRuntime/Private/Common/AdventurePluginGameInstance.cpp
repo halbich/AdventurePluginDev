@@ -10,9 +10,7 @@ void UAdventurePluginGameInstance::Init()
 #if WITH_EDITOR
 	FString DebugSaveName(TEXT("DebugSave"));
 	CurrentGameContext->SaveGame = UAdventurePluginSaveGame::CreateSave(DebugSaveName, 0);
-	CurrentGameContext->ItemManager->ClearMap();
 	CurrentGameContext->CombinableObjectManager->ClearMap();
-	CurrentGameContext->AdventureCharacterManager->ClearMap();
 #endif
 }
 
@@ -25,9 +23,7 @@ void UAdventurePluginGameInstance::InitCurrentGameContext()
 	CurrentGameContext->InventoryPresenter = InstantiateClass(Settings->DefaultInventoryPresenterWidget);
 	CurrentGameContext->DialogController = InstantiateClass(Settings->DefaultDialogController);
 	CurrentGameContext->DialogPresenter = InstantiateClass(Settings->DefaultDialogPresenterWidget);
-	CurrentGameContext->ItemManager = InstantiateClass(Settings->DefaultItemManager);
 	CurrentGameContext->CombinableObjectManager = InstantiateClass(Settings->DefaultCombinableObjectManager);
-	CurrentGameContext->AdventureCharacterManager = InstantiateClass(Settings->DefaultAdventureCharacterManager);
 	//The save game is required for context to be valid, so ensure that a save is used. 
 	FString InitialSave(TEXT("InitialSave"));
 	CurrentGameContext->SaveGame = UAdventurePluginSaveGame::CreateSave(InitialSave, 0);

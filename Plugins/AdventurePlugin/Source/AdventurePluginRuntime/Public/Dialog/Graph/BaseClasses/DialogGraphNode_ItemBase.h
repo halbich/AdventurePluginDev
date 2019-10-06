@@ -5,7 +5,7 @@
 #include "Inventory/InventoryItem.h"
 #include "Inventory/InventoryItemBlueprint.h"
 #include "Inventory/Controller/InventoryController.h"
-#include "Inventory/ItemManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "AdventurePluginRuntime.h"
 #include "DialogGraphNode_ItemBase.generated.h"
 

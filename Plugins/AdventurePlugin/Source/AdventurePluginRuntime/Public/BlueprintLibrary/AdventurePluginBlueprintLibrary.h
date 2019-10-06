@@ -13,6 +13,7 @@
 #include "AdventurePluginRuntime.h"
 #include "AdventureCharacter.h"
 #include "Inventory/InventoryItem.h"
+#include "InteractableSceneObject.h"
 #include "Inventory/Inventory.h"
 #include "AdventurePluginBlueprintLibrary.generated.h"
 
@@ -113,5 +114,15 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin|Character", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
 	static UAdventureCharacter* GetAdventureCharacter(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UAdventureCharacter> Character, UObject* WorldObjectContext);
 
+	/**
+	* Retrieves the only instance of the requested Interactable scene object class. 
+	* Neccessary to access any functionality provided by the Interactable object class.
+	* Always use this method, never instantiate UInteractableSceneObject directly.
+	* @param GameContext Provides access to all Adventure Plugin data and functionality.
+	* @param Object The class whose instance is requested.
+	* @return The only instance of this object.
+	*/
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "AdventurePlugin", meta = (WorldContext = WorldObjectContext, AdvancedDisplay = GameContextOverride))
+	static UInteractableSceneObject* GetInteractableSceneObject(UAdventurePluginGameContext* GameContextOverride, TSubclassOf<UInteractableSceneObject> Object, UObject* WorldObjectContext);
 private:
 };

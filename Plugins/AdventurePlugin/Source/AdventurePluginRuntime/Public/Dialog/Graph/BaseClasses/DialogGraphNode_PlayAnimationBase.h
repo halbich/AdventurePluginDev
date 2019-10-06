@@ -4,7 +4,6 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "Dialog/Graph/DialogGraphNode.h"
 #include "Dialog/Graph/DialogGraph.h"
-#include "AdventureCharacterManager.h"
 #include "Animations/AnimatableObjectInterface.h"
 #include "Dialog/Presenter/DialogPresenterInterface.h"
 #include "DialogGraphNode_PlayAnimationBase.generated.h"

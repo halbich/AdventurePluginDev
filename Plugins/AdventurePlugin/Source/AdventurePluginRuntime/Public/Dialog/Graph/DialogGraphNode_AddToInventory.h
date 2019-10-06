@@ -4,7 +4,7 @@
 #include "DialogGraphNode.h"
 #include "BaseClasses/DialogGraphNode_ItemBase.h"
 #include "Inventory/Controller/InventoryController.h"
-#include "Inventory/ItemManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "AdventurePluginRuntime.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "DialogGraphNode_AddToInventory.generated.h"
@@ -62,7 +62,7 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_AddToInventory_Execute_InvalidItem", "DialogGraphNode_AddToInventory:Execute: Nil or invalid item passed"));
 			return false;
 		}
-		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item, this);
+		UInventoryItem* ItemInstance = Cast<UInventoryItem>(GameContext->CombinableObjectManager->GetCombinableObjectInstance(Item, this));
 		if (!IsValid(ItemInstance))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_AddToInventory_Execute_InvalidItemInstance", "DialogGraphNode_AddToInventory:Execute: Item could not be instantiated"));

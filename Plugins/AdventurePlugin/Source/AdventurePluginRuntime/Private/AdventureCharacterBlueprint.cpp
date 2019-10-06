@@ -1,5 +1,5 @@
 #include "AdventureCharacterBlueprint.h"
-#include "AdventureCharacterManager.h"
+#include "AdventureCharacter.h"
 
 UTexture2D* UAdventureCharacterBlueprint::GetIcon() const
 {

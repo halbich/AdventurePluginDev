@@ -8,8 +8,6 @@ class UInventoryController;
 class IInventoryPresenterInterface;
 class UDialogController;
 class IDialogPresenterInterface;
-class UItemManager;
-class UAdventureCharacterManager;
 class UCombinableObjectManager;
 class UAdventurePluginSaveGame;
 
@@ -59,20 +57,6 @@ public:
 	*/
 	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Game Context")
 	UAdventurePluginSaveGame* SaveGame;
-
-	/**
-	* The object that manages instances of UInventoryItem classes.
-	* For each class contains a single instance of that item.
-	*/
-	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Inventory")
-	UItemManager* ItemManager;
-
-	/**
-	* The object that manages instances of UAdventureCharacter classes.
-	* For each class contains a single instance of that character.
-	*/
-	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Character")
-	UAdventureCharacterManager* AdventureCharacterManager;
 
 	/**
 	* The object that manages instances of UAdventureCharacter classes.

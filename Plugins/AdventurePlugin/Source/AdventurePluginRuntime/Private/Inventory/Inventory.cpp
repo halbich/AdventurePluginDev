@@ -1,7 +1,7 @@
 #include "Inventory/Inventory.h"
 #include "SaveGame/AdventurePluginSaveGame.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "Inventory/ItemManager.h"
+#include "Combinations/CombinableObjectManager.h"
 
 bool UInventory::HasItem(UInventoryItem* Item, UAdventurePluginGameContext* GameContextOverride, UObject* WorldObjectContext)
 {
@@ -101,7 +101,8 @@ TArray<UInventoryItem*> UInventory::GetItems(UAdventurePluginGameContext* GameCo
 	UAdventurePluginSaveGame* SaveGame = GameContext->SaveGame;
 	for (TSubclassOf<UInventoryItem>& ItemClass : SaveGame->StorageInventory)
 	{
-		InventoryItems.Add(GameContext->ItemManager->GetItem(ItemClass, WorldObjectContext));
+		;
+		InventoryItems.Add(Cast<UInventoryItem>(GameContext->CombinableObjectManager->GetCombinableObjectInstance(ItemClass, WorldObjectContext)));
 	}
 	return InventoryItems;
 }

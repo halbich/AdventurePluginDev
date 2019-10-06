@@ -6,7 +6,7 @@
 #include "Inventory/InventoryItem.h"
 #include "Inventory/InventoryItemBlueprint.h"
 #include "Inventory/Controller/InventoryController.h"
-#include "Inventory/ItemManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "AdventurePluginRuntime.h"
 #include "Common/AdventurePluginGameContext.h"
 #include "DialogGraphNode_IfInInventory.generated.h"
@@ -84,7 +84,7 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IfInInventory_GetNextNode_InvalidItem", "DialogGraphNode_IfInInventory:GetNextNode: Nil or invalid item passed."));
 			return nullptr;
 		}
-		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item, this);
+		UInventoryItem* ItemInstance = Cast<UInventoryItem>(GameContext->CombinableObjectManager->GetCombinableObjectInstance(Item, this));
 		if (!IsValid(ItemInstance))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraphNode_IfInInventory_GetNextNode_InvalidItemInstance", "DialogGraphNode_IfInInventory:GetNextNode: Item could not be instantiated."));

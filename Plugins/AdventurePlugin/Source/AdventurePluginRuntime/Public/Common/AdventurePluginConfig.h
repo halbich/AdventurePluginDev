@@ -8,8 +8,6 @@ class UDialogPresenterWidget;
 class UDialogController;
 class UInventoryPresenterWidget;
 class UInventoryController;
-class UItemManager;
-class UAdventureCharacterManager;
 class UCombinableObjectManager;
 class UAdventurePluginSaveGame;
 
@@ -54,18 +52,6 @@ public:
 	TSoftClassPtr<UInventoryController> DefaultInventoryController;
 
 	/**
-	* Class specifying the item manager to be used in the default GameContext. @see UAdventurePluginGameContext
-	*/
-	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Default Item Manager")
-	TSoftClassPtr<UItemManager> DefaultItemManager;
-
-	/**
-	* Class specifying the character manager to be used in the default GameContext. @see UAdventurePluginGameContext
-	*/
-	UPROPERTY(Config, EditAnywhere, Category = Dialog, DisplayName = "Default Adventure Character Manager")
-	TSoftClassPtr<UAdventureCharacterManager> DefaultAdventureCharacterManager;
-
-	/**
 	* Class specifying the character manager to be used in the default GameContext. @see UAdventurePluginGameContext
 	*/
 	UPROPERTY(Config, EditAnywhere, Category = Dialog, DisplayName = "Default Adventure Character Manager")
@@ -78,4 +64,11 @@ public:
 	*/
 	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Use Action types")
 	TSet<FName> UseActionTypes;
+
+	/**
+	* Define the action that should be used for talk action, i.e. which action is initiating a dialog with another character.
+	* Must be from the UseActionTypes set.
+	*/
+	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Talk Action Type")
+	TSet<FName> TalkActionType;
 };

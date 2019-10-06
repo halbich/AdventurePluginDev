@@ -1,4 +1,6 @@
 #include "Inventory/InventoryItemBlueprint.h"
+#include "Engine/Texture2D.h"
+#include "Inventory/InventoryItem.h"
 
 UTexture2D* UInventoryItemBlueprint::GetIcon() const
 {

@@ -7,7 +7,7 @@
 #include "Inventory/InventoryItemBlueprint.h"
 #include "AdventurePluginRuntime.h"
 #include "Inventory/Controller/InventoryController.h"
-#include "Inventory/ItemManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "QuestGraphNode_Inventory.generated.h"
 
 /**
@@ -58,7 +58,7 @@ public:
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Inventory_InvalidItem", "Quest graph node inventory:IsTrue: Nil or invalid item passed."));
 			return false;
 		}
-		UInventoryItem* ItemInstance = GameContext->ItemManager->GetItem(Item, WorldObjectContext);
+		UInventoryItem* ItemInstance = Cast<UInventoryItem>(GameContext->CombinableObjectManager->GetCombinableObjectInstance(Item, WorldObjectContext));
 		if (!IsValid(ItemInstance))
 		{
 			LOG_Error(NSLOCTEXT("AdventurePlugin", "QuestGraphNode_Inventory_InvalidItemInstance", "Quest graph node inventory:IsTrue: Item could not be instantiated."));

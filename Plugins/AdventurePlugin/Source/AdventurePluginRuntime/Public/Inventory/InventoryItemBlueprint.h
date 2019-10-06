@@ -1,15 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/TextProperty.h" 
-#include "Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
-#include "Engine/Blueprint.h"
-#include "InventoryItem.h"
-#include "Common/AdventurePluginGameContext.h"
-#include "ItemManager.h"
 #include "Combinations/CombinableObjectBlueprint.h"
 #include "InventoryItemBlueprint.generated.h"
+
+class UTexture2D;
 
 /**
 * The blueprint class for inventory items. This class exists to specify the item icon

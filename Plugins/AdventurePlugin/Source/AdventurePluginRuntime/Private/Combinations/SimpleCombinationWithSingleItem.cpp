@@ -2,7 +2,7 @@
 #include "Common/AdventurePluginGameContext.h"
 #include "AdventurePluginRuntime.h"
 #include "Inventory/Controller/InventoryController.h"
-#include "Inventory/ItemManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "Inventory/Inventory.h"
 
 void USimpleCombinationWithSingleItem::Execute_Implementation(UObject* CombinationSource, UObject* CombinationTarget, UAdventurePluginGameContext* GameContextOverride)
@@ -12,7 +12,7 @@ void USimpleCombinationWithSingleItem::Execute_Implementation(UObject* Combinati
 	{
 		return;
 	}
-	UInventoryItem* ResultItem = GameContext->ItemManager->GetItem(ResultItemClass, this);
+	UInventoryItem* ResultItem = Cast<UInventoryItem>(GameContext->CombinableObjectManager->GetCombinableObjectInstance(ResultItemClass, this));
 	if (!IsValid(ResultItem))
 	{
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "SimpleCombinationWithSingleItem_ExecuteResultNull", "SimpleCombinationWithSingleItem:Execute::The result item is null or invalid."));

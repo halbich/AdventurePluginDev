@@ -3,7 +3,7 @@
 #include "Dialog/Graph/DialogGraphNode_EntryMain.h"
 #include "Dialog/Graph/DialogGraphNode_Event.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "AdventureCharacterManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "AdventurePluginRuntime.h"
 
 #define LOCTEXT_NAMESPACE "DialogGraph"
@@ -41,7 +41,8 @@ UAdventureCharacter * UDialogGraph::GetSpeakerInstance(UAdventurePluginGameConte
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "DialogGraph_GetSpeakerInstance_SpeakerNull", "DialogGraph:GetSpeakerInstance: The speaker is null."));
 		return nullptr;
 	}
-	UAdventureCharacter* CharacterInstance = GameContext->AdventureCharacterManager->GetCharacter(Speaker, this);
+	
+	UAdventureCharacter* CharacterInstance = Cast<UAdventureCharacter>(GameContext->CombinableObjectManager->GetCombinableObjectInstance(Speaker, this));
 	return CharacterInstance;
 }
 
