@@ -2,18 +2,7 @@
 #include "SaveGame/AdventurePluginSaveGame.h"
 #include "Inventory/Inventory.h"
 #include "Common/AdventurePluginGameContext.h"
-#include "Inventory/ItemManager.h"
 #include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
-
-void UInventoryItem::Examine_Implementation(UAdventurePluginGameContext* GameContextOverride)
-{
-	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, this);
-	UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(GameContext, ExamineDialog, this);
-}
-
-void UInventoryItem::Use_Implementation(UAdventurePluginGameContext* GameContextOverride)
-{
-}
 
 bool UInventoryItem::WasPickedUp_Implementation(UAdventurePluginGameContext* GameContextOverride)
 {
@@ -55,11 +44,6 @@ void UInventoryItem::OnRemovedFromInventory_Implementation(UInventory* Inventory
 {
 }
 
-bool UInventoryItem::IsExaminable_Implementation(UAdventurePluginGameContext* GameContextOverride)
-{
-	return bDefaultIsExaminable;
-}
-
 bool UInventoryItem::IsPickable_Implementation(UAdventurePluginGameContext* GameContextOverride)
 {
 	auto* GameContext = UAdventurePluginGameContext::ResolveGameContext(GameContextOverride, this);
@@ -68,9 +52,4 @@ bool UInventoryItem::IsPickable_Implementation(UAdventurePluginGameContext* Game
 		return false;
 	}
 	return bDefaultIsPickable && !GameContext->InventoryController->GetInventory()->HasItem(this, GameContext, this);
-}
-
-bool UInventoryItem::IsUsable_Implementation(UAdventurePluginGameContext* GameContextOverride)
-{
-	return bDefaultIsUsable;
 }

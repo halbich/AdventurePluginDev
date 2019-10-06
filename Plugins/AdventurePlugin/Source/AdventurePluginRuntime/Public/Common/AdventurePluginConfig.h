@@ -10,6 +10,7 @@ class UInventoryPresenterWidget;
 class UInventoryController;
 class UItemManager;
 class UAdventureCharacterManager;
+class UCombinableObjectManager;
 class UAdventurePluginSaveGame;
 
 /**
@@ -63,6 +64,12 @@ public:
 	*/
 	UPROPERTY(Config, EditAnywhere, Category = Dialog, DisplayName = "Default Adventure Character Manager")
 	TSoftClassPtr<UAdventureCharacterManager> DefaultAdventureCharacterManager;
+
+	/**
+	* Class specifying the character manager to be used in the default GameContext. @see UAdventurePluginGameContext
+	*/
+	UPROPERTY(Config, EditAnywhere, Category = Dialog, DisplayName = "Default Adventure Character Manager")
+	TSoftClassPtr<UCombinableObjectManager> DefaultCombinableObjectManager;
 
 	/**
 	* Defines the actions that can be represented by the Use action. 

@@ -10,6 +10,7 @@
 #include "SaveGame/AdventurePluginSaveGame.h"
 #include "Inventory/ItemManager.h"
 #include "AdventureCharacterManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "Common/AdventurePluginGameInstanceInterface.h"
 #include "Engine/GameInstance.h"
 #include "AdventurePluginGameInstance.generated.h"

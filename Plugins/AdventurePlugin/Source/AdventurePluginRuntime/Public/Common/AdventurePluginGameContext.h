@@ -10,6 +10,7 @@ class UDialogController;
 class IDialogPresenterInterface;
 class UItemManager;
 class UAdventureCharacterManager;
+class UCombinableObjectManager;
 class UAdventurePluginSaveGame;
 
 /**
@@ -72,6 +73,13 @@ public:
 	*/
 	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Character")
 	UAdventureCharacterManager* AdventureCharacterManager;
+
+	/**
+	* The object that manages instances of UAdventureCharacter classes.
+	* For each class contains a single instance of that character.
+	*/
+	UPROPERTY(BlueprintReadWrite, Transient, Category = "Adventure Plugin|Character")
+	UCombinableObjectManager* CombinableObjectManager;
 
 	/**
 	* Returns true if the game context and all of its direct subclasses are valid and not null.

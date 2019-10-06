@@ -5,6 +5,7 @@
 #include "Dialog/Presenter/DialogPresenterInterface.h"
 #include "SaveGame/AdventurePluginSaveGame.h"
 #include "Inventory/ItemManager.h"
+#include "Combinations/CombinableObjectManager.h"
 #include "AdventurePluginRuntime.h"
 #include "Common/AdventurePluginGameInstanceInterface.h"
 #include "Engine/GameInstance.h"
@@ -32,11 +33,10 @@ bool UAdventurePluginGameContext::IsGameContextValid(const UAdventurePluginGameC
 			IsValid(GameContext) && IsValid(GameContext->DialogController) ? ValidText : InvalidText,
 			IsValid(GameContext) && IsValid(GameContext->DialogPresenter.GetObject()) ? ValidText : InvalidText,
 			IsValid(GameContext) && IsValid(GameContext->SaveGame) ? ValidText : InvalidText,
-			IsValid(GameContext) && IsValid(GameContext->ItemManager) ? ValidText : InvalidText,
-			IsValid(GameContext) && IsValid(GameContext->AdventureCharacterManager) ? ValidText : InvalidText
+			IsValid(GameContext) && IsValid(GameContext->CombinableObjectManager) ? ValidText : InvalidText
 			};
 
-		FText ErrorText =  FText::Format(NSLOCTEXT("AdventurePlugin", "GameContextInvalid", "{0}: Game context or one of its subclasses is null or invalid. GameContext:{1}, InventoryController:{2},InventoryPresent:{3},DialogController:{4},DialogPresenter:{5},SaveGame:{6},ItemManager:{7},AdventureCharacterManager:{8}"),
+		FText ErrorText =  FText::Format(NSLOCTEXT("AdventurePlugin", "GameContextInvalid", "{0}: Game context or one of its subclasses is null or invalid. GameContext:{1}, InventoryController:{2},InventoryPresent:{3},DialogController:{4},DialogPresenter:{5},SaveGame:{6},CombinableObjectManager:{7}"),
 			FormatArgs
 			);
 		LOG_Error(ErrorText);

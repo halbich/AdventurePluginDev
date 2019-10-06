@@ -5,7 +5,7 @@
 #include "Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
 #include "Delegates/Delegate.h"
-#include "Combinations/CombinableObject.h"
+#include "InteractableSceneObject.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "Inventory/Structs/UseActionType.h"
 #include "Inventory/InventoryItemState.h"
@@ -23,50 +23,17 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FItemNotificationEvent, UInventoryIt
 * The state of the item is serialized automatically.
 */
 UCLASS(Abstract, BlueprintType, Blueprintable)
-class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UCombinableObject, public IIconThumbnailInterface
+class ADVENTUREPLUGINRUNTIME_API UInventoryItem : public UInteractableSceneObject, public IIconThumbnailInterface
 {
 	GENERATED_BODY()
 
 public:
-	/**
-	* The name of this item that should be displayed to the player.
-	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
-	FText Name;
 
 	/**
 	* The inventory icon representing this item.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
 	UTexture2D* Icon;
-
-	/**
-	* The dialog that should be started when this item is examined.
-	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Examination")
-	FDialogGraphEntryPoint ExamineDialog;
-
-	/**
-	* Tags assigned to this item, e.g. weapon, critical, red herring etc. 
-	* No inherent function unless designers make it so.
-	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Item")
-	FGameplayTagContainer ItemTags;
-
-	/**
-	* If true, it is possible to examine this item. This is a value returned by IsExaminable() if not overriden.
-	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Examination")
-	bool bDefaultIsExaminable = true;
-
-	/**
-	* Checks whether this item can be examined right now.
-	* Unless overriden this method returns UInventoryItem#bDefaultIsExaminable.
-	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	* @return True if the item can be examined right now, otherwise false.
-	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
-	bool IsExaminable(UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* If true, it is possible to pick up this item from scene. This is a value returned by IsPickable() if not overriden.
@@ -82,34 +49,6 @@ public:
 	*/
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
 	bool IsPickable(UAdventurePluginGameContext* GameContextOverride);
-
-	/**
-	* If true, this item has a use action that can be called, e.g. reading a map. This is a value returned by IsUsable() if not overriden.
-	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Usage")
-	bool bDefaultIsUsable = false;
-
-	/**
-	* Checks whether this item can be used right now, i.e. it is possible to call Use() method.
-	* Unless overriden this method returns UInventoryItem#bDefaultIsUsable.
-	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	* @return True if the item can be used right now, otherwise false.
-	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
-	bool IsUsable(UAdventurePluginGameContext* GameContextOverride);
-
-	/**
-	* The name of the use action that can be displayed to the user, e.g. "Read a map".
-	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Usage")
-	FText UseActionName;
-
-	/**
-	* The type of the use action, e.g. Use/Talk/Combine etc.
-	* @see UAdventurePluginConfig#UseActionTypes
-	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Usage")
-	FUseActionType UseActionType;
 
 	/**
 	* The initial state of the item.
@@ -166,20 +105,6 @@ public:
 	*/
 	UFUNCTION(BlueprintNativeEvent, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
 	void OnRemovedFromInventory(UInventory* Inventory, UAdventurePluginGameContext* GameContextOverride);
-
-	/**
-	* Executes examine action on the item. Can be overriden, default behavior starts the examine dialog.
-	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
-	void Examine(UAdventurePluginGameContext* GameContextOverride);
-
-	/**
-	* Executes the use action of the object. Can be overriden, does nothing by default.
-	* @param GameContext Provides access to all Adventure Plugin data and functionality.
-	*/
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Adventure Plugin|Inventory", meta = (AdvancedDisplay = GameContextOverride))
-	void Use(UAdventurePluginGameContext* GameContextOverride);
 
 	/**
 	* Returns the icon representing this item in asset editor.
