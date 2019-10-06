@@ -15,7 +15,13 @@ struct ADVENTUREPLUGINRUNTIME_API FUseActionType
 	GENERATED_USTRUCT_BODY()
 
 public:
-
+	FUseActionType() 
+	{
+	}
+	FUseActionType(FName UseActionTypeName): UseActionTypeName(UseActionTypeName)
+	{
+	
+	}
 	/**
 	* The name of this action type.
 	* Must be defined in the Adventure Plugin configuration, @see UAdventurePluginConfig#UseActionTypes

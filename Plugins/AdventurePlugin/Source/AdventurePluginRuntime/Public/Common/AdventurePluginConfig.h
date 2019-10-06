@@ -70,5 +70,5 @@ public:
 	* Must be from the UseActionTypes set.
 	*/
 	UPROPERTY(Config, EditAnywhere, Category = Inventory, DisplayName = "Talk Action Type")
-	TSet<FName> TalkActionType;
+	FName TalkActionType;
 };

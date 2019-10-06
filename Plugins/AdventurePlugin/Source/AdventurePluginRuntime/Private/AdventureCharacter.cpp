@@ -1,11 +1,26 @@
 #include "AdventureCharacter.h"
+#include "Common/AdventurePluginConfig.h"
+#include "BlueprintLibrary/AdventurePluginBlueprintLibrary.h"
 #include "AdventurePluginRuntime.h"
+
+UAdventureCharacter::UAdventureCharacter() : Super()
+{
+	UAdventurePluginConfig* Settings = GetMutableDefault<UAdventurePluginConfig>();
+	UseActionType = FUseActionType(Settings->TalkActionType);
+}
 
 UTexture2D* UAdventureCharacter::GetIcon() const
 {
 	return Icon;
 }
 
+void UAdventureCharacter::Use_Implementation(UAdventurePluginGameContext* GameContextOverride)
+{
+	if (TalkDialog.Dialog != nullptr)
+	{
+		UAdventurePluginBlueprintLibrary::ShowDialogFromEntryPoint(GameContextOverride, TalkDialog, this);
+	}
+}
 // MARK: IAnimatableObjectInterface Implementation
 TArray<FName> UAdventureCharacter::GetAllAnimationStates_Implementation()
 {

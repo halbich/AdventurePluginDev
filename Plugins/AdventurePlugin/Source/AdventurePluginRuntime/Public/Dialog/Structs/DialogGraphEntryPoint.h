@@ -1,8 +1,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Dialog/Graph/DialogGraph.h"
 #include "DialogGraphEntryPoint.generated.h"
+
+class UDialogGraph;
 
 /**
 * Specifies the entry point where a dialog can start.

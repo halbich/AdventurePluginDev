@@ -5,6 +5,7 @@
 #include "Combinations/CombinableObject.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "Inventory/Structs/UseActionType.h"
+#include "GameplayTagContainer.h"
 #include "InteractableSceneObject.generated.h"
 
 /**

@@ -5,7 +5,7 @@
 #include "Engine/Texture2D.h"
 #include "IconThumbnailInterface.h"
 #include "Animations/AnimatableObjectInterface.h"
-#include "Combinations/CombinableObject.h"
+#include "InteractableSceneObject.h"
 #include "Delegates/Delegate.h"
 #include "Sound/DialogueVoice.h"
 #include "AdventureCharacter.generated.h"
@@ -32,20 +32,21 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FResetAnimationEvent);
 * @see UAdventureCharacterBlueprint
 */
 UCLASS(Abstract, BlueprintType)
-class ADVENTUREPLUGINRUNTIME_API UAdventureCharacter : public UCombinableObject, public IIconThumbnailInterface, public IAnimatableObjectInterface
+class ADVENTUREPLUGINRUNTIME_API UAdventureCharacter : public UInteractableSceneObject, public IIconThumbnailInterface, public IAnimatableObjectInterface
 {
 	GENERATED_BODY()
 
 public:
+	UAdventureCharacter();
 
-
+	// Gender of this character, used to generate dialogue voice files.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = DialogueVoice)
 	TEnumAsByte<EGrammaticalGender::Type> Gender;
-
+	// Plurality of this character, used to generate dialogue voice files.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = DialogueVoice)
 	TEnumAsByte<EGrammaticalNumber::Type> Plurality;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
+	// The voice of this character. Generated if not filled.
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = DialogueVoice)
 	UDialogueVoice* Voice;
 
 	/**
@@ -53,13 +54,13 @@ public:
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
 	FName Id;
-
 	/**
-	* Human friendly name of this character.
+	* The dialog that should be started when the conversation with this character is initiated.
+	* If you want to have different dialogs launch at differrent circumstances, override the Use method on this object.
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
-	FText Name;
-
+	FDialogGraphEntryPoint TalkDialog;
+	virtual void Use_Implementation(UAdventurePluginGameContext* GameContextOverride) override;
 	/**
 	* If true, this character can be a player character.
 	*/
@@ -76,50 +77,50 @@ public:
 	/**
 	* If false, this object does not use the animation system. Animations should do nothing and no animation warnings should ever be fired. 
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animations")
 	bool bIsAnimatable = true;
 	
 	/**
 	* This event is fired when the actor representing this object is supposed to play a specific animation once. Call AnimationFinished() once the animation is finished.
 	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Adventure Plugin")
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Animations")
 	FAnimationEvent PlayAnimationOnceEvent;
 
 	/**
 	* This event is called whenever the actor representing this object is supposed to play an animation in a loop until the animation state is changed or canceled. 
 	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Adventure Plugin")
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Animations")
 	FAnimationEvent SetAnimationStateEvent;
 
 	/**
 	* This event is called whenever the actor representing this object is supposed to stop playing animations requested by this object and start doing whatever it wants, usually playing an idle animation. 
 	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Adventure Plugin")
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Animations")
 	FResetAnimationEvent ResetAnimationStateEvent;
 
 	/**
 	* Contains all animation states defined on this character.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animations")
 	TArray<FName> AnimationStates;
 
 	/**
 	* Subset of UAdventureCharacter#AnimationStates, should contain all animations that can be used while talking, mainly emotions.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animations")
 	TArray<FName> TalkingAnimationStates;
 
 	/**
 	* From UAdventureCharacter#TalkingAnimationStates, contains the animation that should be shown while talking if no other animation is specified.
 	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Adventure Plugin")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animations")
 	FName DefaultTalkingAnimationState;
 
 	/**
 	* This method must be called by actor when an animation requested by this class is finished.
 	* @param AnimationName The animation that finished.
 	*/
-	UFUNCTION(BlueprintCallable, Category = "AdventurePlugin|Animations")
+	UFUNCTION(BlueprintCallable, Category = "Animations")
 	void AnimationFinished(FName AnimationName);
 
 	// MARK: IIconThumbnailInterface implementation
