@@ -32,7 +32,7 @@ FUseActionType UCombination::GetUseActionType_Implementation(UObject* Combinatio
 	return ActionType;
 }
 
-int UCombination::GetPriority(UAdventurePluginGameContext* GameContextOverride)
+int UCombination::GetPriority_Implementation(UAdventurePluginGameContext* GameContextOverride)
 {
 	check(IsValid(CombinationTrigger));
 	if (!IsValid(CombinationTrigger))

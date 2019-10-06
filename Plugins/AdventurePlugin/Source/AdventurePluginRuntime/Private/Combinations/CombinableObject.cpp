@@ -67,12 +67,11 @@ UCombination* UCombinableObject::GetCombinationWithObject(UCombinableObject* Oth
 		LOG_Error(NSLOCTEXT("AdventurePlugin", "CombinableObject_GetCombination_NullCombinationItem", "One of the items being combined is null."));
 		return nullptr;
 	}
-	UCombination* FoundCombination = GetCombinationWithObjectLocalOnly(OtherObject, GameContext);
-	if (!IsValid(FoundCombination))
-	{
-		FoundCombination = OtherObject->GetCombinationWithObjectLocalOnly(this, GameContext);
-	}
-	return FoundCombination;
+	UCombination* FoundCombinationLocal = GetCombinationWithObjectLocalOnly(OtherObject, GameContext);
+	auto* FoundCombinationOther = OtherObject->GetCombinationWithObjectLocalOnly(this, GameContext);
+	int PriorityLocal = FoundCombinationLocal ? FoundCombinationLocal->GetPriority(GameContextOverride) : -1;
+	int PriorityOther = FoundCombinationOther ? FoundCombinationOther->GetPriority(GameContextOverride) : -1;
+	return PriorityLocal >= PriorityOther ? FoundCombinationLocal : FoundCombinationOther;
 }
 
 bool UCombinableObject::TryCombineWith(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContextOverride)
@@ -107,19 +106,21 @@ void UCombinableObject::ExecuteCombination(UCombination* Combination, UCombinabl
 
 UCombination* UCombinableObject::GetCombinationWithObjectLocalOnly(UCombinableObject* OtherObject, UAdventurePluginGameContext* GameContext)
 {
+	// If it exists, find the combination between these two objects defined on this object with the highest priority. 
+	// In case of a tie, choose the one defined first.
+	// If none is found, returns nullptr.
+	int CurrentMaxPriority = -1;
+	UCombination* MaxPriorityCombination = nullptr;
 	for (UCombination* Combination : Combinations)
 	{
-		if (!IsValid(Combination))
+		if (!IsValid(Combination) || Combination->GetPriority(GameContext) < CurrentMaxPriority || !Combination->CanCombineWith(this, OtherObject, GameContext))
 		{
 			continue;
 		}
-		if (!Combination->CanCombineWith(this, OtherObject, GameContext))
-		{
-			continue;
-		}
-		return Combination;
+		MaxPriorityCombination = Combination;
+		CurrentMaxPriority = Combination->GetPriority(GameContext);
 	}
-	return nullptr;
+	return MaxPriorityCombination;
 }
 
 void UCombinableObject::SetWorldObject(UWorld* WorldObject)

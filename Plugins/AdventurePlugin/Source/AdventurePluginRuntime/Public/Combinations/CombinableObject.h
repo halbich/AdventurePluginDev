@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "LocalCombinationInfo.h"
+#include "GameplayTagContainer.h"
 #include "WorldContextProvidingObject.h"
 #include "CombinableObject.generated.h"
 
@@ -28,6 +29,13 @@ public:
 	{
 		RefreshCombinations();
 	}
+
+	/**
+	* Tags assigned to this object, e.g. weapon, critical, red herring etc.
+	* No inherent function unless designers make it so.
+	*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Interactable object")
+		FGameplayTagContainer ObjectTags;
 
 #if WITH_EDITORONLY_DATA
 	/**

@@ -5,7 +5,6 @@
 #include "Combinations/CombinableObject.h"
 #include "Dialog/Structs/DialogGraphEntryPoint.h"
 #include "Inventory/Structs/UseActionType.h"
-#include "GameplayTagContainer.h"
 #include "InteractableSceneObject.generated.h"
 
 /**
@@ -30,12 +29,6 @@ public:
 	*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Item Examination")
 	FDialogGraphEntryPoint ExamineDialog;
-	/**
-	* Tags assigned to this object, e.g. weapon, critical, red herring etc.
-	* No inherent function unless designers make it so.
-	*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Interactable object")
-	FGameplayTagContainer ObjectTags;
 	/**
 	* If true, it is possible to examine this item. This is a value returned by IsExaminable() if not overriden.
 	*/

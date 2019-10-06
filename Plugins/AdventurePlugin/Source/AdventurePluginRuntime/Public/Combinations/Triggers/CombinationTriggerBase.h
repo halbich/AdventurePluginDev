@@ -24,7 +24,7 @@ public:
 	* The possible values for this variable must be agreed upon.
 	* For example, in our example project, 1000 is for single target combinations, 500 is for multitarget and 0 is for fallbacks.
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Adventure Plugin")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Adventure Plugin")
 	int Priority;
 
 	/**
